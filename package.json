@@ -1,0 +1,45 @@
+{
+  "name": "blockfrost-api",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "blockfrost.io",
+  "scripts": {
+    "build": "yarn clean && babel ./src --out-dir dist --copy-files --extensions '.ts'",
+    "clean": "rimraf dist",
+    "dev": "cross-env NODE_OPTIONS='--max-http-header-size 32768' NODE_ENV=dev yarn run-dev",
+    "dev-testnet": "cross-env NODE_ENV=testnet yarn run-dev",
+    "dev-mainnet": "cross-env NODE_ENV=mainnet yarn run-dev",
+    "lint": "eslint ./src/**/*.ts",
+    "run-dev": "ts-node-dev -r tsconfig-paths/register --transpile-only src/server.ts",
+    "start": "yarn build && node --max-http-header-size=32768 dist/server.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.13",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "4.8.1",
+    "babel-cli": "^6.26.0",
+    "babel-node": "^0.0.1-security",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint": "7.14.0",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-import-resolver-babel-module": "^5.2.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-prettier": "3.1.4",
+    "jest": "^26.6.3",
+    "prettier": "2.2.0",
+    "ts-jest": "^26.4.4",
+    "ts-node": "9.0.0",
+    "ts-node-dev": "^1.0.0",
+    "tsc-watch": "^4.2.8",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.0.5"
+  }
+}
