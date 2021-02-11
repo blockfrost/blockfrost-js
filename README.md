@@ -11,7 +11,7 @@ Make sure you have downloaded and installed [Node.js](https://nodejs.org/en/down
 
 Login to the https://blockfrost.io. Create a project and get your api key.
 
-<img src="/docs/api_key.png">
+<img src="/docs/screen.png">
 
 <br>
 

@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
 
-export function accounts(apiUrl: string, projectId: string, stakeAddress: string): Promise<any> {
+export function addresses(apiUrl: string, projectId: string, address: string): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/accounts/${stakeAddress}`, {
+      .get(`${apiUrl}/addresses/${address}`, {
         headers: getHeaders(projectId),
       })
       .then(resp => {
@@ -14,10 +14,10 @@ export function accounts(apiUrl: string, projectId: string, stakeAddress: string
   });
 }
 
-export function accountsRewards(apiUrl: string, projectId: string, stakeAddress: string): Promise<any> {
+export function addressesTotal(apiUrl: string, projectId: string, address: string): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/accounts/${stakeAddress}/rewards`, {
+      .get(`${apiUrl}/addresses/${address}/total`, {
         headers: getHeaders(projectId),
       })
       .then(resp => {
@@ -27,10 +27,10 @@ export function accountsRewards(apiUrl: string, projectId: string, stakeAddress:
   });
 }
 
-export function accountsDelegations(apiUrl: string, projectId: string, stakeAddress: string): Promise<any> {
+export function addressesTxs(apiUrl: string, projectId: string, address: string): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/accounts/${stakeAddress}/delegations`, {
+      .get(`${apiUrl}/addresses/${address}/txs`, {
         headers: getHeaders(projectId),
       })
       .then(resp => {
@@ -40,10 +40,10 @@ export function accountsDelegations(apiUrl: string, projectId: string, stakeAddr
   });
 }
 
-export function accountsRegistrations(apiUrl: string, projectId: string, stakeAddress: string): Promise<any> {
+export function addressesUtxos(apiUrl: string, projectId: string, address: string): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/accounts/${stakeAddress}/registrations`, {
+      .get(`${apiUrl}/addresses/${address}/utxos`, {
         headers: getHeaders(projectId),
       })
       .then(resp => {
