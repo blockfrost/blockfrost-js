@@ -1,0 +1,6 @@
+node_modules
+*.swp
+dist
+result
+coverage
+yarn-error.log
