@@ -22,6 +22,7 @@ $ yarn add blockfrost-api
 ```
 
 <br>
+
 ###### USAGE
 
 ```
