@@ -6,12 +6,12 @@ A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API.
 
 ###### BEFORE YOU START
 
-1. Login to the https://blockfrost.io. Create a project and get your api key.
-
-<img src="/docs/api_key.png">
-
 Make sure you have downloaded and installed [Node.js](https://nodejs.org/en/download/) - node v14 is recommended.
 [Yarn](https://yarnpkg.com/lang/en/docs/install/) is recommended (we use yarn.lock)
+
+Login to the https://blockfrost.io. Create a project and get your api key.
+
+<img src="/docs/api_key.png">
 
 <br>
 
@@ -27,9 +27,15 @@ $ yarn add blockfrost-api
 ```
 import BlockfrostAPI from '@blockfrost/api-js'
 
-const api = new BlockfrostAPI({
-    projectId: 'xxx'
-})
+const API = new BlockFrostAPI({
+  isTestnet: true,
+  projectId: YOUR API KEY HERE',
+});
 
-const latestBlock = api.blockLatest();
+try {
+  const result = await API.blocksLatest();
+  console.log(result);
+} catch (err) {
+  console.log(err);
+}
 ```
