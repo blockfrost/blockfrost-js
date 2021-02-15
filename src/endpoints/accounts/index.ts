@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
 
-export function accounts(apiUrl: string, projectId: string, stakeAddress: string): Promise<any> {
+export const accounts = (apiUrl: string, projectId: string, stakeAddress: string): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}`, {
@@ -12,9 +12,9 @@ export function accounts(apiUrl: string, projectId: string, stakeAddress: string
       })
       .catch(err => reject(handleError(err)));
   });
-}
+};
 
-export function accountsRewards(apiUrl: string, projectId: string, stakeAddress: string): Promise<any> {
+export const accountsRewards = (apiUrl: string, projectId: string, stakeAddress: string): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}/rewards`, {
@@ -25,9 +25,9 @@ export function accountsRewards(apiUrl: string, projectId: string, stakeAddress:
       })
       .catch(err => reject(handleError(err)));
   });
-}
+};
 
-export function accountsDelegations(apiUrl: string, projectId: string, stakeAddress: string): Promise<any> {
+export const accountsDelegations = (apiUrl: string, projectId: string, stakeAddress: string): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}/delegations`, {
@@ -38,9 +38,9 @@ export function accountsDelegations(apiUrl: string, projectId: string, stakeAddr
       })
       .catch(err => reject(handleError(err)));
   });
-}
+};
 
-export function accountsRegistrations(apiUrl: string, projectId: string, stakeAddress: string): Promise<any> {
+export const accountsRegistrations = (apiUrl: string, projectId: string, stakeAddress: string): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}/registrations`, {
@@ -51,4 +51,4 @@ export function accountsRegistrations(apiUrl: string, projectId: string, stakeAd
       })
       .catch(err => reject(handleError(err)));
   });
-}
+};

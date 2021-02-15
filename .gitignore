@@ -1,6 +1,6 @@
 node_modules
 *.swp
-dist
+lib
 result
 coverage
 yarn-error.log

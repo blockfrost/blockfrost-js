@@ -84,7 +84,7 @@ class BlockFrostAPI {
 
 async function run() {
   const API = new BlockFrostAPI({
-    projectId: 'jOhDckOVcwx1UrlUCl9iAcHWem2pzZgI',
+    projectId: 's',
   });
 
   try {
@@ -96,3 +96,4 @@ async function run() {
 }
 
 run();
+export default BlockFrostAPI;
