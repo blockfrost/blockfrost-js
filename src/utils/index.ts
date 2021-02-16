@@ -3,7 +3,11 @@ import { Headers, Options, ErrorType, ValidatedOptions } from 'types';
 import { AxiosError } from 'axios';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
-  if (!options || !options.projectId) {
+  if (!options || (!options.customServer && !options.projectId)) {
+    throw Error('Missing customServer or projectId options');
+  }
+
+  if (!options.projectId) {
     throw Error('Missing param projectId in options');
   }
 

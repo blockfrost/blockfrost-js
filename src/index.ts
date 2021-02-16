@@ -135,7 +135,7 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  blocksNext = (address: HashOrNumber) =>
+  blocksNext = (hashOrNumber: HashOrNumber) =>
     blocks.blocksNext(this.apiUrl, this.projectId, hashOrNumber);
 
   /**
@@ -145,7 +145,7 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  blockPrevious = (address: HashOrNumber) =>
+  blocksPrevious = (hashOrNumber: HashOrNumber) =>
     blocks.blocksPrevious(this.apiUrl, this.projectId, hashOrNumber);
 
   /**
