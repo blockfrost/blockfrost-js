@@ -1,14 +1,18 @@
-import * as blocks from 'endpoints/blocks';
-import * as accounts from 'endpoints/accounts';
-import * as addresses from 'endpoints/addresses';
-import * as epochs from 'endpoints/epochs';
-import * as health from 'endpoints/health';
-import * as ledger from 'endpoints/ledger';
-import * as metadata from 'endpoints/metadata';
-import * as metrics from 'endpoints/metrics';
-import * as pools from 'endpoints/pools';
-import * as root from 'endpoints/root';
-import * as txs from 'endpoints/txs';
+import {
+  blocks,
+  accounts,
+  addresses,
+  epochs,
+  health,
+  ledger,
+  metadata,
+  metrics,
+  pools,
+  root,
+  txs,
+} from 'endpoints';
+
+import * as AccountTypes from 'types/responses';
 
 import { validateOptions } from 'utils';
 import { API_URLS } from 'config';
@@ -33,7 +37,8 @@ class BlockFrostAPI {
    * @returns
    *
    */
-  accounts = (stakeAddress: string) => accounts.accounts(this.apiUrl, this.projectId, stakeAddress);
+  accounts = (stakeAddress: string): AccountTypes.Accounts =>
+    accounts.accounts(this.apiUrl, this.projectId, stakeAddress);
 
   /**
    * accountsDelegations
@@ -42,7 +47,9 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  accountsDelegations = (stakeAddress: string) =>
+  accountsDelegations = (
+    stakeAddress: string,
+  ): AccountTypes.AccountsDelegations =>
     accounts.accountsDelegations(this.apiUrl, this.projectId, stakeAddress);
 
   /**
@@ -52,7 +59,9 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  accountsRegistrations = (stakeAddress: string) =>
+  accountsRegistrations: AccountTypes.AccountsRegistrations = (
+    stakeAddress: string,
+  ) =>
     accounts.accountsRegistrations(this.apiUrl, this.projectId, stakeAddress);
 
   /**
@@ -62,7 +71,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  accountsRewards = (stakeAddress: string) => accounts.accountsRewards(this.apiUrl, this.projectId, stakeAddress);
+  accountsRewards: AccountTypes.AccountsRewards = (stakeAddress: string) =>
+    accounts.accountsRewards(this.apiUrl, this.projectId, stakeAddress);
 
   /**
    * addresses
@@ -71,7 +81,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  addresses = (address: string) => addresses.addresses(this.apiUrl, this.projectId, address);
+  addresses = (address: string) =>
+    addresses.addresses(this.apiUrl, this.projectId, address);
 
   /**
    * addressesTotal
@@ -80,7 +91,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  addressesTotal = (address: string) => addresses.addressesTotal(this.apiUrl, this.projectId, address);
+  addressesTotal = (address: string) =>
+    addresses.addressesTotal(this.apiUrl, this.projectId, address);
 
   /**
    * addressesTxs
@@ -89,7 +101,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  addressesTxs = (address: string) => addresses.addressesTxs(this.apiUrl, this.projectId, address);
+  addressesTxs = (address: string) =>
+    addresses.addressesTxs(this.apiUrl, this.projectId, address);
 
   /**
    * addressesUtxos
@@ -98,7 +111,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  addressesUtxos = (address: string) => addresses.addressesUtxos(this.apiUrl, this.projectId, address);
+  addressesUtxos = (address: string) =>
+    addresses.addressesUtxos(this.apiUrl, this.projectId, address);
 
   /**
    * addressesUtxos
@@ -107,7 +121,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  blocks = (hashOrNumber: HashOrNumber) => blocks.blocks(this.apiUrl, this.projectId, hashOrNumber);
+  blocks = (hashOrNumber: HashOrNumber) =>
+    blocks.blocks(this.apiUrl, this.projectId, hashOrNumber);
 
   /**
    * blocksLatest
@@ -124,7 +139,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  blocksNext = (address: HashOrNumber) => blocks.blocksNext(this.apiUrl, this.projectId, hashOrNumber);
+  blocksNext = (address: HashOrNumber) =>
+    blocks.blocksNext(this.apiUrl, this.projectId, hashOrNumber);
 
   /**
    * blockPrevious
@@ -133,7 +149,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  blockPrevious = (address: HashOrNumber) => blocks.blocksPrevious(this.apiUrl, this.projectId, hashOrNumber);
+  blockPrevious = (address: HashOrNumber) =>
+    blocks.blocksPrevious(this.apiUrl, this.projectId, hashOrNumber);
 
   /**
    * addressesUtxos
@@ -142,7 +159,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  blocksTxs = (hashOrNumber: HashOrNumber) => blocks.blocksTxs(this.apiUrl, this.projectId, hashOrNumber);
+  blocksTxs = (hashOrNumber: HashOrNumber) =>
+    blocks.blocksTxs(this.apiUrl, this.projectId, hashOrNumber);
 
   /**
    * epochs
@@ -151,7 +169,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochs = (number: number) => epochs.epochs(this.apiUrl, this.projectId, number);
+  epochs = (number: number) =>
+    epochs.epochs(this.apiUrl, this.projectId, number);
 
   /**
    * epochsBlocks
@@ -160,7 +179,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochsBlocks = (number: number) => epochs.epochsBlocks(this.apiUrl, this.projectId, number);
+  epochsBlocks = (number: number) =>
+    epochs.epochsBlocks(this.apiUrl, this.projectId, number);
 
   /**
    * epochsBlocksByPoolId
@@ -187,7 +207,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochsNext = (number: number) => epochs.epochsNext(this.apiUrl, this.projectId, number);
+  epochsNext = (number: number) =>
+    epochs.epochsNext(this.apiUrl, this.projectId, number);
 
   /**
    * epochsParameters
@@ -196,7 +217,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochsParameters = (number: number) => epochs.epochsParameters(this.apiUrl, this.projectId, number);
+  epochsParameters = (number: number) =>
+    epochs.epochsParameters(this.apiUrl, this.projectId, number);
 
   /**
    * epochsPrevious
@@ -205,7 +227,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochsPrevious = (number: number) => epochs.epochsPrevious(this.apiUrl, this.projectId, number);
+  epochsPrevious = (number: number) =>
+    epochs.epochsPrevious(this.apiUrl, this.projectId, number);
 
   /**
    * epochsStakes
@@ -214,7 +237,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochsStakes = (number: number) => epochs.epochsStakes(this.apiUrl, this.projectId, number);
+  epochsStakes = (number: number) =>
+    epochs.epochsStakes(this.apiUrl, this.projectId, number);
 
   /**
    * epochsStakesByPoolId
@@ -257,7 +281,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  metadataTxsLabel = (label: string) => metadata.metadataTxsLabel(this.apiUrl, this.projectId, label);
+  metadataTxsLabel = (label: string) =>
+    metadata.metadataTxsLabel(this.apiUrl, this.projectId, label);
 
   /**
    * metadataTxsLabelCbor
@@ -266,7 +291,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  metadataTxsLabelCbor = (label: string) => metadata.metadataTxsLabelCbor(this.apiUrl, this.projectId, label);
+  metadataTxsLabelCbor = (label: string) =>
+    metadata.metadataTxsLabelCbor(this.apiUrl, this.projectId, label);
 
   /**
    * metadataTxsLabels
@@ -274,7 +300,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  metadataTxsLabels = () => metadata.metadataTxsLabels(this.apiUrl, this.projectId);
+  metadataTxsLabels = () =>
+    metadata.metadataTxsLabels(this.apiUrl, this.projectId);
 
   /**
    * metrics
@@ -290,7 +317,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  metricsEndpoints = () => metrics.metricsEndpoints(this.apiUrl, this.projectId);
+  metricsEndpoints = () =>
+    metrics.metricsEndpoints(this.apiUrl, this.projectId);
 
   /**
    * pools
@@ -307,7 +335,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolMetadata = (poolId: string) => pools.poolMetadata(this.apiUrl, this.projectId, poolId);
+  poolMetadata = (poolId: string) =>
+    pools.poolMetadata(this.apiUrl, this.projectId, poolId);
 
   /**
    * poolsById
@@ -316,7 +345,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsById = (poolId: string) => pools.poolsById(this.apiUrl, this.projectId, poolId);
+  poolsById = (poolId: string) =>
+    pools.poolsById(this.apiUrl, this.projectId, poolId);
 
   /**
    * poolsByIdBlocks
@@ -325,7 +355,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsByIdBlocks = (poolId: string) => pools.poolsByIdBlocks(this.apiUrl, this.projectId, poolId);
+  poolsByIdBlocks = (poolId: string) =>
+    pools.poolsByIdBlocks(this.apiUrl, this.projectId, poolId);
 
   /**
    * poolsByIdDelegators
@@ -334,7 +365,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsByIdDelegators = (poolId: string) => pools.poolsByIdDelegators(this.apiUrl, this.projectId, poolId);
+  poolsByIdDelegators = (poolId: string) =>
+    pools.poolsByIdDelegators(this.apiUrl, this.projectId, poolId);
 
   /**
    * poolsByIdHistory
@@ -343,7 +375,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsByIdHistory = (poolId: string) => pools.poolsByIdHistory(this.apiUrl, this.projectId, poolId);
+  poolsByIdHistory = (poolId: string) =>
+    pools.poolsByIdHistory(this.apiUrl, this.projectId, poolId);
 
   /**
    * poolsByIdRelays
@@ -352,7 +385,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsByIdRelays = (poolId: string) => pools.poolsByIdRelays(this.apiUrl, this.projectId, poolId);
+  poolsByIdRelays = (poolId: string) =>
+    pools.poolsByIdRelays(this.apiUrl, this.projectId, poolId);
 
   /**
    * poolsByIdUpdates
@@ -361,7 +395,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsByIdUpdates = (poolId: string) => pools.poolsByIdUpdates(this.apiUrl, this.projectId, poolId);
+  poolsByIdUpdates = (poolId: string) =>
+    pools.poolsByIdUpdates(this.apiUrl, this.projectId, poolId);
 
   /**
    * poolsRetired
@@ -403,7 +438,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txsMetadataCbor = (hash: string) => txs.txsMetadataCbor(this.apiUrl, this.projectId, hash);
+  txsMetadataCbor = (hash: string) =>
+    txs.txsMetadataCbor(this.apiUrl, this.projectId, hash);
 
   /**
    * txsDelegations
@@ -412,7 +448,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txsDelegations = (hash: string) => txs.txsDelegations(this.apiUrl, this.projectId, hash);
+  txsDelegations = (hash: string) =>
+    txs.txsDelegations(this.apiUrl, this.projectId, hash);
 
   /**
    * txsPoolRetires
@@ -421,7 +458,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txsPoolRetires = (hash: string) => txs.txsPoolRetires(this.apiUrl, this.projectId, hash);
+  txsPoolRetires = (hash: string) =>
+    txs.txsPoolRetires(this.apiUrl, this.projectId, hash);
 
   /**
    * txsPoolUpdates
@@ -430,7 +468,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txsPoolUpdates = (hash: string) => txs.txsPoolUpdates(this.apiUrl, this.projectId, hash);
+  txsPoolUpdates = (hash: string) =>
+    txs.txsPoolUpdates(this.apiUrl, this.projectId, hash);
 
   /**
    * txsStakes
@@ -439,7 +478,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txsStakes = (hash: string) => txs.txsStakes(this.apiUrl, this.projectId, hash);
+  txsStakes = (hash: string) =>
+    txs.txsStakes(this.apiUrl, this.projectId, hash);
 
   /**
    * txsUtxos
@@ -457,7 +497,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txsWithdrawals = (hash: string) => txs.txsWithdrawals(this.apiUrl, this.projectId, hash);
+  txsWithdrawals = (hash: string) =>
+    txs.txsWithdrawals(this.apiUrl, this.projectId, hash);
 
   /**
    * txxMetadata
@@ -466,7 +507,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txxMetadata = (hash: string) => txs.txxMetadata(this.apiUrl, this.projectId, hash);
+  txxMetadata = (hash: string) =>
+    txs.txxMetadata(this.apiUrl, this.projectId, hash);
 }
 
 async function run() {

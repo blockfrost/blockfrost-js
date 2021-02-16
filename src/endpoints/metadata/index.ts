@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
 
-export function metadataTxsLabels(apiUrl: string, projectId: string): Promise<any> {
+export function metadataTxsLabels(
+  apiUrl: string,
+  projectId: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/metadata/txs/labels`, {
@@ -16,7 +19,11 @@ export function metadataTxsLabels(apiUrl: string, projectId: string): Promise<an
   });
 }
 
-export function metadataTxsLabel(apiUrl: string, projectId: string, label: string): Promise<any> {
+export function metadataTxsLabel(
+  apiUrl: string,
+  projectId: string,
+  label: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/metadata/txs/labels/${label}`, {
@@ -31,7 +38,11 @@ export function metadataTxsLabel(apiUrl: string, projectId: string, label: strin
   });
 }
 
-export function metadataTxsLabelCbor(apiUrl: string, projectId: string, label: string): Promise<any> {
+export function metadataTxsLabelCbor(
+  apiUrl: string,
+  projectId: string,
+  label: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/metadata/txs/labels/${label}/cbor`, {

@@ -2,7 +2,11 @@ import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
 import { HashOrNumber } from 'types';
 
-export function blocks(apiUrl: string, projectId: string, hashOrNumber: HashOrNumber): Promise<any> {
+export function blocks(
+  apiUrl: string,
+  projectId: string,
+  hashOrNumber: HashOrNumber,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/blocks/${hashOrNumber}`, {
@@ -17,7 +21,10 @@ export function blocks(apiUrl: string, projectId: string, hashOrNumber: HashOrNu
   });
 }
 
-export const blocksLatest = (apiUrl: string, projectId: string): Promise<any> => {
+export const blocksLatest = (
+  apiUrl: string,
+  projectId: string,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/blocks/latest`, {
@@ -32,7 +39,11 @@ export const blocksLatest = (apiUrl: string, projectId: string): Promise<any> =>
   });
 };
 
-export const blocksNext = (apiUrl: string, projectId: string, hashOrNumber: HashOrNumber): Promise<any> => {
+export const blocksNext = (
+  apiUrl: string,
+  projectId: string,
+  hashOrNumber: HashOrNumber,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/blocks/${hashOrNumber}/next`, {
@@ -47,7 +58,11 @@ export const blocksNext = (apiUrl: string, projectId: string, hashOrNumber: Hash
   });
 };
 
-export const blocksPrevious = (apiUrl: string, projectId: string, hashOrNumber: HashOrNumber): Promise<any> => {
+export const blocksPrevious = (
+  apiUrl: string,
+  projectId: string,
+  hashOrNumber: HashOrNumber,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/blocks/${hashOrNumber}/previous`, {
@@ -62,7 +77,11 @@ export const blocksPrevious = (apiUrl: string, projectId: string, hashOrNumber: 
   });
 };
 
-export const blocksTxs = (apiUrl: string, projectId: string, hashOrNumber: HashOrNumber): Promise<any> => {
+export const blocksTxs = (
+  apiUrl: string,
+  projectId: string,
+  hashOrNumber: HashOrNumber,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/blocks/${hashOrNumber}/txs`, {

@@ -46,7 +46,11 @@ export function poolsRetiring(apiUrl: string, projectId: string): Promise<any> {
   });
 }
 
-export function poolsById(apiUrl: string, projectId: string, poolId: string): Promise<any> {
+export function poolsById(
+  apiUrl: string,
+  projectId: string,
+  poolId: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/pools/${poolId}`, {
@@ -61,7 +65,11 @@ export function poolsById(apiUrl: string, projectId: string, poolId: string): Pr
   });
 }
 
-export function poolsByIdHistory(apiUrl: string, projectId: string, poolId: string): Promise<any> {
+export function poolsByIdHistory(
+  apiUrl: string,
+  projectId: string,
+  poolId: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/pools/${poolId}/history`, {
@@ -76,7 +84,11 @@ export function poolsByIdHistory(apiUrl: string, projectId: string, poolId: stri
   });
 }
 
-export function poolMetadata(apiUrl: string, projectId: string, poolId: string): Promise<any> {
+export function poolMetadata(
+  apiUrl: string,
+  projectId: string,
+  poolId: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/pools/${poolId}/metadata`, {
@@ -91,7 +103,11 @@ export function poolMetadata(apiUrl: string, projectId: string, poolId: string):
   });
 }
 
-export function poolsByIdRelays(apiUrl: string, projectId: string, poolId: string): Promise<any> {
+export function poolsByIdRelays(
+  apiUrl: string,
+  projectId: string,
+  poolId: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/pools/${poolId}/relays`, {
@@ -106,7 +122,11 @@ export function poolsByIdRelays(apiUrl: string, projectId: string, poolId: strin
   });
 }
 
-export function poolsByIdDelegators(apiUrl: string, projectId: string, poolId: string): Promise<any> {
+export function poolsByIdDelegators(
+  apiUrl: string,
+  projectId: string,
+  poolId: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/pools/${poolId}/delegators`, {
@@ -121,7 +141,11 @@ export function poolsByIdDelegators(apiUrl: string, projectId: string, poolId: s
   });
 }
 
-export function poolsByIdBlocks(apiUrl: string, projectId: string, poolId: string): Promise<any> {
+export function poolsByIdBlocks(
+  apiUrl: string,
+  projectId: string,
+  poolId: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/pools/${poolId}/blocks`, {
@@ -136,7 +160,11 @@ export function poolsByIdBlocks(apiUrl: string, projectId: string, poolId: strin
   });
 }
 
-export function poolsByIdUpdates(apiUrl: string, projectId: string, poolId: string): Promise<any> {
+export function poolsByIdUpdates(
+  apiUrl: string,
+  projectId: string,
+  poolId: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/pools/${poolId}/updates`, {

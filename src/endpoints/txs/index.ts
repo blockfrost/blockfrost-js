@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
 
-export function txs(apiUrl: string, projectId: string, hash: string): Promise<any> {
+export function txs(
+  apiUrl: string,
+  projectId: string,
+  hash: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/txs/${hash}`, {
@@ -16,7 +20,11 @@ export function txs(apiUrl: string, projectId: string, hash: string): Promise<an
   });
 }
 
-export function txsUtxos(apiUrl: string, projectId: string, hash: string): Promise<any> {
+export function txsUtxos(
+  apiUrl: string,
+  projectId: string,
+  hash: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/txs/${hash}/utxos`, {
@@ -31,7 +39,11 @@ export function txsUtxos(apiUrl: string, projectId: string, hash: string): Promi
   });
 }
 
-export function txsStakes(apiUrl: string, projectId: string, hash: string): Promise<any> {
+export function txsStakes(
+  apiUrl: string,
+  projectId: string,
+  hash: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/txs/${hash}/stakes`, {
@@ -46,7 +58,11 @@ export function txsStakes(apiUrl: string, projectId: string, hash: string): Prom
   });
 }
 
-export function txsDelegations(apiUrl: string, projectId: string, hash: string): Promise<any> {
+export function txsDelegations(
+  apiUrl: string,
+  projectId: string,
+  hash: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/txs/${hash}/delegations`, {
@@ -61,7 +77,11 @@ export function txsDelegations(apiUrl: string, projectId: string, hash: string):
   });
 }
 
-export function txsWithdrawals(apiUrl: string, projectId: string, hash: string): Promise<any> {
+export function txsWithdrawals(
+  apiUrl: string,
+  projectId: string,
+  hash: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/txs/${hash}/withdrawals`, {
@@ -76,7 +96,11 @@ export function txsWithdrawals(apiUrl: string, projectId: string, hash: string):
   });
 }
 
-export function txsPoolUpdates(apiUrl: string, projectId: string, hash: string): Promise<any> {
+export function txsPoolUpdates(
+  apiUrl: string,
+  projectId: string,
+  hash: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/txs/${hash}/pool_updates`, {
@@ -91,7 +115,11 @@ export function txsPoolUpdates(apiUrl: string, projectId: string, hash: string):
   });
 }
 
-export function txsPoolRetires(apiUrl: string, projectId: string, hash: string): Promise<any> {
+export function txsPoolRetires(
+  apiUrl: string,
+  projectId: string,
+  hash: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/txs/${hash}/pool_retires`, {
@@ -106,7 +134,11 @@ export function txsPoolRetires(apiUrl: string, projectId: string, hash: string):
   });
 }
 
-export function txxMetadata(apiUrl: string, projectId: string, hash: string): Promise<any> {
+export function txxMetadata(
+  apiUrl: string,
+  projectId: string,
+  hash: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/txs/${hash}/metadata`, {
@@ -121,7 +153,11 @@ export function txxMetadata(apiUrl: string, projectId: string, hash: string): Pr
   });
 }
 
-export function txsMetadataCbor(apiUrl: string, projectId: string, hash: string): Promise<any> {
+export function txsMetadataCbor(
+  apiUrl: string,
+  projectId: string,
+  hash: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/txs/${hash}/metadata/cbor`, {

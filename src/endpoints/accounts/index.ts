@@ -1,7 +1,12 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
+import * as Responses from 'types/Responses';
 
-export const accounts = (apiUrl: string, projectId: string, stakeAddress: string): Promise<any> => {
+export const accounts = (
+  apiUrl: string,
+  projectId: string,
+  stakeAddress: string,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}`, {
@@ -14,7 +19,11 @@ export const accounts = (apiUrl: string, projectId: string, stakeAddress: string
   });
 };
 
-export const accountsRewards = (apiUrl: string, projectId: string, stakeAddress: string): Promise<any> => {
+export const accountsRewards = (
+  apiUrl: string,
+  projectId: string,
+  stakeAddress: string,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}/rewards`, {
@@ -27,7 +36,11 @@ export const accountsRewards = (apiUrl: string, projectId: string, stakeAddress:
   });
 };
 
-export const accountsDelegations = (apiUrl: string, projectId: string, stakeAddress: string): Promise<any> => {
+export const accountsDelegations = (
+  apiUrl: string,
+  projectId: string,
+  stakeAddress: string,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}/delegations`, {
@@ -40,7 +53,11 @@ export const accountsDelegations = (apiUrl: string, projectId: string, stakeAddr
   });
 };
 
-export const accountsRegistrations = (apiUrl: string, projectId: string, stakeAddress: string): Promise<any> => {
+export const accountsRegistrations = (
+  apiUrl: string,
+  projectId: string,
+  stakeAddress: string,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}/registrations`, {

@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
 
-export function addresses(apiUrl: string, projectId: string, address: string): Promise<any> {
+export function addresses(
+  apiUrl: string,
+  projectId: string,
+  address: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/addresses/${address}`, {
@@ -14,7 +18,11 @@ export function addresses(apiUrl: string, projectId: string, address: string): P
   });
 }
 
-export function addressesTotal(apiUrl: string, projectId: string, address: string): Promise<any> {
+export function addressesTotal(
+  apiUrl: string,
+  projectId: string,
+  address: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/addresses/${address}/total`, {
@@ -27,7 +35,11 @@ export function addressesTotal(apiUrl: string, projectId: string, address: strin
   });
 }
 
-export function addressesTxs(apiUrl: string, projectId: string, address: string): Promise<any> {
+export function addressesTxs(
+  apiUrl: string,
+  projectId: string,
+  address: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/addresses/${address}/txs`, {
@@ -40,7 +52,11 @@ export function addressesTxs(apiUrl: string, projectId: string, address: string)
   });
 }
 
-export function addressesUtxos(apiUrl: string, projectId: string, address: string): Promise<any> {
+export function addressesUtxos(
+  apiUrl: string,
+  projectId: string,
+  address: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/addresses/${address}/utxos`, {

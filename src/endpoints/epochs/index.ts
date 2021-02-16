@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
 
-export function epochs(apiUrl: string, projectId: string, number: number): Promise<any> {
+export function epochs(
+  apiUrl: string,
+  projectId: string,
+  number: number,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/epochs/${number}`, {
@@ -16,7 +20,10 @@ export function epochs(apiUrl: string, projectId: string, number: number): Promi
   });
 }
 
-export const epochsLatest = (apiUrl: string, projectId: string): Promise<any> => {
+export const epochsLatest = (
+  apiUrl: string,
+  projectId: string,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/epochs/latest`, {
@@ -31,7 +38,11 @@ export const epochsLatest = (apiUrl: string, projectId: string): Promise<any> =>
   });
 };
 
-export const epochsNext = (apiUrl: string, projectId: string, number: number): Promise<any> => {
+export const epochsNext = (
+  apiUrl: string,
+  projectId: string,
+  number: number,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/epochs/${number}/next`, {
@@ -46,7 +57,11 @@ export const epochsNext = (apiUrl: string, projectId: string, number: number): P
   });
 };
 
-export const epochsPrevious = (apiUrl: string, projectId: string, number: number): Promise<any> => {
+export const epochsPrevious = (
+  apiUrl: string,
+  projectId: string,
+  number: number,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/epochs/${number}/previous`, {
@@ -61,7 +76,11 @@ export const epochsPrevious = (apiUrl: string, projectId: string, number: number
   });
 };
 
-export const epochsStakes = (apiUrl: string, projectId: string, number: number): Promise<any> => {
+export const epochsStakes = (
+  apiUrl: string,
+  projectId: string,
+  number: number,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/epochs/${number}/stakes`, {
@@ -96,7 +115,11 @@ export const epochsStakesByPoolId = (
   });
 };
 
-export const epochsBlocks = (apiUrl: string, projectId: string, number: number): Promise<any> => {
+export const epochsBlocks = (
+  apiUrl: string,
+  projectId: string,
+  number: number,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/epochs/${number}/blocks`, {
@@ -131,7 +154,11 @@ export const epochsBlocksByPoolId = (
   });
 };
 
-export const epochsParameters = (apiUrl: string, projectId: string, number: number): Promise<any> => {
+export const epochsParameters = (
+  apiUrl: string,
+  projectId: string,
+  number: number,
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/epochs/${number}/parameters`, {

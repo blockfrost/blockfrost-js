@@ -16,7 +16,10 @@ export function metrics(apiUrl: string, projectId: string): Promise<any> {
   });
 }
 
-export function metricsEndpoints(apiUrl: string, projectId: string): Promise<any> {
+export function metricsEndpoints(
+  apiUrl: string,
+  projectId: string,
+): Promise<any> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/metrics/endpoints`, {
