@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
+import { components } from 'types/OpenApi';
 
 export function addresses(
   apiUrl: string,
   projectId: string,
   address: string,
-): Promise<any> {
+): Promise<components['schemas']['address_content']> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/addresses/${address}`, {
@@ -22,7 +23,7 @@ export function addressesTotal(
   apiUrl: string,
   projectId: string,
   address: string,
-): Promise<any> {
+): Promise<components['schemas']['address_content_total']> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/addresses/${address}/total`, {
@@ -39,7 +40,7 @@ export function addressesTxs(
   apiUrl: string,
   projectId: string,
   address: string,
-): Promise<any> {
+): Promise<components['schemas']['address_txs_content']> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/addresses/${address}/txs`, {
@@ -56,7 +57,7 @@ export function addressesUtxos(
   apiUrl: string,
   projectId: string,
   address: string,
-): Promise<any> {
+): Promise<components['schemas']['address_utxo_content']> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/addresses/${address}/utxos`, {

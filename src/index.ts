@@ -13,7 +13,7 @@ import {
   txs,
 } from 'endpoints';
 import { HashOrNumber, Options } from 'types';
-import * as Responses from 'types/Responses';
+import { components } from 'types/OpenApi';
 import join from 'url-join';
 import { validateOptions } from 'utils';
 
@@ -29,24 +29,32 @@ class BlockFrostAPI {
   }
 
   /**
-   * Accounts
+   * accounts - Obtain information about a specific stake account.
    *
-   * @param stakeAddress
-   * @returns
+   * @param stakeAddress - Bech32 stake address
+   * @returns  Information about a specific stake account.
    *
    */
-  accounts = (stakeAddress: string): Responses.Accounts =>
-    accounts.accounts(this.apiUrl, this.projectId, stakeAddress);
+  accounts = async (
+    stakeAddress: string,
+  ): Promise<components['schemas']['account_content']> =>
+    await accounts.accounts(this.apiUrl, this.projectId, stakeAddress);
 
   /**
-   * accountsDelegations
+   * accountsDelegations - Account's delegation history
    *
-   * @param stakeAddress
-   * @returns xxx
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the delegation of a specific account.
    *
    */
-  accountsDelegations = (stakeAddress: string): Responses.AccountsDelegations =>
-    accounts.accountsDelegations(this.apiUrl, this.projectId, stakeAddress);
+  accountsDelegations = async (
+    stakeAddress: string,
+  ): Promise<components['schemas']['account_delegation_content']> =>
+    await accounts.accountsDelegations(
+      this.apiUrl,
+      this.projectId,
+      stakeAddress,
+    );
 
   /**
    * accountsRegistrations
@@ -55,10 +63,14 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  accountsRegistrations: Responses.AccountsRegistrations = (
+  accountsRegistrations = async (
     stakeAddress: string,
-  ) =>
-    accounts.accountsRegistrations(this.apiUrl, this.projectId, stakeAddress);
+  ): Promise<components['schemas']['account_registration_content']> =>
+    await accounts.accountsRegistrations(
+      this.apiUrl,
+      this.projectId,
+      stakeAddress,
+    );
 
   /**
    * accountsRewards
@@ -67,8 +79,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  accountsRewards: Responses.AccountsRewards = (stakeAddress: string) =>
-    accounts.accountsRewards(this.apiUrl, this.projectId, stakeAddress);
+  accountsRewards = async (
+    stakeAddress: string,
+  ): Promise<components['schemas']['account_reward_content']> =>
+    await accounts.accountsRewards(this.apiUrl, this.projectId, stakeAddress);
 
   /**
    * addresses
@@ -77,8 +91,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  addresses = (address: string) =>
-    addresses.addresses(this.apiUrl, this.projectId, address);
+  addresses = async (
+    address: string,
+  ): Promise<components['schemas']['address_content']> =>
+    await addresses.addresses(this.apiUrl, this.projectId, address);
 
   /**
    * addressesTotal
@@ -87,8 +103,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  addressesTotal = (address: string) =>
-    addresses.addressesTotal(this.apiUrl, this.projectId, address);
+  addressesTotal = async (
+    address: string,
+  ): Promise<components['schemas']['address_content_total']> =>
+    await addresses.addressesTotal(this.apiUrl, this.projectId, address);
 
   /**
    * addressesTxs
@@ -97,8 +115,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  addressesTxs = (address: string) =>
-    addresses.addressesTxs(this.apiUrl, this.projectId, address);
+  addressesTxs = async (
+    address: string,
+  ): Promise<components['schemas']['address_txs_content']> =>
+    await addresses.addressesTxs(this.apiUrl, this.projectId, address);
 
   /**
    * addressesUtxos
@@ -107,8 +127,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  addressesUtxos = (address: string) =>
-    addresses.addressesUtxos(this.apiUrl, this.projectId, address);
+  addressesUtxos = async (
+    address: string,
+  ): Promise<components['schemas']['address_utxo_content']> =>
+    await addresses.addressesUtxos(this.apiUrl, this.projectId, address);
 
   /**
    * addressesUtxos
@@ -117,8 +139,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  blocks = (hashOrNumber: HashOrNumber) =>
-    blocks.blocks(this.apiUrl, this.projectId, hashOrNumber);
+  blocks = async (
+    hashOrNumber: HashOrNumber,
+  ): Promise<components['schemas']['block_content']> =>
+    await blocks.blocks(this.apiUrl, this.projectId, hashOrNumber);
 
   /**
    * blocksLatest
@@ -126,7 +150,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  blocksLatest = () => blocks.blocksLatest(this.apiUrl, this.projectId);
+  blocksLatest = async (): Promise<components['schemas']['block_content']> =>
+    await blocks.blocksLatest(this.apiUrl, this.projectId);
 
   /**
    * blocksNext
@@ -135,8 +160,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  blocksNext = (hashOrNumber: HashOrNumber) =>
-    blocks.blocksNext(this.apiUrl, this.projectId, hashOrNumber);
+  blocksNext = async (
+    hashOrNumber: HashOrNumber,
+  ): Promise<components['schemas']['block_content_array']> =>
+    await blocks.blocksNext(this.apiUrl, this.projectId, hashOrNumber);
 
   /**
    * blockPrevious
@@ -145,8 +172,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  blocksPrevious = (hashOrNumber: HashOrNumber) =>
-    blocks.blocksPrevious(this.apiUrl, this.projectId, hashOrNumber);
+  blocksPrevious = async (
+    hashOrNumber: HashOrNumber,
+  ): Promise<components['schemas']['block_content_array']> =>
+    await blocks.blocksPrevious(this.apiUrl, this.projectId, hashOrNumber);
 
   /**
    * addressesUtxos
@@ -155,8 +184,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  blocksTxs = (hashOrNumber: HashOrNumber) =>
-    blocks.blocksTxs(this.apiUrl, this.projectId, hashOrNumber);
+  blocksTxs = async (
+    hashOrNumber: HashOrNumber,
+  ): Promise<components['schemas']['block_content_txs']> =>
+    await blocks.blocksTxs(this.apiUrl, this.projectId, hashOrNumber);
 
   /**
    * epochs
@@ -165,8 +196,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochs = (number: number) =>
-    epochs.epochs(this.apiUrl, this.projectId, number);
+  epochs = async (
+    number: number,
+  ): Promise<components['schemas']['epoch_content']> =>
+    await epochs.epochs(this.apiUrl, this.projectId, number);
 
   /**
    * epochsBlocks
@@ -175,8 +208,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochsBlocks = (number: number) =>
-    epochs.epochsBlocks(this.apiUrl, this.projectId, number);
+  epochsBlocks = async (
+    number: number,
+  ): Promise<components['schemas']['epoch_block_content']> =>
+    await epochs.epochsBlocks(this.apiUrl, this.projectId, number);
 
   /**
    * epochsBlocksByPoolId
@@ -185,8 +220,16 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochsBlocksByPoolId = (number: number, poolId: string) =>
-    epochs.epochsBlocksByPoolId(this.apiUrl, this.projectId, number, poolId);
+  epochsBlocksByPoolId = async (
+    number: number,
+    poolId: string,
+  ): Promise<components['schemas']['epoch_block_content']> =>
+    await epochs.epochsBlocksByPoolId(
+      this.apiUrl,
+      this.projectId,
+      number,
+      poolId,
+    );
 
   /**
    * epochsLatest
@@ -194,7 +237,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochsLatest = () => epochs.epochsLatest(this.apiUrl, this.projectId);
+  epochsLatest = async (): Promise<components['schemas']['epoch_content']> =>
+    await epochs.epochsLatest(this.apiUrl, this.projectId);
 
   /**
    * epochsNext
@@ -203,8 +247,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochsNext = (number: number) =>
-    epochs.epochsNext(this.apiUrl, this.projectId, number);
+  epochsNext = async (
+    number: number,
+  ): Promise<components['schemas']['epoch_content_array']> =>
+    await epochs.epochsNext(this.apiUrl, this.projectId, number);
 
   /**
    * epochsParameters
@@ -213,8 +259,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochsParameters = (number: number) =>
-    epochs.epochsParameters(this.apiUrl, this.projectId, number);
+  epochsParameters = async (
+    number: number,
+  ): Promise<components['schemas']['epoch_param_content']> =>
+    await epochs.epochsParameters(this.apiUrl, this.projectId, number);
 
   /**
    * epochsPrevious
@@ -223,8 +271,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochsPrevious = (number: number) =>
-    epochs.epochsPrevious(this.apiUrl, this.projectId, number);
+  epochsPrevious = async (
+    number: number,
+  ): Promise<components['schemas']['epoch_content_array']> =>
+    await epochs.epochsPrevious(this.apiUrl, this.projectId, number);
 
   /**
    * epochsStakes
@@ -233,8 +283,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochsStakes = (number: number) =>
-    epochs.epochsStakes(this.apiUrl, this.projectId, number);
+  epochsStakes = async (
+    number: number,
+  ): Promise<components['schemas']['epoch_stake_content']> =>
+    await epochs.epochsStakes(this.apiUrl, this.projectId, number);
 
   /**
    * epochsStakesByPoolId
@@ -243,8 +295,16 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  epochsStakesByPoolId = (number: number, poolId: string) =>
-    epochs.epochsStakesByPoolId(this.apiUrl, this.projectId, number, poolId);
+  epochsStakesByPoolId = async (
+    number: number,
+    poolId: string,
+  ): Promise<components['schemas']['epoch_stake_pool_content']> =>
+    await epochs.epochsStakesByPoolId(
+      this.apiUrl,
+      this.projectId,
+      number,
+      poolId,
+    );
 
   /**
    * health
@@ -252,7 +312,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  health = () => health.health(this.apiUrl, this.projectId);
+  health = async (): Promise<{ isHealthy: boolean }> =>
+    await health.health(this.apiUrl, this.projectId);
 
   /**
    * healthClock
@@ -260,7 +321,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  healthClock = () => health.healthClock(this.apiUrl, this.projectId);
+  healthClock = async (): Promise<{ server_time: number }> =>
+    health.healthClock(this.apiUrl, this.projectId);
 
   /**
    * ledger
@@ -268,7 +330,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  ledger = () => ledger.ledger(this.apiUrl, this.projectId);
+  ledger = async (): Promise<components['schemas']['genesis_content']> =>
+    await ledger.ledger(this.apiUrl, this.projectId);
 
   /**
    * metadataTxsLabel
@@ -277,8 +340,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  metadataTxsLabel = (label: string) =>
-    metadata.metadataTxsLabel(this.apiUrl, this.projectId, label);
+  metadataTxsLabel = async (
+    label: string,
+  ): Promise<components['schemas']['tx_metadata_labels']> =>
+    await metadata.metadataTxsLabel(this.apiUrl, this.projectId, label);
 
   /**
    * metadataTxsLabelCbor
@@ -287,8 +352,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  metadataTxsLabelCbor = (label: string) =>
-    metadata.metadataTxsLabelCbor(this.apiUrl, this.projectId, label);
+  metadataTxsLabelCbor = async (
+    label: string,
+  ): Promise<components['schemas']['tx_metadata_label_cbor']> =>
+    await metadata.metadataTxsLabelCbor(this.apiUrl, this.projectId, label);
 
   /**
    * metadataTxsLabels
@@ -296,8 +363,9 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  metadataTxsLabels = () =>
-    metadata.metadataTxsLabels(this.apiUrl, this.projectId);
+  metadataTxsLabels = async (): Promise<
+    components['schemas']['tx_metadata_label_json']
+  > => await metadata.metadataTxsLabels(this.apiUrl, this.projectId);
 
   /**
    * metrics
@@ -305,7 +373,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  metrics = () => metrics.metrics(this.apiUrl, this.projectId);
+  metrics = async (): Promise<components['schemas']['metrics']> =>
+    await metrics.metrics(this.apiUrl, this.projectId);
 
   /**
    * metricsEndpoints
@@ -313,8 +382,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  metricsEndpoints = () =>
-    metrics.metricsEndpoints(this.apiUrl, this.projectId);
+  metricsEndpoints = async (): Promise<components['schemas']['metrics']> =>
+    await metrics.metricsEndpoints(this.apiUrl, this.projectId);
 
   /**
    * pools
@@ -322,7 +391,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  pools = () => pools.pools(this.apiUrl, this.projectId);
+  pools = async (): Promise<components['schemas']['metrics_endpoints']> =>
+    await pools.pools(this.apiUrl, this.projectId);
 
   /**
    * poolMetadata
@@ -331,8 +401,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolMetadata = (poolId: string) =>
-    pools.poolMetadata(this.apiUrl, this.projectId, poolId);
+  poolMetadata = async (
+    poolId: string,
+  ): Promise<components['schemas']['pool_metadata']> =>
+    await pools.poolMetadata(this.apiUrl, this.projectId, poolId);
 
   /**
    * poolsById
@@ -341,7 +413,7 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsById = (poolId: string) =>
+  poolsById = async (poolId: string): Promise<components['schemas']['pool']> =>
     pools.poolsById(this.apiUrl, this.projectId, poolId);
 
   /**
@@ -351,8 +423,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsByIdBlocks = (poolId: string) =>
-    pools.poolsByIdBlocks(this.apiUrl, this.projectId, poolId);
+  poolsByIdBlocks = async (
+    poolId: string,
+  ): Promise<components['schemas']['pool_blocks']> =>
+    await pools.poolsByIdBlocks(this.apiUrl, this.projectId, poolId);
 
   /**
    * poolsByIdDelegators
@@ -361,8 +435,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsByIdDelegators = (poolId: string) =>
-    pools.poolsByIdDelegators(this.apiUrl, this.projectId, poolId);
+  poolsByIdDelegators = async (
+    poolId: string,
+  ): Promise<components['schemas']['pool_delegators']> =>
+    await pools.poolsByIdDelegators(this.apiUrl, this.projectId, poolId);
 
   /**
    * poolsByIdHistory
@@ -371,8 +447,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsByIdHistory = (poolId: string) =>
-    pools.poolsByIdHistory(this.apiUrl, this.projectId, poolId);
+  poolsByIdHistory = async (
+    poolId: string,
+  ): Promise<components['schemas']['pool_history']> =>
+    await pools.poolsByIdHistory(this.apiUrl, this.projectId, poolId);
 
   /**
    * poolsByIdRelays
@@ -381,8 +459,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsByIdRelays = (poolId: string) =>
-    pools.poolsByIdRelays(this.apiUrl, this.projectId, poolId);
+  poolsByIdRelays = async (
+    poolId: string,
+  ): Promise<components['schemas']['pool_relays']> =>
+    await pools.poolsByIdRelays(this.apiUrl, this.projectId, poolId);
 
   /**
    * poolsByIdUpdates
@@ -391,8 +471,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsByIdUpdates = (poolId: string) =>
-    pools.poolsByIdUpdates(this.apiUrl, this.projectId, poolId);
+  poolsByIdUpdates = async (
+    poolId: string,
+  ): Promise<components['schemas']['pool_updates']> =>
+    await pools.poolsByIdUpdates(this.apiUrl, this.projectId, poolId);
 
   /**
    * poolsRetired
@@ -400,7 +482,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsRetired = () => pools.poolsRetired(this.apiUrl, this.projectId);
+  poolsRetired = async (): Promise<components['schemas']['pool_list_retire']> =>
+    await pools.poolsRetired(this.apiUrl, this.projectId);
 
   /**
    * poolsRetiring
@@ -408,7 +491,9 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  poolsRetiring = () => pools.poolsRetiring(this.apiUrl, this.projectId);
+  poolsRetiring = async (): Promise<
+    components['schemas']['pool_list_retire']
+  > => await pools.poolsRetiring(this.apiUrl, this.projectId);
 
   /**
    * info
@@ -416,7 +501,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  info = () => root.version(this.apiUrl, this.projectId);
+  info = async (): Promise<{ url: string; version: number }> =>
+    await root.version(this.apiUrl, this.projectId);
 
   /**
    * txs
@@ -425,7 +511,8 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txs = (hash: string) => txs.txs(this.apiUrl, this.projectId, hash);
+  txs = async (hash: string): Promise<components['schemas']['tx_content']> =>
+    await txs.txs(this.apiUrl, this.projectId, hash);
 
   /**
    * txsMetadataCbor
@@ -434,8 +521,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txsMetadataCbor = (hash: string) =>
-    txs.txsMetadataCbor(this.apiUrl, this.projectId, hash);
+  txsMetadataCbor = async (
+    hash: string,
+  ): Promise<components['schemas']['tx_content_metadata_cbor']> =>
+    await txs.txsMetadataCbor(this.apiUrl, this.projectId, hash);
 
   /**
    * txsDelegations
@@ -444,8 +533,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txsDelegations = (hash: string) =>
-    txs.txsDelegations(this.apiUrl, this.projectId, hash);
+  txsDelegations = async (
+    hash: string,
+  ): Promise<components['schemas']['tx_content_delegations']> =>
+    await txs.txsDelegations(this.apiUrl, this.projectId, hash);
 
   /**
    * txsPoolRetires
@@ -454,7 +545,9 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txsPoolRetires = (hash: string) =>
+  txsPoolRetires = async (
+    hash: string,
+  ): Promise<components['schemas']['tx_content_pool_retires']> =>
     txs.txsPoolRetires(this.apiUrl, this.projectId, hash);
 
   /**
@@ -464,8 +557,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txsPoolUpdates = (hash: string) =>
-    txs.txsPoolUpdates(this.apiUrl, this.projectId, hash);
+  txsPoolUpdates = async (
+    hash: string,
+  ): Promise<components['schemas']['tx_content_pool_certs']> =>
+    await txs.txsPoolUpdates(this.apiUrl, this.projectId, hash);
 
   /**
    * txsStakes
@@ -474,8 +569,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txsStakes = (hash: string) =>
-    txs.txsStakes(this.apiUrl, this.projectId, hash);
+  txsStakes = async (
+    hash: string,
+  ): Promise<components['schemas']['tx_content_stake_addr']> =>
+    await txs.txsStakes(this.apiUrl, this.projectId, hash);
 
   /**
    * txsUtxos
@@ -484,7 +581,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txsUtxos = (hash: string) => txs.txsUtxos(this.apiUrl, this.projectId, hash);
+  txsUtxos = async (
+    hash: string,
+  ): Promise<components['schemas']['tx_content_utxo']> =>
+    await txs.txsUtxos(this.apiUrl, this.projectId, hash);
 
   /**
    * txsWithdrawals
@@ -493,8 +593,10 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txsWithdrawals = (hash: string) =>
-    txs.txsWithdrawals(this.apiUrl, this.projectId, hash);
+  txsWithdrawals = async (
+    hash: string,
+  ): Promise<components['schemas']['tx_content_withdrawals']> =>
+    await txs.txsWithdrawals(this.apiUrl, this.projectId, hash);
 
   /**
    * txxMetadata
@@ -503,17 +605,21 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  txxMetadata = (hash: string) =>
-    txs.txxMetadata(this.apiUrl, this.projectId, hash);
+  txxMetadata = async (
+    hash: string,
+  ): Promise<components['schemas']['tx_metadata_label_json']> =>
+    await txs.txxMetadata(this.apiUrl, this.projectId, hash);
 }
 
 async function run() {
   const API = new BlockFrostAPI({
-    projectId: 's',
+    projectId: 'jOhDckOVcwx1UrlUCl9iAcHWem2pzZgI',
   });
 
   try {
-    const res1 = await API.info();
+    const res1 = await API.accounts(
+      'stake1u8j7wk5c4tqk00yuz7rrh2jan4jshmwl2eqx8pzklmjqprsuqc7ls',
+    );
     console.log(res1);
   } catch (err) {
     console.log('error', err);

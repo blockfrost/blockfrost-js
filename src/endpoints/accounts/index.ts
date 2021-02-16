@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
-import * as Responses from 'types/Responses';
+import { components } from 'types/OpenApi';
 
 export const accounts = (
   apiUrl: string,
   projectId: string,
   stakeAddress: string,
-): Promise<Responses.Accounts> => {
+): Promise<components['schemas']['account_content']> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}`, {
@@ -23,7 +23,7 @@ export const accountsRewards = (
   apiUrl: string,
   projectId: string,
   stakeAddress: string,
-): Promise<Responses.AccountsRewards> => {
+): Promise<components['schemas']['account_reward_content']> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}/rewards`, {
@@ -40,7 +40,7 @@ export const accountsDelegations = (
   apiUrl: string,
   projectId: string,
   stakeAddress: string,
-): Promise<Responses.AccountsDelegations> => {
+): Promise<components['schemas']['account_delegation_content']> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}/delegations`, {
@@ -57,7 +57,7 @@ export const accountsRegistrations = (
   apiUrl: string,
   projectId: string,
   stakeAddress: string,
-): Promise<Responses.AccountsRegistrations> => {
+): Promise<components['schemas']['account_registration_content']> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}/registrations`, {

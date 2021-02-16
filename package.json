@@ -7,18 +7,21 @@
   "author": "blockfrost.io",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src --out-dir lib --extensions '.ts,.tsx'",
+    "build": "yarn clean && yarn tsc && babel src --out-dir lib --extensions '.ts,.tsx'",
     "tsc": "tsc",
-    "clean": "rimraf dist",
+    "clean": "rimraf lib",
     "dev": "ts-node-dev -r tsconfig-paths/register --transpile-only src/index.ts",
-    "lint": "eslint ./src/**/*.ts"
+    "lint": "eslint ./src/**/*.ts",
+    "generate-types": "openapi-typescript ./node_modules/blockfrost-openapi/swagger.yaml --output ./src/types/OpenApi.ts"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "rimraf": "^3.0.2",
-    "url-join": "^4.0.1"
+    "url-join": "^4.0.1",
+    "blockfrost-openapi": "^0.0.44"
   },
   "devDependencies": {
+    "openapi-typescript": "^3.0.1",
     "@babel/cli": "^7.12.16",
     "@babel/core": "^7.12.16",
     "@babel/plugin-proposal-class-properties": "^7.12.13",

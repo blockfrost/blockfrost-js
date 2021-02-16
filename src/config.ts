@@ -1,5 +1,5 @@
 export const API_URLS = {
-  mainnet: 'http//localhost:3000',
+  mainnet: 'https://cardano-mainnet.blockfrost.io/api',
   testnet: 'https://cardano-testnet.blockfrost.io/api',
 };
 
