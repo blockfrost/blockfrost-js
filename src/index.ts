@@ -1,7 +1,8 @@
+import { API_URLS } from 'config';
 import {
-  blocks,
   accounts,
   addresses,
+  blocks,
   epochs,
   health,
   ledger,
@@ -11,13 +12,10 @@ import {
   root,
   txs,
 } from 'endpoints';
-
-import * as AccountTypes from 'types/responses';
-
-import { validateOptions } from 'utils';
-import { API_URLS } from 'config';
+import { HashOrNumber, Options } from 'types';
+import * as Responses from 'types/Responses';
 import join from 'url-join';
-import { Options, HashOrNumber } from 'types';
+import { validateOptions } from 'utils';
 
 class BlockFrostAPI {
   apiUrl: string;
@@ -37,7 +35,7 @@ class BlockFrostAPI {
    * @returns
    *
    */
-  accounts = (stakeAddress: string): AccountTypes.Accounts =>
+  accounts = (stakeAddress: string): Responses.Accounts =>
     accounts.accounts(this.apiUrl, this.projectId, stakeAddress);
 
   /**
@@ -47,9 +45,7 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  accountsDelegations = (
-    stakeAddress: string,
-  ): AccountTypes.AccountsDelegations =>
+  accountsDelegations = (stakeAddress: string): Responses.AccountsDelegations =>
     accounts.accountsDelegations(this.apiUrl, this.projectId, stakeAddress);
 
   /**
@@ -59,7 +55,7 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  accountsRegistrations: AccountTypes.AccountsRegistrations = (
+  accountsRegistrations: Responses.AccountsRegistrations = (
     stakeAddress: string,
   ) =>
     accounts.accountsRegistrations(this.apiUrl, this.projectId, stakeAddress);
@@ -71,7 +67,7 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  accountsRewards: AccountTypes.AccountsRewards = (stakeAddress: string) =>
+  accountsRewards: Responses.AccountsRewards = (stakeAddress: string) =>
     accounts.accountsRewards(this.apiUrl, this.projectId, stakeAddress);
 
   /**

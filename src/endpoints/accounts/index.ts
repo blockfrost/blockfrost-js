@@ -6,7 +6,7 @@ export const accounts = (
   apiUrl: string,
   projectId: string,
   stakeAddress: string,
-): Promise<any> => {
+): Promise<Responses.Accounts> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}`, {
@@ -23,7 +23,7 @@ export const accountsRewards = (
   apiUrl: string,
   projectId: string,
   stakeAddress: string,
-): Promise<any> => {
+): Promise<Responses.AccountsRewards> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}/rewards`, {
@@ -40,7 +40,7 @@ export const accountsDelegations = (
   apiUrl: string,
   projectId: string,
   stakeAddress: string,
-): Promise<any> => {
+): Promise<Responses.AccountsDelegations> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}/delegations`, {
@@ -57,7 +57,7 @@ export const accountsRegistrations = (
   apiUrl: string,
   projectId: string,
   stakeAddress: string,
-): Promise<any> => {
+): Promise<Responses.AccountsRegistrations> => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${apiUrl}/accounts/${stakeAddress}/registrations`, {
