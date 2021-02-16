@@ -1,5 +1,5 @@
-import { DEFAULT_API_VERSION } from 'config';
-import { Headers, Options, ErrorType, ValidatedOptions } from 'types';
+import { DEFAULT_API_VERSION } from '../config';
+import { Headers, Options, ErrorType, ValidatedOptions } from '../types';
 import { AxiosError } from 'axios';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {

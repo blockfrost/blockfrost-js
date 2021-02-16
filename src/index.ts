@@ -1,18 +1,18 @@
-import { API_URLS } from 'config';
+import { API_URLS } from './config';
 
 import {
   accounts,
   accountsDelegations,
   accountsRegistrations,
   accountsRewards,
-} from 'endpoints/accounts';
+} from './endpoints/accounts';
 
 import {
   addresses,
   addressesTotal,
   addressesTxs,
   addressesUtxos,
-} from 'endpoints/addresses';
+} from './endpoints/addresses';
 
 import {
   blocks,
@@ -20,7 +20,7 @@ import {
   blocksNext,
   blocksPrevious,
   blocksTxs,
-} from 'endpoints/blocks';
+} from './endpoints/blocks';
 
 import {
   epochs,
@@ -32,7 +32,7 @@ import {
   epochsPrevious,
   epochsStakes,
   epochsStakesByPoolId,
-} from 'endpoints/epochs';
+} from './endpoints/epochs';
 
 import {
   pools,
@@ -45,19 +45,19 @@ import {
   poolsByIdUpdates,
   poolsRetired,
   poolsRetiring,
-} from 'endpoints/pools';
+} from './endpoints/pools';
 
-import { ledger } from 'endpoints/ledger';
-import { root } from 'endpoints/root';
+import { ledger } from './endpoints/ledger';
+import { root } from './endpoints/root';
 import {
   metadataTxsLabel,
   metadataTxsLabelCbor,
   metadataTxsLabels,
-} from 'endpoints/metadata';
+} from './endpoints/metadata';
 
-import { health, healthClock } from 'endpoints/health';
+import { health, healthClock } from './endpoints/health';
 
-import { metrics, metricsEndpoints } from 'endpoints/metrics';
+import { metrics, metricsEndpoints } from './endpoints/metrics';
 import {
   txs,
   txsDelegations,
@@ -68,11 +68,11 @@ import {
   txsUtxos,
   txsWithdrawals,
   txsMetadata,
-} from 'endpoints/txs';
+} from './endpoints/txs';
 
-import { Options } from 'types';
+import { Options } from './types';
 import join from 'url-join';
-import { validateOptions } from 'utils';
+import { validateOptions } from './utils';
 
 class BlockFrostAPI {
   apiUrl: string;
@@ -524,20 +524,4 @@ class BlockFrostAPI {
   txsMetadata = txsMetadata;
 }
 
-async function run() {
-  const API = new BlockFrostAPI({
-    projectId: 'jOhDckOVcwx1UrlUCl9iAcHWem2pzZgI',
-  });
-
-  try {
-    const res1 = await API.accounts(
-      'stake1u8j7wk5c4tqk00yuz7rrh2jan4jshmwl2eqx8pzklmjqprsuqc7ls',
-    );
-    console.log(res1);
-  } catch (err) {
-    console.log('error', err);
-  }
-}
-
-run();
 export { BlockFrostAPI };

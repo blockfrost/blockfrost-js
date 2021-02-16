@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { getHeaders, handleError } from 'utils';
-import { components } from 'types/OpenApi';
-import { BlockFrostAPI } from '../..';
+import { getHeaders, handleError } from '../../utils';
+import { components } from '../../types/OpenApi';
+import { BlockFrostAPI } from '../../index';
 
 export async function epochs(
   this: BlockFrostAPI,

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { getHeaders, handleError } from 'utils';
-import { BlockFrostAPI } from '../..';
+import { getHeaders, handleError } from '../../utils';
+import { BlockFrostAPI } from '../../index';
 
 export async function root(
   this: BlockFrostAPI,

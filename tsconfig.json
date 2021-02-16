@@ -17,15 +17,6 @@
     "noUnusedParameters": true /* Report errors on unused parameters. */,
     "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
     "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
-    "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */,
-    "paths": {
-      "types/*": ["./types/*"],
-      "types": ["./types"],
-      "utils/*": ["./utils/*"],
-      "utils": ["./utils"],
-      "endpoints/*": ["./endpoints/*"],
-      "endpoints": ["./endpoints"]
-    },
     "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
     "skipLibCheck": true /* Skip type checking of declaration files. */,
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
