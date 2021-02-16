@@ -1,11 +1,15 @@
 import axios from 'axios';
-import { getHeaders, handleError } from 'utils';
+import { getHeaders, handleError } from '../../utils';
+import { components } from '../../types/OpenApi';
+import { BlockFrostAPI } from '../../index';
 
-export function metrics(apiUrl: string, projectId: string): Promise<any> {
+export async function metrics(
+  this: BlockFrostAPI,
+): Promise<components['schemas']['metrics']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/metrics`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/metrics`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -16,11 +20,13 @@ export function metrics(apiUrl: string, projectId: string): Promise<any> {
   });
 }
 
-export function metricsEndpoints(apiUrl: string, projectId: string): Promise<any> {
+export async function metricsEndpoints(
+  this: BlockFrostAPI,
+): Promise<components['schemas']['metrics']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/metrics/endpoints`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/metrics/endpoints`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);

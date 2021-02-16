@@ -1,11 +1,16 @@
 import axios from 'axios';
-import { getHeaders, handleError } from 'utils';
+import { getHeaders, handleError } from '../../utils';
+import { components } from '../../types/OpenApi';
+import { BlockFrostAPI } from '../../index';
 
-export function accounts(apiUrl: string, projectId: string, stakeAddress: string): Promise<any> {
+export async function accounts(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+): Promise<components['schemas']['account_content']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/accounts/${stakeAddress}`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/accounts/${stakeAddress}`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -14,11 +19,14 @@ export function accounts(apiUrl: string, projectId: string, stakeAddress: string
   });
 }
 
-export function accountsRewards(apiUrl: string, projectId: string, stakeAddress: string): Promise<any> {
+export async function accountsRewards(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+): Promise<components['schemas']['account_reward_content']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/accounts/${stakeAddress}/rewards`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/accounts/${stakeAddress}/rewards`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -27,11 +35,14 @@ export function accountsRewards(apiUrl: string, projectId: string, stakeAddress:
   });
 }
 
-export function accountsDelegations(apiUrl: string, projectId: string, stakeAddress: string): Promise<any> {
+export async function accountsDelegations(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+): Promise<components['schemas']['account_delegation_content']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/accounts/${stakeAddress}/delegations`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/accounts/${stakeAddress}/delegations`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -40,11 +51,14 @@ export function accountsDelegations(apiUrl: string, projectId: string, stakeAddr
   });
 }
 
-export function accountsRegistrations(apiUrl: string, projectId: string, stakeAddress: string): Promise<any> {
+export async function accountsRegistrations(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+): Promise<components['schemas']['account_registration_content']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/accounts/${stakeAddress}/registrations`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/accounts/${stakeAddress}/registrations`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);

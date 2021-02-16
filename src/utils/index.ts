@@ -1,9 +1,13 @@
-import { DEFAULT_API_VERSION } from 'config';
-import { Headers, Options, ErrorType, ValidatedOptions } from 'types';
+import { DEFAULT_API_VERSION } from '../config';
+import { Headers, Options, ErrorType, ValidatedOptions } from '../types';
 import { AxiosError } from 'axios';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
-  if (!options || !options.projectId) {
+  if (!options || (!options.customBackend && !options.projectId)) {
+    throw Error('Missing customBackend or projectId option');
+  }
+
+  if (!options.projectId && !options.customBackend) {
     throw Error('Missing param projectId in options');
   }
 
@@ -12,13 +16,18 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
   }
 
   return {
+    customBackend: options.customBackend,
     projectId: options.projectId,
     isTestnet: options.isTestnet,
     version: options.version || DEFAULT_API_VERSION,
   };
 };
 
-export const getHeaders = (projectId: string): Headers => {
+export const getHeaders = (projectId?: string): Headers | null => {
+  if (!projectId) {
+    return null;
+  }
+
   return {
     project_id: projectId,
   };
