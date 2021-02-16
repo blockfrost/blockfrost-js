@@ -1,71 +1,68 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
 import { components } from 'types/OpenApi';
+import { BlockFrostAPI } from '../../';
 
-export const accounts = (
-  apiUrl: string,
-  projectId: string,
+export async function accounts(
+  this: BlockFrostAPI,
   stakeAddress: string,
-): Promise<components['schemas']['account_content']> => {
+): Promise<components['schemas']['account_content']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/accounts/${stakeAddress}`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/accounts/${stakeAddress}`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
       })
       .catch(err => reject(handleError(err)));
   });
-};
+}
 
-export const accountsRewards = (
-  apiUrl: string,
-  projectId: string,
+export async function accountsRewards(
+  this: BlockFrostAPI,
   stakeAddress: string,
-): Promise<components['schemas']['account_reward_content']> => {
+): Promise<components['schemas']['account_reward_content']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/accounts/${stakeAddress}/rewards`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/accounts/${stakeAddress}/rewards`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
       })
       .catch(err => reject(handleError(err)));
   });
-};
+}
 
-export const accountsDelegations = (
-  apiUrl: string,
-  projectId: string,
+export async function accountsDelegations(
+  this: BlockFrostAPI,
   stakeAddress: string,
-): Promise<components['schemas']['account_delegation_content']> => {
+): Promise<components['schemas']['account_delegation_content']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/accounts/${stakeAddress}/delegations`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/accounts/${stakeAddress}/delegations`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
       })
       .catch(err => reject(handleError(err)));
   });
-};
+}
 
-export const accountsRegistrations = (
-  apiUrl: string,
-  projectId: string,
+export async function accountsRegistrations(
+  this: BlockFrostAPI,
   stakeAddress: string,
-): Promise<components['schemas']['account_registration_content']> => {
+): Promise<components['schemas']['account_registration_content']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/accounts/${stakeAddress}/registrations`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/accounts/${stakeAddress}/registrations`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
       })
       .catch(err => reject(handleError(err)));
   });
-};
+}

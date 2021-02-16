@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
+import { BlockFrostAPI } from '../..';
 
-export function health(apiUrl: string, projectId: string): Promise<any> {
+export function health(this: BlockFrostAPI): Promise<{ isHealthy: boolean }> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/health`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/health`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -16,11 +17,13 @@ export function health(apiUrl: string, projectId: string): Promise<any> {
   });
 }
 
-export function healthClock(apiUrl: string, projectId: string): Promise<any> {
+export function healthClock(
+  this: BlockFrostAPI,
+): Promise<{ server_time: number }> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/health/clock`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/health/clock`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);

@@ -1,11 +1,15 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
+import { components } from 'types/OpenApi';
+import { BlockFrostAPI } from '../..';
 
-export function ledger(apiUrl: string, projectId: string): Promise<any> {
+export function ledger(
+  this: BlockFrostAPI,
+): Promise<components['schemas']['genesis_content']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/genesis`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/genesis`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);

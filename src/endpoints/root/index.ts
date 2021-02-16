@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
+import { BlockFrostAPI } from '../..';
 
-export function version(apiUrl: string, projectId: string): Promise<any> {
+export async function root(
+  this: BlockFrostAPI,
+): Promise<{ url: string; version: number }> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);

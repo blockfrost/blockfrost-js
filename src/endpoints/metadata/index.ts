@@ -1,14 +1,15 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
+import { components } from 'types/OpenApi';
+import { BlockFrostAPI } from '../..';
 
-export function metadataTxsLabels(
-  apiUrl: string,
-  projectId: string,
-): Promise<any> {
+export async function metadataTxsLabels(
+  this: BlockFrostAPI,
+): Promise<components['schemas']['tx_metadata_label_json']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/metadata/txs/labels`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/metadata/txs/labels`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -19,15 +20,14 @@ export function metadataTxsLabels(
   });
 }
 
-export function metadataTxsLabel(
-  apiUrl: string,
-  projectId: string,
+export async function metadataTxsLabel(
+  this: BlockFrostAPI,
   label: string,
-): Promise<any> {
+): Promise<components['schemas']['tx_metadata_labels']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/metadata/txs/labels/${label}`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/metadata/txs/labels/${label}`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -38,15 +38,14 @@ export function metadataTxsLabel(
   });
 }
 
-export function metadataTxsLabelCbor(
-  apiUrl: string,
-  projectId: string,
+export async function metadataTxsLabelCbor(
+  this: BlockFrostAPI,
   label: string,
-): Promise<any> {
+): Promise<components['schemas']['tx_metadata_label_cbor']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/metadata/txs/labels/${label}/cbor`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/metadata/txs/labels/${label}/cbor`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);

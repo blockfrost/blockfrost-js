@@ -1,16 +1,17 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
 import { HashOrNumber } from 'types';
+import { components } from 'types/OpenApi';
+import { BlockFrostAPI } from '../..';
 
-export function blocks(
-  apiUrl: string,
-  projectId: string,
+export async function blocks(
+  this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
-): Promise<any> {
+): Promise<components['schemas']['block_content']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/blocks/${hashOrNumber}`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/blocks/${hashOrNumber}`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -21,14 +22,13 @@ export function blocks(
   });
 }
 
-export const blocksLatest = (
-  apiUrl: string,
-  projectId: string,
-): Promise<any> => {
+export async function blocksLatest(
+  this: BlockFrostAPI,
+): Promise<components['schemas']['block_content']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/blocks/latest`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/blocks/latest`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -37,17 +37,16 @@ export const blocksLatest = (
         reject(handleError(err));
       });
   });
-};
+}
 
-export const blocksNext = (
-  apiUrl: string,
-  projectId: string,
+export async function blocksNext(
+  this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
-): Promise<any> => {
+): Promise<components['schemas']['block_content_array']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/blocks/${hashOrNumber}/next`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/blocks/${hashOrNumber}/next`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -56,17 +55,16 @@ export const blocksNext = (
         reject(handleError(err));
       });
   });
-};
+}
 
-export const blocksPrevious = (
-  apiUrl: string,
-  projectId: string,
+export async function blocksPrevious(
+  this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
-): Promise<any> => {
+): Promise<components['schemas']['block_content_array']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/blocks/${hashOrNumber}/previous`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/blocks/${hashOrNumber}/previous`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -75,17 +73,16 @@ export const blocksPrevious = (
         reject(handleError(err));
       });
   });
-};
+}
 
-export const blocksTxs = (
-  apiUrl: string,
-  projectId: string,
+export async function blocksTxs(
+  this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
-): Promise<any> => {
+): Promise<components['schemas']['block_content_txs']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/blocks/${hashOrNumber}/txs`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/blocks/${hashOrNumber}/txs`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -94,4 +91,4 @@ export const blocksTxs = (
         reject(handleError(err));
       });
   });
-};
+}

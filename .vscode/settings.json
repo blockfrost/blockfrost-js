@@ -1,9 +1,15 @@
 {
     "cSpell.words": [
+        "addresses",
         "bech",
         "blockfrost",
+        "by",
+        "delegators",
+        "id",
         "io",
         "openapi",
-        "typedoc"
+        "pools",
+        "typedoc",
+        "utxos"
     ]
 }

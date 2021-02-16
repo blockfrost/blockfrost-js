@@ -1,15 +1,16 @@
 import axios from 'axios';
 import { getHeaders, handleError } from 'utils';
+import { components } from 'types/OpenApi';
+import { BlockFrostAPI } from '../..';
 
-export function txs(
-  apiUrl: string,
-  projectId: string,
+export async function txs(
+  this: BlockFrostAPI,
   hash: string,
-): Promise<any> {
+): Promise<components['schemas']['tx_content']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/txs/${hash}`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/txs/${hash}`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -20,15 +21,14 @@ export function txs(
   });
 }
 
-export function txsUtxos(
-  apiUrl: string,
-  projectId: string,
+export async function txsUtxos(
+  this: BlockFrostAPI,
   hash: string,
-): Promise<any> {
+): Promise<components['schemas']['tx_content_utxo']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/txs/${hash}/utxos`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/txs/${hash}/utxos`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -39,15 +39,14 @@ export function txsUtxos(
   });
 }
 
-export function txsStakes(
-  apiUrl: string,
-  projectId: string,
+export async function txsStakes(
+  this: BlockFrostAPI,
   hash: string,
-): Promise<any> {
+): Promise<components['schemas']['tx_content_stake_addr']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/txs/${hash}/stakes`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/txs/${hash}/stakes`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -58,15 +57,14 @@ export function txsStakes(
   });
 }
 
-export function txsDelegations(
-  apiUrl: string,
-  projectId: string,
+export async function txsDelegations(
+  this: BlockFrostAPI,
   hash: string,
-): Promise<any> {
+): Promise<components['schemas']['tx_content_delegations']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/txs/${hash}/delegations`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/txs/${hash}/delegations`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -78,14 +76,13 @@ export function txsDelegations(
 }
 
 export function txsWithdrawals(
-  apiUrl: string,
-  projectId: string,
+  this: BlockFrostAPI,
   hash: string,
-): Promise<any> {
+): Promise<components['schemas']['tx_content_withdrawals']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/txs/${hash}/withdrawals`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/txs/${hash}/withdrawals`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -97,14 +94,13 @@ export function txsWithdrawals(
 }
 
 export function txsPoolUpdates(
-  apiUrl: string,
-  projectId: string,
+  this: BlockFrostAPI,
   hash: string,
-): Promise<any> {
+): Promise<components['schemas']['tx_content_pool_certs']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/txs/${hash}/pool_updates`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/txs/${hash}/pool_updates`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -116,14 +112,13 @@ export function txsPoolUpdates(
 }
 
 export function txsPoolRetires(
-  apiUrl: string,
-  projectId: string,
+  this: BlockFrostAPI,
   hash: string,
-): Promise<any> {
+): Promise<components['schemas']['tx_content_pool_retires']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/txs/${hash}/pool_retires`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/txs/${hash}/pool_retires`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -134,15 +129,14 @@ export function txsPoolRetires(
   });
 }
 
-export function txxMetadata(
-  apiUrl: string,
-  projectId: string,
+export function txsMetadata(
+  this: BlockFrostAPI,
   hash: string,
-): Promise<any> {
+): Promise<components['schemas']['tx_metadata_label_json']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/txs/${hash}/metadata`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/txs/${hash}/metadata`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
@@ -154,14 +148,13 @@ export function txxMetadata(
 }
 
 export function txsMetadataCbor(
-  apiUrl: string,
-  projectId: string,
+  this: BlockFrostAPI,
   hash: string,
-): Promise<any> {
+): Promise<components['schemas']['tx_content_metadata_cbor']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${apiUrl}/txs/${hash}/metadata/cbor`, {
-        headers: getHeaders(projectId),
+      .get(`${this.apiUrl}/txs/${hash}/metadata/cbor`, {
+        headers: getHeaders(this.projectId),
       })
       .then(resp => {
         resolve(resp.data);
