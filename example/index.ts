@@ -2,7 +2,7 @@ import { BlockFrostAPI } from '../src/index';
 
 async function run() {
   const API = new BlockFrostAPI({
-    customBackend: 'http://localhost:3000',
+    customBackend: 'jOhDckOVcwx1UrlUCl9iAcHWem2pzZgI',
   });
 
   try {
