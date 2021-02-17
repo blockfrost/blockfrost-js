@@ -19,6 +19,7 @@ yarn add @blockfrost/blockfrost-js
 ```
 
 <br/>
+
 ###### USAGE
 
 ```
