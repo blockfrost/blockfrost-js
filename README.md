@@ -20,7 +20,6 @@ yarn add @blockfrost/blockfrost-js
 import BlockfrostAPI from '@blockfrost/blockfrost-js'
 
 const API = new BlockFrostAPI({
-  isTestnet: true,
   projectId: YOUR API KEY HERE',
 });
 
