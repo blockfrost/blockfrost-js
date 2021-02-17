@@ -2,18 +2,16 @@
 
 A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API.
 
-<br>
+<br />
 
 ###### BEFORE YOU START
 
-Make sure you have downloaded and installed [Node.js](https://nodejs.org/en/download/) - node v14 is recommended.
-[Yarn](https://yarnpkg.com/lang/en/docs/install/) is recommended (we use yarn.lock)
-
 Login to the https://blockfrost.io. Create a project and get your api key.
 
-<img src="/docs/screen.png">
+<img src="/public/screen.png">
 
-<br>
+<br />
+<br />
 
 ###### INSTALLATION
 
@@ -21,7 +19,7 @@ Login to the https://blockfrost.io. Create a project and get your api key.
 $ yarn add blockfrost-api
 ```
 
-<br>
+<br />
 
 ###### USAGE
 

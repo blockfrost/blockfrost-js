@@ -1,6 +1,6 @@
 {
-  "name": "@blockfrost/api",
-  "version": "0.0.1",
+  "name": "@blockfrost/blockfrost-js",
+  "version": "1.0.0",
   "description": "",
   "keywords": [],
   "license": "ISC",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "blockfrost-openapi": "^0.0.44",
+    "@blockfrost/openapi": "^0.0.58",
     "rimraf": "^3.0.2",
     "url-join": "^4.0.1"
   },
