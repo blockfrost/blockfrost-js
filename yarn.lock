@@ -1917,6 +1917,11 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
+docusaurus-plugin-typedoc@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/docusaurus-plugin-typedoc/-/docusaurus-plugin-typedoc-0.9.0.tgz#c44a3b1fde5e68584e168a9b34ef8bde8ed2711a"
+  integrity sha512-6quTdU9fsJEASGMDoxmaascFZyF2/s+GXx6odYMa7rDoDPTOfgqEQqZwXFWGNH5OuBKrdu1xz4E+irr+qlDBRQ==
+
 domain-browser@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
@@ -6243,6 +6248,13 @@ typedoc-default-themes@^0.12.7:
   version "0.12.7"
   resolved "https://registry.yarnpkg.com/typedoc-default-themes/-/typedoc-default-themes-0.12.7.tgz#d44f68d40a3e90a19b5ea7be4cc6ed949afe768d"
   integrity sha512-0XAuGEqID+gon1+fhi4LycOEFM+5Mvm2PjwaiVZNAzU7pn3G2DEpsoXnFOPlLDnHY6ZW0BY0nO7ur9fHOFkBLQ==
+
+typedoc-plugin-markdown@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/typedoc-plugin-markdown/-/typedoc-plugin-markdown-3.5.0.tgz#29a5c8cf95588a7872caec63f549856b41737196"
+  integrity sha512-UzSTK5RpQVbIrcxV1ypHt3Pqr4O3DObYZIhcAXBazitHnpdl500cggXFHmxH7F/j3P3P2IBvPKpfnU6lzRdk8w==
+  dependencies:
+    handlebars "^4.7.6"
 
 typedoc@^0.20.25:
   version "0.20.25"

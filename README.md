@@ -2,7 +2,7 @@
 
 A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API.
 
-<br>
+<br />
 
 ###### BEFORE YOU START
 
@@ -13,7 +13,7 @@ Login to the https://blockfrost.io. Create a project and get your api key.
 
 <img src="/docs/screen.png">
 
-<br>
+<br />
 
 ###### INSTALLATION
 
@@ -21,7 +21,7 @@ Login to the https://blockfrost.io. Create a project and get your api key.
 $ yarn add blockfrost-api
 ```
 
-<br>
+<br />
 ###### USAGE
 
 ```

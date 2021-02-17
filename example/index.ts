@@ -6,9 +6,7 @@ async function run() {
   });
 
   try {
-    const response = await API.accounts(
-      'stake1u8j7wk5c4tqk00yuz7rrh2jan4jshmwl2eqx8pzklmjqprsuqc7ls',
-    );
+    const response = await API.health();
     console.log(response);
   } catch (err) {
     console.log('error', err);
