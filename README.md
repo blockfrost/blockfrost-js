@@ -1,6 +1,6 @@
 <img src="https://blockfrost.io/images/logo.svg" width="500">
 
-A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API.
+![ci](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=master) A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API.
 
 <br/>
 
