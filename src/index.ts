@@ -1,4 +1,5 @@
 import { API_URLS } from './config';
+import { components } from './types/OpenApi';
 
 import {
   accounts,
@@ -524,4 +525,7 @@ class BlockFrostAPI {
   txsMetadata = txsMetadata;
 }
 
+type Responses = components['schemas'];
+
 export { BlockFrostAPI };
+export type { Responses };
