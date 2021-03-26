@@ -1,6 +1,5 @@
 import { DEFAULT_API_VERSION } from '../config';
 import { Headers, Options, ValidatedOptions } from '../types';
-import { AxiosError } from 'axios';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
   if (!options || (!options.customBackend && !options.projectId)) {
