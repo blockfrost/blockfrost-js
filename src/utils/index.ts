@@ -1,5 +1,5 @@
 import { DEFAULT_API_VERSION } from '../config';
-import { Headers, Options, ErrorType, ValidatedOptions } from '../types';
+import { Headers, Options, ValidatedOptions } from '../types';
 import { AxiosError } from 'axios';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
@@ -33,10 +33,12 @@ export const getHeaders = (projectId?: string): Headers | null => {
   };
 };
 
-export const handleError = (error: AxiosError): ErrorType => {
-  return {
-    statusCode: error.response?.data.status_code,
-    error: error.response?.data.error,
-    message: error.response?.data.message,
-  };
+export const handleError = (error: AxiosError) => {
+  if (error.response) {
+    return error.response;
+  } else if (error.request) {
+    return error.request;
+  } else {
+    return error.message;
+  }
 };
