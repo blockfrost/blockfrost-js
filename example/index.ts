@@ -2,7 +2,7 @@ import { BlockFrostAPI } from '../src/index';
 
 async function run() {
   const API = new BlockFrostAPI({
-    projectId: 'G8CaeClBRTr5CiUxCLzgGeqGoVbwuaZs',
+    projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
   });
 
   try {
