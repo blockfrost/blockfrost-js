@@ -1,4 +1,4 @@
-<img src="https://blockfrost.io/images/logo.svg" width="150">
+<img src="https://blockfrost.io/images/logo.svg" width="250">
 
 A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API.
 
