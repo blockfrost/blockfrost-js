@@ -14,7 +14,7 @@ Login to the https://blockfrost.io. Create a project and get your api key.
 
 ###### INSTALLATION
 
-```
+```javascript
 yarn add @blockfrost/blockfrost-js
 ```
 
@@ -22,7 +22,7 @@ yarn add @blockfrost/blockfrost-js
 
 ###### USAGE
 
-```
+```javascript
 import BlockfrostAPI from '@blockfrost/blockfrost-js'
 
 const API = new BlockFrostAPI({
