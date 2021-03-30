@@ -1,8 +1,11 @@
 {
   "name": "@blockfrost/blockfrost-js",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
-  "files": ["./lib"],
+  "files": [
+    "lib/**/*.js", 
+    "lib/**/*.ts"
+  ],
   "keywords": [
     "blockfrost",
     "cardano",
