@@ -1,7 +1,7 @@
 {
   "name": "@blockfrost/blockfrost-js",
   "version": "0.0.2",
-  "description": "",
+  "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "keywords": [
     "blockfrost",
     "cardano",
@@ -13,17 +13,19 @@
   "scripts": {
     "build": "tsc",
     "clean": "rimraf lib",
-    "lint": "eslint ./src/**/*.ts",
     "generate-types": "openapi-typescript ./node_modules/blockfrost-openapi/swagger.yaml --output ./src/types/OpenApi.ts",
-    "run-example": "ts-node-dev --transpile-only example/index.ts"
+    "lint": "eslint ./src/**/*.ts",
+    "run-example": "ts-node-dev --transpile-only ./example/index.ts"
   },
   "dependencies": {
-    "axios": "^0.21.1",
     "@blockfrost/openapi": "^0.0.58",
+    "@yarnpkg/pnpify": "^2.4.0",
+    "axios": "^0.21.1",
     "rimraf": "^3.0.2",
     "url-join": "^4.0.1"
   },
   "devDependencies": {
+    "@types/node": "^14.14.37",
     "@types/url-join": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "4.8.1",
@@ -39,9 +41,13 @@
     "ts-jest": "^26.4.4",
     "ts-node": "9.0.0",
     "ts-node-dev": "^1.0.0",
+    "ts-pnp": "^1.2.0",
     "tsc-watch": "^4.2.8",
     "tsconfig-paths": "^3.9.0",
     "typedoc": "^0.20.25",
-    "typescript": "^4.0.5"
+    "typescript": "4.2.3"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }

@@ -1,6 +1,6 @@
-<img src="https://blockfrost.io/images/logo.svg" width="500">
+<img src="https://blockfrost.io/images/logo.svg" width="150">
 
-![ci](https://github.com/github/docs/actions/workflows/main.yml/badge.svg?branch=master) A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API.
+A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API.
 
 <br/>
 
@@ -8,8 +8,8 @@
 
 Login to the https://blockfrost.io. Create a project and get your api key.
 
-<img src="/public/screen.png">
-<br/>
+<img src="https://i.imgur.com/smY12ro.png">
+
 <br/>
 
 ###### INSTALLATION
@@ -23,10 +23,10 @@ yarn add @blockfrost/blockfrost-js
 ###### USAGE
 
 ```typescript
-import BlockfrostAPI from '@blockfrost/blockfrost-js'
+import BlockfrostAPI from '@blockfrost/blockfrost-js';
 
 const API = new BlockFrostAPI({
-  projectId: YOUR API KEY HERE',
+  projectId: 'YOUR API KEY HERE',
 });
 
 try {

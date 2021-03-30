@@ -1,15 +1,24 @@
 {
-    "cSpell.words": [
-        "addresses",
-        "bech",
-        "blockfrost",
-        "by",
-        "delegators",
-        "id",
-        "io",
-        "openapi",
-        "pools",
-        "typedoc",
-        "utxos"
-    ]
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "cSpell.words": [
+    "addresses",
+    "bech",
+    "blockfrost",
+    "by",
+    "delegators",
+    "id",
+    "io",
+    "openapi",
+    "pools",
+    "typedoc",
+    "utxos"
+  ],
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "eslint.nodePath": ".yarn/sdks",
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  
 }
