@@ -1,7 +1,8 @@
 {
   "name": "@blockfrost/blockfrost-js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
+  "files": ["./lib"],
   "keywords": [
     "blockfrost",
     "cardano",
@@ -11,7 +12,7 @@
   "author": "blockfrost.io",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "yarn clean && tsc",
     "clean": "rimraf lib",
     "generate-types": "openapi-typescript ./node_modules/blockfrost-openapi/swagger.yaml --output ./src/types/OpenApi.ts",
     "lint": "eslint ./src/**/*.ts",
