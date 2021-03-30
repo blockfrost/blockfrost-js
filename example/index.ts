@@ -9,7 +9,7 @@ async function run() {
     const response = await API.blocksLatest();
     console.log(response);
   } catch (err) {
-    console.log('error', err);
+    console.log('error', err.data);
   }
 }
 
