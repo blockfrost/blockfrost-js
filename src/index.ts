@@ -82,7 +82,7 @@ class BlockFrostAPI {
   constructor(options?: Options) {
     const opts = validateOptions(options);
     const apiBase = opts.isTestnet ? API_URLS.testnet : API_URLS.mainnet;
-    this.apiUrl = join(options?.customBackend || apiBase, `v${opts.version}`);
+    this.apiUrl = options?.customBackend || join(apiBase, `v${opts.version}`);
     this.projectId = opts.projectId;
   }
 

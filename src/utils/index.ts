@@ -11,7 +11,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     throw Error('Missing param projectId in options');
   }
 
-  if (options.version && !isNaN(options.version)) {
+  if (options.version && isNaN(options.version)) {
     throw Error('Param version is not a number');
   }
 

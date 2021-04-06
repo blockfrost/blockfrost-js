@@ -4,28 +4,28 @@
  */
 
 export interface paths {
-  '/': {
+  "/": {
     /** Root endpoint has no other function than to point end users to documentation. */
     get: {
       responses: {
         /** Information pointing to the documentation. */
         200: {
           content: {
-            'application/json': {
+            "application/json": {
               url: string;
-              version: number;
+              version: string;
             };
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/health': {
+  "/health": {
     /**
      * Return backend status as a boolean. Your application
      *     should handle situations when backend for the given chain is unavailable.
@@ -35,43 +35,43 @@ export interface paths {
         /** Return the boolean indicating the health of the backend. */
         200: {
           content: {
-            'application/json': {
+            "application/json": {
               is_healthy?: boolean;
             };
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/health/clock': {
+  "/health/clock": {
     /**
      * This endpoint provides the current UNIX time. Your application might
-     * use this to verify if the client's clock is not out of sync.
+     * use this to verify if the client clock is not out of sync.
      */
     get: {
       responses: {
         /** Return the current UNIX time in milliseconds. */
         200: {
           content: {
-            'application/json': {
+            "application/json": {
               server_time?: number;
             };
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/blocks/latest': {
+  "/blocks/latest": {
     /**
      * Return the latest block available to the backends, also known as the
      * tip of the blockchain.
@@ -81,19 +81,19 @@ export interface paths {
         /** Return the contents of the latest block. */
         200: {
           content: {
-            'application/json': components['schemas']['block_content'];
+            "application/json": components["schemas"]["block_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/blocks/{hash_or_number}': {
+  "/blocks/{hash_or_number}": {
     /** Return the content of a requested block. */
     get: {
       parameters: {
@@ -106,19 +106,19 @@ export interface paths {
         /** Return the contents of the block */
         200: {
           content: {
-            'application/json': components['schemas']['block_content'];
+            "application/json": components["schemas"]["block_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/blocks/{hash_or_number}/next': {
+  "/blocks/{hash_or_number}/next": {
     /** Return the list of blocks following a specific block. */
     get: {
       parameters: {
@@ -127,7 +127,7 @@ export interface paths {
           hash_or_number: string;
         };
         query: {
-          /** The numbers of blocks following the block specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -137,19 +137,19 @@ export interface paths {
         /** Return the contents of the block. */
         200: {
           content: {
-            'application/json': components['schemas']['block_content_array'];
+            "application/json": components["schemas"]["block_content_array"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/blocks/{hash_or_number}/previous': {
+  "/blocks/{hash_or_number}/previous": {
     /** Return the list of blocks preceding a specific block. */
     get: {
       parameters: {
@@ -158,7 +158,7 @@ export interface paths {
           hash_or_number: string;
         };
         query: {
-          /** The numbers of blocks following the block specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -168,19 +168,19 @@ export interface paths {
         /** Return the contents of the block */
         200: {
           content: {
-            'application/json': components['schemas']['block_content_array'];
+            "application/json": components["schemas"]["block_content_array"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/blocks/{hash_or_number}/txs': {
+  "/blocks/{hash_or_number}/txs": {
     /** Return the transactions within the block. */
     get: {
       parameters: {
@@ -189,7 +189,7 @@ export interface paths {
           hash_or_number: string;
         };
         query: {
-          /** The numbers of blocks following the block specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -198,63 +198,63 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the transactions within the block. */
         200: {
           content: {
-            'application/json': components['schemas']['block_content_txs'];
+            "application/json": components["schemas"]["block_content_txs"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/genesis': {
-    /** Return the information about blockchain's genesis. */
+  "/genesis": {
+    /** Return the information about blockchain genesis. */
     get: {
       responses: {
         /** Return the genesis parameters. */
         200: {
           content: {
-            'application/json': components['schemas']['genesis_content'];
+            "application/json": components["schemas"]["genesis_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/epochs/latest': {
+  "/epochs/latest": {
     /** Return the information about the latest, therefore current, epoch. */
     get: {
       responses: {
         /** Return the data about the epoch */
         200: {
           content: {
-            'application/json': components['schemas']['epoch_content'];
+            "application/json": components["schemas"]["epoch_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/epochs/{number}': {
+  "/epochs/{number}": {
     /** Return the content of the requested epoch. */
     get: {
       parameters: {
@@ -267,19 +267,19 @@ export interface paths {
         /** Return the epoch data. */
         200: {
           content: {
-            'application/json': components['schemas']['epoch_content'];
+            "application/json": components["schemas"]["epoch_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/epochs/{number}/next': {
+  "/epochs/{number}/next": {
     /** Return the list of epochs following a specific epoch. */
     get: {
       parameters: {
@@ -288,7 +288,7 @@ export interface paths {
           number: number;
         };
         query: {
-          /** The numbers of epochs following the epoch specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -298,19 +298,19 @@ export interface paths {
         /** Return the data about the epoch */
         200: {
           content: {
-            'application/json': components['schemas']['epoch_content_array'];
+            "application/json": components["schemas"]["epoch_content_array"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/epochs/{number}/previous': {
+  "/epochs/{number}/previous": {
     /** Return the list of epochs preceding a specific epoch. */
     get: {
       parameters: {
@@ -319,7 +319,7 @@ export interface paths {
           number: number;
         };
         query: {
-          /** The numbers of epochs following the epoch specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results */
           page?: number;
@@ -329,20 +329,20 @@ export interface paths {
         /** Return the epoch data */
         200: {
           content: {
-            'application/json': components['schemas']['epoch_content_array'];
+            "application/json": components["schemas"]["epoch_content_array"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/epochs/{number}/stakes': {
-    /** Return the stake distribution for the epoch specified. */
+  "/epochs/{number}/stakes": {
+    /** Return the active stake distribution for the epoch specified. */
     get: {
       parameters: {
         path: {
@@ -350,7 +350,7 @@ export interface paths {
           number: number;
         };
         query: {
-          /** The numbers of stake addresses for a specific epoch. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -360,20 +360,20 @@ export interface paths {
         /** Return the data about the epoch */
         200: {
           content: {
-            'application/json': components['schemas']['epoch_stake_content'];
+            "application/json": components["schemas"]["epoch_stake_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/epochs/{number}/stakes/{pool_id}': {
-    /** Return the stake distribution for the epoch specified by stake pool. */
+  "/epochs/{number}/stakes/{pool_id}": {
+    /** Return the active stake distribution for the epoch specified by stake pool. */
     get: {
       parameters: {
         path: {
@@ -383,7 +383,7 @@ export interface paths {
           pool_id: string;
         };
         query: {
-          /** The numbers of stake addresses for a specific epoch. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -393,19 +393,19 @@ export interface paths {
         /** Return the data about the epoch */
         200: {
           content: {
-            'application/json': components['schemas']['epoch_stake_pool_content'];
+            "application/json": components["schemas"]["epoch_stake_pool_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/epochs/{number}/blocks': {
+  "/epochs/{number}/blocks": {
     /** Return the blocks minted for the epoch specified. */
     get: {
       parameters: {
@@ -414,7 +414,7 @@ export interface paths {
           number: number;
         };
         query: {
-          /** The numbers of stake addresses for a specific epoch. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -422,26 +422,26 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the data about the epoch */
         200: {
           content: {
-            'application/json': components['schemas']['epoch_block_content'];
+            "application/json": components["schemas"]["epoch_block_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/epochs/{number}/blocks/{pool_id}': {
+  "/epochs/{number}/blocks/{pool_id}": {
     /** Return the block minted for the epoch specified by stake pool. */
     get: {
       parameters: {
@@ -452,7 +452,7 @@ export interface paths {
           pool_id: string;
         };
         query: {
-          /** The numbers of stake addresses for a specific epoch. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -460,26 +460,26 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the data about the epoch */
         200: {
           content: {
-            'application/json': components['schemas']['epoch_block_content'];
+            "application/json": components["schemas"]["epoch_block_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/epochs/{number}/parameters': {
+  "/epochs/{number}/parameters": {
     /** Return the protocol parameters for the epoch specified. */
     get: {
       parameters: {
@@ -492,19 +492,19 @@ export interface paths {
         /** Return the data about the epoch */
         200: {
           content: {
-            'application/json': components['schemas']['epoch_param_content'];
+            "application/json": components["schemas"]["epoch_param_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/txs/{hash}': {
+  "/txs/{hash}": {
     /** Return content of the requested transaction. */
     get: {
       parameters: {
@@ -517,19 +517,19 @@ export interface paths {
         /** Return the contents of the transaction. */
         200: {
           content: {
-            'application/json': components['schemas']['tx_content'];
+            "application/json": components["schemas"]["tx_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/txs/{hash}/utxos': {
+  "/txs/{hash}/utxos": {
     /** Return the inputs and UTXOs of the specific transaction. */
     get: {
       parameters: {
@@ -542,19 +542,19 @@ export interface paths {
         /** Return the contents of the transaction. */
         200: {
           content: {
-            'application/json': components['schemas']['tx_content_utxo'];
+            "application/json": components["schemas"]["tx_content_utxo"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/txs/{hash}/stakes': {
+  "/txs/{hash}/stakes": {
     /** Obtain information about (de)registration of stake addresses within a transaction. */
     get: {
       parameters: {
@@ -567,19 +567,19 @@ export interface paths {
         /** Obtain information about (de)registration of stake addresses within a transaction. */
         200: {
           content: {
-            'application/json': components['schemas']['tx_content_stake_addr'][];
+            "application/json": components["schemas"]["tx_content_stake_addr"][];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/txs/{hash}/delegations': {
+  "/txs/{hash}/delegations": {
     /** Obtain information about delegation certificates of a specific transaction. */
     get: {
       parameters: {
@@ -592,19 +592,19 @@ export interface paths {
         /** Obtain information about delegation certificates of a specific transaction */
         200: {
           content: {
-            'application/json': components['schemas']['tx_content_delegations'][];
+            "application/json": components["schemas"]["tx_content_delegations"][];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/txs/{hash}/withdrawals': {
+  "/txs/{hash}/withdrawals": {
     /** Obtain information about withdrawals of a specific transaction. */
     get: {
       parameters: {
@@ -617,19 +617,19 @@ export interface paths {
         /** Obtain information about withdrawals of a specific transaction. */
         200: {
           content: {
-            'application/json': components['schemas']['tx_content_withdrawals'][];
+            "application/json": components["schemas"]["tx_content_withdrawals"][];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/txs/{hash}/pool_updates': {
+  "/txs/{hash}/pool_updates": {
     /** Obtain information about stake pool registration and update certificates of a specific transaction. */
     get: {
       parameters: {
@@ -642,19 +642,19 @@ export interface paths {
         /** Obtain information about stake pool certificates of a specific transaction */
         200: {
           content: {
-            'application/json': components['schemas']['tx_content_pool_certs'][];
+            "application/json": components["schemas"]["tx_content_pool_certs"][];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/txs/{hash}/pool_retires': {
+  "/txs/{hash}/pool_retires": {
     /** Obtain information about stake pool retirements within a specific transaction. */
     get: {
       parameters: {
@@ -667,19 +667,19 @@ export interface paths {
         /** Obtain information about stake pool retirements within a specific transaction. */
         200: {
           content: {
-            'application/json': components['schemas']['tx_content_pool_retires'][];
+            "application/json": components["schemas"]["tx_content_pool_retires"][];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/txs/{hash}/metadata': {
+  "/txs/{hash}/metadata": {
     /** Obtain the transaction metadata. */
     get: {
       parameters: {
@@ -692,19 +692,19 @@ export interface paths {
         /** Obtain information about stake pool retirements within a specific transaction. */
         200: {
           content: {
-            'application/json': components['schemas']['tx_content_metadata'];
+            "application/json": components["schemas"]["tx_content_metadata"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/txs/{hash}/metadata/cbor': {
+  "/txs/{hash}/metadata/cbor": {
     /** Obtain the transaction metadata in CBOR. */
     get: {
       parameters: {
@@ -717,43 +717,43 @@ export interface paths {
         /** Obtain information about stake pool retirements within a specific transaction. */
         200: {
           content: {
-            'application/json': components['schemas']['tx_content_metadata_cbor'];
+            "application/json": components["schemas"]["tx_content_metadata_cbor"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/tx/submit': {
+  "/tx/submit": {
     /** Submit a base64 encoding serialized transaction to the network. */
     post: {
       parameters: {
         header: {
-          'Content-Type': 'application/cbor';
+          "Content-Type": "application/cbor";
         };
       };
       responses: {
         /** Return the ID of the submitted transaction. */
         200: {
           content: {
-            'application/json': string;
+            "application/json": string;
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/accounts/{stake_address}': {
+  "/accounts/{stake_address}": {
     /** Obtain information about a specific stake account. */
     get: {
       parameters: {
@@ -766,19 +766,19 @@ export interface paths {
         /** Return the account content. */
         200: {
           content: {
-            'application/json': components['schemas']['account_content'];
+            "application/json": components["schemas"]["account_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/accounts/{stake_address}/rewards': {
+  "/accounts/{stake_address}/rewards": {
     /** Obtain information about the history of a specific account. */
     get: {
       parameters: {
@@ -787,7 +787,7 @@ export interface paths {
           stake_address: string;
         };
         query: {
-          /** The numbers of blocks following the block specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -795,26 +795,26 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the account content. */
         200: {
           content: {
-            'application/json': components['schemas']['account_reward_content'];
+            "application/json": components["schemas"]["account_reward_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/accounts/{stake_address}/history': {
+  "/accounts/{stake_address}/history": {
     /** Obtain information about the history of a specific account. */
     get: {
       parameters: {
@@ -823,7 +823,7 @@ export interface paths {
           stake_address: string;
         };
         query: {
-          /** The numbers of blocks following the block specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -831,26 +831,26 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the account content. */
         200: {
           content: {
-            'application/json': components['schemas']['account_history_content'];
+            "application/json": components["schemas"]["account_history_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/accounts/{stake_address}/delegations': {
+  "/accounts/{stake_address}/delegations": {
     /** Obtain information about the delegation of a specific account. */
     get: {
       parameters: {
@@ -859,7 +859,7 @@ export interface paths {
           stake_address: string;
         };
         query: {
-          /** The numbers of blocks following the block specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -867,26 +867,26 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the account delegations content */
         200: {
           content: {
-            'application/json': components['schemas']['account_delegation_content'];
+            "application/json": components["schemas"]["account_delegation_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/accounts/{stake_address}/registrations': {
+  "/accounts/{stake_address}/registrations": {
     /** Obtain information about the registrations and deregistrations of a specific account. */
     get: {
       parameters: {
@@ -895,7 +895,7 @@ export interface paths {
           stake_address: string;
         };
         query: {
-          /** The numbers of blocks following the block specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -903,45 +903,94 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the account registration content. */
         200: {
           content: {
-            'application/json': components['schemas']['account_registration_content'];
+            "application/json": components["schemas"]["account_registration_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/metadata/txs/labels': {
+  "/accounts/{stake_address}/addresses": {
+    /** Obtain information about the addresses of a specific account. */
+    get: {
+      parameters: {
+        path: {
+          /** Bech32 stake addresses */
+          stake_address: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the account addresses content */
+        200: {
+          content: {
+            "application/json": components["schemas"]["account_addresses_content"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/metadata/txs/labels": {
     /** List of all used transaction metadata labels. */
     get: {
+      parameters: {
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
       responses: {
         /** Return the account delegations content */
         200: {
           content: {
-            'application/json': components['schemas']['tx_metadata_labels'];
+            "application/json": components["schemas"]["tx_metadata_labels"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/metadata/txs/labels/{label}': {
+  "/metadata/txs/labels/{label}": {
     /** Transaction metadata per label. */
     get: {
       parameters: {
@@ -950,7 +999,7 @@ export interface paths {
           label: string;
         };
         query: {
-          /** The numbers of blocks following the block specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -958,26 +1007,26 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the account delegations content */
         200: {
           content: {
-            'application/json': components['schemas']['tx_metadata_label_json'];
+            "application/json": components["schemas"]["tx_metadata_label_json"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/metadata/txs/labels/{label}/cbor': {
+  "/metadata/txs/labels/{label}/cbor": {
     /** Transaction metadata per label. */
     get: {
       parameters: {
@@ -986,7 +1035,7 @@ export interface paths {
           label: string;
         };
         query: {
-          /** The numbers of blocks following the block specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -994,26 +1043,26 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the account delegations content in CBOR */
         200: {
           content: {
-            'application/json': components['schemas']['tx_metadata_label_cbor'];
+            "application/json": components["schemas"]["tx_metadata_label_cbor"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/addresses/{address}': {
+  "/addresses/{address}": {
     /** Obtain information about a specific address. */
     get: {
       parameters: {
@@ -1026,19 +1075,19 @@ export interface paths {
         /** Return the address content. */
         200: {
           content: {
-            'application/json': components['schemas']['address_content'];
+            "application/json": components["schemas"]["address_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/addresses/{address}/total': {
+  "/addresses/{address}/total": {
     /** Obtain details about an address. */
     get: {
       parameters: {
@@ -1051,19 +1100,19 @@ export interface paths {
         /** Return the address' details. */
         200: {
           content: {
-            'application/json': components['schemas']['address_content_total'];
+            "application/json": components["schemas"]["address_content_total"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/addresses/{address}/utxos': {
+  "/addresses/{address}/utxos": {
     /** UTXOs of the address. */
     get: {
       parameters: {
@@ -1072,7 +1121,7 @@ export interface paths {
           address: string;
         };
         query: {
-          /** The numbers of blocks following the block specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -1081,26 +1130,26 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the address content */
         200: {
           content: {
-            'application/json': components['schemas']['address_utxo_content'];
+            "application/json": components["schemas"]["address_utxo_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/addresses/{address}/txs': {
+  "/addresses/{address}/txs": {
     /** Transactions on the address. */
     get: {
       parameters: {
@@ -1117,27 +1166,27 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the address content */
         200: {
           content: {
-            'application/json': components['schemas']['address_txs_content'];
+            "application/json": components["schemas"]["address_txs_content"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/pools/': {
-    /** List of active stake pools. */
+  "/pools/": {
+    /** List of registered stake pools. */
     get: {
       parameters: {
         query: {
@@ -1149,26 +1198,26 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the list of pools. */
         200: {
           content: {
-            'application/json': components['schemas']['pool_list'];
+            "application/json": components["schemas"]["pool_list"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/pools/retired': {
+  "/pools/retired": {
     /** List of already retired pools. */
     get: {
       parameters: {
@@ -1181,31 +1230,31 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the pool information content */
         200: {
           content: {
-            'application/json': components['schemas']['pool_list_retire'];
+            "application/json": components["schemas"]["pool_list_retire"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/pools/retiring': {
+  "/pools/retiring": {
     /** List of stake pools retiring in the upcoming epochs */
     get: {
       parameters: {
         query: {
-          /** The numbers of blocks following the block specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -1213,31 +1262,31 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the pool information content */
         200: {
           content: {
-            'application/json': components['schemas']['pool_list_retire'];
+            "application/json": components["schemas"]["pool_list_retire"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/pools/{pool_id}': {
+  "/pools/{pool_id}": {
     /** Pool information. */
     get: {
       parameters: {
         path: {
-          /** Bech32 pool ID */
+          /** Bech32 or hexadecimal pool ID. */
           pool_id: string;
         };
       };
@@ -1245,28 +1294,28 @@ export interface paths {
         /** Return the pool information content */
         200: {
           content: {
-            'application/json': components['schemas']['pool'];
+            "application/json": components["schemas"]["pool"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/pools/{pool_id}/history': {
+  "/pools/{pool_id}/history": {
     /** History of stake pool parameters over epochs. */
     get: {
       parameters: {
         path: {
-          /** Bech32 pool ID. */
+          /** Bech32 or hexadecimal pool ID. */
           pool_id: string;
         };
         query: {
-          /** The numbers of epochs following the epoch specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results */
           page?: number;
@@ -1274,31 +1323,31 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the pool information content. */
         200: {
           content: {
-            'application/json': components['schemas']['pool_history'];
+            "application/json": components["schemas"]["pool_history"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/pools/{pool_id}/metadata': {
+  "/pools/{pool_id}/metadata": {
     /** Stake pool registration metadata. */
     get: {
       parameters: {
         path: {
-          /** Bech32 pool ID. */
+          /** Bech32 or hexadecimal pool ID. */
           pool_id: string;
         };
       };
@@ -1306,27 +1355,27 @@ export interface paths {
         /** Return the pool metadata content. */
         200: {
           content: {
-            'application/json': Partial<
-              components['schemas']['pool_metadata']
+            "application/json": Partial<
+              components["schemas"]["pool_metadata"]
             > &
-              Partial<components['schemas']['empty_object']>;
+              Partial<components["schemas"]["empty_object"]>;
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/pools/{pool_id}/relays': {
+  "/pools/{pool_id}/relays": {
     /** Relays of a stake pool. */
     get: {
       parameters: {
         path: {
-          /** Bech32 pool ID. */
+          /** Bech32 or hexadecimal pool ID. */
           pool_id: string;
         };
       };
@@ -1334,28 +1383,28 @@ export interface paths {
         /** Return the pool relays information content. */
         200: {
           content: {
-            'application/json': components['schemas']['pool_relays'];
+            "application/json": components["schemas"]["pool_relays"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/pools/{pool_id}/delegators': {
+  "/pools/{pool_id}/delegators": {
     /** List of current stake pools delegators. */
     get: {
       parameters: {
         path: {
-          /** Bech32 pool ID */
+          /** Bech32 or hexadecimal pool ID. */
           pool_id: string;
         };
         query: {
-          /** The numbers of delegator addresses for a specific stake pool. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -1363,35 +1412,35 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the pool delegations. */
         200: {
           content: {
-            'application/json': components['schemas']['pool_delegators'];
+            "application/json": components["schemas"]["pool_delegators"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/pools/{pool_id}/blocks': {
+  "/pools/{pool_id}/blocks": {
     /** List of stake pools blocks. */
     get: {
       parameters: {
         path: {
-          /** Bech32 pool ID */
+          /** Bech32 or hexadecimal pool ID. */
           pool_id: string;
         };
         query: {
-          /** The numbers of stake addresses for a specific epoch. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -1399,35 +1448,35 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the pool block list */
         200: {
           content: {
-            'application/json': components['schemas']['pool_blocks'];
+            "application/json": components["schemas"]["pool_blocks"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/pools/{pool_id}/updates': {
+  "/pools/{pool_id}/updates": {
     /** List of certificate updates to the stake pool. */
     get: {
       parameters: {
         path: {
-          /** Bech32 pool ID */
+          /** Bech32 or hexadecimal pool ID. */
           pool_id: string;
         };
         query: {
-          /** The numbers of blocks following the block specified. */
+          /** The number of results displayed on one page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -1435,60 +1484,457 @@ export interface paths {
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
-          order?: 'asc' | 'desc';
+          order?: "asc" | "desc";
         };
       };
       responses: {
         /** Return the pool updates history */
         200: {
           content: {
-            'application/json': components['schemas']['pool_updates'];
+            "application/json": components["schemas"]["pool_updates"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/metrics/': {
+  "/assets": {
+    /** List of assets. */
+    get: {
+      parameters: {
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return list of assets */
+        200: {
+          content: {
+            "application/json": components["schemas"]["assets"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/assets/{asset}": {
+    /** Information about a specific asset */
+    get: {
+      parameters: {
+        path: {
+          /** Concatenation of the policy_id and hex-encoded asset_name */
+          asset: string;
+        };
+      };
+      responses: {
+        /** Return the information about a specific asset */
+        200: {
+          content: {
+            "application/json": components["schemas"]["asset"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/assets/{asset}/history": {
+    /** History of a specific asset */
+    get: {
+      parameters: {
+        path: {
+          /** Concatenation of the policy_id and hex-encoded asset_name */
+          asset: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the information about the history of a specific asset */
+        200: {
+          content: {
+            "application/json": components["schemas"]["asset_history"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/assets/{asset}/txs": {
+    /** List of a specific asset transactions */
+    get: {
+      parameters: {
+        path: {
+          /** Concatenation of the policy_id and hex-encoded asset_name */
+          asset: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the information about the history of a specific asset */
+        200: {
+          content: {
+            "application/json": components["schemas"]["asset_txs"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/assets/{asset}/addresses": {
+    /** List of a addresses containing a specific asset */
+    get: {
+      parameters: {
+        path: {
+          /** Concatenation of the policy_id and hex-encoded asset_name */
+          asset: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the information about the history of a specific asset */
+        200: {
+          content: {
+            "application/json": components["schemas"]["asset_addresses"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/assets/policy/{policy_id}": {
+    /** List of asset minted under a specific policy */
+    get: {
+      parameters: {
+        path: {
+          /** Specific policy_id */
+          policy_id: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the information about a specific asset */
+        200: {
+          content: {
+            "application/json": components["schemas"]["asset_policy"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/ipfs/add": {
+    /**
+     * You need to `/ipfs/pin/add` an object to avoid it being garbage collected. This usage
+     * is being counted in your user account quota.
+     */
+    post: {
+      responses: {
+        /** Returns information about added IPFS object */
+        200: {
+          content: {
+            "application/json": {
+              /** Name of the file */
+              name: string;
+              /** IPFS hash of the file */
+              ipfs_hash: string;
+              /** Size of the file */
+              size: number;
+            };
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/ipfs/gateway/{IPFS_path}": {
+    /** Retrieve an object from the IFPS gateway (useful if you do not want to rely on a public gateway, such as `ipfs.blockfrost.dev`). */
+    get: {
+      parameters: {
+        path: {
+          IPFS_path: string;
+        };
+      };
+      responses: {
+        /** Returns the object content */
+        200: unknown;
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/ipfs/pin/add/{IPFS_path}": {
+    /** Pinned objects are counted in your user storage quota. */
+    post: {
+      parameters: {
+        path: {
+          IPFS_path: string;
+        };
+      };
+      responses: {
+        /** Returns pinned object */
+        200: {
+          content: {
+            "application/json": {
+              /** IPFS hash of the pinned object */
+              ipfs_hash?: string;
+              /** State of the pin action */
+              state?: "queued|pinned|unpinned|failed|gc";
+            };
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/ipfs/pin/list/": {
+    /** List objects pinned to local storage */
+    get: {
+      parameters: {
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Returns pinned objects */
+        200: {
+          content: {
+            "application/json": {
+              /** Creation time of the IPFS object on our backends */
+              time_created?: number;
+              /** Pin time of the IPFS object on our backends */
+              time_pinned?: number;
+              /** IPFS hash of the pinned object */
+              ipfs_hash?: string;
+              /** Size of the object in Bytes */
+              size?: string;
+              /**
+               * State of the pinned object, which is `queued` when we are retriving object. If this
+               * is successful the state is changed to `pinned` or `failed` if not. The state `gc` means the
+               * pinned item has been garbage collected due to account being over storage quota or after it has
+               * been moved to `unpinned` state by removing the object pin.
+               */
+              state?: "queued|pinned|unpinned|failed|gc";
+            }[];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/ipfs/pin/list/{IPFS_path}": {
+    /** List objects pinned to local storage */
+    get: {
+      parameters: {
+        path: {
+          IPFS_path: string;
+        };
+      };
+      responses: {
+        /** Returns the pins pinned */
+        200: {
+          content: {
+            "application/json": {
+              /** Time of the creation of the IPFS object on our backends */
+              time_created?: number;
+              /** Time of the pin of the IPFS object on our backends */
+              time_pinned?: number;
+              /** IPFS hash of the pinned object */
+              ipfs_hash?: string;
+              /** Size of the object in Bytes */
+              size?: string;
+              /**
+               * State of the pinned object. We define 5 states: `queued`, `pinned`, `unpinned`, `failed`, `gc`.
+               * When the object is pending retrieval (i.e. after `/ipfs/pin/add/{IPFS_path}`), the state is `queued`.
+               * If the object is already successfully retrieved, state is changed to `pinned` or `failed` otherwise.
+               * When object is unpinned (i.e. after `/ipfs/pin/remove/{IPFS_path}`) it is marked for garbage collection.
+               * State `gc` means that a previously `unpinned` item has been garbage collected due to account being over storage quota.
+               */
+              state?: "queued|pinned|unpinned|failed|gc";
+            };
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/ipfs/pin/remove/{IPFS_path}": {
+    /** Remove pinned objects from local storage */
+    post: {
+      parameters: {
+        path: {
+          IPFS_path: string;
+        };
+      };
+      responses: {
+        /** Returns the pins removed */
+        200: {
+          content: {
+            "application/json": {
+              /** IPFS hash of the pinned object */
+              ipfs_hash?: string;
+              /** State of the pin action */
+              state?: "queued|pinned|unpinned|failed|gc";
+            };
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/metrics/": {
     /** History of your Blockfrost usage metrics in the past 30 days. */
     get: {
       responses: {
         /** Return the last 30 days of metrics */
         200: {
           content: {
-            'application/json': components['schemas']['metrics'];
+            "application/json": components["schemas"]["metrics"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
-  '/metrics/endpoints': {
+  "/metrics/endpoints": {
     /** History of your Blockfrost usage metrics per endpoint in the past 30 days. */
     get: {
       responses: {
         /** Return the last 30 days of metrics */
         200: {
           content: {
-            'application/json': components['schemas']['metrics_endpoints'];
+            "application/json": components["schemas"]["metrics_endpoints"];
           };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
       };
     };
   };
@@ -1496,7 +1942,7 @@ export interface paths {
 
 export interface components {
   schemas: {
-    block_content_array: components['schemas']['block_content'][];
+    block_content_array: components["schemas"]["block_content"][];
     block_content: {
       /** Block creation time in UNIX time */
       time: number;
@@ -1552,7 +1998,7 @@ export interface components {
       /** Security parameter k */
       security_param: number;
     };
-    epoch_content_array: components['schemas']['epoch_content'][];
+    epoch_content_array: components["schemas"]["epoch_content"][];
     epoch_content: {
       /** Epoch number */
       epoch: number;
@@ -1560,14 +2006,20 @@ export interface components {
       start_time: number;
       /** Unix time of the end of the epoch */
       end_time: number;
+      /** Unix time of the first block of the epoch */
+      first_block_time: number;
+      /** Unix time of the last block of the epoch */
+      last_block_time: number;
       /** Number of blocks within the epoch */
-      blocks_count: number;
+      block_count: number;
       /** Number of transactions within the epoch */
-      txs_count: number;
+      tx_count: number;
       /** Sum of all the transactions within the epoch in Lovelaces */
-      txs_sum: string;
+      output: string;
       /** Sum of all the fees within the epoch in Lovelaces */
-      fees_sum: string;
+      fees: string;
+      /** Sum of all the active stakes within the epoch in Lovelaces */
+      active_stake: string | null;
     };
     epoch_stake_content: {
       /** Stake address */
@@ -1603,7 +2055,7 @@ export interface components {
       e_max: number;
       /** Desired number of pools */
       n_opt: number;
-      /** Pool's pledge influence */
+      /** Pool pledge influence */
       a0: number;
       /** Monetary expansion */
       rho: number;
@@ -1621,7 +2073,7 @@ export interface components {
       min_utxo: string;
       /** Minimum stake cost forced on the pool */
       min_pool_cost: string;
-      /** Epoch's number only used once */
+      /** Epoch number only used once */
       nonce: string;
     };
     tx_content: {
@@ -1642,9 +2094,9 @@ export interface components {
       /** Size of the transaction in Bytes */
       size: number;
       /** Left (included) endpoint of the timelock validity intervals */
-      invalid_before: number | null;
+      invalid_before: string | null;
       /** Right (excluded) endpoint of the timelock validity intervals */
-      invalid_hereafter: number | null;
+      invalid_hereafter: string | null;
       /** Count of UTXOs within the transaction */
       utxo_count: number;
       /** Count of the withdrawal within the transaction */
@@ -1713,8 +2165,9 @@ export interface components {
       margin_cost: number;
       /** Fixed tax cost of the stake pool in Lovelaces */
       fixed_cost: string;
-      /** Bech32 reward address of the stake pool */
-      reward_address: string;
+      /** Bech32 reward account of the stake pool */
+      reward_account: string;
+      owners: string[];
       metadata: {
         /** URL to the stake pool metadata */
         url: string | null;
@@ -1765,7 +2218,7 @@ export interface components {
     account_content: {
       /** Registration state of an account */
       active: boolean;
-      /** Epoch when the account became active */
+      /** Epoch of the most recent action - registration or deregistration */
       active_epoch: number;
       /** Balance of the account in Lovelaces */
       controlled_amount: string;
@@ -1782,6 +2235,10 @@ export interface components {
       /** Bech32 pool ID that owns the account */
       pool_id: string | null;
     };
+    account_addresses_content: {
+      /** Address associated with the stake key */
+      address?: string;
+    }[];
     account_reward_content: {
       /** Epoch of the associated reward */
       epoch: number;
@@ -1812,7 +2269,7 @@ export interface components {
       /** Hash of the transaction containing the (de)registration certificate */
       tx_hash: string;
       /** Action in the certificate */
-      action: 'registered' | 'deregistered';
+      action: "registered" | "deregistered";
     }[];
     address_content: {
       amount: {
@@ -1824,7 +2281,7 @@ export interface components {
       /** Stake address that controls the key */
       stake_address: string | null;
       /** Address era */
-      type: 'byron' | 'shelley';
+      type: "byron" | "shelley";
     };
     address_content_total: {
       received_sum: {
@@ -1847,6 +2304,8 @@ export interface components {
       tx_hash?: string;
       /** UTXO index in the transaction */
       tx_index?: number;
+      /** UTXO index in the transaction */
+      output_index?: number;
       amount?: {
         /** The unit of the value */
         unit?: string;
@@ -1857,13 +2316,25 @@ export interface components {
       block?: string;
     }[];
     address_txs_content: string[];
-    tx_metadata_labels: any[];
+    tx_metadata_labels: {
+      /** Metadata label */
+      label?: string;
+      /** CIP10 defined description */
+      cip10?: string | null;
+      /** The count of metadata entries with a specific label */
+      count?: string;
+    }[];
     tx_metadata_label_json: {
       /** Transaction hash that contains the specific metadata */
       tx_hash: string;
       /** Content of the JSON metadata */
       json_metadata:
-        | (string | { [key: string]: any } | number | any[] | boolean)
+        | (Partial<string> &
+            Partial<{ [key: string]: any }> &
+            Partial<{ [key: string]: any }[]> &
+            Partial<number> &
+            Partial<number> &
+            Partial<boolean>)
         | null;
     }[];
     tx_metadata_label_cbor: {
@@ -1892,7 +2363,7 @@ export interface components {
       delegators_count: number;
       /** Total rewards received before distribution to delegators */
       rewards: string;
-      /** Pool's Operator rewards */
+      /** Pool operator rewards */
       fees: string;
     }[];
     pool: {
@@ -1909,13 +2380,13 @@ export interface components {
       /** Stake pool certificate pledge */
       declared_pledge: string;
       /** Stake pool current pledge */
-      active_pledge: string;
+      live_pledge: string;
       /** Margin tax cost of the stake pool */
       margin_cost: number;
       /** Fixed tax cost of the stake pool */
       fixed_cost: string;
-      /** Reward address of the stake pool */
-      reward_address: string;
+      /** Bech32 reward account of the stake pool */
+      reward_account: string;
       owners: string[];
       registration: (string | null)[];
       retirement: (string | null)[];
@@ -1959,13 +2430,63 @@ export interface components {
       /** Certificate within the transaction */
       cert_index: number;
       /** Action in the certificate */
-      action: 'registered' | 'deregistered';
+      action: "registered" | "deregistered";
     }[];
     pool_delegators: {
       /** Bech32 encoded stake addresses */
       address: string;
       /** Currently delegated amount */
       live_stake: string;
+    }[];
+    assets: {
+      /** Asset identifier */
+      asset: string;
+      /** Current asset quantity */
+      quantity: string;
+    }[];
+    asset: {
+      /** Policy ID of the asset */
+      policy_id: string;
+      /** Hex-encoded asset name of the asset */
+      asset_name: string | null;
+      /** CIP14 based user-facing fingerprint */
+      fingerprint?: string;
+      /** Current asset quantity */
+      quantity: string;
+      /** ID of the initial minting transaction */
+      initial_mint_tx_hash: string;
+      metadata: {
+        /** Asset name */
+        name: string;
+        /** Asset description */
+        description: string;
+        ticker?: string | null;
+        /** Asset website */
+        url?: string | null;
+        /** Base64 encoded logo of the asset */
+        logo?: string | null;
+      } | null;
+    };
+    asset_history: {
+      /** Hash of the transaction containing the asset action */
+      tx_hash: string;
+      /** Action executed upon the asset policy */
+      action: "minted" | "burned";
+      /** Asset amount of the specific action */
+      amount: string;
+    }[];
+    asset_txs: string[];
+    asset_addresses: {
+      /** Address containing the specific asset */
+      address: string;
+      /** Asset quantity on the specific address */
+      quantity: string;
+    }[];
+    asset_policy: {
+      /** Concatenation of the policy_id and hex-encoded asset_name */
+      asset: string;
+      /** Current asset quantity */
+      quantity: string;
     }[];
     metrics: {
       /** Starting time of the call count interval (ends midnight UTC) in UNIX time */
@@ -1978,7 +2499,7 @@ export interface components {
       time: number;
       /** Sum of all calls for a particular day and endpoint */
       calls: number;
-      /** Endpoint's parent name */
+      /** Endpoint parent name */
       endpoint: string;
     }[];
     empty_object: { [key: string]: any };
@@ -1987,7 +2508,7 @@ export interface components {
     /** Usage limit reached */
     overusage_limit: {
       content: {
-        'application/json': {
+        "application/json": {
           status_code?: number;
           error?: string;
           message?: string;
@@ -1997,7 +2518,7 @@ export interface components {
     /** IP has been auto-banned for extensive sending of requests after usage limit has been reached */
     autobanned: {
       content: {
-        'application/json': {
+        "application/json": {
           status_code?: number;
           error?: string;
           message?: string;
@@ -2007,7 +2528,7 @@ export interface components {
     /** Component not found */
     not_found: {
       content: {
-        'application/json': {
+        "application/json": {
           status_code?: number;
           error?: string;
           message?: string;
@@ -2017,7 +2538,7 @@ export interface components {
     /** Internal Server Error */
     internal_server_error: {
       content: {
-        'application/json': {
+        "application/json": {
           status_code?: number;
           error?: string;
           message?: string;
@@ -2027,7 +2548,7 @@ export interface components {
     /** Authentication secret is missing or invalid */
     unauthorized_error: {
       content: {
-        'application/json': {
+        "application/json": {
           status_code?: number;
           error?: string;
           message?: string;
@@ -2037,7 +2558,7 @@ export interface components {
     /** Bad request */
     bad_request: {
       content: {
-        'application/json': {
+        "application/json": {
           status_code?: number;
           error?: string;
           message?: string;
@@ -2046,3 +2567,5 @@ export interface components {
     };
   };
 }
+
+export interface operations {}

@@ -10,9 +10,11 @@
     "id",
     "io",
     "openapi",
+    "pnpify",
     "pools",
     "typedoc",
-    "utxos"
+    "utxos",
+    "yarnpkg"
   ],
   "search.exclude": {
     "**/.yarn": true,
