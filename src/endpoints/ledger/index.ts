@@ -4,18 +4,18 @@ import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 
 export function ledger(
-    this: BlockFrostAPI,
+  this: BlockFrostAPI,
 ): Promise<components['schemas']['genesis_content']> {
-    return new Promise((resolve, reject) => {
-        axios
-            .get(`${this.apiUrl}/genesis`, {
-                headers: getHeaders(this.projectId),
-            })
-            .then(resp => {
-                resolve(resp.data);
-            })
-            .catch(err => {
-                reject(handleError(err));
-            });
-    });
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${this.apiUrl}/genesis`, {
+        headers: getHeaders(this.projectId),
+      })
+      .then(resp => {
+        resolve(resp.data);
+      })
+      .catch(err => {
+        reject(handleError(err));
+      });
+  });
 }

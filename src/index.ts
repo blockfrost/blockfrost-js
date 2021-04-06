@@ -2,73 +2,73 @@ import { API_URLS } from './config';
 import { components } from './types/OpenApi';
 
 import {
-    accounts,
-    accountsDelegations,
-    accountsRegistrations,
-    accountsRewards,
+  accounts,
+  accountsDelegations,
+  accountsRegistrations,
+  accountsRewards,
 } from './endpoints/accounts';
 
 import {
-    addresses,
-    addressesTotal,
-    addressesTxs,
-    addressesUtxos,
+  addresses,
+  addressesTotal,
+  addressesTxs,
+  addressesUtxos,
 } from './endpoints/addresses';
 
 import {
-    blocks,
-    blocksLatest,
-    blocksNext,
-    blocksPrevious,
-    blocksTxs,
+  blocks,
+  blocksLatest,
+  blocksNext,
+  blocksPrevious,
+  blocksTxs,
 } from './endpoints/blocks';
 
 import {
-    epochs,
-    epochsBlocks,
-    epochsBlocksByPoolId,
-    epochsLatest,
-    epochsNext,
-    epochsParameters,
-    epochsPrevious,
-    epochsStakes,
-    epochsStakesByPoolId,
+  epochs,
+  epochsBlocks,
+  epochsBlocksByPoolId,
+  epochsLatest,
+  epochsNext,
+  epochsParameters,
+  epochsPrevious,
+  epochsStakes,
+  epochsStakesByPoolId,
 } from './endpoints/epochs';
 
 import {
-    pools,
-    poolMetadata,
-    poolsById,
-    poolsByIdBlocks,
-    poolsByIdDelegators,
-    poolsByIdHistory,
-    poolsByIdRelays,
-    poolsByIdUpdates,
-    poolsRetired,
-    poolsRetiring,
+  pools,
+  poolMetadata,
+  poolsById,
+  poolsByIdBlocks,
+  poolsByIdDelegators,
+  poolsByIdHistory,
+  poolsByIdRelays,
+  poolsByIdUpdates,
+  poolsRetired,
+  poolsRetiring,
 } from './endpoints/pools';
 
 import { ledger } from './endpoints/ledger';
 import { root } from './endpoints/root';
 import {
-    metadataTxsLabel,
-    metadataTxsLabelCbor,
-    metadataTxsLabels,
+  metadataTxsLabel,
+  metadataTxsLabelCbor,
+  metadataTxsLabels,
 } from './endpoints/metadata';
 
 import { health, healthClock } from './endpoints/health';
 
 import { metrics, metricsEndpoints } from './endpoints/metrics';
 import {
-    txs,
-    txsDelegations,
-    txsMetadataCbor,
-    txsPoolRetires,
-    txsPoolUpdates,
-    txsStakes,
-    txsUtxos,
-    txsWithdrawals,
-    txsMetadata,
+  txs,
+  txsDelegations,
+  txsMetadataCbor,
+  txsPoolRetires,
+  txsPoolUpdates,
+  txsStakes,
+  txsUtxos,
+  txsWithdrawals,
+  txsMetadata,
 } from './endpoints/txs';
 
 import { Options } from './types';
@@ -76,454 +76,453 @@ import join from 'url-join';
 import { validateOptions } from './utils';
 
 class BlockFrostAPI {
-    apiUrl: string;
-    projectId?: string;
+  apiUrl: string;
+  projectId?: string;
 
-    constructor(options?: Options) {
-        const opts = validateOptions(options);
-        const apiBase = opts.isTestnet ? API_URLS.testnet : API_URLS.mainnet;
-        this.apiUrl =
-            options?.customBackend || join(apiBase, `v${opts.version}`);
-        this.projectId = opts.projectId;
-    }
+  constructor(options?: Options) {
+    const opts = validateOptions(options);
+    const apiBase = opts.isTestnet ? API_URLS.testnet : API_URLS.mainnet;
+    this.apiUrl = options?.customBackend || join(apiBase, `v${opts.version}`);
+    this.projectId = opts.projectId;
+  }
 
-    /**
-     * accounts - Obtain information about a specific stake account.
-     *
-     * @param stakeAddress - Bech32 stake address
-     * @returns  Information about a specific stake account.
-     *
-     */
-    accounts = accounts;
+  /**
+   * accounts - Obtain information about a specific stake account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns  Information about a specific stake account.
+   *
+   */
+  accounts = accounts;
 
-    /**
-     * accountsDelegations - Account's delegation history
-     *
-     * @param stakeAddress - Bech32 stake address
-     * @returns Information about the delegation of a specific account.
-     *
-     */
-    accountsDelegations = accountsDelegations;
+  /**
+   * accountsDelegations - Account's delegation history
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the delegation of a specific account.
+   *
+   */
+  accountsDelegations = accountsDelegations;
 
-    /**
-     * accountsRegistrations
-     *
-     * @param stakeAddress
-     * @returns xxx
-     *
-     */
-    accountsRegistrations = accountsRegistrations;
+  /**
+   * accountsRegistrations
+   *
+   * @param stakeAddress
+   * @returns xxx
+   *
+   */
+  accountsRegistrations = accountsRegistrations;
 
-    /**
-     * accountsRewards
-     *
-     * @param stakeAddress
-     * @returns xxx
-     *
-     */
-    accountsRewards = accountsRewards;
+  /**
+   * accountsRewards
+   *
+   * @param stakeAddress
+   * @returns xxx
+   *
+   */
+  accountsRewards = accountsRewards;
 
-    /**
-     * addresses
-     *
-     * @param address
-     * @returns xxx
-     *
-     */
-    addresses = addresses;
+  /**
+   * addresses
+   *
+   * @param address
+   * @returns xxx
+   *
+   */
+  addresses = addresses;
 
-    /**
-     * addressesTotal
-     *
-     * @param address
-     * @returns xxx
-     *
-     */
-    addressesTotal = addressesTotal;
+  /**
+   * addressesTotal
+   *
+   * @param address
+   * @returns xxx
+   *
+   */
+  addressesTotal = addressesTotal;
 
-    /**
-     * addressesTxs
-     *
-     * @param address
-     * @returns xxx
-     *
-     */
-    addressesTxs = addressesTxs;
+  /**
+   * addressesTxs
+   *
+   * @param address
+   * @returns xxx
+   *
+   */
+  addressesTxs = addressesTxs;
 
-    /**
-     * addressesUtxos
-     *
-     * @param address
-     * @returns xxx
-     *
-     */
-    addressesUtxos = addressesUtxos;
+  /**
+   * addressesUtxos
+   *
+   * @param address
+   * @returns xxx
+   *
+   */
+  addressesUtxos = addressesUtxos;
 
-    /**
-     * addressesUtxos
-     *
-     * @param address
-     * @returns xxx
-     *
-     */
-    blocks = blocks;
+  /**
+   * addressesUtxos
+   *
+   * @param address
+   * @returns xxx
+   *
+   */
+  blocks = blocks;
 
-    /**
-     * blocksLatest
-     *
-     * @returns xxx
-     *
-     */
-    blocksLatest = blocksLatest;
+  /**
+   * blocksLatest
+   *
+   * @returns xxx
+   *
+   */
+  blocksLatest = blocksLatest;
 
-    /**
-     * blocksNext
-     *
-     * @param address
-     * @returns xxx
-     *
-     */
-    blocksNext = blocksNext;
+  /**
+   * blocksNext
+   *
+   * @param address
+   * @returns xxx
+   *
+   */
+  blocksNext = blocksNext;
 
-    /**
-     * blockPrevious
-     *
-     * @param address
-     * @returns xxx
-     *
-     */
-    blocksPrevious = blocksPrevious;
+  /**
+   * blockPrevious
+   *
+   * @param address
+   * @returns xxx
+   *
+   */
+  blocksPrevious = blocksPrevious;
 
-    /**
-     * addressesUtxos
-     *
-     * @param blocksTxs
-     * @returns xxx
-     *
-     */
-    blocksTxs = blocksTxs;
+  /**
+   * addressesUtxos
+   *
+   * @param blocksTxs
+   * @returns xxx
+   *
+   */
+  blocksTxs = blocksTxs;
 
-    /**
-     * epochs
-     *
-     * @param number
-     * @returns xxx
-     *
-     */
-    epochs = epochs;
+  /**
+   * epochs
+   *
+   * @param number
+   * @returns xxx
+   *
+   */
+  epochs = epochs;
 
-    /**
-     * epochsBlocks
-     *
-     * @param number
-     * @returns xxx
-     *
-     */
-    epochsBlocks = epochsBlocks;
+  /**
+   * epochsBlocks
+   *
+   * @param number
+   * @returns xxx
+   *
+   */
+  epochsBlocks = epochsBlocks;
 
-    /**
-     * epochsBlocksByPoolId
-     *
-     * @param blocksTxs
-     * @returns xxx
-     *
-     */
-    epochsBlocksByPoolId = epochsBlocksByPoolId;
+  /**
+   * epochsBlocksByPoolId
+   *
+   * @param blocksTxs
+   * @returns xxx
+   *
+   */
+  epochsBlocksByPoolId = epochsBlocksByPoolId;
 
-    /**
-     * epochsLatest
-     *
-     * @returns xxx
-     *
-     */
-    epochsLatest = epochsLatest;
+  /**
+   * epochsLatest
+   *
+   * @returns xxx
+   *
+   */
+  epochsLatest = epochsLatest;
 
-    /**
-     * epochsNext
-     *
-     * @param number
-     * @returns xxx
-     *
-     */
-    epochsNext = epochsNext;
+  /**
+   * epochsNext
+   *
+   * @param number
+   * @returns xxx
+   *
+   */
+  epochsNext = epochsNext;
 
-    /**
-     * epochsParameters
-     *
-     * @param number
-     * @returns xxx
-     *
-     */
-    epochsParameters = epochsParameters;
+  /**
+   * epochsParameters
+   *
+   * @param number
+   * @returns xxx
+   *
+   */
+  epochsParameters = epochsParameters;
 
-    /**
-     * epochsPrevious
-     *
-     * @param number
-     * @returns xxx
-     *
-     */
-    epochsPrevious = epochsPrevious;
+  /**
+   * epochsPrevious
+   *
+   * @param number
+   * @returns xxx
+   *
+   */
+  epochsPrevious = epochsPrevious;
 
-    /**
-     * epochsStakes
-     *
-     * @param number
-     * @returns xxx
-     *
-     */
-    epochsStakes = epochsStakes;
+  /**
+   * epochsStakes
+   *
+   * @param number
+   * @returns xxx
+   *
+   */
+  epochsStakes = epochsStakes;
 
-    /**
-     * epochsStakesByPoolId
-     *
-     * @param number
-     * @returns xxx
-     *
-     */
-    epochsStakesByPoolId = epochsStakesByPoolId;
+  /**
+   * epochsStakesByPoolId
+   *
+   * @param number
+   * @returns xxx
+   *
+   */
+  epochsStakesByPoolId = epochsStakesByPoolId;
 
-    /**
-     * health
-     *
-     * @returns xxx
-     *
-     */
-    health = health;
+  /**
+   * health
+   *
+   * @returns xxx
+   *
+   */
+  health = health;
 
-    /**
-     * healthClock
-     *
-     * @returns xxx
-     *
-     */
-    healthClock = healthClock;
+  /**
+   * healthClock
+   *
+   * @returns xxx
+   *
+   */
+  healthClock = healthClock;
 
-    /**
-     * ledger
-     *
-     * @returns xxx
-     *
-     */
-    ledger = ledger;
+  /**
+   * ledger
+   *
+   * @returns xxx
+   *
+   */
+  ledger = ledger;
 
-    /**
-     * metadataTxsLabel
-     *
-     * @param label
-     * @returns xxx
-     *
-     */
-    metadataTxsLabel = metadataTxsLabel;
+  /**
+   * metadataTxsLabel
+   *
+   * @param label
+   * @returns xxx
+   *
+   */
+  metadataTxsLabel = metadataTxsLabel;
 
-    /**
-     * metadataTxsLabelCbor
-     *
-     * @param label
-     * @returns xxx
-     *
-     */
-    metadataTxsLabelCbor = metadataTxsLabelCbor;
+  /**
+   * metadataTxsLabelCbor
+   *
+   * @param label
+   * @returns xxx
+   *
+   */
+  metadataTxsLabelCbor = metadataTxsLabelCbor;
 
-    /**
-     * metadataTxsLabels
-     *
-     * @returns xxx
-     *
-     */
-    metadataTxsLabels = metadataTxsLabels;
+  /**
+   * metadataTxsLabels
+   *
+   * @returns xxx
+   *
+   */
+  metadataTxsLabels = metadataTxsLabels;
 
-    /**
-     * metrics
-     *
-     * @returns xxx
-     *
-     */
-    metrics = metrics;
+  /**
+   * metrics
+   *
+   * @returns xxx
+   *
+   */
+  metrics = metrics;
 
-    /**
-     * metricsEndpoints
-     *
-     * @returns xxx
-     *
-     */
-    metricsEndpoints = metricsEndpoints;
+  /**
+   * metricsEndpoints
+   *
+   * @returns xxx
+   *
+   */
+  metricsEndpoints = metricsEndpoints;
 
-    /**
-     * pools
-     *
-     * @returns xxx
-     *
-     */
-    pools = pools;
+  /**
+   * pools
+   *
+   * @returns xxx
+   *
+   */
+  pools = pools;
 
-    /**
-     * poolMetadata
-     *
-     * @param poolId
-     * @returns xxx
-     *
-     */
-    poolMetadata = poolMetadata;
+  /**
+   * poolMetadata
+   *
+   * @param poolId
+   * @returns xxx
+   *
+   */
+  poolMetadata = poolMetadata;
 
-    /**
-     * poolsById
-     *
-     * @param poolId
-     * @returns xxx
-     *
-     */
-    poolsById = poolsById;
+  /**
+   * poolsById
+   *
+   * @param poolId
+   * @returns xxx
+   *
+   */
+  poolsById = poolsById;
 
-    /**
-     * poolsByIdBlocks
-     *
-     * @param poolId
-     * @returns xxx
-     *
-     */
-    poolsByIdBlocks = poolsByIdBlocks;
+  /**
+   * poolsByIdBlocks
+   *
+   * @param poolId
+   * @returns xxx
+   *
+   */
+  poolsByIdBlocks = poolsByIdBlocks;
 
-    /**
-     * poolsByIdDelegators
-     *
-     * @param poolId
-     * @returns xxx
-     *
-     */
-    poolsByIdDelegators = poolsByIdDelegators;
+  /**
+   * poolsByIdDelegators
+   *
+   * @param poolId
+   * @returns xxx
+   *
+   */
+  poolsByIdDelegators = poolsByIdDelegators;
 
-    /**
-     * poolsByIdHistory
-     *
-     * @param poolId
-     * @returns xxx
-     *
-     */
-    poolsByIdHistory = poolsByIdHistory;
+  /**
+   * poolsByIdHistory
+   *
+   * @param poolId
+   * @returns xxx
+   *
+   */
+  poolsByIdHistory = poolsByIdHistory;
 
-    /**
-     * poolsByIdRelays
-     *
-     * @param poolId
-     * @returns xxx
-     *
-     */
-    poolsByIdRelays = poolsByIdRelays;
+  /**
+   * poolsByIdRelays
+   *
+   * @param poolId
+   * @returns xxx
+   *
+   */
+  poolsByIdRelays = poolsByIdRelays;
 
-    /**
-     * poolsByIdUpdates
-     *
-     * @param poolId
-     * @returns xxx
-     *
-     */
-    poolsByIdUpdates = poolsByIdUpdates;
+  /**
+   * poolsByIdUpdates
+   *
+   * @param poolId
+   * @returns xxx
+   *
+   */
+  poolsByIdUpdates = poolsByIdUpdates;
 
-    /**
-     * poolsRetired
-     *
-     * @returns xxx
-     *
-     */
-    poolsRetired = poolsRetired;
+  /**
+   * poolsRetired
+   *
+   * @returns xxx
+   *
+   */
+  poolsRetired = poolsRetired;
 
-    /**
-     * poolsRetiring
-     *
-     * @returns xxx
-     *
-     */
-    poolsRetiring = poolsRetiring;
+  /**
+   * poolsRetiring
+   *
+   * @returns xxx
+   *
+   */
+  poolsRetiring = poolsRetiring;
 
-    /**
-     * root
-     *
-     * @returns xxx
-     *
-     */
-    root = root;
+  /**
+   * root
+   *
+   * @returns xxx
+   *
+   */
+  root = root;
 
-    /**
-     * txs
-     *
-     * @param hash
-     * @returns xxx
-     *
-     */
-    txs = txs;
+  /**
+   * txs
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  txs = txs;
 
-    /**
-     * txsMetadataCbor
-     *
-     * @param hash
-     * @returns xxx
-     *
-     */
-    txsMetadataCbor = txsMetadataCbor;
+  /**
+   * txsMetadataCbor
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  txsMetadataCbor = txsMetadataCbor;
 
-    /**
-     * txsDelegations
-     *
-     * @param hash
-     * @returns xxx
-     *
-     */
-    txsDelegations = txsDelegations;
+  /**
+   * txsDelegations
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  txsDelegations = txsDelegations;
 
-    /**
-     * txsPoolRetires
-     *
-     * @param hash
-     * @returns xxx
-     *
-     */
-    txsPoolRetires = txsPoolRetires;
+  /**
+   * txsPoolRetires
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  txsPoolRetires = txsPoolRetires;
 
-    /**
-     * txsPoolUpdates
-     *
-     * @param hash
-     * @returns xxx
-     *
-     */
-    txsPoolUpdates = txsPoolUpdates;
+  /**
+   * txsPoolUpdates
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  txsPoolUpdates = txsPoolUpdates;
 
-    /**
-     * txsStakes
-     *
-     * @param hash
-     * @returns xxx
-     *
-     */
-    txsStakes = txsStakes;
+  /**
+   * txsStakes
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  txsStakes = txsStakes;
 
-    /**
-     * txsUtxos
-     *
-     * @param hash
-     * @returns xxx
-     *
-     */
-    txsUtxos = txsUtxos;
+  /**
+   * txsUtxos
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  txsUtxos = txsUtxos;
 
-    /**
-     * txsWithdrawals
-     *
-     * @param hash
-     * @returns xxx
-     *
-     */
-    txsWithdrawals = txsWithdrawals;
+  /**
+   * txsWithdrawals
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  txsWithdrawals = txsWithdrawals;
 
-    /**
-     * txxMetadata
-     *
-     * @param hash
-     * @returns xxx
-     *
-     */
-    txsMetadata = txsMetadata;
+  /**
+   * txxMetadata
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  txsMetadata = txsMetadata;
 }
 
 type Responses = components['schemas'];
