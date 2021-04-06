@@ -4,2568 +4,2568 @@
  */
 
 export interface paths {
-  '/': {
-    /** Root endpoint has no other function than to point end users to documentation. */
-    get: {
-      responses: {
-        /** Information pointing to the documentation. */
-        200: {
-          content: {
-            'application/json': {
-              url: string;
-              version: string;
+    '/': {
+        /** Root endpoint has no other function than to point end users to documentation. */
+        get: {
+            responses: {
+                /** Information pointing to the documentation. */
+                200: {
+                    content: {
+                        'application/json': {
+                            url: string;
+                            version: string;
+                        };
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
             };
-          };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/health': {
-    /**
-     * Return backend status as a boolean. Your application
-     *     should handle situations when backend for the given chain is unavailable.
-     */
-    get: {
-      responses: {
-        /** Return the boolean indicating the health of the backend. */
-        200: {
-          content: {
-            'application/json': {
-              is_healthy?: boolean;
+    '/health': {
+        /**
+         * Return backend status as a boolean. Your application
+         *     should handle situations when backend for the given chain is unavailable.
+         */
+        get: {
+            responses: {
+                /** Return the boolean indicating the health of the backend. */
+                200: {
+                    content: {
+                        'application/json': {
+                            is_healthy?: boolean;
+                        };
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
             };
-          };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/health/clock': {
-    /**
-     * This endpoint provides the current UNIX time. Your application might
-     * use this to verify if the client clock is not out of sync.
-     */
-    get: {
-      responses: {
-        /** Return the current UNIX time in milliseconds. */
-        200: {
-          content: {
-            'application/json': {
-              server_time?: number;
+    '/health/clock': {
+        /**
+         * This endpoint provides the current UNIX time. Your application might
+         * use this to verify if the client clock is not out of sync.
+         */
+        get: {
+            responses: {
+                /** Return the current UNIX time in milliseconds. */
+                200: {
+                    content: {
+                        'application/json': {
+                            server_time?: number;
+                        };
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
             };
-          };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/blocks/latest': {
-    /**
-     * Return the latest block available to the backends, also known as the
-     * tip of the blockchain.
-     */
-    get: {
-      responses: {
-        /** Return the contents of the latest block. */
-        200: {
-          content: {
-            'application/json': components['schemas']['block_content'];
-          };
+    '/blocks/latest': {
+        /**
+         * Return the latest block available to the backends, also known as the
+         * tip of the blockchain.
+         */
+        get: {
+            responses: {
+                /** Return the contents of the latest block. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['block_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/blocks/{hash_or_number}': {
-    /** Return the content of a requested block. */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the requested block. */
-          hash_or_number: string;
+    '/blocks/{hash_or_number}': {
+        /** Return the content of a requested block. */
+        get: {
+            parameters: {
+                path: {
+                    /** Hash of the requested block. */
+                    hash_or_number: string;
+                };
+            };
+            responses: {
+                /** Return the contents of the block */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['block_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-      };
-      responses: {
-        /** Return the contents of the block */
-        200: {
-          content: {
-            'application/json': components['schemas']['block_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/blocks/{hash_or_number}/next': {
-    /** Return the list of blocks following a specific block. */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the requested block. */
-          hash_or_number: string;
+    '/blocks/{hash_or_number}/next': {
+        /** Return the list of blocks following a specific block. */
+        get: {
+            parameters: {
+                path: {
+                    /** Hash of the requested block. */
+                    hash_or_number: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                };
+            };
+            responses: {
+                /** Return the contents of the block. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['block_content_array'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-        };
-      };
-      responses: {
-        /** Return the contents of the block. */
-        200: {
-          content: {
-            'application/json': components['schemas']['block_content_array'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/blocks/{hash_or_number}/previous': {
-    /** Return the list of blocks preceding a specific block. */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the requested block */
-          hash_or_number: string;
+    '/blocks/{hash_or_number}/previous': {
+        /** Return the list of blocks preceding a specific block. */
+        get: {
+            parameters: {
+                path: {
+                    /** Hash of the requested block */
+                    hash_or_number: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                };
+            };
+            responses: {
+                /** Return the contents of the block */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['block_content_array'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-        };
-      };
-      responses: {
-        /** Return the contents of the block */
-        200: {
-          content: {
-            'application/json': components['schemas']['block_content_array'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/blocks/{hash_or_number}/txs': {
-    /** Return the transactions within the block. */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the requested block. */
-          hash_or_number: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * Ordered by tx index in the block.
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
+    '/blocks/{hash_or_number}/txs': {
         /** Return the transactions within the block. */
-        200: {
-          content: {
-            'application/json': components['schemas']['block_content_txs'];
-          };
+        get: {
+            parameters: {
+                path: {
+                    /** Hash of the requested block. */
+                    hash_or_number: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * Ordered by tx index in the block.
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the transactions within the block. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['block_content_txs'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/genesis': {
-    /** Return the information about blockchain genesis. */
-    get: {
-      responses: {
-        /** Return the genesis parameters. */
-        200: {
-          content: {
-            'application/json': components['schemas']['genesis_content'];
-          };
+    '/genesis': {
+        /** Return the information about blockchain genesis. */
+        get: {
+            responses: {
+                /** Return the genesis parameters. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['genesis_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/epochs/latest': {
-    /** Return the information about the latest, therefore current, epoch. */
-    get: {
-      responses: {
-        /** Return the data about the epoch */
-        200: {
-          content: {
-            'application/json': components['schemas']['epoch_content'];
-          };
+    '/epochs/latest': {
+        /** Return the information about the latest, therefore current, epoch. */
+        get: {
+            responses: {
+                /** Return the data about the epoch */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['epoch_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/epochs/{number}': {
-    /** Return the content of the requested epoch. */
-    get: {
-      parameters: {
-        path: {
-          /** Number of the epoch */
-          number: string;
+    '/epochs/{number}': {
+        /** Return the content of the requested epoch. */
+        get: {
+            parameters: {
+                path: {
+                    /** Number of the epoch */
+                    number: string;
+                };
+            };
+            responses: {
+                /** Return the epoch data. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['epoch_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-      };
-      responses: {
-        /** Return the epoch data. */
-        200: {
-          content: {
-            'application/json': components['schemas']['epoch_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/epochs/{number}/next': {
-    /** Return the list of epochs following a specific epoch. */
-    get: {
-      parameters: {
-        path: {
-          /** Number of the requested epoch. */
-          number: number;
+    '/epochs/{number}/next': {
+        /** Return the list of epochs following a specific epoch. */
+        get: {
+            parameters: {
+                path: {
+                    /** Number of the requested epoch. */
+                    number: number;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                };
+            };
+            responses: {
+                /** Return the data about the epoch */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['epoch_content_array'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-        };
-      };
-      responses: {
-        /** Return the data about the epoch */
-        200: {
-          content: {
-            'application/json': components['schemas']['epoch_content_array'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/epochs/{number}/previous': {
-    /** Return the list of epochs preceding a specific epoch. */
-    get: {
-      parameters: {
-        path: {
-          /** Number of the epoch */
-          number: number;
+    '/epochs/{number}/previous': {
+        /** Return the list of epochs preceding a specific epoch. */
+        get: {
+            parameters: {
+                path: {
+                    /** Number of the epoch */
+                    number: number;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results */
+                    page?: number;
+                };
+            };
+            responses: {
+                /** Return the epoch data */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['epoch_content_array'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results */
-          page?: number;
-        };
-      };
-      responses: {
-        /** Return the epoch data */
-        200: {
-          content: {
-            'application/json': components['schemas']['epoch_content_array'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/epochs/{number}/stakes': {
-    /** Return the active stake distribution for the epoch specified. */
-    get: {
-      parameters: {
-        path: {
-          /** Number of the epoch */
-          number: number;
+    '/epochs/{number}/stakes': {
+        /** Return the active stake distribution for the epoch specified. */
+        get: {
+            parameters: {
+                path: {
+                    /** Number of the epoch */
+                    number: number;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                };
+            };
+            responses: {
+                /** Return the data about the epoch */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['epoch_stake_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-        };
-      };
-      responses: {
-        /** Return the data about the epoch */
-        200: {
-          content: {
-            'application/json': components['schemas']['epoch_stake_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/epochs/{number}/stakes/{pool_id}': {
-    /** Return the active stake distribution for the epoch specified by stake pool. */
-    get: {
-      parameters: {
-        path: {
-          /** Number of the epoch */
-          number: number;
-          /** Stake pool ID to filter */
-          pool_id: string;
+    '/epochs/{number}/stakes/{pool_id}': {
+        /** Return the active stake distribution for the epoch specified by stake pool. */
+        get: {
+            parameters: {
+                path: {
+                    /** Number of the epoch */
+                    number: number;
+                    /** Stake pool ID to filter */
+                    pool_id: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                };
+            };
+            responses: {
+                /** Return the data about the epoch */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['epoch_stake_pool_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-        };
-      };
-      responses: {
-        /** Return the data about the epoch */
-        200: {
-          content: {
-            'application/json': components['schemas']['epoch_stake_pool_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/epochs/{number}/blocks': {
-    /** Return the blocks minted for the epoch specified. */
-    get: {
-      parameters: {
-        path: {
-          /** Number of the epoch */
-          number: number;
+    '/epochs/{number}/blocks': {
+        /** Return the blocks minted for the epoch specified. */
+        get: {
+            parameters: {
+                path: {
+                    /** Number of the epoch */
+                    number: number;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the data about the epoch */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['epoch_block_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the data about the epoch */
-        200: {
-          content: {
-            'application/json': components['schemas']['epoch_block_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/epochs/{number}/blocks/{pool_id}': {
-    /** Return the block minted for the epoch specified by stake pool. */
-    get: {
-      parameters: {
-        path: {
-          /** Number of the epoch */
-          number: number;
-          /** Stake pool ID to filter */
-          pool_id: string;
+    '/epochs/{number}/blocks/{pool_id}': {
+        /** Return the block minted for the epoch specified by stake pool. */
+        get: {
+            parameters: {
+                path: {
+                    /** Number of the epoch */
+                    number: number;
+                    /** Stake pool ID to filter */
+                    pool_id: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the data about the epoch */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['epoch_block_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the data about the epoch */
-        200: {
-          content: {
-            'application/json': components['schemas']['epoch_block_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/epochs/{number}/parameters': {
-    /** Return the protocol parameters for the epoch specified. */
-    get: {
-      parameters: {
-        path: {
-          /** Number of the epoch */
-          number: number;
+    '/epochs/{number}/parameters': {
+        /** Return the protocol parameters for the epoch specified. */
+        get: {
+            parameters: {
+                path: {
+                    /** Number of the epoch */
+                    number: number;
+                };
+            };
+            responses: {
+                /** Return the data about the epoch */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['epoch_param_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-      };
-      responses: {
-        /** Return the data about the epoch */
-        200: {
-          content: {
-            'application/json': components['schemas']['epoch_param_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/txs/{hash}': {
-    /** Return content of the requested transaction. */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the requested transaction */
-          hash: string;
+    '/txs/{hash}': {
+        /** Return content of the requested transaction. */
+        get: {
+            parameters: {
+                path: {
+                    /** Hash of the requested transaction */
+                    hash: string;
+                };
+            };
+            responses: {
+                /** Return the contents of the transaction. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['tx_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-      };
-      responses: {
-        /** Return the contents of the transaction. */
-        200: {
-          content: {
-            'application/json': components['schemas']['tx_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/txs/{hash}/utxos': {
-    /** Return the inputs and UTXOs of the specific transaction. */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the requested transaction */
-          hash: string;
+    '/txs/{hash}/utxos': {
+        /** Return the inputs and UTXOs of the specific transaction. */
+        get: {
+            parameters: {
+                path: {
+                    /** Hash of the requested transaction */
+                    hash: string;
+                };
+            };
+            responses: {
+                /** Return the contents of the transaction. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['tx_content_utxo'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-      };
-      responses: {
-        /** Return the contents of the transaction. */
-        200: {
-          content: {
-            'application/json': components['schemas']['tx_content_utxo'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/txs/{hash}/stakes': {
-    /** Obtain information about (de)registration of stake addresses within a transaction. */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the requested transaction. */
-          hash: string;
-        };
-      };
-      responses: {
+    '/txs/{hash}/stakes': {
         /** Obtain information about (de)registration of stake addresses within a transaction. */
-        200: {
-          content: {
-            'application/json': components['schemas']['tx_content_stake_addr'][];
-          };
+        get: {
+            parameters: {
+                path: {
+                    /** Hash of the requested transaction. */
+                    hash: string;
+                };
+            };
+            responses: {
+                /** Obtain information about (de)registration of stake addresses within a transaction. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['tx_content_stake_addr'][];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/txs/{hash}/delegations': {
-    /** Obtain information about delegation certificates of a specific transaction. */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the requested transaction. */
-          hash: string;
+    '/txs/{hash}/delegations': {
+        /** Obtain information about delegation certificates of a specific transaction. */
+        get: {
+            parameters: {
+                path: {
+                    /** Hash of the requested transaction. */
+                    hash: string;
+                };
+            };
+            responses: {
+                /** Obtain information about delegation certificates of a specific transaction */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['tx_content_delegations'][];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-      };
-      responses: {
-        /** Obtain information about delegation certificates of a specific transaction */
-        200: {
-          content: {
-            'application/json': components['schemas']['tx_content_delegations'][];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/txs/{hash}/withdrawals': {
-    /** Obtain information about withdrawals of a specific transaction. */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the requested transaction. */
-          hash: string;
-        };
-      };
-      responses: {
+    '/txs/{hash}/withdrawals': {
         /** Obtain information about withdrawals of a specific transaction. */
-        200: {
-          content: {
-            'application/json': components['schemas']['tx_content_withdrawals'][];
-          };
+        get: {
+            parameters: {
+                path: {
+                    /** Hash of the requested transaction. */
+                    hash: string;
+                };
+            };
+            responses: {
+                /** Obtain information about withdrawals of a specific transaction. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['tx_content_withdrawals'][];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/txs/{hash}/pool_updates': {
-    /** Obtain information about stake pool registration and update certificates of a specific transaction. */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the requested transaction */
-          hash: string;
+    '/txs/{hash}/pool_updates': {
+        /** Obtain information about stake pool registration and update certificates of a specific transaction. */
+        get: {
+            parameters: {
+                path: {
+                    /** Hash of the requested transaction */
+                    hash: string;
+                };
+            };
+            responses: {
+                /** Obtain information about stake pool certificates of a specific transaction */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['tx_content_pool_certs'][];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-      };
-      responses: {
-        /** Obtain information about stake pool certificates of a specific transaction */
-        200: {
-          content: {
-            'application/json': components['schemas']['tx_content_pool_certs'][];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/txs/{hash}/pool_retires': {
-    /** Obtain information about stake pool retirements within a specific transaction. */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the requested transaction */
-          hash: string;
-        };
-      };
-      responses: {
+    '/txs/{hash}/pool_retires': {
         /** Obtain information about stake pool retirements within a specific transaction. */
-        200: {
-          content: {
-            'application/json': components['schemas']['tx_content_pool_retires'][];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/txs/{hash}/metadata': {
-    /** Obtain the transaction metadata. */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the requested transaction */
-          hash: string;
-        };
-      };
-      responses: {
-        /** Obtain information about stake pool retirements within a specific transaction. */
-        200: {
-          content: {
-            'application/json': components['schemas']['tx_content_metadata'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/txs/{hash}/metadata/cbor': {
-    /** Obtain the transaction metadata in CBOR. */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the requested transaction */
-          hash: string;
-        };
-      };
-      responses: {
-        /** Obtain information about stake pool retirements within a specific transaction. */
-        200: {
-          content: {
-            'application/json': components['schemas']['tx_content_metadata_cbor'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/tx/submit': {
-    /** Submit a base64 encoding serialized transaction to the network. */
-    post: {
-      parameters: {
-        header: {
-          'Content-Type': 'application/cbor';
-        };
-      };
-      responses: {
-        /** Return the ID of the submitted transaction. */
-        200: {
-          content: {
-            'application/json': string;
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/accounts/{stake_address}': {
-    /** Obtain information about a specific stake account. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 stake addresses */
-          stake_address: string;
-        };
-      };
-      responses: {
-        /** Return the account content. */
-        200: {
-          content: {
-            'application/json': components['schemas']['account_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/accounts/{stake_address}/rewards': {
-    /** Obtain information about the history of a specific account. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 stake addresses */
-          stake_address: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the account content. */
-        200: {
-          content: {
-            'application/json': components['schemas']['account_reward_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/accounts/{stake_address}/history': {
-    /** Obtain information about the history of a specific account. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 stake addresses */
-          stake_address: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the account content. */
-        200: {
-          content: {
-            'application/json': components['schemas']['account_history_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/accounts/{stake_address}/delegations': {
-    /** Obtain information about the delegation of a specific account. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 stake addresses */
-          stake_address: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the account delegations content */
-        200: {
-          content: {
-            'application/json': components['schemas']['account_delegation_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/accounts/{stake_address}/registrations': {
-    /** Obtain information about the registrations and deregistrations of a specific account. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 stake addresses */
-          stake_address: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the account registration content. */
-        200: {
-          content: {
-            'application/json': components['schemas']['account_registration_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/accounts/{stake_address}/addresses': {
-    /** Obtain information about the addresses of a specific account. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 stake addresses */
-          stake_address: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the account addresses content */
-        200: {
-          content: {
-            'application/json': components['schemas']['account_addresses_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/metadata/txs/labels': {
-    /** List of all used transaction metadata labels. */
-    get: {
-      parameters: {
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the account delegations content */
-        200: {
-          content: {
-            'application/json': components['schemas']['tx_metadata_labels'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/metadata/txs/labels/{label}': {
-    /** Transaction metadata per label. */
-    get: {
-      parameters: {
-        path: {
-          /** Metadata label */
-          label: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the account delegations content */
-        200: {
-          content: {
-            'application/json': components['schemas']['tx_metadata_label_json'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/metadata/txs/labels/{label}/cbor': {
-    /** Transaction metadata per label. */
-    get: {
-      parameters: {
-        path: {
-          /** Metadata label */
-          label: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the account delegations content in CBOR */
-        200: {
-          content: {
-            'application/json': components['schemas']['tx_metadata_label_cbor'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/addresses/{address}': {
-    /** Obtain information about a specific address. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 addresses. */
-          address: string;
-        };
-      };
-      responses: {
-        /** Return the address content. */
-        200: {
-          content: {
-            'application/json': components['schemas']['address_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/addresses/{address}/total': {
-    /** Obtain details about an address. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 addresses. */
-          address: string;
-        };
-      };
-      responses: {
-        /** Return the address' details. */
-        200: {
-          content: {
-            'application/json': components['schemas']['address_content_total'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/addresses/{address}/utxos': {
-    /** UTXOs of the address. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 addresses */
-          address: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * Ordered by tx index in the block.
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the address content */
-        200: {
-          content: {
-            'application/json': components['schemas']['address_utxo_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/addresses/{address}/txs': {
-    /** Transactions on the address. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 addresses. */
-          address: string;
-        };
-        query: {
-          /** The numbers of pools per page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the address content */
-        200: {
-          content: {
-            'application/json': components['schemas']['address_txs_content'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/pools/': {
-    /** List of registered stake pools. */
-    get: {
-      parameters: {
-        query: {
-          /** The numbers of pools per page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the list of pools. */
-        200: {
-          content: {
-            'application/json': components['schemas']['pool_list'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/pools/retired': {
-    /** List of already retired pools. */
-    get: {
-      parameters: {
-        query: {
-          /** The numbers of pools per page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the pool information content */
-        200: {
-          content: {
-            'application/json': components['schemas']['pool_list_retire'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/pools/retiring': {
-    /** List of stake pools retiring in the upcoming epochs */
-    get: {
-      parameters: {
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the pool information content */
-        200: {
-          content: {
-            'application/json': components['schemas']['pool_list_retire'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/pools/{pool_id}': {
-    /** Pool information. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 or hexadecimal pool ID. */
-          pool_id: string;
-        };
-      };
-      responses: {
-        /** Return the pool information content */
-        200: {
-          content: {
-            'application/json': components['schemas']['pool'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/pools/{pool_id}/history': {
-    /** History of stake pool parameters over epochs. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 or hexadecimal pool ID. */
-          pool_id: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the pool information content. */
-        200: {
-          content: {
-            'application/json': components['schemas']['pool_history'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/pools/{pool_id}/metadata': {
-    /** Stake pool registration metadata. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 or hexadecimal pool ID. */
-          pool_id: string;
-        };
-      };
-      responses: {
-        /** Return the pool metadata content. */
-        200: {
-          content: {
-            'application/json': Partial<
-              components['schemas']['pool_metadata']
-            > &
-              Partial<components['schemas']['empty_object']>;
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/pools/{pool_id}/relays': {
-    /** Relays of a stake pool. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 or hexadecimal pool ID. */
-          pool_id: string;
-        };
-      };
-      responses: {
-        /** Return the pool relays information content. */
-        200: {
-          content: {
-            'application/json': components['schemas']['pool_relays'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/pools/{pool_id}/delegators': {
-    /** List of current stake pools delegators. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 or hexadecimal pool ID. */
-          pool_id: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the pool delegations. */
-        200: {
-          content: {
-            'application/json': components['schemas']['pool_delegators'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/pools/{pool_id}/blocks': {
-    /** List of stake pools blocks. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 or hexadecimal pool ID. */
-          pool_id: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the pool block list */
-        200: {
-          content: {
-            'application/json': components['schemas']['pool_blocks'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/pools/{pool_id}/updates': {
-    /** List of certificate updates to the stake pool. */
-    get: {
-      parameters: {
-        path: {
-          /** Bech32 or hexadecimal pool ID. */
-          pool_id: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the pool updates history */
-        200: {
-          content: {
-            'application/json': components['schemas']['pool_updates'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/assets': {
-    /** List of assets. */
-    get: {
-      parameters: {
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return list of assets */
-        200: {
-          content: {
-            'application/json': components['schemas']['assets'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/assets/{asset}': {
-    /** Information about a specific asset */
-    get: {
-      parameters: {
-        path: {
-          /** Concatenation of the policy_id and hex-encoded asset_name */
-          asset: string;
-        };
-      };
-      responses: {
-        /** Return the information about a specific asset */
-        200: {
-          content: {
-            'application/json': components['schemas']['asset'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/assets/{asset}/history': {
-    /** History of a specific asset */
-    get: {
-      parameters: {
-        path: {
-          /** Concatenation of the policy_id and hex-encoded asset_name */
-          asset: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the information about the history of a specific asset */
-        200: {
-          content: {
-            'application/json': components['schemas']['asset_history'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/assets/{asset}/txs': {
-    /** List of a specific asset transactions */
-    get: {
-      parameters: {
-        path: {
-          /** Concatenation of the policy_id and hex-encoded asset_name */
-          asset: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the information about the history of a specific asset */
-        200: {
-          content: {
-            'application/json': components['schemas']['asset_txs'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/assets/{asset}/addresses': {
-    /** List of a addresses containing a specific asset */
-    get: {
-      parameters: {
-        path: {
-          /** Concatenation of the policy_id and hex-encoded asset_name */
-          asset: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the information about the history of a specific asset */
-        200: {
-          content: {
-            'application/json': components['schemas']['asset_addresses'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/assets/policy/{policy_id}': {
-    /** List of asset minted under a specific policy */
-    get: {
-      parameters: {
-        path: {
-          /** Specific policy_id */
-          policy_id: string;
-        };
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Return the information about a specific asset */
-        200: {
-          content: {
-            'application/json': components['schemas']['asset_policy'];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/ipfs/add': {
-    /**
-     * You need to `/ipfs/pin/add` an object to avoid it being garbage collected. This usage
-     * is being counted in your user account quota.
-     */
-    post: {
-      responses: {
-        /** Returns information about added IPFS object */
-        200: {
-          content: {
-            'application/json': {
-              /** Name of the file */
-              name: string;
-              /** IPFS hash of the file */
-              ipfs_hash: string;
-              /** Size of the file */
-              size: number;
+        get: {
+            parameters: {
+                path: {
+                    /** Hash of the requested transaction */
+                    hash: string;
+                };
             };
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/ipfs/gateway/{IPFS_path}': {
-    /** Retrieve an object from the IFPS gateway (useful if you do not want to rely on a public gateway, such as `ipfs.blockfrost.dev`). */
-    get: {
-      parameters: {
-        path: {
-          IPFS_path: string;
-        };
-      };
-      responses: {
-        /** Returns the object content */
-        200: unknown;
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/ipfs/pin/add/{IPFS_path}': {
-    /** Pinned objects are counted in your user storage quota. */
-    post: {
-      parameters: {
-        path: {
-          IPFS_path: string;
-        };
-      };
-      responses: {
-        /** Returns pinned object */
-        200: {
-          content: {
-            'application/json': {
-              /** IPFS hash of the pinned object */
-              ipfs_hash?: string;
-              /** State of the pin action */
-              state?: 'queued|pinned|unpinned|failed|gc';
+            responses: {
+                /** Obtain information about stake pool retirements within a specific transaction. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['tx_content_pool_retires'][];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
             };
-          };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/ipfs/pin/list/': {
-    /** List objects pinned to local storage */
-    get: {
-      parameters: {
-        query: {
-          /** The number of results displayed on one page. */
-          count?: number;
-          /** The page number for listing the results. */
-          page?: number;
-          /**
-           * The ordering of items from the point of view of the blockchain,
-           * not the page listing itself. By default, we return oldest first, newest last.
-           */
-          order?: 'asc' | 'desc';
-        };
-      };
-      responses: {
-        /** Returns pinned objects */
-        200: {
-          content: {
-            'application/json': {
-              /** Creation time of the IPFS object on our backends */
-              time_created?: number;
-              /** Pin time of the IPFS object on our backends */
-              time_pinned?: number;
-              /** IPFS hash of the pinned object */
-              ipfs_hash?: string;
-              /** Size of the object in Bytes */
-              size?: string;
-              /**
-               * State of the pinned object, which is `queued` when we are retriving object. If this
-               * is successful the state is changed to `pinned` or `failed` if not. The state `gc` means the
-               * pinned item has been garbage collected due to account being over storage quota or after it has
-               * been moved to `unpinned` state by removing the object pin.
-               */
-              state?: 'queued|pinned|unpinned|failed|gc';
-            }[];
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/ipfs/pin/list/{IPFS_path}': {
-    /** List objects pinned to local storage */
-    get: {
-      parameters: {
-        path: {
-          IPFS_path: string;
-        };
-      };
-      responses: {
-        /** Returns the pins pinned */
-        200: {
-          content: {
-            'application/json': {
-              /** Time of the creation of the IPFS object on our backends */
-              time_created?: number;
-              /** Time of the pin of the IPFS object on our backends */
-              time_pinned?: number;
-              /** IPFS hash of the pinned object */
-              ipfs_hash?: string;
-              /** Size of the object in Bytes */
-              size?: string;
-              /**
-               * State of the pinned object. We define 5 states: `queued`, `pinned`, `unpinned`, `failed`, `gc`.
-               * When the object is pending retrieval (i.e. after `/ipfs/pin/add/{IPFS_path}`), the state is `queued`.
-               * If the object is already successfully retrieved, state is changed to `pinned` or `failed` otherwise.
-               * When object is unpinned (i.e. after `/ipfs/pin/remove/{IPFS_path}`) it is marked for garbage collection.
-               * State `gc` means that a previously `unpinned` item has been garbage collected due to account being over storage quota.
-               */
-              state?: 'queued|pinned|unpinned|failed|gc';
+    '/txs/{hash}/metadata': {
+        /** Obtain the transaction metadata. */
+        get: {
+            parameters: {
+                path: {
+                    /** Hash of the requested transaction */
+                    hash: string;
+                };
             };
-          };
-        };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
-    };
-  };
-  '/ipfs/pin/remove/{IPFS_path}': {
-    /** Remove pinned objects from local storage */
-    post: {
-      parameters: {
-        path: {
-          IPFS_path: string;
-        };
-      };
-      responses: {
-        /** Returns the pins removed */
-        200: {
-          content: {
-            'application/json': {
-              /** IPFS hash of the pinned object */
-              ipfs_hash?: string;
-              /** State of the pin action */
-              state?: 'queued|pinned|unpinned|failed|gc';
+            responses: {
+                /** Obtain information about stake pool retirements within a specific transaction. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['tx_content_metadata'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
             };
-          };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/metrics/': {
-    /** History of your Blockfrost usage metrics in the past 30 days. */
-    get: {
-      responses: {
-        /** Return the last 30 days of metrics */
-        200: {
-          content: {
-            'application/json': components['schemas']['metrics'];
-          };
+    '/txs/{hash}/metadata/cbor': {
+        /** Obtain the transaction metadata in CBOR. */
+        get: {
+            parameters: {
+                path: {
+                    /** Hash of the requested transaction */
+                    hash: string;
+                };
+            };
+            responses: {
+                /** Obtain information about stake pool retirements within a specific transaction. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['tx_content_metadata_cbor'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
-  '/metrics/endpoints': {
-    /** History of your Blockfrost usage metrics per endpoint in the past 30 days. */
-    get: {
-      responses: {
-        /** Return the last 30 days of metrics */
-        200: {
-          content: {
-            'application/json': components['schemas']['metrics_endpoints'];
-          };
+    '/tx/submit': {
+        /** Submit a base64 encoding serialized transaction to the network. */
+        post: {
+            parameters: {
+                header: {
+                    'Content-Type': 'application/cbor';
+                };
+            };
+            responses: {
+                /** Return the ID of the submitted transaction. */
+                200: {
+                    content: {
+                        'application/json': string;
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
         };
-        400: components['responses']['bad_request'];
-        403: components['responses']['unauthorized_error'];
-        404: components['responses']['not_found'];
-        418: components['responses']['autobanned'];
-        429: components['responses']['overusage_limit'];
-        500: components['responses']['internal_server_error'];
-      };
     };
-  };
+    '/accounts/{stake_address}': {
+        /** Obtain information about a specific stake account. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 stake addresses */
+                    stake_address: string;
+                };
+            };
+            responses: {
+                /** Return the account content. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['account_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/accounts/{stake_address}/rewards': {
+        /** Obtain information about the history of a specific account. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 stake addresses */
+                    stake_address: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the account content. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['account_reward_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/accounts/{stake_address}/history': {
+        /** Obtain information about the history of a specific account. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 stake addresses */
+                    stake_address: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the account content. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['account_history_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/accounts/{stake_address}/delegations': {
+        /** Obtain information about the delegation of a specific account. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 stake addresses */
+                    stake_address: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the account delegations content */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['account_delegation_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/accounts/{stake_address}/registrations': {
+        /** Obtain information about the registrations and deregistrations of a specific account. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 stake addresses */
+                    stake_address: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the account registration content. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['account_registration_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/accounts/{stake_address}/addresses': {
+        /** Obtain information about the addresses of a specific account. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 stake addresses */
+                    stake_address: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the account addresses content */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['account_addresses_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/metadata/txs/labels': {
+        /** List of all used transaction metadata labels. */
+        get: {
+            parameters: {
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the account delegations content */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['tx_metadata_labels'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/metadata/txs/labels/{label}': {
+        /** Transaction metadata per label. */
+        get: {
+            parameters: {
+                path: {
+                    /** Metadata label */
+                    label: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the account delegations content */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['tx_metadata_label_json'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/metadata/txs/labels/{label}/cbor': {
+        /** Transaction metadata per label. */
+        get: {
+            parameters: {
+                path: {
+                    /** Metadata label */
+                    label: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the account delegations content in CBOR */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['tx_metadata_label_cbor'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/addresses/{address}': {
+        /** Obtain information about a specific address. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 addresses. */
+                    address: string;
+                };
+            };
+            responses: {
+                /** Return the address content. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['address_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/addresses/{address}/total': {
+        /** Obtain details about an address. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 addresses. */
+                    address: string;
+                };
+            };
+            responses: {
+                /** Return the address' details. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['address_content_total'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/addresses/{address}/utxos': {
+        /** UTXOs of the address. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 addresses */
+                    address: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * Ordered by tx index in the block.
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the address content */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['address_utxo_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/addresses/{address}/txs': {
+        /** Transactions on the address. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 addresses. */
+                    address: string;
+                };
+                query: {
+                    /** The numbers of pools per page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the address content */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['address_txs_content'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/pools/': {
+        /** List of registered stake pools. */
+        get: {
+            parameters: {
+                query: {
+                    /** The numbers of pools per page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the list of pools. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['pool_list'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/pools/retired': {
+        /** List of already retired pools. */
+        get: {
+            parameters: {
+                query: {
+                    /** The numbers of pools per page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the pool information content */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['pool_list_retire'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/pools/retiring': {
+        /** List of stake pools retiring in the upcoming epochs */
+        get: {
+            parameters: {
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the pool information content */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['pool_list_retire'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/pools/{pool_id}': {
+        /** Pool information. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 or hexadecimal pool ID. */
+                    pool_id: string;
+                };
+            };
+            responses: {
+                /** Return the pool information content */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['pool'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/pools/{pool_id}/history': {
+        /** History of stake pool parameters over epochs. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 or hexadecimal pool ID. */
+                    pool_id: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the pool information content. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['pool_history'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/pools/{pool_id}/metadata': {
+        /** Stake pool registration metadata. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 or hexadecimal pool ID. */
+                    pool_id: string;
+                };
+            };
+            responses: {
+                /** Return the pool metadata content. */
+                200: {
+                    content: {
+                        'application/json': Partial<
+                            components['schemas']['pool_metadata']
+                        > &
+                            Partial<components['schemas']['empty_object']>;
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/pools/{pool_id}/relays': {
+        /** Relays of a stake pool. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 or hexadecimal pool ID. */
+                    pool_id: string;
+                };
+            };
+            responses: {
+                /** Return the pool relays information content. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['pool_relays'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/pools/{pool_id}/delegators': {
+        /** List of current stake pools delegators. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 or hexadecimal pool ID. */
+                    pool_id: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the pool delegations. */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['pool_delegators'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/pools/{pool_id}/blocks': {
+        /** List of stake pools blocks. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 or hexadecimal pool ID. */
+                    pool_id: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the pool block list */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['pool_blocks'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/pools/{pool_id}/updates': {
+        /** List of certificate updates to the stake pool. */
+        get: {
+            parameters: {
+                path: {
+                    /** Bech32 or hexadecimal pool ID. */
+                    pool_id: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the pool updates history */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['pool_updates'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/assets': {
+        /** List of assets. */
+        get: {
+            parameters: {
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return list of assets */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['assets'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/assets/{asset}': {
+        /** Information about a specific asset */
+        get: {
+            parameters: {
+                path: {
+                    /** Concatenation of the policy_id and hex-encoded asset_name */
+                    asset: string;
+                };
+            };
+            responses: {
+                /** Return the information about a specific asset */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['asset'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/assets/{asset}/history': {
+        /** History of a specific asset */
+        get: {
+            parameters: {
+                path: {
+                    /** Concatenation of the policy_id and hex-encoded asset_name */
+                    asset: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the information about the history of a specific asset */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['asset_history'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/assets/{asset}/txs': {
+        /** List of a specific asset transactions */
+        get: {
+            parameters: {
+                path: {
+                    /** Concatenation of the policy_id and hex-encoded asset_name */
+                    asset: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the information about the history of a specific asset */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['asset_txs'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/assets/{asset}/addresses': {
+        /** List of a addresses containing a specific asset */
+        get: {
+            parameters: {
+                path: {
+                    /** Concatenation of the policy_id and hex-encoded asset_name */
+                    asset: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the information about the history of a specific asset */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['asset_addresses'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/assets/policy/{policy_id}': {
+        /** List of asset minted under a specific policy */
+        get: {
+            parameters: {
+                path: {
+                    /** Specific policy_id */
+                    policy_id: string;
+                };
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Return the information about a specific asset */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['asset_policy'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/ipfs/add': {
+        /**
+         * You need to `/ipfs/pin/add` an object to avoid it being garbage collected. This usage
+         * is being counted in your user account quota.
+         */
+        post: {
+            responses: {
+                /** Returns information about added IPFS object */
+                200: {
+                    content: {
+                        'application/json': {
+                            /** Name of the file */
+                            name: string;
+                            /** IPFS hash of the file */
+                            ipfs_hash: string;
+                            /** Size of the file */
+                            size: number;
+                        };
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/ipfs/gateway/{IPFS_path}': {
+        /** Retrieve an object from the IFPS gateway (useful if you do not want to rely on a public gateway, such as `ipfs.blockfrost.dev`). */
+        get: {
+            parameters: {
+                path: {
+                    IPFS_path: string;
+                };
+            };
+            responses: {
+                /** Returns the object content */
+                200: unknown;
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/ipfs/pin/add/{IPFS_path}': {
+        /** Pinned objects are counted in your user storage quota. */
+        post: {
+            parameters: {
+                path: {
+                    IPFS_path: string;
+                };
+            };
+            responses: {
+                /** Returns pinned object */
+                200: {
+                    content: {
+                        'application/json': {
+                            /** IPFS hash of the pinned object */
+                            ipfs_hash?: string;
+                            /** State of the pin action */
+                            state?: 'queued|pinned|unpinned|failed|gc';
+                        };
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/ipfs/pin/list/': {
+        /** List objects pinned to local storage */
+        get: {
+            parameters: {
+                query: {
+                    /** The number of results displayed on one page. */
+                    count?: number;
+                    /** The page number for listing the results. */
+                    page?: number;
+                    /**
+                     * The ordering of items from the point of view of the blockchain,
+                     * not the page listing itself. By default, we return oldest first, newest last.
+                     */
+                    order?: 'asc' | 'desc';
+                };
+            };
+            responses: {
+                /** Returns pinned objects */
+                200: {
+                    content: {
+                        'application/json': {
+                            /** Creation time of the IPFS object on our backends */
+                            time_created?: number;
+                            /** Pin time of the IPFS object on our backends */
+                            time_pinned?: number;
+                            /** IPFS hash of the pinned object */
+                            ipfs_hash?: string;
+                            /** Size of the object in Bytes */
+                            size?: string;
+                            /**
+                             * State of the pinned object, which is `queued` when we are retriving object. If this
+                             * is successful the state is changed to `pinned` or `failed` if not. The state `gc` means the
+                             * pinned item has been garbage collected due to account being over storage quota or after it has
+                             * been moved to `unpinned` state by removing the object pin.
+                             */
+                            state?: 'queued|pinned|unpinned|failed|gc';
+                        }[];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/ipfs/pin/list/{IPFS_path}': {
+        /** List objects pinned to local storage */
+        get: {
+            parameters: {
+                path: {
+                    IPFS_path: string;
+                };
+            };
+            responses: {
+                /** Returns the pins pinned */
+                200: {
+                    content: {
+                        'application/json': {
+                            /** Time of the creation of the IPFS object on our backends */
+                            time_created?: number;
+                            /** Time of the pin of the IPFS object on our backends */
+                            time_pinned?: number;
+                            /** IPFS hash of the pinned object */
+                            ipfs_hash?: string;
+                            /** Size of the object in Bytes */
+                            size?: string;
+                            /**
+                             * State of the pinned object. We define 5 states: `queued`, `pinned`, `unpinned`, `failed`, `gc`.
+                             * When the object is pending retrieval (i.e. after `/ipfs/pin/add/{IPFS_path}`), the state is `queued`.
+                             * If the object is already successfully retrieved, state is changed to `pinned` or `failed` otherwise.
+                             * When object is unpinned (i.e. after `/ipfs/pin/remove/{IPFS_path}`) it is marked for garbage collection.
+                             * State `gc` means that a previously `unpinned` item has been garbage collected due to account being over storage quota.
+                             */
+                            state?: 'queued|pinned|unpinned|failed|gc';
+                        };
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/ipfs/pin/remove/{IPFS_path}': {
+        /** Remove pinned objects from local storage */
+        post: {
+            parameters: {
+                path: {
+                    IPFS_path: string;
+                };
+            };
+            responses: {
+                /** Returns the pins removed */
+                200: {
+                    content: {
+                        'application/json': {
+                            /** IPFS hash of the pinned object */
+                            ipfs_hash?: string;
+                            /** State of the pin action */
+                            state?: 'queued|pinned|unpinned|failed|gc';
+                        };
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/metrics/': {
+        /** History of your Blockfrost usage metrics in the past 30 days. */
+        get: {
+            responses: {
+                /** Return the last 30 days of metrics */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['metrics'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
+    '/metrics/endpoints': {
+        /** History of your Blockfrost usage metrics per endpoint in the past 30 days. */
+        get: {
+            responses: {
+                /** Return the last 30 days of metrics */
+                200: {
+                    content: {
+                        'application/json': components['schemas']['metrics_endpoints'];
+                    };
+                };
+                400: components['responses']['bad_request'];
+                403: components['responses']['unauthorized_error'];
+                404: components['responses']['not_found'];
+                418: components['responses']['autobanned'];
+                429: components['responses']['overusage_limit'];
+                500: components['responses']['internal_server_error'];
+            };
+        };
+    };
 }
 
 export interface components {
-  schemas: {
-    block_content_array: components['schemas']['block_content'][];
-    block_content: {
-      /** Block creation time in UNIX time */
-      time: number;
-      /** Block number */
-      height: number | null;
-      /** Hash of the block */
-      hash: string;
-      /** Slot number */
-      slot: number | null;
-      /** Epoch number */
-      epoch: number | null;
-      /** Slot within the epoch */
-      epoch_slot: number | null;
-      /** Bech32 ID of the slot leader or specific block description in case there is no slot leader */
-      slot_leader: string;
-      /** Block size in Bytes */
-      size: number;
-      /** Number of transactions in the block */
-      tx_count: number;
-      /** Total output within the block in Lovelaces */
-      output: string | null;
-      /** Total fees within the block in Lovelaces */
-      fees: string | null;
-      /** VRF key of the block */
-      block_vrf: string | null;
-      /** Hash of the previous block */
-      previous_block: string | null;
-      /** Hash of the next block */
-      next_block: string | null;
-      /** Number of block confirmations */
-      confirmations: number;
-    };
-    block_content_txs: string[];
-    genesis_content: {
-      /** The proportion of slots in which blocks should be issued */
-      active_slots_coefficient: number;
-      /** Determines the quorum needed for votes on the protocol parameter updates */
-      update_quorum: number;
-      /** The total number of lovelace in the system */
-      max_lovelace_supply: string;
-      /** Network identifier */
-      network_magic: number;
-      /** Number of slots in an epoch */
-      epoch_length: number;
-      /** Time of slot 0 in UNIX time */
-      system_start: number;
-      /** Number of slots in an KES period */
-      slots_per_kes_period: number;
-      /** Duration of one slot in seconds */
-      slot_length: number;
-      /** The maximum number of time a KES key can be evolved before a pool operator must create a new operational certificate */
-      max_kes_evolutions: number;
-      /** Security parameter k */
-      security_param: number;
-    };
-    epoch_content_array: components['schemas']['epoch_content'][];
-    epoch_content: {
-      /** Epoch number */
-      epoch: number;
-      /** Unix time of the start of the epoch */
-      start_time: number;
-      /** Unix time of the end of the epoch */
-      end_time: number;
-      /** Unix time of the first block of the epoch */
-      first_block_time: number;
-      /** Unix time of the last block of the epoch */
-      last_block_time: number;
-      /** Number of blocks within the epoch */
-      block_count: number;
-      /** Number of transactions within the epoch */
-      tx_count: number;
-      /** Sum of all the transactions within the epoch in Lovelaces */
-      output: string;
-      /** Sum of all the fees within the epoch in Lovelaces */
-      fees: string;
-      /** Sum of all the active stakes within the epoch in Lovelaces */
-      active_stake: string | null;
-    };
-    epoch_stake_content: {
-      /** Stake address */
-      stake_address: string;
-      /** Bech32 prefix of the pool delegated to */
-      pool_id: string;
-      /** Amount of delegated stake in Lovelaces */
-      amount: string;
-    }[];
-    epoch_stake_pool_content: {
-      /** Stake address */
-      stake_address: string;
-      /** Amount of delegated stake in Lovelaces */
-      amount: string;
-    }[];
-    epoch_block_content: string[];
-    epoch_param_content: {
-      /** The linear factor for the minimum fee calculation for given epoch */
-      min_fee_a: number;
-      /** The constant factor for the minimum fee calculation */
-      min_fee_b: number;
-      /** Maximum block body size in Bytes */
-      max_block_size: number;
-      /** Maximum transaction size */
-      max_tx_size: number;
-      /** Maximum block header size */
-      max_block_header_size: number;
-      /** The amount of a key registration deposit in Lovelaces */
-      key_deposit: string;
-      /** The amount of a pool registration deposit in Lovelaces */
-      pool_deposit: string;
-      /** Epoch bound on pool retirement */
-      e_max: number;
-      /** Desired number of pools */
-      n_opt: number;
-      /** Pool pledge influence */
-      a0: number;
-      /** Monetary expansion */
-      rho: number;
-      /** Treasury expansion */
-      tau: number;
-      /** Percentage of blocks produced by federated nodes */
-      decentralisation_param: number;
-      /** Seed for extra entropy */
-      extra_entropy: { [key: string]: any } | null;
-      /** Accepted protocol major version */
-      protocol_major_ver: number;
-      /** Accepted protocol minor version */
-      protocol_minor_ver: number;
-      /** Minimum UTXO value */
-      min_utxo: string;
-      /** Minimum stake cost forced on the pool */
-      min_pool_cost: string;
-      /** Epoch number only used once */
-      nonce: string;
-    };
-    tx_content: {
-      /** Block hash */
-      block: string;
-      /** Transaction index within the block */
-      index: number;
-      output_amount: {
-        /** The unit of the value */
-        unit?: string;
-        /** The quantity of the unit */
-        quantity?: string;
-      }[];
-      /** Fees of the transaction in Lovelaces */
-      fees: string;
-      /** Deposit within the transaction in Lovelaces */
-      deposit: string;
-      /** Size of the transaction in Bytes */
-      size: number;
-      /** Left (included) endpoint of the timelock validity intervals */
-      invalid_before: string | null;
-      /** Right (excluded) endpoint of the timelock validity intervals */
-      invalid_hereafter: string | null;
-      /** Count of UTXOs within the transaction */
-      utxo_count: number;
-      /** Count of the withdrawal within the transaction */
-      withdrawal_count: number;
-      /** Count of the delegations within the transaction */
-      delegation_count: number;
-      /** Count of the stake keys (de)registrations and delegations within the transaction */
-      stake_cert_count: number;
-      /** Count of the stake pool registrations and updates within the transaction */
-      pool_update_count: number;
-      /** Count of the stake pool retirements within the transaction */
-      pool_retire_count: number;
-    };
-    tx_content_utxo: {
-      inputs?: {
-        /** Input address */
-        address: string;
-        amount: {
-          /** The unit of the value */
-          unit?: string;
-          /** The quantity of the unit */
-          quantity?: string;
+    schemas: {
+        block_content_array: components['schemas']['block_content'][];
+        block_content: {
+            /** Block creation time in UNIX time */
+            time: number;
+            /** Block number */
+            height: number | null;
+            /** Hash of the block */
+            hash: string;
+            /** Slot number */
+            slot: number | null;
+            /** Epoch number */
+            epoch: number | null;
+            /** Slot within the epoch */
+            epoch_slot: number | null;
+            /** Bech32 ID of the slot leader or specific block description in case there is no slot leader */
+            slot_leader: string;
+            /** Block size in Bytes */
+            size: number;
+            /** Number of transactions in the block */
+            tx_count: number;
+            /** Total output within the block in Lovelaces */
+            output: string | null;
+            /** Total fees within the block in Lovelaces */
+            fees: string | null;
+            /** VRF key of the block */
+            block_vrf: string | null;
+            /** Hash of the previous block */
+            previous_block: string | null;
+            /** Hash of the next block */
+            next_block: string | null;
+            /** Number of block confirmations */
+            confirmations: number;
+        };
+        block_content_txs: string[];
+        genesis_content: {
+            /** The proportion of slots in which blocks should be issued */
+            active_slots_coefficient: number;
+            /** Determines the quorum needed for votes on the protocol parameter updates */
+            update_quorum: number;
+            /** The total number of lovelace in the system */
+            max_lovelace_supply: string;
+            /** Network identifier */
+            network_magic: number;
+            /** Number of slots in an epoch */
+            epoch_length: number;
+            /** Time of slot 0 in UNIX time */
+            system_start: number;
+            /** Number of slots in an KES period */
+            slots_per_kes_period: number;
+            /** Duration of one slot in seconds */
+            slot_length: number;
+            /** The maximum number of time a KES key can be evolved before a pool operator must create a new operational certificate */
+            max_kes_evolutions: number;
+            /** Security parameter k */
+            security_param: number;
+        };
+        epoch_content_array: components['schemas']['epoch_content'][];
+        epoch_content: {
+            /** Epoch number */
+            epoch: number;
+            /** Unix time of the start of the epoch */
+            start_time: number;
+            /** Unix time of the end of the epoch */
+            end_time: number;
+            /** Unix time of the first block of the epoch */
+            first_block_time: number;
+            /** Unix time of the last block of the epoch */
+            last_block_time: number;
+            /** Number of blocks within the epoch */
+            block_count: number;
+            /** Number of transactions within the epoch */
+            tx_count: number;
+            /** Sum of all the transactions within the epoch in Lovelaces */
+            output: string;
+            /** Sum of all the fees within the epoch in Lovelaces */
+            fees: string;
+            /** Sum of all the active stakes within the epoch in Lovelaces */
+            active_stake: string | null;
+        };
+        epoch_stake_content: {
+            /** Stake address */
+            stake_address: string;
+            /** Bech32 prefix of the pool delegated to */
+            pool_id: string;
+            /** Amount of delegated stake in Lovelaces */
+            amount: string;
         }[];
-      }[];
-      outputs?: {
-        /** Output address */
-        address: string;
-        amount: {
-          /** The unit of the value */
-          unit?: string;
-          /** The quantity of the unit */
-          quantity?: string;
+        epoch_stake_pool_content: {
+            /** Stake address */
+            stake_address: string;
+            /** Amount of delegated stake in Lovelaces */
+            amount: string;
         }[];
-      }[];
-    };
-    tx_content_stake_addr: {
-      /** Delegation stake address */
-      address: string;
-      /** Registration boolean, false if deregistration */
-      registration: boolean;
-    };
-    tx_content_delegations: {
-      /** Index of the certificate within the transaction */
-      index: number;
-      /** Bech32 delegation stake address */
-      address: string;
-      /** Bech32 ID of delegated stake pool */
-      pool_id: string;
-      /** Epoch in which the delegation becomes active */
-      active_epoch: number;
-    };
-    tx_content_withdrawals: {
-      /** Bech32 withdrawal address */
-      address: string;
-      /** Withdrawal amount in Lovelaces */
-      amount: string;
-    };
-    tx_content_pool_certs: {
-      /** Bech32 encoded pool ID */
-      pool_id: string;
-      /** VRF key hash */
-      vrf_key: string;
-      /** Stake pool certificate pledge in Lovelaces */
-      pledge: string;
-      /** Margin tax cost of the stake pool */
-      margin_cost: number;
-      /** Fixed tax cost of the stake pool in Lovelaces */
-      fixed_cost: string;
-      /** Bech32 reward account of the stake pool */
-      reward_account: string;
-      owners: string[];
-      metadata: {
-        /** URL to the stake pool metadata */
-        url: string | null;
-        /** Hash of the metadata file */
-        hash: string | null;
-        /** Ticker of the stake pool */
-        ticker: string | null;
-        /** Name of the stake pool */
-        name: string | null;
-        /** Description of the stake pool */
-        description: string | null;
-        /** Home page of the stake pool */
-        homepage: string | null;
-      } | null;
-      relays: {
-        /** IPv4 address of the relay */
-        ipv4: string | null;
-        /** IPv6 address of the relay */
-        ipv6: string | null;
-        /** DNS name of the relay */
-        dns: string | null;
-        /** DNS SRV entry of the relay */
-        dns_srv: string | null;
-        /** Network port of the relay */
-        port: number;
-      }[];
-      /** Epoch that the delegation becomes active */
-      active_epoch: number;
-    };
-    tx_content_pool_retires: {
-      /** Bech32 stake pool ID */
-      pool_id: string;
-      /** Retiring epoch */
-      retiring_epoch: number;
-    };
-    tx_content_metadata: {
-      /** Metadata label */
-      label: string;
-      /** Content of the metadata */
-      json_metadata: string | { [key: string]: any };
-    }[];
-    tx_content_metadata_cbor: {
-      /** Metadata label */
-      label: string;
-      /** Content of the CBOR metadata */
-      cbor_metadata: string | null;
-    }[];
-    account_content: {
-      /** Registration state of an account */
-      active: boolean;
-      /** Epoch of the most recent action - registration or deregistration */
-      active_epoch: number;
-      /** Balance of the account in Lovelaces */
-      controlled_amount: string;
-      /** Sum of all rewards for the account in the Lovelaces */
-      rewards_sum: string;
-      /** Sum of all the withdrawals for the account in Lovelaces */
-      withdrawals_sum: string;
-      /** Sum of all  funds from reserves for the account in the Lovelaces */
-      reserves_sum: string;
-      /** Sum of all funds from treasury for the account in the Lovelaces */
-      treasury_sum: string;
-      /** Sum of available rewards that haven't been withdrawn yet for the account in the Lovelaces */
-      withdrawable_amount: string;
-      /** Bech32 pool ID that owns the account */
-      pool_id: string | null;
-    };
-    account_addresses_content: {
-      /** Address associated with the stake key */
-      address?: string;
-    }[];
-    account_reward_content: {
-      /** Epoch of the associated reward */
-      epoch: number;
-      /** Rewards for given epoch in Lovelaces */
-      amount: string | null;
-      /** Bech32 pool ID being delegated to */
-      pool_id: string;
-    }[];
-    account_delegation_content: {
-      /** Epoch that the delegation becomes active */
-      active_epoch: number;
-      /** Hash of the transaction containing the delegation */
-      tx_hash: string;
-      /** Rewards for given epoch in Lovelaces */
-      amount: string | null;
-      /** Bech32 ID of pool being delegated to */
-      pool_id: string;
-    }[];
-    account_history_content: {
-      /** Epoch that the stake is active */
-      epoch?: number;
-      /** Stake amount in Lovelaces */
-      amount: string | null;
-      /** Bech32 ID of pool being delegated to */
-      pool_id: string;
-    }[];
-    account_registration_content: {
-      /** Hash of the transaction containing the (de)registration certificate */
-      tx_hash: string;
-      /** Action in the certificate */
-      action: 'registered' | 'deregistered';
-    }[];
-    address_content: {
-      amount: {
-        /** The unit of the value */
-        unit?: string;
-        /** The quantity of the unit */
-        quantity?: string;
-      }[];
-      /** Stake address that controls the key */
-      stake_address: string | null;
-      /** Address era */
-      type: 'byron' | 'shelley';
-    };
-    address_content_total: {
-      received_sum: {
-        /** The unit of the value */
-        unit?: string;
-        /** The quantity of the unit */
-        quantity?: string;
-      }[];
-      sent_sum: {
-        /** The unit of the value */
-        unit?: string;
-        /** The quantity of the unit */
-        quantity?: string;
-      }[];
-      /** Count of all transactions on the address */
-      tx_count: number;
-    };
-    address_utxo_content: {
-      /** Transaction hash of the UTXO */
-      tx_hash?: string;
-      /** UTXO index in the transaction */
-      tx_index?: number;
-      /** UTXO index in the transaction */
-      output_index?: number;
-      amount?: {
-        /** The unit of the value */
-        unit?: string;
-        /** The quantity of the unit */
-        quantity?: string;
-      }[];
-      /** Block number of the UTXO */
-      block?: string;
-    }[];
-    address_txs_content: string[];
-    tx_metadata_labels: {
-      /** Metadata label */
-      label?: string;
-      /** CIP10 defined description */
-      cip10?: string | null;
-      /** The count of metadata entries with a specific label */
-      count?: string;
-    }[];
-    tx_metadata_label_json: {
-      /** Transaction hash that contains the specific metadata */
-      tx_hash: string;
-      /** Content of the JSON metadata */
-      json_metadata:
-        | (Partial<string> &
-            Partial<{ [key: string]: any }> &
-            Partial<{ [key: string]: any }[]> &
-            Partial<number> &
-            Partial<number> &
-            Partial<boolean>)
-        | null;
-    }[];
-    tx_metadata_label_cbor: {
-      /** Transaction hash that contains the specific metadata */
-      tx_hash: string;
-      /** Content of the CBOR metadata */
-      cbor_metadata: string | null;
-    }[];
-    pool_list: string[];
-    pool_list_retire: {
-      /** Bech32 encoded pool ID */
-      pool_id?: string;
-      /** Retirement epoch number */
-      epoch?: number;
-    }[];
-    pool_history: {
-      /** Epoch number */
-      epoch: number;
-      /** Number of blocks created by pool */
-      blocks: number;
-      /** Active (Snapshot of live stake 2 epochs ago) stake in Lovelaces */
-      active_stake: string;
-      /** Pool size (percentage) of overall active stake at that epoch */
-      active_size: number;
-      /** Number of delegators for epoch */
-      delegators_count: number;
-      /** Total rewards received before distribution to delegators */
-      rewards: string;
-      /** Pool operator rewards */
-      fees: string;
-    }[];
-    pool: {
-      /** VRF key hash */
-      vrf_key: string;
-      /** Total minted blocks */
-      blocks_minted: number;
-      live_stake: string;
-      live_size: number;
-      live_saturation: number;
-      live_delegators: number;
-      active_stake: string;
-      active_size: number;
-      /** Stake pool certificate pledge */
-      declared_pledge: string;
-      /** Stake pool current pledge */
-      live_pledge: string;
-      /** Margin tax cost of the stake pool */
-      margin_cost: number;
-      /** Fixed tax cost of the stake pool */
-      fixed_cost: string;
-      /** Bech32 reward account of the stake pool */
-      reward_account: string;
-      owners: string[];
-      registration: (string | null)[];
-      retirement: (string | null)[];
-    };
-    pool_metadata: {
-      /** URL to the stake pool metadata */
-      url: string | null;
-      /** Hash of the metadata file */
-      hash: string | null;
-      /** Ticker of the stake pool */
-      ticker: string | null;
-      /** Name of the stake pool */
-      name: string | null;
-      /** Description of the stake pool */
-      description: string | null;
-      /** Home page of the stake pool */
-      homepage: string | null;
-    };
-    pool_relays: {
-      /** IPv4 address of the relay */
-      ipv4?: string | null;
-      /** IPv6 address of the relay */
-      ipv6?: string | null;
-      /** DNS name of the relay */
-      dns?: string | null;
-      /** DNS SRV entry of the relay */
-      dns_srv?: string | null;
-      /** Network port of the relay */
-      port?: number;
-    }[];
-    pool_delegations: {
-      /** Transaction ID */
-      tx_hash: string;
-      /** Certificate within the transaction */
-      cert_index: number;
-    }[];
-    pool_blocks: string[];
-    pool_updates: {
-      /** Transaction ID */
-      tx_hash: string;
-      /** Certificate within the transaction */
-      cert_index: number;
-      /** Action in the certificate */
-      action: 'registered' | 'deregistered';
-    }[];
-    pool_delegators: {
-      /** Bech32 encoded stake addresses */
-      address: string;
-      /** Currently delegated amount */
-      live_stake: string;
-    }[];
-    assets: {
-      /** Asset identifier */
-      asset: string;
-      /** Current asset quantity */
-      quantity: string;
-    }[];
-    asset: {
-      /** Policy ID of the asset */
-      policy_id: string;
-      /** Hex-encoded asset name of the asset */
-      asset_name: string | null;
-      /** CIP14 based user-facing fingerprint */
-      fingerprint?: string;
-      /** Current asset quantity */
-      quantity: string;
-      /** ID of the initial minting transaction */
-      initial_mint_tx_hash: string;
-      metadata: {
-        /** Asset name */
-        name: string;
-        /** Asset description */
-        description: string;
-        ticker?: string | null;
-        /** Asset website */
-        url?: string | null;
-        /** Base64 encoded logo of the asset */
-        logo?: string | null;
-      } | null;
-    };
-    asset_history: {
-      /** Hash of the transaction containing the asset action */
-      tx_hash: string;
-      /** Action executed upon the asset policy */
-      action: 'minted' | 'burned';
-      /** Asset amount of the specific action */
-      amount: string;
-    }[];
-    asset_txs: string[];
-    asset_addresses: {
-      /** Address containing the specific asset */
-      address: string;
-      /** Asset quantity on the specific address */
-      quantity: string;
-    }[];
-    asset_policy: {
-      /** Concatenation of the policy_id and hex-encoded asset_name */
-      asset: string;
-      /** Current asset quantity */
-      quantity: string;
-    }[];
-    metrics: {
-      /** Starting time of the call count interval (ends midnight UTC) in UNIX time */
-      time: number;
-      /** Sum of all calls for a particular day */
-      calls: number;
-    }[];
-    metrics_endpoints: {
-      /** Starting time of the call count interval (ends midnight UTC) in UNIX time */
-      time: number;
-      /** Sum of all calls for a particular day and endpoint */
-      calls: number;
-      /** Endpoint parent name */
-      endpoint: string;
-    }[];
-    empty_object: { [key: string]: any };
-  };
-  responses: {
-    /** Usage limit reached */
-    overusage_limit: {
-      content: {
-        'application/json': {
-          status_code?: number;
-          error?: string;
-          message?: string;
+        epoch_block_content: string[];
+        epoch_param_content: {
+            /** The linear factor for the minimum fee calculation for given epoch */
+            min_fee_a: number;
+            /** The constant factor for the minimum fee calculation */
+            min_fee_b: number;
+            /** Maximum block body size in Bytes */
+            max_block_size: number;
+            /** Maximum transaction size */
+            max_tx_size: number;
+            /** Maximum block header size */
+            max_block_header_size: number;
+            /** The amount of a key registration deposit in Lovelaces */
+            key_deposit: string;
+            /** The amount of a pool registration deposit in Lovelaces */
+            pool_deposit: string;
+            /** Epoch bound on pool retirement */
+            e_max: number;
+            /** Desired number of pools */
+            n_opt: number;
+            /** Pool pledge influence */
+            a0: number;
+            /** Monetary expansion */
+            rho: number;
+            /** Treasury expansion */
+            tau: number;
+            /** Percentage of blocks produced by federated nodes */
+            decentralisation_param: number;
+            /** Seed for extra entropy */
+            extra_entropy: { [key: string]: any } | null;
+            /** Accepted protocol major version */
+            protocol_major_ver: number;
+            /** Accepted protocol minor version */
+            protocol_minor_ver: number;
+            /** Minimum UTXO value */
+            min_utxo: string;
+            /** Minimum stake cost forced on the pool */
+            min_pool_cost: string;
+            /** Epoch number only used once */
+            nonce: string;
         };
-      };
-    };
-    /** IP has been auto-banned for extensive sending of requests after usage limit has been reached */
-    autobanned: {
-      content: {
-        'application/json': {
-          status_code?: number;
-          error?: string;
-          message?: string;
+        tx_content: {
+            /** Block hash */
+            block: string;
+            /** Transaction index within the block */
+            index: number;
+            output_amount: {
+                /** The unit of the value */
+                unit?: string;
+                /** The quantity of the unit */
+                quantity?: string;
+            }[];
+            /** Fees of the transaction in Lovelaces */
+            fees: string;
+            /** Deposit within the transaction in Lovelaces */
+            deposit: string;
+            /** Size of the transaction in Bytes */
+            size: number;
+            /** Left (included) endpoint of the timelock validity intervals */
+            invalid_before: string | null;
+            /** Right (excluded) endpoint of the timelock validity intervals */
+            invalid_hereafter: string | null;
+            /** Count of UTXOs within the transaction */
+            utxo_count: number;
+            /** Count of the withdrawal within the transaction */
+            withdrawal_count: number;
+            /** Count of the delegations within the transaction */
+            delegation_count: number;
+            /** Count of the stake keys (de)registrations and delegations within the transaction */
+            stake_cert_count: number;
+            /** Count of the stake pool registrations and updates within the transaction */
+            pool_update_count: number;
+            /** Count of the stake pool retirements within the transaction */
+            pool_retire_count: number;
         };
-      };
-    };
-    /** Component not found */
-    not_found: {
-      content: {
-        'application/json': {
-          status_code?: number;
-          error?: string;
-          message?: string;
+        tx_content_utxo: {
+            inputs?: {
+                /** Input address */
+                address: string;
+                amount: {
+                    /** The unit of the value */
+                    unit?: string;
+                    /** The quantity of the unit */
+                    quantity?: string;
+                }[];
+            }[];
+            outputs?: {
+                /** Output address */
+                address: string;
+                amount: {
+                    /** The unit of the value */
+                    unit?: string;
+                    /** The quantity of the unit */
+                    quantity?: string;
+                }[];
+            }[];
         };
-      };
-    };
-    /** Internal Server Error */
-    internal_server_error: {
-      content: {
-        'application/json': {
-          status_code?: number;
-          error?: string;
-          message?: string;
+        tx_content_stake_addr: {
+            /** Delegation stake address */
+            address: string;
+            /** Registration boolean, false if deregistration */
+            registration: boolean;
         };
-      };
-    };
-    /** Authentication secret is missing or invalid */
-    unauthorized_error: {
-      content: {
-        'application/json': {
-          status_code?: number;
-          error?: string;
-          message?: string;
+        tx_content_delegations: {
+            /** Index of the certificate within the transaction */
+            index: number;
+            /** Bech32 delegation stake address */
+            address: string;
+            /** Bech32 ID of delegated stake pool */
+            pool_id: string;
+            /** Epoch in which the delegation becomes active */
+            active_epoch: number;
         };
-      };
-    };
-    /** Bad request */
-    bad_request: {
-      content: {
-        'application/json': {
-          status_code?: number;
-          error?: string;
-          message?: string;
+        tx_content_withdrawals: {
+            /** Bech32 withdrawal address */
+            address: string;
+            /** Withdrawal amount in Lovelaces */
+            amount: string;
         };
-      };
+        tx_content_pool_certs: {
+            /** Bech32 encoded pool ID */
+            pool_id: string;
+            /** VRF key hash */
+            vrf_key: string;
+            /** Stake pool certificate pledge in Lovelaces */
+            pledge: string;
+            /** Margin tax cost of the stake pool */
+            margin_cost: number;
+            /** Fixed tax cost of the stake pool in Lovelaces */
+            fixed_cost: string;
+            /** Bech32 reward account of the stake pool */
+            reward_account: string;
+            owners: string[];
+            metadata: {
+                /** URL to the stake pool metadata */
+                url: string | null;
+                /** Hash of the metadata file */
+                hash: string | null;
+                /** Ticker of the stake pool */
+                ticker: string | null;
+                /** Name of the stake pool */
+                name: string | null;
+                /** Description of the stake pool */
+                description: string | null;
+                /** Home page of the stake pool */
+                homepage: string | null;
+            } | null;
+            relays: {
+                /** IPv4 address of the relay */
+                ipv4: string | null;
+                /** IPv6 address of the relay */
+                ipv6: string | null;
+                /** DNS name of the relay */
+                dns: string | null;
+                /** DNS SRV entry of the relay */
+                dns_srv: string | null;
+                /** Network port of the relay */
+                port: number;
+            }[];
+            /** Epoch that the delegation becomes active */
+            active_epoch: number;
+        };
+        tx_content_pool_retires: {
+            /** Bech32 stake pool ID */
+            pool_id: string;
+            /** Retiring epoch */
+            retiring_epoch: number;
+        };
+        tx_content_metadata: {
+            /** Metadata label */
+            label: string;
+            /** Content of the metadata */
+            json_metadata: string | { [key: string]: any };
+        }[];
+        tx_content_metadata_cbor: {
+            /** Metadata label */
+            label: string;
+            /** Content of the CBOR metadata */
+            cbor_metadata: string | null;
+        }[];
+        account_content: {
+            /** Registration state of an account */
+            active: boolean;
+            /** Epoch of the most recent action - registration or deregistration */
+            active_epoch: number;
+            /** Balance of the account in Lovelaces */
+            controlled_amount: string;
+            /** Sum of all rewards for the account in the Lovelaces */
+            rewards_sum: string;
+            /** Sum of all the withdrawals for the account in Lovelaces */
+            withdrawals_sum: string;
+            /** Sum of all  funds from reserves for the account in the Lovelaces */
+            reserves_sum: string;
+            /** Sum of all funds from treasury for the account in the Lovelaces */
+            treasury_sum: string;
+            /** Sum of available rewards that haven't been withdrawn yet for the account in the Lovelaces */
+            withdrawable_amount: string;
+            /** Bech32 pool ID that owns the account */
+            pool_id: string | null;
+        };
+        account_addresses_content: {
+            /** Address associated with the stake key */
+            address?: string;
+        }[];
+        account_reward_content: {
+            /** Epoch of the associated reward */
+            epoch: number;
+            /** Rewards for given epoch in Lovelaces */
+            amount: string | null;
+            /** Bech32 pool ID being delegated to */
+            pool_id: string;
+        }[];
+        account_delegation_content: {
+            /** Epoch that the delegation becomes active */
+            active_epoch: number;
+            /** Hash of the transaction containing the delegation */
+            tx_hash: string;
+            /** Rewards for given epoch in Lovelaces */
+            amount: string | null;
+            /** Bech32 ID of pool being delegated to */
+            pool_id: string;
+        }[];
+        account_history_content: {
+            /** Epoch that the stake is active */
+            epoch?: number;
+            /** Stake amount in Lovelaces */
+            amount: string | null;
+            /** Bech32 ID of pool being delegated to */
+            pool_id: string;
+        }[];
+        account_registration_content: {
+            /** Hash of the transaction containing the (de)registration certificate */
+            tx_hash: string;
+            /** Action in the certificate */
+            action: 'registered' | 'deregistered';
+        }[];
+        address_content: {
+            amount: {
+                /** The unit of the value */
+                unit?: string;
+                /** The quantity of the unit */
+                quantity?: string;
+            }[];
+            /** Stake address that controls the key */
+            stake_address: string | null;
+            /** Address era */
+            type: 'byron' | 'shelley';
+        };
+        address_content_total: {
+            received_sum: {
+                /** The unit of the value */
+                unit?: string;
+                /** The quantity of the unit */
+                quantity?: string;
+            }[];
+            sent_sum: {
+                /** The unit of the value */
+                unit?: string;
+                /** The quantity of the unit */
+                quantity?: string;
+            }[];
+            /** Count of all transactions on the address */
+            tx_count: number;
+        };
+        address_utxo_content: {
+            /** Transaction hash of the UTXO */
+            tx_hash?: string;
+            /** UTXO index in the transaction */
+            tx_index?: number;
+            /** UTXO index in the transaction */
+            output_index?: number;
+            amount?: {
+                /** The unit of the value */
+                unit?: string;
+                /** The quantity of the unit */
+                quantity?: string;
+            }[];
+            /** Block number of the UTXO */
+            block?: string;
+        }[];
+        address_txs_content: string[];
+        tx_metadata_labels: {
+            /** Metadata label */
+            label?: string;
+            /** CIP10 defined description */
+            cip10?: string | null;
+            /** The count of metadata entries with a specific label */
+            count?: string;
+        }[];
+        tx_metadata_label_json: {
+            /** Transaction hash that contains the specific metadata */
+            tx_hash: string;
+            /** Content of the JSON metadata */
+            json_metadata:
+                | (Partial<string> &
+                      Partial<{ [key: string]: any }> &
+                      Partial<{ [key: string]: any }[]> &
+                      Partial<number> &
+                      Partial<number> &
+                      Partial<boolean>)
+                | null;
+        }[];
+        tx_metadata_label_cbor: {
+            /** Transaction hash that contains the specific metadata */
+            tx_hash: string;
+            /** Content of the CBOR metadata */
+            cbor_metadata: string | null;
+        }[];
+        pool_list: string[];
+        pool_list_retire: {
+            /** Bech32 encoded pool ID */
+            pool_id?: string;
+            /** Retirement epoch number */
+            epoch?: number;
+        }[];
+        pool_history: {
+            /** Epoch number */
+            epoch: number;
+            /** Number of blocks created by pool */
+            blocks: number;
+            /** Active (Snapshot of live stake 2 epochs ago) stake in Lovelaces */
+            active_stake: string;
+            /** Pool size (percentage) of overall active stake at that epoch */
+            active_size: number;
+            /** Number of delegators for epoch */
+            delegators_count: number;
+            /** Total rewards received before distribution to delegators */
+            rewards: string;
+            /** Pool operator rewards */
+            fees: string;
+        }[];
+        pool: {
+            /** VRF key hash */
+            vrf_key: string;
+            /** Total minted blocks */
+            blocks_minted: number;
+            live_stake: string;
+            live_size: number;
+            live_saturation: number;
+            live_delegators: number;
+            active_stake: string;
+            active_size: number;
+            /** Stake pool certificate pledge */
+            declared_pledge: string;
+            /** Stake pool current pledge */
+            live_pledge: string;
+            /** Margin tax cost of the stake pool */
+            margin_cost: number;
+            /** Fixed tax cost of the stake pool */
+            fixed_cost: string;
+            /** Bech32 reward account of the stake pool */
+            reward_account: string;
+            owners: string[];
+            registration: (string | null)[];
+            retirement: (string | null)[];
+        };
+        pool_metadata: {
+            /** URL to the stake pool metadata */
+            url: string | null;
+            /** Hash of the metadata file */
+            hash: string | null;
+            /** Ticker of the stake pool */
+            ticker: string | null;
+            /** Name of the stake pool */
+            name: string | null;
+            /** Description of the stake pool */
+            description: string | null;
+            /** Home page of the stake pool */
+            homepage: string | null;
+        };
+        pool_relays: {
+            /** IPv4 address of the relay */
+            ipv4?: string | null;
+            /** IPv6 address of the relay */
+            ipv6?: string | null;
+            /** DNS name of the relay */
+            dns?: string | null;
+            /** DNS SRV entry of the relay */
+            dns_srv?: string | null;
+            /** Network port of the relay */
+            port?: number;
+        }[];
+        pool_delegations: {
+            /** Transaction ID */
+            tx_hash: string;
+            /** Certificate within the transaction */
+            cert_index: number;
+        }[];
+        pool_blocks: string[];
+        pool_updates: {
+            /** Transaction ID */
+            tx_hash: string;
+            /** Certificate within the transaction */
+            cert_index: number;
+            /** Action in the certificate */
+            action: 'registered' | 'deregistered';
+        }[];
+        pool_delegators: {
+            /** Bech32 encoded stake addresses */
+            address: string;
+            /** Currently delegated amount */
+            live_stake: string;
+        }[];
+        assets: {
+            /** Asset identifier */
+            asset: string;
+            /** Current asset quantity */
+            quantity: string;
+        }[];
+        asset: {
+            /** Policy ID of the asset */
+            policy_id: string;
+            /** Hex-encoded asset name of the asset */
+            asset_name: string | null;
+            /** CIP14 based user-facing fingerprint */
+            fingerprint?: string;
+            /** Current asset quantity */
+            quantity: string;
+            /** ID of the initial minting transaction */
+            initial_mint_tx_hash: string;
+            metadata: {
+                /** Asset name */
+                name: string;
+                /** Asset description */
+                description: string;
+                ticker?: string | null;
+                /** Asset website */
+                url?: string | null;
+                /** Base64 encoded logo of the asset */
+                logo?: string | null;
+            } | null;
+        };
+        asset_history: {
+            /** Hash of the transaction containing the asset action */
+            tx_hash: string;
+            /** Action executed upon the asset policy */
+            action: 'minted' | 'burned';
+            /** Asset amount of the specific action */
+            amount: string;
+        }[];
+        asset_txs: string[];
+        asset_addresses: {
+            /** Address containing the specific asset */
+            address: string;
+            /** Asset quantity on the specific address */
+            quantity: string;
+        }[];
+        asset_policy: {
+            /** Concatenation of the policy_id and hex-encoded asset_name */
+            asset: string;
+            /** Current asset quantity */
+            quantity: string;
+        }[];
+        metrics: {
+            /** Starting time of the call count interval (ends midnight UTC) in UNIX time */
+            time: number;
+            /** Sum of all calls for a particular day */
+            calls: number;
+        }[];
+        metrics_endpoints: {
+            /** Starting time of the call count interval (ends midnight UTC) in UNIX time */
+            time: number;
+            /** Sum of all calls for a particular day and endpoint */
+            calls: number;
+            /** Endpoint parent name */
+            endpoint: string;
+        }[];
+        empty_object: { [key: string]: any };
     };
-  };
+    responses: {
+        /** Usage limit reached */
+        overusage_limit: {
+            content: {
+                'application/json': {
+                    status_code?: number;
+                    error?: string;
+                    message?: string;
+                };
+            };
+        };
+        /** IP has been auto-banned for extensive sending of requests after usage limit has been reached */
+        autobanned: {
+            content: {
+                'application/json': {
+                    status_code?: number;
+                    error?: string;
+                    message?: string;
+                };
+            };
+        };
+        /** Component not found */
+        not_found: {
+            content: {
+                'application/json': {
+                    status_code?: number;
+                    error?: string;
+                    message?: string;
+                };
+            };
+        };
+        /** Internal Server Error */
+        internal_server_error: {
+            content: {
+                'application/json': {
+                    status_code?: number;
+                    error?: string;
+                    message?: string;
+                };
+            };
+        };
+        /** Authentication secret is missing or invalid */
+        unauthorized_error: {
+            content: {
+                'application/json': {
+                    status_code?: number;
+                    error?: string;
+                    message?: string;
+                };
+            };
+        };
+        /** Bad request */
+        bad_request: {
+            content: {
+                'application/json': {
+                    status_code?: number;
+                    error?: string;
+                    message?: string;
+                };
+            };
+        };
+    };
 }
 
 export interface operations {}
