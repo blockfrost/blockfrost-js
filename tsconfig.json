@@ -22,5 +22,6 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*"],
+  "exclude": ["./src/types/OpenApi.ts"],
   "outDir": "lib"
 }
