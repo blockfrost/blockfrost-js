@@ -7,7 +7,9 @@ module.exports = {
     setupFilesAfterEnv: ['<rootDir>/jest.config.js'],
     testMatch: ['<rootDir>/test/**/*.ts'],
     coverageReporters: ['json', 'lcov', 'text', 'text-summary'],
-    collectCoverageFrom: ['<rootDir>/src/services/**/*.ts',],
+    collectCoverageFrom: [
+        '<rootDir>/src/**/*.ts'
+    ],
     moduleNameMapper: {
       '^(types)(.*)$': '<rootDir>/src/types/$2',
       '^(utils)(.*)$': '<rootDir>/src/utils/$2',
