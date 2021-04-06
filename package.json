@@ -26,6 +26,7 @@
     "@blockfrost/openapi": "0.1.9",
     "@yarnpkg/pnpify": "^2.4.0",
     "axios": "^0.21.1",
+    "axios-retry": "^3.1.9",
     "rimraf": "^3.0.2",
     "url-join": "^4.0.1"
   },
