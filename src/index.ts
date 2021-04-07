@@ -6,6 +6,8 @@ import {
   accountsDelegations,
   accountsRegistrations,
   accountsRewards,
+  accountsHistory,
+  accountsAddresses,
 } from './endpoints/accounts';
 
 import {
@@ -90,13 +92,13 @@ class BlockFrostAPI {
    * accounts - Obtain information about a specific stake account.
    *
    * @param stakeAddress - Bech32 stake address
-   * @returns  Information about a specific stake account.
+   * @returns Information about a specific stake account.
    *
    */
   accounts = accounts;
 
   /**
-   * accountsDelegations - Account's delegation history
+   * accountsDelegations - Obtain information about the delegation of a specific account.
    *
    * @param stakeAddress - Bech32 stake address
    * @returns Information about the delegation of a specific account.
@@ -105,22 +107,40 @@ class BlockFrostAPI {
   accountsDelegations = accountsDelegations;
 
   /**
-   * accountsRegistrations
+   * accountsRegistrations - Obtain information about the registrations and deregistrations of a specific account.
    *
-   * @param stakeAddress
-   * @returns xxx
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the registrations and deregistrations of a specific account.
    *
    */
   accountsRegistrations = accountsRegistrations;
 
   /**
-   * accountsRewards
+   * accountsRewards - Obtain information about the history of a specific account.
    *
-   * @param stakeAddress
-   * @returns xxx
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the history of a specific account.
    *
    */
   accountsRewards = accountsRewards;
+
+  /**
+   * accountsHistory - Obtain information about the history of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the history of a specific account.
+   *
+   */
+  accountsHistory = accountsHistory;
+
+  /**
+   * accountsAddresses - Obtain information about the addresses of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the addresses of a specific account.
+   *
+   */
+  accountsAddresses = accountsAddresses;
 
   /**
    * addresses
