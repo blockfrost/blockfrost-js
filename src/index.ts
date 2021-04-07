@@ -71,6 +71,7 @@ import {
   txsUtxos,
   txsWithdrawals,
   txsMetadata,
+  txSubmit,
 } from './endpoints/txs';
 
 import { Options } from './types';
@@ -536,13 +537,22 @@ class BlockFrostAPI {
   txsWithdrawals = txsWithdrawals;
 
   /**
-   * txxMetadata
+   * txsMetadata
    *
    * @param hash
    * @returns xxx
    *
    */
   txsMetadata = txsMetadata;
+
+  /**
+   * txSubmit
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  txSubmit = txSubmit;
 }
 
 type Responses = components['schemas'];
