@@ -35,6 +35,22 @@ export async function accountsRewards(
   });
 }
 
+export async function accountsHistory(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+): Promise<components['schemas']['account_history_content']> {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${this.apiUrl}/accounts/${stakeAddress}/history`, {
+        headers: getHeaders(this.projectId),
+      })
+      .then(resp => {
+        resolve(resp.data);
+      })
+      .catch(err => reject(handleError(err)));
+  });
+}
+
 export async function accountsDelegations(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -58,6 +74,22 @@ export async function accountsRegistrations(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/accounts/${stakeAddress}/registrations`, {
+        headers: getHeaders(this.projectId),
+      })
+      .then(resp => {
+        resolve(resp.data);
+      })
+      .catch(err => reject(handleError(err)));
+  });
+}
+
+export async function accountsAddresses(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+): Promise<components['schemas']['account_addresses_content']> {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${this.apiUrl}/accounts/${stakeAddress}/addresses`, {
         headers: getHeaders(this.projectId),
       })
       .then(resp => {

@@ -23,13 +23,22 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
   };
 };
 
-export const getHeaders = (projectId?: string): Headers | null => {
+export const getHeaders = (
+  projectId?: string,
+  isTxSubmit = false,
+): Headers | null => {
   if (!projectId) {
     return null;
   }
 
+  // headers needed for /tx/submit endpoint
+  const additionalHeaders = isTxSubmit
+    ? { 'Content-type': 'application/cbor' }
+    : null;
+
   return {
     project_id: projectId,
+    ...additionalHeaders,
   };
 };
 
