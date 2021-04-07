@@ -18,6 +18,15 @@ import {
 } from './endpoints/addresses';
 
 import {
+  assets,
+  assetsById,
+  assetsHistory,
+  assetsTxs,
+  assetsAddresses,
+  assetsPolicyById,
+} from './endpoints/assets';
+
+import {
   blocks,
   blocksLatest,
   blocksNext,
@@ -142,6 +151,59 @@ class BlockFrostAPI {
    *
    */
   accountsAddresses = accountsAddresses;
+
+  /**
+   * assets - List of assets.
+   *
+   * @returns List of assets.
+   *
+   */
+  assets = assets;
+
+  /**
+   * assetsById - Information about a specific asset.
+   *
+   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+   * @returns Information about a specific asset.
+   *
+   */
+  assetsById = assetsById;
+
+  /**
+   * assetsHistory - History of a specific asset.
+   *
+   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+   * @returns History of a specific asset.
+   *
+   */
+  assetsHistory = assetsHistory;
+
+  /**
+   * assetsTxs - List of a specific asset transactions.
+   *
+   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+   * @returns List of a specific asset transactions.
+   *
+   */
+  assetsTxs = assetsTxs;
+
+  /**
+   * assetsAddresses - List of a addresses containing a specific asset.
+   *
+   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+   * @returns List of a addresses containing a specific asset.
+   *
+   */
+  assetsAddresses = assetsAddresses;
+
+  /**
+   * assetsPolicyById - List of asset minted under a specific policy.
+   *
+   * @param policyId - Specific policy_id
+   * @returns List of asset minted under a specific policy.
+   *
+   */
+  assetsPolicyById = assetsPolicyById;
 
   /**
    * addresses
