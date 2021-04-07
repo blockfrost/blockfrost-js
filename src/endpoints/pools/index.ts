@@ -5,7 +5,7 @@ import { BlockFrostAPI } from '../../index';
 
 export async function pools(
   this: BlockFrostAPI,
-): Promise<components['schemas']['metrics_endpoints']> {
+): Promise<components['schemas']['pool_list']> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/pools`, {
