@@ -3,13 +3,12 @@ import { getHeaders, handleError } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 
-export async function accounts(
+export async function assets(
   this: BlockFrostAPI,
-  stakeAddress: string,
-): Promise<components['schemas']['account_content']> {
+): Promise<components['schemas']['assets']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/accounts/${stakeAddress}`, {
+      .get(`${this.apiUrl}/assets/`, {
         headers: getHeaders(this.projectId),
       })
       .then(resp => {
@@ -19,13 +18,13 @@ export async function accounts(
   });
 }
 
-export async function accountsRewards(
+export async function assetsById(
   this: BlockFrostAPI,
-  stakeAddress: string,
-): Promise<components['schemas']['account_reward_content']> {
+  asset: string,
+): Promise<components['schemas']['asset']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/accounts/${stakeAddress}/rewards`, {
+      .get(`${this.apiUrl}/assets/${asset}`, {
         headers: getHeaders(this.projectId),
       })
       .then(resp => {
@@ -35,13 +34,13 @@ export async function accountsRewards(
   });
 }
 
-export async function accountsHistory(
+export async function assetsHistory(
   this: BlockFrostAPI,
-  stakeAddress: string,
-): Promise<components['schemas']['account_history_content']> {
+  asset: string,
+): Promise<components['schemas']['asset_history']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/accounts/${stakeAddress}/history`, {
+      .get(`${this.apiUrl}/assets/${asset}/history`, {
         headers: getHeaders(this.projectId),
       })
       .then(resp => {
@@ -51,13 +50,13 @@ export async function accountsHistory(
   });
 }
 
-export async function accountsDelegations(
+export async function assetsTxs(
   this: BlockFrostAPI,
-  stakeAddress: string,
-): Promise<components['schemas']['account_delegation_content']> {
+  asset: string,
+): Promise<components['schemas']['asset_txs']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/accounts/${stakeAddress}/delegations`, {
+      .get(`${this.apiUrl}/assets/${asset}/txs`, {
         headers: getHeaders(this.projectId),
       })
       .then(resp => {
@@ -67,13 +66,13 @@ export async function accountsDelegations(
   });
 }
 
-export async function accountsRegistrations(
+export async function assetsAddresses(
   this: BlockFrostAPI,
-  stakeAddress: string,
-): Promise<components['schemas']['account_registration_content']> {
+  asset: string,
+): Promise<components['schemas']['asset_addresses']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/accounts/${stakeAddress}/registrations`, {
+      .get(`${this.apiUrl}/assets/${asset}/addresses`, {
         headers: getHeaders(this.projectId),
       })
       .then(resp => {
@@ -83,13 +82,13 @@ export async function accountsRegistrations(
   });
 }
 
-export async function accountsAddresses(
+export async function assetsPolicyById(
   this: BlockFrostAPI,
-  stakeAddress: string,
-): Promise<components['schemas']['account_addresses_content']> {
+  policy: string,
+): Promise<components['schemas']['asset_addresses']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/accounts/${stakeAddress}/addresses`, {
+      .get(`${this.apiUrl}/assets/policy/${policy}`, {
         headers: getHeaders(this.projectId),
       })
       .then(resp => {

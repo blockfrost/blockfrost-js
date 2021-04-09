@@ -12,7 +12,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - testnet option
 
 ### Added
+
 - new methods see: https://github.com/blockfrost/openapi/releases/tag/v0.1.8
+- new methods see: https://github.com/blockfrost/openapi/releases/tag/v0.1.9
+- missing `/tx/submit`
+- missing `/assets`
 
 ## [0.0.6] - 2021-03-31
 

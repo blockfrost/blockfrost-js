@@ -10,6 +10,8 @@ import {
   accountsDelegations,
   accountsRegistrations,
   accountsRewards,
+  accountsHistory,
+  accountsAddresses,
 } from './endpoints/accounts';
 
 import {
@@ -18,6 +20,15 @@ import {
   addressesTxs,
   addressesUtxos,
 } from './endpoints/addresses';
+
+import {
+  assets,
+  assetsById,
+  assetsHistory,
+  assetsTxs,
+  assetsAddresses,
+  assetsPolicyById,
+} from './endpoints/assets';
 
 import {
   blocks,
@@ -73,6 +84,7 @@ import {
   txsUtxos,
   txsWithdrawals,
   txsMetadata,
+  txSubmit,
 } from './endpoints/txs';
 
 import { Options } from './types';
@@ -103,13 +115,13 @@ class BlockFrostAPI {
    * accounts - Obtain information about a specific stake account.
    *
    * @param stakeAddress - Bech32 stake address
-   * @returns  Information about a specific stake account.
+   * @returns Information about a specific stake account.
    *
    */
   accounts = accounts;
 
   /**
-   * accountsDelegations - Account's delegation history
+   * accountsDelegations - Obtain information about the delegation of a specific account.
    *
    * @param stakeAddress - Bech32 stake address
    * @returns Information about the delegation of a specific account.
@@ -118,22 +130,93 @@ class BlockFrostAPI {
   accountsDelegations = accountsDelegations;
 
   /**
-   * accountsRegistrations
+   * accountsRegistrations - Obtain information about the registrations and deregistrations of a specific account.
    *
-   * @param stakeAddress
-   * @returns xxx
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the registrations and deregistrations of a specific account.
    *
    */
   accountsRegistrations = accountsRegistrations;
 
   /**
-   * accountsRewards
+   * accountsRewards - Obtain information about the history of a specific account.
    *
-   * @param stakeAddress
-   * @returns xxx
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the history of a specific account.
    *
    */
   accountsRewards = accountsRewards;
+
+  /**
+   * accountsHistory - Obtain information about the history of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the history of a specific account.
+   *
+   */
+  accountsHistory = accountsHistory;
+
+  /**
+   * accountsAddresses - Obtain information about the addresses of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the addresses of a specific account.
+   *
+   */
+  accountsAddresses = accountsAddresses;
+
+  /**
+   * assets - List of assets.
+   *
+   * @returns List of assets.
+   *
+   */
+  assets = assets;
+
+  /**
+   * assetsById - Information about a specific asset.
+   *
+   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+   * @returns Information about a specific asset.
+   *
+   */
+  assetsById = assetsById;
+
+  /**
+   * assetsHistory - History of a specific asset.
+   *
+   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+   * @returns History of a specific asset.
+   *
+   */
+  assetsHistory = assetsHistory;
+
+  /**
+   * assetsTxs - List of a specific asset transactions.
+   *
+   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+   * @returns List of a specific asset transactions.
+   *
+   */
+  assetsTxs = assetsTxs;
+
+  /**
+   * assetsAddresses - List of a addresses containing a specific asset.
+   *
+   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+   * @returns List of a addresses containing a specific asset.
+   *
+   */
+  assetsAddresses = assetsAddresses;
+
+  /**
+   * assetsPolicyById - List of asset minted under a specific policy.
+   *
+   * @param policyId - Specific policy_id
+   * @returns List of asset minted under a specific policy.
+   *
+   */
+  assetsPolicyById = assetsPolicyById;
 
   /**
    * addresses
@@ -529,13 +612,22 @@ class BlockFrostAPI {
   txsWithdrawals = txsWithdrawals;
 
   /**
-   * txxMetadata
+   * txsMetadata
    *
    * @param hash
    * @returns xxx
    *
    */
   txsMetadata = txsMetadata;
+
+  /**
+   * txSubmit
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  txSubmit = txSubmit;
 }
 
 type Responses = components['schemas'];

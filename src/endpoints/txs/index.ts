@@ -164,3 +164,18 @@ export function txsMetadataCbor(
       });
   });
 }
+
+export function txSubmit(this: BlockFrostAPI): Promise<string> {
+  return new Promise((resolve, reject) => {
+    axios
+      .post(`${this.apiUrl}/tx/submit`, {
+        headers: getHeaders(this.projectId, true),
+      })
+      .then(resp => {
+        resolve(resp.data);
+      })
+      .catch(err => {
+        reject(handleError(err));
+      });
+  });
+}
