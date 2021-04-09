@@ -34,7 +34,7 @@ export async function blocksLatest(
         resolve(resp.data);
       })
       .catch(err => {
-        reject(handleError(err));
+        return reject(err);
       });
   });
 }

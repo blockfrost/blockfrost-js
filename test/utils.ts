@@ -5,34 +5,47 @@ describe('utils', () => {
   // options
 
   test('no options', () => {
-    const API = new BlockFrostAPI({ projectId: 'xxx' });
-    expect(API.apiUrl).toBe('https://cardano-mainnet.blockfrost.io/api/v0');
-    expect(API.projectId).toBe('xxx');
+    const api = new BlockFrostAPI({
+      projectId: process.env.PROJECT_ID,
+    });
+    expect(api.apiUrl).toBe('https://cardano-mainnet.blockfrost.io/api/v0');
+    expect(api.projectId).toBe('xxx');
   });
 
   test('isTestnet', () => {
-    const API = new BlockFrostAPI({ projectId: 'xxx', isTestnet: true });
-    expect(API.apiUrl).toBe('https://cardano-testnet.blockfrost.io/api/v0');
+    const api = new BlockFrostAPI({
+      projectId: process.env.PROJECT_ID,
+      isTestnet: true,
+    });
+    expect(api.apiUrl).toBe('https://cardano-testnet.blockfrost.io/api/v0');
 
-    const API2 = new BlockFrostAPI({ projectId: 'xxx', isTestnet: false });
-    expect(API2.apiUrl).toBe('https://cardano-mainnet.blockfrost.io/api/v0');
+    const api2 = new BlockFrostAPI({
+      projectId: process.env.PROJECT_ID,
+      isTestnet: false,
+    });
+    expect(api2.apiUrl).toBe('https://cardano-mainnet.blockfrost.io/api/v0');
   });
 
   test('version', () => {
-    const API = new BlockFrostAPI({ projectId: 'xxx', version: 2 });
-    expect(API.apiUrl).toBe('https://cardano-mainnet.blockfrost.io/api/v2');
+    const api = new BlockFrostAPI({
+      projectId: process.env.PROJECT_ID,
+      version: 2,
+    });
+    expect(api.apiUrl).toBe('https://cardano-mainnet.blockfrost.io/api/v2');
   });
 
   test('customBackend', () => {
-    const API = new BlockFrostAPI({
+    const api = new BlockFrostAPI({
       customBackend: 'http://customBackend.com',
     });
-    expect(API.apiUrl).toBe('http://customBackend.com');
+    expect(api.apiUrl).toBe('http://customBackend.com');
   });
 
   // headers
 
   test('getHeaders', () => {
-    expect(utils.getHeaders('xxx')).toEqual({ project_id: 'xxx' });
+    expect(utils.getHeaders(process.env.PROJECT_ID)).toEqual({
+      project_id: process.env.PROJECT_ID,
+    });
   });
 });

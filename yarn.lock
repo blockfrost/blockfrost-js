@@ -425,6 +425,7 @@ __metadata:
     axios: ^0.21.1
     axios-retry: ^3.1.9
     babel-plugin-module-resolver: ^4.1.0
+    dotenv: ^8.2.0
     eslint: 7.14.0
     eslint-config-airbnb-base: 14.2.1
     eslint-config-prettier: 6.15.0
@@ -2933,6 +2934,13 @@ __metadata:
   dependencies:
     is-obj: ^2.0.0
   checksum: d5775790093c234ef4bfd5fbe40884ff7e6c87573e5339432870616331189f7f5d86575c5b5af2dcf0f61172990f4f734d07844b1f23482fff09e3c4bead05ea
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "dotenv@npm:8.2.0"
+  checksum: ad4c8e0df3e24b4811c8e93377d048a10a9b213dcd9f062483b4a2d3168f08f10ec9c618c23f5639060d230ccdb174c08761479e9baa29610aa978e1ee66df76
   languageName: node
   linkType: hard
 
