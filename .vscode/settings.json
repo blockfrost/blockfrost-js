@@ -3,15 +3,18 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "cSpell.words": [
     "addresses",
+    "backoff",
     "bech",
     "blockfrost",
     "by",
+    "cbor",
     "delegators",
     "id",
     "io",
     "openapi",
     "pnpify",
     "pools",
+    "type",
     "typedoc",
     "utxos",
     "yarnpkg"

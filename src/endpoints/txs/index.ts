@@ -75,7 +75,7 @@ export async function txsDelegations(
   });
 }
 
-export function txsWithdrawals(
+export async function txsWithdrawals(
   this: BlockFrostAPI,
   hash: string,
 ): Promise<components['schemas']['tx_content_withdrawals']> {
@@ -93,7 +93,7 @@ export function txsWithdrawals(
   });
 }
 
-export function txsPoolUpdates(
+export async function txsPoolUpdates(
   this: BlockFrostAPI,
   hash: string,
 ): Promise<components['schemas']['tx_content_pool_certs']> {
@@ -111,7 +111,7 @@ export function txsPoolUpdates(
   });
 }
 
-export function txsPoolRetires(
+export async function txsPoolRetires(
   this: BlockFrostAPI,
   hash: string,
 ): Promise<components['schemas']['tx_content_pool_retires']> {
@@ -129,7 +129,7 @@ export function txsPoolRetires(
   });
 }
 
-export function txsMetadata(
+export async function txsMetadata(
   this: BlockFrostAPI,
   hash: string,
 ): Promise<components['schemas']['tx_metadata_label_json']> {
@@ -147,7 +147,7 @@ export function txsMetadata(
   });
 }
 
-export function txsMetadataCbor(
+export async function txsMetadataCbor(
   this: BlockFrostAPI,
   hash: string,
 ): Promise<components['schemas']['tx_content_metadata_cbor']> {
@@ -165,7 +165,7 @@ export function txsMetadataCbor(
   });
 }
 
-export function txSubmit(this: BlockFrostAPI): Promise<string> {
+export async function txSubmit(this: BlockFrostAPI): Promise<string> {
   return new Promise((resolve, reject) => {
     axios
       .post(`${this.apiUrl}/tx/submit`, {
