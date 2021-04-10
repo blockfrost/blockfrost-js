@@ -1,8 +1,8 @@
 import { API_URLS } from './config';
 import { components } from './types/OpenApi';
+import dotenv from 'dotenv';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
-import dotenv from 'dotenv';
 dotenv.config();
 
 import {
@@ -72,7 +72,6 @@ import {
 } from './endpoints/metadata';
 
 import { health, healthClock } from './endpoints/health';
-
 import { metrics, metricsEndpoints } from './endpoints/metrics';
 import {
   txs,
@@ -91,15 +90,6 @@ import { Options } from './types';
 import join from 'url-join';
 import { validateOptions } from './utils';
 
-axiosRetry(axios, {
-  retries: 20,
-  retryCondition: error => {
-    console.log(error);
-    return error.response?.status === 429;
-  },
-  retryDelay: axiosRetry.exponentialDelay,
-});
-
 class BlockFrostAPI {
   apiUrl: string;
   projectId?: string;
@@ -109,6 +99,16 @@ class BlockFrostAPI {
     const apiBase = opts.isTestnet ? API_URLS.testnet : API_URLS.mainnet;
     this.apiUrl = options?.customBackend || join(apiBase, `v${opts.version}`);
     this.projectId = opts.projectId;
+
+    if (opts.retry429) {
+      axiosRetry(axios, {
+        retries: 20,
+        retryDelay: axiosRetry.exponentialDelay,
+        retryCondition: err => {
+          return err.response?.status === 429;
+        },
+      });
+    }
   }
 
   /**

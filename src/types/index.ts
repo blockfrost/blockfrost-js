@@ -1,6 +1,10 @@
 type OptionCombination1 = { projectId: string; customBackend?: string };
 type OptionCombination2 = { projectId?: string; customBackend: string };
-type AdditionalOptions = { isTestnet?: boolean; version?: number };
+type AdditionalOptions = {
+  isTestnet?: boolean;
+  version?: number;
+  retry429?: boolean;
+};
 
 export type Options = (OptionCombination1 | OptionCombination2) &
   AdditionalOptions;
@@ -10,6 +14,7 @@ export interface ValidatedOptions {
   projectId?: string;
   isTestnet?: boolean;
   version: number;
+  retry429: boolean;
 }
 
 export interface Headers {

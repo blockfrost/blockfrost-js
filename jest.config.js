@@ -1,11 +1,19 @@
 module.exports = {
   rootDir: '.',
+  globals: {
+    'ts-jest': {
+      PROJECT_ID: true,
+      api: true,
+    },
+  },
   resetMocks: true,
+  testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'js'],
+  setupFiles: ['<rootDir>/test/setup/index.ts'],
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/'],
   setupFilesAfterEnv: ['<rootDir>/jest.config.js'],
-  testMatch: ['<rootDir>/test/**/*.ts'],
+  testMatch: ['<rootDir>/test/tests/**/*.ts'],
   coverageReporters: ['json', 'lcov', 'text', 'text-summary'],
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   moduleNameMapper: {

@@ -20,6 +20,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     projectId: options.projectId,
     isTestnet: options.isTestnet,
     version: options.version || DEFAULT_API_VERSION,
+    retry429: options.retry429 || true,
   };
 };
 
