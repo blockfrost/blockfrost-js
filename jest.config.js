@@ -9,7 +9,7 @@ module.exports = {
   resetMocks: true,
   testEnvironment: 'node',
   moduleFileExtensions: ['ts', 'js'],
-  setupFiles: ['<rootDir>/test/setup/index.ts'],
+  setupFiles: ['<rootDir>/test/setup/index.ts', 'dotenv/config'],
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/'],
   setupFilesAfterEnv: ['<rootDir>/jest.config.js'],
