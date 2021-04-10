@@ -45,8 +45,8 @@ describe('utils', () => {
   });
 
   test('getHeaders', () => {
-    expect(utils.getHeaders(process.env.PROJECT_ID)).toEqual({
-      project_id: process.env.PROJECT_ID,
+    expect(utils.getHeaders('xxx')).toEqual({
+      project_id: 'xxx',
     });
   });
 });
