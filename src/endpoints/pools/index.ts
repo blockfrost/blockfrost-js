@@ -2,13 +2,21 @@ import axios from 'axios';
 import { getHeaders, handleError } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
+import {
+  DEFAULT_PAGINATION_PAGE_COUNT,
+  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  DEFAULT_ORDER,
+} from '../../config';
 
 export async function pools(
   this: BlockFrostAPI,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_list']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/pools`, {
+      .get(`${this.apiUrl}/pools?page=${page}&count=${count}&order=${order}`, {
         headers: getHeaders(this.projectId),
       })
       .then(resp => {
@@ -22,12 +30,18 @@ export async function pools(
 
 export async function poolsRetired(
   this: BlockFrostAPI,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_list_retire']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/pools/retired`, {
-        headers: getHeaders(this.projectId),
-      })
+      .get(
+        `${this.apiUrl}/pools/retired?page=${page}&count=${count}&order=${order}`,
+        {
+          headers: getHeaders(this.projectId),
+        },
+      )
       .then(resp => {
         resolve(resp.data);
       })
@@ -39,12 +53,18 @@ export async function poolsRetired(
 
 export async function poolsRetiring(
   this: BlockFrostAPI,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_list_retire']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/pools/retiring`, {
-        headers: getHeaders(this.projectId),
-      })
+      .get(
+        `${this.apiUrl}/pools/retiring?page=${page}&count=${count}&order=${order}`,
+        {
+          headers: getHeaders(this.projectId),
+        },
+      )
       .then(resp => {
         resolve(resp.data);
       })
@@ -75,12 +95,18 @@ export async function poolsById(
 export async function poolsByIdHistory(
   this: BlockFrostAPI,
   poolId: string,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_history']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/pools/${poolId}/history`, {
-        headers: getHeaders(this.projectId),
-      })
+      .get(
+        `${this.apiUrl}/pools/${poolId}/history?page=${page}&count=${count}&order=${order}`,
+        {
+          headers: getHeaders(this.projectId),
+        },
+      )
       .then(resp => {
         resolve(resp.data);
       })
@@ -129,12 +155,18 @@ export async function poolsByIdRelays(
 export async function poolsByIdDelegators(
   this: BlockFrostAPI,
   poolId: string,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_delegators']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/pools/${poolId}/delegators`, {
-        headers: getHeaders(this.projectId),
-      })
+      .get(
+        `${this.apiUrl}/pools/${poolId}/delegators?page=${page}&count=${count}&order=${order}`,
+        {
+          headers: getHeaders(this.projectId),
+        },
+      )
       .then(resp => {
         resolve(resp.data);
       })
@@ -147,12 +179,18 @@ export async function poolsByIdDelegators(
 export async function poolsByIdBlocks(
   this: BlockFrostAPI,
   poolId: string,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_blocks']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/pools/${poolId}/blocks`, {
-        headers: getHeaders(this.projectId),
-      })
+      .get(
+        `${this.apiUrl}/pools/${poolId}/blocks?page=${page}&count=${count}&order=${order}`,
+        {
+          headers: getHeaders(this.projectId),
+        },
+      )
       .then(resp => {
         resolve(resp.data);
       })
@@ -165,12 +203,18 @@ export async function poolsByIdBlocks(
 export async function poolsByIdUpdates(
   this: BlockFrostAPI,
   poolId: string,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_updates']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/pools/${poolId}/updates`, {
-        headers: getHeaders(this.projectId),
-      })
+      .get(
+        `${this.apiUrl}/pools/${poolId}/updates?page=${page}&count=${count}&order=${order}`,
+        {
+          headers: getHeaders(this.projectId),
+        },
+      )
       .then(resp => {
         resolve(resp.data);
       })
