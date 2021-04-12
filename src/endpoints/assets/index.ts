@@ -2,13 +2,21 @@ import axios from 'axios';
 import { getHeaders, handleError } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
+import {
+  DEFAULT_PAGINATION_PAGE_COUNT,
+  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  DEFAULT_ORDER,
+} from '../../config';
 
 export async function assets(
   this: BlockFrostAPI,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
 ): Promise<components['schemas']['assets']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/assets/`, {
+      .get(`${this.apiUrl}/assets?page=${page}&count=${count}&order=${order}`, {
         headers: getHeaders(this.projectId),
       })
       .then(resp => {
@@ -37,12 +45,18 @@ export async function assetsById(
 export async function assetsHistory(
   this: BlockFrostAPI,
   asset: string,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_history']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/assets/${asset}/history`, {
-        headers: getHeaders(this.projectId),
-      })
+      .get(
+        `${this.apiUrl}/assets/${asset}/history?page=${page}&count=${count}&order=${order}`,
+        {
+          headers: getHeaders(this.projectId),
+        },
+      )
       .then(resp => {
         resolve(resp.data);
       })
@@ -53,12 +67,18 @@ export async function assetsHistory(
 export async function assetsTxs(
   this: BlockFrostAPI,
   asset: string,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_txs']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/assets/${asset}/txs`, {
-        headers: getHeaders(this.projectId),
-      })
+      .get(
+        `${this.apiUrl}/assets/${asset}/txs?page=${page}&count=${count}&order=${order}`,
+        {
+          headers: getHeaders(this.projectId),
+        },
+      )
       .then(resp => {
         resolve(resp.data);
       })
@@ -69,12 +89,18 @@ export async function assetsTxs(
 export async function assetsAddresses(
   this: BlockFrostAPI,
   asset: string,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_addresses']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/assets/${asset}/addresses`, {
-        headers: getHeaders(this.projectId),
-      })
+      .get(
+        `${this.apiUrl}/assets/${asset}/addresses?page=${page}&count=${count}&order=${order}`,
+        {
+          headers: getHeaders(this.projectId),
+        },
+      )
       .then(resp => {
         resolve(resp.data);
       })
@@ -85,12 +111,18 @@ export async function assetsAddresses(
 export async function assetsPolicyById(
   this: BlockFrostAPI,
   policy: string,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_addresses']> {
   return new Promise((resolve, reject) => {
     axios
-      .get(`${this.apiUrl}/assets/policy/${policy}`, {
-        headers: getHeaders(this.projectId),
-      })
+      .get(
+        `${this.apiUrl}/assets/policy/${policy}?page=${page}&count=${count}&order=${order}`,
+        {
+          headers: getHeaders(this.projectId),
+        },
+      )
       .then(resp => {
         resolve(resp.data);
       })
