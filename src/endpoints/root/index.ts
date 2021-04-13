@@ -4,7 +4,7 @@ import { BlockFrostAPI } from '../../index';
 
 export async function root(
   this: BlockFrostAPI,
-): Promise<{ url: string; version: number }> {
+): Promise<{ url: string; version: string }> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/`, {
