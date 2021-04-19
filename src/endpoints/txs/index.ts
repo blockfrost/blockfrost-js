@@ -165,10 +165,14 @@ export async function txsMetadataCbor(
   });
 }
 
-export async function txSubmit(this: BlockFrostAPI): Promise<string> {
+export async function txSubmit(
+  this: BlockFrostAPI,
+  transaction: Uint8Array,
+): Promise<string> {
   return new Promise((resolve, reject) => {
     axios
       .post(`${this.apiUrl}/tx/submit`, {
+        transaction,
         headers: getHeaders(this.projectId, true),
       })
       .then(resp => {
