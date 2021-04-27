@@ -1,6 +1,6 @@
 {
   "name": "@blockfrost/blockfrost-js",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "files": [
     "lib/**/*.js",
@@ -17,13 +17,13 @@
   "scripts": {
     "build": "yarn clean && tsc",
     "clean": "rimraf lib",
-    "generate-types": "openapi-typescript ./node_modules/@blockfrost/openapi/swagger.yaml --output ./src/types/OpenApi.ts",
+    "generate-types": "pnpify openapi-typescript ./node_modules/@blockfrost/openapi/swagger.yaml --output ./src/types/OpenApi.ts",
     "lint": "eslint ./src/**/*.ts",
     "run-example": "ts-node-dev --transpile-only ./example/index.ts",
     "test": "jest --setupFiles dotenv/config"
   },
   "dependencies": {
-    "@blockfrost/openapi": "0.1.9",
+    "@blockfrost/openapi": "0.1.11",
     "@yarnpkg/pnpify": "^2.4.0",
     "axios": "^0.21.1",
     "axios-retry": "^3.1.9",

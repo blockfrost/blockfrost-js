@@ -730,7 +730,7 @@ export interface paths {
     };
   };
   "/tx/submit": {
-    /** Submit a base64 encoding serialized transaction to the network. */
+    /** Submit an already serialized transaction to the network. */
     post: {
       parameters: {
         header: {
@@ -758,7 +758,7 @@ export interface paths {
     get: {
       parameters: {
         path: {
-          /** Bech32 stake addresses */
+          /** Bech32 stake address. */
           stake_address: string;
         };
       };
@@ -783,7 +783,7 @@ export interface paths {
     get: {
       parameters: {
         path: {
-          /** Bech32 stake addresses */
+          /** Bech32 stake address. */
           stake_address: string;
         };
         query: {
@@ -819,7 +819,7 @@ export interface paths {
     get: {
       parameters: {
         path: {
-          /** Bech32 stake addresses */
+          /** Bech32 stake address. */
           stake_address: string;
         };
         query: {
@@ -855,7 +855,7 @@ export interface paths {
     get: {
       parameters: {
         path: {
-          /** Bech32 stake addresses */
+          /** Bech32 stake address. */
           stake_address: string;
         };
         query: {
@@ -891,7 +891,7 @@ export interface paths {
     get: {
       parameters: {
         path: {
-          /** Bech32 stake addresses */
+          /** Bech32 stake address. */
           stake_address: string;
         };
         query: {
@@ -927,7 +927,7 @@ export interface paths {
     get: {
       parameters: {
         path: {
-          /** Bech32 stake addresses */
+          /** Bech32 stake address. */
           stake_address: string;
         };
         query: {
@@ -1067,7 +1067,7 @@ export interface paths {
     get: {
       parameters: {
         path: {
-          /** Bech32 addresses. */
+          /** Bech32 address. */
           address: string;
         };
       };
@@ -1092,7 +1092,7 @@ export interface paths {
     get: {
       parameters: {
         path: {
-          /** Bech32 addresses. */
+          /** Bech32 address. */
           address: string;
         };
       };
@@ -1117,7 +1117,7 @@ export interface paths {
     get: {
       parameters: {
         path: {
-          /** Bech32 addresses */
+          /** Bech32 address. */
           address: string;
         };
         query: {
@@ -1154,7 +1154,7 @@ export interface paths {
     get: {
       parameters: {
         path: {
-          /** Bech32 addresses. */
+          /** Bech32 address. */
           address: string;
         };
         query: {
@@ -1185,7 +1185,7 @@ export interface paths {
       };
     };
   };
-  "/pools/": {
+  "/pools": {
     /** List of registered stake pools. */
     get: {
       parameters: {
@@ -2079,6 +2079,10 @@ export interface components {
     tx_content: {
       /** Block hash */
       block: string;
+      /** Block number */
+      block_height: number;
+      /** Slot number */
+      slot: number;
       /** Transaction index within the block */
       index: number;
       output_amount: {
@@ -2133,6 +2137,8 @@ export interface components {
       }[];
     };
     tx_content_stake_addr: {
+      /** Index of the certificate within the transaction */
+      cert_index: number;
       /** Delegation stake address */
       address: string;
       /** Registration boolean, false if deregistration */
@@ -2141,6 +2147,8 @@ export interface components {
     tx_content_delegations: {
       /** Index of the certificate within the transaction */
       index: number;
+      /** Index of the certificate within the transaction */
+      cert_index: number;
       /** Bech32 delegation stake address */
       address: string;
       /** Bech32 ID of delegated stake pool */
@@ -2155,6 +2163,8 @@ export interface components {
       amount: string;
     };
     tx_content_pool_certs: {
+      /** Index of the certificate within the transaction */
+      cert_index: number;
       /** Bech32 encoded pool ID */
       pool_id: string;
       /** VRF key hash */
@@ -2198,6 +2208,8 @@ export interface components {
       active_epoch: number;
     };
     tx_content_pool_retires: {
+      /** Index of the certificate within the transaction */
+      cert_index: number;
       /** Bech32 stake pool ID */
       pool_id: string;
       /** Retiring epoch */
@@ -2455,6 +2467,18 @@ export interface components {
       quantity: string;
       /** ID of the initial minting transaction */
       initial_mint_tx_hash: string;
+      /**
+       * On-chain metadata stored in the minting transaction under label 721,
+       * community discussion around the standard ongoing at https://github.com/cardano-foundation/CIPs/pull/85
+       */
+      onchain_metadata?:
+        | ({
+            /** Name of the asset */
+            name?: string;
+            /** URI of the associated asset */
+            image?: string;
+          } & { [key: string]: any })
+        | null;
       metadata: {
         /** Asset name */
         name: string;

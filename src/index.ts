@@ -3,6 +3,7 @@ import { components } from './types/OpenApi';
 import dotenv from 'dotenv';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
+
 dotenv.config();
 
 import {
@@ -18,7 +19,9 @@ import {
   addresses,
   addressesTotal,
   addressesTxs,
+  addressesTxsAll,
   addressesUtxos,
+  addressesUtxosAll,
 } from './endpoints/addresses';
 
 import {
@@ -246,6 +249,15 @@ class BlockFrostAPI {
   addressesTxs = addressesTxs;
 
   /**
+   * addressesTxsAll
+   *
+   * @param address
+   * @returns xxx
+   *
+   */
+  addressesTxsAll = addressesTxsAll;
+
+  /**
    * addressesUtxos
    *
    * @param address
@@ -253,6 +265,15 @@ class BlockFrostAPI {
    *
    */
   addressesUtxos = addressesUtxos;
+
+  /**
+   * addressesUtxosAll
+   *
+   * @param address
+   * @returns xxx
+   *
+   */
+  addressesUtxosAll = addressesUtxosAll;
 
   /**
    * addressesUtxos
