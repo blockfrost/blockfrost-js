@@ -83,3 +83,48 @@ export async function addressesUtxos(
       .catch(err => reject(handleError(err)));
   });
 }
+
+export async function addressesUtxosAll(
+  this: BlockFrostAPI,
+  address: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['address_utxo_content']> {
+  let page = 1;
+  let res: components['schemas']['address_utxo_content'] = [];
+  let shouldRun = true;
+  const promisesBundle: Promise<
+    components['schemas']['address_utxo_content']
+  >[] = [];
+
+  while (shouldRun) {
+    for (let i = 0; i < batchSize; i++) {
+      const promise = this.addressesUtxos(
+        address,
+        page,
+        DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+        order,
+      );
+      promisesBundle.push(promise);
+    }
+
+    await Promise.all(
+      promisesBundle.map(p =>
+        p
+          .then(data => {
+            res = [...res, ...data];
+            page++;
+            if (data.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+              shouldRun = false;
+            }
+          })
+          .catch(error => {
+            shouldRun = false;
+            return error;
+          }),
+      ),
+    );
+  }
+
+  return res;
+}
