@@ -19,6 +19,7 @@ import {
   addresses,
   addressesTotal,
   addressesTxs,
+  addressesTxsAll,
   addressesUtxos,
   addressesUtxosAll,
 } from './endpoints/addresses';
@@ -246,6 +247,15 @@ class BlockFrostAPI {
    *
    */
   addressesTxs = addressesTxs;
+
+  /**
+   * addressesTxsAll
+   *
+   * @param address
+   * @returns xxx
+   *
+   */
+  addressesTxsAll = addressesTxsAll;
 
   /**
    * addressesUtxos
