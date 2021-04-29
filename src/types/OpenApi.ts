@@ -36,7 +36,7 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              is_healthy?: boolean;
+              is_healthy: boolean;
             };
           };
         };
@@ -59,7 +59,7 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              server_time?: number;
+              server_time: number;
             };
           };
         };
@@ -1767,9 +1767,9 @@ export interface paths {
           content: {
             "application/json": {
               /** IPFS hash of the pinned object */
-              ipfs_hash?: string;
+              ipfs_hash: string;
               /** State of the pin action */
-              state?: "queued|pinned|unpinned|failed|gc";
+              state: "queued|pinned|unpinned|failed|gc";
             };
           };
         };
@@ -1804,20 +1804,20 @@ export interface paths {
           content: {
             "application/json": {
               /** Creation time of the IPFS object on our backends */
-              time_created?: number;
+              time_created: number;
               /** Pin time of the IPFS object on our backends */
-              time_pinned?: number;
+              time_pinned: number;
               /** IPFS hash of the pinned object */
-              ipfs_hash?: string;
+              ipfs_hash: string;
               /** Size of the object in Bytes */
-              size?: string;
+              size: string;
               /**
                * State of the pinned object, which is `queued` when we are retriving object. If this
                * is successful the state is changed to `pinned` or `failed` if not. The state `gc` means the
                * pinned item has been garbage collected due to account being over storage quota or after it has
                * been moved to `unpinned` state by removing the object pin.
                */
-              state?: "queued|pinned|unpinned|failed|gc";
+              state: "queued|pinned|unpinned|failed|gc";
             }[];
           };
         };
@@ -1844,13 +1844,13 @@ export interface paths {
           content: {
             "application/json": {
               /** Time of the creation of the IPFS object on our backends */
-              time_created?: number;
+              time_created: number;
               /** Time of the pin of the IPFS object on our backends */
-              time_pinned?: number;
+              time_pinned: number;
               /** IPFS hash of the pinned object */
-              ipfs_hash?: string;
+              ipfs_hash: string;
               /** Size of the object in Bytes */
-              size?: string;
+              size: string;
               /**
                * State of the pinned object. We define 5 states: `queued`, `pinned`, `unpinned`, `failed`, `gc`.
                * When the object is pending retrieval (i.e. after `/ipfs/pin/add/{IPFS_path}`), the state is `queued`.
@@ -1858,7 +1858,7 @@ export interface paths {
                * When object is unpinned (i.e. after `/ipfs/pin/remove/{IPFS_path}`) it is marked for garbage collection.
                * State `gc` means that a previously `unpinned` item has been garbage collected due to account being over storage quota.
                */
-              state?: "queued|pinned|unpinned|failed|gc";
+              state: "queued|pinned|unpinned|failed|gc";
             };
           };
         };
@@ -1885,9 +1885,9 @@ export interface paths {
           content: {
             "application/json": {
               /** IPFS hash of the pinned object */
-              ipfs_hash?: string;
+              ipfs_hash: string;
               /** State of the pin action */
-              state?: "queued|pinned|unpinned|failed|gc";
+              state: "queued|pinned|unpinned|failed|gc";
             };
           };
         };
@@ -2087,9 +2087,9 @@ export interface components {
       index: number;
       output_amount: {
         /** The unit of the value */
-        unit?: string;
+        unit: string;
         /** The quantity of the unit */
-        quantity?: string;
+        quantity: string;
       }[];
       /** Fees of the transaction in Lovelaces */
       fees: string;
@@ -2115,24 +2115,24 @@ export interface components {
       pool_retire_count: number;
     };
     tx_content_utxo: {
-      inputs?: {
+      inputs: {
         /** Input address */
         address: string;
         amount: {
           /** The unit of the value */
-          unit?: string;
+          unit: string;
           /** The quantity of the unit */
-          quantity?: string;
+          quantity: string;
         }[];
       }[];
-      outputs?: {
+      outputs: {
         /** Output address */
         address: string;
         amount: {
           /** The unit of the value */
-          unit?: string;
+          unit: string;
           /** The quantity of the unit */
-          quantity?: string;
+          quantity: string;
         }[];
       }[];
     };
@@ -2249,7 +2249,7 @@ export interface components {
     };
     account_addresses_content: {
       /** Address associated with the stake key */
-      address?: string;
+      address: string;
     }[];
     account_reward_content: {
       /** Epoch of the associated reward */
@@ -2260,7 +2260,7 @@ export interface components {
       pool_id: string;
     }[];
     account_delegation_content: {
-      /** Epoch that the delegation becomes active */
+      /** Epoch in which the delegation becomes active */
       active_epoch: number;
       /** Hash of the transaction containing the delegation */
       tx_hash: string;
@@ -2270,8 +2270,8 @@ export interface components {
       pool_id: string;
     }[];
     account_history_content: {
-      /** Epoch that the stake is active */
-      epoch?: number;
+      /** Epoch in which the stake was active */
+      active_epoch: number;
       /** Stake amount in Lovelaces */
       amount: string | null;
       /** Bech32 ID of pool being delegated to */
@@ -2286,9 +2286,9 @@ export interface components {
     address_content: {
       amount: {
         /** The unit of the value */
-        unit?: string;
+        unit: string;
         /** The quantity of the unit */
-        quantity?: string;
+        quantity: string;
       }[];
       /** Stake address that controls the key */
       stake_address: string | null;
@@ -2298,43 +2298,43 @@ export interface components {
     address_content_total: {
       received_sum: {
         /** The unit of the value */
-        unit?: string;
+        unit: string;
         /** The quantity of the unit */
-        quantity?: string;
+        quantity: string;
       }[];
       sent_sum: {
         /** The unit of the value */
-        unit?: string;
+        unit: string;
         /** The quantity of the unit */
-        quantity?: string;
+        quantity: string;
       }[];
       /** Count of all transactions on the address */
       tx_count: number;
     };
     address_utxo_content: {
       /** Transaction hash of the UTXO */
-      tx_hash?: string;
+      tx_hash: string;
       /** UTXO index in the transaction */
-      tx_index?: number;
+      tx_index: number;
       /** UTXO index in the transaction */
-      output_index?: number;
-      amount?: {
+      output_index: number;
+      amount: {
         /** The unit of the value */
-        unit?: string;
+        unit: string;
         /** The quantity of the unit */
-        quantity?: string;
+        quantity: string;
       }[];
       /** Block number of the UTXO */
-      block?: string;
+      block: string;
     }[];
     address_txs_content: string[];
     tx_metadata_labels: {
       /** Metadata label */
-      label?: string;
+      label: string;
       /** CIP10 defined description */
-      cip10?: string | null;
+      cip10: string | null;
       /** The count of metadata entries with a specific label */
-      count?: string;
+      count: string;
     }[];
     tx_metadata_label_json: {
       /** Transaction hash that contains the specific metadata */
@@ -2358,9 +2358,9 @@ export interface components {
     pool_list: string[];
     pool_list_retire: {
       /** Bech32 encoded pool ID */
-      pool_id?: string;
+      pool_id: string;
       /** Retirement epoch number */
-      epoch?: number;
+      epoch: number;
     }[];
     pool_history: {
       /** Epoch number */
@@ -2419,15 +2419,15 @@ export interface components {
     };
     pool_relays: {
       /** IPv4 address of the relay */
-      ipv4?: string | null;
+      ipv4: string | null;
       /** IPv6 address of the relay */
-      ipv6?: string | null;
+      ipv6: string | null;
       /** DNS name of the relay */
-      dns?: string | null;
+      dns: string | null;
       /** DNS SRV entry of the relay */
-      dns_srv?: string | null;
+      dns_srv: string | null;
       /** Network port of the relay */
-      port?: number;
+      port: number;
     }[];
     pool_delegations: {
       /** Transaction ID */
@@ -2462,7 +2462,7 @@ export interface components {
       /** Hex-encoded asset name of the asset */
       asset_name: string | null;
       /** CIP14 based user-facing fingerprint */
-      fingerprint?: string;
+      fingerprint: string;
       /** Current asset quantity */
       quantity: string;
       /** ID of the initial minting transaction */
@@ -2471,7 +2471,7 @@ export interface components {
        * On-chain metadata stored in the minting transaction under label 721,
        * community discussion around the standard ongoing at https://github.com/cardano-foundation/CIPs/pull/85
        */
-      onchain_metadata?:
+      onchain_metadata:
         | ({
             /** Name of the asset */
             name?: string;
@@ -2484,11 +2484,11 @@ export interface components {
         name: string;
         /** Asset description */
         description: string;
-        ticker?: string | null;
+        ticker: string | null;
         /** Asset website */
-        url?: string | null;
+        url: string | null;
         /** Base64 encoded logo of the asset */
-        logo?: string | null;
+        logo: string | null;
       } | null;
     };
     asset_history: {
@@ -2533,9 +2533,9 @@ export interface components {
     overusage_limit: {
       content: {
         "application/json": {
-          status_code?: number;
-          error?: string;
-          message?: string;
+          status_code: number;
+          error: string;
+          message: string;
         };
       };
     };
@@ -2543,9 +2543,9 @@ export interface components {
     autobanned: {
       content: {
         "application/json": {
-          status_code?: number;
-          error?: string;
-          message?: string;
+          status_code: number;
+          error: string;
+          message: string;
         };
       };
     };
@@ -2553,9 +2553,9 @@ export interface components {
     not_found: {
       content: {
         "application/json": {
-          status_code?: number;
-          error?: string;
-          message?: string;
+          status_code: number;
+          error: string;
+          message: string;
         };
       };
     };
@@ -2563,9 +2563,9 @@ export interface components {
     internal_server_error: {
       content: {
         "application/json": {
-          status_code?: number;
-          error?: string;
-          message?: string;
+          status_code: number;
+          error: string;
+          message: string;
         };
       };
     };
@@ -2573,9 +2573,9 @@ export interface components {
     unauthorized_error: {
       content: {
         "application/json": {
-          status_code?: number;
-          error?: string;
-          message?: string;
+          status_code: number;
+          error: string;
+          message: string;
         };
       };
     };
@@ -2583,9 +2583,9 @@ export interface components {
     bad_request: {
       content: {
         "application/json": {
-          status_code?: number;
-          error?: string;
-          message?: string;
+          status_code: number;
+          error: string;
+          message: string;
         };
       };
     };
