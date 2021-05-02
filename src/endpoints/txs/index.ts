@@ -171,8 +171,7 @@ export async function txSubmit(
 ): Promise<string> {
   return new Promise((resolve, reject) => {
     axios
-      .post(`${this.apiUrl}/tx/submit`, {
-        transaction,
+      .post(`${this.apiUrl}/tx/submit`, transaction, {
         headers: getHeaders(this.projectId, true),
       })
       .then(resp => {
