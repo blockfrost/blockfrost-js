@@ -567,7 +567,7 @@ export interface paths {
         /** Obtain information about (de)registration of stake addresses within a transaction. */
         200: {
           content: {
-            "application/json": components["schemas"]["tx_content_stake_addr"][];
+            "application/json": components["schemas"]["tx_content_stake_addr"];
           };
         };
         400: components["responses"]["bad_request"];
@@ -592,7 +592,7 @@ export interface paths {
         /** Obtain information about delegation certificates of a specific transaction */
         200: {
           content: {
-            "application/json": components["schemas"]["tx_content_delegations"][];
+            "application/json": components["schemas"]["tx_content_delegations"];
           };
         };
         400: components["responses"]["bad_request"];
@@ -617,7 +617,7 @@ export interface paths {
         /** Obtain information about withdrawals of a specific transaction. */
         200: {
           content: {
-            "application/json": components["schemas"]["tx_content_withdrawals"][];
+            "application/json": components["schemas"]["tx_content_withdrawals"];
           };
         };
         400: components["responses"]["bad_request"];
@@ -642,7 +642,7 @@ export interface paths {
         /** Obtain information about stake pool certificates of a specific transaction */
         200: {
           content: {
-            "application/json": components["schemas"]["tx_content_pool_certs"][];
+            "application/json": components["schemas"]["tx_content_pool_certs"];
           };
         };
         400: components["responses"]["bad_request"];
@@ -667,7 +667,7 @@ export interface paths {
         /** Obtain information about stake pool retirements within a specific transaction. */
         200: {
           content: {
-            "application/json": components["schemas"]["tx_content_pool_retires"][];
+            "application/json": components["schemas"]["tx_content_pool_retires"];
           };
         };
         400: components["responses"]["bad_request"];
@@ -2143,7 +2143,7 @@ export interface components {
       address: string;
       /** Registration boolean, false if deregistration */
       registration: boolean;
-    };
+    }[];
     tx_content_delegations: {
       /** Index of the certificate within the transaction */
       index: number;
@@ -2155,13 +2155,13 @@ export interface components {
       pool_id: string;
       /** Epoch in which the delegation becomes active */
       active_epoch: number;
-    };
+    }[];
     tx_content_withdrawals: {
       /** Bech32 withdrawal address */
       address: string;
       /** Withdrawal amount in Lovelaces */
       amount: string;
-    };
+    }[];
     tx_content_pool_certs: {
       /** Index of the certificate within the transaction */
       cert_index: number;
@@ -2206,7 +2206,7 @@ export interface components {
       }[];
       /** Epoch that the delegation becomes active */
       active_epoch: number;
-    };
+    }[];
     tx_content_pool_retires: {
       /** Index of the certificate within the transaction */
       cert_index: number;
@@ -2214,7 +2214,7 @@ export interface components {
       pool_id: string;
       /** Retiring epoch */
       retiring_epoch: number;
-    };
+    }[];
     tx_content_metadata: {
       /** Metadata label */
       label: string;
