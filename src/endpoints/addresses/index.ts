@@ -69,7 +69,7 @@ export async function addressesTxsAll(
   batchSize = 10,
 ): Promise<components['schemas']['address_txs_content']> {
   let page = 1;
-  let res: components['schemas']['address_txs_content'] = [];
+  const res: components['schemas']['address_txs_content'] = [];
   let shouldRun = true;
   const promisesBundle: Promise<
     components['schemas']['address_txs_content']
@@ -87,23 +87,17 @@ export async function addressesTxsAll(
       page++;
     }
 
-    await Promise.all(
-      promisesBundle.map(p =>
-        p
-          .then(data => {
-            res = res.concat(data);
-            // some page is not full end search
-            if (data.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-              shouldRun = false;
-            }
-          })
-          .catch(error => {
-            console.log(error);
-            shouldRun = false;
-            return error;
-          }),
-      ),
-    );
+    const result = await Promise.all(promisesBundle).then(values => {
+      values.map(batch => {
+        if (batch.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+          shouldRun = false;
+        }
+      });
+
+      return values.flat();
+    });
+
+    if (!shouldRun) return result;
   }
 
   return res;
@@ -120,9 +114,7 @@ export async function addressesUtxos(
     axios
       .get(
         `${this.apiUrl}/addresses/${address}/utxos?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this.projectId),
-        },
+        { headers: getHeaders(this.projectId) },
       )
       .then(resp => {
         resolve(resp.data);
@@ -138,7 +130,7 @@ export async function addressesUtxosAll(
   batchSize = 10,
 ): Promise<components['schemas']['address_utxo_content']> {
   let page = 1;
-  let res: components['schemas']['address_utxo_content'] = [];
+  const res: components['schemas']['address_utxo_content'] = [];
   let shouldRun = true;
   const promisesBundle: Promise<
     components['schemas']['address_utxo_content']
@@ -152,27 +144,22 @@ export async function addressesUtxosAll(
         DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
         order,
       );
+
       promisesBundle.push(promise);
       page++;
     }
 
-    await Promise.all(
-      promisesBundle.map(p =>
-        p
-          .then(data => {
-            res = res.concat(data);
-            // some page is not full end search
-            if (data.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-              shouldRun = false;
-            }
-          })
-          .catch(error => {
-            console.log(error);
-            shouldRun = false;
-            return error;
-          }),
-      ),
-    );
+    const result = await Promise.all(promisesBundle).then(values => {
+      values.map(batch => {
+        if (batch.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+          shouldRun = false;
+        }
+      });
+
+      return values.flat();
+    });
+
+    if (!shouldRun) return result;
   }
 
   return res;
