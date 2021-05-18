@@ -16,6 +16,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "yarn clean && tsc",
+    "prepublishOnly": "yarn build",
     "clean": "rimraf lib",
     "generate-types": "pnpify openapi-typescript ./node_modules/@blockfrost/openapi/swagger.yaml --output ./src/types/OpenApi.ts",
     "lint": "eslint ./src/**/*.ts",
