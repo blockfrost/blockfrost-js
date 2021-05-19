@@ -7,10 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.5] - 2021-05-19
 
-### Fixed
+### Changed
 
-- addressesTxsAll pagination
-- addressesUtxosAll pagination
+- openapi 0.1.15
 
 ## [0.2.4] - 2021-05-18
 
