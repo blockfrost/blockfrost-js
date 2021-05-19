@@ -35,7 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {
           "packageLocation": "./",
           "packageDependencies": [
-            ["@blockfrost/openapi", "npm:0.1.13"],
+            ["@blockfrost/openapi", "npm:0.1.15"],
             ["@types/jest", "npm:26.0.22"],
             ["@types/node", "npm:14.14.37"],
             ["@types/url-join", "npm:4.0.0"],
@@ -652,7 +652,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["@blockfrost/blockfrost-js", "workspace:."],
-            ["@blockfrost/openapi", "npm:0.1.13"],
+            ["@blockfrost/openapi", "npm:0.1.15"],
             ["@types/jest", "npm:26.0.22"],
             ["@types/node", "npm:14.14.37"],
             ["@types/url-join", "npm:4.0.0"],
@@ -685,10 +685,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@blockfrost/openapi", [
-        ["npm:0.1.13", {
-          "packageLocation": "./.yarn/cache/@blockfrost-openapi-npm-0.1.13-d2c16d70e8-888ee9495f.zip/node_modules/@blockfrost/openapi/",
+        ["npm:0.1.15", {
+          "packageLocation": "./.yarn/cache/@blockfrost-openapi-npm-0.1.15-bc4585c2c5-97bece868b.zip/node_modules/@blockfrost/openapi/",
           "packageDependencies": [
-            ["@blockfrost/openapi", "npm:0.1.13"]
+            ["@blockfrost/openapi", "npm:0.1.15"]
           ],
           "linkType": "HARD",
         }]
