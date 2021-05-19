@@ -2255,7 +2255,7 @@ export interface components {
       /** Epoch of the associated reward */
       epoch: number;
       /** Rewards for given epoch in Lovelaces */
-      amount: string | null;
+      amount: string;
       /** Bech32 pool ID being delegated to */
       pool_id: string;
     }[];
@@ -2265,7 +2265,7 @@ export interface components {
       /** Hash of the transaction containing the delegation */
       tx_hash: string;
       /** Rewards for given epoch in Lovelaces */
-      amount: string | null;
+      amount: string;
       /** Bech32 ID of pool being delegated to */
       pool_id: string;
     }[];
@@ -2273,7 +2273,7 @@ export interface components {
       /** Epoch in which the stake was active */
       active_epoch: number;
       /** Stake amount in Lovelaces */
-      amount: string | null;
+      amount: string;
       /** Bech32 ID of pool being delegated to */
       pool_id: string;
     }[];
@@ -2400,8 +2400,8 @@ export interface components {
       /** Bech32 reward account of the stake pool */
       reward_account: string;
       owners: string[];
-      registration: (string | null)[];
-      retirement: (string | null)[];
+      registration: string[];
+      retirement: string[];
     };
     pool_metadata: {
       /** URL to the stake pool metadata */
