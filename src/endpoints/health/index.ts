@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getHeaders, handleError } from '../../utils';
 import { BlockFrostAPI } from '../../index';
 
-export function health(this: BlockFrostAPI): Promise<{ isHealthy: boolean }> {
+export function health(this: BlockFrostAPI): Promise<{ is_healthy: boolean }> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/health`, {
