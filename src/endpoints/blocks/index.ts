@@ -107,3 +107,44 @@ export async function blocksTxs(
       });
   });
 }
+
+export async function blocksTxsAll(
+  this: BlockFrostAPI,
+  address: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['block_content_txs']> {
+  let page = 1;
+  const res: components['schemas']['block_content_txs'] = [];
+  let shouldRun = true;
+  const promisesBundle: Promise<
+    components['schemas']['block_content_txs']
+  >[] = [];
+
+  while (shouldRun) {
+    for (let i = 0; i < batchSize; i++) {
+      const promise = this.blocksTxs(
+        address,
+        page,
+        DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+        order,
+      );
+      promisesBundle.push(promise);
+      page++;
+    }
+
+    const result = await Promise.all(promisesBundle).then(values => {
+      values.map(batch => {
+        if (batch.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+          shouldRun = false;
+        }
+      });
+
+      return values.flat();
+    });
+
+    if (!shouldRun) return result;
+  }
+
+  return res;
+}
