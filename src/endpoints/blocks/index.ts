@@ -110,7 +110,7 @@ export async function blocksTxs(
 
 export async function blocksTxsAll(
   this: BlockFrostAPI,
-  address: string,
+  hashOrNumber: string | number,
   order = DEFAULT_ORDER,
   batchSize = 10,
 ): Promise<components['schemas']['block_content_txs']> {
@@ -124,7 +124,7 @@ export async function blocksTxsAll(
   while (shouldRun) {
     for (let i = 0; i < batchSize; i++) {
       const promise = this.blocksTxs(
-        address,
+        hashOrNumber,
         page,
         DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
         order,
