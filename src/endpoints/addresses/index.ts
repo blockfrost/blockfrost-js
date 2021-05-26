@@ -46,7 +46,7 @@ export async function addressesTxs(
   page = DEFAULT_PAGINATION_PAGE_COUNT,
   count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
   order = DEFAULT_ORDER,
-): Promise<components['schemas']['address_txs_content']> {
+): Promise<components['schemas']['address_txs_content'] | []> {
   return new Promise((resolve, reject) => {
     axios
       .get(
@@ -58,7 +58,13 @@ export async function addressesTxs(
       .then(resp => {
         resolve(resp.data);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(err => {
+        if (err && err.response && err.response.data.status_code === 404) {
+          resolve([]);
+        }
+
+        reject(handleError(err));
+      });
   });
 }
 
@@ -67,34 +73,18 @@ export async function addressesTxsAll(
   address: string,
   order = DEFAULT_ORDER,
   batchSize = 10,
-): Promise<components['schemas']['address_txs_content']> {
+): Promise<components['schemas']['address_txs_content'] | []> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['address_txs_content'] = [];
+  const res: components['schemas']['address_txs_content'] | [] = [];
   let shouldRun = true;
   const promisesBundle: Promise<
-    components['schemas']['address_txs_content']
+    components['schemas']['address_txs_content'] | []
   >[] = [];
 
   while (shouldRun) {
     for (let i = 0; i < batchSize; i++) {
-      const promise = new Promise((resolve, reject) => {
-        axios
-          .get(
-            `${this.apiUrl}/addresses/${address}/txs?page=${page}&count=${count}&order=${order}`,
-            { headers: getHeaders(this.projectId) },
-          )
-          .then(resp => {
-            resolve(resp.data);
-          })
-          .catch(err => {
-            if (err && err.response && err.response.data.status_code === 404) {
-              resolve([]);
-            } else {
-              reject(handleError(err));
-            }
-          });
-      });
+      const promise = this.addressesTxs(address, page, count, order);
 
       promisesBundle.push(promise);
       page++;
