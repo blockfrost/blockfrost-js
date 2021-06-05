@@ -93,6 +93,39 @@ export interface paths {
       };
     };
   };
+  "/blocks/latest/txs": {
+    /** Return the transactions within the latest block. */
+    get: {
+      parameters: {
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * Ordered by tx index in the block.
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the transactions within the block. */
+        200: {
+          content: {
+            "application/json": components["schemas"]["block_content_txs"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
   "/blocks/{hash_or_number}": {
     /** Return the content of a requested block. */
     get: {
@@ -100,6 +133,58 @@ export interface paths {
         path: {
           /** Hash of the requested block. */
           hash_or_number: string;
+        };
+      };
+      responses: {
+        /** Return the contents of the block */
+        200: {
+          content: {
+            "application/json": components["schemas"]["block_content"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/blocks/slot/{slot_number}": {
+    /** Return the content of a requested block for a specific slot. */
+    get: {
+      parameters: {
+        path: {
+          /** Slot position for requested block. */
+          slot_number: number;
+        };
+      };
+      responses: {
+        /** Return the contents of the block */
+        200: {
+          content: {
+            "application/json": components["schemas"]["block_content"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/blocks/epoch/{epoch_number}/slot/{slot_number}": {
+    /** Return the content of a requested block for a specific slot in an epoch */
+    get: {
+      parameters: {
+        path: {
+          /** Epoch for specific epoch slot. */
+          epoch_number: number;
+          /** Slot position for requested block. */
+          slot_number: number;
         };
       };
       responses: {
@@ -254,13 +339,32 @@ export interface paths {
       };
     };
   };
+  "/epochs/latest/parameters": {
+    /** Return the protocol parameters for the latest epoch. */
+    get: {
+      responses: {
+        /** Return the data about the epoch */
+        200: {
+          content: {
+            "application/json": components["schemas"]["epoch_param_content"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
   "/epochs/{number}": {
     /** Return the content of the requested epoch. */
     get: {
       parameters: {
         path: {
           /** Number of the epoch */
-          number: string;
+          number: number;
         };
       };
       responses: {
@@ -958,6 +1062,46 @@ export interface paths {
       };
     };
   };
+  "/accounts/{stake_address}/addresses/assets": {
+    /**
+     * Obtain information about assets associated with addresses of a specific account.
+     *
+     * <b>Be careful</b>, as an account could be part of a mangled address and does not necessarily mean the addresses are owned by user as the account.
+     */
+    get: {
+      parameters: {
+        path: {
+          /** Bech32 stake address. */
+          stake_address: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the account addresses content */
+        200: {
+          content: {
+            "application/json": components["schemas"]["account_addresses_assets"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
   "/metadata/txs/labels": {
     /** List of all used transaction metadata labels. */
     get: {
@@ -1097,7 +1241,7 @@ export interface paths {
         };
       };
       responses: {
-        /** Return the address' details. */
+        /** Return the Address details. */
         200: {
           content: {
             "application/json": components["schemas"]["address_content_total"];
@@ -1174,6 +1318,42 @@ export interface paths {
         200: {
           content: {
             "application/json": components["schemas"]["address_txs_content"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/addresses/{address}/transactions": {
+    /** Transactions on the address. */
+    get: {
+      parameters: {
+        path: {
+          /** Bech32 address. */
+          address: string;
+        };
+        query: {
+          /** The numbers of pools per page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the address content */
+        200: {
+          content: {
+            "application/json": components["schemas"]["address_transactions_content"];
           };
         };
         400: components["responses"]["bad_request"];
@@ -1621,6 +1801,42 @@ export interface paths {
         200: {
           content: {
             "application/json": components["schemas"]["asset_txs"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/assets/{asset}/transactions": {
+    /** List of a specific asset transactions */
+    get: {
+      parameters: {
+        path: {
+          /** Concatenation of the policy_id and hex-encoded asset_name */
+          asset: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the information about the history of a specific asset */
+        200: {
+          content: {
+            "application/json": components["schemas"]["asset_transactions"];
           };
         };
         400: components["responses"]["bad_request"];
@@ -2251,6 +2467,12 @@ export interface components {
       /** Address associated with the stake key */
       address: string;
     }[];
+    account_addresses_assets: {
+      /** The unit of the value */
+      unit: string;
+      /** The quantity of the unit */
+      quantity: string;
+    }[];
     account_reward_content: {
       /** Epoch of the associated reward */
       epoch: number;
@@ -2328,6 +2550,14 @@ export interface components {
       block: string;
     }[];
     address_txs_content: string[];
+    address_transactions_content: {
+      /** Hash of the transaction */
+      tx_hash?: string;
+      /** Transaction index within the block */
+      tx_index?: number;
+      /** Block height */
+      block_height?: number;
+    }[];
     tx_metadata_labels: {
       /** Metadata label */
       label: string;
@@ -2500,6 +2730,14 @@ export interface components {
       amount: string;
     }[];
     asset_txs: string[];
+    asset_transactions: {
+      /** Hash of the transaction */
+      tx_hash?: string;
+      /** Transaction index within the block */
+      tx_index?: number;
+      /** Block height */
+      block_height?: number;
+    }[];
     asset_addresses: {
       /** Address containing the specific asset */
       address: string;
