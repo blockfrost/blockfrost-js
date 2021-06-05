@@ -106,6 +106,72 @@ export async function addressesTxsAll(
   return res;
 }
 
+export async function addressesTransactions(
+  this: BlockFrostAPI,
+  address: string,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
+): Promise<components['schemas']['address_transactions_content'] | []> {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(
+        `${this.apiUrl}/addresses/${address}/transactions?page=${page}&count=${count}&order=${order}`,
+        {
+          headers: getHeaders(this.projectId),
+        },
+      )
+      .then(resp => {
+        resolve(resp.data);
+      })
+      .catch(err => {
+        if (err && err.response && err.response.data.status_code === 404) {
+          resolve([]);
+        }
+
+        reject(handleError(err));
+      });
+  });
+}
+
+export async function addressesTransactionsAll(
+  this: BlockFrostAPI,
+  address: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['address_transactions_content'] | []> {
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const res: components['schemas']['address_transactions_content'] | [] = [];
+  let shouldRun = true;
+  const promisesBundle: Promise<
+    components['schemas']['address_transactions_content'] | []
+  >[] = [];
+
+  while (shouldRun) {
+    for (let i = 0; i < batchSize; i++) {
+      const promise = this.addressesTransactions(address, page, count, order);
+
+      promisesBundle.push(promise);
+      page++;
+    }
+
+    const result = await Promise.all(promisesBundle).then(values => {
+      values.map(batch => {
+        if (batch.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+          shouldRun = false;
+        }
+      });
+
+      return values.flat();
+    });
+
+    if (!shouldRun) return result;
+  }
+
+  return res;
+}
+
 export async function addressesUtxos(
   this: BlockFrostAPI,
   address: string,
