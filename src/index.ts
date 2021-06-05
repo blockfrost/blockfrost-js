@@ -19,7 +19,9 @@ import {
   addresses,
   addressesTotal,
   addressesTxs,
+  addressesTransactions,
   addressesTxsAll,
+  addressesTransactionsAll,
   addressesUtxos,
   addressesUtxosAll,
 } from './endpoints/addresses';
@@ -29,6 +31,7 @@ import {
   assetsById,
   assetsHistory,
   assetsTxs,
+  assetsTransactions,
   assetsAddresses,
   assetsPolicyById,
 } from './endpoints/assets';
@@ -205,6 +208,15 @@ class BlockFrostAPI {
   assetsTxs = assetsTxs;
 
   /**
+   * assetsTransactions - List of a specific asset transactions.
+   *
+   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+   * @returns List of a specific asset transactions.
+   *
+   */
+  assetsTransactions = assetsTransactions;
+
+  /**
    * assetsAddresses - List of a addresses containing a specific asset.
    *
    * @param asset - Concatenation of the policy_id and hex-encoded asset_name
@@ -257,6 +269,24 @@ class BlockFrostAPI {
    *
    */
   addressesTxsAll = addressesTxsAll;
+
+  /**
+   * addressesTransactions
+   *
+   * @param address
+   * @returns xxx
+   *
+   */
+  addressesTransactions = addressesTransactions;
+
+  /**
+   * addressesTransactionsAll
+   *
+   * @param address
+   * @returns xxx
+   *
+   */
+  addressesTransactionsAll = addressesTransactionsAll;
 
   /**
    * addressesUtxos
