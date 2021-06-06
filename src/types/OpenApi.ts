@@ -2552,11 +2552,11 @@ export interface components {
     address_txs_content: string[];
     address_transactions_content: {
       /** Hash of the transaction */
-      tx_hash?: string;
+      tx_hash: string;
       /** Transaction index within the block */
-      tx_index?: number;
+      tx_index: number;
       /** Block height */
-      block_height?: number;
+      block_height: number;
     }[];
     tx_metadata_labels: {
       /** Metadata label */
@@ -2732,11 +2732,11 @@ export interface components {
     asset_txs: string[];
     asset_transactions: {
       /** Hash of the transaction */
-      tx_hash?: string;
+      tx_hash: string;
       /** Transaction index within the block */
-      tx_index?: number;
+      tx_index: number;
       /** Block height */
-      block_height?: number;
+      block_height: number;
     }[];
     asset_addresses: {
       /** Address containing the specific asset */
