@@ -24,7 +24,7 @@
     "test": "jest --setupFiles dotenv/config"
   },
   "dependencies": {
-    "@blockfrost/openapi": "^0.1.17",
+    "@blockfrost/openapi": "^0.1.18",
     "@yarnpkg/pnpify": "^2.4.0",
     "axios": "^0.21.1",
     "axios-retry": "^3.1.9",
