@@ -23,7 +23,7 @@ yarn add @blockfrost/blockfrost-js
 ###### USAGE
 
 ```typescript
-import BlockfrostAPI from '@blockfrost/blockfrost-js';
+import { BlockfrostAPI } from '@blockfrost/blockfrost-js';
 
 const API = new BlockFrostAPI({
   projectId: 'YOUR API KEY HERE',
