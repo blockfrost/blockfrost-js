@@ -733,6 +733,31 @@ export interface paths {
       };
     };
   };
+  "/txs/{hash}/mirs": {
+    /** Obtain information about Move Instantaneous Rewards (MIRs) of a specific transaction. */
+    get: {
+      parameters: {
+        path: {
+          /** Hash of the requested transaction. */
+          hash: string;
+        };
+      };
+      responses: {
+        /** Obtain information about Move Instantaneous Rewards (MIRs) of a specific transaction. */
+        200: {
+          content: {
+            "application/json": components["schemas"]["tx_content_mirs"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
   "/txs/{hash}/pool_updates": {
     /** Obtain information about stake pool registration and update certificates of a specific transaction. */
     get: {
@@ -1015,6 +1040,78 @@ export interface paths {
         200: {
           content: {
             "application/json": components["schemas"]["account_registration_content"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/accounts/{stake_address}/withdrawals": {
+    /** Obtain information about the withdrawals of a specific account. */
+    get: {
+      parameters: {
+        path: {
+          /** Bech32 stake address. */
+          stake_address: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the account withdrawal content. */
+        200: {
+          content: {
+            "application/json": components["schemas"]["account_withdrawal_content"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/accounts/{stake_address}/mirs": {
+    /** Obtain information about the MIRs of a specific account. */
+    get: {
+      parameters: {
+        path: {
+          /** Bech32 stake address. */
+          stake_address: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the account MIR content. */
+        200: {
+          content: {
+            "application/json": components["schemas"]["account_mir_content"];
           };
         };
         400: components["responses"]["bad_request"];
@@ -1347,6 +1444,16 @@ export interface paths {
            * not the page listing itself. By default, we return oldest first, newest last.
            */
           order?: "asc" | "desc";
+          /**
+           * The block number and optionally also index from which (inclusive) to start search for results, concatenated using colon.
+           * Has to be lower than or equal to `to` parameter.
+           */
+          from?: string;
+          /**
+           * The block number and optionally also index where (inclusive) to end the search for results, concatenated using colon.
+           * Has to be higher than or equal to `from` parameter.
+           */
+          to?: string;
         };
       };
       responses: {
@@ -2321,13 +2428,15 @@ export interface components {
       utxo_count: number;
       /** Count of the withdrawal within the transaction */
       withdrawal_count: number;
+      /** Count of the MIR certificates within the transaction */
+      mir_cert_count: number;
       /** Count of the delegations within the transaction */
       delegation_count: number;
-      /** Count of the stake keys (de)registrations and delegations within the transaction */
+      /** Count of the stake keys (de)registration and delegation certificates within the transaction */
       stake_cert_count: number;
-      /** Count of the stake pool registrations and updates within the transaction */
+      /** Count of the stake pool registration and update certificates within the transaction */
       pool_update_count: number;
-      /** Count of the stake pool retirements within the transaction */
+      /** Count of the stake pool retirement certificates within the transaction */
       pool_retire_count: number;
     };
     tx_content_utxo: {
@@ -2376,6 +2485,16 @@ export interface components {
       /** Bech32 withdrawal address */
       address: string;
       /** Withdrawal amount in Lovelaces */
+      amount: string;
+    }[];
+    tx_content_mirs: {
+      /** Source of MIR funds */
+      pot: "reserve" | "treasury";
+      /** Index of the certificate within the transaction */
+      cert_index: number;
+      /** Bech32 stake address */
+      address: string;
+      /** MIR amount in Lovelaces */
       amount: string;
     }[];
     tx_content_pool_certs: {
@@ -2504,6 +2623,18 @@ export interface components {
       tx_hash: string;
       /** Action in the certificate */
       action: "registered" | "deregistered";
+    }[];
+    account_withdrawal_content: {
+      /** Hash of the transaction containing the withdrawal */
+      tx_hash: string;
+      /** Withdrawal amount in Lovelaces */
+      amount: string;
+    }[];
+    account_mir_content: {
+      /** Hash of the transaction containing the MIR */
+      tx_hash: string;
+      /** MIR amount in Lovelaces */
+      amount: string;
     }[];
     address_content: {
       amount: {

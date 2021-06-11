@@ -404,7 +404,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@blockfrost/blockfrost-js@workspace:."
   dependencies:
-    "@blockfrost/openapi": ^0.1.18
+    "@blockfrost/openapi": ^0.1.19
     "@types/jest": ^26.0.22
     "@types/node": ^14.14.37
     "@types/url-join": ^4.0.0
@@ -435,10 +435,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@blockfrost/openapi@npm:^0.1.18":
-  version: 0.1.18
-  resolution: "@blockfrost/openapi@npm:0.1.18"
-  checksum: f81c360fc3316c63945bdeba385350cb8227e8659ae5aa533c3625abc786409c87a2ec1a0c8d8558c2a7de4090f36cc763ff91d5adadea9d1758dc0f62c48dce
+"@blockfrost/openapi@npm:^0.1.19":
+  version: 0.1.19
+  resolution: "@blockfrost/openapi@npm:0.1.19"
+  checksum: 54ca7967cf9bf0c81c039efb63e923bcf2d07935ae9335ede320d4ac7557eed6d99f35192f7398b6b8b03abfa03aae468f4900168ad201ae11166f20c2bf411f
   languageName: node
   linkType: hard
 

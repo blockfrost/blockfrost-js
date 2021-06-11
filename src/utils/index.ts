@@ -52,3 +52,15 @@ export const handleError = (error: AxiosError) => {
     return error.message;
   }
 };
+
+export const getAdditionalParams = (
+  from: string | null,
+  to: string | null,
+): string => {
+  // from & to parameters don't have default values
+  let additionalParams = '';
+  if (from && to) additionalParams = `from=${from}&to=${to}`;
+  else if (from) additionalParams = `from=${from}`;
+  else if (to) additionalParams = `to=${to}`;
+  return additionalParams;
+};
