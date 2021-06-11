@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getHeaders, handleError } from '../../utils';
+import { getHeaders, getAdditionalParams, handleError } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 import {
@@ -112,11 +112,15 @@ export async function addressesTransactions(
   page = DEFAULT_PAGINATION_PAGE_COUNT,
   count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
   order = DEFAULT_ORDER,
+  from = null,
+  to = null,
 ): Promise<components['schemas']['address_transactions_content'] | []> {
+  const additionalParams: string = getAdditionalParams(from, to);
+
   return new Promise((resolve, reject) => {
     axios
       .get(
-        `${this.apiUrl}/addresses/${address}/transactions?page=${page}&count=${count}&order=${order}`,
+        `${this.apiUrl}/addresses/${address}/transactions?page=${page}&count=${count}&order=${order}&${additionalParams}`,
         {
           headers: getHeaders(this.projectId),
         },
