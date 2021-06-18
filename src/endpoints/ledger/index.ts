@@ -9,7 +9,7 @@ export function ledger(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/genesis`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);

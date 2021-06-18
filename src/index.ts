@@ -100,12 +100,14 @@ import { validateOptions } from './utils';
 class BlockFrostAPI {
   apiUrl: string;
   projectId?: string;
+  userAgent?: string;
 
   constructor(options?: Options) {
     const opts = validateOptions(options);
     const apiBase = opts.isTestnet ? API_URLS.testnet : API_URLS.mainnet;
     this.apiUrl = options?.customBackend || join(apiBase, `v${opts.version}`);
     this.projectId = opts.projectId;
+    this.userAgent = options?.userAgent;
 
     if (opts.retry429) {
       axiosRetry(axios, {

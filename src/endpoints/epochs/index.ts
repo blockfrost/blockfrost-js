@@ -15,7 +15,7 @@ export async function epochs(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/epochs/${number}`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -32,7 +32,7 @@ export async function epochsLatest(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/epochs/latest`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -52,7 +52,7 @@ export async function epochsNext(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/epochs/${number}/next?page=${page}&count=${count}`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -74,7 +74,7 @@ export async function epochsPrevious(
       .get(
         `${this.apiUrl}/epochs/${number}/previous?page=${page}&count=${count}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -97,7 +97,7 @@ export async function epochsStakes(
       .get(
         `${this.apiUrl}/epochs/${number}/stakes?page=${page}&count=${count}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -121,7 +121,7 @@ export async function epochsStakesByPoolId(
       .get(
         `${this.apiUrl}/epochs/${number}/stakes/${poolId}?page=${page}&count=${count}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -145,7 +145,7 @@ export async function epochsBlocks(
       .get(
         `${this.apiUrl}/epochs/${number}/blocks?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -170,7 +170,7 @@ export async function epochsBlocksByPoolId(
       .get(
         `${this.apiUrl}/epochs/${number}/blocks/${poolId}?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -189,7 +189,7 @@ export async function epochsParameters(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/epochs/${number}/parameters`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);

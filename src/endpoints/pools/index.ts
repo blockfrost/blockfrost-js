@@ -17,7 +17,7 @@ export async function pools(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/pools?page=${page}&count=${count}&order=${order}`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -39,7 +39,7 @@ export async function poolsRetired(
       .get(
         `${this.apiUrl}/pools/retired?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -62,7 +62,7 @@ export async function poolsRetiring(
       .get(
         `${this.apiUrl}/pools/retiring?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -81,7 +81,7 @@ export async function poolsById(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/pools/${poolId}`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -104,7 +104,7 @@ export async function poolsByIdHistory(
       .get(
         `${this.apiUrl}/pools/${poolId}/history?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -123,7 +123,7 @@ export async function poolMetadata(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/pools/${poolId}/metadata`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -141,7 +141,7 @@ export async function poolsByIdRelays(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/pools/${poolId}/relays`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -164,7 +164,7 @@ export async function poolsByIdDelegators(
       .get(
         `${this.apiUrl}/pools/${poolId}/delegators?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -188,7 +188,7 @@ export async function poolsByIdBlocks(
       .get(
         `${this.apiUrl}/pools/${poolId}/blocks?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -212,7 +212,7 @@ export async function poolsByIdUpdates(
       .get(
         `${this.apiUrl}/pools/${poolId}/updates?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {

@@ -16,7 +16,7 @@ export async function blocks(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/blocks/${hashOrNumber}`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -33,7 +33,7 @@ export async function blocksLatest(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/blocks/latest`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -54,7 +54,7 @@ export async function blocksNext(
     axios
       .get(
         `${this.apiUrl}/blocks/${hashOrNumber}/next?page=${page}&count=${count}`,
-        { headers: getHeaders(this.projectId) },
+        { headers: getHeaders(this) },
       )
       .then(resp => {
         resolve(resp.data);
@@ -75,7 +75,7 @@ export async function blocksPrevious(
     axios
       .get(
         `${this.apiUrl}/blocks/${hashOrNumber}/previous?page=${page}&count=${count}`,
-        { headers: getHeaders(this.projectId) },
+        { headers: getHeaders(this) },
       )
       .then(resp => {
         resolve(resp.data);
@@ -97,7 +97,7 @@ export async function blocksTxs(
     axios
       .get(
         `${this.apiUrl}/blocks/${hashOrNumber}/txs?page=${page}&count=${count}&order=${order}`,
-        { headers: getHeaders(this.projectId) },
+        { headers: getHeaders(this) },
       )
       .then(resp => {
         resolve(resp.data);

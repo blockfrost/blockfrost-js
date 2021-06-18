@@ -6,7 +6,7 @@ export function health(this: BlockFrostAPI): Promise<{ is_healthy: boolean }> {
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/health`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -23,7 +23,7 @@ export function healthClock(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/health/clock`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
