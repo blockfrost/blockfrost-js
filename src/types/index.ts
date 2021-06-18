@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 type OptionCombination1 = { projectId: string; customBackend?: string };
 type OptionCombination2 = { projectId?: string; customBackend: string };
 type AdditionalOptions = {
@@ -24,8 +26,18 @@ export interface Headers {
 
 export type HashOrNumber = string | number;
 
-export interface ErrorType {
-  statusCode: string;
-  message: string;
-  error: string;
+export type ErrorType =
+  | {
+      status_code: number;
+      message: string;
+      error: string;
+    }
+  | {
+      errno: number;
+      message: string;
+      code: string;
+    };
+
+export interface ExtendedAxiosError extends AxiosError {
+  errno: number;
 }

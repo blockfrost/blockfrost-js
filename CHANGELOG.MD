@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- FABULOUS error responses
 - openapi 0.1.19
 - addressesTransactions endpoint to accept new from and to parameters (cursor)
 - changed delay between requests to 1s on 429
