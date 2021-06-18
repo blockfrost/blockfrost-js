@@ -17,7 +17,7 @@ export async function assets(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/assets?page=${page}&count=${count}&order=${order}`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -33,7 +33,7 @@ export async function assetsById(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/assets/${asset}`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -54,7 +54,7 @@ export async function assetsHistory(
       .get(
         `${this.apiUrl}/assets/${asset}/history?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -76,7 +76,7 @@ export async function assetsTxs(
       .get(
         `${this.apiUrl}/assets/${asset}/txs?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -98,7 +98,7 @@ export async function assetsTransactions(
       .get(
         `${this.apiUrl}/assets/${asset}/transactions?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -120,7 +120,7 @@ export async function assetsAddresses(
       .get(
         `${this.apiUrl}/assets/${asset}/addresses?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -142,7 +142,7 @@ export async function assetsPolicyById(
       .get(
         `${this.apiUrl}/assets/policy/${policy}?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {

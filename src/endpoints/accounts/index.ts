@@ -15,7 +15,7 @@ export async function accounts(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/accounts/${stakeAddress}`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -36,7 +36,7 @@ export async function accountsRewards(
       .get(
         `${this.apiUrl}/accounts/${stakeAddress}/rewards?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -58,7 +58,7 @@ export async function accountsHistory(
       .get(
         `${this.apiUrl}/accounts/${stakeAddress}/history?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -80,7 +80,7 @@ export async function accountsDelegations(
       .get(
         `${this.apiUrl}/accounts/${stakeAddress}/delegations?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -102,7 +102,7 @@ export async function accountsRegistrations(
       .get(
         `${this.apiUrl}/accounts/${stakeAddress}/registrations?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -124,7 +124,7 @@ export async function accountsAddresses(
       .get(
         `${this.apiUrl}/accounts/${stakeAddress}/addresses?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {

@@ -8,7 +8,7 @@ export async function root(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);

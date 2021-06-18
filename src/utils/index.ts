@@ -1,6 +1,7 @@
 import { DEFAULT_API_VERSION } from '../config';
 import { Headers, Options, ValidatedOptions } from '../types';
 import { AxiosError } from 'axios';
+import { BlockFrostAPI } from '..';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
   if (!options || (!options.customBackend && !options.projectId)) {
@@ -25,21 +26,23 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
 };
 
 export const getHeaders = (
-  projectId?: string,
+  api?: BlockFrostAPI,
   isTxSubmit = false,
 ): Headers | null => {
-  if (!projectId) {
+  if (!api?.projectId) {
     return null;
   }
 
   // headers needed for /tx/submit endpoint
-  const additionalHeaders = isTxSubmit
-    ? { 'Content-type': 'application/cbor' }
+  const cborHeader = isTxSubmit ? { 'Content-type': 'application/cbor' } : null;
+  const userAgentHeader = api.userAgent
+    ? { 'User-Agent': api.userAgent }
     : null;
 
   return {
-    project_id: projectId,
-    ...additionalHeaders,
+    project_id: api.projectId,
+    ...cborHeader,
+    ...userAgentHeader,
   };
 };
 

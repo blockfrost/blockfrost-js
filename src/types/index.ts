@@ -4,6 +4,7 @@ type AdditionalOptions = {
   isTestnet?: boolean;
   version?: number;
   retry429?: boolean;
+  userAgent?: string;
 };
 
 export type Options = (OptionCombination1 | OptionCombination2) &

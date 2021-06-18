@@ -45,8 +45,22 @@ describe('utils', () => {
   });
 
   test('getHeaders', () => {
-    expect(utils.getHeaders('xxx')).toEqual({
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+    });
+    expect(utils.getHeaders(api)).toEqual({
       project_id: 'xxx',
+    });
+  });
+
+  test('getHeaders with userAgent', () => {
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+      userAgent: 'yyy',
+    });
+    expect(utils.getHeaders(api)).toEqual({
+      project_id: 'xxx',
+      'User-Agent': 'yyy',
     });
   });
 

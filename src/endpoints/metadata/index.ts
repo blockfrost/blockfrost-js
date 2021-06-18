@@ -19,7 +19,7 @@ export async function metadataTxsLabels(
       .get(
         `${this.apiUrl}/metadata/txs/labels?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -43,7 +43,7 @@ export async function metadataTxsLabel(
       .get(
         `${this.apiUrl}/metadata/txs/labels/${label}?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -67,7 +67,7 @@ export async function metadataTxsLabelCbor(
       .get(
         `${this.apiUrl}/metadata/txs/labels/${label}/cbor?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {

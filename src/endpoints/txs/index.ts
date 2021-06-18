@@ -10,7 +10,7 @@ export async function txs(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/txs/${hash}`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -28,7 +28,7 @@ export async function txsUtxos(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/txs/${hash}/utxos`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -46,7 +46,7 @@ export async function txsStakes(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/txs/${hash}/stakes`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -64,7 +64,7 @@ export async function txsDelegations(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/txs/${hash}/delegations`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -82,7 +82,7 @@ export async function txsWithdrawals(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/txs/${hash}/withdrawals`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -100,7 +100,7 @@ export async function txsPoolUpdates(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/txs/${hash}/pool_updates`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -118,7 +118,7 @@ export async function txsPoolRetires(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/txs/${hash}/pool_retires`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -136,7 +136,7 @@ export async function txsMetadata(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/txs/${hash}/metadata`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -154,7 +154,7 @@ export async function txsMetadataCbor(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/txs/${hash}/metadata/cbor`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -172,7 +172,7 @@ export async function txSubmit(
   return new Promise((resolve, reject) => {
     axios
       .post(`${this.apiUrl}/tx/submit`, transaction, {
-        headers: getHeaders(this.projectId, true),
+        headers: getHeaders(this, true),
       })
       .then(resp => {
         resolve(resp.data);

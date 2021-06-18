@@ -9,7 +9,7 @@ export async function metrics(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/metrics`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -26,7 +26,7 @@ export async function metricsEndpoints(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/metrics/endpoints`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);

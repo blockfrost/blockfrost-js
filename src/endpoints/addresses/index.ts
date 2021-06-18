@@ -15,7 +15,7 @@ export async function addresses(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/addresses/${address}`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -31,7 +31,7 @@ export async function addressesTotal(
   return new Promise((resolve, reject) => {
     axios
       .get(`${this.apiUrl}/addresses/${address}/total`, {
-        headers: getHeaders(this.projectId),
+        headers: getHeaders(this),
       })
       .then(resp => {
         resolve(resp.data);
@@ -52,7 +52,7 @@ export async function addressesTxs(
       .get(
         `${this.apiUrl}/addresses/${address}/txs?page=${page}&count=${count}&order=${order}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -122,7 +122,7 @@ export async function addressesTransactions(
       .get(
         `${this.apiUrl}/addresses/${address}/transactions?page=${page}&count=${count}&order=${order}&${additionalParams}`,
         {
-          headers: getHeaders(this.projectId),
+          headers: getHeaders(this),
         },
       )
       .then(resp => {
@@ -187,7 +187,7 @@ export async function addressesUtxos(
     axios
       .get(
         `${this.apiUrl}/addresses/${address}/utxos?page=${page}&count=${count}&order=${order}`,
-        { headers: getHeaders(this.projectId) },
+        { headers: getHeaders(this) },
       )
       .then(resp => {
         resolve(resp.data);
