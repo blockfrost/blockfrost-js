@@ -112,7 +112,7 @@ class BlockFrostAPI {
     if (opts.retry429) {
       axiosRetry(axios, {
         retries: 20,
-        retryDelay: axiosRetry.exponentialDelay,
+        retryDelay: () => 1000,
         retryCondition: err => {
           return err.response?.status === 429;
         },

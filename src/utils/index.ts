@@ -46,7 +46,7 @@ export const getHeaders = (
   };
 };
 
-export const handleError = (error: AxiosError) => {
+export const handleError = (error: AxiosError): unknown => {
   if (error.response) {
     return error.response;
   } else if (error.request) {
