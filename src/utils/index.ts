@@ -1,6 +1,11 @@
 import { DEFAULT_API_VERSION } from '../config';
-import { Headers, Options, ValidatedOptions } from '../types';
-import { AxiosError } from 'axios';
+import {
+  ErrorType,
+  ExtendedAxiosError,
+  Headers,
+  Options,
+  ValidatedOptions,
+} from '../types';
 import { BlockFrostAPI } from '..';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
@@ -46,11 +51,20 @@ export const getHeaders = (
   };
 };
 
-export const handleError = (error: AxiosError): unknown => {
+export const handleError = (error: ExtendedAxiosError): ErrorType | string => {
+  if (error.code && error.errno) {
+    // system errors such as -3008 ENOTFOUND
+    return {
+      errno: error.errno, // -3008
+      code: error.code, // ENOTFOUND
+      message: error.message, // getaddrinfo ENOTFOUND cardano-testnet.blockfrost.io'
+    };
+  }
+
   if (error.response) {
-    return error.response;
+    return error.response.data;
   } else if (error.request) {
-    return error.request;
+    return error.request.data;
   } else {
     return error.message;
   }
