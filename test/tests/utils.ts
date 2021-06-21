@@ -1,5 +1,6 @@
 import { BlockFrostAPI } from '../../src/index';
 import * as utils from '../../src/utils';
+import * as packageJson from '../../package.json';
 
 describe('utils', () => {
   test('no options', () => {
@@ -50,6 +51,7 @@ describe('utils', () => {
     });
     expect(utils.getHeaders(api)).toEqual({
       project_id: 'xxx',
+      'User-Agent': `${packageJson.name}@${packageJson.version}`,
     });
   });
 

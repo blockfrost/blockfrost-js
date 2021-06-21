@@ -96,6 +96,7 @@ import {
 import { Options } from './types';
 import join from 'url-join';
 import { validateOptions } from './utils';
+import * as packageJson from '../package.json';
 
 class BlockFrostAPI {
   apiUrl: string;
@@ -107,7 +108,8 @@ class BlockFrostAPI {
     const apiBase = opts.isTestnet ? API_URLS.testnet : API_URLS.mainnet;
     this.apiUrl = options?.customBackend || join(apiBase, `v${opts.version}`);
     this.projectId = opts.projectId;
-    this.userAgent = options?.userAgent;
+    this.userAgent =
+      options?.userAgent ?? `${packageJson.name}@${packageJson.version}`;
 
     if (opts.retry429) {
       axiosRetry(axios, {
