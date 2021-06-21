@@ -112,8 +112,8 @@ export async function addressesTransactions(
   page = DEFAULT_PAGINATION_PAGE_COUNT,
   count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
   order = DEFAULT_ORDER,
-  from = null,
-  to = null,
+  from: string | undefined,
+  to: string | undefined,
 ): Promise<components['schemas']['address_transactions_content'] | []> {
   const additionalParams: string = getAdditionalParams(from, to);
 
@@ -154,7 +154,14 @@ export async function addressesTransactionsAll(
 
   while (shouldRun) {
     for (let i = 0; i < batchSize; i++) {
-      const promise = this.addressesTransactions(address, page, count, order);
+      const promise = this.addressesTransactions(
+        address,
+        page,
+        count,
+        order,
+        undefined,
+        undefined,
+      );
 
       promisesBundle.push(promise);
       page++;

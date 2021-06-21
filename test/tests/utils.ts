@@ -67,11 +67,11 @@ describe('utils', () => {
   });
 
   test('getAdditionalParams', () => {
-    expect(utils.getAdditionalParams(null, null)).toEqual('');
-    expect(utils.getAdditionalParams('100', null)).toEqual('from=100');
-    expect(utils.getAdditionalParams('100:1', null)).toEqual('from=100:1');
-    expect(utils.getAdditionalParams(null, '200')).toEqual('to=200');
-    expect(utils.getAdditionalParams(null, '200:2')).toEqual('to=200:2');
+    expect(utils.getAdditionalParams(undefined, undefined)).toEqual('');
+    expect(utils.getAdditionalParams('100', undefined)).toEqual('from=100');
+    expect(utils.getAdditionalParams('100:1', undefined)).toEqual('from=100:1');
+    expect(utils.getAdditionalParams(undefined, '200')).toEqual('to=200');
+    expect(utils.getAdditionalParams(undefined, '200:2')).toEqual('to=200:2');
     expect(utils.getAdditionalParams('100', '200')).toEqual('from=100&to=200');
     expect(utils.getAdditionalParams('100:1', '200')).toEqual(
       'from=100:1&to=200',

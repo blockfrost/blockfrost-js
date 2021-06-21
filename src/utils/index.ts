@@ -71,8 +71,8 @@ export const handleError = (error: ExtendedAxiosError): ErrorType | string => {
 };
 
 export const getAdditionalParams = (
-  from: string | null,
-  to: string | null,
+  from: string | undefined,
+  to: string | undefined,
 ): string => {
   // from & to parameters don't have default values
   let additionalParams = '';
