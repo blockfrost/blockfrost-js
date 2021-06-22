@@ -115,9 +115,6 @@ class BlockFrostAPI {
     this.userAgent =
       options?.userAgent ?? `${packageJson.name}@${packageJson.version}`;
 
-    // axios request timeout for 120s
-    axios.defaults.timeout = 120 * 1000;
-
     if (opts.retry429) {
       axiosRetry(axios, {
         retries: 20,
