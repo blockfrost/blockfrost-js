@@ -1,6 +1,6 @@
 {
   "name": "@blockfrost/blockfrost-js",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "files": [
     "lib/**/*.js",
@@ -13,7 +13,7 @@
   ],
   "license": "Apache-2.0",
   "author": "blockfrost.io",
-  "main": "lib/src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": "yarn clean && tsc",
     "prepublishOnly": "yarn build",

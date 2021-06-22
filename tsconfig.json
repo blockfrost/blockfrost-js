@@ -19,10 +19,8 @@
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*"],
   "exclude": ["./src/types/OpenApi.ts"],
-  "outDir": "lib"
 }

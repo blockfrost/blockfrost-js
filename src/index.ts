@@ -96,7 +96,8 @@ import {
 import { Options } from './types';
 import join from 'url-join';
 import { validateOptions } from './utils';
-import * as packageJson from '../package.json';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const packageJson = require('../package.json');
 
 class BlockFrostAPI {
   apiUrl: string;
