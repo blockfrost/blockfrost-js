@@ -68,6 +68,50 @@ export async function accountsHistory(
   });
 }
 
+export async function accountsWithdrawals(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
+): Promise<components['schemas']['account_withdrawal_content']> {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(
+        `${this.apiUrl}/accounts/${stakeAddress}/withdrawals?page=${page}&count=${count}&order=${order}`,
+        {
+          headers: getHeaders(this),
+        },
+      )
+      .then(resp => {
+        resolve(resp.data);
+      })
+      .catch(err => reject(handleError(err)));
+  });
+}
+
+export async function accountsMirs(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  page = DEFAULT_PAGINATION_PAGE_COUNT,
+  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  order = DEFAULT_ORDER,
+): Promise<components['schemas']['account_mir_content']> {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(
+        `${this.apiUrl}/accounts/${stakeAddress}/mirs?page=${page}&count=${count}&order=${order}`,
+        {
+          headers: getHeaders(this),
+        },
+      )
+      .then(resp => {
+        resolve(resp.data);
+      })
+      .catch(err => reject(handleError(err)));
+  });
+}
+
 export async function accountsDelegations(
   this: BlockFrostAPI,
   stakeAddress: string,

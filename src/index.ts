@@ -12,6 +12,8 @@ import {
   accountsRegistrations,
   accountsRewards,
   accountsHistory,
+  accountsWithdrawals,
+  accountsMirs,
   accountsAddresses,
 } from './endpoints/accounts';
 
@@ -89,6 +91,7 @@ import {
   txsStakes,
   txsUtxos,
   txsWithdrawals,
+  txsMirs,
   txsMetadata,
   txSubmit,
 } from './endpoints/txs';
@@ -167,6 +170,24 @@ class BlockFrostAPI {
    *
    */
   accountsHistory = accountsHistory;
+
+  /**
+   * accountsWithdrawals - Obtain information about the withdrawals of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the withdrawals of a specific account.
+   *
+   */
+  accountsWithdrawals = accountsWithdrawals;
+
+  /**
+   * accountsMirs - Obtain information about the MIRs of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the MIRs of a specific account.
+   *
+   */
+  accountsMirs = accountsMirs;
 
   /**
    * accountsAddresses - Obtain information about the addresses of a specific account.
@@ -676,6 +697,15 @@ class BlockFrostAPI {
    *
    */
   txsWithdrawals = txsWithdrawals;
+
+  /**
+   * txsMirs
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  txsMirs = txsMirs;
 
   /**
    * txsMetadata

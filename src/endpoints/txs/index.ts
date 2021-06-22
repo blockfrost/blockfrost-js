@@ -93,6 +93,24 @@ export async function txsWithdrawals(
   });
 }
 
+export async function txsMirs(
+  this: BlockFrostAPI,
+  hash: string,
+): Promise<components['schemas']['tx_content_mirs']> {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${this.apiUrl}/txs/${hash}/mirs`, {
+        headers: getHeaders(this),
+      })
+      .then(resp => {
+        resolve(resp.data);
+      })
+      .catch(err => {
+        reject(handleError(err));
+      });
+  });
+}
+
 export async function txsPoolUpdates(
   this: BlockFrostAPI,
   hash: string,
