@@ -117,9 +117,9 @@ export async function blocksTxsAll(
   let page = 1;
   const res: components['schemas']['block_content_txs'] = [];
   let shouldRun = true;
-  const promisesBundle: Promise<
-    components['schemas']['block_content_txs']
-  >[] = [];
+
+  const promisesBundle: Promise<components['schemas']['block_content_txs']>[] =
+    [];
 
   while (shouldRun) {
     for (let i = 0; i < batchSize; i++) {
