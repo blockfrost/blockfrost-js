@@ -116,7 +116,7 @@ class BlockFrostAPI {
       : API_URLS.mainnet;
 
     this.apiUrl =
-      options?.customBackend || join(apiBase, `v${this.options.version}`);
+      this.options?.customBackend || join(apiBase, `v${this.options.version}`);
 
     this.projectId = this.options.projectId;
 
