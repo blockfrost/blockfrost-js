@@ -96,7 +96,7 @@ import {
   txSubmit,
 } from './endpoints/txs';
 
-import { Options } from './types';
+import { Options, ValidatedOptions } from './types';
 import join from 'url-join';
 import { validateOptions } from './utils';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -106,24 +106,34 @@ class BlockFrostAPI {
   apiUrl: string;
   projectId?: string;
   userAgent?: string;
+  options: ValidatedOptions;
 
   constructor(options?: Options) {
-    const opts = validateOptions(options);
-    const apiBase = opts.isTestnet ? API_URLS.testnet : API_URLS.mainnet;
-    this.apiUrl = options?.customBackend || join(apiBase, `v${opts.version}`);
-    this.projectId = opts.projectId;
+    this.options = validateOptions(options);
+
+    const apiBase = this.options.isTestnet
+      ? API_URLS.testnet
+      : API_URLS.mainnet;
+
+    this.apiUrl =
+      options?.customBackend || join(apiBase, `v${this.options.version}`);
+
+    this.projectId = this.options.projectId;
+
     this.userAgent =
       options?.userAgent ?? `${packageJson.name}@${packageJson.version}`;
 
-    if (opts.retry429) {
+    if (this.options.retry429) {
       axiosRetry(axios, {
-        retries: 20,
-        retryDelay: () => 1000,
+        retries: this.options.retryCount,
+        retryDelay: () => this.options.retryDelay,
         retryCondition: err => {
           return err.response?.status === 429;
         },
       });
     }
+
+    axios.defaults.timeout = this.options.requestTimeout;
   }
 
   /**

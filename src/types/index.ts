@@ -7,6 +7,9 @@ type AdditionalOptions = {
   version?: number;
   retry429?: boolean;
   userAgent?: string;
+  requestTimeout?: number;
+  retryCount?: number;
+  retryDelay?: number;
 };
 
 export type Options = (OptionCombination1 | OptionCombination2) &
@@ -18,6 +21,9 @@ export interface ValidatedOptions {
   isTestnet?: boolean;
   version: number;
   retry429: boolean;
+  requestTimeout: number;
+  retryCount: number;
+  retryDelay: number;
 }
 
 export interface Headers {
