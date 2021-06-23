@@ -6,6 +6,7 @@ import {
   Options,
   ValidatedOptions,
 } from '../types';
+
 import { BlockFrostAPI } from '..';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
@@ -21,12 +22,27 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     throw Error('Param version is not a number');
   }
 
+  if (options.requestTimeout && isNaN(options.requestTimeout)) {
+    throw Error('Param requestTimeout is not a number');
+  }
+
+  if (options.retryDelay && isNaN(options.retryDelay)) {
+    throw Error('Param retryDelay is not a number');
+  }
+
+  if (options.retryCount && isNaN(options.retryCount)) {
+    throw Error('Param retryCount is not a number');
+  }
+
   return {
     customBackend: options.customBackend,
     projectId: options.projectId,
     isTestnet: options.isTestnet,
     version: options.version || DEFAULT_API_VERSION,
     retry429: options.retry429 || true,
+    retryCount: options.retryCount ?? 20,
+    retryDelay: options.retryDelay ?? 1000, // 1 second
+    requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
   };
 };
 

@@ -46,6 +46,95 @@ describe('utils', () => {
     expect(api.apiUrl).toBe('http://customBackend.com');
   });
 
+  test('retryCount', () => {
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+      retryCount: 1,
+    });
+
+    expect(api.options).toEqual({
+      customBackend: undefined,
+      isTestnet: undefined,
+      projectId: 'xxx',
+      requestTimeout: 20000,
+      retry429: true,
+      retryCount: 1,
+      retryDelay: 1000,
+      version: 0,
+    });
+  });
+
+  test('retryDelay', () => {
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+      retryDelay: 1,
+    });
+
+    expect(api.options).toEqual({
+      customBackend: undefined,
+      isTestnet: undefined,
+      projectId: 'xxx',
+      requestTimeout: 20000,
+      retry429: true,
+      retryCount: 20,
+      retryDelay: 1,
+      version: 0,
+    });
+  });
+
+  test('retryDelay 0', () => {
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+      retryDelay: 0,
+    });
+
+    expect(api.options).toEqual({
+      customBackend: undefined,
+      isTestnet: undefined,
+      projectId: 'xxx',
+      requestTimeout: 20000,
+      retry429: true,
+      retryCount: 20,
+      retryDelay: 0,
+      version: 0,
+    });
+  });
+
+  test('default options', () => {
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+    });
+
+    expect(api.options).toEqual({
+      customBackend: undefined,
+      isTestnet: undefined,
+      projectId: 'xxx',
+      requestTimeout: 20000,
+      retry429: true,
+      retryCount: 20,
+      retryDelay: 1000,
+      version: 0,
+    });
+  });
+
+  test('requestTimeout', () => {
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+      requestTimeout: 1,
+    });
+
+    expect(api.options).toEqual({
+      customBackend: undefined,
+      isTestnet: undefined,
+      projectId: 'xxx',
+      requestTimeout: 1,
+      retry429: true,
+      retryCount: 20,
+      retryDelay: 1000,
+      version: 0,
+    });
+  });
+
   test('getHeaders', () => {
     const api = new BlockFrostAPI({
       projectId: 'xxx',
