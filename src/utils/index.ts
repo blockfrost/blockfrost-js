@@ -62,11 +62,33 @@ export const handleError = (error: ExtendedAxiosError): ErrorType | string => {
   }
 
   if (error.response) {
-    return error.response.data;
+    if (
+      typeof error.response.data === 'object' &&
+      error.response.data?.status_code
+    ) {
+      // response.data is already properly formatted
+      return error.response.data;
+    }
+
+    // response.data may contain html output (eg. errors returned by nginx)
+    const statusCode = error.response.status;
+    const statusText = error.response.statusText;
+    return {
+      status_code: statusCode,
+      message: `${statusCode}: ${statusText}`,
+      error: statusText,
+    };
   } else if (error.request) {
-    return error.request.data;
-  } else {
+    const jsonError = error.toJSON() as { message?: string; error?: string };
+    const message =
+      jsonError.message ?? 'Unexpected error while sending a request';
+    const errorName = jsonError.error ?? 'Error';
+    return `${errorName}: ${message}`;
+  } else if (error.message) {
     return error.message;
+  } else {
+    // we shouldn't get here, but just to be safe...
+    return 'Unexpected error';
   }
 };
 
