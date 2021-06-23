@@ -82,6 +82,24 @@ describe('utils', () => {
     });
   });
 
+  test('retryDelay 0', () => {
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+      retryDelay: 0,
+    });
+
+    expect(api.options).toEqual({
+      customBackend: undefined,
+      isTestnet: undefined,
+      projectId: 'xxx',
+      requestTimeout: 20000,
+      retry429: true,
+      retryCount: 20,
+      retryDelay: 0,
+      version: 0,
+    });
+  });
+
   test('default options', () => {
     const api = new BlockFrostAPI({
       projectId: 'xxx',

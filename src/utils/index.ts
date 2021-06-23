@@ -40,9 +40,9 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     isTestnet: options.isTestnet,
     version: options.version || DEFAULT_API_VERSION,
     retry429: options.retry429 || true,
-    retryCount: options.retryCount || 20,
-    retryDelay: options.retryDelay || 1000, // 1 second
-    requestTimeout: options.requestTimeout || 20000, // 20 seconds
+    retryCount: options.retryCount ?? 20,
+    retryDelay: options.retryDelay ?? 1000, // 1 second
+    requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
   };
 };
 
