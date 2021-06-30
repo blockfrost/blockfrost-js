@@ -185,11 +185,17 @@ export async function txsMetadataCbor(
 
 export async function txSubmit(
   this: BlockFrostAPI,
-  transaction: Uint8Array,
+  transaction: Uint8Array | string,
 ): Promise<string> {
+  let tx = transaction;
+
+  if (typeof transaction === 'string') {
+    tx = Uint8Array.from(Buffer.from(transaction, 'hex'));
+  }
+
   return new Promise((resolve, reject) => {
     axios
-      .post(`${this.apiUrl}/tx/submit`, transaction, {
+      .post(`${this.apiUrl}/tx/submit`, tx, {
         headers: getHeaders(this, true),
       })
       .then(resp => {
