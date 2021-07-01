@@ -116,35 +116,25 @@ export async function blocksTxsAll(
 ): Promise<components['schemas']['block_content_txs']> {
   let page = 1;
   const res: components['schemas']['block_content_txs'] = [];
-  let shouldRun = true;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
 
-  const promisesBundle: Promise<components['schemas']['block_content_txs']>[] =
-    [];
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.blocksTxs(hashOrNumber, page + i, count, order),
+    );
+    page += batchSize;
+    return promises;
+  };
 
-  while (shouldRun) {
-    for (let i = 0; i < batchSize; i++) {
-      const promise = this.blocksTxs(
-        hashOrNumber,
-        page,
-        DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-        order,
-      );
-      promisesBundle.push(promise);
-      page++;
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
     }
-
-    const result = await Promise.all(promisesBundle).then(values => {
-      values.map(batch => {
-        if (batch.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-          shouldRun = false;
-        }
-      });
-
-      return values.flat();
-    });
-
-    if (!shouldRun) return result;
   }
-
-  return res;
 }

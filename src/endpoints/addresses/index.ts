@@ -46,7 +46,7 @@ export async function addressesTxs(
   page = DEFAULT_PAGINATION_PAGE_COUNT,
   count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
   order = DEFAULT_ORDER,
-): Promise<components['schemas']['address_txs_content'] | []> {
+): Promise<components['schemas']['address_txs_content']> {
   return new Promise((resolve, reject) => {
     axios
       .get(
@@ -73,37 +73,30 @@ export async function addressesTxsAll(
   address: string,
   order = DEFAULT_ORDER,
   batchSize = 10,
-): Promise<components['schemas']['address_txs_content'] | []> {
+): Promise<components['schemas']['address_txs_content']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['address_txs_content'] | [] = [];
-  let shouldRun = true;
-  const promisesBundle: Promise<
-    components['schemas']['address_txs_content'] | []
-  >[] = [];
+  const res: components['schemas']['address_txs_content'] = [];
 
-  while (shouldRun) {
-    for (let i = 0; i < batchSize; i++) {
-      const promise = this.addressesTxs(address, page, count, order);
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.addressesTxs(address, page + i, count, order),
+    );
+    page += batchSize;
+    return promises;
+  };
 
-      promisesBundle.push(promise);
-      page++;
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
     }
-
-    const result = await Promise.all(promisesBundle).then(values => {
-      values.map(batch => {
-        if (batch.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-          shouldRun = false;
-        }
-      });
-
-      return values.flat();
-    });
-
-    if (!shouldRun) return result;
   }
-
-  return res;
 }
 
 export async function addressesTransactions(
@@ -114,7 +107,7 @@ export async function addressesTransactions(
   order = DEFAULT_ORDER,
   from: string | undefined,
   to: string | undefined,
-): Promise<components['schemas']['address_transactions_content'] | []> {
+): Promise<components['schemas']['address_transactions_content']> {
   const additionalParams: string = getAdditionalParams(from, to);
 
   return new Promise((resolve, reject) => {
@@ -143,44 +136,37 @@ export async function addressesTransactionsAll(
   address: string,
   order = DEFAULT_ORDER,
   batchSize = 10,
-): Promise<components['schemas']['address_transactions_content'] | []> {
+): Promise<components['schemas']['address_transactions_content']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['address_transactions_content'] | [] = [];
-  let shouldRun = true;
-  const promisesBundle: Promise<
-    components['schemas']['address_transactions_content'] | []
-  >[] = [];
+  const res: components['schemas']['address_transactions_content'] = [];
 
-  while (shouldRun) {
-    for (let i = 0; i < batchSize; i++) {
-      const promise = this.addressesTransactions(
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.addressesTransactions(
         address,
-        page,
+        page + i,
         count,
         order,
         undefined,
         undefined,
-      );
+      ),
+    );
+    page += batchSize;
+    return promises;
+  };
 
-      promisesBundle.push(promise);
-      page++;
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
     }
-
-    const result = await Promise.all(promisesBundle).then(values => {
-      values.map(batch => {
-        if (batch.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-          shouldRun = false;
-        }
-      });
-
-      return values.flat();
-    });
-
-    if (!shouldRun) return result;
   }
-
-  return res;
 }
 
 export async function addressesUtxos(
@@ -211,36 +197,29 @@ export async function addressesUtxosAll(
 ): Promise<components['schemas']['address_utxo_content']> {
   let page = 1;
   const res: components['schemas']['address_utxo_content'] = [];
-  let shouldRun = true;
-  const promisesBundle: Promise<
-    components['schemas']['address_utxo_content']
-  >[] = [];
 
-  while (shouldRun) {
-    for (let i = 0; i < batchSize; i++) {
-      const promise = this.addressesUtxos(
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.addressesUtxos(
         address,
-        page,
+        page + i,
         DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
         order,
-      );
+      ),
+    );
+    page += batchSize;
+    return promises;
+  };
 
-      promisesBundle.push(promise);
-      page++;
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
     }
-
-    const result = await Promise.all(promisesBundle).then(values => {
-      values.map(batch => {
-        if (batch.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-          shouldRun = false;
-        }
-      });
-
-      return values.flat();
-    });
-
-    if (!shouldRun) return result;
   }
-
-  return res;
 }
