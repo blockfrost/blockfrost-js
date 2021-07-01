@@ -24,7 +24,7 @@
     "test": "jest -c jest.config.js"
   },
   "dependencies": {
-    "@blockfrost/openapi": "^0.1.21",
+    "@blockfrost/openapi": "^0.1.22",
     "@yarnpkg/pnpify": "3.0.0-rc.6",
     "axios": "^0.21.1",
     "axios-retry": "^3.1.9",

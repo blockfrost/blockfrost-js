@@ -2261,6 +2261,136 @@ export interface paths {
       };
     };
   };
+  "/nutlink/{address}": {
+    /** List metadata about specific address */
+    get: {
+      parameters: {
+        path: {
+          address: string;
+        };
+      };
+      responses: {
+        /** Return the metadata about metadata oracle */
+        200: {
+          content: {
+            "application/json": components["schemas"]["nutlink_address"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/nutlink/{address}/tickers": {
+    /** List tickers for a specific metadata oracle */
+    get: {
+      parameters: {
+        path: {
+          address: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the tickers provided by the metadata oracle */
+        200: {
+          content: {
+            "application/json": components["schemas"]["nutlink_address_tickers"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/nutlink/{address}/tickers/{ticker}": {
+    /** List of records of a specific ticker */
+    get: {
+      parameters: {
+        path: {
+          address: string;
+          ticker: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the tickers provided by the metadata oracle */
+        200: {
+          content: {
+            "application/json": components["schemas"]["nutlink_address_ticker"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/nutlink/tickers/{ticker}": {
+    /** List of records of a specific ticker */
+    get: {
+      parameters: {
+        path: {
+          ticker: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the tickers provided by the metadata oracle */
+        200: {
+          content: {
+            "application/json": components["schemas"]["nutlink_tickers_ticker"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
 }
 
 export interface components {
@@ -2895,6 +3025,54 @@ export interface components {
       /** Endpoint parent name */
       endpoint: string;
     }[];
+    nutlink_address: {
+      /** URL do specific metadata file */
+      metadata_url: string;
+      /** Hash of the metadata file */
+      metadata_hash: string;
+      /** The cached metadata of the `metadata_url` file. */
+      metadata: { [key: string]: any } | null;
+    };
+    nutlink_address_ticker: {
+      /** Hash of the transaction */
+      tx_hash: string;
+      /** Block height of the record */
+      block_height: number;
+      /** Transaction index within the block */
+      tx_index: number;
+      /** Content of the ticker */
+      payload: (Partial<string> &
+        Partial<{ [key: string]: any }> &
+        Partial<{ [key: string]: any }[]> &
+        Partial<number> &
+        Partial<number> &
+        Partial<boolean>) & { [key: string]: any };
+    }[];
+    nutlink_address_tickers: {
+      /** Name of the ticker */
+      name: string;
+      /** Number of ticker records */
+      count: number;
+      /** Block height of the latest record */
+      latest_block: number;
+    }[];
+    nutlink_tickers_ticker: {
+      /** Address of a metadata oracle */
+      address: string;
+      /** Hash of the transaction */
+      tx_hash: string;
+      /** Block height of the record */
+      block_height: number;
+      /** Transaction index within the block */
+      tx_index: number;
+      /** Content of the ticker */
+      payload: (Partial<string> &
+        Partial<{ [key: string]: any }> &
+        Partial<{ [key: string]: any }[]> &
+        Partial<number> &
+        Partial<number> &
+        Partial<boolean>) & { [key: string]: any };
+    }[];
     empty_object: { [key: string]: any };
   };
   responses: {
@@ -2962,3 +3140,5 @@ export interface components {
 }
 
 export interface operations {}
+
+export interface external {}
