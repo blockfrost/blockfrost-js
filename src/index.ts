@@ -1,10 +1,10 @@
 import { API_URLS } from './config';
 import { components } from './types/OpenApi';
-import dotenv from 'dotenv';
-import axios from 'axios';
-import axiosRetry from 'axios-retry';
+// import dotenv from 'dotenv';
+// import axios from 'axios';
+// import axiosRetry from 'axios-retry';
 
-dotenv.config();
+// dotenv.config();
 
 import {
   accounts,
@@ -123,17 +123,17 @@ class BlockFrostAPI {
     this.userAgent =
       options?.userAgent ?? `${packageJson.name}@${packageJson.version}`;
 
-    if (this.options.retry429) {
-      axiosRetry(axios, {
-        retries: this.options.retryCount,
-        retryDelay: () => this.options.retryDelay,
-        retryCondition: err => {
-          return err.response?.status === 429;
-        },
-      });
-    }
+    // if (this.options.retry429) {
+    //   axiosRetry(axios, {
+    //     retries: this.options.retryCount,
+    //     retryDelay: () => this.options.retryDelay,
+    //     retryCondition: err => {
+    //       return err.response?.status === 429;
+    //     },
+    //   });
+    // }
 
-    axios.defaults.timeout = this.options.requestTimeout;
+    // axios.defaults.timeout = this.options.requestTimeout;
   }
 
   /**
