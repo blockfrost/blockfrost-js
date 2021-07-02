@@ -5,6 +5,7 @@ module.exports = {
   moduleFileExtensions: ['ts', 'js'],
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/'],
+  setupFiles: ['dotenv/config'],
   setupFilesAfterEnv: ['<rootDir>/jest.config.js'],
   testMatch: ['<rootDir>/test/unit/tests/**/*.ts'],
   coverageReporters: ['json', 'lcov', 'text', 'text-summary'],
