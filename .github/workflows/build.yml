@@ -18,5 +18,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: yarn 
     - run: yarn run lint
-    - run: yarn run test
+    - run: PROJECT_ID=${{ secrets.PROJECT_ID }} yarn run test
     - run: yarn run build

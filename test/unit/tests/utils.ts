@@ -1,7 +1,7 @@
-import { BlockFrostAPI } from '../../src/index';
-import * as utils from '../../src/utils';
+import { BlockFrostAPI } from '../../../src/index';
+import * as utils from '../../../src/utils';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const packageJson = require('../../package.json');
+const packageJson = require('../../../package.json');
 
 describe('utils', () => {
   test('no options', () => {
