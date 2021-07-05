@@ -72,7 +72,7 @@ import {
   poolsRetiring,
 } from './endpoints/pools';
 
-import { ledger } from './endpoints/ledger';
+import { genesis } from './endpoints/ledger';
 import { root } from './endpoints/root';
 import {
   metadataTxsLabel,
@@ -505,7 +505,7 @@ class BlockFrostAPI {
    * @returns xxx
    *
    */
-  ledger = ledger;
+  genesis = genesis;
 
   /**
    * metadataTxsLabel

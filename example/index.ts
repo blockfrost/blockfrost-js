@@ -1,4 +1,5 @@
 import { BlockFrostAPI } from '../src/index';
+
 async function run() {
   const API = new BlockFrostAPI({
     projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
