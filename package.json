@@ -1,6 +1,6 @@
 {
   "name": "@blockfrost/blockfrost-js",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "files": [
     "lib/**/*.js",
