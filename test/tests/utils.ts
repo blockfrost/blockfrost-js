@@ -1,7 +1,7 @@
-import { BlockFrostAPI } from '../../../src/index';
-import * as utils from '../../../src/utils';
+import { BlockFrostAPI } from '../../src/index';
+import * as utils from '../../src/utils';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const packageJson = require('../../../package.json');
+const packageJson = require('../../package.json');
 
 describe('utils', () => {
   test('no options', () => {
@@ -115,6 +115,72 @@ describe('utils', () => {
       retryDelay: 1000,
       version: 0,
     });
+  });
+
+  test('version', () => {
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+      version: 2,
+    });
+
+    expect(api.apiUrl).toEqual('https://cardano-mainnet.blockfrost.io/api/v2');
+  });
+
+  test('version parameter error', () => {
+    try {
+      // @ts-ignore
+      new BlockFrostAPI({});
+    } catch (err) {
+      expect(err.message).toBe('Missing customBackend or projectId option');
+    }
+  });
+
+  test('version parameter error', () => {
+    try {
+      new BlockFrostAPI({
+        projectId: 'xxx',
+        // @ts-ignore
+        version: 's',
+      });
+    } catch (err) {
+      expect(err.message).toBe('Param version is not a number');
+    }
+  });
+
+  test('requestTimeout parameter error', () => {
+    try {
+      new BlockFrostAPI({
+        projectId: 'xxx',
+        // @ts-ignore
+        requestTimeout: 's',
+      });
+    } catch (err) {
+      expect(err.message).toBe('Param requestTimeout is not a number');
+    }
+  });
+
+  test('retryDelay parameter error', () => {
+    try {
+      new BlockFrostAPI({
+        projectId: 'xxx',
+        // @ts-ignore
+        retryDelay: 's',
+      });
+    } catch (err) {
+      expect(err.message).toBe('Param retryDelay is not a number');
+    }
+  });
+
+  test('retryCount parameter error', () => {
+    try {
+      new BlockFrostAPI({
+        projectId: 'xxx',
+        // @ts-ignore
+        retryCount: 's',
+      });
+    } catch (err) {
+      expect(err.message).toBe('Param retryCount is not a number');
+    }
   });
 
   test('requestTimeout', () => {

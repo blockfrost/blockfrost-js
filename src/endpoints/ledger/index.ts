@@ -3,7 +3,7 @@ import { getHeaders, handleError } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 
-export function ledger(
+export function genesis(
   this: BlockFrostAPI,
 ): Promise<components['schemas']['genesis_content']> {
   return new Promise((resolve, reject) => {

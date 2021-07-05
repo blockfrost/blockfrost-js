@@ -21,7 +21,7 @@
     "generate-types": "pnpify openapi-typescript ./node_modules/@blockfrost/openapi/swagger.yaml --output ./src/types/OpenApi.ts",
     "lint": "eslint ./src/**/*.ts",
     "run-example": "ts-node-dev --transpile-only ./example/index.ts",
-    "test": "jest -c jest.config.js"
+    "test": "jest -c ./jest.config.js"
   },
   "dependencies": {
     "@blockfrost/openapi": "^0.1.21",
