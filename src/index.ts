@@ -95,6 +95,14 @@ import {
   txsMetadata,
   txSubmit,
 } from './endpoints/txs';
+import {
+  nutlinkAddressTicker,
+  nutlinkAddressTickers,
+  nutlinkAddressTickersAll,
+  nutlinkAddressTickerAll,
+  nutlinkTickers,
+  nutlinkTickersAll,
+} from './endpoints/nutlink';
 
 import { Options, ValidatedOptions } from './types';
 import join from 'url-join';
@@ -540,6 +548,54 @@ class BlockFrostAPI {
    *
    */
   metricsEndpoints = metricsEndpoints;
+
+  /**
+   * nutlinkAddressTicker
+   *
+   * @returns xxx
+   *
+   */
+  nutlinkAddressTicker = nutlinkAddressTicker;
+
+  /**
+   * nutlinkAddressTickers
+   *
+   * @returns xxx
+   *
+   */
+  nutlinkAddressTickers = nutlinkAddressTickers;
+
+  /**
+   * nutlinkAddressTickersAll
+   *
+   * @returns xxx
+   *
+   */
+  nutlinkAddressTickersAll = nutlinkAddressTickersAll;
+
+  /**
+   * nutlinkAddressTickerAll
+   *
+   * @returns xxx
+   *
+   */
+  nutlinkAddressTickerAll = nutlinkAddressTickerAll;
+
+  /**
+   * nutlinkTickers
+   *
+   * @returns xxx
+   *
+   */
+  nutlinkTickers = nutlinkTickers;
+
+  /**
+   * nutlinkTickersAll
+   *
+   * @returns xxx
+   *
+   */
+  nutlinkTickersAll = nutlinkTickersAll;
 
   /**
    * pools
