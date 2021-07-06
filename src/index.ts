@@ -9,12 +9,19 @@ dotenv.config();
 import {
   accounts,
   accountsDelegations,
+  accountsDelegationsAll,
   accountsRegistrations,
+  accountsRegistrationsAll,
   accountsRewards,
+  accountsRewardsAll,
   accountsHistory,
+  accountsHistoryAll,
   accountsWithdrawals,
+  accountsWithdrawalsAll,
   accountsMirs,
+  accountsMirsAll,
   accountsAddresses,
+  accountsAddressesAll,
 } from './endpoints/accounts';
 
 import {
@@ -32,10 +39,12 @@ import {
   assets,
   assetsById,
   assetsHistory,
+  assetsHistoryAll,
   assetsTxs,
   assetsTransactions,
   assetsAddresses,
   assetsPolicyById,
+  assetsPolicyByIdAll,
 } from './endpoints/assets';
 
 import {
@@ -163,6 +172,15 @@ class BlockFrostAPI {
   accountsDelegations = accountsDelegations;
 
   /**
+   * accountsDelegationsAll - Obtain information about all delegations of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the delegation of a specific account.
+   *
+   */
+  accountsDelegationsAll = accountsDelegationsAll;
+
+  /**
    * accountsRegistrations - Obtain information about the registrations and deregistrations of a specific account.
    *
    * @param stakeAddress - Bech32 stake address
@@ -170,6 +188,15 @@ class BlockFrostAPI {
    *
    */
   accountsRegistrations = accountsRegistrations;
+
+  /**
+   * accountsRegistrationsAll - Obtain information about all registrations and deregistrations of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the registrations and deregistrations of a specific account.
+   *
+   */
+  accountsRegistrationsAll = accountsRegistrationsAll;
 
   /**
    * accountsRewards - Obtain information about the history of a specific account.
@@ -181,6 +208,15 @@ class BlockFrostAPI {
   accountsRewards = accountsRewards;
 
   /**
+   * accountsRewardsAll - Obtain information about whole history of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the history of a specific account.
+   *
+   */
+  accountsRewardsAll = accountsRewardsAll;
+
+  /**
    * accountsHistory - Obtain information about the history of a specific account.
    *
    * @param stakeAddress - Bech32 stake address
@@ -188,6 +224,15 @@ class BlockFrostAPI {
    *
    */
   accountsHistory = accountsHistory;
+
+  /**
+   * accountsHistoryAll - Obtain information about whole history of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the history of a specific account.
+   *
+   */
+  accountsHistoryAll = accountsHistoryAll;
 
   /**
    * accountsWithdrawals - Obtain information about the withdrawals of a specific account.
@@ -199,6 +244,15 @@ class BlockFrostAPI {
   accountsWithdrawals = accountsWithdrawals;
 
   /**
+   * accountsWithdrawalsAll - Obtain information about all withdrawals of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the withdrawals of a specific account.
+   *
+   */
+  accountsWithdrawalsAll = accountsWithdrawalsAll;
+
+  /**
    * accountsMirs - Obtain information about the MIRs of a specific account.
    *
    * @param stakeAddress - Bech32 stake address
@@ -208,6 +262,15 @@ class BlockFrostAPI {
   accountsMirs = accountsMirs;
 
   /**
+   * accountsMirsAll - Obtain information about all MIRs of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the MIRs of a specific account.
+   *
+   */
+  accountsMirsAll = accountsMirsAll;
+
+  /**
    * accountsAddresses - Obtain information about the addresses of a specific account.
    *
    * @param stakeAddress - Bech32 stake address
@@ -215,6 +278,15 @@ class BlockFrostAPI {
    *
    */
   accountsAddresses = accountsAddresses;
+
+  /**
+   * accountsAddressesAll - Obtain information about all addresses of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the addresses of a specific account.
+   *
+   */
+  accountsAddressesAll = accountsAddressesAll;
 
   /**
    * assets - List of assets.
@@ -241,6 +313,15 @@ class BlockFrostAPI {
    *
    */
   assetsHistory = assetsHistory;
+
+  /**
+   * assetsHistoryAll - Whole history of a specific asset.
+   *
+   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+   * @returns History of a specific asset.
+   *
+   */
+  assetsHistoryAll = assetsHistoryAll;
 
   /**
    * assetsTxs - List of a specific asset transactions.
@@ -277,6 +358,15 @@ class BlockFrostAPI {
    *
    */
   assetsPolicyById = assetsPolicyById;
+
+  /**
+   * assetsPolicyByIdAll - List of all assets minted under a specific policy.
+   *
+   * @param policyId - Specific policy_id
+   * @returns List of asset minted under a specific policy.
+   *
+   */
+  assetsPolicyByIdAll = assetsPolicyByIdAll;
 
   /**
    * addresses

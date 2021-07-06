@@ -46,6 +46,37 @@ export async function accountsRewards(
   });
 }
 
+export async function accountsRewardsAll(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['account_reward_content']> {
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const res: components['schemas']['account_reward_content'] = [];
+
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.accountsRewards(stakeAddress, page + i, count, order),
+    );
+    page += batchSize;
+    return promises;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
+    }
+  }
+}
+
 export async function accountsHistory(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -66,6 +97,37 @@ export async function accountsHistory(
       })
       .catch(err => reject(handleError(err)));
   });
+}
+
+export async function accountsHistoryAll(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['account_history_content']> {
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const res: components['schemas']['account_history_content'] = [];
+
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.accountsHistory(stakeAddress, page + i, count, order),
+    );
+    page += batchSize;
+    return promises;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
+    }
+  }
 }
 
 export async function accountsWithdrawals(
@@ -90,6 +152,37 @@ export async function accountsWithdrawals(
   });
 }
 
+export async function accountsWithdrawalsAll(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['account_withdrawal_content']> {
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const res: components['schemas']['account_withdrawal_content'] = [];
+
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.accountsWithdrawals(stakeAddress, page + i, count, order),
+    );
+    page += batchSize;
+    return promises;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
+    }
+  }
+}
+
 export async function accountsMirs(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -110,6 +203,37 @@ export async function accountsMirs(
       })
       .catch(err => reject(handleError(err)));
   });
+}
+
+export async function accountsMirsAll(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['account_mir_content']> {
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const res: components['schemas']['account_mir_content'] = [];
+
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.accountsMirs(stakeAddress, page + i, count, order),
+    );
+    page += batchSize;
+    return promises;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
+    }
+  }
 }
 
 export async function accountsDelegations(
@@ -134,6 +258,37 @@ export async function accountsDelegations(
   });
 }
 
+export async function accountsDelegationsAll(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['account_delegation_content']> {
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const res: components['schemas']['account_delegation_content'] = [];
+
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.accountsDelegations(stakeAddress, page + i, count, order),
+    );
+    page += batchSize;
+    return promises;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
+    }
+  }
+}
+
 export async function accountsRegistrations(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -156,6 +311,37 @@ export async function accountsRegistrations(
   });
 }
 
+export async function accountsRegistrationsAll(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['account_registration_content']> {
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const res: components['schemas']['account_registration_content'] = [];
+
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.accountsRegistrations(stakeAddress, page + i, count, order),
+    );
+    page += batchSize;
+    return promises;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
+    }
+  }
+}
+
 export async function accountsAddresses(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -176,4 +362,35 @@ export async function accountsAddresses(
       })
       .catch(err => reject(handleError(err)));
   });
+}
+
+export async function accountsAddressesAll(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['account_addresses_content']> {
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const res: components['schemas']['account_addresses_content'] = [];
+
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.accountsAddresses(stakeAddress, page + i, count, order),
+    );
+    page += batchSize;
+    return promises;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
+    }
+  }
 }

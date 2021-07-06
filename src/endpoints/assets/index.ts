@@ -64,6 +64,37 @@ export async function assetsHistory(
   });
 }
 
+export async function assetsHistoryAll(
+  this: BlockFrostAPI,
+  asset: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['asset_history']> {
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const res: components['schemas']['asset_history'] = [];
+
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.assetsHistory(asset, page + i, count, order),
+    );
+    page += batchSize;
+    return promises;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
+    }
+  }
+}
+
 export async function assetsTxs(
   this: BlockFrostAPI,
   asset: string,
@@ -150,4 +181,35 @@ export async function assetsPolicyById(
       })
       .catch(err => reject(handleError(err)));
   });
+}
+
+export async function assetsPolicyByIdAll(
+  this: BlockFrostAPI,
+  policy: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['asset_addresses']> {
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const res: components['schemas']['asset_addresses'] = [];
+
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.assetsPolicyById(policy, page + i, count, order),
+    );
+    page += batchSize;
+    return promises;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
+    }
+  }
 }
