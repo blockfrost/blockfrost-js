@@ -2,11 +2,11 @@ import { BlockFrostAPI } from '../../src';
 
 export default [
   {
-    command: (SDK: BlockFrostAPI) => SDK.assets(),
+    command: (SDK: BlockFrostAPI) => SDK.poolsRetired(),
     response: expect.arrayContaining([
       expect.objectContaining({
-        asset: expect.any(String),
-        quantity: expect.any(String),
+        pool_id: expect.any(String),
+        epoch: expect.any(Number),
       }),
     ]),
   },

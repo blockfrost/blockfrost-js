@@ -1,8 +1,8 @@
-import { SDK } from '../utils';
+import { BlockFrostAPI } from '../../src';
 
 export default [
   {
-    command: () => SDK.epochsLatest(),
+    command: (SDK: BlockFrostAPI) => SDK.epochsLatest(),
     response: {
       epoch: expect.any(Number),
       start_time: expect.any(Number),
@@ -17,7 +17,7 @@ export default [
     },
   },
   {
-    command: () => SDK.epochs(0),
+    command: (SDK: BlockFrostAPI) => SDK.epochs(0),
     response: {
       epoch: 0,
       start_time: 1506203091,
@@ -32,7 +32,7 @@ export default [
     },
   },
   {
-    command: () => SDK.epochs(242),
+    command: (SDK: BlockFrostAPI) => SDK.epochs(242),
     response: {
       epoch: 242,
       start_time: 1610747091,
@@ -44,6 +44,40 @@ export default [
       output: '63148817438049616',
       fees: '16905060417',
       active_stake: '21755094259019945',
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.epochsStakes(242),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        stake_address: expect.any(String),
+        pool_id: expect.any(String),
+        amount: expect.any(String),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.epochsParameters(267),
+    response: {
+      min_fee_a: 44,
+      min_fee_b: 155381,
+      max_block_size: 65536,
+      max_tx_size: 16384,
+      max_block_header_size: 1100,
+      key_deposit: '2000000',
+      pool_deposit: '500000000',
+      e_max: 18,
+      n_opt: 500,
+      a0: 0.3,
+      rho: 0.003,
+      tau: 0.2,
+      decentralisation_param: 0,
+      extra_entropy: null,
+      protocol_major_ver: 4,
+      protocol_minor_ver: 0,
+      min_utxo: '1000000',
+      min_pool_cost: '340000000',
+      nonce: expect.any(String),
     },
   },
 ] as const;

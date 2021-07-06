@@ -1,13 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import { BlockFrostAPI } from '../../../src';
-import { SDK } from '../../utils';
+import { SDKError } from '../../utils';
 
 const fixturesFolder = path.resolve(__dirname, '../../fixtures');
 const files = fs.readdirSync(fixturesFolder);
 
 interface Fixture {
-  command: (SDK: BlockFrostAPI) => unknown;
+  command: (SDK: BlockFrostAPI) => any;
   response: any;
 }
 
@@ -17,9 +17,16 @@ files.forEach(file => {
 
   describe(file, () => {
     fileContent.default.forEach((fixture: Fixture) => {
-      test(fixture.command.toString(), async () => {
-        const response = await fixture.command(SDK);
-        expect(response).toMatchObject(fixture.response);
+      test(`${fixture.command.toString()} error`, async () => {
+        try {
+          await fixture.command(SDKError);
+        } catch (err) {
+          expect(err).toMatchObject({
+            error: 'Forbidden',
+            message: 'Invalid project token.',
+            status_code: 403,
+          });
+        }
       });
     });
   });

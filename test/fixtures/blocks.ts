@@ -1,8 +1,8 @@
-import { SDK } from '../utils';
+import { BlockFrostAPI } from '../../src';
 
 export default [
   {
-    command: () => SDK.blocksLatest(),
+    command: (SDK: BlockFrostAPI) => SDK.blocksLatest(),
     response: {
       time: expect.any(Number),
       height: expect.any(Number),
@@ -22,7 +22,7 @@ export default [
     },
   },
   {
-    command: () =>
+    command: (SDK: BlockFrostAPI) =>
       SDK.blocks(
         '5f20df933584822601f9e3f8c024eb5eb252fe8cefb24d1317dc3d432e940ebb',
       ),
@@ -46,7 +46,7 @@ export default [
     },
   },
   {
-    command: () => SDK.blocksTxs('5360435'),
+    command: (SDK: BlockFrostAPI) => SDK.blocksTxs('5360435'),
     response: [
       '055f9d4c86733997a9b8b12e3422feee8ef95d79ccbde20abdb6ff9222bb79c6',
       'e66077bac8d32cf16aa991d793a3e5840d3eee1ad3dfd04f1ee609d46a936dff',
