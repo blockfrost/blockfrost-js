@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { getHeaders, handleError } from '../../utils';
+import { getHeaders, handleError, getPaginationOptions } from '../../utils';
 import { components } from '../../types/OpenApi';
+import { PaginationOptions } from '../../types';
 import { BlockFrostAPI } from '../../index';
 import {
   DEFAULT_PAGINATION_PAGE_COUNT,
@@ -27,14 +28,13 @@ export async function accounts(
 export async function accountsRewards(
   this: BlockFrostAPI,
   stakeAddress: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination: PaginationOptions,
 ): Promise<components['schemas']['account_reward_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
   return new Promise((resolve, reject) => {
     axios
       .get(
-        `${this.apiUrl}/accounts/${stakeAddress}/rewards?page=${page}&count=${count}&order=${order}`,
+        `${this.apiUrl}/accounts/${stakeAddress}/rewards?page=${paginationOptions.page}&count=${paginationOptions.count}&order=${paginationOptions.order}`,
         {
           headers: getHeaders(this),
         },
@@ -123,9 +123,7 @@ export async function accountsDelegations(
     axios
       .get(
         `${this.apiUrl}/accounts/${stakeAddress}/delegations?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
+        { headers: getHeaders(this) },
       )
       .then(resp => {
         resolve(resp.data);

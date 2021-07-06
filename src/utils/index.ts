@@ -1,10 +1,17 @@
-import { DEFAULT_API_VERSION } from '../config';
+import {
+  DEFAULT_API_VERSION,
+  DEFAULT_PAGINATION_PAGE_COUNT,
+  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  DEFAULT_ORDER,
+} from '../config';
+
 import {
   ErrorType,
   ExtendedAxiosError,
   Headers,
   Options,
   ValidatedOptions,
+  PaginationOptions,
 } from '../types';
 
 import { BlockFrostAPI } from '..';
@@ -118,4 +125,14 @@ export const getAdditionalParams = (
   else if (from) additionalParams = `from=${from}`;
   else if (to) additionalParams = `to=${to}`;
   return additionalParams;
+};
+
+export const getPaginationOptions = (
+  params: PaginationOptions,
+): PaginationOptions => {
+  return {
+    page: params.page || DEFAULT_PAGINATION_PAGE_COUNT,
+    count: params.count || DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+    order: params.order || DEFAULT_ORDER,
+  };
 };
