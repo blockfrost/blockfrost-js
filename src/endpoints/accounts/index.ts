@@ -31,6 +31,7 @@ export async function accountsRewards(
   pagination: PaginationOptions,
 ): Promise<components['schemas']['account_reward_content']> {
   const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
     axios
       .get(
