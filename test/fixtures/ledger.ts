@@ -1,8 +1,8 @@
-import { SDK } from '../utils';
+import { BlockFrostAPI } from '../../src';
 
 export default [
   {
-    command: () => SDK.genesis(),
+    command: (SDK: BlockFrostAPI) => SDK.genesis(),
     response: {
       active_slots_coefficient: 0.05,
       update_quorum: 5,

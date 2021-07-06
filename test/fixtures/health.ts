@@ -1,12 +1,12 @@
-import { SDK } from '../utils';
+import { BlockFrostAPI } from '../../src';
 
 export default [
   {
-    command: () => SDK.health(),
+    command: (SDK: BlockFrostAPI) => SDK.health(),
     response: { is_healthy: true },
   },
   {
-    command: () => SDK.healthClock(),
+    command: (SDK: BlockFrostAPI) => SDK.healthClock(),
     response: { server_time: expect.any(Number) },
   },
 ] as const;

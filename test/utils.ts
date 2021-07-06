@@ -4,4 +4,8 @@ const SDK = new BlockFrostAPI({
   projectId: `${process.env.PROJECT_ID}`,
 });
 
-export { SDK };
+const SDKError = new BlockFrostAPI({
+  projectId: 'INVALID_TOKEN',
+});
+
+export { SDK, SDKError };

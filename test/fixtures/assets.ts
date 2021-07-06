@@ -1,8 +1,8 @@
-import { SDK } from '../utils';
+import { BlockFrostAPI } from '../../src';
 
 export default [
   {
-    command: () => SDK.assets(),
+    command: (SDK: BlockFrostAPI) => SDK.assets(),
     response: [
       {
         asset:

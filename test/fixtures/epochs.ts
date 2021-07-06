@@ -1,8 +1,8 @@
-import { SDK } from '../utils';
+import { BlockFrostAPI } from '../../src';
 
 export default [
   {
-    command: () => SDK.epochsLatest(),
+    command: (SDK: BlockFrostAPI) => SDK.epochsLatest(),
     response: {
       epoch: expect.any(Number),
       start_time: expect.any(Number),
@@ -17,7 +17,7 @@ export default [
     },
   },
   {
-    command: () => SDK.epochs(0),
+    command: (SDK: BlockFrostAPI) => SDK.epochs(0),
     response: {
       epoch: 0,
       start_time: 1506203091,
@@ -32,7 +32,7 @@ export default [
     },
   },
   {
-    command: () => SDK.epochs(242),
+    command: (SDK: BlockFrostAPI) => SDK.epochs(242),
     response: {
       epoch: 242,
       start_time: 1610747091,
