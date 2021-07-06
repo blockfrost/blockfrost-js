@@ -21,6 +21,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*", "test/index.d.ts"],
+  "include": ["./src/**/*", "./test/index.d.ts"],
   "exclude": ["./src/types/OpenApi.ts"]
 }
