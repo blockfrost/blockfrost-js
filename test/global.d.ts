@@ -1,7 +1,4 @@
-/// <reference types="jest" />
-
 declare namespace jest {
-  // noinspection JSUnusedGlobalSymbols
   interface Matchers<R> {
     /**
      * @param {String} type
