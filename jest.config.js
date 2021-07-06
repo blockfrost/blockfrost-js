@@ -15,4 +15,12 @@ module.exports = {
   },
   setupFilesAfterEnv: ['<rootDir>/test/setup.ts'],
   preset: 'ts-jest',
+  coverageThreshold: {
+    global: {
+      branches: 36,
+      functions: 23,
+      lines: 48,
+      statements: 48,
+    },
+  },
 };
