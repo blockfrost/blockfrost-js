@@ -17,10 +17,10 @@ module.exports = {
   preset: 'ts-jest',
   coverageThreshold: {
     global: {
-      branches: 36,
-      functions: 23,
-      lines: 48,
-      statements: 48,
+      branches: 37,
+      functions: 28,
+      lines: 50,
+      statements: 51,
     },
   },
 };

@@ -24,4 +24,25 @@ export default [
       pool_retire_count: 0,
     },
   },
+  {
+    // TODO: find tx with metadata
+    command: (SDK: BlockFrostAPI) =>
+      SDK.txsMetadata(
+        '28172ea876c3d1e691284e5179fae2feb3e69d7d41e43f8023dc380115741026',
+      ),
+    response: [],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.txsPoolRetires(
+        '8c8376b28e8d729115ea6e88540747160fab22d754ad6a11c55ab159024d8005',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        pool_id: expect.any(String),
+        cert_index: expect.any(Number),
+        retiring_epoch: expect.any(Number),
+      }),
+    ]),
+  },
 ] as const;
