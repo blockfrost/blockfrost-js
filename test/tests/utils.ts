@@ -1,5 +1,7 @@
 import { BlockFrostAPI } from '../../src/index';
+import { ExtendedAxiosError } from '../../src/types';
 import * as utils from '../../src/utils';
+import { handleError } from '../fixtures/utils';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('../../package.json');
 
@@ -238,5 +240,18 @@ describe('utils', () => {
     expect(utils.getAdditionalParams('100:1', '200:2')).toEqual(
       'from=100:1&to=200:2',
     );
+  });
+
+  handleError.forEach(f => {
+    test(`handleError: ${f.description}`, () => {
+      const handledError = utils.handleError(
+        f.payload as unknown as ExtendedAxiosError,
+      );
+      if (typeof f.result === 'string') {
+        expect(handledError).toBe(f.result);
+      } else {
+        expect(handledError).toMatchObject(f.result);
+      }
+    });
   });
 });
