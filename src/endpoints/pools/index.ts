@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { getHeaders, handleError } from '../../utils';
+import { handleError } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 import {
@@ -15,10 +14,10 @@ export async function pools(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_list']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/pools?page=${page}&count=${count}&order=${order}`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(
+      `${this.apiUrl}/pools?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -35,13 +34,10 @@ export async function poolsRetired(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_list_retire']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/pools/retired?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/pools/retired?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -58,13 +54,10 @@ export async function poolsRetiring(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_list_retire']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/pools/retiring?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/pools/retiring?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -79,10 +72,7 @@ export async function poolsById(
   poolId: string,
 ): Promise<components['schemas']['pool']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/pools/${poolId}`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/pools/${poolId}`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -100,13 +90,10 @@ export async function poolsByIdHistory(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_history']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/pools/${poolId}/history?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/pools/${poolId}/history?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -121,10 +108,7 @@ export async function poolMetadata(
   poolId: string,
 ): Promise<components['schemas']['pool_metadata']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/pools/${poolId}/metadata`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/pools/${poolId}/metadata`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -139,10 +123,7 @@ export async function poolsByIdRelays(
   poolId: string,
 ): Promise<components['schemas']['pool_relays']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/pools/${poolId}/relays`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/pools/${poolId}/relays`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -160,13 +141,10 @@ export async function poolsByIdDelegators(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_delegators']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/pools/${poolId}/delegators?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/pools/${poolId}/delegators?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -184,13 +162,10 @@ export async function poolsByIdBlocks(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_blocks']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/pools/${poolId}/blocks?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/pools/${poolId}/blocks?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -208,13 +183,10 @@ export async function poolsByIdUpdates(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['pool_updates']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/pools/${poolId}/updates?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/pools/${poolId}/updates?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })

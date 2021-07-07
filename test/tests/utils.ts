@@ -205,7 +205,7 @@ describe('utils', () => {
     const api = new BlockFrostAPI({
       projectId: 'xxx',
     });
-    expect(utils.getHeaders(api)).toEqual({
+    expect(utils.getHeaders(api.projectId, api.userAgent)).toEqual({
       project_id: 'xxx',
       'User-Agent': `${packageJson.name}@${packageJson.version}`,
     });
@@ -216,7 +216,7 @@ describe('utils', () => {
       projectId: 'xxx',
       userAgent: 'yyy',
     });
-    expect(utils.getHeaders(api)).toEqual({
+    expect(utils.getHeaders(api.projectId, api.userAgent)).toEqual({
       project_id: 'xxx',
       'User-Agent': 'yyy',
     });

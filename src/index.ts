@@ -1,8 +1,8 @@
 import { API_URLS } from './config';
 import { components } from './types/OpenApi';
 import dotenv from 'dotenv';
-import axios from 'axios';
-import axiosRetry from 'axios-retry';
+import * as rax from 'retry-axios';
+import axios, { AxiosInstance } from 'axios';
 
 dotenv.config();
 
@@ -115,7 +115,7 @@ import {
 
 import { Options, ValidatedOptions } from './types';
 import join from 'url-join';
-import { validateOptions } from './utils';
+import { getHeaders, validateOptions } from './utils';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('../package.json');
 
@@ -124,6 +124,7 @@ class BlockFrostAPI {
   projectId?: string;
   userAgent?: string;
   options: ValidatedOptions;
+  axiosInstance: AxiosInstance;
 
   constructor(options?: Options) {
     this.options = validateOptions(options);
@@ -140,17 +141,22 @@ class BlockFrostAPI {
     this.userAgent =
       options?.userAgent ?? `${packageJson.name}@${packageJson.version}`;
 
-    if (this.options.retry429) {
-      axiosRetry(axios, {
-        retries: this.options.retryCount,
-        retryDelay: () => this.options.retryDelay,
-        retryCondition: err => {
-          return err.response?.status === 429;
-        },
-      });
-    }
-
-    axios.defaults.timeout = this.options.requestTimeout;
+    this.axiosInstance = axios.create();
+    this.axiosInstance.defaults.raxConfig = {
+      instance: this.axiosInstance,
+      retry: this.options.retryCount, // // Retry on requests that return a response (429, etc) before giving up.
+      noResponseRetries: 3, // // Retry on errors that don't return a response (ENOTFOUND, ETIMEDOUT, etc).
+      retryDelay: this.options.retryDelay,
+      statusCodesToRetry: this.options.retry429 ? [[429, 429]] : [],
+      backoffType: 'static', // the backoff type. options are 'exponential' (default), 'static' or 'linear'
+    };
+    // set default headers
+    this.axiosInstance.defaults.headers = getHeaders(
+      this.projectId,
+      this.userAgent,
+    );
+    this.axiosInstance.defaults.timeout = this.options.requestTimeout;
+    rax.attach(this.axiosInstance);
   }
 
   /**

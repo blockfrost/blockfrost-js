@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { getHeaders, handleError } from '../../utils';
+import { handleError } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 import {
@@ -15,10 +14,10 @@ export async function assets(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['assets']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/assets?page=${page}&count=${count}&order=${order}`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(
+      `${this.apiUrl}/assets?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -31,10 +30,7 @@ export async function assetsById(
   asset: string,
 ): Promise<components['schemas']['asset']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/assets/${asset}`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/assets/${asset}`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -50,13 +46,10 @@ export async function assetsHistory(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_history']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/assets/${asset}/history?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/assets/${asset}/history?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -103,13 +96,10 @@ export async function assetsTxs(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_txs']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/assets/${asset}/txs?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/assets/${asset}/txs?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -125,13 +115,10 @@ export async function assetsTransactions(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_transactions']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/assets/${asset}/transactions?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/assets/${asset}/transactions?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -147,13 +134,10 @@ export async function assetsAddresses(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_addresses']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/assets/${asset}/addresses?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/assets/${asset}/addresses?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -169,13 +153,10 @@ export async function assetsPolicyById(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_addresses']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/assets/policy/${policy}?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/assets/policy/${policy}?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
