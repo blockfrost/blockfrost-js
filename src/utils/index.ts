@@ -12,6 +12,7 @@ import {
   Options,
   ValidatedOptions,
   PaginationOptions,
+  AdditionalEndpointOptions,
 } from '../types';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
@@ -109,15 +110,12 @@ export const handleError = (error: ExtendedAxiosError): ErrorType | string => {
 };
 
 export const getAdditionalParams = (
-  from: string | undefined,
-  to: string | undefined,
-): string => {
-  // from & to parameters don't have default values
-  let additionalParams = '';
-  if (from && to) additionalParams = `from=${from}&to=${to}`;
-  else if (from) additionalParams = `from=${from}`;
-  else if (to) additionalParams = `to=${to}`;
-  return additionalParams;
+  options: AdditionalEndpointOptions,
+): AdditionalEndpointOptions => {
+  return {
+    from: options.from || undefined,
+    to: options.to || undefined,
+  };
 };
 
 export const getPaginationOptions = (

@@ -3,7 +3,6 @@ import { components } from '../../types/OpenApi';
 import { PaginationOptions } from '../../types';
 import { BlockFrostAPI } from '../../index';
 import {
-  DEFAULT_PAGINATION_PAGE_COUNT,
   DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
   DEFAULT_ORDER,
 } from '../../config';
@@ -29,10 +28,13 @@ export async function accountsRewards(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/accounts/${stakeAddress}/rewards?page=${paginationOptions.page}&count=${paginationOptions.count}&order=${paginationOptions.order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/accounts/${stakeAddress}/rewards`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -78,15 +80,18 @@ export async function accountsRewardsAll(
 export async function accountsHistory(
   this: BlockFrostAPI,
   stakeAddress: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination: PaginationOptions,
 ): Promise<components['schemas']['account_history_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/accounts/${stakeAddress}/history?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/accounts/${stakeAddress}/history`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -106,7 +111,11 @@ export async function accountsHistoryAll(
 
   const getPromiseBundle = () => {
     const promises = [...Array(batchSize).keys()].map(i =>
-      this.accountsHistory(stakeAddress, page + i, count, order),
+      this.accountsHistory(stakeAddress, {
+        page: page + i,
+        count,
+        order,
+      }),
     );
     page += batchSize;
     return promises;
@@ -128,15 +137,18 @@ export async function accountsHistoryAll(
 export async function accountsWithdrawals(
   this: BlockFrostAPI,
   stakeAddress: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination: PaginationOptions,
 ): Promise<components['schemas']['account_withdrawal_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/accounts/${stakeAddress}/withdrawals?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/accounts/${stakeAddress}/withdrawals`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -156,7 +168,11 @@ export async function accountsWithdrawalsAll(
 
   const getPromiseBundle = () => {
     const promises = [...Array(batchSize).keys()].map(i =>
-      this.accountsWithdrawals(stakeAddress, page + i, count, order),
+      this.accountsWithdrawals(stakeAddress, {
+        page: page + i,
+        count,
+        order,
+      }),
     );
     page += batchSize;
     return promises;
@@ -178,15 +194,18 @@ export async function accountsWithdrawalsAll(
 export async function accountsMirs(
   this: BlockFrostAPI,
   stakeAddress: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination: PaginationOptions,
 ): Promise<components['schemas']['account_mir_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/accounts/${stakeAddress}/mirs?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/accounts/${stakeAddress}/mirs`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -206,7 +225,11 @@ export async function accountsMirsAll(
 
   const getPromiseBundle = () => {
     const promises = [...Array(batchSize).keys()].map(i =>
-      this.accountsMirs(stakeAddress, page + i, count, order),
+      this.accountsMirs(stakeAddress, {
+        page: page + i,
+        count,
+        order,
+      }),
     );
     page += batchSize;
     return promises;
@@ -228,15 +251,18 @@ export async function accountsMirsAll(
 export async function accountsDelegations(
   this: BlockFrostAPI,
   stakeAddress: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination: PaginationOptions,
 ): Promise<components['schemas']['account_delegation_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/accounts/${stakeAddress}/delegations?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/accounts/${stakeAddress}/delegations`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -256,7 +282,11 @@ export async function accountsDelegationsAll(
 
   const getPromiseBundle = () => {
     const promises = [...Array(batchSize).keys()].map(i =>
-      this.accountsDelegations(stakeAddress, page + i, count, order),
+      this.accountsDelegations(stakeAddress, {
+        page: page + i,
+        count,
+        order,
+      }),
     );
     page += batchSize;
     return promises;
@@ -278,14 +308,20 @@ export async function accountsDelegationsAll(
 export async function accountsRegistrations(
   this: BlockFrostAPI,
   stakeAddress: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination: PaginationOptions,
 ): Promise<components['schemas']['account_registration_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
     this.axiosInstance(
-      `${this.apiUrl}/accounts/${stakeAddress}/registrations?page=${page}&count=${count}&order=${order}`,
-      {},
+      `${this.apiUrl}/accounts/${stakeAddress}/registrations`,
+      {
+        params: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
+      },
     )
       .then(resp => {
         resolve(resp.data);
@@ -306,7 +342,11 @@ export async function accountsRegistrationsAll(
 
   const getPromiseBundle = () => {
     const promises = [...Array(batchSize).keys()].map(i =>
-      this.accountsRegistrations(stakeAddress, page + i, count, order),
+      this.accountsRegistrations(stakeAddress, {
+        page: page + i,
+        count,
+        order,
+      }),
     );
     page += batchSize;
     return promises;
@@ -328,15 +368,18 @@ export async function accountsRegistrationsAll(
 export async function accountsAddresses(
   this: BlockFrostAPI,
   stakeAddress: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination: PaginationOptions,
 ): Promise<components['schemas']['account_addresses_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/accounts/${stakeAddress}/addresses?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/accounts/${stakeAddress}/addresses`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -356,7 +399,11 @@ export async function accountsAddressesAll(
 
   const getPromiseBundle = () => {
     const promises = [...Array(batchSize).keys()].map(i =>
-      this.accountsAddresses(stakeAddress, page + i, count, order),
+      this.accountsAddresses(stakeAddress, {
+        page: page + i,
+        count,
+        order,
+      }),
     );
     page += batchSize;
     return promises;

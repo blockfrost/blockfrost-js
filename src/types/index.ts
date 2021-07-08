@@ -61,3 +61,8 @@ export type PaginationOptions = {
   page: number;
   order: 'asc' | 'desc';
 };
+
+export type AdditionalEndpointOptions = {
+  from: string | undefined;
+  to: string | undefined;
+};

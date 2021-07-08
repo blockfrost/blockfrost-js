@@ -1,23 +1,22 @@
-import { handleError } from '../../utils';
+import { handleError, getPaginationOptions } from '../../utils';
 import { components } from '../../types/OpenApi';
+import { PaginationOptions } from '../../types';
 import { BlockFrostAPI } from '../../index';
-import {
-  DEFAULT_PAGINATION_PAGE_COUNT,
-  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  DEFAULT_ORDER,
-} from '../../config';
 
 export async function metadataTxsLabels(
   this: BlockFrostAPI,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination: PaginationOptions,
 ): Promise<components['schemas']['tx_metadata_label_json']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/metadata/txs/labels?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/metadata/txs/labels`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -30,15 +29,18 @@ export async function metadataTxsLabels(
 export async function metadataTxsLabel(
   this: BlockFrostAPI,
   label: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination: PaginationOptions,
 ): Promise<components['schemas']['tx_metadata_labels']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/metadata/txs/labels/${label}?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/metadata/txs/labels/${label}`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -51,15 +53,18 @@ export async function metadataTxsLabel(
 export async function metadataTxsLabelCbor(
   this: BlockFrostAPI,
   label: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination: PaginationOptions,
 ): Promise<components['schemas']['tx_metadata_label_cbor']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/metadata/txs/labels/${label}/cbor?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/metadata/txs/labels/${label}/cbor`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
