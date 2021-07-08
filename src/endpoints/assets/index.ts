@@ -9,7 +9,7 @@ import {
 
 export async function assets(
   this: BlockFrostAPI,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['assets']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -44,7 +44,7 @@ export async function assetsById(
 export async function assetsHistory(
   this: BlockFrostAPI,
   asset: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['asset_history']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -101,7 +101,7 @@ export async function assetsHistoryAll(
 export async function assetsTxs(
   this: BlockFrostAPI,
   asset: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['asset_txs']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -123,7 +123,7 @@ export async function assetsTxs(
 export async function assetsTransactions(
   this: BlockFrostAPI,
   asset: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['asset_transactions']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -145,7 +145,7 @@ export async function assetsTransactions(
 export async function assetsAddresses(
   this: BlockFrostAPI,
   asset: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['asset_addresses']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -167,7 +167,7 @@ export async function assetsAddresses(
 export async function assetsPolicyById(
   this: BlockFrostAPI,
   policy: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['asset_addresses']> {
   const paginationOptions = getPaginationOptions(pagination);
 

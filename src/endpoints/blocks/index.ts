@@ -39,7 +39,7 @@ export async function blocksLatest(
 export async function blocksNext(
   this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['block_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -63,7 +63,7 @@ export async function blocksNext(
 export async function blocksPrevious(
   this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['block_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -87,7 +87,7 @@ export async function blocksPrevious(
 export async function blocksTxs(
   this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['block_content_txs']> {
   const paginationOptions = getPaginationOptions(pagination);
 

@@ -23,7 +23,7 @@ export async function accounts(
 export async function accountsRewards(
   this: BlockFrostAPI,
   stakeAddress: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['account_reward_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -80,7 +80,7 @@ export async function accountsRewardsAll(
 export async function accountsHistory(
   this: BlockFrostAPI,
   stakeAddress: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['account_history_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -137,7 +137,7 @@ export async function accountsHistoryAll(
 export async function accountsWithdrawals(
   this: BlockFrostAPI,
   stakeAddress: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['account_withdrawal_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -194,7 +194,7 @@ export async function accountsWithdrawalsAll(
 export async function accountsMirs(
   this: BlockFrostAPI,
   stakeAddress: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['account_mir_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -251,7 +251,7 @@ export async function accountsMirsAll(
 export async function accountsDelegations(
   this: BlockFrostAPI,
   stakeAddress: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['account_delegation_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -308,7 +308,7 @@ export async function accountsDelegationsAll(
 export async function accountsRegistrations(
   this: BlockFrostAPI,
   stakeAddress: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['account_registration_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -368,7 +368,7 @@ export async function accountsRegistrationsAll(
 export async function accountsAddresses(
   this: BlockFrostAPI,
   stakeAddress: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['account_addresses_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 

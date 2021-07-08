@@ -23,7 +23,7 @@ export async function nutlink(
 export async function nutlinkAddressTickers(
   this: BlockFrostAPI,
   address: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['nutlink_address_tickers']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -81,7 +81,7 @@ export async function nutlinkAddressTicker(
   this: BlockFrostAPI,
   address: string,
   ticker: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['nutlink_address_ticker']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -139,7 +139,7 @@ export async function nutlinkAddressTickerAll(
 export async function nutlinkTickers(
   this: BlockFrostAPI,
   ticker: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['nutlink_tickers_ticker']> {
   const paginationOptions = getPaginationOptions(pagination);
 

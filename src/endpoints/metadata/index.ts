@@ -5,7 +5,7 @@ import { BlockFrostAPI } from '../../index';
 
 export async function metadataTxsLabels(
   this: BlockFrostAPI,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['tx_metadata_label_json']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -29,7 +29,7 @@ export async function metadataTxsLabels(
 export async function metadataTxsLabel(
   this: BlockFrostAPI,
   label: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['tx_metadata_labels']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -53,7 +53,7 @@ export async function metadataTxsLabel(
 export async function metadataTxsLabelCbor(
   this: BlockFrostAPI,
   label: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['tx_metadata_label_cbor']> {
   const paginationOptions = getPaginationOptions(pagination);
 

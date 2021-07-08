@@ -40,7 +40,7 @@ export async function addressesTotal(
 export async function addressesTxs(
   this: BlockFrostAPI,
   address: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['address_txs_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -103,8 +103,8 @@ export async function addressesTxsAll(
 export async function addressesTransactions(
   this: BlockFrostAPI,
   address: string,
-  pagination: PaginationOptions,
-  additionalOptions: AdditionalEndpointOptions,
+  pagination?: PaginationOptions,
+  additionalOptions?: AdditionalEndpointOptions,
 ): Promise<components['schemas']['address_transactions_content']> {
   const additionalParams = getAdditionalParams(additionalOptions);
   const paginationOptions = getPaginationOptions(pagination);
@@ -177,7 +177,7 @@ export async function addressesTransactionsAll(
 export async function addressesUtxos(
   this: BlockFrostAPI,
   address: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['address_utxo_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 

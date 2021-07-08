@@ -5,7 +5,7 @@ import { PaginationOptions } from '../../types';
 
 export async function pools(
   this: BlockFrostAPI,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_list']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -28,7 +28,7 @@ export async function pools(
 
 export async function poolsRetired(
   this: BlockFrostAPI,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_list_retire']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -51,7 +51,7 @@ export async function poolsRetired(
 
 export async function poolsRetiring(
   this: BlockFrostAPI,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_list_retire']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -90,7 +90,7 @@ export async function poolsById(
 export async function poolsByIdHistory(
   this: BlockFrostAPI,
   poolId: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_history']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -144,7 +144,7 @@ export async function poolsByIdRelays(
 export async function poolsByIdDelegators(
   this: BlockFrostAPI,
   poolId: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_delegators']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -168,7 +168,7 @@ export async function poolsByIdDelegators(
 export async function poolsByIdBlocks(
   this: BlockFrostAPI,
   poolId: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_blocks']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -192,7 +192,7 @@ export async function poolsByIdBlocks(
 export async function poolsByIdUpdates(
   this: BlockFrostAPI,
   poolId: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_updates']> {
   const paginationOptions = getPaginationOptions(pagination);
 

@@ -110,8 +110,15 @@ export const handleError = (error: ExtendedAxiosError): ErrorType | string => {
 };
 
 export const getAdditionalParams = (
-  options: AdditionalEndpointOptions,
+  options?: AdditionalEndpointOptions,
 ): AdditionalEndpointOptions => {
+  if (!options) {
+    return {
+      from: undefined,
+      to: undefined,
+    };
+  }
+
   return {
     from: options.from || undefined,
     to: options.to || undefined,
@@ -119,11 +126,19 @@ export const getAdditionalParams = (
 };
 
 export const getPaginationOptions = (
-  params: PaginationOptions,
+  options?: PaginationOptions,
 ): PaginationOptions => {
+  if (!options) {
+    return {
+      page: DEFAULT_PAGINATION_PAGE_COUNT,
+      count: DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+      order: DEFAULT_ORDER,
+    };
+  }
+
   return {
-    page: params.page || DEFAULT_PAGINATION_PAGE_COUNT,
-    count: params.count || DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-    order: params.order || DEFAULT_ORDER,
+    page: options.page || DEFAULT_PAGINATION_PAGE_COUNT,
+    count: options.count || DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+    order: options.order || DEFAULT_ORDER,
   };
 };

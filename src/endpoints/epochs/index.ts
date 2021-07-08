@@ -35,7 +35,7 @@ export async function epochsLatest(
 export async function epochsNext(
   this: BlockFrostAPI,
   number: number,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -59,7 +59,7 @@ export async function epochsNext(
 export async function epochsPrevious(
   this: BlockFrostAPI,
   number: number,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -83,7 +83,7 @@ export async function epochsPrevious(
 export async function epochsStakes(
   this: BlockFrostAPI,
   number: number,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_stake_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -108,7 +108,7 @@ export async function epochsStakesByPoolId(
   this: BlockFrostAPI,
   number: number,
   poolId: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_block_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -132,7 +132,7 @@ export async function epochsStakesByPoolId(
 export async function epochsBlocks(
   this: BlockFrostAPI,
   number: number,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_block_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -157,7 +157,7 @@ export async function epochsBlocksByPoolId(
   this: BlockFrostAPI,
   number: number,
   poolId: string,
-  pagination: PaginationOptions,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_stake_pool_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
