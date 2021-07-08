@@ -1,7 +1,7 @@
 module.exports = {
   rootDir: '.',
   resetMocks: true,
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   moduleFileExtensions: ['ts', 'js'],
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/'],
