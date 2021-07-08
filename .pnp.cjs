@@ -43,7 +43,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/parser", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:4.28.0"],
             ["@yarnpkg/pnpify", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:3.0.0-rc.6"],
             ["axios", "npm:0.21.1"],
-            ["axios-retry", "npm:3.1.9"],
             ["babel-plugin-module-resolver", "npm:4.1.0"],
             ["dotenv", "npm:10.0.0"],
             ["eslint", "npm:7.29.0"],
@@ -55,6 +54,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-extended", "npm:0.11.5"],
             ["openapi-typescript", "npm:4.0.1"],
             ["prettier", "npm:2.3.1"],
+            ["retry-axios", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:2.4.0"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:27.0.3"],
             ["ts-node", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:10.0.0"],
@@ -1109,7 +1109,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/parser", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:4.28.0"],
             ["@yarnpkg/pnpify", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:3.0.0-rc.6"],
             ["axios", "npm:0.21.1"],
-            ["axios-retry", "npm:3.1.9"],
             ["babel-plugin-module-resolver", "npm:4.1.0"],
             ["dotenv", "npm:10.0.0"],
             ["eslint", "npm:7.29.0"],
@@ -1121,6 +1120,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-extended", "npm:0.11.5"],
             ["openapi-typescript", "npm:4.0.1"],
             ["prettier", "npm:2.3.1"],
+            ["retry-axios", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:2.4.0"],
             ["rimraf", "npm:3.0.2"],
             ["ts-jest", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:27.0.3"],
             ["ts-node", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:10.0.0"],
@@ -2651,16 +2651,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["axios", "npm:0.21.1"],
             ["follow-redirects", "virtual:d192f6b3b31cd5d11a443145a3883a70c04cbd7c813c53085dbaf50263735f1162f10fdbddd53c24e162ec3bc37b90966413084323739b7cf942b8bfb4da8831#npm:1.13.2"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["axios-retry", [
-        ["npm:3.1.9", {
-          "packageLocation": "./.yarn/cache/axios-retry-npm-3.1.9-d2b6840272-6c3418b19c.zip/node_modules/axios-retry/",
-          "packageDependencies": [
-            ["axios-retry", "npm:3.1.9"],
-            ["is-retry-allowed", "npm:1.2.0"]
           ],
           "linkType": "HARD",
         }]
@@ -5697,15 +5687,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["is-retry-allowed", [
-        ["npm:1.2.0", {
-          "packageLocation": "./.yarn/cache/is-retry-allowed-npm-1.2.0-730be11f6c-50d700a89a.zip/node_modules/is-retry-allowed/",
-          "packageDependencies": [
-            ["is-retry-allowed", "npm:1.2.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["is-stream", [
         ["npm:2.0.0", {
           "packageLocation": "./.yarn/cache/is-stream-npm-2.0.0-1401f82ad7-4dc47738e2.zip/node_modules/is-stream/",
@@ -8640,6 +8621,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/ret-npm-0.1.15-0d3c19de76-d76a9159eb.zip/node_modules/ret/",
           "packageDependencies": [
             ["ret", "npm:0.1.15"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["retry-axios", [
+        ["npm:2.4.0", {
+          "packageLocation": "./.yarn/cache/retry-axios-npm-2.4.0-12bbd124ef-45d1d29230.zip/node_modules/retry-axios/",
+          "packageDependencies": [
+            ["retry-axios", "npm:2.4.0"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:2.4.0", {
+          "packageLocation": "./.yarn/__virtual__/retry-axios-virtual-0a7a5138b8/0/cache/retry-axios-npm-2.4.0-12bbd124ef-45d1d29230.zip/node_modules/retry-axios/",
+          "packageDependencies": [
+            ["retry-axios", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:2.4.0"],
+            ["@types/axios", null],
+            ["axios", "npm:0.21.1"]
+          ],
+          "packagePeers": [
+            "@types/axios",
+            "axios"
           ],
           "linkType": "HARD",
         }]

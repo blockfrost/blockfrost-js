@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { getHeaders, getAdditionalParams, handleError } from '../../utils';
+import { getAdditionalParams, handleError } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 import {
@@ -13,10 +12,7 @@ export async function addresses(
   address: string,
 ): Promise<components['schemas']['address_content']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/addresses/${address}`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/addresses/${address}`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -29,10 +25,7 @@ export async function addressesTotal(
   address: string,
 ): Promise<components['schemas']['address_content_total']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/addresses/${address}/total`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/addresses/${address}/total`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -48,13 +41,10 @@ export async function addressesTxs(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['address_txs_content']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/addresses/${address}/txs?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/addresses/${address}/txs?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -111,13 +101,10 @@ export async function addressesTransactions(
   const additionalParams: string = getAdditionalParams(from, to);
 
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/addresses/${address}/transactions?page=${page}&count=${count}&order=${order}&${additionalParams}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/addresses/${address}/transactions?page=${page}&count=${count}&order=${order}&${additionalParams}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -177,11 +164,9 @@ export async function addressesUtxos(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['address_utxo_content']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/addresses/${address}/utxos?page=${page}&count=${count}&order=${order}`,
-        { headers: getHeaders(this) },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/addresses/${address}/utxos?page=${page}&count=${count}&order=${order}`,
+    )
       .then(resp => {
         resolve(resp.data);
       })

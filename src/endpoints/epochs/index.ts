@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { getHeaders, handleError } from '../../utils';
+import { handleError } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 import {
@@ -13,10 +12,7 @@ export async function epochs(
   number: number,
 ): Promise<components['schemas']['epoch_content']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/epochs/${number}`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/epochs/${number}`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -30,10 +26,7 @@ export async function epochsLatest(
   this: BlockFrostAPI,
 ): Promise<components['schemas']['epoch_content']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/epochs/latest`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/epochs/latest`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -50,10 +43,10 @@ export async function epochsNext(
   count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
 ): Promise<components['schemas']['epoch_content_array']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/epochs/${number}/next?page=${page}&count=${count}`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(
+      `${this.apiUrl}/epochs/${number}/next?page=${page}&count=${count}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -70,13 +63,10 @@ export async function epochsPrevious(
   count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
 ): Promise<components['schemas']['epoch_content_array']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/epochs/${number}/previous?page=${page}&count=${count}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/epochs/${number}/previous?page=${page}&count=${count}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -93,13 +83,10 @@ export async function epochsStakes(
   count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
 ): Promise<components['schemas']['epoch_stake_content']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/epochs/${number}/stakes?page=${page}&count=${count}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/epochs/${number}/stakes?page=${page}&count=${count}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -117,13 +104,10 @@ export async function epochsStakesByPoolId(
   count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
 ): Promise<components['schemas']['epoch_block_content']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/epochs/${number}/stakes/${poolId}?page=${page}&count=${count}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/epochs/${number}/stakes/${poolId}?page=${page}&count=${count}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -141,13 +125,10 @@ export async function epochsBlocks(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['epoch_block_content']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/epochs/${number}/blocks?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/epochs/${number}/blocks?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -166,13 +147,10 @@ export async function epochsBlocksByPoolId(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['epoch_stake_pool_content']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/epochs/${number}/blocks/${poolId}?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/epochs/${number}/blocks/${poolId}?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -187,10 +165,7 @@ export async function epochsParameters(
   number: number,
 ): Promise<components['schemas']['epoch_param_content']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/epochs/${number}/parameters`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/epochs/${number}/parameters`)
       .then(resp => {
         resolve(resp.data);
       })

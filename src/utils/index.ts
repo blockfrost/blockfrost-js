@@ -7,8 +7,6 @@ import {
   ValidatedOptions,
 } from '../types';
 
-import { BlockFrostAPI } from '..';
-
 export const validateOptions = (options?: Options): ValidatedOptions => {
   if (!options || (!options.customBackend && !options.projectId)) {
     throw Error('Missing customBackend or projectId option');
@@ -47,22 +45,17 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
 };
 
 export const getHeaders = (
-  api?: BlockFrostAPI,
-  isTxSubmit = false,
+  projectId: string | undefined,
+  userAgent?: string,
 ): Headers | null => {
-  if (!api?.projectId) {
+  if (!projectId) {
     return null;
   }
 
-  // headers needed for /tx/submit endpoint
-  const cborHeader = isTxSubmit ? { 'Content-type': 'application/cbor' } : null;
-  const userAgentHeader = api.userAgent
-    ? { 'User-Agent': api.userAgent }
-    : null;
+  const userAgentHeader = userAgent ? { 'User-Agent': userAgent } : null;
 
   return {
-    project_id: api.projectId,
-    ...cborHeader,
+    project_id: projectId,
     ...userAgentHeader,
   };
 };

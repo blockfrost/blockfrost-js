@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { getHeaders, handleError } from '../../utils';
+import { handleError } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 
@@ -8,10 +7,7 @@ export async function txs(
   hash: string,
 ): Promise<components['schemas']['tx_content']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/txs/${hash}`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/txs/${hash}`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -26,10 +22,7 @@ export async function txsUtxos(
   hash: string,
 ): Promise<components['schemas']['tx_content_utxo']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/txs/${hash}/utxos`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/txs/${hash}/utxos`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -44,10 +37,7 @@ export async function txsStakes(
   hash: string,
 ): Promise<components['schemas']['tx_content_stake_addr']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/txs/${hash}/stakes`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/txs/${hash}/stakes`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -62,10 +52,7 @@ export async function txsDelegations(
   hash: string,
 ): Promise<components['schemas']['tx_content_delegations']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/txs/${hash}/delegations`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/txs/${hash}/delegations`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -80,10 +67,7 @@ export async function txsWithdrawals(
   hash: string,
 ): Promise<components['schemas']['tx_content_withdrawals']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/txs/${hash}/withdrawals`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/txs/${hash}/withdrawals`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -98,10 +82,7 @@ export async function txsMirs(
   hash: string,
 ): Promise<components['schemas']['tx_content_mirs']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/txs/${hash}/mirs`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/txs/${hash}/mirs`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -116,10 +97,7 @@ export async function txsPoolUpdates(
   hash: string,
 ): Promise<components['schemas']['tx_content_pool_certs']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/txs/${hash}/pool_updates`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/txs/${hash}/pool_updates`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -134,10 +112,7 @@ export async function txsPoolRetires(
   hash: string,
 ): Promise<components['schemas']['tx_content_pool_retires']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/txs/${hash}/pool_retires`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/txs/${hash}/pool_retires`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -152,10 +127,7 @@ export async function txsMetadata(
   hash: string,
 ): Promise<components['schemas']['tx_metadata_label_json']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/txs/${hash}/metadata`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/txs/${hash}/metadata`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -170,10 +142,7 @@ export async function txsMetadataCbor(
   hash: string,
 ): Promise<components['schemas']['tx_content_metadata_cbor']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/txs/${hash}/metadata/cbor`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/txs/${hash}/metadata/cbor`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -194,9 +163,9 @@ export async function txSubmit(
   }
 
   return new Promise((resolve, reject) => {
-    axios
+    this.axiosInstance
       .post(`${this.apiUrl}/tx/submit`, tx, {
-        headers: getHeaders(this, true),
+        headers: { 'Content-type': 'application/cbor' },
       })
       .then(resp => {
         resolve(resp.data);

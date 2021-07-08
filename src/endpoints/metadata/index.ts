@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { getHeaders, handleError } from '../../utils';
+import { handleError } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 import {
@@ -15,13 +14,10 @@ export async function metadataTxsLabels(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['tx_metadata_label_json']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/metadata/txs/labels?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/metadata/txs/labels?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -39,13 +35,10 @@ export async function metadataTxsLabel(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['tx_metadata_labels']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/metadata/txs/labels/${label}?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/metadata/txs/labels/${label}?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -63,13 +56,10 @@ export async function metadataTxsLabelCbor(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['tx_metadata_label_cbor']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/metadata/txs/labels/${label}/cbor?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/metadata/txs/labels/${label}/cbor?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
