@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { getHeaders, handleError } from '../../utils';
+import { handleError } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 import {
@@ -15,10 +14,10 @@ export async function assets(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['assets']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/assets?page=${page}&count=${count}&order=${order}`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(
+      `${this.apiUrl}/assets?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -31,10 +30,7 @@ export async function assetsById(
   asset: string,
 ): Promise<components['schemas']['asset']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/assets/${asset}`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/assets/${asset}`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -50,18 +46,46 @@ export async function assetsHistory(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_history']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/assets/${asset}/history?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/assets/${asset}/history?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
       .catch(err => reject(handleError(err)));
   });
+}
+
+export async function assetsHistoryAll(
+  this: BlockFrostAPI,
+  asset: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['asset_history']> {
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const res: components['schemas']['asset_history'] = [];
+
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.assetsHistory(asset, page + i, count, order),
+    );
+    page += batchSize;
+    return promises;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
+    }
+  }
 }
 
 export async function assetsTxs(
@@ -72,13 +96,10 @@ export async function assetsTxs(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_txs']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/assets/${asset}/txs?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/assets/${asset}/txs?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -94,13 +115,10 @@ export async function assetsTransactions(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_transactions']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/assets/${asset}/transactions?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/assets/${asset}/transactions?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -116,13 +134,10 @@ export async function assetsAddresses(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_addresses']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/assets/${asset}/addresses?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/assets/${asset}/addresses?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
@@ -138,16 +153,44 @@ export async function assetsPolicyById(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['asset_addresses']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/assets/policy/${policy}?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(
+      `${this.apiUrl}/assets/policy/${policy}?page=${page}&count=${count}&order=${order}`,
+      {},
+    )
       .then(resp => {
         resolve(resp.data);
       })
       .catch(err => reject(handleError(err)));
   });
+}
+
+export async function assetsPolicyByIdAll(
+  this: BlockFrostAPI,
+  policy: string,
+  order = DEFAULT_ORDER,
+  batchSize = 10,
+): Promise<components['schemas']['asset_addresses']> {
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const res: components['schemas']['asset_addresses'] = [];
+
+  const getPromiseBundle = () => {
+    const promises = [...Array(batchSize).keys()].map(i =>
+      this.assetsPolicyById(policy, page + i, count, order),
+    );
+    page += batchSize;
+    return promises;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
+    }
+  }
 }

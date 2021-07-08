@@ -1,20 +1,27 @@
 import { API_URLS } from './config';
 import { components } from './types/OpenApi';
 import dotenv from 'dotenv';
-import axios from 'axios';
-import axiosRetry from 'axios-retry';
+import * as rax from 'retry-axios';
+import axios, { AxiosInstance } from 'axios';
 
 dotenv.config();
 
 import {
   accounts,
   accountsDelegations,
+  accountsDelegationsAll,
   accountsRegistrations,
+  accountsRegistrationsAll,
   accountsRewards,
+  accountsRewardsAll,
   accountsHistory,
+  accountsHistoryAll,
   accountsWithdrawals,
+  accountsWithdrawalsAll,
   accountsMirs,
+  accountsMirsAll,
   accountsAddresses,
+  accountsAddressesAll,
 } from './endpoints/accounts';
 
 import {
@@ -32,10 +39,12 @@ import {
   assets,
   assetsById,
   assetsHistory,
+  assetsHistoryAll,
   assetsTxs,
   assetsTransactions,
   assetsAddresses,
   assetsPolicyById,
+  assetsPolicyByIdAll,
 } from './endpoints/assets';
 
 import {
@@ -106,7 +115,7 @@ import {
 
 import { Options, ValidatedOptions } from './types';
 import join from 'url-join';
-import { validateOptions } from './utils';
+import { getHeaders, validateOptions } from './utils';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('../package.json');
 
@@ -115,6 +124,7 @@ class BlockFrostAPI {
   projectId?: string;
   userAgent?: string;
   options: ValidatedOptions;
+  axiosInstance: AxiosInstance;
 
   constructor(options?: Options) {
     this.options = validateOptions(options);
@@ -131,17 +141,22 @@ class BlockFrostAPI {
     this.userAgent =
       options?.userAgent ?? `${packageJson.name}@${packageJson.version}`;
 
-    if (this.options.retry429) {
-      axiosRetry(axios, {
-        retries: this.options.retryCount,
-        retryDelay: () => this.options.retryDelay,
-        retryCondition: err => {
-          return err.response?.status === 429;
-        },
-      });
-    }
-
-    axios.defaults.timeout = this.options.requestTimeout;
+    this.axiosInstance = axios.create();
+    this.axiosInstance.defaults.raxConfig = {
+      instance: this.axiosInstance,
+      retry: this.options.retryCount, // // Retry on requests that return a response (429, etc) before giving up.
+      noResponseRetries: 3, // // Retry on errors that don't return a response (ENOTFOUND, ETIMEDOUT, etc).
+      retryDelay: this.options.retryDelay,
+      statusCodesToRetry: this.options.retry429 ? [[429, 429]] : [],
+      backoffType: 'static', // the backoff type. options are 'exponential' (default), 'static' or 'linear'
+    };
+    // set default headers
+    this.axiosInstance.defaults.headers = getHeaders(
+      this.projectId,
+      this.userAgent,
+    );
+    this.axiosInstance.defaults.timeout = this.options.requestTimeout;
+    rax.attach(this.axiosInstance);
   }
 
   /**
@@ -163,6 +178,15 @@ class BlockFrostAPI {
   accountsDelegations = accountsDelegations;
 
   /**
+   * accountsDelegationsAll - Obtain information about all delegations of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the delegation of a specific account.
+   *
+   */
+  accountsDelegationsAll = accountsDelegationsAll;
+
+  /**
    * accountsRegistrations - Obtain information about the registrations and deregistrations of a specific account.
    *
    * @param stakeAddress - Bech32 stake address
@@ -170,6 +194,15 @@ class BlockFrostAPI {
    *
    */
   accountsRegistrations = accountsRegistrations;
+
+  /**
+   * accountsRegistrationsAll - Obtain information about all registrations and deregistrations of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the registrations and deregistrations of a specific account.
+   *
+   */
+  accountsRegistrationsAll = accountsRegistrationsAll;
 
   /**
    * accountsRewards - Obtain information about the history of a specific account.
@@ -181,6 +214,15 @@ class BlockFrostAPI {
   accountsRewards = accountsRewards;
 
   /**
+   * accountsRewardsAll - Obtain information about whole history of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the history of a specific account.
+   *
+   */
+  accountsRewardsAll = accountsRewardsAll;
+
+  /**
    * accountsHistory - Obtain information about the history of a specific account.
    *
    * @param stakeAddress - Bech32 stake address
@@ -188,6 +230,15 @@ class BlockFrostAPI {
    *
    */
   accountsHistory = accountsHistory;
+
+  /**
+   * accountsHistoryAll - Obtain information about whole history of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the history of a specific account.
+   *
+   */
+  accountsHistoryAll = accountsHistoryAll;
 
   /**
    * accountsWithdrawals - Obtain information about the withdrawals of a specific account.
@@ -199,6 +250,15 @@ class BlockFrostAPI {
   accountsWithdrawals = accountsWithdrawals;
 
   /**
+   * accountsWithdrawalsAll - Obtain information about all withdrawals of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the withdrawals of a specific account.
+   *
+   */
+  accountsWithdrawalsAll = accountsWithdrawalsAll;
+
+  /**
    * accountsMirs - Obtain information about the MIRs of a specific account.
    *
    * @param stakeAddress - Bech32 stake address
@@ -208,6 +268,15 @@ class BlockFrostAPI {
   accountsMirs = accountsMirs;
 
   /**
+   * accountsMirsAll - Obtain information about all MIRs of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the MIRs of a specific account.
+   *
+   */
+  accountsMirsAll = accountsMirsAll;
+
+  /**
    * accountsAddresses - Obtain information about the addresses of a specific account.
    *
    * @param stakeAddress - Bech32 stake address
@@ -215,6 +284,15 @@ class BlockFrostAPI {
    *
    */
   accountsAddresses = accountsAddresses;
+
+  /**
+   * accountsAddressesAll - Obtain information about all addresses of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Information about the addresses of a specific account.
+   *
+   */
+  accountsAddressesAll = accountsAddressesAll;
 
   /**
    * assets - List of assets.
@@ -241,6 +319,15 @@ class BlockFrostAPI {
    *
    */
   assetsHistory = assetsHistory;
+
+  /**
+   * assetsHistoryAll - Whole history of a specific asset.
+   *
+   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+   * @returns History of a specific asset.
+   *
+   */
+  assetsHistoryAll = assetsHistoryAll;
 
   /**
    * assetsTxs - List of a specific asset transactions.
@@ -277,6 +364,15 @@ class BlockFrostAPI {
    *
    */
   assetsPolicyById = assetsPolicyById;
+
+  /**
+   * assetsPolicyByIdAll - List of all assets minted under a specific policy.
+   *
+   * @param policyId - Specific policy_id
+   * @returns List of asset minted under a specific policy.
+   *
+   */
+  assetsPolicyByIdAll = assetsPolicyByIdAll;
 
   /**
    * addresses

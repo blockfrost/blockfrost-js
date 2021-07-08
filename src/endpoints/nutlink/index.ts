@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { getHeaders, handleError } from '../../utils';
+import { handleError } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 import {
@@ -13,10 +12,7 @@ export async function nutlink(
   address: string,
 ): Promise<components['schemas']['nutlink_address']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/nutlink/${address}`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/nutlink/${address}`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -32,11 +28,9 @@ export async function nutlinkAddressTickers(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['nutlink_address_tickers']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/nutlink/${address}/tickers`, {
-        headers: getHeaders(this),
-        params: { page, count, order },
-      })
+    this.axiosInstance(`${this.apiUrl}/nutlink/${address}/tickers`, {
+      params: { page, count, order },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -84,11 +78,9 @@ export async function nutlinkAddressTicker(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['nutlink_address_ticker']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/nutlink/${address}/tickers/${ticker}`, {
-        headers: getHeaders(this),
-        params: { page, count, order },
-      })
+    this.axiosInstance(`${this.apiUrl}/nutlink/${address}/tickers/${ticker}`, {
+      params: { page, count, order },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -136,11 +128,9 @@ export async function nutlinkTickers(
   order = DEFAULT_ORDER,
 ): Promise<components['schemas']['nutlink_tickers_ticker']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/nutlink/tickers/${ticker}`, {
-        headers: getHeaders(this),
-        params: { page, count, order },
-      })
+    this.axiosInstance(`${this.apiUrl}/nutlink/tickers/${ticker}`, {
+      params: { page, count, order },
+    })
       .then(resp => {
         resolve(resp.data);
       })
