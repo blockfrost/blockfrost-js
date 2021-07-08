@@ -36,6 +36,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["@blockfrost/openapi", "npm:0.1.22"],
+            ["@emurgo/cardano-serialization-lib-nodejs", "npm:7.1.0"],
             ["@types/jest", "npm:26.0.23"],
             ["@types/node", "npm:15.12.4"],
             ["@types/url-join", "npm:4.0.0"],
@@ -1102,6 +1103,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@blockfrost/blockfrost-js", "workspace:."],
             ["@blockfrost/openapi", "npm:0.1.22"],
+            ["@emurgo/cardano-serialization-lib-nodejs", "npm:7.1.0"],
             ["@types/jest", "npm:26.0.23"],
             ["@types/node", "npm:15.12.4"],
             ["@types/url-join", "npm:4.0.0"],
@@ -1139,6 +1141,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@blockfrost-openapi-npm-0.1.22-552fdbfd5b-1c07152cc7.zip/node_modules/@blockfrost/openapi/",
           "packageDependencies": [
             ["@blockfrost/openapi", "npm:0.1.22"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@emurgo/cardano-serialization-lib-nodejs", [
+        ["npm:7.1.0", {
+          "packageLocation": "./.yarn/cache/@emurgo-cardano-serialization-lib-nodejs-npm-7.1.0-9dde1e6073-7ea9089cdd.zip/node_modules/@emurgo/cardano-serialization-lib-nodejs/",
+          "packageDependencies": [
+            ["@emurgo/cardano-serialization-lib-nodejs", "npm:7.1.0"]
           ],
           "linkType": "HARD",
         }]
