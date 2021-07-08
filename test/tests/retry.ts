@@ -1,6 +1,9 @@
 import nock from 'nock';
 import { SDK } from '../utils';
-SDK.axiosInstance.defaults.adapter = require('axios/lib/adapters/http');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const http = require('axios/lib/adapters/http');
+
+SDK.axiosInstance.defaults.adapter = http;
 
 const baseUrl = `https://cardano-mainnet.blockfrost.io`;
 const path = `/api/v0/blocks/latest`;
