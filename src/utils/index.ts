@@ -1,13 +1,19 @@
-import { DEFAULT_API_VERSION } from '../config';
+import {
+  DEFAULT_API_VERSION,
+  DEFAULT_PAGINATION_PAGE_COUNT,
+  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  DEFAULT_ORDER,
+} from '../config';
+
 import {
   ErrorType,
   ExtendedAxiosError,
   Headers,
   Options,
   ValidatedOptions,
+  PaginationOptions,
+  AdditionalEndpointOptions,
 } from '../types';
-
-import { BlockFrostAPI } from '..';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
   if (!options || (!options.customBackend && !options.projectId)) {
@@ -47,22 +53,17 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
 };
 
 export const getHeaders = (
-  api?: BlockFrostAPI,
-  isTxSubmit = false,
+  projectId: string | undefined,
+  userAgent?: string,
 ): Headers | null => {
-  if (!api?.projectId) {
+  if (!projectId) {
     return null;
   }
 
-  // headers needed for /tx/submit endpoint
-  const cborHeader = isTxSubmit ? { 'Content-type': 'application/cbor' } : null;
-  const userAgentHeader = api.userAgent
-    ? { 'User-Agent': api.userAgent }
-    : null;
+  const userAgentHeader = userAgent ? { 'User-Agent': userAgent } : null;
 
   return {
-    project_id: api.projectId,
-    ...cborHeader,
+    project_id: projectId,
     ...userAgentHeader,
   };
 };
@@ -109,13 +110,35 @@ export const handleError = (error: ExtendedAxiosError): ErrorType | string => {
 };
 
 export const getAdditionalParams = (
-  from: string | undefined,
-  to: string | undefined,
-): string => {
-  // from & to parameters don't have default values
-  let additionalParams = '';
-  if (from && to) additionalParams = `from=${from}&to=${to}`;
-  else if (from) additionalParams = `from=${from}`;
-  else if (to) additionalParams = `to=${to}`;
-  return additionalParams;
+  options?: AdditionalEndpointOptions,
+): AdditionalEndpointOptions => {
+  if (!options) {
+    return {
+      from: undefined,
+      to: undefined,
+    };
+  }
+
+  return {
+    from: options.from || undefined,
+    to: options.to || undefined,
+  };
+};
+
+export const getPaginationOptions = (
+  options?: PaginationOptions,
+): PaginationOptions => {
+  if (!options) {
+    return {
+      page: DEFAULT_PAGINATION_PAGE_COUNT,
+      count: DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+      order: DEFAULT_ORDER,
+    };
+  }
+
+  return {
+    page: options.page || DEFAULT_PAGINATION_PAGE_COUNT,
+    count: options.count || DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+    order: options.order || DEFAULT_ORDER,
+  };
 };

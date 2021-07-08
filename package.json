@@ -28,8 +28,8 @@
     "@emurgo/cardano-serialization-lib-nodejs": "^7.1.0",
     "@yarnpkg/pnpify": "3.0.0-rc.6",
     "axios": "^0.21.1",
-    "axios-retry": "^3.1.9",
     "dotenv": "^10.0.0",
+    "retry-axios": "^2.4.0",
     "rimraf": "^3.0.2",
     "url-join": "^4.0.1"
   },
@@ -47,6 +47,7 @@
     "eslint-plugin-prettier": "3.4.0",
     "jest": "^27.0.5",
     "jest-extended": "^0.11.5",
+    "nock": "^13.1.1",
     "openapi-typescript": "^4.0.1",
     "prettier": "2.3.1",
     "ts-jest": "^27.0.3",

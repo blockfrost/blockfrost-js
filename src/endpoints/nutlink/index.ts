@@ -1,9 +1,8 @@
-import axios from 'axios';
-import { getHeaders, handleError } from '../../utils';
+import { handleError, getPaginationOptions } from '../../utils';
 import { components } from '../../types/OpenApi';
+import { PaginationOptions } from '../../types';
 import { BlockFrostAPI } from '../../index';
 import {
-  DEFAULT_PAGINATION_PAGE_COUNT,
   DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
   DEFAULT_ORDER,
 } from '../../config';
@@ -13,10 +12,7 @@ export async function nutlink(
   address: string,
 ): Promise<components['schemas']['nutlink_address']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/nutlink/${address}`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/nutlink/${address}`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -27,16 +23,18 @@ export async function nutlink(
 export async function nutlinkAddressTickers(
   this: BlockFrostAPI,
   address: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['nutlink_address_tickers']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/nutlink/${address}/tickers`, {
-        headers: getHeaders(this),
-        params: { page, count, order },
-      })
+    this.axiosInstance(`${this.apiUrl}/nutlink/${address}/tickers`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -56,7 +54,11 @@ export async function nutlinkAddressTickersAll(
 
   const getPromiseBundle = () => {
     const promises = [...Array(batchSize).keys()].map(i =>
-      this.nutlinkAddressTickers(address, page + i, count, order),
+      this.nutlinkAddressTickers(address, {
+        page: page + i,
+        count,
+        order,
+      }),
     );
     page += batchSize;
     return promises;
@@ -79,16 +81,18 @@ export async function nutlinkAddressTicker(
   this: BlockFrostAPI,
   address: string,
   ticker: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['nutlink_address_ticker']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/nutlink/${address}/tickers/${ticker}`, {
-        headers: getHeaders(this),
-        params: { page, count, order },
-      })
+    this.axiosInstance(`${this.apiUrl}/nutlink/${address}/tickers/${ticker}`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -109,7 +113,11 @@ export async function nutlinkAddressTickerAll(
 
   const getPromiseBundle = () => {
     const promises = [...Array(batchSize).keys()].map(i =>
-      this.nutlinkAddressTicker(address, ticker, page + i, count, order),
+      this.nutlinkAddressTicker(address, ticker, {
+        page: page + i,
+        count,
+        order,
+      }),
     );
     page += batchSize;
     return promises;
@@ -131,16 +139,18 @@ export async function nutlinkAddressTickerAll(
 export async function nutlinkTickers(
   this: BlockFrostAPI,
   ticker: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['nutlink_tickers_ticker']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/nutlink/tickers/${ticker}`, {
-        headers: getHeaders(this),
-        params: { page, count, order },
-      })
+    this.axiosInstance(`${this.apiUrl}/nutlink/tickers/${ticker}`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -160,7 +170,11 @@ export async function nutlinkTickersAll(
 
   const getPromiseBundle = () => {
     const promises = [...Array(batchSize).keys()].map(i =>
-      this.nutlinkTickers(ticker, page + i, count, order),
+      this.nutlinkTickers(ticker, {
+        page: page + i,
+        count,
+        order,
+      }),
     );
     page += batchSize;
     return promises;

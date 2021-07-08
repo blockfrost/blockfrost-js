@@ -1,4 +1,4 @@
-import { BlockFrostAPI } from '../../src';
+import { BlockFrostAPI } from '../../../src';
 
 export default [
   {

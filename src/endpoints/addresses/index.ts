@@ -1,22 +1,22 @@
-import axios from 'axios';
-import { getHeaders, getAdditionalParams, handleError } from '../../utils';
+import {
+  getAdditionalParams,
+  handleError,
+  getPaginationOptions,
+} from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 import {
-  DEFAULT_PAGINATION_PAGE_COUNT,
   DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
   DEFAULT_ORDER,
 } from '../../config';
+import { PaginationOptions, AdditionalEndpointOptions } from '../../types';
 
 export async function addresses(
   this: BlockFrostAPI,
   address: string,
 ): Promise<components['schemas']['address_content']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/addresses/${address}`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/addresses/${address}`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -29,10 +29,7 @@ export async function addressesTotal(
   address: string,
 ): Promise<components['schemas']['address_content_total']> {
   return new Promise((resolve, reject) => {
-    axios
-      .get(`${this.apiUrl}/addresses/${address}/total`, {
-        headers: getHeaders(this),
-      })
+    this.axiosInstance(`${this.apiUrl}/addresses/${address}/total`)
       .then(resp => {
         resolve(resp.data);
       })
@@ -43,18 +40,18 @@ export async function addressesTotal(
 export async function addressesTxs(
   this: BlockFrostAPI,
   address: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['address_txs_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/addresses/${address}/txs?page=${page}&count=${count}&order=${order}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(`${this.apiUrl}/addresses/${address}/txs`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -80,7 +77,11 @@ export async function addressesTxsAll(
 
   const getPromiseBundle = () => {
     const promises = [...Array(batchSize).keys()].map(i =>
-      this.addressesTxs(address, page + i, count, order),
+      this.addressesTxs(address, {
+        page: page + i,
+        count,
+        order,
+      }),
     );
     page += batchSize;
     return promises;
@@ -102,22 +103,22 @@ export async function addressesTxsAll(
 export async function addressesTransactions(
   this: BlockFrostAPI,
   address: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
-  from: string | undefined,
-  to: string | undefined,
+  pagination?: PaginationOptions,
+  additionalOptions?: AdditionalEndpointOptions,
 ): Promise<components['schemas']['address_transactions_content']> {
-  const additionalParams: string = getAdditionalParams(from, to);
+  const additionalParams = getAdditionalParams(additionalOptions);
+  const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/addresses/${address}/transactions?page=${page}&count=${count}&order=${order}&${additionalParams}`,
-        {
-          headers: getHeaders(this),
-        },
-      )
+    this.axiosInstance(`${this.apiUrl}/addresses/${address}/transactions`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+        from: additionalParams.from,
+        to: additionalParams.to,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -145,11 +146,15 @@ export async function addressesTransactionsAll(
     const promises = [...Array(batchSize).keys()].map(i =>
       this.addressesTransactions(
         address,
-        page + i,
-        count,
-        order,
-        undefined,
-        undefined,
+        {
+          page: page + i,
+          count,
+          order,
+        },
+        {
+          from: undefined,
+          to: undefined,
+        },
       ),
     );
     page += batchSize;
@@ -172,16 +177,18 @@ export async function addressesTransactionsAll(
 export async function addressesUtxos(
   this: BlockFrostAPI,
   address: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['address_utxo_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    axios
-      .get(
-        `${this.apiUrl}/addresses/${address}/utxos?page=${page}&count=${count}&order=${order}`,
-        { headers: getHeaders(this) },
-      )
+    this.axiosInstance(`${this.apiUrl}/addresses/${address}/utxos`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -200,12 +207,11 @@ export async function addressesUtxosAll(
 
   const getPromiseBundle = () => {
     const promises = [...Array(batchSize).keys()].map(i =>
-      this.addressesUtxos(
-        address,
-        page + i,
-        DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+      this.addressesUtxos(address, {
+        page: page + i,
+        count: DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
         order,
-      ),
+      }),
     );
     page += batchSize;
     return promises;

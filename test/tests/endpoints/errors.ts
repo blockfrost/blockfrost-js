@@ -3,7 +3,7 @@ import path from 'path';
 import { BlockFrostAPI } from '../../../src';
 import { SDKError } from '../../utils';
 
-const fixturesFolder = path.resolve(__dirname, '../../fixtures');
+const fixturesFolder = path.resolve(__dirname, '../../fixtures/endpoints');
 const files = fs.readdirSync(fixturesFolder);
 
 interface Fixture {
@@ -13,7 +13,11 @@ interface Fixture {
 
 files.forEach(file => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const fileContent = require(path.resolve(__dirname, '../../fixtures', file));
+  const fileContent = require(path.resolve(
+    __dirname,
+    '../../fixtures/endpoints',
+    file,
+  ));
 
   describe(file, () => {
     fileContent.default.forEach((fixture: Fixture) => {

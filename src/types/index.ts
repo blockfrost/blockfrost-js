@@ -1,7 +1,15 @@
 import { AxiosError } from 'axios';
 
-type OptionCombination1 = { projectId: string; customBackend?: string };
-type OptionCombination2 = { projectId?: string; customBackend: string };
+type OptionCombination1 = {
+  projectId: string;
+  customBackend?: string;
+};
+
+type OptionCombination2 = {
+  projectId?: string;
+  customBackend: string;
+};
+
 type AdditionalOptions = {
   isTestnet?: boolean;
   version?: number;
@@ -47,3 +55,14 @@ export type ErrorType =
 export interface ExtendedAxiosError extends AxiosError {
   errno: number;
 }
+
+export type PaginationOptions = {
+  count: number;
+  page: number;
+  order: 'asc' | 'desc';
+};
+
+export type AdditionalEndpointOptions = {
+  from: string | undefined;
+  to: string | undefined;
+};

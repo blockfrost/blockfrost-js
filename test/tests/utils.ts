@@ -1,5 +1,7 @@
 import { BlockFrostAPI } from '../../src/index';
+import { ExtendedAxiosError } from '../../src/types';
 import * as utils from '../../src/utils';
+import { handleError } from '../fixtures/utils';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('../../package.json');
 
@@ -205,7 +207,7 @@ describe('utils', () => {
     const api = new BlockFrostAPI({
       projectId: 'xxx',
     });
-    expect(utils.getHeaders(api)).toEqual({
+    expect(utils.getHeaders(api.projectId, api.userAgent)).toEqual({
       project_id: 'xxx',
       'User-Agent': `${packageJson.name}@${packageJson.version}`,
     });
@@ -216,27 +218,33 @@ describe('utils', () => {
       projectId: 'xxx',
       userAgent: 'yyy',
     });
-    expect(utils.getHeaders(api)).toEqual({
+    expect(utils.getHeaders(api.projectId, api.userAgent)).toEqual({
       project_id: 'xxx',
       'User-Agent': 'yyy',
     });
   });
 
   test('getAdditionalParams', () => {
-    expect(utils.getAdditionalParams(undefined, undefined)).toEqual('');
-    expect(utils.getAdditionalParams('100', undefined)).toEqual('from=100');
-    expect(utils.getAdditionalParams('100:1', undefined)).toEqual('from=100:1');
-    expect(utils.getAdditionalParams(undefined, '200')).toEqual('to=200');
-    expect(utils.getAdditionalParams(undefined, '200:2')).toEqual('to=200:2');
-    expect(utils.getAdditionalParams('100', '200')).toEqual('from=100&to=200');
-    expect(utils.getAdditionalParams('100:1', '200')).toEqual(
-      'from=100:1&to=200',
-    );
-    expect(utils.getAdditionalParams('100', '200:2')).toEqual(
-      'from=100&to=200:2',
-    );
-    expect(utils.getAdditionalParams('100:1', '200:2')).toEqual(
-      'from=100:1&to=200:2',
-    );
+    expect(utils.getAdditionalParams(undefined)).toEqual({
+      from: undefined,
+      to: undefined,
+    });
+    expect(utils.getAdditionalParams({ from: 'a', to: 'b' })).toEqual({
+      from: 'a',
+      to: 'b',
+    });
+  });
+
+  handleError.forEach(f => {
+    test(`handleError: ${f.description}`, () => {
+      const handledError = utils.handleError(
+        f.payload as unknown as ExtendedAxiosError,
+      );
+      if (typeof f.result === 'string') {
+        expect(handledError).toBe(f.result);
+      } else {
+        expect(handledError).toMatchObject(f.result);
+      }
+    });
   });
 });
