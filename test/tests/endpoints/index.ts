@@ -7,8 +7,10 @@ const fixturesFolder = path.resolve(__dirname, '../../fixtures');
 const files = fs.readdirSync(fixturesFolder);
 
 interface Fixture {
-  command: (SDK: BlockFrostAPI) => unknown;
+  command: (SDK: BlockFrostAPI) => any;
   response: any;
+  itemsCountMinimum?: number;
+  itemsCount?: number;
 }
 
 files.forEach(file => {
@@ -20,6 +22,38 @@ files.forEach(file => {
       test(fixture.command.toString(), async () => {
         const response = await fixture.command(SDK);
         expect(response).toMatchObject(fixture.response);
+
+        if (fixture.itemsCount) {
+          expect(response.length).toBe(fixture.itemsCount);
+          console.log(
+            `
+            TEST: itemsCount
+
+            Response length:
+            ${response.length}
+
+            Expected equal to:
+            ${fixture.itemsCount}
+            `,
+          );
+        }
+
+        if (fixture.itemsCountMinimum) {
+          expect(response.length).toBeGreaterThanOrEqual(
+            fixture.itemsCountMinimum,
+          );
+          console.log(
+            `
+            TEST: itemsCountMinimum
+
+            Response length:
+            ${response.length}
+
+            Expected greater than or equal:
+            ${fixture.itemsCountMinimum}
+            `,
+          );
+        }
       });
     });
   });
