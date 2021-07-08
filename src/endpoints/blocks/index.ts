@@ -1,10 +1,9 @@
-import { handleError } from '../../utils';
+import { handleError, getPaginationOptions } from '../../utils';
 import {
-  DEFAULT_PAGINATION_PAGE_COUNT,
   DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
   DEFAULT_ORDER,
 } from '../../config';
-import { HashOrNumber } from '../../types';
+import { HashOrNumber, PaginationOptions } from '../../types';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
 
@@ -40,13 +39,18 @@ export async function blocksLatest(
 export async function blocksNext(
   this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['block_content_array']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/blocks/${hashOrNumber}/next?page=${page}&count=${count}`,
-    )
+    this.axiosInstance(`${this.apiUrl}/blocks/${hashOrNumber}/next`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -59,13 +63,18 @@ export async function blocksNext(
 export async function blocksPrevious(
   this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['block_content_array']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/blocks/${hashOrNumber}/previous?page=${page}&count=${count}`,
-    )
+    this.axiosInstance(`${this.apiUrl}/blocks/${hashOrNumber}/previous`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -78,14 +87,18 @@ export async function blocksPrevious(
 export async function blocksTxs(
   this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['block_content_txs']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/blocks/${hashOrNumber}/txs?page=${page}&count=${count}&order=${order}`,
-    )
+    this.axiosInstance(`${this.apiUrl}/blocks/${hashOrNumber}/txs`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -107,7 +120,11 @@ export async function blocksTxsAll(
 
   const getPromiseBundle = () => {
     const promises = [...Array(batchSize).keys()].map(i =>
-      this.blocksTxs(hashOrNumber, page + i, count, order),
+      this.blocksTxs(hashOrNumber, {
+        page: page + i,
+        count,
+        order,
+      }),
     );
     page += batchSize;
     return promises;

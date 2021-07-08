@@ -1,11 +1,7 @@
-import { handleError } from '../../utils';
+import { handleError, getPaginationOptions } from '../../utils';
+import { PaginationOptions } from '../../types';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
-import {
-  DEFAULT_PAGINATION_PAGE_COUNT,
-  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  DEFAULT_ORDER,
-} from '../../config';
 
 export async function epochs(
   this: BlockFrostAPI,
@@ -39,14 +35,18 @@ export async function epochsLatest(
 export async function epochsNext(
   this: BlockFrostAPI,
   number: number,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_content_array']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/epochs/${number}/next?page=${page}&count=${count}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/epochs/${number}/next`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -59,14 +59,18 @@ export async function epochsNext(
 export async function epochsPrevious(
   this: BlockFrostAPI,
   number: number,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_content_array']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/epochs/${number}/previous?page=${page}&count=${count}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/epochs/${number}/previous`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -79,14 +83,18 @@ export async function epochsPrevious(
 export async function epochsStakes(
   this: BlockFrostAPI,
   number: number,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_stake_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/epochs/${number}/stakes?page=${page}&count=${count}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/epochs/${number}/stakes`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -100,14 +108,18 @@ export async function epochsStakesByPoolId(
   this: BlockFrostAPI,
   number: number,
   poolId: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_block_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/epochs/${number}/stakes/${poolId}?page=${page}&count=${count}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/epochs/${number}/stakes/${poolId}`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -120,15 +132,18 @@ export async function epochsStakesByPoolId(
 export async function epochsBlocks(
   this: BlockFrostAPI,
   number: number,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_block_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/epochs/${number}/blocks?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/epochs/${number}/blocks`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -142,15 +157,18 @@ export async function epochsBlocksByPoolId(
   this: BlockFrostAPI,
   number: number,
   poolId: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['epoch_stake_pool_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/epochs/${number}/blocks/${poolId}?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/epochs/${number}/blocks/${poolId}`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })

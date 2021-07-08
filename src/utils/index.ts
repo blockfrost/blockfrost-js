@@ -1,10 +1,18 @@
-import { DEFAULT_API_VERSION } from '../config';
+import {
+  DEFAULT_API_VERSION,
+  DEFAULT_PAGINATION_PAGE_COUNT,
+  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+  DEFAULT_ORDER,
+} from '../config';
+
 import {
   ErrorType,
   ExtendedAxiosError,
   Headers,
   Options,
   ValidatedOptions,
+  PaginationOptions,
+  AdditionalEndpointOptions,
 } from '../types';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
@@ -102,13 +110,35 @@ export const handleError = (error: ExtendedAxiosError): ErrorType | string => {
 };
 
 export const getAdditionalParams = (
-  from: string | undefined,
-  to: string | undefined,
-): string => {
-  // from & to parameters don't have default values
-  let additionalParams = '';
-  if (from && to) additionalParams = `from=${from}&to=${to}`;
-  else if (from) additionalParams = `from=${from}`;
-  else if (to) additionalParams = `to=${to}`;
-  return additionalParams;
+  options?: AdditionalEndpointOptions,
+): AdditionalEndpointOptions => {
+  if (!options) {
+    return {
+      from: undefined,
+      to: undefined,
+    };
+  }
+
+  return {
+    from: options.from || undefined,
+    to: options.to || undefined,
+  };
+};
+
+export const getPaginationOptions = (
+  options?: PaginationOptions,
+): PaginationOptions => {
+  if (!options) {
+    return {
+      page: DEFAULT_PAGINATION_PAGE_COUNT,
+      count: DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+      order: DEFAULT_ORDER,
+    };
+  }
+
+  return {
+    page: options.page || DEFAULT_PAGINATION_PAGE_COUNT,
+    count: options.count || DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+    order: options.order || DEFAULT_ORDER,
+  };
 };

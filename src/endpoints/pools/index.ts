@@ -1,23 +1,22 @@
-import { handleError } from '../../utils';
+import { handleError, getPaginationOptions } from '../../utils';
 import { components } from '../../types/OpenApi';
 import { BlockFrostAPI } from '../../index';
-import {
-  DEFAULT_PAGINATION_PAGE_COUNT,
-  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  DEFAULT_ORDER,
-} from '../../config';
+import { PaginationOptions } from '../../types';
 
 export async function pools(
   this: BlockFrostAPI,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_list']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/pools?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/pools`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -29,15 +28,18 @@ export async function pools(
 
 export async function poolsRetired(
   this: BlockFrostAPI,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_list_retire']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/pools/retired?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/pools/retired`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -49,15 +51,18 @@ export async function poolsRetired(
 
 export async function poolsRetiring(
   this: BlockFrostAPI,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_list_retire']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/pools/retiring?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/pools/retiring`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -85,15 +90,18 @@ export async function poolsById(
 export async function poolsByIdHistory(
   this: BlockFrostAPI,
   poolId: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_history']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/pools/${poolId}/history?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/pools/${poolId}/history`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -136,15 +144,18 @@ export async function poolsByIdRelays(
 export async function poolsByIdDelegators(
   this: BlockFrostAPI,
   poolId: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_delegators']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/pools/${poolId}/delegators?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/pools/${poolId}/delegators`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -157,15 +168,18 @@ export async function poolsByIdDelegators(
 export async function poolsByIdBlocks(
   this: BlockFrostAPI,
   poolId: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_blocks']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/pools/${poolId}/blocks?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/pools/${poolId}/blocks`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
@@ -178,15 +192,18 @@ export async function poolsByIdBlocks(
 export async function poolsByIdUpdates(
   this: BlockFrostAPI,
   poolId: string,
-  page = DEFAULT_PAGINATION_PAGE_COUNT,
-  count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  order = DEFAULT_ORDER,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['pool_updates']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/pools/${poolId}/updates?page=${page}&count=${count}&order=${order}`,
-      {},
-    )
+    this.axiosInstance(`${this.apiUrl}/pools/${poolId}/updates`, {
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.data);
       })
