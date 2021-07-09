@@ -9,7 +9,9 @@ module.exports = {
   coverageReporters: ['json', 'lcov', 'text', 'text-summary'],
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   setupFilesAfterEnv: ['<rootDir>/test/setup.ts'],
-  preset: 'ts-jest',
+  transform: {
+    '^.+\\.(t|j)sx?$': ['@swc-node/jest'],
+  },
   coverageThreshold: {
     global: {
       branches: 37,
