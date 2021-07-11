@@ -4,6 +4,9 @@ import {
   NetworkInfo,
   StakeCredential,
 } from '@emurgo/cardano-serialization-lib-nodejs';
+import { BlockFrostAPI } from '..';
+import * as Account from '../types/account';
+import { ADDRESS_GAP_LIMIT } from '../config';
 
 export const deriveAddress = (
   publicKey: string,
@@ -24,3 +27,52 @@ export const deriveAddress = (
     path: `m/1852'/1815'/0'/${type}/${addressIndex}`,
   };
 };
+
+export async function getAccount(
+  this: BlockFrostAPI,
+  publicKey: string,
+  type: Account.Type,
+): Promise<Account.Result[]> {
+  let addressDiscoveredCount = 0;
+  let lastEmptyCount = 0;
+  let addressCount = 0;
+
+  const result: Account.Result[] = [];
+
+  while (lastEmptyCount < ADDRESS_GAP_LIMIT) {
+    const promisesBundle: Account.Bundle = [];
+
+    for (
+      let i = addressDiscoveredCount;
+      i < addressDiscoveredCount + ADDRESS_GAP_LIMIT;
+      i++
+    ) {
+      const { address, path } = deriveAddress(publicKey, addressCount, type);
+      addressCount++;
+      const promise = this.addresses(address);
+      promisesBundle.push({ address, promise, path });
+    }
+
+    await Promise.all(
+      promisesBundle.map(p =>
+        p.promise
+          .then(data => {
+            result.push({ address: p.address, path: p.path, data });
+            lastEmptyCount = 0;
+          })
+          .catch(error => {
+            lastEmptyCount++;
+            if (error.status_code === 404) {
+              result.push({ address: p.address, data: 'empty', path: p.path });
+            } else {
+              throw Error(error);
+            }
+          }),
+      ),
+    );
+
+    addressDiscoveredCount++;
+  }
+
+  return result;
+}
