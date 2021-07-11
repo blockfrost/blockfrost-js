@@ -12,6 +12,7 @@ type OptionCombination2 = {
 
 type AdditionalOptions = {
   isTestnet?: boolean;
+  isIPFS?: boolean;
   version?: number;
   retry429?: boolean;
   userAgent?: string;
@@ -27,6 +28,7 @@ export interface ValidatedOptions {
   customBackend?: string;
   projectId?: string;
   isTestnet?: boolean;
+  isIPFS?: boolean;
   version: number;
   retry429: boolean;
   requestTimeout: number;
