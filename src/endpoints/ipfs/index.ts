@@ -18,7 +18,7 @@ export async function ipfsAdd(
     form.append('file', data);
 
     this.axiosInstance
-      .post(`${this.apiUrl}/ipfs/pin/add`, form, {
+      .post(`${this.apiUrl}/ipfs/add`, form, {
         headers: {
           'Content-type': 'multipart/form-data',
         },

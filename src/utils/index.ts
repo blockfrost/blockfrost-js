@@ -44,6 +44,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     customBackend: options.customBackend,
     projectId: options.projectId,
     isTestnet: options.isTestnet,
+    isIPFS: options.isIPFS,
     version: options.version || DEFAULT_API_VERSION,
     retry429: options.retry429 || true,
     retryCount: options.retryCount ?? 20,
