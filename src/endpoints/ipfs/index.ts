@@ -8,7 +8,7 @@ import {
 } from '../../config';
 import { BlockFrostAPI } from '../../index';
 
-export async function IPFSAdd(
+export async function ipfsAdd(
   this: BlockFrostAPI,
   filePath: string,
 ): Promise<string> {
@@ -32,7 +32,7 @@ export async function IPFSAdd(
   });
 }
 
-export async function IPFSGateway(
+export async function ipfsGateway(
   this: BlockFrostAPI,
   path: string,
 ): Promise<string> {
@@ -50,7 +50,7 @@ export async function IPFSGateway(
   });
 }
 
-export async function IPFSPinAdd(
+export async function ipfsPinAdd(
   this: BlockFrostAPI,
   path: string,
 ): Promise<string> {
@@ -66,7 +66,7 @@ export async function IPFSPinAdd(
   });
 }
 
-export async function IPFSPinList(
+export async function ipfsPinList(
   this: BlockFrostAPI,
   pagination: PaginationOptions,
 ): Promise<string> {
@@ -89,7 +89,7 @@ export async function IPFSPinList(
   });
 }
 
-export async function IPFSPinListAll(
+export async function ipfsPinListAll(
   this: BlockFrostAPI,
   order = DEFAULT_ORDER,
   batchSize = 10,
@@ -100,7 +100,7 @@ export async function IPFSPinListAll(
 
   const getPromiseBundle = () => {
     const promises = [...Array(batchSize).keys()].map(i =>
-      this.IPFSPinList({
+      this.ipfsPinList({
         page: page + i,
         count,
         order,
@@ -123,7 +123,7 @@ export async function IPFSPinListAll(
   }
 }
 
-export async function IPFSPinListByPath(
+export async function ipfsPinListByPath(
   this: BlockFrostAPI,
   path: string,
 ): Promise<string> {
@@ -139,7 +139,7 @@ export async function IPFSPinListByPath(
   });
 }
 
-export async function IPFSPinRemove(
+export async function ipfsPinRemove(
   this: BlockFrostAPI,
   path: string,
 ): Promise<string> {

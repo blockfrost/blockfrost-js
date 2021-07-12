@@ -25,13 +25,13 @@ import {
 } from './endpoints/accounts';
 
 import {
-  IPFSAdd,
-  IPFSGateway,
-  IPFSPinAdd,
-  IPFSPinList,
-  IPFSPinListAll,
-  IPFSPinListByPath,
-  IPFSPinRemove,
+  ipfsAdd,
+  ipfsGateway,
+  ipfsPinAdd,
+  ipfsPinList,
+  ipfsPinListAll,
+  ipfsPinListByPath,
+  ipfsPinRemove,
 } from './endpoints/ipfs';
 
 import {
@@ -620,59 +620,59 @@ class BlockFrostAPI {
   genesis = genesis;
 
   /**
-   * IPFSAdd - Add a file or directory to IPFS
+   * ipfsAdd - Add a file or directory to ipfs
    *
-   * @returns information about added IPFS object
+   * @returns information about added ipfs object
    */
-  IPFSAdd = IPFSAdd;
+  ipfsAdd = ipfsAdd;
 
   /**
-   * IPFSGateway - Relay to an IPFS gateway
+   * ipfsGateway - Relay to an ipfs gateway
    *
    * @returns the object content
    *
    */
-  IPFSGateway = IPFSGateway;
+  ipfsGateway = ipfsGateway;
 
   /**
-   * IPFSPinAdd - Pin an object
+   * ipfsPinAdd - Pin an object
    *
    * @returns xxx
    *
    */
-  IPFSPinAdd = IPFSPinAdd;
+  ipfsPinAdd = ipfsPinAdd;
 
   /**
-   * IPFSPinListByPath - List objects pinned to local storage
+   * ipfsPinListByPath - List objects pinned to local storage
    *
    * @returns xxx
    *
    */
-  IPFSPinListByPath = IPFSPinListByPath;
+  ipfsPinListByPath = ipfsPinListByPath;
 
   /**
-   * IPFSPinList - List objects pinned to local storage
+   * ipfsPinList - List objects pinned to local storage
    *
    * @returns xxx
    *
    */
-  IPFSPinList = IPFSPinList;
+  ipfsPinList = ipfsPinList;
 
   /**
-   * IPFSPinListAll - List objects pinned to local storage
+   * ipfsPinListAll - List objects pinned to local storage
    *
    * @returns xxx
    *
    */
-  IPFSPinListAll = IPFSPinListAll;
+  ipfsPinListAll = ipfsPinListAll;
 
   /**
-   * IPFSPinRemove - Remove pinned objects from local storage
+   * ipfsPinRemove - Remove pinned objects from local storage
    *
    * @returns xxx
    *
    */
-  IPFSPinRemove = IPFSPinRemove;
+  ipfsPinRemove = ipfsPinRemove;
 
   /**
    * metadataTxsLabel
