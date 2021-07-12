@@ -33,7 +33,6 @@ export async function getAccount(
   publicKey: string,
   type: Account.Type,
 ): Promise<Account.Result[]> {
-  let addressDiscoveredCount = 0;
   let lastEmptyCount = 0;
   let addressCount = 0;
 
@@ -42,11 +41,7 @@ export async function getAccount(
   while (lastEmptyCount < ADDRESS_GAP_LIMIT) {
     const promisesBundle: Account.Bundle = [];
 
-    for (
-      let i = addressDiscoveredCount;
-      i < addressDiscoveredCount + ADDRESS_GAP_LIMIT;
-      i++
-    ) {
+    for (let i = 0; i < ADDRESS_GAP_LIMIT; i++) {
       const { address, path } = deriveAddress(publicKey, addressCount, type);
       addressCount++;
       const promise = this.addresses(address);
@@ -70,8 +65,6 @@ export async function getAccount(
           }),
       ),
     );
-
-    addressDiscoveredCount++;
   }
 
   return result;
