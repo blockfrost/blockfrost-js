@@ -1,4 +1,4 @@
-import { Responses } from '@blockfrost/blockfrost-js';
+import { Responses } from '../';
 
 export type Result = {
   address: string;
@@ -33,34 +33,6 @@ export interface AddressData {
   sent?: string;
   received?: string;
 }
-
-export interface Utxo {
-  tx_hash: string;
-  tx_index: number;
-  output_index: number;
-  amount: {
-    unit: string;
-    quantity: string;
-  }[];
-  block: string;
-}
-
-export interface UtxosWithBlockResponse {
-  address: string;
-  utxoData: Utxo;
-  blockInfo: Responses['block_content'];
-}
-
-export interface UtxosWithBlocksBundle {
-  address: string;
-  utxoData: Utxo;
-  promise: Promise<Responses['block_content']>;
-}
-
-export type UtxosWithBlocksParams = {
-  address: string;
-  data: Responses['address_utxo_content'] | 'empty';
-}[];
 
 export type GetAddressDataBundle = {
   address: string;

@@ -6,6 +6,8 @@ import axios, { AxiosInstance } from 'axios';
 
 dotenv.config();
 
+import { getAccount, deriveAddress } from './account';
+
 import {
   accounts,
   accountsDelegations,
@@ -886,6 +888,24 @@ class BlockFrostAPI {
    *
    */
   txSubmit = txSubmit;
+
+  /**
+   * getAccount
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  getAccount = getAccount;
+
+  /**
+   * deriveAddress
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  deriveAddress = deriveAddress;
 }
 
 type Responses = components['schemas'];
