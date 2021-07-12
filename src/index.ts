@@ -25,6 +25,16 @@ import {
 } from './endpoints/accounts';
 
 import {
+  IPFSAdd,
+  IPFSGateway,
+  IPFSPinAdd,
+  IPFSPinList,
+  IPFSPinListAll,
+  IPFSPinListByPath,
+  IPFSPinRemove,
+} from './endpoints/ipfs';
+
+import {
   addresses,
   addressesTotal,
   addressesTxs,
@@ -608,6 +618,61 @@ class BlockFrostAPI {
    *
    */
   genesis = genesis;
+
+  /**
+   * IPFSAdd - Add a file or directory to IPFS
+   *
+   * @returns information about added IPFS object
+   */
+  IPFSAdd = IPFSAdd;
+
+  /**
+   * IPFSGateway - Relay to an IPFS gateway
+   *
+   * @returns the object content
+   *
+   */
+  IPFSGateway = IPFSGateway;
+
+  /**
+   * IPFSPinAdd - Pin an object
+   *
+   * @returns xxx
+   *
+   */
+  IPFSPinAdd = IPFSPinAdd;
+
+  /**
+   * IPFSPinListByPath - List objects pinned to local storage
+   *
+   * @returns xxx
+   *
+   */
+  IPFSPinListByPath = IPFSPinListByPath;
+
+  /**
+   * IPFSPinList - List objects pinned to local storage
+   *
+   * @returns xxx
+   *
+   */
+  IPFSPinList = IPFSPinList;
+
+  /**
+   * IPFSPinListAll - List objects pinned to local storage
+   *
+   * @returns xxx
+   *
+   */
+  IPFSPinListAll = IPFSPinListAll;
+
+  /**
+   * IPFSPinRemove - Remove pinned objects from local storage
+   *
+   * @returns xxx
+   *
+   */
+  IPFSPinRemove = IPFSPinRemove;
 
   /**
    * metadataTxsLabel
