@@ -2568,6 +2568,8 @@ export interface components {
       pool_update_count: number;
       /** Count of the stake pool retirement certificates within the transaction */
       pool_retire_count: number;
+      /** Count of asset mints and burns within the transaction */
+      asset_mint_or_burn_count: number;
     };
     tx_content_utxo: {
       inputs: {
@@ -2958,6 +2960,8 @@ export interface components {
       quantity: string;
       /** ID of the initial minting transaction */
       initial_mint_tx_hash: string;
+      /** Count of mint and burn transactions */
+      mint_or_burn_count: number;
       /**
        * On-chain metadata stored in the minting transaction under label 721,
        * community discussion around the standard ongoing at https://github.com/cardano-foundation/CIPs/pull/85
@@ -2980,6 +2984,8 @@ export interface components {
         url: string | null;
         /** Base64 encoded logo of the asset */
         logo: string | null;
+        /** Number of decimal places of the asset unit */
+        decimals: number | null;
       } | null;
     };
     asset_history: {
