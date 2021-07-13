@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { SDK_ERROR } from '../../utils';
-import { TestFixture } from '../types';
+import { TestFixture } from '../../types';
 
 const fixturesFolder = path.resolve(__dirname, '../../fixtures/endpoints');
 const files = fs.readdirSync(fixturesFolder);

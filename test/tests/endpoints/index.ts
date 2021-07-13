@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { SDK } from '../../utils';
-import { TestFixture } from '../types';
+import { TestFixture } from '../../types';
 
 const fixturesFolder = path.resolve(__dirname, '../../fixtures/endpoints');
 const files = fs.readdirSync(fixturesFolder);
@@ -14,7 +14,7 @@ files.forEach(file => {
     file,
   ));
 
-  describe(file, () => {
+  describe('file', () => {
     fileContent.default.forEach((fixture: TestFixture) => {
       test(fixture.command.toString(), async () => {
         const response = await fixture.command(SDK);

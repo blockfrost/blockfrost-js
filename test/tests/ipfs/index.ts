@@ -6,6 +6,14 @@ describe('IPFS', () => {
       path: 'https://i.imgur.com/tEaBDoq.jpeg',
       sourceType: 'url',
     });
-    console.log('addedObject', addedObject);
+
+    expect(addedObject).toMatchObject({ path: expect.any(String) });
+    console.log('addedObject', addedObject)
+
+    const pinnedObject = await IPFS.pin(addedObject.cid);
+
+    expect(pinnedObject).toMatchObject({
+      ipfs_hash: expect.any(String), state: 'queued'
+    });
   });
 });

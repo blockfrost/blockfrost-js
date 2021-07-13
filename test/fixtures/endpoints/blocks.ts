@@ -2,6 +2,7 @@ import { BlockFrostAPI } from '../../../src';
 
 export default [
   {
+    name: 'blocksLatest',
     command: (SDK: BlockFrostAPI) => SDK.blocksLatest(),
     response: {
       time: expect.any(Number),
@@ -22,6 +23,7 @@ export default [
     },
   },
   {
+    name: 'blocks - 5f20df933584822601f9e3f8c024eb5eb252fe8cefb24d1317dc3d432e940ebb',
     command: (SDK: BlockFrostAPI) =>
       SDK.blocks(
         '5f20df933584822601f9e3f8c024eb5eb252fe8cefb24d1317dc3d432e940ebb',
@@ -46,6 +48,7 @@ export default [
     },
   },
   {
+    name: 'blocks - txs - 5360435',
     command: (SDK: BlockFrostAPI) => SDK.blocksTxs('5360435'),
     response: [
       '055f9d4c86733997a9b8b12e3422feee8ef95d79ccbde20abdb6ff9222bb79c6',

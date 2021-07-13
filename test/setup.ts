@@ -25,4 +25,5 @@ expect.extend({
   },
 });
 
-import 'jest-extended';
+require('jest-extended');
+export {};

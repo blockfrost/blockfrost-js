@@ -1,6 +1,7 @@
 import { BlockFrostAPI } from '../src';
 
-export interface Fixture {
+export interface TestFixture {
+  name: string;
   command: (SDK: BlockFrostAPI) => any;
   response: any;
   itemsCountMinimum?: number;
