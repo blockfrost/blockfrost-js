@@ -2,7 +2,6 @@ import { BlockFrostAPI } from '../../../src';
 
 export default [
   {
-    name: 'assets',
     command: (SDK: BlockFrostAPI) => SDK.assets(),
     response: expect.arrayContaining([
       expect.objectContaining({
@@ -12,7 +11,6 @@ export default [
     ]),
   },
   {
-    name: 'assetsHistory',
     command: (SDK: BlockFrostAPI) =>
       SDK.assetsHistory(
         '00000002df633853f6a47465c9496721d2d5b1291b8398016c0e87ae6e7574636f696e',
@@ -28,7 +26,6 @@ export default [
     itemsCount: 1,
   },
   {
-    name: 'assetsHistoryAll',
     command: (SDK: BlockFrostAPI) =>
       SDK.assetsHistoryAll(
         'd894897411707efa755a76deb66d26dfd50593f2e70863e1661e98a07370616365636f696e73',
