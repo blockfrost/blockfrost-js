@@ -9,7 +9,9 @@ export async function add(
   params: AddParams,
 ): Promise<any> {
   // if (params.sourceType === 'file') {
-  //   const result = await this.client.add(globSource(params.path, {}));
+  //   const result = await this.client.add(
+  //     globSource('./docs', { recursive: true }),
+  //   );
   //   return result;
   // }
 
