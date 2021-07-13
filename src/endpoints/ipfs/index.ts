@@ -1,44 +1,31 @@
+import { BlockFrostIPFS } from '../../index';
+import { urlSource } from 'ipfs-http-client';
 import { handleError, getPaginationOptions } from '../../utils';
 import { PaginationOptions } from '../../types';
-import fs from 'fs';
-import { components } from '../../types/OpenApi';
-import {
-  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  DEFAULT_ORDER,
-} from '../../config';
-import { BlockFrostAPI } from '../../index';
+import { AddParams } from '../../types/ipfs';
 
-export async function ipfsAdd(
-  this: BlockFrostAPI,
-  filePath: string,
-): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const form = new FormData();
-    const data = fs.readFileSync(filePath, 'utf8');
-    form.append('file', data);
+export async function add(
+  this: BlockFrostIPFS,
+  params: AddParams,
+): Promise<any> {
+  // if (params.sourceType === 'file') {
+  //   const result = await this.client.add(globSource(params.path, {}));
+  //   return result;
+  // }
 
-    this.axiosInstance
-      .post(`${this.apiUrl}/ipfs/add`, form, {
-        headers: {
-          'Content-type': 'multipart/form-data',
-        },
-      })
-      .then(resp => {
-        resolve(resp.data);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  if (params.sourceType === 'url') {
+    const result = await this.client.add(urlSource(params.path));
+    return result;
+  }
 }
 
-export async function ipfsGateway(
-  this: BlockFrostAPI,
+export async function gateway(
+  this: BlockFrostIPFS,
   path: string,
 ): Promise<string> {
   return new Promise((resolve, reject) => {
     this.axiosInstance
-      .get(`${this.apiUrl}/ipfs/gateway/add`, {
+      .get(`${this.apiUrl}/ipfs/gateway`, {
         params: { path },
       })
       .then(resp => {
@@ -50,10 +37,7 @@ export async function ipfsGateway(
   });
 }
 
-export async function ipfsPinAdd(
-  this: BlockFrostAPI,
-  path: string,
-): Promise<string> {
+export async function pin(this: BlockFrostIPFS, path: string): Promise<string> {
   return new Promise((resolve, reject) => {
     this.axiosInstance
       .post(`${this.apiUrl}/ipfs/pin/add/${path}`)
@@ -66,9 +50,9 @@ export async function ipfsPinAdd(
   });
 }
 
-export async function ipfsPinList(
-  this: BlockFrostAPI,
-  pagination: PaginationOptions,
+export async function list(
+  this: BlockFrostIPFS,
+  pagination?: PaginationOptions,
 ): Promise<string> {
   const paginationOptions = getPaginationOptions(pagination);
   return new Promise((resolve, reject) => {
@@ -89,42 +73,8 @@ export async function ipfsPinList(
   });
 }
 
-export async function ipfsPinListAll(
-  this: BlockFrostAPI,
-  order = DEFAULT_ORDER,
-  batchSize = 10,
-): Promise<components['schemas']['address_transactions_content']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: any = [];
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(batchSize).keys()].map(i =>
-      this.ipfsPinList({
-        page: page + i,
-        count,
-        order,
-      }),
-    );
-    page += batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
-}
-
-export async function ipfsPinListByPath(
-  this: BlockFrostAPI,
+export async function listByPath(
+  this: BlockFrostIPFS,
   path: string,
 ): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -139,8 +89,8 @@ export async function ipfsPinListByPath(
   });
 }
 
-export async function ipfsPinRemove(
-  this: BlockFrostAPI,
+export async function pinRemove(
+  this: BlockFrostIPFS,
   path: string,
 ): Promise<string> {
   return new Promise((resolve, reject) => {

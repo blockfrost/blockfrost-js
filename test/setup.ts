@@ -1,3 +1,5 @@
+// import { TextDecoder } from 'text-encoding';
+
 jest.setTimeout(30000);
 
 expect.extend({

@@ -1,10 +1,11 @@
-// import fs from 'fs';
 import { IPFS } from '../../utils';
 
 describe('IPFS', () => {
-  test('pin add', async () => {
-    // const file = fs.readFileSync(`${__dirname}/test-file.txt`);
-    const res = await IPFS.ipfsAdd(`${__dirname}/test-file.txt`);
-    console.log('res', res);
+  test('add + pin + list + remove', async () => {
+    const addedObject = await IPFS.add({
+      path: 'https://i.imgur.com/tEaBDoq.jpeg',
+      sourceType: 'url',
+    });
+    console.log('addedObject', addedObject);
   });
 });

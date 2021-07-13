@@ -29,6 +29,8 @@
     "@yarnpkg/pnpify": "3.0.0-rc.6",
     "axios": "^0.21.1",
     "dotenv": "^10.0.0",
+    "form-data": "^4.0.0",
+    "ipfs-http-client": "^50.1.2",
     "retry-axios": "^2.4.0",
     "rimraf": "^3.0.2",
     "url-join": "^4.0.1"
@@ -36,6 +38,7 @@
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "@types/node": "^15.12.4",
+    "@types/text-encoding": "^0.0.36",
     "@types/url-join": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "4.28.0",
@@ -50,6 +53,7 @@
     "jest-extended": "^0.11.5",
     "openapi-typescript": "^4.0.1",
     "prettier": "2.3.1",
+    "text-encoding": "^0.7.0",
     "ts-jest": "^27.0.3",
     "ts-node": "10.0.0",
     "ts-node-dev": "^1.1.6",

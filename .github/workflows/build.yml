@@ -1,4 +1,4 @@
-name: Build
+name: blockfrost-js
 
 on: [push]
 
@@ -18,5 +18,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: yarn 
     - run: yarn run lint
-    - run: PROJECT_ID=${{ secrets.PROJECT_ID }} yarn run test
+    - run: PROJECT_ID=${{ secrets.PROJECT_ID }} PROJECT_ID_IPFS=${{ secrets.PROJECT_ID_IPFS }} yarn run test
     - run: yarn run build
