@@ -8,12 +8,11 @@ describe('IPFS', () => {
     });
 
     expect(addedObject).toMatchObject({ path: expect.any(String) });
-    console.log('addedObject', addedObject)
 
     const pinnedObject = await IPFS.pin(addedObject.cid);
 
     expect(pinnedObject).toMatchObject({
-      ipfs_hash: expect.any(String), state: 'queued'
+      ipfs_hash: expect.any(String), state: expect.any(String)
     });
   });
 });
