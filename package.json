@@ -20,7 +20,8 @@
     "clean": "rimraf lib",
     "generate-types": "openapi-typescript ./node_modules/@blockfrost/openapi/swagger.yaml --output ./src/types/OpenApi.ts",
     "lint": "eslint ./src/**/*.ts",
-    "run-example": "ts-node-dev --transpile-only ./example/index.ts",
+    "run-example:api": "ts-node-dev --transpile-only ./example/api.ts",
+    "run-example:ipfs": "ts-node-dev --transpile-only ./example/ipfs.ts",
     "test": "jest -c ./jest.config.js"
   },
   "dependencies": {
