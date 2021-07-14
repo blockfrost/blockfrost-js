@@ -11,7 +11,7 @@ import {
 import { Options, ValidatedOptions } from './types';
 import { create } from 'ipfs-http-client';
 import join from 'url-join';
-import { validateOptions } from './utils'; // TODO: validate ipfs options
+import { validateOptions } from './utils';
 import { hackInstance } from './utils/axios';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('../package.json');
@@ -47,7 +47,7 @@ class BlockFrostIPFS {
   }
 
   /**
-   * ipfsAdd - Add a file or directory to ipfs
+   * add - Add a file or directory to ipfs
    *
    * @returns information about added ipfs object
    */
@@ -62,33 +62,33 @@ class BlockFrostIPFS {
   gateway = gateway;
 
   /**
-   * pinAdd - Pin an object
+   * pin - Pin an object
    *
-   * @returns xxx
+   * @returns pinned object
    *
    */
   pin = pin;
 
   /**
-   * ipfsPinListByPath - List objects pinned to local storage
+   * listByPath - List objects pinned to local storage
    *
-   * @returns xxx
+   * @returns list of pinned objects
    *
    */
   listByPath = listByPath;
 
   /**
-   * ipfsPinList - List objects pinned to local storage
+   * list - List objects pinned to local storage
    *
-   * @returns xxx
+   * @returns list of pinned objects
    *
    */
   list = list;
 
   /**
-   * ipfsPinRemove - Remove pinned objects from local storage
+   * pinRemove - Remove pinned objects from local storage
    *
-   * @returns xxx
+   * @returns removed pinned object
    *
    */
   pinRemove = pinRemove;
