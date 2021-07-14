@@ -130,7 +130,7 @@ describe('utils', () => {
 
   test('version parameter error', () => {
     try {
-      // @ts-ignore
+      // @ts-expect-error tests
       new BlockFrostAPI({});
     } catch (err) {
       expect(err.message).toBe('Missing customBackend or projectId option');
@@ -141,7 +141,7 @@ describe('utils', () => {
     try {
       new BlockFrostAPI({
         projectId: 'xxx',
-        // @ts-ignore
+        // @ts-expect-error tests
         version: 's',
       });
     } catch (err) {
@@ -153,7 +153,7 @@ describe('utils', () => {
     try {
       new BlockFrostAPI({
         projectId: 'xxx',
-        // @ts-ignore
+        // @ts-expect-error tests
         requestTimeout: 's',
       });
     } catch (err) {
@@ -165,7 +165,7 @@ describe('utils', () => {
     try {
       new BlockFrostAPI({
         projectId: 'xxx',
-        // @ts-ignore
+        // @ts-expect-error tests
         retryDelay: 's',
       });
     } catch (err) {
@@ -177,7 +177,7 @@ describe('utils', () => {
     try {
       new BlockFrostAPI({
         projectId: 'xxx',
-        // @ts-ignore
+        // @ts-expect-error tests
         retryCount: 's',
       });
     } catch (err) {
