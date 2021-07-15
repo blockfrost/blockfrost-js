@@ -68,7 +68,7 @@ export const getHeaders = (
   };
 };
 
-export const handleError = (error: ExtendedAxiosError): ErrorType | string => {
+export const handleError = (error: ExtendedAxiosError): ErrorType => {
   if (error.code && error.errno) {
     // system errors such as -3008 ENOTFOUND
     return {
