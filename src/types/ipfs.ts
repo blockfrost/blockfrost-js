@@ -5,5 +5,5 @@ export type AddParams =
     }
   | {
       sourceType: 'file';
-      path: string;
+      fileContent: string;
     };

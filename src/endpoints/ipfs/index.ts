@@ -7,11 +7,9 @@ import { AddParams } from '../../types/ipfs';
 export async function add(
   this: BlockFrostIPFS,
   params: AddParams,
-): Promise<ReturnType<typeof this.client.add>> {
+): Promise<any> {
   if (params.sourceType === 'file') {
-    const result = await this.client.add(
-      globSource('./docs', { recursive: true }),
-    );
+    const result = await this.client.add(params.fileContent);
     return result;
   }
 
@@ -19,6 +17,8 @@ export async function add(
     const result = await this.client.add(urlSource(params.path));
     return result;
   }
+
+  throw Error('param sourceType should be file or url');
 }
 
 export async function gateway(
