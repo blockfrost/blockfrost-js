@@ -7,7 +7,7 @@ import {
   DEFAULT_ORDER,
 } from '../../../config';
 
-export async function nutlink(
+export async function nutlinkAddress(
   this: BlockFrostAPI,
   address: string,
 ): Promise<components['schemas']['nutlink_address']> {
