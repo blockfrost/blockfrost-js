@@ -1,4 +1,4 @@
-name: Build
+name: blockfrost-js
 
 on: [push]
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 15.x]
+        node-version: [14.x, 15.x, 16.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -18,5 +18,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: yarn 
     - run: yarn run lint
-    - run: PROJECT_ID=${{ secrets.PROJECT_ID }} yarn run test
+    - run: PROJECT_ID=${{ secrets.PROJECT_ID }} PROJECT_ID_IPFS=${{ secrets.PROJECT_ID_IPFS }} yarn run test
     - run: yarn run build
