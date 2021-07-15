@@ -7,13 +7,13 @@ import { AddParams } from '../../types/ipfs';
 export async function add(
   this: BlockFrostIPFS,
   params: AddParams,
-): Promise<any> {
-  // if (params.sourceType === 'file') {
-  //   const result = await this.client.add(
-  //     globSource('./docs', { recursive: true }),
-  //   );
-  //   return result;
-  // }
+): Promise<ReturnType<typeof this.client.add>> {
+  if (params.sourceType === 'file') {
+    const result = await this.client.add(
+      globSource('./docs', { recursive: true }),
+    );
+    return result;
+  }
 
   if (params.sourceType === 'url') {
     const result = await this.client.add(urlSource(params.path));
