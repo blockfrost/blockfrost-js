@@ -100,6 +100,7 @@ import {
   txSubmit,
 } from './endpoints/api/txs';
 import {
+  nutlinkAddress,
   nutlinkAddressTicker,
   nutlinkAddressTickers,
   nutlinkAddressTickersAll,
@@ -629,7 +630,15 @@ class BlockFrostAPI {
   metricsEndpoints = metricsEndpoints;
 
   /**
-   * nutlinkAddressTicker
+   * nutlinkAddress
+   *
+   * @returns xxx
+   *
+   */
+  nutlinkAddress = nutlinkAddress;
+  /**
+
+  * nutlinkAddressTicker
    *
    * @returns xxx
    *
