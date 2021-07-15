@@ -1,11 +1,11 @@
-import { handleError, getPaginationOptions } from '../../../utils';
-import { components } from '../../../types/OpenApi';
-import { PaginationOptions } from '../../../types';
-import { BlockFrostAPI } from '../../../index';
 import {
-  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
   DEFAULT_ORDER,
+  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
 } from '../../../config';
+import { BlockFrostAPI } from '../../../index';
+import { PaginationOptions } from '../../../types';
+import { components } from '../../../types/OpenApi';
+import { getPaginationOptions, handleError } from '../../../utils';
 
 export async function accounts(
   this: BlockFrostAPI,

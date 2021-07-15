@@ -8,17 +8,17 @@ export async function add(
   this: BlockFrostIPFS,
   params: AddParams,
 ): Promise<any> {
-  // if (params.sourceType === 'file') {
-  //   const result = await this.client.add(
-  //     globSource('./docs', { recursive: true }),
-  //   );
-  //   return result;
-  // }
+  if (params.sourceType === 'file') {
+    const result = await this.client.add(params.fileContent);
+    return result;
+  }
 
   if (params.sourceType === 'url') {
     const result = await this.client.add(urlSource(params.path));
     return result;
   }
+
+  throw Error('param sourceType should be file or url');
 }
 
 export async function gateway(

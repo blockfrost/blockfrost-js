@@ -1,11 +1,7 @@
 {
   "name": "@blockfrost/blockfrost-js",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
-  "files": [
-    "lib/**/*.js",
-    "lib/**/*.ts"
-  ],
   "keywords": [
     "blockfrost",
     "cardano",
@@ -14,14 +10,18 @@
   "license": "Apache-2.0",
   "author": "blockfrost.io",
   "main": "lib/index.js",
+  "files": [
+    "lib/**/*.js",
+    "lib/**/*.ts"
+  ],
   "scripts": {
     "build": "yarn clean && tsc",
-    "prepublishOnly": "yarn build",
     "clean": "rimraf lib",
     "generate-types": "openapi-typescript ./node_modules/@blockfrost/openapi/swagger.yaml --output ./src/types/OpenApi.ts",
     "lint": "eslint ./src/**/*.ts",
-    "run-example:api": "ts-node-dev --transpile-only ./example/api.ts",
-    "run-example:ipfs": "ts-node-dev --transpile-only ./example/ipfs.ts",
+    "prepublishOnly": "yarn build",
+    "run-example:api": "ts-node-dev --transpile-only ./examples/api.ts",
+    "run-example:ipfs": "ts-node-dev --transpile-only ./examples/ipfs.ts",
     "test": "jest -c ./jest.config.js"
   },
   "dependencies": {
