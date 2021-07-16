@@ -9,8 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- openapi 0.1.18
-
+- "@blockfrost/openapi": "0.1.24",
 
 ## [0.9.0]
 
