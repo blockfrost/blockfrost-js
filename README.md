@@ -29,20 +29,23 @@ import { BlockfrostAPI } from '@blockfrost/blockfrost-js';
 import fs from 'fs';
 
 const API = new BlockFrostAPI({
-  projectId: 'YOUR API KEY HERE',
+  projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
 });
 
 try {
   const latestBlock = await API.blocksLatest();
-  const assets = await API.assets();
+  const latestEpoch = await API.epochsLatest();
   const health = await API.health();
   const address = await API.addresses(
     'addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz',
   );
 
-  console.log(address, assets, latestBlock, health);
+  console.log('address', address);
+  console.log('latestEpoch', latestEpoch);
+  console.log('latestBlock', latestBlock);
+  console.log('health', health);
 } catch (err) {
-  console.log(err);
+  console.log('error', err);
 }
 ```
 
@@ -52,7 +55,7 @@ try {
 import { BlockfrostIPFS } from '@blockfrost/blockfrost-js';
 
 const IPFS = new BlockFrostIPFS({
-  projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
+  projectId: 'YOUR IPFS KEY HERE', // see: https://blockfrost.io
 });
 
 try {
