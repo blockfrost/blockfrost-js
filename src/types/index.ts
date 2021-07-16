@@ -58,12 +58,12 @@ export interface ExtendedAxiosError extends AxiosError {
 }
 
 export type PaginationOptions = {
-  count: number;
-  page: number;
-  order: 'asc' | 'desc';
+  count?: number;
+  page?: number;
+  order?: 'asc' | 'desc';
 };
 
 export type AdditionalEndpointOptions = {
-  from: string | undefined;
-  to: string | undefined;
+  from?: string | undefined;
+  to?: string | undefined;
 };
