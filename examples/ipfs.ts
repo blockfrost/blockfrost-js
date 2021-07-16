@@ -3,7 +3,7 @@ import fs from 'fs';
 
 async function run() {
   const IPFS = new BlockFrostIPFS({
-    projectId: 'JcGh9GMZsY4bhZNFN0wGnBp9fpIcmquE', // see: https://blockfrost.io
+    projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
   });
 
   try {

@@ -9,7 +9,6 @@ import {
   gateway,
 } from './endpoints/ipfs';
 import { Options, ValidatedOptions } from './types';
-import { create } from 'ipfs-http-client';
 import join from 'url-join';
 import { validateOptions } from './utils';
 import { hackInstance } from './utils/axios';
@@ -18,7 +17,6 @@ const packageJson = require('../package.json');
 
 class BlockFrostIPFS {
   apiUrl: string;
-  client: ReturnType<typeof create>;
   projectId?: string;
   userAgent?: string;
   options: ValidatedOptions;
@@ -37,13 +35,6 @@ class BlockFrostIPFS {
     this.axiosInstance = hackInstance(this.options, this.userAgent);
 
     this.projectId = this.options.projectId;
-
-    this.client = create({
-      url: `${this.apiUrl}/ipfs/add`,
-      headers: {
-        PROJECT_ID: `${this.options.projectId}`,
-      },
-    });
   }
 
   /**
