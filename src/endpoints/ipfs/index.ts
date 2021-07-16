@@ -1,30 +1,37 @@
 import { BlockFrostIPFS } from '../../index';
-import { urlSource } from 'ipfs-http-client';
 import { handleError, getPaginationOptions } from '../../utils';
 import { PaginationOptions } from '../../types';
-import { AddParams } from '../../types/ipfs';
+import { AddResponse, PinResponse, ListResponse } from '../../types/ipfs';
+import FormData from 'form-data';
+import { ReadStream } from 'fs';
 
 export async function add(
   this: BlockFrostIPFS,
-  params: AddParams,
-): Promise<any> {
-  if (params.sourceType === 'file') {
-    const result = await this.client.add(params.fileContent);
-    return result;
-  }
+  readStream: ReadStream,
+): Promise<AddResponse> {
+  const data = new FormData();
+  data.append('file', readStream);
 
-  if (params.sourceType === 'url') {
-    const result = await this.client.add(urlSource(params.path));
-    return result;
-  }
-
-  throw Error('param sourceType should be file or url');
+  return new Promise((resolve, reject) => {
+    this.axiosInstance
+      .post(`${this.apiUrl}/ipfs/add`, data, {
+        headers: {
+          'Content-Type': `multipart/form-data; boundary=${data.getBoundary()}`,
+        },
+      })
+      .then(resp => {
+        resolve(resp.data);
+      })
+      .catch(err => {
+        reject(handleError(err));
+      });
+  });
 }
 
 export async function gateway(
   this: BlockFrostIPFS,
   path: string,
-): Promise<string> {
+): Promise<unknown> {
   return new Promise((resolve, reject) => {
     this.axiosInstance
       .get(`${this.apiUrl}/ipfs/gateway`, {
@@ -39,7 +46,10 @@ export async function gateway(
   });
 }
 
-export async function pin(this: BlockFrostIPFS, path: string): Promise<string> {
+export async function pin(
+  this: BlockFrostIPFS,
+  path: string,
+): Promise<PinResponse> {
   return new Promise((resolve, reject) => {
     this.axiosInstance
       .post(`${this.apiUrl}/ipfs/pin/add/${path}`)
@@ -55,7 +65,7 @@ export async function pin(this: BlockFrostIPFS, path: string): Promise<string> {
 export async function list(
   this: BlockFrostIPFS,
   pagination?: PaginationOptions,
-): Promise<string> {
+): Promise<ListResponse> {
   const paginationOptions = getPaginationOptions(pagination);
   return new Promise((resolve, reject) => {
     this.axiosInstance
@@ -78,7 +88,7 @@ export async function list(
 export async function listByPath(
   this: BlockFrostIPFS,
   path: string,
-): Promise<string> {
+): Promise<ListResponse> {
   return new Promise((resolve, reject) => {
     this.axiosInstance
       .get(`${this.apiUrl}/ipfs/pin/list/${path}`)
