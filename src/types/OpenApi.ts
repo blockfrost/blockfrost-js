@@ -2479,17 +2479,19 @@ export interface components {
       stake_address: string;
       /** Bech32 prefix of the pool delegated to */
       pool_id: string;
-      /** Amount of delegated stake in Lovelaces */
+      /** Amount of active delegated stake in Lovelaces */
       amount: string;
     }[];
     epoch_stake_pool_content: {
       /** Stake address */
       stake_address: string;
-      /** Amount of delegated stake in Lovelaces */
+      /** Amount of active delegated stake in Lovelaces */
       amount: string;
     }[];
     epoch_block_content: string[];
     epoch_param_content: {
+      /** Epoch number */
+      epoch: number;
       /** The linear factor for the minimum fee calculation for given epoch */
       min_fee_a: number;
       /** The constant factor for the minimum fee calculation */
@@ -2517,7 +2519,7 @@ export interface components {
       /** Percentage of blocks produced by federated nodes */
       decentralisation_param: number;
       /** Seed for extra entropy */
-      extra_entropy: { [key: string]: any } | null;
+      extra_entropy: { [key: string]: unknown } | null;
       /** Accepted protocol major version */
       protocol_major_ver: number;
       /** Accepted protocol minor version */
@@ -2530,6 +2532,8 @@ export interface components {
       nonce: string;
     };
     tx_content: {
+      /** Transaction hash */
+      hash: string;
       /** Block hash */
       block: string;
       /** Block number */
@@ -2572,6 +2576,8 @@ export interface components {
       asset_mint_or_burn_count: number;
     };
     tx_content_utxo: {
+      /** Transaction hash */
+      hash: string;
       inputs: {
         /** Input address */
         address: string;
@@ -2581,6 +2587,10 @@ export interface components {
           /** The quantity of the unit */
           quantity: string;
         }[];
+        /** Hash of the UTXO transaction */
+        tx_hash: string;
+        /** UTXO index in the transaction */
+        output_index: number;
       }[];
       outputs: {
         /** Output address */
@@ -2686,7 +2696,7 @@ export interface components {
       /** Metadata label */
       label: string;
       /** Content of the metadata */
-      json_metadata: string | { [key: string]: any };
+      json_metadata: string | { [key: string]: unknown };
     }[];
     tx_content_metadata_cbor: {
       /** Metadata label */
@@ -2695,6 +2705,8 @@ export interface components {
       cbor_metadata: string | null;
     }[];
     account_content: {
+      /** Bech32 stake address */
+      stake_address: string;
       /** Registration state of an account */
       active: boolean;
       /** Epoch of the most recent action - registration or deregistration */
@@ -2769,6 +2781,8 @@ export interface components {
       amount: string;
     }[];
     address_content: {
+      /** Bech32 encoded addresses */
+      address: string;
       amount: {
         /** The unit of the value */
         unit: string;
@@ -2781,6 +2795,8 @@ export interface components {
       type: "byron" | "shelley";
     };
     address_content_total: {
+      /** Bech32 encoded address */
+      address: string;
       received_sum: {
         /** The unit of the value */
         unit: string;
@@ -2835,8 +2851,8 @@ export interface components {
       /** Content of the JSON metadata */
       json_metadata:
         | (Partial<string> &
-            Partial<{ [key: string]: any }> &
-            Partial<{ [key: string]: any }[]> &
+            Partial<{ [key: string]: unknown }> &
+            Partial<{ [key: string]: unknown }[]> &
             Partial<number> &
             Partial<number> &
             Partial<boolean>)
@@ -2872,6 +2888,10 @@ export interface components {
       fees: string;
     }[];
     pool: {
+      /** Bech32 pool ID */
+      pool_id: string;
+      /** Hexadecimal pool ID. */
+      hex: string;
       /** VRF key hash */
       vrf_key: string;
       /** Total minted blocks */
@@ -2897,6 +2917,10 @@ export interface components {
       retirement: string[];
     };
     pool_metadata: {
+      /** Bech32 pool ID */
+      pool_id: string;
+      /** Hexadecimal pool ID */
+      hex: string;
       /** URL to the stake pool metadata */
       url: string | null;
       /** Hash of the metadata file */
@@ -2950,6 +2974,8 @@ export interface components {
       quantity: string;
     }[];
     asset: {
+      /** Hex-encoded asset full name */
+      asset: string;
       /** Policy ID of the asset */
       policy_id: string;
       /** Hex-encoded asset name of the asset */
@@ -3032,6 +3058,8 @@ export interface components {
       endpoint: string;
     }[];
     nutlink_address: {
+      /** Bech32 encoded address */
+      address: string;
       /** URL do specific metadata file */
       metadata_url: string;
       /** Hash of the metadata file */
@@ -3048,8 +3076,8 @@ export interface components {
       tx_index: number;
       /** Content of the ticker */
       payload: (Partial<string> &
-        Partial<{ [key: string]: any }> &
-        Partial<{ [key: string]: any }[]> &
+        Partial<{ [key: string]: unknown }> &
+        Partial<{ [key: string]: unknown }[]> &
         Partial<number> &
         Partial<number> &
         Partial<boolean>) & { [key: string]: any };
@@ -3073,13 +3101,13 @@ export interface components {
       tx_index: number;
       /** Content of the ticker */
       payload: (Partial<string> &
-        Partial<{ [key: string]: any }> &
-        Partial<{ [key: string]: any }[]> &
+        Partial<{ [key: string]: unknown }> &
+        Partial<{ [key: string]: unknown }[]> &
         Partial<number> &
         Partial<number> &
         Partial<boolean>) & { [key: string]: any };
     }[];
-    empty_object: { [key: string]: any };
+    empty_object: { [key: string]: unknown };
   };
   responses: {
     /** Usage limit reached */
