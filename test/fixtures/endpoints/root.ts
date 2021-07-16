@@ -5,7 +5,7 @@ export default [
     command: (SDK: BlockFrostAPI) => SDK.root(),
     response: {
       url: 'https://blockfrost.io/',
-      version: '0.6.0',
+      version: expect.any(String),
     },
   },
 ] as const;
