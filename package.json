@@ -28,7 +28,7 @@
     "@blockfrost/openapi": "^0.1.23",
     "@emurgo/cardano-serialization-lib-nodejs": "^7.1.0",
     "axios": "^0.21.1",
-    "ipfs-http-client": "^50.1.2",
+    "form-data": "^4.0.0",
     "retry-axios": "^2.4.0",
     "url-join": "^4.0.1"
   },

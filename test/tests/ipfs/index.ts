@@ -1,22 +1,27 @@
 import { IPFS } from '../../utils';
+import fs from 'fs';
 
 describe('IPFS', () => {
   test('flow', async () => {
-    const addedObject = await IPFS.add({
-      path: 'https://i.imgur.com/tEaBDoq.jpeg',
-      sourceType: 'url',
+    const stream = fs.createReadStream(
+      `${__dirname}/../../fixtures/files/img.svg`,
+    );
+    const addedObject = await IPFS.add(stream);
+
+    expect(addedObject).toMatchObject({
+      ipfs_hash: 'QmUCXMTcvuJpwHF3gABRr69ceQR2uEG2Fsik9CyWh8MUoQ',
+      name: 'img.svg',
+      size: '5617',
     });
 
-    expect(addedObject).toMatchObject({ path: expect.any(String) });
-
-    const pinnedObject = await IPFS.pin(addedObject.cid);
+    const pinnedObject = await IPFS.pin(addedObject.ipfs_hash);
 
     expect(pinnedObject).toMatchObject({
-      ipfs_hash: expect.any(String),
+      ipfs_hash: 'QmUCXMTcvuJpwHF3gABRr69ceQR2uEG2Fsik9CyWh8MUoQ',
       state: expect.any(String),
     });
 
-    const list = await IPFS.list(addedObject.cid);
+    const list = await IPFS.list();
 
     expect(list).toEqual(
       expect.arrayContaining([

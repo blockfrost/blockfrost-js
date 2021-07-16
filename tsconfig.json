@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES2019",
     "module": "commonjs",
+    "moduleResolution": "node",
     "declaration": true,
     "outDir": "lib",
     "isolatedModules": true,
@@ -21,6 +22,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
+  "lib": ["es2015"],
   "include": ["./src/**/*", "./test/index.d.ts"],
   "exclude": ["./src/types/OpenApi.ts", "node_modules"]
 }
