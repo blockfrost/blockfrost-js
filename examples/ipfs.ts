@@ -1,5 +1,4 @@
 import { BlockFrostIPFS } from '../src/index';
-import fs from 'fs';
 
 async function run() {
   const IPFS = new BlockFrostIPFS({
@@ -7,13 +6,10 @@ async function run() {
   });
 
   try {
-    const stream = fs.createReadStream(`${__dirname}/img.svg`);
-    const added = await IPFS.add(stream);
-
+    const added = await IPFS.add(`${__dirname}/images/blockfrost.svg`);
     console.log('added', added);
 
     const pinned = await IPFS.pin(added.ipfs_hash);
-
     console.log('pinned', pinned);
   } catch (err) {
     console.log('error', err);

@@ -3,14 +3,16 @@ import { handleError, getPaginationOptions } from '../../utils';
 import { PaginationOptions } from '../../types';
 import { AddResponse, PinResponse, ListResponse } from '../../types/ipfs';
 import FormData from 'form-data';
-import { ReadStream } from 'fs';
+import fs from 'fs';
 
 export async function add(
   this: BlockFrostIPFS,
-  readStream: ReadStream,
+  path: string,
 ): Promise<AddResponse> {
+  const stream = fs.createReadStream(path);
   const data = new FormData();
-  data.append('file', readStream);
+
+  data.append('file', stream);
 
   return new Promise((resolve, reject) => {
     this.axiosInstance

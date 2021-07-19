@@ -1,12 +1,10 @@
 import { IPFS } from '../../utils';
-import fs from 'fs';
 
 describe('IPFS', () => {
   test('flow', async () => {
-    const stream = fs.createReadStream(
+    const addedObject = await IPFS.add(
       `${__dirname}/../../fixtures/files/img.svg`,
     );
-    const addedObject = await IPFS.add(stream);
 
     expect(addedObject).toMatchObject({
       ipfs_hash: 'QmUCXMTcvuJpwHF3gABRr69ceQR2uEG2Fsik9CyWh8MUoQ',
