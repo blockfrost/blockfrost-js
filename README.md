@@ -73,13 +73,10 @@ const IPFS = new BlockFrostIPFS({
 });
 
 try {
-  const stream = fs.createReadStream(`${__dirname}/img.svg`);
-  const added = await IPFS.add(stream);
-
+  const added = await IPFS.add(`${__dirname}/img.svg`);
   console.log('added', added);
 
   const pinned = await IPFS.pin(added.ipfs_hash);
-
   console.log('pinned', pinned);
 } catch (err) {
   console.log('error', err);
