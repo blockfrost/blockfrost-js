@@ -86,4 +86,4 @@ try {
 }
 ```
 
-For a more detailed list of possibilities, [check out the wiki](https://github.com/blockfrost/blockfrost-js/wiki/Class-BlockFrostAPI).
+For a more detailed list of possibilities, [check out the wiki](https://github.com/blockfrost/blockfrost-js/wiki).
