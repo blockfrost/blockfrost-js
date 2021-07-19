@@ -700,6 +700,8 @@ __metadata:
     tsc-watch: ^4.4.0
     tsconfig-paths: ^3.10.1
     typedoc: ^0.21.4
+    typedoc-github-wiki-theme: ^0.5.1
+    typedoc-plugin-markdown: ^3.10.3
     typescript: 4.3.5
     url-join: ^4.0.1
   languageName: unknown
@@ -7754,6 +7756,27 @@ resolve@^1.20.0:
   version: 0.12.10
   resolution: "typedoc-default-themes@npm:0.12.10"
   checksum: 4c19a0fecdf24777bd153c6ae4a4f2b23c95521a83483cdbee89aaeef985d7e37f2665b37d55f809ef36d0eb4433a921209dc45a1055791d81464bffeea77dfd
+  languageName: node
+  linkType: hard
+
+"typedoc-github-wiki-theme@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "typedoc-github-wiki-theme@npm:0.5.1"
+  peerDependencies:
+    typedoc: ">=0.20.0"
+    typedoc-plugin-markdown: ">=3.4.0"
+  checksum: 59f7299f899aff8b9cf227627d61de19c9992d42c22938b226d3c81bc07aed6e73e316dd51ca84b8fe5d1d4df6d2b1cb7d47b204d257515f50140699a62a7f67
+  languageName: node
+  linkType: hard
+
+"typedoc-plugin-markdown@npm:^3.10.3":
+  version: 3.10.3
+  resolution: "typedoc-plugin-markdown@npm:3.10.3"
+  dependencies:
+    handlebars: ^4.7.7
+  peerDependencies:
+    typedoc: ">=0.21.2"
+  checksum: 735bf58e1f40d2ad42363917e194541f666bf7e80822f7e48f9bc4b329210550ebdb753600b9066e2bdf118c9b900f1890fa679d5b0b239d14b34287ac4d276f
   languageName: node
   linkType: hard
 

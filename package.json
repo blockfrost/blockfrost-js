@@ -22,7 +22,8 @@
     "prepublishOnly": "yarn build",
     "run-example:api": "ts-node-dev --transpile-only ./examples/api.ts",
     "run-example:ipfs": "ts-node-dev --transpile-only ./examples/ipfs.ts",
-    "test": "jest -c ./jest.config.js"
+    "test": "jest -c ./jest.config.js",
+    "docs": "yarn typedoc ./src/index.ts --theme ./node_modules/typedoc-github-wiki-theme/dist"
   },
   "dependencies": {
     "@blockfrost/openapi": "0.1.24",
@@ -57,6 +58,8 @@
     "tsc-watch": "^4.4.0",
     "tsconfig-paths": "^3.10.1",
     "typedoc": "^0.21.4",
+    "typedoc-github-wiki-theme": "^0.5.1",
+    "typedoc-plugin-markdown": "^3.10.3",
     "typescript": "4.3.5"
   },
   "engines": {

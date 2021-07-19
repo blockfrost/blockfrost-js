@@ -157,3 +157,4 @@ documentation/website/build
 .storybookout
 
 # End of https://www.gitignore.io/api/vim,node,macos
+docs
