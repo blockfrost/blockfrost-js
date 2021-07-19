@@ -166,7 +166,7 @@ export const handleError = [
         host: 'cardano-mainnet.blockfrost.io',
         protocol: 'https:',
       },
-      toJSON: () => ({}),
+      toJSON: (): any => ({}),
       response: undefined,
       isAxiosError: true,
     },
@@ -186,7 +186,7 @@ export const handleError = [
         host: 'cardano-mainnet.blockfrost.io',
         protocol: 'https:',
       },
-      toJSON: () => ({
+      toJSON: (): any => ({
         message: 'Custom message',
         error: 'CustomError',
       }),
