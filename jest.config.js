@@ -6,7 +6,7 @@ module.exports = {
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/'],
   testMatch: ['<rootDir>/test/tests/**/*.ts'],
-  coverageReporters: ['json', 'lcov', 'text', 'text-summary'],
+  coverageReporters: ['json-summary', 'lcov', 'text', 'text-summary'],
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   setupFilesAfterEnv: ['<rootDir>/test/setup.ts'],
   transform: {

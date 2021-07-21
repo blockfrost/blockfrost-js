@@ -690,6 +690,7 @@ __metadata:
     form-data: ^4.0.0
     jest: ^27.0.6
     jest-extended: ^0.11.5
+    make-coverage-badge: ^1.2.0
     openapi-typescript: ^4.0.2
     prettier: 2.3.2
     retry-axios: ^2.4.0
@@ -5426,6 +5427,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"make-coverage-badge@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "make-coverage-badge@npm:1.2.0"
+  dependencies:
+    mri: 1.1.4
+  bin:
+    make-coverage-badge: cli.js
+  checksum: c25de95d9ee66b67da93cdaf6ce2f9bf1d40287e3a61cea765f54e3ba0cc8c7ab0f8e51c48f33978ec4764812fd90c64405415a88698c5ac62b042e69d7073ce
+  languageName: node
+  linkType: hard
+
 "make-dir@npm:^3.0.0":
   version: 3.1.0
   resolution: "make-dir@npm:3.1.0"
@@ -5673,6 +5685,13 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: a96865108c6c3b1b8e1d5e9f11843de1e077e57737602de1b82030815f311be11f96f09cce59bd5b903d0b29834733e5313f9301e3ed6d6f6fba2eae0df4298f
+  languageName: node
+  linkType: hard
+
+"mri@npm:1.1.4":
+  version: 1.1.4
+  resolution: "mri@npm:1.1.4"
+  checksum: e65b9aed3b9e423ad4c11f529ab1b9280f65dce8fb476d0da236b5c570ad3322fbbcd2393180855f1474f8b0f982d76ad398766fbd47b8a5ab4069e325d0268e
   languageName: node
   linkType: hard
 
