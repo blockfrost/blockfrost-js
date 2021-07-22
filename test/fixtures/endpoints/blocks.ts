@@ -74,4 +74,95 @@ export default [
       '3e7721720db366599ae5ce53dc3a48b56e1ffaaa2572ae0ad66eb6c8467b8eb7',
     ],
   },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.blocksPrevious('5360435', { count: 1 }),
+    response: [
+      {
+        block_vrf:
+          'vrf_vk1s3hssxtpjdjc9amqn9wqn6dfyzujsv8jrk6pkl4esfpp99v48ujsflsn70',
+        confirmations: expect.any(Number),
+        epoch: 248,
+        epoch_slot: 353699,
+        fees: '172101',
+        hash: 'e8b8fd03492a0d2eeb19481e3a46080af271bf7f34a9d29a1fac44ee35414d7e',
+        height: 5360434,
+        next_block:
+          'c6e3901b2cd95598b0bf5dc55cb62d682ea369298be9825b4b58d891b844b320',
+        output: '7104352417',
+        previous_block:
+          'ca74257598fec490fac4303d0e243ee0b4e17c7a0f291597e4a35a89a7624d09',
+        size: 355,
+        slot: 22126499,
+        slot_leader: 'pool1swe9nsv8lzugakjkfv04dn38scmq48wzynmn0lxasupuzmqcgjm',
+        time: 1613692790,
+        tx_count: 1,
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.blocksNext('5360435', { count: 3 }),
+    response: [
+      {
+        time: 1613692850,
+        height: 5360436,
+        hash: 'b0248da367824fa7aa9b2478891d275033d9523f7372a6baaaa0e195e630a18d',
+        slot: 22126559,
+        epoch: 248,
+        epoch_slot: 353759,
+        slot_leader: 'pool1ea568m9q882n0tx5d4vxff2dmz2n7rq5h62hx5ystq625m4tcfu',
+        size: 3656,
+        tx_count: 5,
+        output: '4308347474705',
+        fees: '1171575',
+        block_vrf:
+          'vrf_vk1ngghyylmk529sf6unkf3v7qq2l9flr4yqpz99gnv25spm9xwyymsslfy77',
+        previous_block:
+          'c6e3901b2cd95598b0bf5dc55cb62d682ea369298be9825b4b58d891b844b320',
+        next_block:
+          '21d72214a44cda26121dd95539e174fbe8ce966a4bc2e9a0e8a46610610653ad',
+        confirmations: expect.any(Number),
+      },
+      {
+        time: 1613692865,
+        height: 5360437,
+        hash: '21d72214a44cda26121dd95539e174fbe8ce966a4bc2e9a0e8a46610610653ad',
+        slot: 22126574,
+        epoch: 248,
+        epoch_slot: 353774,
+        slot_leader: 'pool1spus7k8cy5qcs82xhw60dwwk2d4vrfs0m5vr2zst04gtq700gjn',
+        size: 3610,
+        tx_count: 9,
+        output: '200849528838',
+        fees: '1858161',
+        block_vrf:
+          'vrf_vk1v0encvmzxvrq6t7z8kcv97zfl6zs7cw9m3s668rw34vwkk9yqh4qsq0szv',
+        previous_block:
+          'b0248da367824fa7aa9b2478891d275033d9523f7372a6baaaa0e195e630a18d',
+        next_block:
+          'f54b0d636c8d7ffcbfe4e6c18831ecf626fdfc46fdb184503372ab06c44d7e44',
+        confirmations: expect.any(Number),
+      },
+      {
+        time: 1613692868,
+        height: 5360438,
+        hash: 'f54b0d636c8d7ffcbfe4e6c18831ecf626fdfc46fdb184503372ab06c44d7e44',
+        slot: 22126577,
+        epoch: 248,
+        epoch_slot: 353777,
+        slot_leader: 'ShelleyGenesis-69ae12f9e45c0c91',
+        size: 1367,
+        tx_count: 3,
+        output: '35174355322',
+        fees: '546874',
+        block_vrf:
+          'vrf_vk1ytuuajlv7wvxj57qr6j5ycx69l54ks5nzswqwyn4fhhec6dtdjgsqmzku7',
+        previous_block:
+          '21d72214a44cda26121dd95539e174fbe8ce966a4bc2e9a0e8a46610610653ad',
+        next_block:
+          '4a3fd999394a1e6eae1a3d6d439879ebb6c97dc366af73503cbc5117fd71026f',
+        confirmations: expect.any(Number),
+      },
+    ],
+  },
 ] as const;

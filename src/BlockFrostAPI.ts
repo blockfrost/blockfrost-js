@@ -25,7 +25,6 @@ import {
   addresses,
   addressesTotal,
   addressesTransactions,
-  addressesTxsAll,
   addressesTransactionsAll,
   addressesUtxos,
   addressesUtxosAll,
@@ -366,15 +365,6 @@ class BlockFrostAPI {
    *
    */
   addressesTotal = addressesTotal;
-
-  /**
-   * addressesTxsAll
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
-  addressesTxsAll = addressesTxsAll;
 
   /**
    * addressesTransactions

@@ -37,41 +37,6 @@ export async function addressesTotal(
   });
 }
 
-export async function addressesTxsAll(
-  this: BlockFrostAPI,
-  address: string,
-  order = DEFAULT_ORDER,
-  batchSize = 10,
-): Promise<components['schemas']['address_txs_content']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['address_txs_content'] = [];
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(batchSize).keys()].map(i =>
-      this.addressesTxs(address, {
-        page: page + i,
-        count,
-        order,
-      }),
-    );
-    page += batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
-}
-
 export async function addressesTransactions(
   this: BlockFrostAPI,
   address: string,
