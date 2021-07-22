@@ -1,7 +1,6 @@
 <img src="https://blockfrost.io/images/logo.svg" width="250" align="right" height="200">
 
-![Master build ci](https://github.com/blockfrost/blockfrost-js/actions/workflows/build.yml/badge.svg?branch=master) [![version](https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js.svg)](https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js) ![Downloads](https://img.shields.io/npm/dy/@blockfrost/blockfrost-js) <a href="https://fivebinaries.com/"><img src="https://img.shields.io/badge/made%20by-Five%20Binaries-darkviolet.svg?style=flat-square" /></a>
-<img src="./docs/badge-coverage.svg" />
+![master build ci](https://github.com/blockfrost/blockfrost-js/actions/workflows/build.yml/badge.svg?branch=master) [![npm version](https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js.svg)](https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js) ![downloads](https://img.shields.io/npm/dy/@blockfrost/blockfrost-js) <a href="https://fivebinaries.com/"><img src="https://img.shields.io/badge/made%20by-Five%20Binaries-darkviolet.svg?style=flat-square" /></a> <img src="./docs/badge-coverage.svg" />
 
 # blockfrost-js
 
@@ -28,7 +27,7 @@ To use this SDK, you first need login into to [blockfrost.io](https://blockfrost
 The SDK is hosted on [npmjs.com](https://www.npmjs.com/package/@blockfrost/blockfrost-js), so you can directly import it using your favorite package manager.
 
 ```console
-yarn add @blockfrost/blockfrost-js
+$ yarn add @blockfrost/blockfrost-js
 ```
 
 <br/>
