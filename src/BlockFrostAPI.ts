@@ -1,6 +1,8 @@
 import { API_URLS } from './config';
 import { AxiosInstance } from 'axios';
 
+import { deriveAddress, getAccount } from './account';
+
 import {
   accounts,
   accountsDelegations,
@@ -878,6 +880,24 @@ class BlockFrostAPI {
    *
    */
   txSubmit = txSubmit;
+
+  /**
+   * deriveAddress
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  deriveAddress = deriveAddress;
+
+  /**
+   * txSubmit
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  getAccount = getAccount;
 }
 
 export { BlockFrostAPI };
