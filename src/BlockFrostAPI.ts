@@ -1,6 +1,8 @@
 import { API_URLS } from './config';
 import { AxiosInstance } from 'axios';
 
+import { deriveAddress, getAccount } from './account';
+
 import {
   accounts,
   accountsDelegations,
@@ -22,9 +24,7 @@ import {
 import {
   addresses,
   addressesTotal,
-  addressesTxs,
   addressesTransactions,
-  addressesTxsAll,
   addressesTransactionsAll,
   addressesUtxos,
   addressesUtxosAll,
@@ -35,7 +35,6 @@ import {
   assetsById,
   assetsHistory,
   assetsHistoryAll,
-  assetsTxs,
   assetsTransactions,
   assetsAddresses,
   assetsPolicyById,
@@ -314,15 +313,6 @@ class BlockFrostAPI {
   assetsHistoryAll = assetsHistoryAll;
 
   /**
-   * assetsTxs - List of a specific asset transactions.
-   *
-   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
-   * @returns List of a specific asset transactions.
-   *
-   */
-  assetsTxs = assetsTxs;
-
-  /**
    * assetsTransactions - List of a specific asset transactions.
    *
    * @param asset - Concatenation of the policy_id and hex-encoded asset_name
@@ -375,24 +365,6 @@ class BlockFrostAPI {
    *
    */
   addressesTotal = addressesTotal;
-
-  /**
-   * addressesTxs
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
-  addressesTxs = addressesTxs;
-
-  /**
-   * addressesTxsAll
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
-  addressesTxsAll = addressesTxsAll;
 
   /**
    * addressesTransactions
@@ -878,6 +850,24 @@ class BlockFrostAPI {
    *
    */
   txSubmit = txSubmit;
+
+  /**
+   * deriveAddress
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  deriveAddress = deriveAddress;
+
+  /**
+   * txSubmit
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  getAccount = getAccount;
 }
 
 export { BlockFrostAPI };

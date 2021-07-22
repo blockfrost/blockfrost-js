@@ -11,7 +11,7 @@ import { ADDRESS_GAP_LIMIT } from '../config';
 export const deriveAddress = (
   publicKey: string,
   addressIndex: number,
-  type = 1 | 0,
+  type: 0 | 1,
 ): { address: string; path: string } => {
   const accountKey = Bip32PublicKey.from_bytes(Buffer.from(publicKey, 'hex'));
   const utxoPubKey = accountKey.derive(type).derive(addressIndex);
