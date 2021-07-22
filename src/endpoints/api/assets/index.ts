@@ -98,28 +98,6 @@ export async function assetsHistoryAll(
   }
 }
 
-export async function assetsTxs(
-  this: BlockFrostAPI,
-  asset: string,
-  pagination?: PaginationOptions,
-): Promise<components['schemas']['asset_txs']> {
-  const paginationOptions = getPaginationOptions(pagination);
-
-  return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/assets/${asset}/txs`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
-      },
-    })
-      .then(resp => {
-        resolve(resp.data);
-      })
-      .catch(err => reject(handleError(err)));
-  });
-}
-
 export async function assetsTransactions(
   this: BlockFrostAPI,
   asset: string,

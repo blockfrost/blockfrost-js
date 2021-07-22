@@ -37,34 +37,6 @@ export async function addressesTotal(
   });
 }
 
-export async function addressesTxs(
-  this: BlockFrostAPI,
-  address: string,
-  pagination?: PaginationOptions,
-): Promise<components['schemas']['address_txs_content']> {
-  const paginationOptions = getPaginationOptions(pagination);
-
-  return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/addresses/${address}/txs`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
-      },
-    })
-      .then(resp => {
-        resolve(resp.data);
-      })
-      .catch(err => {
-        if (err && err.response && err.response.data.status_code === 404) {
-          resolve([]);
-        }
-
-        reject(handleError(err));
-      });
-  });
-}
-
 export async function addressesTxsAll(
   this: BlockFrostAPI,
   address: string,

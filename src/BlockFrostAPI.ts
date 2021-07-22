@@ -24,7 +24,6 @@ import {
 import {
   addresses,
   addressesTotal,
-  addressesTxs,
   addressesTransactions,
   addressesTxsAll,
   addressesTransactionsAll,
@@ -37,7 +36,6 @@ import {
   assetsById,
   assetsHistory,
   assetsHistoryAll,
-  assetsTxs,
   assetsTransactions,
   assetsAddresses,
   assetsPolicyById,
@@ -316,15 +314,6 @@ class BlockFrostAPI {
   assetsHistoryAll = assetsHistoryAll;
 
   /**
-   * assetsTxs - List of a specific asset transactions.
-   *
-   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
-   * @returns List of a specific asset transactions.
-   *
-   */
-  assetsTxs = assetsTxs;
-
-  /**
    * assetsTransactions - List of a specific asset transactions.
    *
    * @param asset - Concatenation of the policy_id and hex-encoded asset_name
@@ -377,15 +366,6 @@ class BlockFrostAPI {
    *
    */
   addressesTotal = addressesTotal;
-
-  /**
-   * addressesTxs
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
-  addressesTxs = addressesTxs;
 
   /**
    * addressesTxsAll
