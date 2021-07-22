@@ -1,12 +1,12 @@
-<img src="https://blockfrost.io/images/logo.svg" width="250" align="right" height="200">
-
 ![master build ci](https://github.com/blockfrost/blockfrost-js/actions/workflows/build.yml/badge.svg?branch=master) [![npm version](https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js.svg)](https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js) ![downloads](https://img.shields.io/npm/dy/@blockfrost/blockfrost-js) <a href="https://fivebinaries.com/"><img src="https://img.shields.io/badge/made%20by-Five%20Binaries-darkviolet.svg?style=flat-square" /></a> <img src="./docs/badge-coverage.svg" />
+
+<img src="https://blockfrost.io/images/logo.svg" width="250" align="right" height="90">
 
 # blockfrost-js
 
-<p align="center">A JavaScript/Typescript SDK for Blockfrost.io API.</a>
-<br>
+<br/>
 
+<p align="center">A JavaScript/Typescript SDK for Blockfrost.io API.</p>
 <p align="center">
   <a href="#getting-started">Getting started</a> •
   <a href="#installation">Installation</a> •
