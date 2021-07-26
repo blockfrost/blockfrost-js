@@ -2,6 +2,7 @@ module.exports = {
   rootDir: '.',
   resetMocks: true,
   testEnvironment: 'node',
+  bail: true,
   moduleFileExtensions: ['ts', 'js'],
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/'],
