@@ -9,14 +9,14 @@ export default [
     response: {
       active: true,
       active_epoch: 218,
-      controlled_amount: '2766137',
+      controlled_amount: expect.any(String),
       pool_id: 'pool16kus5xvdysgmtjp0hhlwt72tsm0yn2zcn0a8wg9emc6c75lxvmc',
       reserves_sum: '0',
-      rewards_sum: '112363',
+      rewards_sum: expect.any(String),
       stake_address:
         'stake1u9a3t4rgddm4expj0ucyxhxg3ft9ugk2ry6r9w69h04ea6cfj887f',
       treasury_sum: '0',
-      withdrawable_amount: '112363',
+      withdrawable_amount: expect.any(String),
       withdrawals_sum: '0',
     },
   },
