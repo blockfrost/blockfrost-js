@@ -67,5 +67,17 @@ export async function getAccount(
     );
   }
 
-  return result;
+  const sorted = result.sort((a, b) => {
+    if (a.path < b.path) {
+      return -1;
+    }
+
+    if (a.path > b.path) {
+      return 1;
+    }
+
+    return 0;
+  });
+
+  return sorted;
 }
