@@ -48,6 +48,19 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
+      SDK.nutlinkAddressTickersAll(
+        'addr1q85yx2w7ragn5sx6umgmtjpc3865s9sg59sz4rrh6f90kgwfwlzu3w8ttacqg89mkdgwshwnplj5c5n9f8dhp0h55q2q7qm63t',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        count: expect.any(Number),
+        latest_block: expect.any(Number),
+        name: expect.any(String),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
       SDK.nutlinkAddressTicker(
         'addr1q85yx2w7ragn5sx6umgmtjpc3865s9sg59sz4rrh6f90kgwfwlzu3w8ttacqg89mkdgwshwnplj5c5n9f8dhp0h55q2q7qm63t',
         'ADAUSD',

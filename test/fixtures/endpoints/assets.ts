@@ -12,6 +12,29 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
+      SDK.assetsById(
+        'b863bc7369f46136ac1048adb2fa7dae3af944c3bbb2be2f216a8d4f42657272795361707068697265',
+      ),
+    response: {
+      asset:
+        'b863bc7369f46136ac1048adb2fa7dae3af944c3bbb2be2f216a8d4f42657272795361707068697265',
+      asset_name: '42657272795361707068697265',
+      fingerprint: 'asset1hwnpal5vap799t6kkjmjf6myhse4zl2vu4ahzz',
+      initial_mint_tx_hash:
+        '6556b532acf59835084f62d30675f3a55b78c61959bca44a86ea02c320fbf822',
+      metadata: null,
+      mint_or_burn_count: 1,
+      onchain_metadata: {
+        color: '#0F52BA',
+        image: 'ipfs://ipfs/QmWxK9BvEbLGFZuQHL8zbHXSv469JrqnX3kUcZafjsoka4',
+        name: 'Berry Sapphire',
+      },
+      policy_id: 'b863bc7369f46136ac1048adb2fa7dae3af944c3bbb2be2f216a8d4f',
+      quantity: '1',
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
       SDK.assetsHistory(
         '00000002df633853f6a47465c9496721d2d5b1291b8398016c0e87ae6e7574636f696e',
       ),

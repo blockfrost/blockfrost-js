@@ -1,7 +1,7 @@
 import { SDK } from '../../utils';
 import {
   deriveAddressFixtures,
-  //   getAccountFixtures,
+  getAccountFixtures,
 } from '../../fixtures/account';
 
 describe('account', () => {
@@ -12,14 +12,14 @@ describe('account', () => {
         fixture.index,
         fixture.type,
       );
-      expect(response).toMatchObject(fixture.response);
+      expect(response).toStrictEqual(fixture.response);
     });
   });
 
-  //   getAccountFixtures.forEach(fixture => {
-  //     test(fixture.toString(), async () => {
-  //       const response = await SDK.getAccount(fixture.publicKey, fixture.type);
-  //       expect(response).toMatchObject(fixture.response);
-  //     });
-  //   });
+  getAccountFixtures.forEach(fixture => {
+    test(fixture.toString(), async () => {
+      const response = await SDK.getAccount(fixture.publicKey, fixture.type);
+      expect(response).toStrictEqual(fixture.response);
+    });
+  });
 });
