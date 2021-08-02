@@ -1,9 +1,5 @@
 import { components } from './types/OpenApi';
 import { ErrorType } from './types';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
 import { BlockFrostAPI } from './BlockFrostAPI';
 import { BlockFrostIPFS } from './BlockFrostIPFS';
 
