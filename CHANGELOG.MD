@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - dotenv dependency
+- deprecated methods addressesTxs and assetsTxs
 
 ## [0.9.3]
 
