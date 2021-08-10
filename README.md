@@ -66,7 +66,6 @@ try {
 
 ```typescript
 import { BlockfrostIPFS } from '@blockfrost/blockfrost-js';
-import fs from 'fs';
 
 const IPFS = new BlockFrostIPFS({
   projectId: 'YOUR IPFS KEY HERE', // see: https://blockfrost.io
