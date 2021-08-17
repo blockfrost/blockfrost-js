@@ -1,6 +1,10 @@
-import { handleError, getPaginationOptions } from '../../../utils';
+import {
+  handleError,
+  getPaginationOptions,
+  getAllMethodOptions,
+} from '../../../utils';
 import { components } from '../../../types/OpenApi';
-import { PaginationOptions } from '../../../types';
+import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
 import {
   DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
@@ -45,22 +49,22 @@ export async function nutlinkAddressTickers(
 export async function nutlinkAddressTickersAll(
   this: BlockFrostAPI,
   address: string,
-  order = DEFAULT_ORDER,
-  batchSize = 10,
+  allMethodOptions: AllMethodOptions,
 ): Promise<components['schemas']['nutlink_address_tickers']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
   const res: components['schemas']['nutlink_address_tickers'] = [];
+  const options = getAllMethodOptions(allMethodOptions);
 
   const getPromiseBundle = () => {
-    const promises = [...Array(batchSize).keys()].map(i =>
+    const promises = [...Array(options.batchSize).keys()].map(i =>
       this.nutlinkAddressTickers(address, {
         page: page + i,
         count,
-        order,
+        order: options.order,
       }),
     );
-    page += batchSize;
+    page += options.batchSize;
     return promises;
   };
 
@@ -104,22 +108,22 @@ export async function nutlinkAddressTickerAll(
   this: BlockFrostAPI,
   address: string,
   ticker: string,
-  order = DEFAULT_ORDER,
-  batchSize = 10,
+  allMethodOptions: AllMethodOptions,
 ): Promise<components['schemas']['nutlink_address_ticker']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
   const res: components['schemas']['nutlink_address_ticker'] = [];
+  const options = getAllMethodOptions(allMethodOptions);
 
   const getPromiseBundle = () => {
-    const promises = [...Array(batchSize).keys()].map(i =>
+    const promises = [...Array(options.batchSize).keys()].map(i =>
       this.nutlinkAddressTicker(address, ticker, {
         page: page + i,
         count,
-        order,
+        order: options.order,
       }),
     );
-    page += batchSize;
+    page += options.batchSize;
     return promises;
   };
 
@@ -161,22 +165,22 @@ export async function nutlinkTickers(
 export async function nutlinkTickersAll(
   this: BlockFrostAPI,
   ticker: string,
-  order = DEFAULT_ORDER,
-  batchSize = 10,
+  allMethodOptions: AllMethodOptions,
 ): Promise<components['schemas']['nutlink_tickers_ticker']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
   const res: components['schemas']['nutlink_tickers_ticker'] = [];
+  const options = getAllMethodOptions(allMethodOptions);
 
   const getPromiseBundle = () => {
-    const promises = [...Array(batchSize).keys()].map(i =>
+    const promises = [...Array(options.batchSize).keys()].map(i =>
       this.nutlinkTickers(ticker, {
         page: page + i,
         count,
-        order,
+        order: options.order,
       }),
     );
-    page += batchSize;
+    page += options.batchSize;
     return promises;
   };
 

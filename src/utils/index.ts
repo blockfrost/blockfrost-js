@@ -3,6 +3,7 @@ import {
   DEFAULT_PAGINATION_PAGE_COUNT,
   DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
   DEFAULT_ORDER,
+  DEFAULT_BATCH_SIZE,
 } from '../config';
 
 import {
@@ -13,6 +14,7 @@ import {
   ValidatedOptions,
   PaginationOptions,
   AdditionalEndpointOptions,
+  AllMethodOptions,
 } from '../types';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
@@ -139,6 +141,22 @@ export const getPaginationOptions = (
   return {
     page: options.page || DEFAULT_PAGINATION_PAGE_COUNT,
     count: options.count || DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+    order: options.order || DEFAULT_ORDER,
+  };
+};
+
+export const getAllMethodOptions = (
+  options?: AllMethodOptions,
+): { batchSize: number; order: 'asc' | 'desc' } => {
+  if (!options) {
+    return {
+      batchSize: DEFAULT_BATCH_SIZE,
+      order: DEFAULT_ORDER,
+    };
+  }
+
+  return {
+    batchSize: options.batchSize || DEFAULT_PAGINATION_PAGE_COUNT,
     order: options.order || DEFAULT_ORDER,
   };
 };
