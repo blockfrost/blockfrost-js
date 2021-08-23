@@ -6,7 +6,7 @@
 
 <br/>
 
-<p align="center">A JavaScript/Typescript SDK for Blockfrost.io API.</p>
+<p align="center">A JavaScript/Typescript SDK for <a href="https://blockfrost.io">Blockfrost.io</a> API.</p>
 <p align="center">
   <a href="#getting-started">Getting started</a> •
   <a href="#installation">Installation</a> •
