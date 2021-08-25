@@ -6,10 +6,7 @@ import {
 import { components } from '../../../types/OpenApi';
 import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
-import {
-  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  DEFAULT_ORDER,
-} from '../../../config';
+import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../config';
 
 export async function nutlinkAddress(
   this: BlockFrostAPI,
