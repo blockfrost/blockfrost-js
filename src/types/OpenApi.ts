@@ -131,7 +131,7 @@ export interface paths {
     get: {
       parameters: {
         path: {
-          /** Hash of the requested block. */
+          /** Hash or number of the requested block. */
           hash_or_number: string;
         };
       };
@@ -177,7 +177,7 @@ export interface paths {
     };
   };
   "/blocks/epoch/{epoch_number}/slot/{slot_number}": {
-    /** Return the content of a requested block for a specific slot in an epoch */
+    /** Return the content of a requested block for a specific slot in an epoch. */
     get: {
       parameters: {
         path: {
@@ -446,7 +446,7 @@ export interface paths {
     };
   };
   "/epochs/{number}/stakes": {
-    /** Return the active stake distribution for the epoch specified. */
+    /** Return the active stake distribution for the specified epoch. */
     get: {
       parameters: {
         path: {
@@ -908,7 +908,7 @@ export interface paths {
     };
   };
   "/accounts/{stake_address}/rewards": {
-    /** Obtain information about the history of a specific account. */
+    /** Obtain information about the reward history of a specific account. */
     get: {
       parameters: {
         path: {
@@ -1399,7 +1399,7 @@ export interface paths {
           address: string;
         };
         query: {
-          /** The numbers of pools per page. */
+          /** The number of transactions per page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -2261,6 +2261,25 @@ export interface paths {
       };
     };
   };
+  "/network": {
+    /** Return detailed network information. */
+    get: {
+      responses: {
+        /** Return detailed network information. */
+        200: {
+          content: {
+            "application/json": components["schemas"]["network"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
   "/nutlink/{address}": {
     /** List metadata about specific address */
     get: {
@@ -3107,6 +3126,22 @@ export interface components {
         Partial<number> &
         Partial<boolean>) & { [key: string]: any };
     }[];
+    network: {
+      supply: {
+        /** Maximum supply in Lovelaces */
+        max: string;
+        /** Current total (max supply - reserves) supply in Lovelaces */
+        total: string;
+        /** Current circulating (UTXOs + withdrawables) supply in Lovelaces */
+        circulating: string;
+      };
+      stake: {
+        /** Current live stake in Lovelaces */
+        live: string;
+        /** Current active stake in Lovelaces */
+        active: string;
+      };
+    };
     empty_object: { [key: string]: unknown };
   };
   responses: {
