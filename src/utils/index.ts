@@ -186,6 +186,7 @@ export const parseAsset = (hex: string): ParseAssetResult => {
   const assetNameInHex = hex.slice(policyIdSize);
   const assetName = hexToString(assetNameInHex);
   const fingerprint = getFingerprint(policyId, assetNameInHex);
+
   return {
     policyId,
     assetName,

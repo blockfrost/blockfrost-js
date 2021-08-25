@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 `{ batchSize: number; order: 'asc' | 'desc' }`
 
+### Added
+
+- asset utils `parseAsset`
+
 ## [0.9.4]
 
 ### Removed
