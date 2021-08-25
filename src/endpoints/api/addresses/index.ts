@@ -2,14 +2,19 @@ import {
   getAdditionalParams,
   handleError,
   getPaginationOptions,
+  getAllMethodOptions,
 } from '../../../utils';
 import { components } from '../../../types/OpenApi';
 import { BlockFrostAPI } from '../../../index';
 import {
   DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  DEFAULT_ORDER,
+  DEFAULT_BATCH_SIZE,
 } from '../../../config';
-import { PaginationOptions, AdditionalEndpointOptions } from '../../../types';
+import {
+  PaginationOptions,
+  AdditionalEndpointOptions,
+  AllMethodOptions,
+} from '../../../types';
 
 export async function addresses(
   this: BlockFrostAPI,
@@ -72,29 +77,30 @@ export async function addressesTransactions(
 export async function addressesTransactionsAll(
   this: BlockFrostAPI,
   address: string,
-  order = DEFAULT_ORDER,
-  batchSize = 10,
+  allMethodOptions: AllMethodOptions,
+  additionalOptions: AdditionalEndpointOptions,
 ): Promise<components['schemas']['address_transactions_content']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
   const res: components['schemas']['address_transactions_content'] = [];
+  const options = getAllMethodOptions(allMethodOptions);
 
   const getPromiseBundle = () => {
-    const promises = [...Array(batchSize).keys()].map(i =>
+    const promises = [...Array(options.batchSize).keys()].map(i =>
       this.addressesTransactions(
         address,
         {
           page: page + i,
           count,
-          order,
+          order: options.order,
         },
         {
-          from: undefined,
-          to: undefined,
+          from: additionalOptions?.from,
+          to: additionalOptions?.to,
         },
       ),
     );
-    page += batchSize;
+    page += options.batchSize;
     return promises;
   };
 
@@ -136,21 +142,22 @@ export async function addressesUtxos(
 export async function addressesUtxosAll(
   this: BlockFrostAPI,
   address: string,
-  order = DEFAULT_ORDER,
-  batchSize = 10,
+  allMethodOptions: AllMethodOptions,
 ): Promise<components['schemas']['address_utxo_content']> {
   let page = 1;
   const res: components['schemas']['address_utxo_content'] = [];
+  const options = getAllMethodOptions(allMethodOptions);
 
   const getPromiseBundle = () => {
-    const promises = [...Array(batchSize).keys()].map(i =>
+    const promises = [...Array(options.batchSize).keys()].map(i =>
       this.addressesUtxos(address, {
         page: page + i,
         count: DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-        order,
+        order: options.order,
       }),
     );
-    page += batchSize;
+
+    page += options.batchSize || DEFAULT_BATCH_SIZE;
     return promises;
   };
 
