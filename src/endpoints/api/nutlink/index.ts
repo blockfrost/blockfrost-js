@@ -46,7 +46,7 @@ export async function nutlinkAddressTickers(
 export async function nutlinkAddressTickersAll(
   this: BlockFrostAPI,
   address: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['nutlink_address_tickers']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
@@ -105,7 +105,7 @@ export async function nutlinkAddressTickerAll(
   this: BlockFrostAPI,
   address: string,
   ticker: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['nutlink_address_ticker']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
@@ -162,7 +162,7 @@ export async function nutlinkTickers(
 export async function nutlinkTickersAll(
   this: BlockFrostAPI,
   ticker: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['nutlink_tickers_ticker']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;

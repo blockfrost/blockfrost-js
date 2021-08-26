@@ -67,7 +67,7 @@ export async function assetsHistory(
 export async function assetsHistoryAll(
   this: BlockFrostAPI,
   asset: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['asset_history']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
@@ -168,7 +168,7 @@ export async function assetsPolicyById(
 export async function assetsPolicyByIdAll(
   this: BlockFrostAPI,
   policy: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['asset_addresses']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;

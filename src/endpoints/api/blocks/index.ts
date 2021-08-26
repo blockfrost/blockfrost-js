@@ -116,7 +116,7 @@ export async function blocksTxs(
 export async function blocksTxsAll(
   this: BlockFrostAPI,
   hashOrNumber: string | number,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['block_content_txs']> {
   let page = 1;
   const res: components['schemas']['block_content_txs'] = [];

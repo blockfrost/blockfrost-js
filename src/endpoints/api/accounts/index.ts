@@ -46,7 +46,7 @@ export async function accountsRewards(
 export async function accountsRewardsAll(
   this: BlockFrostAPI,
   stakeAddress: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_reward_content']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
@@ -104,7 +104,7 @@ export async function accountsHistory(
 export async function accountsHistoryAll(
   this: BlockFrostAPI,
   stakeAddress: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_history_content']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
@@ -161,7 +161,7 @@ export async function accountsWithdrawals(
 export async function accountsWithdrawalsAll(
   this: BlockFrostAPI,
   stakeAddress: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_withdrawal_content']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
@@ -218,7 +218,7 @@ export async function accountsMirs(
 export async function accountsMirsAll(
   this: BlockFrostAPI,
   stakeAddress: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_mir_content']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
@@ -275,7 +275,7 @@ export async function accountsDelegations(
 export async function accountsDelegationsAll(
   this: BlockFrostAPI,
   stakeAddress: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_delegation_content']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
@@ -335,7 +335,7 @@ export async function accountsRegistrations(
 export async function accountsRegistrationsAll(
   this: BlockFrostAPI,
   stakeAddress: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_registration_content']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
@@ -392,7 +392,7 @@ export async function accountsAddresses(
 export async function accountsAddressesAll(
   this: BlockFrostAPI,
   stakeAddress: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_addresses_content']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;

@@ -78,7 +78,7 @@ export async function addressesTransactionsAll(
   this: BlockFrostAPI,
   address: string,
   allMethodOptions: AllMethodOptions,
-  additionalOptions: AdditionalEndpointOptions,
+  additionalOptions?: AdditionalEndpointOptions,
 ): Promise<components['schemas']['address_transactions_content']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
@@ -142,7 +142,7 @@ export async function addressesUtxos(
 export async function addressesUtxosAll(
   this: BlockFrostAPI,
   address: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['address_utxo_content']> {
   let page = 1;
   const res: components['schemas']['address_utxo_content'] = [];
