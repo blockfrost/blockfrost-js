@@ -77,7 +77,7 @@ export async function addressesTransactions(
 export async function addressesTransactionsAll(
   this: BlockFrostAPI,
   address: string,
-  allMethodOptions: AllMethodOptions,
+  allMethodOptions?: AllMethodOptions,
   additionalOptions?: AdditionalEndpointOptions,
 ): Promise<components['schemas']['address_transactions_content']> {
   let page = 1;
