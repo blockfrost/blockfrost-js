@@ -39,7 +39,7 @@ Using the SDK is pretty straight-forward as you can see from the following examp
 ### Cardano
 
 ```typescript
-import { BlockfrostAPI } from '@blockfrost/blockfrost-js';
+import { BlockFrostAPI } from '@blockfrost/blockfrost-js';
 
 const API = new BlockFrostAPI({
   projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
