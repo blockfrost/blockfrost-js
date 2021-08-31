@@ -7,6 +7,7 @@ async function run() {
 
   try {
     const latestBlock = await API.blocksLatest();
+    const networkInfo = await API.network();
     const latestEpoch = await API.epochsLatest();
     const health = await API.health();
     const address = await API.addresses(
@@ -14,6 +15,7 @@ async function run() {
     );
 
     console.log('address', address);
+    console.log('networkInfo', networkInfo);
     console.log('latestEpoch', latestEpoch);
     console.log('latestBlock', latestBlock);
     console.log('health', health);
