@@ -108,6 +108,8 @@ import {
   nutlinkTickersAll,
 } from './endpoints/api/nutlink';
 
+import { network } from './endpoints/api/network';
+
 import { Options, ValidatedOptions } from './types';
 import join from 'url-join';
 import { validateOptions } from './utils';
@@ -868,6 +870,15 @@ class BlockFrostAPI {
    *
    */
   getAccount = getAccount;
+
+  /**
+   * network
+   *
+   * @param hash
+   * @returns xxx
+   *
+   */
+  network = network;
 }
 
 export { BlockFrostAPI };
