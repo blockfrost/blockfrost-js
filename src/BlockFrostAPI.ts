@@ -874,8 +874,7 @@ class BlockFrostAPI {
   /**
    * network
    *
-   * @param hash
-   * @returns xxx
+   * @returns Detailed network information.
    *
    */
   network = network;
