@@ -19,6 +19,8 @@ import {
   accountsMirsAll,
   accountsAddresses,
   accountsAddressesAll,
+  accountsAddressesAssets,
+  accountsAddressesAssetsAll,
 } from './endpoints/api/accounts';
 
 import {
@@ -278,6 +280,24 @@ class BlockFrostAPI {
    *
    */
   accountsAddressesAll = accountsAddressesAll;
+
+  /**
+   * accountsAddressesAssets - Obtain information about assets associated with addresses of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Assets associated with the account addresses
+   *
+   */
+  accountsAddressesAssets = accountsAddressesAssets;
+
+  /**
+   * accountsAddressesAssets - Obtain information about assets associated with addresses of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Assets associated with the account addresses
+   *
+   */
+  accountsAddressesAssetsAll = accountsAddressesAssetsAll;
 
   /**
    * assets - List of assets.

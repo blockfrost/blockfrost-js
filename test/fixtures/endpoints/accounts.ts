@@ -148,4 +148,28 @@ export default [
       }),
     ]),
   },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.accountsAddressesAssets(
+        'stake1u9e45fvvd4ujpc0kka0pnx9zqdvh9wl96nsg6sje0f5hmfq45lrja',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        unit: expect.any(String),
+        quantity: expect.any(String),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.accountsAddressesAssetsAll(
+        'stake1u9e45fvvd4ujpc0kka0pnx9zqdvh9wl96nsg6sje0f5hmfq45lrja',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        unit: expect.any(String),
+        quantity: expect.any(String),
+      }),
+    ]),
+  },
 ] as const;
