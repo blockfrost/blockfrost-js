@@ -1,6 +1,6 @@
 {
   "name": "@blockfrost/blockfrost-js",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "keywords": [
     "blockfrost",
@@ -22,7 +22,7 @@
     "prepublishOnly": "yarn build",
     "run-example:api": "ts-node-dev --transpile-only ./examples/api.ts",
     "run-example:ipfs": "ts-node-dev --transpile-only ./examples/ipfs.ts",
-    "test": "jest -c ./jest.config.js && yarn test-badges",
+    "test": "PROJECT_ID=cIeLBZLcKvpDwGNX3Sa6BFtjrRHSwAl1 PROJECT_ID_IPFS=JcGh9GMZsY4bhZNFN0wGnBp9fpIcmquE jest -c ./jest.config.js && yarn test-badges",
     "test-badges": "make-coverage-badge --output-path ./docs/badge-coverage.svg",
     "docs": "yarn typedoc ./src/index.ts --theme ./node_modules/typedoc-github-wiki-theme/dist"
   },

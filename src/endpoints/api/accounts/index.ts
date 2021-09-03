@@ -423,3 +423,63 @@ export async function accountsAddressesAll(
     }
   }
 }
+
+export async function accountsAddressesAssets(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  pagination?: PaginationOptions,
+): Promise<components['schemas']['account_addresses_assets']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
+  return new Promise((resolve, reject) => {
+    this.axiosInstance(
+      `${this.apiUrl}/accounts/${stakeAddress}/addresses/assets`,
+      {
+        params: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
+      },
+    )
+      .then(resp => {
+        resolve(resp.data);
+      })
+      .catch(err => reject(handleError(err)));
+  });
+}
+
+export async function accountsAddressesAssetsAll(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  allMethodOptions?: AllMethodOptions,
+): Promise<components['schemas']['account_addresses_assets']> {
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const res: components['schemas']['account_addresses_assets'] = [];
+  const options = getAllMethodOptions(allMethodOptions);
+
+  const getPromiseBundle = () => {
+    const promises = [...Array(options.batchSize).keys()].map(i =>
+      this.accountsAddressesAssets(stakeAddress, {
+        page: page + i,
+        count,
+        order: options.order,
+      }),
+    );
+    page += options.batchSize;
+    return promises;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const promiseBundle = getPromiseBundle();
+    const pages = await Promise.all(promiseBundle);
+    for (const page of pages) {
+      res.push(...page);
+      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res;
+      }
+    }
+  }
+}
