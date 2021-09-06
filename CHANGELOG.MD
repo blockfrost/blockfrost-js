@@ -72,7 +72,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - all paginated endpoints now accept pagination object instead of parameters
 
-````
+```
 
 count: number;
 page: number;
