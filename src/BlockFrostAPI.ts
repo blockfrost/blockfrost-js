@@ -101,6 +101,14 @@ import {
   txSubmit,
 } from './endpoints/api/txs';
 import {
+  scripts,
+  script,
+  scriptDatum,
+  scriptRedeemers,
+  scriptJson,
+  scriptCbor
+} from './endpoints/api/scripts';
+import {
   nutlinkAddress,
   nutlinkAddressTicker,
   nutlinkAddressTickers,
@@ -754,6 +762,20 @@ class BlockFrostAPI {
    *
    */
   root = root;
+
+  /**
+   * List scripts
+   *
+   * @returns List of script hashes
+   *
+   */
+  scripts = scripts;
+  // XXX: fixme
+  script = script;
+  scriptJson = scriptJson;
+  scriptCbor = scriptCbor;
+  scriptDatum = scriptDatum;
+  scriptRedeemers = scriptRedeemers;
 
   /**
    * txs
