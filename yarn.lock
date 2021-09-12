@@ -671,8 +671,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@blockfrost/blockfrost-js@workspace:."
   dependencies:
-    "@blockfrost/openapi": 0.1.24
+    "@blockfrost/openapi": 0.1.26
     "@emurgo/cardano-serialization-lib-nodejs": ^7.1.0
+    "@emurgo/cip14-js": 2.0.0
     "@swc-node/jest": ^1.3.1
     "@types/jest": ^26.0.24
     "@types/node": ^16.3.2
@@ -707,10 +708,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@blockfrost/openapi@npm:0.1.24":
-  version: 0.1.24
-  resolution: "@blockfrost/openapi@npm:0.1.24"
-  checksum: dcb38f5a4d8fa2b7fec4f0de90e0cfd963f70ba774d5e7113bd4af8c78efaa52bfb5a6722e030a7dee571dc6fbb587fd04a0a1868d7abf677ace298d80cbdc44
+"@blockfrost/openapi@npm:0.1.26":
+  version: 0.1.26
+  resolution: "@blockfrost/openapi@npm:0.1.26"
+  checksum: c6bfb3c9a062cf5f8c45a82aa87c94c3b49b4bc1aa81e1790c216a93b044e2d080feb095350dd3baf60c2926cfc87f09262fdda141a3a7340887dab5982b261e
   languageName: node
   linkType: hard
 
@@ -718,6 +719,16 @@ __metadata:
   version: 7.1.0
   resolution: "@emurgo/cardano-serialization-lib-nodejs@npm:7.1.0"
   checksum: 7ea9089cdddc39a5a74c68229bed19cd7222682a6d5833e24b4c614e36a284e968a3517a7ea4cb2c792a121ba22fd419bde79c37cb6d7a3db26f7af410f7c0f5
+  languageName: node
+  linkType: hard
+
+"@emurgo/cip14-js@npm:2.0.0":
+  version: 2.0.0
+  resolution: "@emurgo/cip14-js@npm:2.0.0"
+  dependencies:
+    bech32: 2.0.0
+    blake2b: 2.1.3
+  checksum: 1b07171cd238f4888db422f219ef35e5b1433bda77e2fc80eaf56b8e05b54785308504a6709f2f00f0de2db7c4741f15d44e71ff9e070e95a72787c622a5c184
   languageName: node
   linkType: hard
 
@@ -2092,10 +2103,36 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bech32@npm:2.0.0":
+  version: 2.0.0
+  resolution: "bech32@npm:2.0.0"
+  checksum: fa15acb270b59aa496734a01f9155677b478987b773bf701f465858bf1606c6a970085babd43d71ce61895f1baa594cb41a2cd1394bd2c6698f03cc2d811300e
+  languageName: node
+  linkType: hard
+
 "binary-extensions@npm:^2.0.0":
   version: 2.2.0
   resolution: "binary-extensions@npm:2.2.0"
   checksum: ccd267956c58d2315f5d3ea6757cf09863c5fc703e50fbeb13a7dc849b812ef76e3cf9ca8f35a0c48498776a7478d7b4a0418e1e2b8cb9cb9731f2922aaad7f8
+  languageName: node
+  linkType: hard
+
+"blake2b-wasm@npm:^1.1.0":
+  version: 1.1.7
+  resolution: "blake2b-wasm@npm:1.1.7"
+  dependencies:
+    nanoassert: ^1.0.0
+  checksum: be5ebacdd25076ae5fcaf1c60c37096c85490a36ee1f8e78d5c4c2fb8ccad0fe0e22cecadba6fcf6ed7d91c1aed9c55980811fe064fafb4ccd80ac34a8a326ea
+  languageName: node
+  linkType: hard
+
+"blake2b@npm:2.1.3":
+  version: 2.1.3
+  resolution: "blake2b@npm:2.1.3"
+  dependencies:
+    blake2b-wasm: ^1.1.0
+    nanoassert: ^1.0.0
+  checksum: e652234249cbdb3345488d52b5e76e8572b8e5333f3f0d5e716772b7c5d2142f433c3fe86130e92117329532e1d1235cdaa89f40bbca27a8ae528bef428241ef
   languageName: node
   linkType: hard
 
@@ -5705,6 +5742,13 @@ __metadata:
   version: 2.1.3
   resolution: "ms@npm:2.1.3"
   checksum: aa92de608021b242401676e35cfa5aa42dd70cbdc082b916da7fb925c542173e36bce97ea3e804923fe92c0ad991434e4a38327e15a1b5b5f945d66df615ae6d
+  languageName: node
+  linkType: hard
+
+"nanoassert@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "nanoassert@npm:1.1.0"
+  checksum: f360fe639db8edc422de9f5a8a7d384ba9c11e9c6fac149f7ad3b0a94e4ec9d5aa44ce55b3e4c7682658efad792604fc96c336b0e80a3590744104ba58af80c7
   languageName: node
   linkType: hard
 

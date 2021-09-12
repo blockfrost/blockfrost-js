@@ -1,11 +1,12 @@
-import { handleError, getPaginationOptions } from '../../../utils';
-import { components } from '../../../types/OpenApi';
-import { PaginationOptions } from '../../../types';
-import { BlockFrostAPI } from '../../../index';
 import {
-  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  DEFAULT_ORDER,
-} from '../../../config';
+  handleError,
+  getPaginationOptions,
+  getAllMethodOptions,
+} from '../../../utils';
+import { components } from '../../../types/OpenApi';
+import { AllMethodOptions, PaginationOptions } from '../../../types';
+import { BlockFrostAPI } from '../../../index';
+import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../config';
 
 export async function assets(
   this: BlockFrostAPI,
@@ -66,22 +67,22 @@ export async function assetsHistory(
 export async function assetsHistoryAll(
   this: BlockFrostAPI,
   asset: string,
-  order = DEFAULT_ORDER,
-  batchSize = 10,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['asset_history']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
   const res: components['schemas']['asset_history'] = [];
+  const options = getAllMethodOptions(allMethodOptions);
 
   const getPromiseBundle = () => {
-    const promises = [...Array(batchSize).keys()].map(i =>
+    const promises = [...Array(options.batchSize).keys()].map(i =>
       this.assetsHistory(asset, {
         page: page + i,
         count,
-        order,
+        order: options.order,
       }),
     );
-    page += batchSize;
+    page += options.batchSize;
     return promises;
   };
 
@@ -167,22 +168,22 @@ export async function assetsPolicyById(
 export async function assetsPolicyByIdAll(
   this: BlockFrostAPI,
   policy: string,
-  order = DEFAULT_ORDER,
-  batchSize = 10,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['asset_addresses']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
   const res: components['schemas']['asset_addresses'] = [];
+  const options = getAllMethodOptions(allMethodOptions);
 
   const getPromiseBundle = () => {
-    const promises = [...Array(batchSize).keys()].map(i =>
+    const promises = [...Array(options.batchSize).keys()].map(i =>
       this.assetsPolicyById(policy, {
         page: page + i,
         count,
-        order,
+        order: options.order,
       }),
     );
-    page += batchSize;
+    page += options.batchSize;
     return promises;
   };
 

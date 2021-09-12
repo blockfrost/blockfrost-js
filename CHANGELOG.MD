@@ -5,11 +5,48 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0]
+
+### Added
+
+- `accountsAddressesAssets` and `accountsAddressesAssetsAll` endpoints
+
+## [1.1.0]
+
+### Added
+
+- `network` endpoint
+
+## [1.0.2]
+
+### Fixed
+
+- `addressesTransactionsAll` empty params
+
+## [1.0.1]
+
+### Fixed
+
+- Methods with `all` empty params
+
+## [1.0.0]
+
+### ⚠️ Breaking change
+
+- Methods with `all` accept object as additional parameters
+
+`{ batchSize: number; order: 'asc' | 'desc' }`
+
+### Added
+
+- asset utils `parseAsset`
+
 ## [0.9.4]
 
 ### Removed
 
 - dotenv dependency
+- deprecated methods addressesTxs and assetsTxs
 
 ## [0.9.3]
 
@@ -36,9 +73,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - all paginated endpoints now accept pagination object instead of parameters
 
 ```
+
 count: number;
 page: number;
 order: 'asc' | 'desc';
+
 ```
 
 ### Added
@@ -225,3 +264,5 @@ order: 'asc' | 'desc';
 ### Added
 
 - Initial commit
+```
+````

@@ -67,3 +67,8 @@ export type AdditionalEndpointOptions = {
   from?: string | undefined;
   to?: string | undefined;
 };
+
+export type AllMethodOptions = {
+  batchSize?: number | undefined;
+  order?: 'asc' | 'desc';
+};

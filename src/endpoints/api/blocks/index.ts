@@ -1,9 +1,14 @@
-import { handleError, getPaginationOptions } from '../../../utils';
 import {
-  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  DEFAULT_ORDER,
-} from '../../../config';
-import { HashOrNumber, PaginationOptions } from '../../../types';
+  handleError,
+  getPaginationOptions,
+  getAllMethodOptions,
+} from '../../../utils';
+import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../config';
+import {
+  AllMethodOptions,
+  HashOrNumber,
+  PaginationOptions,
+} from '../../../types';
 import { components } from '../../../types/OpenApi';
 import { BlockFrostAPI } from '../../../index';
 
@@ -125,22 +130,22 @@ export async function blocksTxs(
 export async function blocksTxsAll(
   this: BlockFrostAPI,
   hashOrNumber: string | number,
-  order = DEFAULT_ORDER,
-  batchSize = 10,
+  allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['block_content_txs']> {
   let page = 1;
   const res: components['schemas']['block_content_txs'] = [];
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const options = getAllMethodOptions(allMethodOptions);
 
   const getPromiseBundle = () => {
-    const promises = [...Array(batchSize).keys()].map(i =>
+    const promises = [...Array(options.batchSize).keys()].map(i =>
       this.blocksTxs(hashOrNumber, {
         page: page + i,
         count,
-        order,
+        order: options.order,
       }),
     );
-    page += batchSize;
+    page += options.batchSize;
     return promises;
   };
 

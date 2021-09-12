@@ -19,6 +19,8 @@ import {
   accountsMirsAll,
   accountsAddresses,
   accountsAddressesAll,
+  accountsAddressesAssets,
+  accountsAddressesAssetsAll,
 } from './endpoints/api/accounts';
 
 import {
@@ -117,6 +119,8 @@ import {
   nutlinkTickers,
   nutlinkTickersAll,
 } from './endpoints/api/nutlink';
+
+import { network } from './endpoints/api/network';
 
 import { Options, ValidatedOptions } from './types';
 import join from 'url-join';
@@ -286,6 +290,24 @@ class BlockFrostAPI {
    *
    */
   accountsAddressesAll = accountsAddressesAll;
+
+  /**
+   * accountsAddressesAssets - Obtain information about assets associated with addresses of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Assets associated with the account addresses
+   *
+   */
+  accountsAddressesAssets = accountsAddressesAssets;
+
+  /**
+   * accountsAddressesAssets - Obtain information about assets associated with addresses of a specific account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Assets associated with the account addresses
+   *
+   */
+  accountsAddressesAssetsAll = accountsAddressesAssetsAll;
 
   /**
    * assets - List of assets.
@@ -921,6 +943,14 @@ class BlockFrostAPI {
    *
    */
   getAccount = getAccount;
+
+  /**
+   * network
+   *
+   * @returns Detailed network information.
+   *
+   */
+  network = network;
 }
 
 export { BlockFrostAPI };
