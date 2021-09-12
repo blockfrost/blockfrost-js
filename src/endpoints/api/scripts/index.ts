@@ -11,11 +11,11 @@ export async function scripts(
 
   return new Promise((resolve, reject) => {
     this.axiosInstance(`${this.apiUrl}/scripts`, {
-       params: {
-         page: paginationOptions.page,
-         count: paginationOptions.count,
-         order: paginationOptions.order,
-       },
+      params: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
     })
       .then(resp => {
         resolve(resp.data);

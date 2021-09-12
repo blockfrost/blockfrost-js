@@ -50,8 +50,6 @@ export async function blocksLatestTxs(
   });
 }
 
-
-
 export async function blocksNext(
   this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,

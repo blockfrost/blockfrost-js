@@ -106,7 +106,7 @@ import {
   scriptDatum,
   scriptRedeemers,
   scriptJson,
-  scriptCbor
+  scriptCbor,
 } from './endpoints/api/scripts';
 import {
   nutlinkAddress,
@@ -770,11 +770,36 @@ class BlockFrostAPI {
    *
    */
   scripts = scripts;
-  // XXX: fixme
+
+  /**
+   * Information about a specific script
+   *
+   * @returns Information about a specific script
+   *
+   */
   script = script;
+
+  /**
+   *
+   */
   scriptJson = scriptJson;
+
+  /**
+   *
+   */
   scriptCbor = scriptCbor;
+
+  /**
+   *
+   */
   scriptDatum = scriptDatum;
+
+  /**
+   * List of redeemers of a specific script
+   *
+   * @returns List the information about redeemers of a specific script
+   *
+   */
   scriptRedeemers = scriptRedeemers;
 
   /**
