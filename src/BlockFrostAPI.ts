@@ -47,6 +47,7 @@ import {
   blocks,
   blocksLatest,
   blocksLatestTxs,
+  blocksLatestTxsAll,
   blocksNext,
   blocksPrevious,
   blocksTxs,
@@ -451,6 +452,7 @@ class BlockFrostAPI {
    */
   blocksLatest = blocksLatest;
   blocksLatestTxs = blocksLatestTxs;
+  blocksLatestTxsAll = blocksLatestTxsAll;
 
   /**
    * blocksNext
