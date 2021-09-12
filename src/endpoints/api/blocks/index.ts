@@ -36,6 +36,22 @@ export async function blocksLatest(
   });
 }
 
+export async function blocksLatestTxs(
+  this: BlockFrostAPI,
+): Promise<components['schemas']['block_content_txs']> {
+  return new Promise((resolve, reject) => {
+    this.axiosInstance(`${this.apiUrl}/blocks/latest/txs`)
+      .then(resp => {
+        resolve(resp.data);
+      })
+      .catch(err => {
+        return reject(handleError(err));
+      });
+  });
+}
+
+
+
 export async function blocksNext(
   this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
