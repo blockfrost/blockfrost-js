@@ -152,6 +152,21 @@ export async function txsMetadataCbor(
   });
 }
 
+export async function txsRedeemers(
+  this: BlockFrostAPI,
+  hash: string,
+): Promise<components['schemas']['tx_content_redeemers']> {
+  return new Promise((resolve, reject) => {
+    this.axiosInstance(`${this.apiUrl}/txs/${hash}/redeemers`)
+      .then(resp => {
+        resolve(resp.data);
+      })
+      .catch(err => {
+        reject(handleError(err));
+      });
+  });
+}
+
 export async function txSubmit(
   this: BlockFrostAPI,
   transaction: Uint8Array | string,

@@ -97,6 +97,7 @@ import {
   txsWithdrawals,
   txsMirs,
   txsMetadata,
+  txsRedeemers,
   txSubmit,
 } from './endpoints/api/txs';
 import {
@@ -843,6 +844,9 @@ class BlockFrostAPI {
    *
    */
   txsMetadata = txsMetadata;
+
+  // XXX:
+  txsRedeemers = txsRedeemers;
 
   /**
    * txSubmit
