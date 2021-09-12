@@ -67,17 +67,12 @@ export async function getAccount(
     );
   }
 
-  const sorted = result.sort((a, b) => {
-    if (a.path < b.path) {
-      return -1;
-    }
+  const sortedResult = result.sort((item1, item2) => {
+    const path1 = parseInt(item1.path.split('/').slice(-1)[0], 10);
+    const path2 = parseInt(item2.path.split('/').slice(-1)[0], 10);
 
-    if (a.path > b.path) {
-      return 1;
-    }
-
-    return 0;
+    return path1 - path2;
   });
 
-  return sorted;
+  return sortedResult;
 }
