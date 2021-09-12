@@ -36,7 +36,10 @@ export const getAccountFixtures = [
           address:
             'addr1q8u5ktsj5zsmhvwv0ep9zuhfu39x3wyt9wxjnsn3cagsyy59ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usrmcafl',
           amount: [
-            { quantity: '1518517', unit: 'lovelace' },
+            {
+              quantity: '1518517',
+              unit: 'lovelace',
+            },
             {
               quantity: '1',
               unit: '2f712364ec46f0cf707d412106ce71ef3370f76e27fb56b6bb14708776657465726e696b4e657a6a6564656e79',
@@ -295,7 +298,12 @@ export const getAccountFixtures = [
         data: {
           address:
             'addr1q9f9jr6e48u63ym65esmrwgle84zspnrsew37gwe88e0zfy9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usxwwdwc',
-          amount: [{ quantity: '0', unit: 'lovelace' }],
+          amount: [
+            {
+              quantity: expect.any(String),
+              unit: 'lovelace',
+            },
+          ],
           stake_address:
             'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
           type: 'shelley',
@@ -308,7 +316,12 @@ export const getAccountFixtures = [
         data: {
           address:
             'addr1q99hnk2vnx708l86mujpfs9end50em9s95grhe3v4933m259ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usr7qlze',
-          amount: [{ quantity: '35347470', unit: 'lovelace' }],
+          amount: [
+            {
+              quantity: expect.any(String),
+              unit: 'lovelace',
+            },
+          ],
           stake_address:
             'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
           type: 'shelley',
@@ -378,7 +391,19 @@ export const getAccountFixtures = [
       {
         address:
           'addr1qxv0q8r02xlrea3nr3p0zthpg5slg2sk263rszm6cmgnx259ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usyu5v2j',
-        data: 'empty',
+        data: {
+          address:
+            'addr1qxv0q8r02xlrea3nr3p0zthpg5slg2sk263rszm6cmgnx259ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usyu5v2j',
+          amount: [
+            {
+              quantity: '0',
+              unit: 'lovelace',
+            },
+          ],
+          stake_address:
+            'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
+          type: 'shelley',
+        },
         path: "m/1852'/1815'/0'/1/2",
       },
       {
