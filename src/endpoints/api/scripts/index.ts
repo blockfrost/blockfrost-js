@@ -3,6 +3,21 @@ import { components } from '../../../types/OpenApi';
 import { PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
 
+export async function script(
+  this: BlockFrostAPI,
+  scriptHash: string,
+): Promise<components['schemas']['script']> {
+  return new Promise((resolve, reject) => {
+    this.axiosInstance(`${this.apiUrl}/scripts/${scriptHash}`)
+      .then(resp => {
+        resolve(resp.data);
+      })
+      .catch(err => {
+        reject(handleError(err));
+      });
+  });
+}
+
 export async function scripts(
   this: BlockFrostAPI,
   pagination?: PaginationOptions,
@@ -17,21 +32,6 @@ export async function scripts(
         order: paginationOptions.order,
       },
     })
-      .then(resp => {
-        resolve(resp.data);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
-}
-
-export async function script(
-  this: BlockFrostAPI,
-  scriptHash: string,
-): Promise<components['schemas']['script']> {
-  return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/scripts/${scriptHash}`)
       .then(resp => {
         resolve(resp.data);
       })
