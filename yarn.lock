@@ -676,7 +676,7 @@ __metadata:
     "@emurgo/cip14-js": 2.0.0
     "@swc-node/jest": ^1.3.1
     "@types/jest": ^26.0.24
-    "@types/node": ^16.3.2
+    "@types/node": ^16.9.1
     "@types/url-join": ^4.0.1
     "@typescript-eslint/eslint-plugin": ^4.28.3
     "@typescript-eslint/parser": 4.28.3
@@ -1426,10 +1426,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.3.2":
-  version: 16.3.2
-  resolution: "@types/node@npm:16.3.2"
-  checksum: 242d23b6f9f93afa49eecac179444762000e99667a742c8b1de18c7875c7c952436ab319ea4fe3dca3e66bacb9e4f0ed69a25df9a155c6cedfc8cdaf52cb3453
+"@types/node@npm:^16.9.1":
+  version: 16.9.1
+  resolution: "@types/node@npm:16.9.1"
+  checksum: 41afcf183a22d59323a0199dd7e0f46591247f45fc08a4434edb26d56dc279ae4fdb80f37989ddd7a0f45e3857c4933e6e82057ede09c5a829f77e373e680375
   languageName: node
   linkType: hard
 
