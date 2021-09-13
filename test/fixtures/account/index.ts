@@ -45,6 +45,7 @@ export const getAccountFixtures = [
               unit: '2f712364ec46f0cf707d412106ce71ef3370f76e27fb56b6bb14708776657465726e696b4e657a6a6564656e79',
             },
           ],
+          script: false,
           stake_address:
             'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
           type: 'shelley',
@@ -304,6 +305,7 @@ export const getAccountFixtures = [
               unit: 'lovelace',
             },
           ],
+          script: false,
           stake_address:
             'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
           type: 'shelley',
@@ -322,6 +324,7 @@ export const getAccountFixtures = [
               unit: 'lovelace',
             },
           ],
+          script: false,
           stake_address:
             'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
           type: 'shelley',
@@ -400,6 +403,7 @@ export const getAccountFixtures = [
               unit: 'lovelace',
             },
           ],
+          script: false,
           stake_address:
             'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
           type: 'shelley',
