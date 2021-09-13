@@ -78,7 +78,7 @@ export default [
         cert_index: 1,
         address: 'stake1uyhk4jwrrp683w8n9hutkddr0nns4nuun04m2x3a6v0s9cck0z4k9',
         pool_id: 'pool1zgxvcqf0dvh0ze56ev2ayjvuex3zdd3hgxzdrcezkx497mv3l7s',
-        active_epoch: 246,
+        active_epoch: expect.any(Number),
       },
     ],
   },
@@ -102,11 +102,10 @@ export default [
         metadata: {
           url: 'https://stakhanovite.io/cardano/stkh-1.json',
           hash: '0f519c0478527c6fd05556ecb31fafe9e5a6b9861fac96f5935381b3e328ee5d',
-          ticker: 'STKH1',
-          name: 'Stakhanovite #1',
-          description:
-            'A Cardano Stake Pool - For the Community, by the Community.',
-          homepage: 'https://stakhanovite.io',
+          ticker: expect.any(String),
+          name: expect.any(String),
+          description: expect.any(String),
+          homepage: expect.any(String),
         },
         relays: [
           {
@@ -117,7 +116,7 @@ export default [
             port: 7001,
           },
         ],
-        active_epoch: 249,
+        active_epoch: expect.any(Number),
       },
       {
         cert_index: 1,
@@ -133,11 +132,10 @@ export default [
         metadata: {
           url: 'https://stakhanovite.io/cardano/stkh-2.json',
           hash: '11171d873f8f5b704552111d75b629f840b1c3399b49d9642cf12970031583b7',
-          ticker: 'STKH2',
-          name: 'Stakhanovite #2',
-          description:
-            'A Cardano Stake Pool - For the Community, by the Community.',
-          homepage: 'https://stakhanovite.io',
+          ticker: null,
+          name: null,
+          description: null,
+          homepage: null,
         },
         relays: [
           {
@@ -148,7 +146,7 @@ export default [
             port: 7001,
           },
         ],
-        active_epoch: 249,
+        active_epoch: expect.any(Number),
       },
     ],
   },

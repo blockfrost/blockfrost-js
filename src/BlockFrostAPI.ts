@@ -46,6 +46,8 @@ import {
 import {
   blocks,
   blocksLatest,
+  blocksLatestTxs,
+  blocksLatestTxsAll,
   blocksNext,
   blocksPrevious,
   blocksTxs,
@@ -98,8 +100,17 @@ import {
   txsWithdrawals,
   txsMirs,
   txsMetadata,
+  txsRedeemers,
   txSubmit,
 } from './endpoints/api/txs';
+import {
+  scripts,
+  script,
+  scriptDatum,
+  scriptRedeemers,
+  scriptJson,
+  scriptCbor,
+} from './endpoints/api/scripts';
 import {
   nutlinkAddress,
   nutlinkAddressTicker,
@@ -440,6 +451,8 @@ class BlockFrostAPI {
    *
    */
   blocksLatest = blocksLatest;
+  blocksLatestTxs = blocksLatestTxs;
+  blocksLatestTxsAll = blocksLatestTxsAll;
 
   /**
    * blocksNext
@@ -775,6 +788,45 @@ class BlockFrostAPI {
   root = root;
 
   /**
+   * List scripts
+   *
+   * @returns List of script hashes
+   *
+   */
+  scripts = scripts;
+
+  /**
+   * Information about a specific script
+   *
+   * @returns Information about a specific script
+   *
+   */
+  script = script;
+
+  /**
+   *
+   */
+  scriptJson = scriptJson;
+
+  /**
+   *
+   */
+  scriptCbor = scriptCbor;
+
+  /**
+   *
+   */
+  scriptDatum = scriptDatum;
+
+  /**
+   * List of redeemers of a specific script
+   *
+   * @returns List the information about redeemers of a specific script
+   *
+   */
+  scriptRedeemers = scriptRedeemers;
+
+  /**
    * txs
    *
    * @param hash
@@ -863,6 +915,9 @@ class BlockFrostAPI {
    *
    */
   txsMetadata = txsMetadata;
+
+  // XXX:
+  txsRedeemers = txsRedeemers;
 
   /**
    * txSubmit

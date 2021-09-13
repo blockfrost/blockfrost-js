@@ -22,6 +22,14 @@ export default [
     },
   },
   {
+    command: (SDK: BlockFrostAPI) => SDK.blocksLatestTxs(),
+    response: expect.arrayContaining([expect.any(String)]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.blocksLatestTxsAll(),
+    response: expect.arrayContaining([expect.any(String)]),
+  },
+  {
     command: (SDK: BlockFrostAPI) =>
       SDK.blocks(
         '5f20df933584822601f9e3f8c024eb5eb252fe8cefb24d1317dc3d432e940ebb',
