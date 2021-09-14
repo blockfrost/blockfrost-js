@@ -3258,8 +3258,8 @@ export interface components {
         | ({
             /** Name of the asset */
             name?: string;
-            /** URI of the associated asset */
-            image?: string;
+            /** URI(s) of the associated asset */
+            image?: string | any[];
           } & { [key: string]: any })
         | null;
       metadata: {

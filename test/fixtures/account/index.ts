@@ -32,31 +32,76 @@ export const getAccountFixtures = [
       {
         address:
           'addr1q8u5ktsj5zsmhvwv0ep9zuhfu39x3wyt9wxjnsn3cagsyy59ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usrmcafl',
+        path: "m/1852'/1815'/0'/0/0",
         data: {
           address:
             'addr1q8u5ktsj5zsmhvwv0ep9zuhfu39x3wyt9wxjnsn3cagsyy59ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usrmcafl',
           amount: [
+            { unit: 'lovelace', quantity: '1518517' },
             {
-              quantity: '1518517',
-              unit: 'lovelace',
-            },
-            {
-              quantity: '1',
               unit: '2f712364ec46f0cf707d412106ce71ef3370f76e27fb56b6bb14708776657465726e696b4e657a6a6564656e79',
+              quantity: '1',
             },
           ],
-          script: false,
           stake_address:
             'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
           type: 'shelley',
+          script: false,
         },
-        path: "m/1852'/1815'/0'/0/0",
       },
       {
         address:
           'addr1qxnthyxq8x9lv95h74k5av3sy3yzljr56ttxu4lggv8qstv9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6us8mueja',
         data: 'empty',
         path: "m/1852'/1815'/0'/0/1",
+      },
+      {
+        address:
+          'addr1qyqe0pmj2wcz3x6ref4855wunf26fc4vx84tdxluxcu09459ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6ustfft9k',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/0/2",
+      },
+      {
+        address:
+          'addr1qxp7mkumqsl4xpxlp7sz7jv6mwc90m4scwz5hg995m24ey59ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6uscpt2n8',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/0/3",
+      },
+      {
+        address:
+          'addr1qx0n2np4cxx2wx2qdt0pl9n4zctj2e5j7gz70mlmkk88u859ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6us3mtqqn',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/0/4",
+      },
+      {
+        address:
+          'addr1qxdr0k9nvqlycwkwtzcrtqc2v7zapncq6zhxsgsppcyvhf59ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6ushm8zc9',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/0/5",
+      },
+      {
+        address:
+          'addr1q8agxy2xc2rwt0chvprvx7nxeh5tst3ekf24kggs9xuq7dv9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6uslpypuu',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/0/6",
+      },
+      {
+        address:
+          'addr1q9g27g8gq47aggv90ew8cdh2xnxp909pf5pqvvaun7t2pty9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6uspjtj9g',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/0/7",
+      },
+      {
+        address:
+          'addr1qx7cn3u8vd6fc2g3t4k7ntqap7mkw5httgdlq9aa06d2uey9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6uswmwl2n',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/0/8",
+      },
+      {
+        address:
+          'addr1qx2j2tsmqasn66nkqqcfvm328f7sxnujqklkx5uq0l224fu9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6us63u6rn',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/0/9",
       },
       {
         address:
@@ -120,12 +165,6 @@ export const getAccountFixtures = [
       },
       {
         address:
-          'addr1qyqe0pmj2wcz3x6ref4855wunf26fc4vx84tdxluxcu09459ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6ustfft9k',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/0/2",
-      },
-      {
-        address:
           'addr1qx2tpuxgl2g9ang3e52j2eawryuradd6jf0thq9garl2utu9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usc8xjap',
         data: 'empty',
         path: "m/1852'/1815'/0'/0/20",
@@ -183,12 +222,6 @@ export const getAccountFixtures = [
           'addr1qxctf80kem8r0ra6z2e0w8sferlprrvdpvq9e2p35aj06uu9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usd544wm',
         data: 'empty',
         path: "m/1852'/1815'/0'/0/29",
-      },
-      {
-        address:
-          'addr1qxp7mkumqsl4xpxlp7sz7jv6mwc90m4scwz5hg995m24ey59ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6uscpt2n8',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/0/3",
       },
       {
         address:
@@ -250,42 +283,6 @@ export const getAccountFixtures = [
         data: 'empty',
         path: "m/1852'/1815'/0'/0/39",
       },
-      {
-        address:
-          'addr1qx0n2np4cxx2wx2qdt0pl9n4zctj2e5j7gz70mlmkk88u859ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6us3mtqqn',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/0/4",
-      },
-      {
-        address:
-          'addr1qxdr0k9nvqlycwkwtzcrtqc2v7zapncq6zhxsgsppcyvhf59ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6ushm8zc9',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/0/5",
-      },
-      {
-        address:
-          'addr1q8agxy2xc2rwt0chvprvx7nxeh5tst3ekf24kggs9xuq7dv9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6uslpypuu',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/0/6",
-      },
-      {
-        address:
-          'addr1q9g27g8gq47aggv90ew8cdh2xnxp909pf5pqvvaun7t2pty9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6uspjtj9g',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/0/7",
-      },
-      {
-        address:
-          'addr1qx7cn3u8vd6fc2g3t4k7ntqap7mkw5httgdlq9aa06d2uey9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6uswmwl2n',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/0/8",
-      },
-      {
-        address:
-          'addr1qx2j2tsmqasn66nkqqcfvm328f7sxnujqklkx5uq0l224fu9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6us63u6rn',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/0/9",
-      },
     ],
   },
   {
@@ -296,40 +293,86 @@ export const getAccountFixtures = [
       {
         address:
           'addr1q9f9jr6e48u63ym65esmrwgle84zspnrsew37gwe88e0zfy9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usxwwdwc',
+        path: "m/1852'/1815'/0'/1/0",
         data: {
           address:
             'addr1q9f9jr6e48u63ym65esmrwgle84zspnrsew37gwe88e0zfy9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usxwwdwc',
-          amount: [
-            {
-              quantity: expect.any(String),
-              unit: 'lovelace',
-            },
-          ],
-          script: false,
+          amount: [{ unit: 'lovelace', quantity: '25737997' }],
           stake_address:
             'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
           type: 'shelley',
+          script: false,
         },
-        path: "m/1852'/1815'/0'/1/0",
       },
       {
         address:
           'addr1q99hnk2vnx708l86mujpfs9end50em9s95grhe3v4933m259ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usr7qlze',
+        path: "m/1852'/1815'/0'/1/1",
         data: {
           address:
             'addr1q99hnk2vnx708l86mujpfs9end50em9s95grhe3v4933m259ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usr7qlze',
-          amount: [
-            {
-              quantity: expect.any(String),
-              unit: 'lovelace',
-            },
-          ],
-          script: false,
+          amount: [{ unit: 'lovelace', quantity: '0' }],
           stake_address:
             'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
           type: 'shelley',
+          script: false,
         },
-        path: "m/1852'/1815'/0'/1/1",
+      },
+      {
+        address:
+          'addr1qxv0q8r02xlrea3nr3p0zthpg5slg2sk263rszm6cmgnx259ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usyu5v2j',
+        path: "m/1852'/1815'/0'/1/2",
+        data: {
+          address:
+            'addr1qxv0q8r02xlrea3nr3p0zthpg5slg2sk263rszm6cmgnx259ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usyu5v2j',
+          amount: [{ unit: 'lovelace', quantity: '0' }],
+          stake_address:
+            'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
+          type: 'shelley',
+          script: false,
+        },
+      },
+      {
+        address:
+          'addr1q93el09nevlnzm2td5e3g508lv9axhn2xzxevc9m6khfqny9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usq4u26u',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/1/3",
+      },
+      {
+        address:
+          'addr1q8gs22r0m9se5zedcchgwu0udtakd9eh5m4fn54hte6wu0y9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6us7v0s48',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/1/4",
+      },
+      {
+        address:
+          'addr1q99ts5lj5wnx4lxh6varz0z2j705zwq8tpdwscjsqx9yvtu9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6uskfn7lw',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/1/5",
+      },
+      {
+        address:
+          'addr1qxl0h2f6v4fdsd97qdc44fuzwy045u52y73vzxh6tz94x8y9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usggqeu7',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/1/6",
+      },
+      {
+        address:
+          'addr1q8rg26gtcv37mch828zsakry37e73uh9ghmfkpwugn9trau9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6us5lecdu',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/1/7",
+      },
+      {
+        address:
+          'addr1qywhamzedt87fw8wgj899mmttsha38hf2s80jfg5ge009gu9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usm38r9f',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/1/8",
+      },
+      {
+        address:
+          'addr1q8q7000x9y0zhm39a2ctn6ggng3mna888d76kp6aeszw3dy9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6us4azjjp',
+        data: 'empty',
+        path: "m/1852'/1815'/0'/1/9",
       },
       {
         address:
@@ -393,25 +436,6 @@ export const getAccountFixtures = [
       },
       {
         address:
-          'addr1qxv0q8r02xlrea3nr3p0zthpg5slg2sk263rszm6cmgnx259ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usyu5v2j',
-        data: {
-          address:
-            'addr1qxv0q8r02xlrea3nr3p0zthpg5slg2sk263rszm6cmgnx259ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usyu5v2j',
-          amount: [
-            {
-              quantity: '0',
-              unit: 'lovelace',
-            },
-          ],
-          script: false,
-          stake_address:
-            'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
-          type: 'shelley',
-        },
-        path: "m/1852'/1815'/0'/1/2",
-      },
-      {
-        address:
           'addr1qxgkaygw54uf09xfdfjadcm25plaz0qlsdw9mcnyeurkwg59ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usv59zgf',
         data: 'empty',
         path: "m/1852'/1815'/0'/1/20",
@@ -472,12 +496,6 @@ export const getAccountFixtures = [
       },
       {
         address:
-          'addr1q93el09nevlnzm2td5e3g508lv9axhn2xzxevc9m6khfqny9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usq4u26u',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/1/3",
-      },
-      {
-        address:
           'addr1qxxgzx9mlu2gs0lht742mky08wa655sa63q84apw74wz8yy9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6us37kn60',
         data: 'empty',
         path: "m/1852'/1815'/0'/1/30",
@@ -535,42 +553,6 @@ export const getAccountFixtures = [
           'addr1qxrpxcrkjpgl6l4z09tgt2naawwe47wmm7kq8dh7jl2a32u9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6uspt50cg',
         data: 'empty',
         path: "m/1852'/1815'/0'/1/39",
-      },
-      {
-        address:
-          'addr1q8gs22r0m9se5zedcchgwu0udtakd9eh5m4fn54hte6wu0y9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6us7v0s48',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/1/4",
-      },
-      {
-        address:
-          'addr1q99ts5lj5wnx4lxh6varz0z2j705zwq8tpdwscjsqx9yvtu9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6uskfn7lw',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/1/5",
-      },
-      {
-        address:
-          'addr1qxl0h2f6v4fdsd97qdc44fuzwy045u52y73vzxh6tz94x8y9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usggqeu7',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/1/6",
-      },
-      {
-        address:
-          'addr1q8rg26gtcv37mch828zsakry37e73uh9ghmfkpwugn9trau9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6us5lecdu',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/1/7",
-      },
-      {
-        address:
-          'addr1qywhamzedt87fw8wgj899mmttsha38hf2s80jfg5ge009gu9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usm38r9f',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/1/8",
-      },
-      {
-        address:
-          'addr1q8q7000x9y0zhm39a2ctn6ggng3mna888d76kp6aeszw3dy9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6us4azjjp',
-        data: 'empty',
-        path: "m/1852'/1815'/0'/1/9",
       },
     ],
   },
