@@ -2109,56 +2109,6 @@ export interface paths {
       };
     };
   };
-  "/scripts/{script_hash}/json": {
-    /** JSON representation of a `timelock` script */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the script */
-          script_hash: string;
-        };
-      };
-      responses: {
-        /** Return the JSON representation of a `timelock` script */
-        200: {
-          content: {
-            "application/json": components["schemas"]["script_json"];
-          };
-        };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
-      };
-    };
-  };
-  "/scripts/{script_hash}/cbor": {
-    /** CBOR representation of a `plutus` script */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the script */
-          script_hash: string;
-        };
-      };
-      responses: {
-        /** Return the CBOR representation of a `plutus` script */
-        200: {
-          content: {
-            "application/json": components["schemas"]["script_cbor"];
-          };
-        };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
-      };
-    };
-  };
   "/scripts/{script_hash}/redeemers": {
     /** List of redeemers of a specific script */
     get: {
@@ -2184,31 +2134,6 @@ export interface paths {
         200: {
           content: {
             "application/json": components["schemas"]["script_redeemers"];
-          };
-        };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
-      };
-    };
-  };
-  "/scripts/datum/{datum_hash}": {
-    /** Query JSON value of a datum by its hash */
-    get: {
-      parameters: {
-        path: {
-          /** Hash of the datum */
-          datum_hash: string;
-        };
-      };
-      responses: {
-        /** Return the datum value */
-        200: {
-          content: {
-            "application/json": components["schemas"]["script_datum"];
           };
         };
         400: components["responses"]["bad_request"];
@@ -2808,8 +2733,6 @@ export interface components {
       asset_mint_or_burn_count: number;
       /** Count of redeemers within the transaction */
       redeemer_count: number;
-      /** True if contract script passed validation */
-      valid_contract: boolean;
     };
     tx_content_utxo: {
       /** Transaction hash */
@@ -2951,10 +2874,6 @@ export interface components {
       tx_index: number;
       /** Validation purpose */
       purpose: "spend" | "mint" | "cert" | "reward";
-      /** Script hash */
-      script_hash: string;
-      /** Datum hash */
-      datum_hash: string;
       /** The budget in Memory to run a script */
       unit_mem: string;
       /** The budget in CPU steps to run a script */
@@ -3258,8 +3177,8 @@ export interface components {
         | ({
             /** Name of the asset */
             name?: string;
-            /** URI of the associated asset */
-            image?: string;
+            /** URI(s) of the associated asset */
+            image?: string | any[];
           } & { [key: string]: any })
         | null;
       metadata: {
@@ -3324,8 +3243,6 @@ export interface components {
       tx_index: number;
       /** Validation purpose */
       purpose: "spend" | "mint" | "cert" | "reward";
-      /** Datum hash */
-      datum_hash: string;
       /** The budget in Memory to run a script */
       unit_mem: string;
       /** The budget in CPU steps to run a script */
@@ -3333,37 +3250,6 @@ export interface components {
       /** The fee consumed to run the script */
       fee: string;
     }[];
-    script_datum: {
-      /** JSON content of the datum */
-      json_value: Partial<string> &
-        Partial<{ [key: string]: unknown }> &
-        Partial<{ [key: string]: unknown }[]> &
-        Partial<number> &
-        Partial<number> &
-        Partial<boolean>;
-    };
-    script_json: {
-      /** JSON contents of the `timelock` script, null for `plutus` scripts */
-      json:
-        | (Partial<string> &
-            Partial<{ [key: string]: unknown }> &
-            Partial<{ [key: string]: unknown }[]> &
-            Partial<number> &
-            Partial<number> &
-            Partial<boolean>)
-        | null;
-    };
-    script_cbor: {
-      /** CBOR contents of the `plutus` script, null for `timelocks` */
-      cbor:
-        | (Partial<string> &
-            Partial<{ [key: string]: unknown }> &
-            Partial<{ [key: string]: unknown }[]> &
-            Partial<number> &
-            Partial<number> &
-            Partial<boolean>)
-        | null;
-    };
     metrics: {
       /** Starting time of the call count interval (ends midnight UTC) in UNIX time */
       time: number;

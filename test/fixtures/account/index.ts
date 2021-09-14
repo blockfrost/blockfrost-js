@@ -43,10 +43,10 @@ export const getAccountFixtures = [
               quantity: '1',
             },
           ],
-          script: false,
           stake_address:
             'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
           type: 'shelley',
+          script: false,
         },
       },
       {
@@ -301,6 +301,7 @@ export const getAccountFixtures = [
           stake_address:
             'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
           type: 'shelley',
+          script: false,
         },
       },
       {
@@ -314,6 +315,7 @@ export const getAccountFixtures = [
           stake_address:
             'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
           type: 'shelley',
+          script: false,
         },
       },
       {
@@ -327,6 +329,7 @@ export const getAccountFixtures = [
           stake_address:
             'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
           type: 'shelley',
+          script: false,
         },
       },
       {
