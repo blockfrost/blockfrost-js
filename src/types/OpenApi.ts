@@ -858,6 +858,31 @@ export interface paths {
       };
     };
   };
+  "/txs/{hash}/redeemers": {
+    /** Obtain the transaction redeemers. */
+    get: {
+      parameters: {
+        path: {
+          /** Hash of the requested transaction */
+          hash: string;
+        };
+      };
+      responses: {
+        /** Obtain information about redeemers within a specific transaction. */
+        200: {
+          content: {
+            "application/json": components["schemas"]["tx_content_redeemers"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
   "/tx/submit": {
     /** Submit an already serialized transaction to the network. */
     post: {
@@ -2027,6 +2052,174 @@ export interface paths {
       };
     };
   };
+  "/scripts": {
+    /** List of scripts. */
+    get: {
+      parameters: {
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return list of scripts */
+        200: {
+          content: {
+            "application/json": components["schemas"]["scripts"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/scripts/{script_hash}": {
+    /** Information about a specific script */
+    get: {
+      parameters: {
+        path: {
+          /** Hash of the script */
+          script_hash: string;
+        };
+      };
+      responses: {
+        /** Return the information about a specific script */
+        200: {
+          content: {
+            "application/json": components["schemas"]["script"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/scripts/{script_hash}/json": {
+    /** JSON representation of a `timelock` script */
+    get: {
+      parameters: {
+        path: {
+          /** Hash of the script */
+          script_hash: string;
+        };
+      };
+      responses: {
+        /** Return the JSON representation of a `timelock` script */
+        200: {
+          content: {
+            "application/json": components["schemas"]["script_json"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/scripts/{script_hash}/cbor": {
+    /** CBOR representation of a `plutus` script */
+    get: {
+      parameters: {
+        path: {
+          /** Hash of the script */
+          script_hash: string;
+        };
+      };
+      responses: {
+        /** Return the CBOR representation of a `plutus` script */
+        200: {
+          content: {
+            "application/json": components["schemas"]["script_cbor"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/scripts/{script_hash}/redeemers": {
+    /** List of redeemers of a specific script */
+    get: {
+      parameters: {
+        path: {
+          /** Hash of the script */
+          script_hash: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the information about redeemers of a specific script */
+        200: {
+          content: {
+            "application/json": components["schemas"]["script_redeemers"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/scripts/datum/{datum_hash}": {
+    /** Query JSON value of a datum by its hash */
+    get: {
+      parameters: {
+        path: {
+          /** Hash of the datum */
+          datum_hash: string;
+        };
+      };
+      responses: {
+        /** Return the datum value */
+        200: {
+          content: {
+            "application/json": components["schemas"]["script_datum"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
   "/ipfs/add": {
     /**
      * You need to `/ipfs/pin/add` an object to avoid it being garbage collected. This usage
@@ -2042,8 +2235,8 @@ export interface paths {
               name: string;
               /** IPFS hash of the file */
               ipfs_hash: string;
-              /** Size of the file */
-              size: number;
+              /** IPFS node size in Bytes */
+              size: string;
             };
           };
         };
@@ -2154,7 +2347,7 @@ export interface paths {
     };
   };
   "/ipfs/pin/list/{IPFS_path}": {
-    /** List objects pinned to local storage */
+    /** Get information about locally pinned IPFS object */
     get: {
       parameters: {
         path: {
@@ -2549,6 +2742,26 @@ export interface components {
       min_pool_cost: string;
       /** Epoch number only used once */
       nonce: string;
+      /** The per word cost of script memory usage */
+      price_mem: number | null;
+      /** The cost of script execution step usage */
+      price_step: number | null;
+      /** The maximum number of execution memory allowed to be used in a single transaction */
+      max_tx_ex_mem: string | null;
+      /** The maximum number of execution steps allowed to be used in a single transaction */
+      max_tx_ex_steps: string | null;
+      /** The maximum number of execution memory allowed to be used in a single block */
+      max_block_ex_mem: string | null;
+      /** The maximum number of execution steps allowed to be used in a single block */
+      max_block_ex_steps: string | null;
+      /** The maximum Val size */
+      max_val_size: string | null;
+      /** The percentage of the transactions fee which must be provided as collateral when including non-native scripts */
+      collateral_percent: number | null;
+      /** The maximum number of collateral inputs allowed in a transaction */
+      max_collateral_inputs: number | null;
+      /** The cost per UTxO word */
+      coins_per_utxo_word: string | null;
     };
     tx_content: {
       /** Transaction hash */
@@ -2579,7 +2792,7 @@ export interface components {
       invalid_hereafter: string | null;
       /** Count of UTXOs within the transaction */
       utxo_count: number;
-      /** Count of the withdrawal within the transaction */
+      /** Count of the withdrawals within the transaction */
       withdrawal_count: number;
       /** Count of the MIR certificates within the transaction */
       mir_cert_count: number;
@@ -2593,6 +2806,10 @@ export interface components {
       pool_retire_count: number;
       /** Count of asset mints and burns within the transaction */
       asset_mint_or_burn_count: number;
+      /** Count of redeemers within the transaction */
+      redeemer_count: number;
+      /** True if contract script passed validation */
+      valid_contract: boolean;
     };
     tx_content_utxo: {
       /** Transaction hash */
@@ -2610,6 +2827,10 @@ export interface components {
         tx_hash: string;
         /** UTXO index in the transaction */
         output_index: number;
+        /** The hash of the transaction output datum */
+        data_hash: string | null;
+        /** Whether the input is a collateral consumed on script validation failure */
+        collateral: boolean;
       }[];
       outputs: {
         /** Output address */
@@ -2619,6 +2840,8 @@ export interface components {
           unit: string;
           /** The quantity of the unit */
           quantity: string;
+          /** The hash of the transaction output datum */
+          data_hash?: string | null;
         }[];
       }[];
     };
@@ -2723,6 +2946,22 @@ export interface components {
       /** Content of the CBOR metadata */
       cbor_metadata: string | null;
     }[];
+    tx_content_redeemers: {
+      /** Index of the redeemer within the transaction */
+      tx_index: number;
+      /** Validation purpose */
+      purpose: "spend" | "mint" | "cert" | "reward";
+      /** Script hash */
+      script_hash: string;
+      /** Datum hash */
+      datum_hash: string;
+      /** The budget in Memory to run a script */
+      unit_mem: string;
+      /** The budget in CPU steps to run a script */
+      unit_steps: string;
+      /** The fee consumed to run the script */
+      fee: string;
+    }[];
     account_content: {
       /** Bech32 stake address */
       stake_address: string;
@@ -2812,6 +3051,8 @@ export interface components {
       stake_address: string | null;
       /** Address era */
       type: "byron" | "shelley";
+      /** True if this is a script address */
+      script: boolean;
     };
     address_content_total: {
       /** Bech32 encoded address */
@@ -2844,8 +3085,10 @@ export interface components {
         /** The quantity of the unit */
         quantity: string;
       }[];
-      /** Block number of the UTXO */
+      /** Block hash of the UTXO */
       block: string;
+      /** The hash of the transaction output datum */
+      data_hash: string | null;
     }[];
     address_txs_content: string[];
     address_transactions_content: {
@@ -3062,6 +3305,65 @@ export interface components {
       /** Current asset quantity */
       quantity: string;
     }[];
+    scripts: {
+      /** Script hash */
+      script_hash: string;
+    }[];
+    script: {
+      /** Script hash */
+      script_hash: string;
+      /** Type of the script language */
+      type: "timelock" | "plutus";
+      /** The size of the CBOR serialised script, if a Plutus script */
+      serialised_size: number | null;
+    };
+    script_redeemers: {
+      /** Hash of the transaction */
+      tx_hash: string;
+      /** The index of the redeemer pointer in the transaction */
+      tx_index: number;
+      /** Validation purpose */
+      purpose: "spend" | "mint" | "cert" | "reward";
+      /** Datum hash */
+      datum_hash: string;
+      /** The budget in Memory to run a script */
+      unit_mem: string;
+      /** The budget in CPU steps to run a script */
+      unit_steps: string;
+      /** The fee consumed to run the script */
+      fee: string;
+    }[];
+    script_datum: {
+      /** JSON content of the datum */
+      json_value: Partial<string> &
+        Partial<{ [key: string]: unknown }> &
+        Partial<{ [key: string]: unknown }[]> &
+        Partial<number> &
+        Partial<number> &
+        Partial<boolean>;
+    };
+    script_json: {
+      /** JSON contents of the `timelock` script, null for `plutus` scripts */
+      json:
+        | (Partial<string> &
+            Partial<{ [key: string]: unknown }> &
+            Partial<{ [key: string]: unknown }[]> &
+            Partial<number> &
+            Partial<number> &
+            Partial<boolean>)
+        | null;
+    };
+    script_cbor: {
+      /** CBOR contents of the `plutus` script, null for `timelocks` */
+      cbor:
+        | (Partial<string> &
+            Partial<{ [key: string]: unknown }> &
+            Partial<{ [key: string]: unknown }[]> &
+            Partial<number> &
+            Partial<number> &
+            Partial<boolean>)
+        | null;
+    };
     metrics: {
       /** Starting time of the call count interval (ends midnight UTC) in UNIX time */
       time: number;
@@ -3079,7 +3381,7 @@ export interface components {
     nutlink_address: {
       /** Bech32 encoded address */
       address: string;
-      /** URL do specific metadata file */
+      /** URL of the specific metadata file */
       metadata_url: string;
       /** Hash of the metadata file */
       metadata_hash: string;
@@ -3134,6 +3436,8 @@ export interface components {
         total: string;
         /** Current circulating (UTXOs + withdrawables) supply in Lovelaces */
         circulating: string;
+        /** Curent locked supply by scripts in Lovelaces */
+        locked: string;
       };
       stake: {
         /** Current live stake in Lovelaces */

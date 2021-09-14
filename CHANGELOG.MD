@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - sort response in `getAccount`
 
+## [1.3.0]
+
+### Added
+
+- alonzo support
+- `script`, `scripts`, `scriptJson`, `scriptCbor`, `scriptDatum`, `scriptRedeemers` endpoints
+- `blocksLatestTxs`, `blocksLatestTxsAll` endpoints
+
 ## [1.2.0]
 
 ### Added
