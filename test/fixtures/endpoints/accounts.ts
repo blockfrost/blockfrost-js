@@ -70,6 +70,19 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
+      SDK.accountsHistoryAll(
+        'stake1u9fzg77vrgfqlplkjqe9hntdcvsurpvxd60yp2fhn73002qsv9pdk',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        active_epoch: expect.any(Number),
+        amount: expect.any(String),
+        pool_id: expect.any(String),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
       SDK.accountsDelegations(
         'stake1u9a3t4rgddm4expj0ucyxhxg3ft9ugk2ry6r9w69h04ea6cfj887f',
       ),
@@ -84,7 +97,33 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
+      SDK.accountsDelegationsAll(
+        'stake1u9a3t4rgddm4expj0ucyxhxg3ft9ugk2ry6r9w69h04ea6cfj887f',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        amount: expect.any(String),
+        tx_hash: expect.any(String),
+        active_epoch: expect.any(Number),
+        pool_id: expect.any(String),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
       SDK.accountsRegistrations(
+        'stake1u9a3t4rgddm4expj0ucyxhxg3ft9ugk2ry6r9w69h04ea6cfj887f',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        action: expect.any(String),
+        tx_hash: expect.any(String),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.accountsRegistrationsAll(
         'stake1u9a3t4rgddm4expj0ucyxhxg3ft9ugk2ry6r9w69h04ea6cfj887f',
       ),
     response: expect.arrayContaining([
@@ -125,6 +164,18 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
+      SDK.accountsWithdrawalsAll(
+        'stake1u88xakeptjw9jwsytkjal76d07an4thvvrfx3w2kt77pw4sc5rr8k',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        tx_hash: expect.any(String),
+        amount: expect.any(String),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
       SDK.accountsMirs(
         'stake1uyq7039vutuw8v7femqtktdu9zlhnqh3mkvvhdazft9ga2q8zdfkp',
         { count: 1, page: 1 },
@@ -139,7 +190,30 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
+      SDK.accountsMirsAll(
+        'stake1uyq7039vutuw8v7femqtktdu9zlhnqh3mkvvhdazft9ga2q8zdfkp',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        tx_hash: expect.any(String),
+        amount: expect.any(String),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
       SDK.accountsAddresses(
+        'stake1u9a3t4rgddm4expj0ucyxhxg3ft9ugk2ry6r9w69h04ea6cfj887f',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        address: expect.any(String),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.accountsAddressesAll(
         'stake1u9a3t4rgddm4expj0ucyxhxg3ft9ugk2ry6r9w69h04ea6cfj887f',
       ),
     response: expect.arrayContaining([
@@ -169,6 +243,19 @@ export default [
       expect.objectContaining({
         unit: expect.any(String),
         quantity: expect.any(String),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.accountsRewardsAll(
+        'stake1u8yk3dcuj8yylwvnzz953yups6mmuvt0vtjmxl2gmgceqjqz2yfd2',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        epoch: expect.any(Number),
+        amount: expect.any(String),
+        pool_id: expect.any(String),
       }),
     ]),
   },
