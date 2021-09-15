@@ -47,4 +47,30 @@ export default [
     //   }),
     // ]),
   },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.addressesTransactions(
+        'addr1qywvux9d5u4cqyzrhp587sty33gt5pl5hpxmnzrw5nk5j87fdzm3eywgf7uexyytfzfcrp4hhcck7ch9kd753k33jpyqa3mzep',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        tx_hash: expect.any(String),
+        tx_index: expect.any(Number),
+        block_height: expect.any(Number),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.addressesTransactionsAll(
+        'addr1qywvux9d5u4cqyzrhp587sty33gt5pl5hpxmnzrw5nk5j87fdzm3eywgf7uexyytfzfcrp4hhcck7ch9kd753k33jpyqa3mzep',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        tx_hash: expect.any(String),
+        tx_index: expect.any(Number),
+        block_height: expect.any(Number),
+      }),
+    ]),
+  },
 ] as const;
