@@ -25,6 +25,86 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
+      SDK.poolsByIdHistory(
+        'pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        epoch: expect.any(Number),
+        blocks: expect.any(Number),
+        active_stake: expect.any(String),
+        active_size: expect.any(Number),
+        delegators_count: expect.any(Number),
+        rewards: expect.any(String),
+        fees: expect.any(String),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.poolMetadata(
+        'pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy',
+      ),
+    response: {
+      description: 'StakeNuts.com',
+      hash: '47c0c68cb57f4a5b4a87bad896fc274678e7aea98e200fa14a1cb40c0cab1d8c',
+      hex: '0f292fcaa02b8b2f9b3c8f9fd8e0bb21abedb692a6d5058df3ef2735',
+      homepage: 'https://stakenuts.com/',
+      name: 'StakeNuts',
+      pool_id: 'pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy',
+      ticker: 'NUTS',
+      url: 'https://stakenuts.com/mainnet.json',
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.poolsByIdRelays(
+        'pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy',
+      ),
+    response: [
+      {
+        dns: 'relays.mainnet.stakenuts.com',
+        dns_srv: null,
+        ipv4: null,
+        ipv6: null,
+        port: 3001,
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.poolsByIdDelegators(
+        'pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        address: expect.any(String),
+        live_stake: expect.any(String),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.poolsByIdBlocks(
+        'pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy',
+      ),
+    response: expect.arrayContaining([expect.any(String)]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.poolsByIdUpdates(
+        'pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy',
+      ),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        tx_hash: expect.any(String),
+        cert_index: expect.any(Number),
+        action: expect.any(String),
+      }),
+    ]),
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
       SDK.poolsById('pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy'),
     response: {
       active_size: expect.any(Number),
