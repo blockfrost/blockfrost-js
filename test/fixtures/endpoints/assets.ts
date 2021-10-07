@@ -74,7 +74,7 @@ export default [
         block_height: expect.any(Number),
       }),
     ]),
-    itemsCountMinimum: 100,
+    itemsCountMinimum: 6,
   },
   {
     command: (SDK: BlockFrostAPI) =>
@@ -87,7 +87,7 @@ export default [
         quantity: expect.any(String),
       }),
     ]),
-    itemsCountMinimum: 100,
+    itemsCountMinimum: 1,
   },
   {
     command: (SDK: BlockFrostAPI) =>
