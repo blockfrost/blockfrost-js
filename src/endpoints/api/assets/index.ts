@@ -169,10 +169,10 @@ export async function assetsPolicyByIdAll(
   this: BlockFrostAPI,
   policy: string,
   allMethodOptions?: AllMethodOptions,
-): Promise<components['schemas']['asset_addresses']> {
+): Promise<components['schemas']['asset_policy']> {
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['asset_addresses'] = [];
+  const res: components['schemas']['asset_policy'] = [];
   const options = getAllMethodOptions(allMethodOptions);
 
   const getPromiseBundle = () => {
