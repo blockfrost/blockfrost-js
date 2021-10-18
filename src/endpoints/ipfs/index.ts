@@ -20,6 +20,8 @@ export async function add(
         headers: {
           'Content-Type': `multipart/form-data; boundary=${data.getBoundary()}`,
         },
+        maxContentLength: 100000000,
+        maxBodyLength: 100000000,
       })
       .then(resp => {
         resolve(resp.data);

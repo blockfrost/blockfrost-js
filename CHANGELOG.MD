@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - `assetsPolicyById` response schema
+- ipfs add maxContentLength and maxBodyLength
 
 ## [2.0.1]
 
