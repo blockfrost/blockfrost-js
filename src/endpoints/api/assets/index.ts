@@ -147,7 +147,7 @@ export async function assetsPolicyById(
   this: BlockFrostAPI,
   policy: string,
   pagination?: PaginationOptions,
-): Promise<components['schemas']['asset_addresses']> {
+): Promise<components['schemas']['asset_policy']> {
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
