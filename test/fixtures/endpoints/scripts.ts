@@ -25,7 +25,7 @@ export default [
       ),
     response: [
       {
-        fee: '212055687',
+        fee: expect.any(String),
         purpose: 'spend',
         tx_hash:
           'a95d16e891e51f98a3b1d3fe862ed355ebc8abffb7a7269d86f775553d9e653f',
