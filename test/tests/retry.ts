@@ -67,7 +67,8 @@ describe('retry', () => {
     try {
       await SDK.blocksLatest();
     } catch (err) {
-      expect(err).toBe('Network Error');
+      expect(err).toBeInstanceOf(Error);
+      expect(err.message).toBe('Network Error');
     }
   });
 

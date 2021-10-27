@@ -54,6 +54,7 @@
     "openapi-typescript": "^4.0.2",
     "prettier": "2.3.2",
     "rimraf": "^3.0.2",
+    "serialize-error": "^8.1.0",
     "ts-jest": "^27.0.3",
     "ts-node": "10.1.0",
     "ts-node-dev": "^1.1.8",

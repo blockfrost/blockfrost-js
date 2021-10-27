@@ -1,12 +1,22 @@
 import { components } from './types/OpenApi';
-import { ErrorType } from './types';
 import { BlockFrostAPI } from './BlockFrostAPI';
 import { BlockFrostIPFS } from './BlockFrostIPFS';
 import { parseAsset } from './utils/index';
+import {
+  BlockfrostClientError,
+  BlockfrostServerError,
+  BlockfrostGenericError,
+} from './utils/errors';
 
 type Responses = components['schemas'];
-type Error = ErrorType;
 
-export { BlockFrostAPI, BlockFrostIPFS, parseAsset };
+export {
+  BlockFrostAPI,
+  BlockFrostIPFS,
+  parseAsset,
+  BlockfrostClientError,
+  BlockfrostServerError,
+  BlockfrostGenericError,
+};
 
-export type { Responses, Error };
+export type { Responses };

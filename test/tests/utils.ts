@@ -1,3 +1,4 @@
+import { serializeError } from 'serialize-error';
 import { BlockFrostAPI } from '../../src/index';
 import { ExtendedAxiosError } from '../../src/types';
 import * as utils from '../../src/utils';
@@ -240,11 +241,9 @@ describe('utils', () => {
       const handledError = utils.handleError(
         f.payload as unknown as ExtendedAxiosError,
       );
-      if (typeof f.result === 'string') {
-        expect(handledError).toBe(f.result);
-      } else {
-        expect(handledError).toMatchObject(f.result);
-      }
+      const serializedError = serializeError(handledError);
+      expect(handledError).toBeInstanceOf(Error);
+      expect(serializedError).toMatchObject(f.result);
     });
   });
 });
