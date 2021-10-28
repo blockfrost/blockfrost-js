@@ -10,7 +10,6 @@ import {
 } from '../config';
 
 import {
-  ErrorType,
   ExtendedAxiosError,
   Headers,
   Options,
@@ -19,6 +18,11 @@ import {
   AdditionalEndpointOptions,
   AllMethodOptions,
 } from '../types';
+import {
+  BlockfrostClientError,
+  BlockfrostGenericError,
+  BlockfrostServerError,
+} from './errors';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
   if (!options || (!options.customBackend && !options.projectId)) {
@@ -73,14 +77,16 @@ export const getHeaders = (
   };
 };
 
-export const handleError = (error: ExtendedAxiosError): ErrorType => {
+export const handleError = (
+  error: ExtendedAxiosError,
+): BlockfrostServerError | BlockfrostClientError | BlockfrostGenericError => {
   if (error.code && error.errno) {
     // system errors such as -3008 ENOTFOUND
-    return {
+    return new BlockfrostClientError({
       errno: error.errno, // -3008
       code: error.code, // ENOTFOUND
       message: error.message, // getaddrinfo ENOTFOUND cardano-testnet.blockfrost.io'
-    };
+    });
   }
 
   if (error.response) {
@@ -89,28 +95,28 @@ export const handleError = (error: ExtendedAxiosError): ErrorType => {
       error.response.data?.status_code
     ) {
       // response.data is already properly formatted
-      return error.response.data;
+      return new BlockfrostServerError(error.response.data);
     }
 
     // response.data may contain html output (eg. errors returned by nginx)
     const statusCode = error.response.status;
     const statusText = error.response.statusText;
-    return {
+    return new BlockfrostServerError({
       status_code: statusCode,
       message: `${statusCode}: ${statusText}`,
       error: statusText,
-    };
+    });
   } else if (error.request) {
     const jsonError = error.toJSON() as { message?: string; error?: string };
     const message =
       jsonError.message ?? 'Unexpected error while sending a request';
     const errorName = jsonError.error ?? 'Error';
-    return `${errorName}: ${message}`;
+    return new BlockfrostGenericError(`${errorName}: ${message}`);
   } else if (error.message) {
-    return error.message;
+    return new BlockfrostGenericError(error.message);
   } else {
     // we shouldn't get here, but just to be safe...
-    return 'Unexpected error';
+    return new BlockfrostGenericError('Unexpected error');
   }
 };
 

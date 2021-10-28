@@ -1,6 +1,6 @@
 {
   "name": "@blockfrost/blockfrost-js",
-  "version": "2.0.2",
+  "version": "3.0.0-beta.1",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "keywords": [
     "blockfrost",
@@ -54,6 +54,7 @@
     "openapi-typescript": "^4.0.2",
     "prettier": "2.3.2",
     "rimraf": "^3.0.2",
+    "serialize-error": "^8.1.0",
     "ts-jest": "^27.0.3",
     "ts-node": "10.1.0",
     "ts-node-dev": "^1.1.8",

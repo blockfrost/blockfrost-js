@@ -170,7 +170,7 @@ export const handleError = [
       response: undefined,
       isAxiosError: true,
     },
-    result: 'Error: Unexpected error while sending a request',
+    result: { message: 'Error: Unexpected error while sending a request' },
   },
   {
     description:
@@ -193,13 +193,13 @@ export const handleError = [
       response: undefined,
       isAxiosError: true,
     },
-    result: 'CustomError: Custom message',
+    result: { message: 'CustomError: Custom message' },
   },
   {
     description: 'Unexpected error format',
     payload: {
       something: 'weird',
     },
-    result: 'Unexpected error',
+    result: { message: 'Unexpected error' },
   },
 ];

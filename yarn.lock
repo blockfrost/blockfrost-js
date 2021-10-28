@@ -695,6 +695,7 @@ __metadata:
     prettier: 2.3.2
     retry-axios: ^2.4.0
     rimraf: ^3.0.2
+    serialize-error: ^8.1.0
     ts-jest: ^27.0.3
     ts-node: 10.1.0
     ts-node-dev: ^1.1.8
@@ -6856,6 +6857,15 @@ resolve@^1.20.0:
   bin:
     semver: bin/semver.js
   checksum: 5eafe6102bea2a7439897c1856362e31cc348ccf96efd455c8b5bc2c61e6f7e7b8250dc26b8828c1d76a56f818a7ee907a36ae9fb37a599d3d24609207001d60
+  languageName: node
+  linkType: hard
+
+"serialize-error@npm:^8.1.0":
+  version: 8.1.0
+  resolution: "serialize-error@npm:8.1.0"
+  dependencies:
+    type-fest: ^0.20.2
+  checksum: 2eef236d50edd2d7926e602c14fb500dc3a125ee52e9f08f67033181b8e0be5d1122498bdf7c23c80683cddcad083a27974e9e7111ce23165f4d3bcdd6d65102
   languageName: node
   linkType: hard
 
