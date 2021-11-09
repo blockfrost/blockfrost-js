@@ -27,7 +27,7 @@
     "docs": "yarn typedoc ./src/index.ts --theme ./node_modules/typedoc-github-wiki-theme/dist"
   },
   "dependencies": {
-    "@blockfrost/openapi": "0.1.27",
+    "@blockfrost/openapi": "0.1.32",
     "@emurgo/cardano-serialization-lib-nodejs": "^8.1.0",
     "@emurgo/cip14-js": "2.0.0",
     "axios": "^0.21.1",

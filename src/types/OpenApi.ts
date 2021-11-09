@@ -902,6 +902,7 @@ export interface paths {
         403: components["responses"]["unauthorized_error"];
         404: components["responses"]["not_found"];
         418: components["responses"]["autobanned"];
+        425: components["responses"]["mempool_full"];
         429: components["responses"]["overusage_limit"];
         500: components["responses"]["internal_server_error"];
       };
@@ -1392,7 +1393,44 @@ export interface paths {
           /** The page number for listing the results. */
           page?: number;
           /**
-           * Ordered by tx index in the block.
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the address content */
+        200: {
+          content: {
+            "application/json": components["schemas"]["address_utxo_content"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/addresses/{address}/utxos/{asset}": {
+    /** UTXOs of the address. */
+    get: {
+      parameters: {
+        path: {
+          /** Bech32 address. */
+          address: string;
+          /** Concatenation of the policy_id and hex-encoded asset_name */
+          asset: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
            */
@@ -2770,6 +2808,8 @@ export interface components {
       block: string;
       /** Block number */
       block_height: number;
+      /** Block creation time in UNIX time */
+      block_time: number;
       /** Slot number */
       slot: number;
       /** Transaction index within the block */
@@ -2798,7 +2838,7 @@ export interface components {
       mir_cert_count: number;
       /** Count of the delegations within the transaction */
       delegation_count: number;
-      /** Count of the stake keys (de)registration and delegation certificates within the transaction */
+      /** Count of the stake keys (de)registration within the transaction */
       stake_cert_count: number;
       /** Count of the stake pool registration and update certificates within the transaction */
       pool_update_count: number;
@@ -2840,9 +2880,11 @@ export interface components {
           unit: string;
           /** The quantity of the unit */
           quantity: string;
-          /** The hash of the transaction output datum */
-          data_hash?: string | null;
         }[];
+        /** UTXO index in the transaction */
+        output_index: number;
+        /** The hash of the transaction output datum */
+        data_hash: string | null;
       }[];
     };
     tx_content_stake_addr: {
@@ -2945,6 +2987,8 @@ export interface components {
       label: string;
       /** Content of the CBOR metadata */
       cbor_metadata: string | null;
+      /** Content of the CBOR metadata in hex */
+      metadata: string | null;
     }[];
     tx_content_redeemers: {
       /** Index of the redeemer within the transaction */
@@ -3098,6 +3142,8 @@ export interface components {
       tx_index: number;
       /** Block height */
       block_height: number;
+      /** Block creation time in UNIX time */
+      block_time: number;
     }[];
     tx_metadata_labels: {
       /** Metadata label */
@@ -3125,6 +3171,8 @@ export interface components {
       tx_hash: string;
       /** Content of the CBOR metadata */
       cbor_metadata: string | null;
+      /** Content of the CBOR metadata in hex */
+      metadata: string | null;
     }[];
     pool_list: string[];
     pool_list_retire: {
@@ -3285,14 +3333,16 @@ export interface components {
       amount: string;
     }[];
     asset_txs: string[];
-    asset_transactions: {
+    asset_transactions: ({
       /** Hash of the transaction */
       tx_hash: string;
       /** Transaction index within the block */
       tx_index: number;
       /** Block height */
       block_height: number;
-    }[];
+    } & {
+      block_time: unknown;
+    })[];
     asset_addresses: {
       /** Address containing the specific asset */
       address: string;
@@ -3436,8 +3486,12 @@ export interface components {
         total: string;
         /** Current circulating (UTXOs + withdrawables) supply in Lovelaces */
         circulating: string;
-        /** Curent locked supply by scripts in Lovelaces */
+        /** Current supply locked by scripts in Lovelaces */
         locked: string;
+        /** Current supply locked in treasury */
+        treasury: string;
+        /** Current supply locked in reserves */
+        reserves: string;
       };
       stake: {
         /** Current live stake in Lovelaces */
@@ -3451,6 +3505,16 @@ export interface components {
   responses: {
     /** Usage limit reached */
     overusage_limit: {
+      content: {
+        "application/json": {
+          status_code: number;
+          error: string;
+          message: string;
+        };
+      };
+    };
+    /** Mempool is already full, not accepting new txs straight away */
+    mempool_full: {
       content: {
         "application/json": {
           status_code: number;
