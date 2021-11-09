@@ -37,13 +37,31 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
   return {
     customBackend: options.customBackend,
     projectId: options.projectId,
-    isTestnet: options.isTestnet,
+    isTestnet: options.isTestnet || deriveTestnetOption(options.projectId),
     version: options.version || DEFAULT_API_VERSION,
     http2: options.http2 ?? true,
     // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
     retrySettings: options.retrySettings,
     requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
   };
+};
+
+const deriveTestnetOption = (projectId: string | undefined) => {
+  if (!projectId) return undefined;
+
+  if (projectId.includes('mainnet')) {
+    return false;
+  }
+
+  if (projectId.includes('testnet')) {
+    return true;
+  }
+
+  if (projectId.includes('ipfs')) {
+    return false;
+  }
+
+  return undefined;
 };
 
 export const getAdditionalParams = (

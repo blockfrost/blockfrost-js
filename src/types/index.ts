@@ -32,7 +32,6 @@ type OptionCombination1 = {
 type OptionCombination2 = {
   projectId?: string;
   customBackend: string;
-  isTestnet: boolean;
 };
 
 type AdditionalOptions = {
