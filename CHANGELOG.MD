@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - thrown errors (`BlockfrostServerError`, `BlockfrostClientError`, `BlockfrostGenericError`) are now subclasses of `Error`
+- updated @blockfrost/openapi & regenerated types to match reflect changes in Blockfrost API
 
 ## [2.0.2]
 
