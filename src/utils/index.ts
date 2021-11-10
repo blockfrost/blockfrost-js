@@ -37,7 +37,9 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
   return {
     customBackend: options.customBackend,
     projectId: options.projectId,
-    isTestnet: options.isTestnet || deriveTestnetOption(options.projectId),
+    isTestnet:
+      options.isTestnet ||
+      deriveTestnetOption(options.projectId, options.isTestnet),
     version: options.version || DEFAULT_API_VERSION,
     http2: options.http2 ?? true,
     // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
@@ -46,7 +48,10 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
   };
 };
 
-const deriveTestnetOption = (projectId: string | undefined) => {
+const deriveTestnetOption = (
+  projectId: string | undefined,
+  isTestnet: boolean | undefined,
+) => {
   if (!projectId) return undefined;
 
   if (projectId.includes('mainnet')) {
@@ -58,6 +63,13 @@ const deriveTestnetOption = (projectId: string | undefined) => {
   }
 
   if (projectId.includes('ipfs')) {
+    return false;
+  }
+
+  if (!isTestnet) {
+    console.log(
+      'WARNING: Old token was used without isTestnet parameter switching to mainnet network',
+    );
     return false;
   }
 
