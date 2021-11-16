@@ -6,9 +6,9 @@ export async function network(
   this: BlockFrostAPI,
 ): Promise<components['schemas']['network']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/network`)
+    this.instance<components['schemas']['network']>(`network`)
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));

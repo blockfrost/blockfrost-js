@@ -1,7 +1,7 @@
 import { SDK } from '../utils';
 import MockAdapter from 'axios-mock-adapter';
 
-const mock = new MockAdapter(SDK.axiosInstance);
+const mock = new MockAdapter(SDK.instance);
 const path = /.*/;
 
 describe('retry', () => {

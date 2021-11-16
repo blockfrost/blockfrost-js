@@ -1,4 +1,27 @@
-import { AxiosError } from 'axios';
+import {
+  CacheError,
+  CancelError,
+  TimeoutError,
+  RequestError,
+  ReadError,
+  ParseError,
+  UploadError,
+  HTTPError,
+  MaxRedirectsError,
+  UnsupportedProtocolError,
+} from 'got';
+
+export type GotError =
+  | CacheError
+  | CancelError
+  | TimeoutError
+  | RequestError
+  | ReadError
+  | ParseError
+  | UploadError
+  | HTTPError
+  | MaxRedirectsError
+  | UnsupportedProtocolError;
 
 type OptionCombination1 = {
   projectId: string;
@@ -53,10 +76,6 @@ export type ErrorType =
       message: string;
       code: string;
     };
-
-export interface ExtendedAxiosError extends AxiosError {
-  errno: number;
-}
 
 export type PaginationOptions = {
   count?: number;

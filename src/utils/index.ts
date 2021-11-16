@@ -10,7 +10,7 @@ import {
 } from '../config';
 
 import {
-  ExtendedAxiosError,
+  GotError,
   Headers,
   Options,
   ValidatedOptions,
@@ -62,11 +62,11 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
 };
 
 export const getHeaders = (
-  projectId: string | undefined,
+  projectId?: string,
   userAgent?: string,
-): Headers | null => {
+): Headers | undefined => {
   if (!projectId) {
-    return null;
+    return undefined;
   }
 
   const userAgentHeader = userAgent ? { 'User-Agent': userAgent } : null;
@@ -78,9 +78,10 @@ export const getHeaders = (
 };
 
 export const handleError = (
-  error: ExtendedAxiosError,
+  error: GotError,
 ): BlockfrostServerError | BlockfrostClientError | BlockfrostGenericError => {
-  if (error.code && error.errno) {
+  console.log('error', error);
+  if (error.code && error.request) {
     // system errors such as -3008 ENOTFOUND
     return new BlockfrostClientError({
       errno: error.errno, // -3008

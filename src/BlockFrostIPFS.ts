@@ -11,7 +11,7 @@ import {
 import { Options, ValidatedOptions } from './types';
 import join from 'url-join';
 import { validateOptions } from './utils';
-import { hackInstance } from './utils/axios';
+import { getInstance } from './utils/got';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('../package.json');
 
@@ -32,7 +32,7 @@ class BlockFrostIPFS {
     this.userAgent =
       options?.userAgent ?? `${packageJson.name}@${packageJson.version}`;
 
-    this.axiosInstance = hackInstance(this.options, this.userAgent);
+    this.instance = getInstance(this.apiUrl, this.options, this.userAgent);
 
     this.projectId = this.options.projectId;
   }

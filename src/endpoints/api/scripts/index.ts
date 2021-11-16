@@ -8,9 +8,9 @@ export async function script(
   scriptHash: string,
 ): Promise<components['schemas']['script']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/scripts/${scriptHash}`)
+    this.instance<components['schemas']['script']>(`scripts/${scriptHash}`)
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -25,15 +25,15 @@ export async function scripts(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/scripts`, {
-      params: {
+    this.instance<components['schemas']['scripts']>(`scripts`, {
+      searchParams: {
         page: paginationOptions.page,
         count: paginationOptions.count,
         order: paginationOptions.order,
       },
     })
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -46,9 +46,11 @@ export async function scriptJson(
   scriptHash: string,
 ): Promise<components['schemas']['script_json']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/scripts/${scriptHash}/json`)
+    this.instance<components['schemas']['script_json']>(
+      `scripts/${scriptHash}/json`,
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -61,9 +63,11 @@ export async function scriptCbor(
   scriptHash: string,
 ): Promise<components['schemas']['script_cbor']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/scripts/${scriptHash}/cbor`)
+    this.instance<components['schemas']['script_cbor']>(
+      `scripts/${scriptHash}/cbor`,
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -76,9 +80,11 @@ export async function scriptDatum(
   datumHash: string,
 ): Promise<components['schemas']['script_datum']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/scripts/datum/${datumHash}`)
+    this.instance<components['schemas']['script_datum']>(
+      `scripts/datum/${datumHash}`,
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -91,9 +97,11 @@ export async function scriptRedeemers(
   scriptHash: string,
 ): Promise<components['schemas']['script_redeemers']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/scripts/${scriptHash}/redeemers`)
+    this.instance<components['schemas']['script_redeemers']>(
+      `scripts/${scriptHash}/redeemers`,
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));

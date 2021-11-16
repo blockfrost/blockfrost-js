@@ -24,7 +24,7 @@ export async function add(
         maxBodyLength: 100000000,
       })
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -42,7 +42,7 @@ export async function gateway(
         params: { path },
       })
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -58,7 +58,7 @@ export async function pin(
     this.axiosInstance
       .post(`${this.apiUrl}/ipfs/pin/add/${path}`)
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -81,7 +81,7 @@ export async function list(
         },
       })
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -97,7 +97,7 @@ export async function listByPath(
     this.axiosInstance
       .get(`${this.apiUrl}/ipfs/pin/list/${path}`)
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -115,7 +115,7 @@ export async function pinRemove(
         params: { path },
       })
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));

@@ -22,34 +22,12 @@ files.forEach(file => {
 
         if (fixture.itemsCount) {
           expect(response.length).toBe(fixture.itemsCount);
-          // console.log(
-          //   `
-          //   TEST: itemsCount
-
-          //   Response length:
-          //   ${response.length}
-
-          //   Expected equal to:
-          //   ${fixture.itemsCount}
-          //   `,
-          // );
         }
 
         if (fixture.itemsCountMinimum) {
           expect(response.length).toBeGreaterThanOrEqual(
             fixture.itemsCountMinimum,
           );
-          // console.log(
-          //   `
-          //   TEST: itemsCountMinimum
-
-          //   Response length:
-          //   ${response.length}
-
-          //   Expected greater than or equal:
-          //   ${fixture.itemsCountMinimum}
-          //   `,
-          // );
         }
       });
     });

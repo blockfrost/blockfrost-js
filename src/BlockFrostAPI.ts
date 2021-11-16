@@ -1,6 +1,5 @@
 import { API_URLS } from './config';
-import { AxiosInstance } from 'axios';
-
+import { Got } from 'got';
 import { deriveAddress, getAccount } from './account';
 
 import {
@@ -126,7 +125,7 @@ import { network } from './endpoints/api/network';
 import { Options, ValidatedOptions } from './types';
 import join from 'url-join';
 import { validateOptions } from './utils';
-import { hackInstance } from './utils/axios';
+import { getInstance } from './utils/got';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('../package.json');
 
@@ -135,7 +134,7 @@ class BlockFrostAPI {
   projectId?: string;
   userAgent?: string;
   options: ValidatedOptions;
-  axiosInstance: AxiosInstance;
+  instance: Got;
 
   constructor(options?: Options) {
     this.options = validateOptions(options);
@@ -154,7 +153,7 @@ class BlockFrostAPI {
     this.userAgent =
       options?.userAgent ?? `${packageJson.name}@${packageJson.version}`;
 
-    this.axiosInstance = hackInstance(this.options, this.userAgent);
+    this.instance = getInstance(this.apiUrl, this.options, this.userAgent);
   }
 
   /**
