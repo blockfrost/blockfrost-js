@@ -65,14 +65,12 @@ export interface Headers {
 export type HashOrNumber = string | number;
 
 export type ErrorType =
-  | string
   | {
       status_code: number;
       message: string;
       error: string;
     }
   | {
-      errno: number;
       message: string;
       code: string;
     };

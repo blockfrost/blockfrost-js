@@ -1,4 +1,5 @@
 import EmurgoCip from '@emurgo/cip14-js';
+import { HTTPError } from 'got';
 import { ParseAssetResult } from '../types/utils';
 
 import {
@@ -20,8 +21,8 @@ import {
 } from '../types';
 import {
   BlockfrostClientError,
-  BlockfrostGenericError,
   BlockfrostServerError,
+  isBlockfrostErrorResponse,
 } from './errors';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
@@ -79,46 +80,30 @@ export const getHeaders = (
 
 export const handleError = (
   error: GotError,
-): BlockfrostServerError | BlockfrostClientError | BlockfrostGenericError => {
-  console.log('error', error);
-  if (error.code && error.request) {
-    // system errors such as -3008 ENOTFOUND
-    return new BlockfrostClientError({
-      errno: error.errno, // -3008
-      code: error.code, // ENOTFOUND
-      message: error.message, // getaddrinfo ENOTFOUND cardano-testnet.blockfrost.io'
-    });
-  }
+): BlockfrostServerError | BlockfrostClientError => {
+  if (error instanceof HTTPError) {
+    const responseBody = error.response.body;
 
-  if (error.response) {
-    if (
-      typeof error.response.data === 'object' &&
-      error.response.data?.status_code
-    ) {
-      // response.data is already properly formatted
-      return new BlockfrostServerError(error.response.data);
+    if (isBlockfrostErrorResponse(responseBody)) {
+      return new BlockfrostServerError(responseBody);
+    } else {
+      // response.body may contain html output (eg. errors returned by nginx)
+      const statusCode = error.response.statusCode;
+      const statusText = error.response.statusMessage;
+      return new BlockfrostServerError({
+        status_code: statusCode,
+        message: `${statusCode}: ${statusText}`,
+        error: statusText ?? '',
+      });
     }
-
-    // response.data may contain html output (eg. errors returned by nginx)
-    const statusCode = error.response.status;
-    const statusText = error.response.statusText;
-    return new BlockfrostServerError({
-      status_code: statusCode,
-      message: `${statusCode}: ${statusText}`,
-      error: statusText,
-    });
-  } else if (error.request) {
-    const jsonError = error.toJSON() as { message?: string; error?: string };
-    const message =
-      jsonError.message ?? 'Unexpected error while sending a request';
-    const errorName = jsonError.error ?? 'Error';
-    return new BlockfrostGenericError(`${errorName}: ${message}`);
-  } else if (error.message) {
-    return new BlockfrostGenericError(error.message);
-  } else {
-    // we shouldn't get here, but just to be safe...
-    return new BlockfrostGenericError('Unexpected error');
   }
+
+  // system errors such as -3008 ENOTFOUND and various got errors like ReadError, CacheError, MaxRedirectsError, TimeoutError,...
+  // https://github.com/sindresorhus/got/blob/main/documentation/8-errors.md
+  return new BlockfrostClientError({
+    code: error.code ?? 'ERR_GOT_REQUEST_ERROR', // ENOTFOUND, ETIMEDOUT...
+    message: error.message, // getaddrinfo ENOTFOUND cardano-testnet.blockfrost.io'
+  });
 };
 
 export const getAdditionalParams = (

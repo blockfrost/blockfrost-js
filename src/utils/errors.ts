@@ -14,22 +14,33 @@ export class BlockfrostServerError extends Error {
 }
 
 export class BlockfrostClientError extends Error {
-  errno: number;
   code: string;
-  constructor(error: Extract<ErrorType, { errno: number }>) {
+  constructor(error: Extract<ErrorType, { code: string }>) {
     super(error.message);
     this.name = 'BlockfrostClientError';
-    this.errno = error.errno;
     this.code = error.code;
     this.message = error.message;
     Object.setPrototypeOf(this, BlockfrostClientError.prototype);
   }
 }
-export class BlockfrostGenericError extends Error {
-  constructor(error: string) {
-    super(error);
-    this.name = 'BlockfrostGenericError';
-    this.message = error;
-    Object.setPrototypeOf(this, BlockfrostGenericError.prototype);
-  }
-}
+
+const hasProp = <K extends PropertyKey>(
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  data: object,
+  prop: K,
+): data is Record<K, unknown> => {
+  return prop in data;
+};
+
+export const isBlockfrostErrorResponse = (
+  data: unknown,
+): data is Extract<ErrorType, { status_code: number }> => {
+  // type guard for narrowing response body to an error object that should be returned by Blockfrost API
+  return (
+    typeof data === 'object' &&
+    data !== null &&
+    hasProp(data, 'status_code') &&
+    hasProp(data, 'message') &&
+    hasProp(data, 'error')
+  );
+};
