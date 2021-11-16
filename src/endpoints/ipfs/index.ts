@@ -16,13 +16,11 @@ export async function add(
 
   return new Promise((resolve, reject) => {
     this.instance
-      .post(`ipfs/add`, {
+      .post<AddResponse>(`ipfs/add`, {
         body: data,
         headers: {
           'Content-Type': `multipart/form-data; boundary=${data.getBoundary()}`,
         },
-        // maxContentLength: 100000000,
-        maxBodyLength: 100000000,
       })
       .then(resp => {
         resolve(resp.body);
@@ -110,9 +108,7 @@ export async function pinRemove(
 ): Promise<string> {
   return new Promise((resolve, reject) => {
     this.instance
-      .post<string>(`ipfs/pin/remove`, {
-        body: { path },
-      })
+      .post<string>(`ipfs/pin/remove/${path}`)
       .then(resp => {
         resolve(resp.body);
       })
