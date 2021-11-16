@@ -1,14 +1,17 @@
 import got, { Got } from 'got';
-import { getHeaders } from '../utils';
 import { ValidatedOptions } from '../types';
 
 export const getInstance = (
   apiUrl: string,
   options: ValidatedOptions,
-  userAgent: string,
+  userAgent: string | undefined,
 ): Got =>
   got.extend({
     prefixUrl: apiUrl,
     responseType: 'json',
-    headers: getHeaders(options.projectId, userAgent),
+    http2: true,
+    headers: {
+      project_id: options.projectId,
+      userAgent: userAgent,
+    },
   });
