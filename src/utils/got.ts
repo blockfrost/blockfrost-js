@@ -9,6 +9,6 @@ export const getInstance = (
 ): Got =>
   got.extend({
     prefixUrl: apiUrl,
-    resolveBodyOnly: true,
+    responseType: 'json',
     headers: getHeaders(options.projectId, userAgent),
   });

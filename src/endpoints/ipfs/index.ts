@@ -15,12 +15,13 @@ export async function add(
   data.append('file', stream);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance
-      .post(`${this.apiUrl}/ipfs/add`, data, {
+    this.instance
+      .post(`ipfs/add`, {
+        body: data,
         headers: {
           'Content-Type': `multipart/form-data; boundary=${data.getBoundary()}`,
         },
-        maxContentLength: 100000000,
+        // maxContentLength: 100000000,
         maxBodyLength: 100000000,
       })
       .then(resp => {
@@ -37,9 +38,9 @@ export async function gateway(
   path: string,
 ): Promise<unknown> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance
-      .get(`${this.apiUrl}/ipfs/gateway`, {
-        params: { path },
+    this.instance
+      .get(`ipfs/gateway`, {
+        searchParams: { path },
       })
       .then(resp => {
         resolve(resp.body);
@@ -55,8 +56,8 @@ export async function pin(
   path: string,
 ): Promise<PinResponse> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance
-      .post(`${this.apiUrl}/ipfs/pin/add/${path}`)
+    this.instance
+      .post<PinResponse>(`ipfs/pin/add/${path}`)
       .then(resp => {
         resolve(resp.body);
       })
@@ -72,14 +73,13 @@ export async function list(
 ): Promise<ListResponse> {
   const paginationOptions = getPaginationOptions(pagination);
   return new Promise((resolve, reject) => {
-    this.axiosInstance
-      .get(`${this.apiUrl}/ipfs/pin/list`, {
-        params: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
-      })
+    this.instance<ListResponse>(`ipfs/pin/list`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    })
       .then(resp => {
         resolve(resp.body);
       })
@@ -94,8 +94,7 @@ export async function listByPath(
   path: string,
 ): Promise<ListResponse> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance
-      .get(`${this.apiUrl}/ipfs/pin/list/${path}`)
+    this.instance<ListResponse>(`ipfs/pin/list/${path}`)
       .then(resp => {
         resolve(resp.body);
       })
@@ -110,9 +109,9 @@ export async function pinRemove(
   path: string,
 ): Promise<string> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance
-      .post(`${this.apiUrl}/ipfs/pin/remove`, {
-        params: { path },
+    this.instance
+      .post<string>(`ipfs/pin/remove`, {
+        body: { path },
       })
       .then(resp => {
         resolve(resp.body);

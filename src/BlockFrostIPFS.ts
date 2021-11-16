@@ -1,5 +1,5 @@
 import { API_URLS } from './config';
-import { AxiosInstance } from 'axios';
+import { Got } from 'got';
 import {
   add,
   list,
@@ -20,7 +20,7 @@ class BlockFrostIPFS {
   projectId?: string;
   userAgent?: string;
   options: ValidatedOptions;
-  axiosInstance: AxiosInstance;
+  instance: Got;
 
   constructor(options?: Options) {
     this.options = validateOptions(options);
