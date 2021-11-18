@@ -3,16 +3,16 @@ export const handleError = [
     description: 'handle network errors',
     payload: {
       name: 'RequestError',
-      code: 'ENOTFOUND',
+      code: 'ETIMEDOUT',
       timings: {
         start: 1637085077876,
         socket: 1637085077877,
       },
-      message: 'getaddrinfo ENOTFOUND cardano-mainnet.blockfrost.io',
+      message: "Timeout awaiting 'response' for 1ms",
     },
     result: {
-      code: 'ENOTFOUND',
-      message: 'getaddrinfo ENOTFOUND cardano-mainnet.blockfrost.io',
+      code: 'ETIMEDOUT',
+      message: "Timeout awaiting 'response' for 1ms",
     },
   },
   {

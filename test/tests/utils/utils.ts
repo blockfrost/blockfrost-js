@@ -1,7 +1,6 @@
-import { serializeError } from 'serialize-error';
-import { BlockFrostAPI } from '../../src/index';
-import * as utils from '../../src/utils';
-import { handleError } from '../fixtures/utils';
+import { BlockFrostAPI } from '../../../src/index';
+import * as utils from '../../../src/utils';
+import { expect } from '@jest/globals';
 
 describe('utils', () => {
   test('no options', () => {
@@ -160,17 +159,6 @@ describe('utils', () => {
     expect(utils.getAdditionalParams({ from: 'a', to: 'b' })).toEqual({
       from: 'a',
       to: 'b',
-    });
-  });
-
-  handleError.forEach(f => {
-    test(`handleError: ${f.description}`, () => {
-      const handledError = utils.handleError(
-        f.payload as unknown as ExtendedAxiosError,
-      );
-      const serializedError = serializeError(handledError);
-      expect(handledError).toBeInstanceOf(Error);
-      expect(serializedError).toMatchObject(f.result);
     });
   });
 });

@@ -1,5 +1,4 @@
 import EmurgoCip from '@emurgo/cip14-js';
-import { HTTPError } from 'got';
 import { ParseAssetResult } from '../types/utils';
 
 import {
@@ -11,18 +10,12 @@ import {
 } from '../config';
 
 import {
-  GotError,
   Options,
   ValidatedOptions,
   PaginationOptions,
   AdditionalEndpointOptions,
   AllMethodOptions,
 } from '../types';
-import {
-  BlockfrostClientError,
-  BlockfrostServerError,
-  isBlockfrostErrorResponse,
-} from './errors';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
   if (!options || (!options.customBackend && !options.projectId)) {
@@ -50,34 +43,6 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     retrySettings: options.retrySettings,
     requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
   };
-};
-
-export const handleError = (
-  error: GotError,
-): BlockfrostServerError | BlockfrostClientError => {
-  if (error instanceof HTTPError) {
-    const responseBody = error.response.body;
-
-    if (isBlockfrostErrorResponse(responseBody)) {
-      return new BlockfrostServerError(responseBody);
-    } else {
-      // response.body may contain html output (eg. errors returned by nginx)
-      const statusCode = error.response.statusCode;
-      const statusText = error.response.statusMessage;
-      return new BlockfrostServerError({
-        status_code: statusCode,
-        message: `${statusCode}: ${statusText}`,
-        error: statusText ?? '',
-      });
-    }
-  }
-
-  // system errors such as -3008 ENOTFOUND and various got errors like ReadError, CacheError, MaxRedirectsError, TimeoutError,...
-  // https://github.com/sindresorhus/got/blob/main/documentation/8-errors.md
-  return new BlockfrostClientError({
-    code: error.code ?? 'ERR_GOT_REQUEST_ERROR', // ENOTFOUND, ETIMEDOUT...
-    message: error.message, // getaddrinfo ENOTFOUND cardano-testnet.blockfrost.io'
-  });
 };
 
 export const getAdditionalParams = (
