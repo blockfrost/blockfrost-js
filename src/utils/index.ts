@@ -12,7 +12,6 @@ import {
 
 import {
   GotError,
-  Headers,
   Options,
   ValidatedOptions,
   PaginationOptions,
@@ -42,39 +41,30 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     throw Error('Param requestTimeout is not a number');
   }
 
-  if (options.retryDelay && isNaN(options.retryDelay)) {
-    throw Error('Param retryDelay is not a number');
-  }
-
-  if (options.retryCount && isNaN(options.retryCount)) {
-    throw Error('Param retryCount is not a number');
-  }
-
   return {
     customBackend: options.customBackend,
     projectId: options.projectId,
     isTestnet: options.isTestnet,
     version: options.version || DEFAULT_API_VERSION,
-    retry429: options.retry429 || true,
-    retryCount: options.retryCount ?? 20,
-    retryDelay: options.retryDelay ?? 1000, // 1 second
+    // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
+    retrySettings: options.retrySettings || {
+      limit: 10,
+      methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
+      statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
+      errorCodes: [
+        'ETIMEDOUT',
+        'ECONNRESET',
+        'EADDRINUSE',
+        'ECONNREFUSED',
+        'EPIPE',
+        'ENOTFOUND',
+        'ENETUNREACH',
+        'EAI_AGAIN',
+      ],
+      maxRetryAfter: undefined,
+      calculateDelay: ({ computedValue }: any) => computedValue,
+    },
     requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
-  };
-};
-
-export const getHeaders = (
-  projectId?: string,
-  userAgent?: string,
-): Headers | undefined => {
-  if (!projectId) {
-    return undefined;
-  }
-
-  const userAgentHeader = userAgent ? { 'User-Agent': userAgent } : null;
-
-  return {
-    project_id: projectId,
-    ...userAgentHeader,
   };
 };
 

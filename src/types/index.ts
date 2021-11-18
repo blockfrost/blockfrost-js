@@ -9,6 +9,7 @@ import {
   HTTPError,
   MaxRedirectsError,
   UnsupportedProtocolError,
+  RequiredRetryOptions,
 } from 'got';
 
 export type GotError =
@@ -37,11 +38,9 @@ type OptionCombination2 = {
 type AdditionalOptions = {
   isTestnet?: boolean;
   version?: number;
-  retry429?: boolean;
   userAgent?: string;
   requestTimeout?: number;
-  retryCount?: number;
-  retryDelay?: number;
+  retrySettings?: RequiredRetryOptions;
 };
 
 export type Options = (OptionCombination1 | OptionCombination2) &
@@ -49,17 +48,11 @@ export type Options = (OptionCombination1 | OptionCombination2) &
 
 export interface ValidatedOptions {
   customBackend?: string;
+  version: number;
+  requestTimeout: number;
   projectId?: string;
   isTestnet?: boolean;
-  version: number;
-  retry429: boolean;
-  requestTimeout: number;
-  retryCount: number;
-  retryDelay: number;
-}
-
-export interface Headers {
-  project_id: string;
+  retrySettings?: RequiredRetryOptions;
 }
 
 export type HashOrNumber = string | number;
