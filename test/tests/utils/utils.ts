@@ -68,13 +68,28 @@ describe('utils', () => {
       },
     });
 
-    expect(api.options).toEqual({
+    expect(api.options).toStrictEqual({
       customBackend: undefined,
       isTestnet: undefined,
       projectId: 'xxx',
       requestTimeout: 20000,
-      retryCount: 1,
-      retryDelay: 1000,
+      retrySettings: {
+        limit: 2,
+        methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
+        statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
+        errorCodes: [
+          'ETIMEDOUT',
+          'ECONNRESET',
+          'EADDRINUSE',
+          'ECONNREFUSED',
+          'EPIPE',
+          'ENOTFOUND',
+          'ENETUNREACH',
+          'EAI_AGAIN',
+        ],
+        maxRetryAfter: undefined,
+        calculateDelay: ({ computedValue }) => computedValue,
+      },
       version: 0,
     });
   });

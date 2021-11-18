@@ -14,4 +14,8 @@ export const getInstance = (
       project_id: options.projectId,
       userAgent: userAgent,
     },
+    retry: options.retrySettings,
+    timeout: {
+      request: options.requestTimeout,
+    },
   });

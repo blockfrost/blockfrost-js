@@ -1,6 +1,6 @@
 {
   "name": "@blockfrost/blockfrost-js",
-  "version": "3.0.0-beta.1",
+  "version": "3.0.0-beta.2",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "keywords": [
     "blockfrost",
@@ -37,7 +37,7 @@
     "url-join": "^4.0.1"
   },
   "devDependencies": {
-    "@swc-node/jest": "^1.3.1",
+    "@swc-node/jest": "^1.4.1",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.9.1",
     "@types/url-join": "^4.0.1",
@@ -54,7 +54,6 @@
     "openapi-typescript": "^4.0.2",
     "prettier": "2.3.2",
     "rimraf": "^3.0.2",
-    "run-s": "^0.0.0",
     "serialize-error": "^8.1.0",
     "ts-jest": "^27.0.3",
     "ts-node": "10.1.0",
@@ -64,7 +63,8 @@
     "typedoc": "^0.21.4",
     "typedoc-github-wiki-theme": "^0.5.1",
     "typedoc-plugin-markdown": "^3.10.3",
-    "typescript": "4.3.5"
+    "typescript": "4.3.5",
+    "yarn-run-all": "^3.1.1"
   },
   "engines": {
     "node": ">=14"
