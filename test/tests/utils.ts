@@ -1,10 +1,7 @@
 import { serializeError } from 'serialize-error';
 import { BlockFrostAPI } from '../../src/index';
-import { ExtendedAxiosError } from '../../src/types';
 import * as utils from '../../src/utils';
 import { handleError } from '../fixtures/utils';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const packageJson = require('../../package.json');
 
 describe('utils', () => {
   test('no options', () => {
@@ -44,15 +41,32 @@ describe('utils', () => {
   test('customBackend', () => {
     const api = new BlockFrostAPI({
       customBackend: 'http://customBackend.com',
+      isTestnet: false,
     });
 
     expect(api.apiUrl).toBe('http://customBackend.com');
   });
 
-  test('retryCount', () => {
+  test('retrySettings', () => {
     const api = new BlockFrostAPI({
       projectId: 'xxx',
-      retryCount: 1,
+      retrySettings: {
+        limit: 2,
+        methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
+        statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
+        errorCodes: [
+          'ETIMEDOUT',
+          'ECONNRESET',
+          'EADDRINUSE',
+          'ECONNREFUSED',
+          'EPIPE',
+          'ENOTFOUND',
+          'ENETUNREACH',
+          'EAI_AGAIN',
+        ],
+        maxRetryAfter: undefined,
+        calculateDelay: ({ computedValue }) => computedValue,
+      },
     });
 
     expect(api.options).toEqual({
@@ -60,45 +74,8 @@ describe('utils', () => {
       isTestnet: undefined,
       projectId: 'xxx',
       requestTimeout: 20000,
-      retry429: true,
       retryCount: 1,
       retryDelay: 1000,
-      version: 0,
-    });
-  });
-
-  test('retryDelay', () => {
-    const api = new BlockFrostAPI({
-      projectId: 'xxx',
-      retryDelay: 1,
-    });
-
-    expect(api.options).toEqual({
-      customBackend: undefined,
-      isTestnet: undefined,
-      projectId: 'xxx',
-      requestTimeout: 20000,
-      retry429: true,
-      retryCount: 20,
-      retryDelay: 1,
-      version: 0,
-    });
-  });
-
-  test('retryDelay 0', () => {
-    const api = new BlockFrostAPI({
-      projectId: 'xxx',
-      retryDelay: 0,
-    });
-
-    expect(api.options).toEqual({
-      customBackend: undefined,
-      isTestnet: undefined,
-      projectId: 'xxx',
-      requestTimeout: 20000,
-      retry429: true,
-      retryCount: 20,
-      retryDelay: 0,
       version: 0,
     });
   });
@@ -113,9 +90,7 @@ describe('utils', () => {
       isTestnet: undefined,
       projectId: 'xxx',
       requestTimeout: 20000,
-      retry429: true,
-      retryCount: 20,
-      retryDelay: 1000,
+      retry: undefined,
       version: 0,
     });
   });
@@ -162,30 +137,6 @@ describe('utils', () => {
     }
   });
 
-  test('retryDelay parameter error', () => {
-    try {
-      new BlockFrostAPI({
-        projectId: 'xxx',
-        // @ts-expect-error tests
-        retryDelay: 's',
-      });
-    } catch (err) {
-      expect(err.message).toBe('Param retryDelay is not a number');
-    }
-  });
-
-  test('retryCount parameter error', () => {
-    try {
-      new BlockFrostAPI({
-        projectId: 'xxx',
-        // @ts-expect-error tests
-        retryCount: 's',
-      });
-    } catch (err) {
-      expect(err.message).toBe('Param retryCount is not a number');
-    }
-  });
-
   test('requestTimeout', () => {
     const api = new BlockFrostAPI({
       projectId: 'xxx',
@@ -197,31 +148,7 @@ describe('utils', () => {
       isTestnet: undefined,
       projectId: 'xxx',
       requestTimeout: 1,
-      retry429: true,
-      retryCount: 20,
-      retryDelay: 1000,
       version: 0,
-    });
-  });
-
-  test('getHeaders', () => {
-    const api = new BlockFrostAPI({
-      projectId: 'xxx',
-    });
-    expect(utils.getHeaders(api.projectId, api.userAgent)).toEqual({
-      project_id: 'xxx',
-      'User-Agent': `${packageJson.name}@${packageJson.version}`,
-    });
-  });
-
-  test('getHeaders with userAgent', () => {
-    const api = new BlockFrostAPI({
-      projectId: 'xxx',
-      userAgent: 'yyy',
-    });
-    expect(utils.getHeaders(api.projectId, api.userAgent)).toEqual({
-      project_id: 'xxx',
-      'User-Agent': 'yyy',
     });
   });
 

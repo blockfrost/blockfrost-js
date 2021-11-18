@@ -47,23 +47,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     isTestnet: options.isTestnet,
     version: options.version || DEFAULT_API_VERSION,
     // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
-    retrySettings: options.retrySettings || {
-      limit: 10,
-      methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
-      statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
-      errorCodes: [
-        'ETIMEDOUT',
-        'ECONNRESET',
-        'EADDRINUSE',
-        'ECONNREFUSED',
-        'EPIPE',
-        'ENOTFOUND',
-        'ENETUNREACH',
-        'EAI_AGAIN',
-      ],
-      maxRetryAfter: undefined,
-      calculateDelay: ({ computedValue }: any) => computedValue,
-    },
+    retrySettings: options.retrySettings,
     requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
   };
 };
