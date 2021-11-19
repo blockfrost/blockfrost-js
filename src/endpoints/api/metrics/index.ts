@@ -1,4 +1,4 @@
-import { handleError } from '../../../utils';
+import { handleError } from '../../../utils/errors';
 import { components } from '../../../types/OpenApi';
 import { BlockFrostAPI } from '../../../index';
 
@@ -6,9 +6,9 @@ export async function metrics(
   this: BlockFrostAPI,
 ): Promise<components['schemas']['metrics']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/metrics`)
+    this.instance<components['schemas']['metrics']>(`metrics`)
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -20,9 +20,9 @@ export async function metricsEndpoints(
   this: BlockFrostAPI,
 ): Promise<components['schemas']['metrics']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/metrics/endpoints`)
+    this.instance<components['schemas']['metrics']>(`metrics/endpoints`)
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));

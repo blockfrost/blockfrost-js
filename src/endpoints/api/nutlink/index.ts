@@ -1,8 +1,5 @@
-import {
-  handleError,
-  getPaginationOptions,
-  getAllMethodOptions,
-} from '../../../utils';
+import { getPaginationOptions, getAllMethodOptions } from '../../../utils';
+import { handleError } from '../../../utils/errors';
 import { components } from '../../../types/OpenApi';
 import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
@@ -13,9 +10,11 @@ export async function nutlinkAddress(
   address: string,
 ): Promise<components['schemas']['nutlink_address']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/nutlink/${address}`)
+    this.instance<components['schemas']['nutlink_address']>(
+      `nutlink/${address}`,
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -29,15 +28,18 @@ export async function nutlinkAddressTickers(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/nutlink/${address}/tickers`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['nutlink_address_tickers']>(
+      `nutlink/${address}/tickers`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -87,15 +89,18 @@ export async function nutlinkAddressTicker(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/nutlink/${address}/tickers/${ticker}`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['nutlink_address_ticker']>(
+      `nutlink/${address}/tickers/${ticker}`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -145,15 +150,18 @@ export async function nutlinkTickers(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/nutlink/tickers/${ticker}`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['nutlink_tickers_ticker']>(
+      `nutlink/tickers/${ticker}`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });

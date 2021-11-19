@@ -1,8 +1,5 @@
-import {
-  handleError,
-  getPaginationOptions,
-  getAllMethodOptions,
-} from '../../../utils';
+import { getPaginationOptions, getAllMethodOptions } from '../../../utils';
+import { handleError } from '../../../utils/errors';
 import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../config';
 import {
   AllMethodOptions,
@@ -17,9 +14,11 @@ export async function blocks(
   hashOrNumber: HashOrNumber,
 ): Promise<components['schemas']['block_content']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/blocks/${hashOrNumber}`)
+    this.instance<components['schemas']['block_content']>(
+      `blocks/${hashOrNumber}`,
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -31,12 +30,12 @@ export async function blocksLatest(
   this: BlockFrostAPI,
 ): Promise<components['schemas']['block_content']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/blocks/latest`)
+    this.instance<components['schemas']['block_content']>(`blocks/latest`)
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
-        return reject(handleError(err));
+        reject(handleError(err));
       });
   });
 }
@@ -48,15 +47,18 @@ export async function blocksLatestTxs(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/blocks/latest/txs`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['block_content_txs']>(
+      `blocks/latest/txs`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         return reject(handleError(err));
@@ -106,15 +108,18 @@ export async function blocksNext(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/blocks/${hashOrNumber}/next`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['block_content_array']>(
+      `blocks/${hashOrNumber}/next`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -130,15 +135,18 @@ export async function blocksPrevious(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/blocks/${hashOrNumber}/previous`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['block_content_array']>(
+      `blocks/${hashOrNumber}/previous`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -154,15 +162,18 @@ export async function blocksTxs(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/blocks/${hashOrNumber}/txs`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['block_content_txs']>(
+      `blocks/${hashOrNumber}/txs`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));

@@ -1,4 +1,28 @@
-import { AxiosError } from 'axios';
+import {
+  CacheError,
+  CancelError,
+  TimeoutError,
+  RequestError,
+  ReadError,
+  ParseError,
+  UploadError,
+  HTTPError,
+  MaxRedirectsError,
+  UnsupportedProtocolError,
+  RequiredRetryOptions,
+} from 'got';
+
+export type GotError =
+  | CacheError
+  | CancelError
+  | TimeoutError
+  | RequestError
+  | ReadError
+  | ParseError
+  | UploadError
+  | HTTPError
+  | MaxRedirectsError
+  | UnsupportedProtocolError;
 
 type OptionCombination1 = {
   projectId: string;
@@ -14,11 +38,9 @@ type OptionCombination2 = {
 type AdditionalOptions = {
   isTestnet?: boolean;
   version?: number;
-  retry429?: boolean;
   userAgent?: string;
   requestTimeout?: number;
-  retryCount?: number;
-  retryDelay?: number;
+  retrySettings?: RequiredRetryOptions;
 };
 
 export type Options = (OptionCombination1 | OptionCombination2) &
@@ -26,37 +48,25 @@ export type Options = (OptionCombination1 | OptionCombination2) &
 
 export interface ValidatedOptions {
   customBackend?: string;
+  version: number;
+  requestTimeout: number;
   projectId?: string;
   isTestnet?: boolean;
-  version: number;
-  retry429: boolean;
-  requestTimeout: number;
-  retryCount: number;
-  retryDelay: number;
-}
-
-export interface Headers {
-  project_id: string;
+  retrySettings?: RequiredRetryOptions;
 }
 
 export type HashOrNumber = string | number;
 
 export type ErrorType =
-  | string
   | {
       status_code: number;
       message: string;
       error: string;
     }
   | {
-      errno: number;
       message: string;
       code: string;
     };
-
-export interface ExtendedAxiosError extends AxiosError {
-  errno: number;
-}
 
 export type PaginationOptions = {
   count?: number;

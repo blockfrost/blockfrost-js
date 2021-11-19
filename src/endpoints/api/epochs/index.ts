@@ -1,16 +1,17 @@
-import { handleError, getPaginationOptions } from '../../../utils';
+import { getPaginationOptions } from '../../../utils';
 import { PaginationOptions } from '../../../types';
 import { components } from '../../../types/OpenApi';
 import { BlockFrostAPI } from '../../../index';
+import { handleError } from '../../../utils/errors';
 
 export async function epochs(
   this: BlockFrostAPI,
   number: number,
 ): Promise<components['schemas']['epoch_content']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/epochs/${number}`)
+    this.instance<components['schemas']['epoch_content']>(`epochs/${number}`)
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -22,9 +23,9 @@ export async function epochsLatest(
   this: BlockFrostAPI,
 ): Promise<components['schemas']['epoch_content']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/epochs/latest`)
+    this.instance<components['schemas']['epoch_content']>(`epochs/latest`)
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -40,15 +41,18 @@ export async function epochsNext(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/epochs/${number}/next`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['epoch_content_array']>(
+      `epochs/${number}/next`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -64,15 +68,18 @@ export async function epochsPrevious(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/epochs/${number}/previous`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['epoch_content_array']>(
+      `epochs/${number}/previous`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -88,15 +95,18 @@ export async function epochsStakes(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/epochs/${number}/stakes`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['epoch_stake_content']>(
+      `epochs/${number}/stakes`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -113,15 +123,18 @@ export async function epochsStakesByPoolId(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/epochs/${number}/stakes/${poolId}`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['epoch_block_content']>(
+      `epochs/${number}/stakes/${poolId}`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -137,15 +150,18 @@ export async function epochsBlocks(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/epochs/${number}/blocks`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['epoch_block_content']>(
+      `epochs/${number}/blocks`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -162,15 +178,18 @@ export async function epochsBlocksByPoolId(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/epochs/${number}/blocks/${poolId}`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['epoch_stake_pool_content']>(
+      `epochs/${number}/blocks/${poolId}`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -183,9 +202,11 @@ export async function epochsParameters(
   number: number,
 ): Promise<components['schemas']['epoch_param_content']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/epochs/${number}/parameters`)
+    this.instance<components['schemas']['epoch_param_content']>(
+      `epochs/${number}/parameters`,
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));

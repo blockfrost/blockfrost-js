@@ -1,13 +1,13 @@
-import { handleError } from '../../../utils';
+import { handleError } from '../../../utils/errors';
 import { BlockFrostAPI } from '../../../index';
 
 export async function root(
   this: BlockFrostAPI,
 ): Promise<{ url: string; version: string }> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/`)
+    this.instance<{ url: string; version: string }>(``)
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));

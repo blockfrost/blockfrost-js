@@ -7,9 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+<!-- ### Added
+
+- `addressesExtended` and `accountsAddressesTotal` endpoints -->
+
+## ⚠️ Breaking changes
+
+- Axios → Got
+- removed `retryCount`, `retryDelay`, `retry429`
+- added `retryOptions` see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
+
 ### Changed
 
-- thrown errors (`BlockfrostServerError`, `BlockfrostClientError`, `BlockfrostGenericError`) are now subclasses of `Error`
+- thrown errors (`BlockfrostServerError`, `BlockfrostClientError`) are now subclasses of `Error`
 - updated @blockfrost/openapi & regenerated types to match reflect changes in Blockfrost API
 
 ## [2.0.2]

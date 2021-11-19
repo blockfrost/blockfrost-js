@@ -2,20 +2,19 @@ import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../config';
 import { BlockFrostAPI } from '../../../index';
 import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { components } from '../../../types/OpenApi';
-import {
-  getPaginationOptions,
-  handleError,
-  getAllMethodOptions,
-} from '../../../utils';
+import { getPaginationOptions, getAllMethodOptions } from '../../../utils';
+import { handleError } from '../../../utils/errors';
 
 export async function accounts(
   this: BlockFrostAPI,
   stakeAddress: string,
 ): Promise<components['schemas']['account_content']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/accounts/${stakeAddress}`)
+    this.instance<components['schemas']['account_content']>(
+      `accounts/${stakeAddress}`,
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -29,15 +28,18 @@ export async function accountsRewards(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/accounts/${stakeAddress}/rewards`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['account_reward_content']>(
+      `accounts/${stakeAddress}/rewards`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -87,15 +89,18 @@ export async function accountsHistory(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/accounts/${stakeAddress}/history`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['account_history_content']>(
+      `accounts/${stakeAddress}/history`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -144,15 +149,18 @@ export async function accountsWithdrawals(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/accounts/${stakeAddress}/withdrawals`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['account_withdrawal_content']>(
+      `accounts/${stakeAddress}/withdrawals`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -201,15 +209,18 @@ export async function accountsMirs(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/accounts/${stakeAddress}/mirs`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['account_mir_content']>(
+      `accounts/${stakeAddress}/mirs`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -258,15 +269,18 @@ export async function accountsDelegations(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/accounts/${stakeAddress}/delegations`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['account_delegation_content']>(
+      `accounts/${stakeAddress}/delegations`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -315,10 +329,10 @@ export async function accountsRegistrations(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/accounts/${stakeAddress}/registrations`,
+    this.instance<components['schemas']['account_registration_content']>(
+      `accounts/${stakeAddress}/registrations`,
       {
-        params: {
+        searchParams: {
           page: paginationOptions.page,
           count: paginationOptions.count,
           order: paginationOptions.order,
@@ -326,7 +340,7 @@ export async function accountsRegistrations(
       },
     )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -375,15 +389,18 @@ export async function accountsAddresses(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/accounts/${stakeAddress}/addresses`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['account_addresses_content']>(
+      `accounts/${stakeAddress}/addresses`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -432,10 +449,10 @@ export async function accountsAddressesAssets(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(
-      `${this.apiUrl}/accounts/${stakeAddress}/addresses/assets`,
+    this.instance<components['schemas']['account_addresses_assets']>(
+      `accounts/${stakeAddress}/addresses/assets`,
       {
-        params: {
+        searchParams: {
           page: paginationOptions.page,
           count: paginationOptions.count,
           order: paginationOptions.order,
@@ -443,7 +460,7 @@ export async function accountsAddressesAssets(
       },
     )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });

@@ -1,7 +1,8 @@
-import { handleError, getPaginationOptions } from '../../../utils';
+import { getPaginationOptions } from '../../../utils';
 import { components } from '../../../types/OpenApi';
 import { BlockFrostAPI } from '../../../index';
 import { PaginationOptions } from '../../../types';
+import { handleError } from '../../../utils/errors';
 
 export async function pools(
   this: BlockFrostAPI,
@@ -10,15 +11,15 @@ export async function pools(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/pools`, {
-      params: {
+    this.instance<components['schemas']['pool_list']>(`pools`, {
+      searchParams: {
         page: paginationOptions.page,
         count: paginationOptions.count,
         order: paginationOptions.order,
       },
     })
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -33,15 +34,15 @@ export async function poolsRetired(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/pools/retired`, {
-      params: {
+    this.instance<components['schemas']['pool_list_retire']>(`pools/retired`, {
+      searchParams: {
         page: paginationOptions.page,
         count: paginationOptions.count,
         order: paginationOptions.order,
       },
     })
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -56,15 +57,15 @@ export async function poolsRetiring(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/pools/retiring`, {
-      params: {
+    this.instance<components['schemas']['pool_list_retire']>(`pools/retiring`, {
+      searchParams: {
         page: paginationOptions.page,
         count: paginationOptions.count,
         order: paginationOptions.order,
       },
     })
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -77,9 +78,9 @@ export async function poolsById(
   poolId: string,
 ): Promise<components['schemas']['pool']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/pools/${poolId}`)
+    this.instance<components['schemas']['pool']>(`pools/${poolId}`)
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -95,15 +96,18 @@ export async function poolsByIdHistory(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/pools/${poolId}/history`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['pool_history']>(
+      `pools/${poolId}/history`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -116,9 +120,11 @@ export async function poolMetadata(
   poolId: string,
 ): Promise<components['schemas']['pool_metadata']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/pools/${poolId}/metadata`)
+    this.instance<components['schemas']['pool_metadata']>(
+      `pools/${poolId}/metadata`,
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -131,9 +137,11 @@ export async function poolsByIdRelays(
   poolId: string,
 ): Promise<components['schemas']['pool_relays']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/pools/${poolId}/relays`)
+    this.instance<components['schemas']['pool_relays']>(
+      `pools/${poolId}/relays`,
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -149,15 +157,18 @@ export async function poolsByIdDelegators(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/pools/${poolId}/delegators`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['pool_delegators']>(
+      `pools/${poolId}/delegators`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -173,15 +184,18 @@ export async function poolsByIdBlocks(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/pools/${poolId}/blocks`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['pool_blocks']>(
+      `pools/${poolId}/blocks`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));
@@ -197,15 +211,18 @@ export async function poolsByIdUpdates(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/pools/${poolId}/updates`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['pool_updates']>(
+      `pools/${poolId}/updates`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
         reject(handleError(err));

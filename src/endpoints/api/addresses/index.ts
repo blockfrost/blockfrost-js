@@ -1,11 +1,11 @@
 import {
   getAdditionalParams,
-  handleError,
   getPaginationOptions,
   getAllMethodOptions,
 } from '../../../utils';
 import { components } from '../../../types/OpenApi';
 import { BlockFrostAPI } from '../../../index';
+import { handleError } from '../../../utils/errors';
 import {
   DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
   DEFAULT_BATCH_SIZE,
@@ -21,9 +21,11 @@ export async function addresses(
   address: string,
 ): Promise<components['schemas']['address_content']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/addresses/${address}`)
+    this.instance<components['schemas']['address_content']>(
+      `addresses/${address}`,
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -34,9 +36,11 @@ export async function addressesTotal(
   address: string,
 ): Promise<components['schemas']['address_content_total']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/addresses/${address}/total`)
+    this.instance<components['schemas']['address_content_total']>(
+      `addresses/${address}/total`,
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -52,20 +56,23 @@ export async function addressesTransactions(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/addresses/${address}/transactions`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
-        from: additionalParams.from,
-        to: additionalParams.to,
+    this.instance<components['schemas']['address_transactions_content']>(
+      `addresses/${address}/transactions`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+          from: additionalParams.from,
+          to: additionalParams.to,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => {
-        if (err && err.response && err.response.data.status_code === 404) {
+        if (err && err.response && err.response.statusCode === 404) {
           resolve([]);
         }
 
@@ -125,15 +132,18 @@ export async function addressesUtxos(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/addresses/${address}/utxos`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['address_utxo_content']>(
+      `addresses/${address}/utxos`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });

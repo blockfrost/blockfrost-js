@@ -1,8 +1,5 @@
-import {
-  handleError,
-  getPaginationOptions,
-  getAllMethodOptions,
-} from '../../../utils';
+import { getPaginationOptions, getAllMethodOptions } from '../../../utils';
+import { handleError } from '../../../utils/errors';
 import { components } from '../../../types/OpenApi';
 import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
@@ -15,15 +12,15 @@ export async function assets(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/assets`, {
-      params: {
+    this.instance<components['schemas']['assets']>(`assets`, {
+      searchParams: {
         page: paginationOptions.page,
         count: paginationOptions.count,
         order: paginationOptions.order,
       },
     })
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -34,9 +31,9 @@ export async function assetsById(
   asset: string,
 ): Promise<components['schemas']['asset']> {
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/assets/${asset}`)
+    this.instance<components['schemas']['asset']>(`assets/${asset}`)
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -50,15 +47,18 @@ export async function assetsHistory(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/assets/${asset}/history`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['asset_history']>(
+      `assets/${asset}/history`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -107,15 +107,18 @@ export async function assetsTransactions(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/assets/${asset}/transactions`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['asset_transactions']>(
+      `assets/${asset}/transactions`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -129,15 +132,18 @@ export async function assetsAddresses(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/assets/${asset}/addresses`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['asset_addresses']>(
+      `assets/${asset}/addresses`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
@@ -151,15 +157,18 @@ export async function assetsPolicyById(
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.axiosInstance(`${this.apiUrl}/assets/policy/${policy}`, {
-      params: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+    this.instance<components['schemas']['asset_policy']>(
+      `assets/policy/${policy}`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
+    )
       .then(resp => {
-        resolve(resp.data);
+        resolve(resp.body);
       })
       .catch(err => reject(handleError(err)));
   });
