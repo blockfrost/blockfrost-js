@@ -1,34 +1,28 @@
-// import { BlockFrostAPI } from '../src/index';
-import got from 'got';
+import { BlockFrostAPI } from '../src/index';
 
 async function run() {
-  // const API = new BlockFrostAPI({
-  //   projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
-  // });
+  const API = new BlockFrostAPI({
+    projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
+  });
 
-  // try {
-  //   await API.blocksLatest();
-  // } catch (err) {
-  //   console.log('error', err);
-  // }
   try {
-    const url = 'http://httpstat.us/200?sleep=200000';
+    const latestBlock = await API.blocksLatest();
+    const networkInfo = await API.network();
+    const latestEpoch = await API.epochsLatest();
+    const health = await API.health();
+    const address = await API.addresses(
+      'addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz',
+    );
+    const pools = await API.pools({ page: 1, count: 10, order: 'asc' });
 
-    // This:
-    const body = await got(url, {
-      timeout: {
-        lookup: 100,
-        connect: 50,
-        secureConnect: 50,
-        socket: 1000,
-        send: 10000,
-        response: 10,
-      },
-    });
-    // @ts-ignore
-    console.log('body', body);
+    console.log('pools', pools);
+    console.log('address', address);
+    console.log('networkInfo', networkInfo);
+    console.log('latestEpoch', latestEpoch);
+    console.log('latestBlock', latestBlock);
+    console.log('health', health);
   } catch (err) {
-    console.log('statusMessage', err.message);
+    console.log('error', err);
   }
 }
 
