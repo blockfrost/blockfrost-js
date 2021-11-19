@@ -9,7 +9,7 @@ export const getInstance = (
   got.extend({
     prefixUrl: apiUrl,
     responseType: 'json',
-    http2: true,
+    http2: options.http2,
     headers: {
       project_id: options.projectId,
       userAgent: userAgent,
