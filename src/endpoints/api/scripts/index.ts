@@ -1,5 +1,6 @@
-import { handleError, getPaginationOptions } from '../../../utils';
+import { getPaginationOptions } from '../../../utils';
 import { components } from '../../../types/OpenApi';
+import { handleError } from '../../../utils/errors';
 import { PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
 

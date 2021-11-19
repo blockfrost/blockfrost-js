@@ -1,8 +1,5 @@
-import {
-  handleError,
-  getPaginationOptions,
-  getAllMethodOptions,
-} from '../../../utils';
+import { getPaginationOptions, getAllMethodOptions } from '../../../utils';
+import { handleError } from '../../../utils/errors';
 import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../config';
 import {
   AllMethodOptions,

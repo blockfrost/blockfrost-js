@@ -1,7 +1,8 @@
-import { handleError, getPaginationOptions } from '../../../utils';
+import { getPaginationOptions } from '../../../utils';
 import { components } from '../../../types/OpenApi';
 import { BlockFrostAPI } from '../../../index';
 import { PaginationOptions } from '../../../types';
+import { handleError } from '../../../utils/errors';
 
 export async function pools(
   this: BlockFrostAPI,

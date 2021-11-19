@@ -1,4 +1,4 @@
-import { handleError } from '../../../utils';
+import { handleError } from '../../../utils/errors';
 import { components } from '../../../types/OpenApi';
 import { BlockFrostAPI } from '../../../index';
 

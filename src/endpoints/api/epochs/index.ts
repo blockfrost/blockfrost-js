@@ -1,7 +1,8 @@
-import { handleError, getPaginationOptions } from '../../../utils';
+import { getPaginationOptions } from '../../../utils';
 import { PaginationOptions } from '../../../types';
 import { components } from '../../../types/OpenApi';
 import { BlockFrostAPI } from '../../../index';
+import { handleError } from '../../../utils/errors';
 
 export async function epochs(
   this: BlockFrostAPI,

@@ -2,7 +2,6 @@ import { BlockFrostAPI, BlockFrostIPFS } from '../src';
 
 const SDK = new BlockFrostAPI({
   projectId: `${process.env.PROJECT_ID}`,
-  retryCount: 5,
 });
 
 const SDK_ERROR = new BlockFrostAPI({

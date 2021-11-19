@@ -2,11 +2,8 @@ import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../config';
 import { BlockFrostAPI } from '../../../index';
 import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { components } from '../../../types/OpenApi';
-import {
-  getPaginationOptions,
-  handleError,
-  getAllMethodOptions,
-} from '../../../utils';
+import { getPaginationOptions, getAllMethodOptions } from '../../../utils';
+import { handleError } from '../../../utils/errors';
 
 export async function accounts(
   this: BlockFrostAPI,

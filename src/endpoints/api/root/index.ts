@@ -1,4 +1,4 @@
-import { handleError } from '../../../utils';
+import { handleError } from '../../../utils/errors';
 import { BlockFrostAPI } from '../../../index';
 
 export async function root(

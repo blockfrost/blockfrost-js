@@ -1,5 +1,6 @@
 import { BlockFrostIPFS } from '../../index';
-import { handleError, getPaginationOptions } from '../../utils';
+import { handleError } from '../../utils/errors';
+import { getPaginationOptions } from '../../utils';
 import { PaginationOptions } from '../../types';
 import { AddResponse, PinResponse, ListResponse } from '../../types/ipfs';
 import FormData from 'form-data';

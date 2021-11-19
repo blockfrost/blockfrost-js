@@ -1,11 +1,11 @@
 import {
   getAdditionalParams,
-  handleError,
   getPaginationOptions,
   getAllMethodOptions,
 } from '../../../utils';
 import { components } from '../../../types/OpenApi';
 import { BlockFrostAPI } from '../../../index';
+import { handleError } from '../../../utils/errors';
 import {
   DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
   DEFAULT_BATCH_SIZE,
@@ -72,7 +72,7 @@ export async function addressesTransactions(
         resolve(resp.body);
       })
       .catch(err => {
-        if (err && err.response && err.response.data.status_code === 404) {
+        if (err && err.response && err.response.status_code === 404) {
           resolve([]);
         }
 
