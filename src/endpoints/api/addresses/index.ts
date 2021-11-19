@@ -72,7 +72,7 @@ export async function addressesTransactions(
         resolve(resp.body);
       })
       .catch(err => {
-        if (err && err.response && err.response.status_code === 404) {
+        if (err && err.response && err.response.body.status_code === 404) {
           resolve([]);
         }
 
