@@ -187,10 +187,12 @@ export async function txSubmit(
   this: BlockFrostAPI,
   transaction: Uint8Array | string,
 ): Promise<string> {
-  let tx = transaction;
+  let tx: Buffer;
 
   if (typeof transaction === 'string') {
-    tx = Uint8Array.from(Buffer.from(transaction, 'hex'));
+    tx = Buffer.from(transaction, 'hex');
+  } else {
+    tx = Buffer.from(transaction);
   }
 
   return new Promise((resolve, reject) => {
