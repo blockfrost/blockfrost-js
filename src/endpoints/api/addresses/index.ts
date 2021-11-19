@@ -42,6 +42,21 @@ export async function addressesTotal(
   });
 }
 
+export async function addressesExtended(
+  this: BlockFrostAPI,
+  address: string,
+): Promise<components['schemas']['address_content_extended']> {
+  return new Promise((resolve, reject) => {
+    this.instance<components['schemas']['address_content_extended']>(
+      `addresses/${address}/extended`,
+    )
+      .then(resp => {
+        resolve(resp.body);
+      })
+      .catch(err => reject(handleError(err)));
+  });
+}
+
 export async function addressesTransactions(
   this: BlockFrostAPI,
   address: string,

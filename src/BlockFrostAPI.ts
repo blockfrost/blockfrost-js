@@ -19,12 +19,14 @@ import {
   accountsAddresses,
   accountsAddressesAll,
   accountsAddressesAssets,
+  accountsAddressesTotal,
   accountsAddressesAssetsAll,
 } from './endpoints/api/accounts';
 
 import {
   addresses,
   addressesTotal,
+  addressesExtended,
   addressesTransactions,
   addressesTransactionsAll,
   addressesUtxos,
@@ -315,6 +317,15 @@ class BlockFrostAPI {
   accountsAddressesAssetsAll = accountsAddressesAssetsAll;
 
   /**
+   * accountsAddressesTotal - Obtain summed details aboutof all addresses associated with a given account.
+   *
+   * @param stakeAddress - Bech32 stake address
+   * @returns Assets associated with the account addresses
+   *
+   */
+  accountsAddressesTotal = accountsAddressesTotal;
+
+  /**
    * assets - List of assets.
    *
    * @returns List of assets.
@@ -402,6 +413,15 @@ class BlockFrostAPI {
    *
    */
   addressesTotal = addressesTotal;
+
+  /**
+   * addressesExtended
+   *
+   * @param address
+   * @returns xxx
+   *
+   */
+  addressesExtended = addressesExtended;
 
   /**
    * addressesTransactions
