@@ -56,13 +56,17 @@ import {
 import {
   epochs,
   epochsBlocks,
+  epochsBlocksAll,
   epochsBlocksByPoolId,
+  epochsBlocksByPoolIdAll,
   epochsLatest,
   epochsNext,
   epochsParameters,
   epochsPrevious,
   epochsStakes,
+  epochsStakesAll,
   epochsStakesByPoolId,
+  epochsStakesByPoolIdAll,
 } from './endpoints/api/epochs';
 
 import {
@@ -508,13 +512,33 @@ class BlockFrostAPI {
   epochsBlocks = epochsBlocks;
 
   /**
+   * epochsBlocksAll
+   *
+   * @param number
+   * @returns xxx
+   *
+   */
+  epochsBlocksAll = epochsBlocksAll;
+
+  /**
    * epochsBlocksByPoolId
    *
-   * @param blocksTxs
+   * @param number
+   * @param poolId
    * @returns xxx
    *
    */
   epochsBlocksByPoolId = epochsBlocksByPoolId;
+
+  /**
+   * epochsBlocksByPoolIdAll
+   *
+   * @param number
+   * @param poolId
+   * @returns xxx
+   *
+   */
+  epochsBlocksByPoolIdAll = epochsBlocksByPoolIdAll;
 
   /**
    * epochsLatest
@@ -561,13 +585,33 @@ class BlockFrostAPI {
   epochsStakes = epochsStakes;
 
   /**
-   * epochsStakesByPoolId
+   * epochsStakesAll
    *
    * @param number
    * @returns xxx
    *
    */
+  epochsStakesAll = epochsStakesAll;
+
+  /**
+   * epochsStakesByPoolId
+   *
+   * @param number
+   * @param poolId
+   * @returns xxx
+   *
+   */
   epochsStakesByPoolId = epochsStakesByPoolId;
+
+  /**
+   * epochsStakesByPoolIdAll
+   *
+   * @param number
+   * @param poolId
+   * @returns xxx
+   *
+   */
+  epochsStakesByPoolIdAll = epochsStakesByPoolIdAll;
 
   /**
    * health
