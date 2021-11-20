@@ -155,11 +155,11 @@ export async function epochsStakesByPoolId(
   number: number,
   poolId: string,
   pagination?: PaginationOptions,
-): Promise<components['schemas']['epoch_block_content']> {
+): Promise<components['schemas']['epoch_stake_pool_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['epoch_block_content']>(
+    this.instance<components['schemas']['epoch_stake_pool_content']>(
       `epochs/${number}/stakes/${poolId}`,
       {
         searchParams: {
@@ -183,9 +183,9 @@ export async function epochsStakesByPoolIdAll(
   number: number,
   poolId: string,
   allMethodOptions?: AllMethodOptions,
-): Promise<components['schemas']['epoch_block_content']> {
+): Promise<components['schemas']['epoch_stake_pool_content']> {
   let page = 1;
-  const res: components['schemas']['epoch_block_content'] = [];
+  const res: components['schemas']['epoch_stake_pool_content'] = [];
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
   const options = getAllMethodOptions(allMethodOptions);
 
@@ -281,11 +281,11 @@ export async function epochsBlocksByPoolId(
   number: number,
   poolId: string,
   pagination?: PaginationOptions,
-): Promise<components['schemas']['epoch_stake_pool_content']> {
+): Promise<components['schemas']['epoch_block_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['epoch_stake_pool_content']>(
+    this.instance<components['schemas']['epoch_block_content']>(
       `epochs/${number}/blocks/${poolId}`,
       {
         searchParams: {
@@ -309,9 +309,9 @@ export async function epochsBlocksByPoolIdAll(
   number: number,
   poolId: string,
   allMethodOptions?: AllMethodOptions,
-): Promise<components['schemas']['epoch_stake_pool_content']> {
+): Promise<components['schemas']['epoch_block_content']> {
   let page = 1;
-  const res: components['schemas']['epoch_stake_pool_content'] = [];
+  const res: components['schemas']['epoch_block_content'] = [];
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
   const options = getAllMethodOptions(allMethodOptions);
 
