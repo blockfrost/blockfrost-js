@@ -106,7 +106,8 @@ describe('utils', () => {
       isTestnet: undefined,
       projectId: 'xxx',
       requestTimeout: 20000,
-      retry: undefined,
+      http2: true,
+      retryOptions: undefined,
       version: 0,
     });
   });
@@ -163,6 +164,7 @@ describe('utils', () => {
       customBackend: undefined,
       isTestnet: undefined,
       projectId: 'xxx',
+      http2: true,
       requestTimeout: 1,
       version: 0,
     });
