@@ -38,7 +38,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     customBackend: options.customBackend,
     projectId: options.projectId,
     isTestnet:
-      options.isTestnet ||
+      options.isTestnet ??
       deriveTestnetOption(options.projectId, options.isTestnet),
     version: options.version || DEFAULT_API_VERSION,
     http2: options.http2 ?? true,
