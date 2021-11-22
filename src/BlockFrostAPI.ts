@@ -71,6 +71,7 @@ import {
 
 import {
   pools,
+  poolsAll,
   poolMetadata,
   poolsById,
   poolsByIdBlocks,
@@ -742,6 +743,14 @@ class BlockFrostAPI {
    *
    */
   pools = pools;
+
+  /**
+   * poolsAll
+   *
+   * @returns xxx
+   *
+   */
+  poolsAll = poolsAll;
 
   /**
    * poolMetadata

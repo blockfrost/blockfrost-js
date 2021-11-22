@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - http2 option (default true)
-- new helper methods `epochsBlocksAll`, `epochsBlocksByPoolIdAll`, `epochsStakesAll`, `epochsStakesByPoolIdAll`
+- new helper methods `epochsBlocksAll`, `epochsBlocksByPoolIdAll`, `epochsStakesAll`, `epochsStakesByPoolIdAll` and `poolsAll`
 
 ## ⚠️ Breaking changes
 

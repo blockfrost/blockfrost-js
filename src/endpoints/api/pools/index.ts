@@ -1,7 +1,7 @@
-import { getPaginationOptions } from '../../../utils';
+import { getPaginationOptions, paginateMethod } from '../../../utils';
 import { components } from '../../../types/OpenApi';
 import { BlockFrostAPI } from '../../../index';
-import { PaginationOptions } from '../../../types';
+import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { handleError } from '../../../utils/errors';
 
 export async function pools(
@@ -25,6 +25,13 @@ export async function pools(
         reject(handleError(err));
       });
   });
+}
+
+export async function poolsAll(
+  this: BlockFrostAPI,
+  allMethodOptions?: AllMethodOptions,
+): Promise<components['schemas']['pool_list']> {
+  return paginateMethod(pagination => this.pools(pagination), allMethodOptions);
 }
 
 export async function poolsRetired(
