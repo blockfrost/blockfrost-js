@@ -1,9 +1,8 @@
-import { getPaginationOptions, getAllMethodOptions } from '../../../utils';
+import { getPaginationOptions, paginateMethod } from '../../../utils';
 import { handleError } from '../../../utils/errors';
 import { components } from '../../../types/OpenApi';
 import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
-import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../config';
 
 export async function nutlinkAddress(
   this: BlockFrostAPI,
@@ -50,34 +49,10 @@ export async function nutlinkAddressTickersAll(
   address: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['nutlink_address_tickers']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['nutlink_address_tickers'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.nutlinkAddressTickers(address, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.nutlinkAddressTickers(address, pagination),
+    allMethodOptions,
+  );
 }
 
 export async function nutlinkAddressTicker(
@@ -112,34 +87,10 @@ export async function nutlinkAddressTickerAll(
   ticker: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['nutlink_address_ticker']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['nutlink_address_ticker'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.nutlinkAddressTicker(address, ticker, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.nutlinkAddressTicker(address, ticker, pagination),
+    allMethodOptions,
+  );
 }
 
 export async function nutlinkTickers(
@@ -172,32 +123,8 @@ export async function nutlinkTickersAll(
   ticker: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['nutlink_tickers_ticker']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['nutlink_tickers_ticker'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.nutlinkTickers(ticker, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.nutlinkTickers(ticker, pagination),
+    allMethodOptions,
+  );
 }

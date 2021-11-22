@@ -125,3 +125,49 @@ export const parseAsset = (hex: string): ParseAssetResult => {
     fingerprint,
   };
 };
+
+export const paginateMethod = async <
+  T extends (
+    pagination: PaginationOptions,
+    additionalOptions?: AdditionalEndpointOptions,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ) => any,
+>(
+  fn: T,
+  allMethodOptions: AllMethodOptions | undefined,
+  additionalOptions?: AdditionalEndpointOptions,
+): Promise<ReturnType<T>> => {
+  const res = [];
+  let page = 1;
+  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
+  const options = getAllMethodOptions(allMethodOptions);
+
+  const getSlice = () => {
+    const promises = [...Array(options.batchSize).keys()].map(i =>
+      fn(
+        {
+          page: page + i,
+          count,
+          order: options.order,
+        },
+        {
+          from: additionalOptions?.from,
+          to: additionalOptions?.to,
+        },
+      ),
+    );
+    page += options.batchSize;
+    return promises;
+  };
+
+  // eslint-disable-next-line no-constant-condition
+  while (true) {
+    const pages = await Promise.all(getSlice());
+    for (const p of pages) {
+      res.push(...p);
+      if (p.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+        return res as ReturnType<T>; // yay
+      }
+    }
+  }
+};

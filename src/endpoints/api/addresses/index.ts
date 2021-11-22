@@ -1,15 +1,11 @@
 import {
   getAdditionalParams,
   getPaginationOptions,
-  getAllMethodOptions,
+  paginateMethod,
 } from '../../../utils';
 import { components } from '../../../types/OpenApi';
 import { BlockFrostAPI } from '../../../index';
 import { handleError } from '../../../utils/errors';
-import {
-  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-  DEFAULT_BATCH_SIZE,
-} from '../../../config';
 import {
   PaginationOptions,
   AdditionalEndpointOptions,
@@ -87,41 +83,12 @@ export async function addressesTransactionsAll(
   allMethodOptions?: AllMethodOptions,
   additionalOptions?: AdditionalEndpointOptions,
 ): Promise<components['schemas']['address_transactions_content']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['address_transactions_content'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.addressesTransactions(
-        address,
-        {
-          page: page + i,
-          count,
-          order: options.order,
-        },
-        {
-          from: additionalOptions?.from,
-          to: additionalOptions?.to,
-        },
-      ),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    (pagination, additionalOptions) =>
+      this.addressesTransactions(address, pagination, additionalOptions),
+    allMethodOptions,
+    additionalOptions,
+  );
 }
 
 export async function addressesUtxos(
@@ -154,32 +121,8 @@ export async function addressesUtxosAll(
   address: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['address_utxo_content']> {
-  let page = 1;
-  const res: components['schemas']['address_utxo_content'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.addressesUtxos(address, {
-        page: page + i,
-        count: DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
-        order: options.order,
-      }),
-    );
-
-    page += options.batchSize || DEFAULT_BATCH_SIZE;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.addressesUtxos(address, pagination),
+    allMethodOptions,
+  );
 }
