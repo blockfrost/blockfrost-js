@@ -1,9 +1,8 @@
-import { getPaginationOptions, getAllMethodOptions } from '../../../utils';
+import { getPaginationOptions, paginateMethod } from '../../../utils';
 import { handleError } from '../../../utils/errors';
 import { components } from '../../../types/OpenApi';
 import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
-import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../config';
 
 export async function assets(
   this: BlockFrostAPI,
@@ -69,34 +68,10 @@ export async function assetsHistoryAll(
   asset: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['asset_history']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['asset_history'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.assetsHistory(asset, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.assetsHistory(asset, pagination),
+    allMethodOptions,
+  );
 }
 
 export async function assetsTransactions(
@@ -179,32 +154,8 @@ export async function assetsPolicyByIdAll(
   policy: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['asset_policy']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['asset_policy'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.assetsPolicyById(policy, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.assetsPolicyById(policy, pagination),
+    allMethodOptions,
+  );
 }

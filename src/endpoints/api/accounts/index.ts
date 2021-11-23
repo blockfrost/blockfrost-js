@@ -1,8 +1,7 @@
-import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../config';
 import { BlockFrostAPI } from '../../../index';
 import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { components } from '../../../types/OpenApi';
-import { getPaginationOptions, getAllMethodOptions } from '../../../utils';
+import { getPaginationOptions, paginateMethod } from '../../../utils';
 import { handleError } from '../../../utils/errors';
 
 export async function accounts(
@@ -50,35 +49,10 @@ export async function accountsRewardsAll(
   stakeAddress: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_reward_content']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['account_reward_content'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.accountsRewards(stakeAddress, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.accountsRewards(stakeAddress, pagination),
+    allMethodOptions,
+  );
 }
 
 export async function accountsHistory(
@@ -111,34 +85,10 @@ export async function accountsHistoryAll(
   stakeAddress: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_history_content']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['account_history_content'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.accountsHistory(stakeAddress, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.accountsHistory(stakeAddress, pagination),
+    allMethodOptions,
+  );
 }
 
 export async function accountsWithdrawals(
@@ -171,34 +121,10 @@ export async function accountsWithdrawalsAll(
   stakeAddress: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_withdrawal_content']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['account_withdrawal_content'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.accountsWithdrawals(stakeAddress, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.accountsWithdrawals(stakeAddress, pagination),
+    allMethodOptions,
+  );
 }
 
 export async function accountsMirs(
@@ -231,34 +157,10 @@ export async function accountsMirsAll(
   stakeAddress: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_mir_content']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['account_mir_content'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.accountsMirs(stakeAddress, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.accountsMirs(stakeAddress, pagination),
+    allMethodOptions,
+  );
 }
 
 export async function accountsDelegations(
@@ -291,34 +193,10 @@ export async function accountsDelegationsAll(
   stakeAddress: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_delegation_content']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const options = getAllMethodOptions(allMethodOptions);
-  const res: components['schemas']['account_delegation_content'] = [];
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.accountsDelegations(stakeAddress, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.accountsDelegations(stakeAddress, pagination),
+    allMethodOptions,
+  );
 }
 
 export async function accountsRegistrations(
@@ -351,34 +229,10 @@ export async function accountsRegistrationsAll(
   stakeAddress: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_registration_content']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['account_registration_content'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.accountsRegistrations(stakeAddress, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.accountsRegistrations(stakeAddress, pagination),
+    allMethodOptions,
+  );
 }
 
 export async function accountsAddresses(
@@ -411,34 +265,10 @@ export async function accountsAddressesAll(
   stakeAddress: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_addresses_content']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['account_addresses_content'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.accountsAddresses(stakeAddress, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.accountsAddresses(stakeAddress, pagination),
+    allMethodOptions,
+  );
 }
 
 export async function accountsAddressesAssets(
@@ -471,32 +301,8 @@ export async function accountsAddressesAssetsAll(
   stakeAddress: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['account_addresses_assets']> {
-  let page = 1;
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const res: components['schemas']['account_addresses_assets'] = [];
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.accountsAddressesAssets(stakeAddress, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.accountsAddressesAssets(stakeAddress, pagination),
+    allMethodOptions,
+  );
 }

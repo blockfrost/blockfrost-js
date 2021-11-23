@@ -1,6 +1,5 @@
-import { getPaginationOptions, getAllMethodOptions } from '../../../utils';
+import { getPaginationOptions, paginateMethod } from '../../../utils';
 import { handleError } from '../../../utils/errors';
-import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../config';
 import {
   AllMethodOptions,
   HashOrNumber,
@@ -70,34 +69,10 @@ export async function blocksLatestTxsAll(
   this: BlockFrostAPI,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['block_content_txs']> {
-  let page = 1;
-  const res: components['schemas']['block_content_txs'] = [];
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.blocksLatestTxs({
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.blocksLatestTxs(pagination),
+    allMethodOptions,
+  );
 }
 
 export async function blocksNext(
@@ -186,32 +161,8 @@ export async function blocksTxsAll(
   hashOrNumber: string | number,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['block_content_txs']> {
-  let page = 1;
-  const res: components['schemas']['block_content_txs'] = [];
-  const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
-  const options = getAllMethodOptions(allMethodOptions);
-
-  const getPromiseBundle = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      this.blocksTxs(hashOrNumber, {
-        page: page + i,
-        count,
-        order: options.order,
-      }),
-    );
-    page += options.batchSize;
-    return promises;
-  };
-
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    const promiseBundle = getPromiseBundle();
-    const pages = await Promise.all(promiseBundle);
-    for (const page of pages) {
-      res.push(...page);
-      if (page.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res;
-      }
-    }
-  }
+  return paginateMethod(
+    pagination => this.blocksTxs(hashOrNumber, pagination),
+    allMethodOptions,
+  );
 }
