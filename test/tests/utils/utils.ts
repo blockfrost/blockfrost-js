@@ -103,11 +103,12 @@ describe('utils', () => {
 
     expect(api.options).toEqual({
       customBackend: undefined,
-      isTestnet: undefined,
+      isTestnet: false,
       projectId: 'xxx',
-      requestTimeout: 20000,
       http2: true,
-      retryOptions: undefined,
+      requestTimeout: 20000,
+      retrySettings: undefined,
+      retry: undefined,
       version: 0,
     });
   });
@@ -156,16 +157,17 @@ describe('utils', () => {
 
   test('requestTimeout', () => {
     const api = new BlockFrostAPI({
-      projectId: 'xxx',
+      projectId: 'mainnetxxx',
       requestTimeout: 1,
     });
 
     expect(api.options).toEqual({
       customBackend: undefined,
-      isTestnet: undefined,
-      projectId: 'xxx',
+      isTestnet: false,
       http2: true,
+      projectId: 'mainnetxxx',
       requestTimeout: 1,
+      retrySettings: undefined,
       version: 0,
     });
   });
