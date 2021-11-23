@@ -166,7 +166,7 @@ export const paginateMethod = async <
     for (const p of pages) {
       res.push(...p);
       if (p.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
-        return res as ReturnType<T>; // yay
+        return res as ReturnType<T>; // yikes
       }
     }
   }
