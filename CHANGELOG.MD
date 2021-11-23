@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - http2 option (default true)
+- new helper methods `epochsBlocksAll`, `epochsBlocksByPoolIdAll`, `epochsStakesAll`, `epochsStakesByPoolIdAll` and `poolsAll`
 
 ## ⚠️ Breaking changes
 
@@ -21,6 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - thrown errors (`BlockfrostServerError`, `BlockfrostClientError`) are now subclasses of `Error`
 - updated @blockfrost/openapi & regenerated types to match reflect changes in Blockfrost API
+
+### Fixed
+- return type of epochsStakesByPoolId and epochsBlocksByPoolId
 
 ## [2.0.2]
 
