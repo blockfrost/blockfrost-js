@@ -16,6 +16,7 @@ import {
   AdditionalEndpointOptions,
   AllMethodOptions,
 } from '../types';
+import { RetryObject } from 'got';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
   if (!options || (!options.customBackend && !options.projectId)) {
@@ -42,9 +43,27 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
       deriveTestnetOption(options.projectId, options.isTestnet),
     version: options.version || DEFAULT_API_VERSION,
     http2: options.http2 ?? false,
-    // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
-    retrySettings: options.retrySettings,
     requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
+    // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
+    retrySettings: options.retrySettings ?? {
+      limit: 20, // retry count
+      methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'], // no retry on POST
+      statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
+      errorCodes: [
+        'ETIMEDOUT',
+        'ECONNRESET',
+        'EADDRINUSE',
+        'ECONNREFUSED',
+        'EPIPE',
+        'ENOTFOUND',
+        'ENETUNREACH',
+        'EAI_AGAIN',
+      ],
+      calculateDelay: (_retryObject: RetryObject) => 1000, // 1s retry delay
+      // maxRetryAfter: undefined,
+      // backoffLimit: Number.POSITIVE_INFINITY,
+      // noise: 100
+    },
   };
 };
 

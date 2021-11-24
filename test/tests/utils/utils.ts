@@ -46,69 +46,81 @@ describe('utils', () => {
     expect(api.apiUrl).toBe('http://customBackend.com');
   });
 
-  // test('retrySettings', () => {
-  //   const api = new BlockFrostAPI({
-  //     projectId: 'xxx',
-  //     retrySettings: {
-  //       limit: 2,
-  //       methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
-  //       statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
-  //       errorCodes: [
-  //         'ETIMEDOUT',
-  //         'ECONNRESET',
-  //         'EADDRINUSE',
-  //         'ECONNREFUSED',
-  //         'EPIPE',
-  //         'ENOTFOUND',
-  //         'ENETUNREACH',
-  //         'EAI_AGAIN',
-  //       ],
-  //       maxRetryAfter: undefined,
-  //       calculateDelay: ({ computedValue }) => computedValue,
-  //     },
-  //   });
+  test('retrySettings', () => {
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+      retrySettings: {
+        limit: 2,
+        methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
+        statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
+        errorCodes: [
+          'ETIMEDOUT',
+          'ECONNRESET',
+          'EADDRINUSE',
+          'ECONNREFUSED',
+          'EPIPE',
+          'ENOTFOUND',
+          'ENETUNREACH',
+          'EAI_AGAIN',
+        ],
+        maxRetryAfter: undefined,
+        calculateDelay: ({ computedValue }) => computedValue,
+      },
+    });
 
-  //   expect(JSON.stringify(api.options)).toBe(
-  //     JSON.stringify({
-  //       customBackend: undefined,
-  //       isTestnet: undefined,
-  //       projectId: 'xxx',
-  //       requestTimeout: 20000,
-  //       retrySettings: {
-  //         limit: 2,
-  //         methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
-  //         statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
-  //         errorCodes: [
-  //           'ETIMEDOUT',
-  //           'ECONNRESET',
-  //           'EADDRINUSE',
-  //           'ECONNREFUSED',
-  //           'EPIPE',
-  //           'ENOTFOUND',
-  //           'ENETUNREACH',
-  //           'EAI_AGAIN',
-  //         ],
-  //         maxRetryAfter: undefined,
-  //         calculateDelay: ({ computedValue }) => computedValue,
-  //       },
-  //       version: 0,
-  //     }),
-  //   );
-  // });
+    expect(api.options).toMatchObject({
+      customBackend: undefined,
+      isTestnet: false,
+      projectId: 'xxx',
+      requestTimeout: 20000,
+      retrySettings: {
+        limit: 2,
+        methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
+        statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
+        errorCodes: [
+          'ETIMEDOUT',
+          'ECONNRESET',
+          'EADDRINUSE',
+          'ECONNREFUSED',
+          'EPIPE',
+          'ENOTFOUND',
+          'ENETUNREACH',
+          'EAI_AGAIN',
+        ],
+        maxRetryAfter: undefined,
+        // calculateDelay: ({ computedValue }) => computedValue, // function would need to be serialized
+      },
+      version: 0,
+    });
+  });
 
   test('default options', () => {
     const api = new BlockFrostAPI({
       projectId: 'xxx',
     });
 
-    expect(api.options).toEqual({
+    expect(api.options).toMatchObject({
       customBackend: undefined,
       isTestnet: false,
       projectId: 'xxx',
       http2: false,
       requestTimeout: 20000,
-      retrySettings: undefined,
-      retry: undefined,
+      retrySettings: {
+        limit: 20,
+        methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
+        statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
+        errorCodes: [
+          'ETIMEDOUT',
+          'ECONNRESET',
+          'EADDRINUSE',
+          'ECONNREFUSED',
+          'EPIPE',
+          'ENOTFOUND',
+          'ENETUNREACH',
+          'EAI_AGAIN',
+        ],
+        // calculateDelay: () => 1000, // func would need to be serialized
+      },
       version: 0,
     });
   });
@@ -161,13 +173,12 @@ describe('utils', () => {
       requestTimeout: 1,
     });
 
-    expect(api.options).toEqual({
+    expect(api.options).toMatchObject({
       customBackend: undefined,
       isTestnet: false,
       http2: false,
       projectId: 'mainnetxxx',
       requestTimeout: 1,
-      retrySettings: undefined,
       version: 0,
     });
   });
