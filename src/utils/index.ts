@@ -201,3 +201,17 @@ export const paginateMethod = async <
     }
   }
 };
+
+export const debugMessage = (body: any, head?: string, tail?: string): void => {
+  if (!!process.env.BLOCKFROST_DEBUG !== true) return;
+
+  if (head) {
+    console.log(`------ ${head}`);
+  }
+
+  console.log(body);
+
+  if (tail) {
+    console.log(`------ ${tail}`);
+  }
+};
