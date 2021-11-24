@@ -69,4 +69,34 @@ export const handleError = [
       error: 'Gateway Timeout',
     },
   },
+  {
+    description: 'handle error without statusMessage',
+    payload: {
+      name: 'HTTPError',
+      timings: {
+        start: 1637094739914,
+        socket: 1637094739915,
+      },
+      request: {
+        aborted: false,
+        timeoutCb: null,
+        upgradeOrConnect: false,
+        parser: null,
+        maxHeadersCount: null,
+        reusedSocket: false,
+        host: 'cardano-mainnet.blockfrost.io',
+        protocol: 'https:',
+      },
+      response: {
+        statusCode: 0,
+        body: 'some html displaying the error',
+      },
+      message: 'Response code 0 (undefined)',
+    },
+    result: {
+      status_code: 0,
+      message: '0: Response code 0 (undefined)',
+      error: 'Response code 0 (undefined)',
+    },
+  },
 ];
