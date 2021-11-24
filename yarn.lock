@@ -671,7 +671,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@blockfrost/blockfrost-js@workspace:."
   dependencies:
-    "@blockfrost/openapi": "https://github.com/blockfrost/openapi.git#c568a7d3ac69ac7cf5ff2c093c69f5771f8b2c3d"
+    "@blockfrost/openapi": 0.1.33
     "@emurgo/cardano-serialization-lib-nodejs": ^8.1.0
     "@emurgo/cip14-js": 2.0.0
     "@swc-node/jest": ^1.4.1
@@ -709,10 +709,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@blockfrost/openapi@https://github.com/blockfrost/openapi.git#c568a7d3ac69ac7cf5ff2c093c69f5771f8b2c3d":
+"@blockfrost/openapi@npm:0.1.33":
   version: 0.1.33
-  resolution: "@blockfrost/openapi@https://github.com/blockfrost/openapi.git#commit=c568a7d3ac69ac7cf5ff2c093c69f5771f8b2c3d"
-  checksum: 6fe2f46abbef495024cfda515c295fbc4a0be76d8a893c57db9e1c2a43137f3edc6395f4425773f61c6f072edac18d736b25c6b4f50e186fa60f424ee359acfd
+  resolution: "@blockfrost/openapi@npm:0.1.33"
+  checksum: ca705c49fb2dc36aea946a11778ae1aaac9e6ba8cd14a16212dd647912a84b3dfddc451dbc0d6c6480f2e59fef2540bac1ee32fa8ea0d6a7c0c08ec82125feab
   languageName: node
   linkType: hard
 
