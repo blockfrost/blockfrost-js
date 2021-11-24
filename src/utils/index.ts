@@ -41,7 +41,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
       options.isTestnet ??
       deriveTestnetOption(options.projectId, options.isTestnet),
     version: options.version || DEFAULT_API_VERSION,
-    http2: options.http2 ?? true,
+    http2: options.http2 ?? false,
     // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
     retrySettings: options.retrySettings,
     requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
