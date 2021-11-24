@@ -306,3 +306,18 @@ export async function accountsAddressesAssetsAll(
     allMethodOptions,
   );
 }
+
+export async function accountsAddressesTotal(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+): Promise<components['schemas']['account_addresses_total']> {
+  return new Promise((resolve, reject) => {
+    this.instance<components['schemas']['account_addresses_total']>(
+      `accounts/${stakeAddress}/addresses/total`,
+    )
+      .then(resp => {
+        resolve(resp.body);
+      })
+      .catch(err => reject(handleError(err)));
+  });
+}

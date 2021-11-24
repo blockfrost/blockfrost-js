@@ -1188,7 +1188,6 @@ export interface paths {
   "/accounts/{stake_address}/addresses/assets": {
     /**
      * Obtain information about assets associated with addresses of a specific account.
-     *
      * <b>Be careful</b>, as an account could be part of a mangled address and does not necessarily mean the addresses are owned by user as the account.
      */
     get: {
@@ -1214,6 +1213,34 @@ export interface paths {
         200: {
           content: {
             "application/json": components["schemas"]["account_addresses_assets"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/accounts/{stake_address}/addresses/total": {
+    /**
+     * Obtain summed details aboutof all addresses associated with a given account.
+     * <b>Be careful</b>, as an account could be part of a mangled address and does not necessarily mean the addresses are owned by user as the account.
+     */
+    get: {
+      parameters: {
+        path: {
+          /** Bech32 address. */
+          address: string;
+        };
+      };
+      responses: {
+        /** Return the Address details. */
+        200: {
+          content: {
+            "application/json": components["schemas"]["account_addresses_total"];
           };
         };
         400: components["responses"]["bad_request"];
@@ -1343,6 +1370,31 @@ export interface paths {
         200: {
           content: {
             "application/json": components["schemas"]["address_content"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
+  "/addresses/{address}/extended": {
+    /** Obtain extended information about a specific address. */
+    get: {
+      parameters: {
+        path: {
+          /** Bech32 address. */
+          address: string;
+        };
+      };
+      responses: {
+        /** Return the address content. */
+        200: {
+          content: {
+            "application/json": components["schemas"]["address_content_extended"];
           };
         };
         400: components["responses"]["bad_request"];
@@ -3038,6 +3090,24 @@ export interface components {
       /** The quantity of the unit */
       quantity: string;
     }[];
+    account_addresses_total: {
+      /** Bech32 encoded stake address */
+      stake_address: string;
+      received_sum: {
+        /** The unit of the value */
+        unit: string;
+        /** The quantity of the unit */
+        quantity: string;
+      }[];
+      sent_sum: {
+        /** The unit of the value */
+        unit: string;
+        /** The quantity of the unit */
+        quantity: string;
+      }[];
+      /** Count of all transactions for all addresses associated with the account */
+      tx_count: number;
+    };
     account_reward_content: {
       /** Epoch of the associated reward */
       epoch: number;
@@ -3090,6 +3160,26 @@ export interface components {
         unit: string;
         /** The quantity of the unit */
         quantity: string;
+      }[];
+      /** Stake address that controls the key */
+      stake_address: string | null;
+      /** Address era */
+      type: "byron" | "shelley";
+      /** True if this is a script address */
+      script: boolean;
+    };
+    address_content_extended: {
+      /** Bech32 encoded addresses */
+      address: string;
+      amount: {
+        /** The unit of the value */
+        unit: string;
+        /** The quantity of the unit */
+        quantity: string;
+        /** Number of decimal places of the asset unit */
+        decimals: number | null;
+        /** The latest minting transaction includes the NFT metadata according to CIP25 */
+        has_nft_onchain_metadata: boolean;
       }[];
       /** Stake address that controls the key */
       stake_address: string | null;

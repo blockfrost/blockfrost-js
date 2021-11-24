@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - http2 option (default true)
 - derive network from project id
 - new helper methods `epochsBlocksAll`, `epochsBlocksByPoolIdAll`, `epochsStakesAll`, `epochsStakesByPoolIdAll` and `poolsAll`
+- new methods `addressesExtended` and `accountsAddressesTotal`
 
 ## ⚠️ Breaking changes
 
@@ -25,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - updated @blockfrost/openapi & regenerated types to match reflect changes in Blockfrost API
 
 ### Fixed
+
 - return type of epochsStakesByPoolId and epochsBlocksByPoolId
 
 ## [2.0.2]

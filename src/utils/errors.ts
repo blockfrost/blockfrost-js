@@ -1,5 +1,6 @@
 import { HTTPError } from 'got';
 import { GotError, ErrorType } from '../types';
+import { debugMessage } from '../utils';
 
 export class BlockfrostServerError extends Error {
   status_code: number;
@@ -49,6 +50,9 @@ export const isBlockfrostErrorResponse = (
 export const handleError = (
   error: GotError,
 ): BlockfrostServerError | BlockfrostClientError => {
+  debugMessage(error, 'error start', 'error end');
+  debugMessage(error.response, 'error.response start', 'error.response end');
+
   if (error instanceof HTTPError) {
     const responseBody = error.response.body;
 
@@ -57,11 +61,11 @@ export const handleError = (
     } else {
       // response.body may contain html output (eg. errors returned by nginx)
       const statusCode = error.response.statusCode;
-      const statusText = error.response.statusMessage;
+      const statusText = error.response.statusMessage ?? error.message;
       return new BlockfrostServerError({
         status_code: statusCode,
         message: `${statusCode}: ${statusText}`,
-        error: statusText ?? '',
+        error: statusText,
       });
     }
   }
