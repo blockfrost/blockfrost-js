@@ -50,7 +50,8 @@ export const isBlockfrostErrorResponse = (
 export const handleError = (
   error: GotError,
 ): BlockfrostServerError | BlockfrostClientError => {
-  debugMessage(error, 'handleError start', 'handleError end');
+  debugMessage(error, 'error start', 'error end');
+  debugMessage(error.response, 'error.response start', 'error.response end');
 
   if (error instanceof HTTPError) {
     const responseBody = error.response.body;
