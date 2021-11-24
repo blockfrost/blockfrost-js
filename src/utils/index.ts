@@ -202,7 +202,11 @@ export const paginateMethod = async <
   }
 };
 
-export const debugMessage = (body: any, head?: string, tail?: string): void => {
+export const debugMessage = (
+  body: unknown,
+  head?: string,
+  tail?: string,
+): void => {
   if (!!process.env.BLOCKFROST_DEBUG !== true) return;
 
   if (head) {
