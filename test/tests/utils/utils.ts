@@ -105,7 +105,7 @@ describe('utils', () => {
       customBackend: undefined,
       isTestnet: false,
       projectId: 'xxx',
-      http2: true,
+      http2: false,
       requestTimeout: 20000,
       retrySettings: undefined,
       retry: undefined,
@@ -164,7 +164,7 @@ describe('utils', () => {
     expect(api.options).toEqual({
       customBackend: undefined,
       isTestnet: false,
-      http2: true,
+      http2: false,
       projectId: 'mainnetxxx',
       requestTimeout: 1,
       retrySettings: undefined,
