@@ -207,7 +207,7 @@ export const debugMessage = (
   head?: string,
   tail?: string,
 ): void => {
-  if (!!process.env.BLOCKFROST_DEBUG !== true) return;
+  if (process.env.BLOCKFROST_DEBUG !== 'true') return;
 
   if (head) {
     console.log(`------ ${head}`);
