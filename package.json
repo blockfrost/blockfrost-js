@@ -32,7 +32,7 @@
     "@emurgo/cardano-serialization-lib-nodejs": "^8.1.0",
     "@emurgo/cip14-js": "2.0.0",
     "form-data": "^4.0.0",
-    "got": "^11.8.2",
+    "got": "^11.8.3",
     "nock": "^13.2.1",
     "url-join": "^4.0.1"
   },
