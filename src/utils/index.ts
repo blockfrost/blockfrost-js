@@ -59,7 +59,8 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
         'ENETUNREACH',
         'EAI_AGAIN',
       ],
-      calculateDelay: (_retryObject: RetryObject) => 1000, // 1s retry delay
+      calculateDelay: (_retryObject: RetryObject) =>
+        _retryObject.computedValue !== 0 ? 1000 : 0, // check if retry should be enabled, if so set 1s retry delay
       // maxRetryAfter: undefined,
       // backoffLimit: Number.POSITIVE_INFINITY,
       // noise: 100
