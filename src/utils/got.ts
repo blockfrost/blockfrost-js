@@ -7,16 +7,21 @@ export const getInstance = (
   userAgent: string | undefined,
 ): Got =>
   got.extend({
-    hooks:
-      process.env.BLOCKFROST_DEBUG === 'true'
-        ? {
-            beforeRequest: [
-              options => {
-                console.log(`${options.method} ${options.url}`);
-              },
-            ],
-          }
-        : undefined,
+    hooks: options.debug
+      ? {
+          beforeRequest: [
+            options => {
+              console.log(`${options.method} ${options.url}`);
+            },
+          ],
+          beforeError: [
+            error => {
+              console.error(error);
+              return error;
+            },
+          ],
+        }
+      : undefined,
     prefixUrl: apiUrl,
     responseType: 'json',
     http2: options.http2,

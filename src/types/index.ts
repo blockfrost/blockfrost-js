@@ -51,6 +51,7 @@ export interface ValidatedOptions {
   version: number;
   requestTimeout: number;
   http2?: boolean;
+  debug: boolean;
   projectId?: string;
   isTestnet?: boolean;
   retrySettings?: RequiredRetryOptions;

@@ -35,6 +35,8 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     throw Error('Param requestTimeout is not a number');
   }
 
+  const debug = process.env.BLOCKFROST_DEBUG === 'true';
+
   return {
     customBackend: options.customBackend,
     projectId: options.projectId,
@@ -42,6 +44,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
       options.isTestnet ??
       deriveTestnetOption(options.projectId, options.isTestnet),
     version: options.version || DEFAULT_API_VERSION,
+    debug,
     http2: options.http2 ?? false,
     requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
     // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
@@ -219,23 +222,5 @@ export const paginateMethod = async <
         return res as ReturnType<T>; // yikes
       }
     }
-  }
-};
-
-export const debugMessage = (
-  body: unknown,
-  head?: string,
-  tail?: string,
-): void => {
-  if (process.env.BLOCKFROST_DEBUG !== 'true') return;
-
-  if (head) {
-    console.log(`------ ${head}`);
-  }
-
-  console.log(body);
-
-  if (tail) {
-    console.log(`------ ${tail}`);
   }
 };
