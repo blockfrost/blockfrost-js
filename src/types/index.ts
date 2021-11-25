@@ -38,6 +38,7 @@ type AdditionalOptions = {
   isTestnet?: boolean;
   version?: number;
   http2?: boolean;
+  debug?: boolean;
   userAgent?: string;
   requestTimeout?: number;
   retrySettings?: RequiredRetryOptions;

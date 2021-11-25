@@ -35,7 +35,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     throw Error('Param requestTimeout is not a number');
   }
 
-  const debug = process.env.BLOCKFROST_DEBUG === 'true';
+  const debug = options.debug ?? process.env.BLOCKFROST_DEBUG === 'true';
 
   return {
     customBackend: options.customBackend,
