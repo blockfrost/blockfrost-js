@@ -214,7 +214,7 @@ export const paginateMethod = async <
     const pages = await Promise.all(getSlice());
     for (const p of pages) {
       res.push(...p);
-      if (p.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+      if (p.length < count) {
         return res as ReturnType<T>; // yikes
       }
     }

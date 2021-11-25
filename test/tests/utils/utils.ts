@@ -1,6 +1,11 @@
 import { BlockFrostAPI } from '../../../src/index';
 import * as utils from '../../../src/utils';
 import { expect } from '@jest/globals';
+import {
+  AdditionalEndpointOptions,
+  PaginationOptions,
+} from '../../../src/types';
+import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../src/config';
 
 describe('utils', () => {
   test('no options', () => {
@@ -192,5 +197,59 @@ describe('utils', () => {
       from: 'a',
       to: 'b',
     });
+  });
+
+  test('paginateMethod', async () => {
+    // should return 201 items (2 full pages with 100 items each and one additional item na 3rd page)
+    const mockedMethod = jest
+      .fn()
+      .mockImplementation(
+        (
+          pagination: PaginationOptions,
+          additionalOptions?: AdditionalEndpointOptions,
+        ) => {
+          return new Promise(resolve => {
+            if (pagination.page !== 3) {
+              // return full page of {pagination, additionalOptions} items
+              resolve(
+                [...Array(DEFAULT_PAGINATION_PAGE_ITEMS_COUNT).keys()].map(
+                  () => ({
+                    pagination: { ...pagination },
+                    additionalOptions: { ...additionalOptions },
+                  }),
+                ),
+              );
+            } else {
+              // return last page with 1 item array
+              resolve([
+                {
+                  pagination: { ...pagination },
+                  additionalOptions: { ...additionalOptions },
+                },
+              ]);
+            }
+          });
+        },
+      );
+
+    const res = await utils.paginateMethod(
+      mockedMethod,
+      {
+        // batchSize: 1, // batchSize is not tested
+        order: 'desc',
+      },
+      {},
+    );
+    // console.log('res', JSON.stringify(res, undefined, 4));
+    expect(res.filter(item => item.pagination.page === 1).length).toBe(100);
+    expect(res.filter(item => item.pagination.page === 2).length).toBe(100);
+    expect(res.filter(item => item.pagination.page === 3).length).toBe(1);
+    expect(res.length).toBe(201);
+    expect(
+      res.filter(
+        item =>
+          item.pagination.order === 'desc' && item.pagination.count === 100,
+      ).length,
+    ).toBe(201); // check if order option really propagated to a method passed as param
   });
 });
