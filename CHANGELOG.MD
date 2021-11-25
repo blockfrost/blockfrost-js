@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- http2 option (default true)
+- `http2` option (default true)
+- `debug` option (default false) - logs to stdout/stderr all fired request and errors thrown by Got
 - derive network from project id
 - new helper methods `epochsBlocksAll`, `epochsBlocksByPoolIdAll`, `epochsStakesAll`, `epochsStakesByPoolIdAll` and `poolsAll`
 - new methods `addressesExtended` and `accountsAddressesTotal`

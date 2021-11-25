@@ -38,6 +38,7 @@ type AdditionalOptions = {
   isTestnet?: boolean;
   version?: number;
   http2?: boolean;
+  debug?: boolean;
   userAgent?: string;
   requestTimeout?: number;
   retrySettings?: RequiredRetryOptions;
@@ -51,6 +52,7 @@ export interface ValidatedOptions {
   version: number;
   requestTimeout: number;
   http2?: boolean;
+  debug: boolean;
   projectId?: string;
   isTestnet?: boolean;
   retrySettings?: RequiredRetryOptions;

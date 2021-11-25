@@ -16,6 +16,7 @@ import {
   AdditionalEndpointOptions,
   AllMethodOptions,
 } from '../types';
+import { RetryObject } from 'got';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
   if (!options || (!options.customBackend && !options.projectId)) {
@@ -34,6 +35,8 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     throw Error('Param requestTimeout is not a number');
   }
 
+  const debug = options.debug ?? process.env.BLOCKFROST_DEBUG === 'true';
+
   return {
     customBackend: options.customBackend,
     projectId: options.projectId,
@@ -41,10 +44,30 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
       options.isTestnet ??
       deriveTestnetOption(options.projectId, options.isTestnet),
     version: options.version || DEFAULT_API_VERSION,
+    debug,
     http2: options.http2 ?? false,
-    // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
-    retrySettings: options.retrySettings,
     requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
+    // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
+    retrySettings: options.retrySettings ?? {
+      limit: 20, // retry count
+      methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'], // no retry on POST
+      statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
+      errorCodes: [
+        'ETIMEDOUT',
+        'ECONNRESET',
+        'EADDRINUSE',
+        'ECONNREFUSED',
+        'EPIPE',
+        'ENOTFOUND',
+        'ENETUNREACH',
+        'EAI_AGAIN',
+      ],
+      calculateDelay: (_retryObject: RetryObject) =>
+        _retryObject.computedValue !== 0 ? 1000 : 0, // check if retry should be enabled, if so set 1s retry delay
+      // maxRetryAfter: undefined,
+      // backoffLimit: Number.POSITIVE_INFINITY,
+      // noise: 100
+    },
   };
 };
 
@@ -195,27 +218,9 @@ export const paginateMethod = async <
     const pages = await Promise.all(getSlice());
     for (const p of pages) {
       res.push(...p);
-      if (p.length < DEFAULT_PAGINATION_PAGE_ITEMS_COUNT) {
+      if (p.length < count) {
         return res as ReturnType<T>; // yikes
       }
     }
-  }
-};
-
-export const debugMessage = (
-  body: unknown,
-  head?: string,
-  tail?: string,
-): void => {
-  if (process.env.BLOCKFROST_DEBUG !== 'true') return;
-
-  if (head) {
-    console.log(`------ ${head}`);
-  }
-
-  console.log(body);
-
-  if (tail) {
-    console.log(`------ ${tail}`);
   }
 };
