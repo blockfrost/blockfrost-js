@@ -131,17 +131,17 @@ describe('retry', () => {
       .get(path)
       .reply(200, { message: 'dummy response' })
       .get(path)
-      .reply(404, { message: 'not found' })
+      .reply(404, { message: '404: not found' })
       .get(path)
       .reply(200, { message: 'it works after all' });
 
+    const response = await SDK().blocksLatest();
+    expect(response).toMatchObject({ message: 'dummy response' });
     try {
       await SDK().blocksLatest();
     } catch (err) {
       expect(err).toMatchObject({
         status_code: 404,
-        error: null,
-        message: '404: not found',
       });
     }
   });
