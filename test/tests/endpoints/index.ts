@@ -17,7 +17,7 @@ files.forEach(file => {
   describe('file', () => {
     fileContent.default.forEach((fixture: TestFixture) => {
       test(fixture.command.toString(), async () => {
-        const response = await fixture.command(SDK);
+        const response = await fixture.command(SDK());
         expect(response).toMatchObject(fixture.response);
 
         if (fixture.itemsCount) {

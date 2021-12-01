@@ -7,7 +7,7 @@ import {
 describe('account', () => {
   deriveAddressFixtures.forEach(fixture => {
     test(fixture.toString(), () => {
-      const response = SDK.deriveAddress(
+      const response = SDK().deriveAddress(
         fixture.publicKey,
         fixture.index,
         fixture.type,
@@ -18,7 +18,7 @@ describe('account', () => {
 
   getAccountFixtures.forEach(fixture => {
     test(fixture.toString(), async () => {
-      const response = await SDK.getAccount(fixture.publicKey, fixture.type);
+      const response = await SDK().getAccount(fixture.publicKey, fixture.type);
       expect(response).toStrictEqual(fixture.response);
     });
   });
