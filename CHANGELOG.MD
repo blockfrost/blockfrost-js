@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - new helper methods `epochsBlocksAll`, `epochsBlocksByPoolIdAll`, `epochsStakesAll`, `epochsStakesByPoolIdAll` and `poolsAll`
 - new methods `addressesExtended` and `accountsAddressesTotal`
 
-## ⚠️ Breaking changes
+### ⚠️ Breaking changes
 
 - Axios → Got
 - removed `retryCount`, `retryDelay`, `retry429`
