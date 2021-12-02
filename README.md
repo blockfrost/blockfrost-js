@@ -27,7 +27,11 @@ To use this SDK, you first need to log in to [blockfrost.io](https://blockfrost.
 The SDK is hosted on [npmjs.com](https://www.npmjs.com/package/@blockfrost/blockfrost-js), so you can directly import it using your favorite package manager.
 
 ```console
-$ npm i @blockfrost/blockfrost-js
+npm i @blockfrost/blockfrost-js
+```
+
+```console
+yarn add @blockfrost/blockfrost-js
 ```
 
 <br/>
