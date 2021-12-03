@@ -36,7 +36,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["@emurgo/cardano-serialization-lib-nodejs", "npm:9.1.2"],
-            ["@emurgo/cip14-js", "npm:3.0.1"],
+            ["@emurgo/cip14-js", "npm:2.0.0"],
             ["@swc-node/jest", "npm:1.4.1"],
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.11"],
@@ -1085,7 +1085,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@blockfrost/blockfrost-js", "workspace:."],
             ["@emurgo/cardano-serialization-lib-nodejs", "npm:9.1.2"],
-            ["@emurgo/cip14-js", "npm:3.0.1"],
+            ["@emurgo/cip14-js", "npm:2.0.0"],
             ["@swc-node/jest", "npm:1.4.1"],
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.11"],
@@ -1147,10 +1147,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@emurgo/cip14-js", [
-        ["npm:3.0.1", {
-          "packageLocation": "./.yarn/cache/@emurgo-cip14-js-npm-3.0.1-6011030ea2-9eaf312410.zip/node_modules/@emurgo/cip14-js/",
+        ["npm:2.0.0", {
+          "packageLocation": "./.yarn/cache/@emurgo-cip14-js-npm-2.0.0-3500cc6e4a-1b07171cd2.zip/node_modules/@emurgo/cip14-js/",
           "packageDependencies": [
-            ["@emurgo/cip14-js", "npm:3.0.1"],
+            ["@emurgo/cip14-js", "npm:2.0.0"],
             ["bech32", "npm:2.0.0"],
             ["blake2b", "npm:2.1.3"]
           ],
