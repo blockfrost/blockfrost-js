@@ -10,6 +10,7 @@ module.exports = {
   coverageReporters: ['json-summary', 'lcov', 'text', 'text-summary'],
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
   setupFilesAfterEnv: ['<rootDir>/test/setup.ts'],
+  transformIgnorePatterns: [`/node_modules/(?!serialize-error)`],
   transform: {
     '^.+\\.(t|j)sx?$': ['@swc-node/jest'],
   },
