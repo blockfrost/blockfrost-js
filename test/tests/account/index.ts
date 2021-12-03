@@ -6,19 +6,24 @@ import {
 
 describe('account', () => {
   deriveAddressFixtures.forEach(fixture => {
-    test(fixture.toString(), () => {
+    test(JSON.stringify(fixture), () => {
       const response = SDK().deriveAddress(
         fixture.publicKey,
-        fixture.index,
         fixture.type,
+        fixture.index,
+        fixture.isTestnet,
       );
       expect(response).toStrictEqual(fixture.response);
     });
   });
 
   getAccountFixtures.forEach(fixture => {
-    test(fixture.toString(), async () => {
-      const response = await SDK().getAccount(fixture.publicKey, fixture.type);
+    test(JSON.stringify(fixture), async () => {
+      const response = await SDK().getAccount(
+        fixture.publicKey,
+        fixture.type,
+        false,
+      );
       expect(response).toStrictEqual(fixture.response);
     });
   });

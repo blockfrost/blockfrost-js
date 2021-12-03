@@ -10,8 +10,8 @@ import { ADDRESS_GAP_LIMIT } from '../config';
 
 export const deriveAddress = (
   publicKey: string,
-  addressIndex: number,
   type: number,
+  addressIndex: number,
   isTestnet: boolean,
 ): { address: string; path: string } => {
   const accountKey = Bip32PublicKey.from_bytes(Buffer.from(publicKey, 'hex'));
@@ -49,8 +49,8 @@ export async function getAccount(
     for (let i = 0; i < ADDRESS_GAP_LIMIT; i++) {
       const { address, path } = deriveAddress(
         publicKey,
-        addressCount,
         type,
+        addressCount,
         isTestnet,
       );
       addressCount++;
