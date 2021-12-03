@@ -36,10 +36,10 @@ describe('retry', () => {
       .get(path)
       .reply(200, { message: 'dummy response' })
       .get(path)
-      .delayConnection(100)
+      .delayConnection(120)
       .reply(200, 'this wont be received')
       .get(path)
-      .delayConnection(100)
+      .delayConnection(120)
       .reply(200, 'this wont be received')
       .get(path)
       .reply(200, { message: 'it works after all' });
@@ -47,7 +47,7 @@ describe('retry', () => {
     const response = await SDK().blocksLatest();
     expect(response).toMatchObject({ message: 'dummy response' });
     const rateLimitedResponse = await SDK({
-      requestTimeout: 10,
+      requestTimeout: 100,
     }).blocksLatest();
     expect(rateLimitedResponse).toMatchObject({
       message: 'it works after all',
