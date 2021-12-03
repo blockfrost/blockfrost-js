@@ -11,13 +11,17 @@ import { ADDRESS_GAP_LIMIT } from '../config';
 export const deriveAddress = (
   publicKey: string,
   addressIndex: number,
-  type: 0 | 1,
+  type: number,
+  isTestnet: boolean,
 ): { address: string; path: string } => {
   const accountKey = Bip32PublicKey.from_bytes(Buffer.from(publicKey, 'hex'));
   const utxoPubKey = accountKey.derive(type).derive(addressIndex);
   const stakeKey = accountKey.derive(2).derive(0);
+  const networkId = isTestnet
+    ? NetworkInfo.testnet().network_id()
+    : NetworkInfo.mainnet().network_id();
   const baseAddr = BaseAddress.new(
-    NetworkInfo.mainnet().network_id(),
+    networkId,
     StakeCredential.from_keyhash(utxoPubKey.to_raw_key().hash()),
     StakeCredential.from_keyhash(stakeKey.to_raw_key().hash()),
   );
@@ -32,6 +36,7 @@ export async function getAccount(
   this: BlockFrostAPI,
   publicKey: string,
   type: Account.Type,
+  isTestnet: boolean,
 ): Promise<Account.Result[]> {
   let lastEmptyCount = 0;
   let addressCount = 0;
@@ -42,7 +47,12 @@ export async function getAccount(
     const promisesBundle: Account.Bundle = [];
 
     for (let i = 0; i < ADDRESS_GAP_LIMIT; i++) {
-      const { address, path } = deriveAddress(publicKey, addressCount, type);
+      const { address, path } = deriveAddress(
+        publicKey,
+        addressCount,
+        type,
+        isTestnet,
+      );
       addressCount++;
       const promise = this.addresses(address);
       promisesBundle.push({ address, promise, path });
