@@ -17,7 +17,7 @@
   "scripts": {
     "build": "yarn clean && tsc",
     "clean": "rimraf lib",
-    "generate-types": "openapi-typescript ./node_modules/@blockfrost/openapi/swagger.yaml --output ./src/types/OpenApi.ts",
+    "generate-types": "openapi-typescript https://raw.githubusercontent.com/blockfrost/openapi/master/swagger.yaml --output ./src/types/OpenApi.ts",
     "lint": "eslint ./src/**/*.ts",
     "prepublishOnly": "yarn build",
     "run-example:api": "ts-node-dev --transpile-only ./examples/api.ts",
@@ -28,13 +28,10 @@
     "docs": "yarn typedoc ./src/index.ts --theme ./node_modules/typedoc-github-wiki-theme/dist"
   },
   "dependencies": {
-    "@blockfrost/openapi": "0.1.33",
     "@emurgo/cardano-serialization-lib-nodejs": "^9.1.2",
     "@emurgo/cip14-js": "3.0.1",
     "form-data": "^4.0.0",
-    "got": "^11.8.3",
-    "nock": "^13.2.1",
-    "url-join": "^4.0.1"
+    "got": "^11.8.3"
   },
   "devDependencies": {
     "@swc-node/jest": "^1.4.1",
@@ -50,6 +47,7 @@
     "jest": "^27.4.3",
     "jest-extended": "^1.2.0",
     "make-coverage-badge": "^1.2.0",
+    "nock": "^13.2.1",
     "openapi-typescript": "^4.4.0",
     "prettier": "2.5.0",
     "rimraf": "^3.0.2",
@@ -57,8 +55,6 @@
     "ts-jest": "^27.0.7",
     "ts-node": "10.4.0",
     "ts-node-dev": "^1.1.8",
-    "tsc-watch": "^4.5.0",
-    "tsconfig-paths": "^3.12.0",
     "typedoc": "^0.22.10",
     "typedoc-github-wiki-theme": "^0.6.0",
     "typedoc-plugin-markdown": "^3.11.7",

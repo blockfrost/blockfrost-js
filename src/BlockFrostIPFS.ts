@@ -9,7 +9,6 @@ import {
   gateway,
 } from './endpoints/ipfs';
 import { Options, ValidatedOptions } from './types';
-import join from 'url-join';
 import { validateOptions } from './utils';
 import { getInstance } from './utils/got';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -27,7 +26,7 @@ class BlockFrostIPFS {
 
     const apiBase = API_URLS.ipfs;
 
-    this.apiUrl = join(apiBase, `v${this.options.version}`);
+    this.apiUrl = `${apiBase}/v${this.options.version}`;
 
     this.userAgent =
       options?.userAgent ?? `${packageJson.name}@${packageJson.version}`;

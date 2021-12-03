@@ -662,7 +662,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@blockfrost/blockfrost-js@workspace:."
   dependencies:
-    "@blockfrost/openapi": 0.1.33
     "@emurgo/cardano-serialization-lib-nodejs": ^9.1.2
     "@emurgo/cip14-js": 3.0.1
     "@swc-node/jest": ^1.4.1
@@ -688,23 +687,13 @@ __metadata:
     ts-jest: ^27.0.7
     ts-node: 10.4.0
     ts-node-dev: ^1.1.8
-    tsc-watch: ^4.5.0
-    tsconfig-paths: ^3.12.0
     typedoc: ^0.22.10
     typedoc-github-wiki-theme: ^0.6.0
     typedoc-plugin-markdown: ^3.11.7
     typescript: 4.5.2
-    url-join: ^4.0.1
     yarn-run-all: ^3.1.1
   languageName: unknown
   linkType: soft
-
-"@blockfrost/openapi@npm:0.1.33":
-  version: 0.1.33
-  resolution: "@blockfrost/openapi@npm:0.1.33"
-  checksum: ca705c49fb2dc36aea946a11778ae1aaac9e6ba8cd14a16212dd647912a84b3dfddc451dbc0d6c6480f2e59fef2540bac1ee32fa8ea0d6a7c0c08ec82125feab
-  languageName: node
-  linkType: hard
 
 "@cspotcode/source-map-consumer@npm:0.8.0":
   version: 0.8.0
@@ -5567,13 +5556,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-cleanup@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "node-cleanup@npm:2.1.2"
-  checksum: 584cdc3e42560a998b4579f91ed8f936b27011628f3102e5a1093205f0691cdf8d899287d1f2e4d2071ea4ab1d615810bad6dbe2b988ef173a1cbaa76d8165b3
-  languageName: node
-  linkType: hard
-
 "node-fetch@npm:^2.6.5":
   version: 2.6.6
   resolution: "node-fetch@npm:2.6.6"
@@ -6161,7 +6143,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ps-tree@npm:^1.0.1, ps-tree@npm:^1.2.0":
+"ps-tree@npm:^1.0.1":
   version: 1.2.0
   resolution: "ps-tree@npm:1.2.0"
   dependencies:
@@ -6754,13 +6736,6 @@ resolve@^1.20.0:
   languageName: node
   linkType: hard
 
-"string-argv@npm:^0.1.1":
-  version: 0.1.2
-  resolution: "string-argv@npm:0.1.2"
-  checksum: 6877bd72af145f6e6eafa932818014a57b2f39225c924562b7fccb50f1fcee73717bbcd5e528fd4d86cec32835c14749c32a9d35f06e0bf96637d1e73158203f
-  languageName: node
-  linkType: hard
-
 "string-length@npm:^4.0.1":
   version: 4.0.2
   resolution: "string-length@npm:4.0.2"
@@ -7240,24 +7215,7 @@ resolve@^1.20.0:
   languageName: node
   linkType: hard
 
-"tsc-watch@npm:^4.5.0":
-  version: 4.5.0
-  resolution: "tsc-watch@npm:4.5.0"
-  dependencies:
-    cross-spawn: ^7.0.3
-    node-cleanup: ^2.1.2
-    ps-tree: ^1.2.0
-    string-argv: ^0.1.1
-    strip-ansi: ^6.0.0
-  peerDependencies:
-    typescript: "*"
-  bin:
-    tsc-watch: index.js
-  checksum: 9b641895379f6c03bca3cee5ba294052bcdb972ef8411b615427a23a9572ffcc23ca15f5c358db569a9110354eda4bb672e2372179551ec00d3ab3d06447263e
-  languageName: node
-  linkType: hard
-
-"tsconfig-paths@npm:^3.11.0, tsconfig-paths@npm:^3.12.0":
+"tsconfig-paths@npm:^3.11.0":
   version: 3.12.0
   resolution: "tsconfig-paths@npm:3.12.0"
   dependencies:
@@ -7490,13 +7448,6 @@ typescript@4.5.2:
   dependencies:
     punycode: ^2.1.0
   checksum: 7167432de6817fe8e9e0c9684f1d2de2bb688c94388f7569f7dbdb1587c9f4ca2a77962f134ec90be0cc4d004c939ff0d05acc9f34a0db39a3c797dada262633
-  languageName: node
-  linkType: hard
-
-"url-join@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "url-join@npm:4.0.1"
-  checksum: f74e868bf25dbc8be6a8d7237d4c36bb5b6c62c72e594d5ab1347fe91d6af7ccd9eb5d621e30152e4da45c2e9a26bec21390e911ab54a62d4d82e76028374ee5
   languageName: node
   linkType: hard
 
