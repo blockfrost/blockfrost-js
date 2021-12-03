@@ -1226,7 +1226,7 @@ export interface paths {
   };
   "/accounts/{stake_address}/addresses/total": {
     /**
-     * Obtain summed details aboutof all addresses associated with a given account.
+     * Obtain summed details about all addresses associated with a given account.
      * <b>Be careful</b>, as an account could be part of a mangled address and does not necessarily mean the addresses are owned by user as the account.
      */
     get: {
@@ -2948,7 +2948,7 @@ export interface components {
       registration: boolean;
     }[];
     tx_content_delegations: {
-      /** Index of the certificate within the transaction */
+      /** @deprecated Index of the certificate within the transaction */
       index: number;
       /** Index of the certificate within the transaction */
       cert_index: number;
@@ -3017,7 +3017,7 @@ export interface components {
         /** Network port of the relay */
         port: number;
       }[];
-      /** Epoch that the delegation becomes active */
+      /** Epoch in which the update becomes active */
       active_epoch: number;
     }[];
     tx_content_pool_retires: {
@@ -3025,7 +3025,7 @@ export interface components {
       cert_index: number;
       /** Bech32 stake pool ID */
       pool_id: string;
-      /** Retiring epoch */
+      /** Epoch in which the pool becomes retired */
       retiring_epoch: number;
     }[];
     tx_content_metadata: {
@@ -3037,7 +3037,7 @@ export interface components {
     tx_content_metadata_cbor: {
       /** Metadata label */
       label: string;
-      /** Content of the CBOR metadata */
+      /** @deprecated Content of the CBOR metadata */
       cbor_metadata: string | null;
       /** Content of the CBOR metadata in hex */
       metadata: string | null;
@@ -3209,7 +3209,7 @@ export interface components {
     address_utxo_content: {
       /** Transaction hash of the UTXO */
       tx_hash: string;
-      /** UTXO index in the transaction */
+      /** @deprecated UTXO index in the transaction */
       tx_index: number;
       /** UTXO index in the transaction */
       output_index: number;
@@ -3250,7 +3250,7 @@ export interface components {
       json_metadata:
         | (Partial<string> &
             Partial<{ [key: string]: unknown }> &
-            Partial<{ [key: string]: unknown }[]> &
+            Partial<unknown[]> &
             Partial<number> &
             Partial<number> &
             Partial<boolean>)
@@ -3259,7 +3259,7 @@ export interface components {
     tx_metadata_label_cbor: {
       /** Transaction hash that contains the specific metadata */
       tx_hash: string;
-      /** Content of the CBOR metadata */
+      /** @deprecated Content of the CBOR metadata */
       cbor_metadata: string | null;
       /** Content of the CBOR metadata in hex */
       metadata: string | null;
@@ -3397,8 +3397,8 @@ export interface components {
             /** Name of the asset */
             name?: string;
             /** URI(s) of the associated asset */
-            image?: string | any[];
-          } & { [key: string]: any })
+            image?: string | unknown[];
+          } & { [key: string]: unknown })
         | null;
       metadata: {
         /** Asset name */
@@ -3477,7 +3477,7 @@ export interface components {
       /** JSON content of the datum */
       json_value: Partial<string> &
         Partial<{ [key: string]: unknown }> &
-        Partial<{ [key: string]: unknown }[]> &
+        Partial<unknown[]> &
         Partial<number> &
         Partial<number> &
         Partial<boolean>;
@@ -3487,7 +3487,7 @@ export interface components {
       json:
         | (Partial<string> &
             Partial<{ [key: string]: unknown }> &
-            Partial<{ [key: string]: unknown }[]> &
+            Partial<unknown[]> &
             Partial<number> &
             Partial<number> &
             Partial<boolean>)
@@ -3498,7 +3498,7 @@ export interface components {
       cbor:
         | (Partial<string> &
             Partial<{ [key: string]: unknown }> &
-            Partial<{ [key: string]: unknown }[]> &
+            Partial<unknown[]> &
             Partial<number> &
             Partial<number> &
             Partial<boolean>)
@@ -3526,7 +3526,7 @@ export interface components {
       /** Hash of the metadata file */
       metadata_hash: string;
       /** The cached metadata of the `metadata_url` file. */
-      metadata: { [key: string]: any } | null;
+      metadata: { [key: string]: unknown } | null;
     };
     nutlink_address_ticker: {
       /** Hash of the transaction */
@@ -3538,10 +3538,10 @@ export interface components {
       /** Content of the ticker */
       payload: (Partial<string> &
         Partial<{ [key: string]: unknown }> &
-        Partial<{ [key: string]: unknown }[]> &
+        Partial<unknown[]> &
         Partial<number> &
         Partial<number> &
-        Partial<boolean>) & { [key: string]: any };
+        Partial<boolean>) & { [key: string]: unknown };
     }[];
     nutlink_address_tickers: {
       /** Name of the ticker */
@@ -3563,10 +3563,10 @@ export interface components {
       /** Content of the ticker */
       payload: (Partial<string> &
         Partial<{ [key: string]: unknown }> &
-        Partial<{ [key: string]: unknown }[]> &
+        Partial<unknown[]> &
         Partial<number> &
         Partial<number> &
-        Partial<boolean>) & { [key: string]: any };
+        Partial<boolean>) & { [key: string]: unknown };
     }[];
     network: {
       supply: {

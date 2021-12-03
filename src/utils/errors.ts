@@ -56,7 +56,7 @@ export const handleError = (
       return new BlockfrostServerError(responseBody);
     } else {
       // response.body may contain html output (eg. errors returned by nginx)
-      const statusCode = error.response.statusCode;
+      const { statusCode } = error.response;
       const statusText = error.response.statusMessage ?? error.message;
       return new BlockfrostServerError({
         status_code: statusCode,

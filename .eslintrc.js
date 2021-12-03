@@ -12,5 +12,6 @@ module.exports = {
     'arrow-parens': [2, 'as-needed'],
     'prettier/prettier': 2,
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'prefer-destructuring': ['error', { object: true, array: false }],
   },
 };

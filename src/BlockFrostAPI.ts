@@ -130,7 +130,6 @@ import {
 import { network } from './endpoints/api/network';
 
 import { Options, ValidatedOptions } from './types';
-import join from 'url-join';
 import { validateOptions } from './utils';
 import { getInstance } from './utils/got';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -153,7 +152,7 @@ class BlockFrostAPI {
     }
 
     this.apiUrl =
-      this.options?.customBackend || join(apiBase, `v${this.options.version}`);
+      this.options?.customBackend || `${apiBase}/v${this.options.version}`;
 
     this.projectId = this.options.projectId;
 
