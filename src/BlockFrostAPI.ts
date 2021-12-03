@@ -1,6 +1,6 @@
 import { API_URLS } from './config';
 import { Got } from 'got';
-import { deriveAddress, getAccount } from './account';
+import { getAccount } from './account';
 
 import {
   accounts,
@@ -998,15 +998,6 @@ class BlockFrostAPI {
    *
    */
   txSubmit = txSubmit;
-
-  /**
-   * deriveAddress
-   *
-   * @param hash
-   * @returns xxx
-   *
-   */
-  deriveAddress = deriveAddress;
 
   /**
    * txSubmit
