@@ -1,36 +1,7 @@
-import {
-  Bip32PublicKey,
-  BaseAddress,
-  NetworkInfo,
-  StakeCredential,
-} from '@emurgo/cardano-serialization-lib-nodejs';
 import { BlockFrostAPI } from '..';
 import * as Account from '../types/account';
 import { ADDRESS_GAP_LIMIT } from '../config';
-
-export const deriveAddress = (
-  publicKey: string,
-  type: number,
-  addressIndex: number,
-  isTestnet: boolean,
-): { address: string; path: string } => {
-  const accountKey = Bip32PublicKey.from_bytes(Buffer.from(publicKey, 'hex'));
-  const utxoPubKey = accountKey.derive(type).derive(addressIndex);
-  const stakeKey = accountKey.derive(2).derive(0);
-  const networkId = isTestnet
-    ? NetworkInfo.testnet().network_id()
-    : NetworkInfo.mainnet().network_id();
-  const baseAddr = BaseAddress.new(
-    networkId,
-    StakeCredential.from_keyhash(utxoPubKey.to_raw_key().hash()),
-    StakeCredential.from_keyhash(stakeKey.to_raw_key().hash()),
-  );
-
-  return {
-    address: baseAddr.to_address().to_bech32(),
-    path: `m/1852'/1815'/0'/${type}/${addressIndex}`,
-  };
-};
+import { deriveAddress } from '../utils/helpers';
 
 export async function getAccount(
   this: BlockFrostAPI,
