@@ -3,7 +3,7 @@ import { getAccountFixtures } from '../../fixtures/account';
 
 describe('account', () => {
   getAccountFixtures.forEach(fixture => {
-    test(JSON.stringify(fixture), async () => {
+    test(`getAccount - publicKey: ${fixture.publicKey} type: ${fixture.type} isTestnet: ${fixture.isTestnet}`, async () => {
       const response = await SDK().getAccount(
         fixture.publicKey,
         fixture.type,

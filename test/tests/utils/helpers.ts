@@ -3,7 +3,7 @@ import { deriveAddress } from '../../../src/utils/helpers';
 
 describe('helpers', () => {
   deriveAddressFixtures.forEach(fixture => {
-    test(JSON.stringify(fixture), () => {
+    test(`deriveAddress - publicKey: ${fixture.publicKey} type: ${fixture.type} index: ${fixture.index}`, () => {
       const response = deriveAddress(
         fixture.publicKey,
         fixture.type,
