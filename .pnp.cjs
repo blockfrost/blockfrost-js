@@ -37,6 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@emurgo/cardano-serialization-lib-nodejs", "npm:9.1.2"],
             ["@emurgo/cip14-js", "npm:2.0.0"],
+            ["@jest/globals", "npm:27.4.2"],
             ["@swc-node/jest", "npm:1.4.1"],
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.11"],
@@ -1086,6 +1087,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@blockfrost/blockfrost-js", "workspace:."],
             ["@emurgo/cardano-serialization-lib-nodejs", "npm:9.1.2"],
             ["@emurgo/cip14-js", "npm:2.0.0"],
+            ["@jest/globals", "npm:27.4.2"],
             ["@swc-node/jest", "npm:1.4.1"],
             ["@types/jest", "npm:27.0.3"],
             ["@types/node", "npm:16.11.11"],

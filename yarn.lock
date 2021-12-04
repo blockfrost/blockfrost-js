@@ -664,6 +664,7 @@ __metadata:
   dependencies:
     "@emurgo/cardano-serialization-lib-nodejs": ^9.1.2
     "@emurgo/cip14-js": ^2
+    "@jest/globals": ^27.4.2
     "@swc-node/jest": ^1.4.1
     "@types/jest": ^27.0.3
     "@types/node": ^16.11.11
