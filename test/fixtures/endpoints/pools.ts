@@ -131,4 +131,15 @@ export default [
         'b512cc7c1a8ba689c2d8fd27adfdbac2049a3f8f95c8b85e8298f14d7d8dc4e6',
     },
   },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.poolsExtended(),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        pool_id: expect.any(String),
+        hex: expect.any(String),
+        active_stake: expect.any(String),
+        live_stake: expect.any(String),
+      }),
+    ]),
+  },
 ] as const;

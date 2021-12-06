@@ -236,3 +236,39 @@ export async function poolsByIdUpdates(
       });
   });
 }
+
+export async function poolsExtended(
+  this: BlockFrostAPI,
+  pagination?: PaginationOptions,
+): Promise<components['schemas']['pool_list_extended']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
+  return new Promise((resolve, reject) => {
+    this.instance<components['schemas']['pool_list_extended']>(
+      `pools/extended`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
+      },
+    )
+      .then(resp => {
+        resolve(resp.body);
+      })
+      .catch(err => {
+        reject(handleError(err));
+      });
+  });
+}
+
+export async function poolsExtendedAll(
+  this: BlockFrostAPI,
+  allMethodOptions?: AllMethodOptions,
+): Promise<components['schemas']['pool_list_extended']> {
+  return paginateMethod(
+    pagination => this.poolsExtended(pagination),
+    allMethodOptions,
+  );
+}
