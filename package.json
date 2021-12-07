@@ -1,6 +1,6 @@
 {
   "name": "@blockfrost/blockfrost-js",
-  "version": "3.0.3",
+  "version": "3.0.3-beta.1",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "keywords": [
     "blockfrost",
@@ -34,6 +34,7 @@
     "got": "^11.8.3"
   },
   "devDependencies": {
+    "@jest/globals": "^27.4.2",
     "@swc-node/jest": "^1.4.1",
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.11",
