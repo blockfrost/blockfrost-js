@@ -1,6 +1,5 @@
 import { API_URLS } from './config';
 import { Got } from 'got';
-import { getAccount } from './account';
 
 import {
   accounts,
@@ -998,15 +997,6 @@ class BlockFrostAPI {
    *
    */
   txSubmit = txSubmit;
-
-  /**
-   * txSubmit
-   *
-   * @param hash
-   * @returns xxx
-   *
-   */
-  getAccount = getAccount;
 
   /**
    * network
