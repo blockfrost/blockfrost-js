@@ -111,11 +111,11 @@ import {
 } from './endpoints/api/txs';
 import {
   scripts,
-  script,
-  scriptDatum,
-  scriptRedeemers,
-  scriptJson,
-  scriptCbor,
+  scriptsByHash,
+  scriptsDatum,
+  scriptsRedeemers,
+  scriptsJson,
+  scriptsCbor,
 } from './endpoints/api/scripts';
 import {
   nutlinkAddress,
@@ -872,22 +872,22 @@ class BlockFrostAPI {
    * @returns Information about a specific script
    *
    */
-  script = script;
+  scriptsByHash = scriptsByHash;
 
   /**
    *
    */
-  scriptJson = scriptJson;
+  scriptsJson = scriptsJson;
 
   /**
    *
    */
-  scriptCbor = scriptCbor;
+  scriptsCbor = scriptsCbor;
 
   /**
    *
    */
-  scriptDatum = scriptDatum;
+  scriptsDatum = scriptsDatum;
 
   /**
    * List of redeemers of a specific script
@@ -895,7 +895,7 @@ class BlockFrostAPI {
    * @returns List the information about redeemers of a specific script
    *
    */
-  scriptRedeemers = scriptRedeemers;
+  scriptsRedeemers = scriptsRedeemers;
 
   /**
    * txs
