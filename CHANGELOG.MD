@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### ⚠️ Breaking changes
 
-- `script` → `scriptByHash`
+- `script` → `scriptsByHash`
 - `scriptDatum` → `scriptsDatum`
 - `scriptRedeemers` → `scriptsRedeemers`
 - `scriptJson` → `scriptsJson`
