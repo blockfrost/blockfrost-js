@@ -4,7 +4,7 @@ import {
   NetworkInfo,
   StakeCredential,
 } from '@emurgo/cardano-serialization-lib-nodejs';
-import EmurgoCip from '@emurgo/cip14-js';
+import AssetFingerprint from '@emurgo/cip14-js';
 import { ParseAssetResult } from '../types/utils';
 
 export const deriveAddress = (
@@ -31,7 +31,7 @@ export const deriveAddress = (
   };
 };
 
-const hexToString = (input: string): string => {
+export const hexToString = (input: string): string => {
   const hex = input.toString();
   let str = '';
   for (let n = 0; n < hex.length; n += 2) {
@@ -42,7 +42,7 @@ const hexToString = (input: string): string => {
 };
 
 export const getFingerprint = (policyId: string, assetName?: string): string =>
-  new EmurgoCip(
+  AssetFingerprint.fromParts(
     Uint8Array.from(Buffer.from(policyId, 'hex')),
     Uint8Array.from(Buffer.from(assetName || '', 'hex')),
   ).fingerprint();
