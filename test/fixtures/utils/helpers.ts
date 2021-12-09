@@ -7,7 +7,7 @@ export const deriveAddressFixtures = [
     response: {
       address:
         'addr1q8u5ktsj5zsmhvwv0ep9zuhfu39x3wyt9wxjnsn3cagsyy59ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6usrmcafl',
-      path: "m/1852'/1815'/0'/0/0",
+      path: [0, 0],
     },
   },
   {
@@ -18,7 +18,7 @@ export const deriveAddressFixtures = [
     response: {
       address:
         'addr1qxnthyxq8x9lv95h74k5av3sy3yzljr56ttxu4lggv8qstv9ckxhkvuc5xj49rw6zrp443wlygmhv8gwcu38jk6ms6us8mueja',
-      path: "m/1852'/1815'/0'/0/1",
+      path: [0, 1],
     },
   },
   {

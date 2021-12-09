@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - params in `deriveAddress`
 
+### Removed
+
+- `getAccount` method
+
 ## [3.0.2]
 
 ### Added
