@@ -2,7 +2,7 @@ import { Responses } from '../';
 
 export type Result = {
   address: string;
-  path: string;
+  path: [number, number];
   data: Responses['address_content'] | 'empty';
 };
 
@@ -15,7 +15,7 @@ export type Type = 1 | 0;
 
 export type Bundle = {
   address: string;
-  path: string;
+  path: [number, number];
   promise: Promise<Responses['address_content']>;
 }[];
 

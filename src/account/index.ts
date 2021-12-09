@@ -48,12 +48,10 @@ export async function getAccount(
     );
   }
 
-  const sortedResult = result.sort((item1, item2) => {
-    const path1 = parseInt(item1.path.split('/').slice(-1)[0], 10);
-    const path2 = parseInt(item2.path.split('/').slice(-1)[0], 10);
-
-    return path1 - path2;
-  });
+  // sort by address type first, then by address index, in asc order
+  const sortedResult = result.sort(
+    (a, b) => a.path[0] - b.path[0] || a.path[1] - b.path[1],
+  );
 
   return sortedResult;
 }
