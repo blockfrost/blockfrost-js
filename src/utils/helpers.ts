@@ -3,31 +3,55 @@ import {
   BaseAddress,
   NetworkInfo,
   StakeCredential,
+  RewardAddress,
 } from '@emurgo/cardano-serialization-lib-nodejs';
 import AssetFingerprint from '@emurgo/cip14-js';
 import { ParseAssetResult } from '../types/utils';
 
+/**
+ * Derives an address with derivation path m/1852'/1815'/account'/role/addressIndex
+ * If role === 2 then it returns a stake address (m/1852'/1815'/account'/2/addressIndex)
+ *
+ * @Returns {address: string, path: number[] } Bech32 address shaped as {address: string, path: [role, addressIndex]}
+ * */
 export const deriveAddress = (
-  publicKey: string,
-  type: number,
+  accountPublicKey: string,
+  role: number,
   addressIndex: number,
   isTestnet: boolean,
-): { address: string; path: string } => {
-  const accountKey = Bip32PublicKey.from_bytes(Buffer.from(publicKey, 'hex'));
-  const utxoPubKey = accountKey.derive(type).derive(addressIndex);
-  const stakeKey = accountKey.derive(2).derive(0);
+): { address: string; path: [number, number] } => {
+  const accountKey = Bip32PublicKey.from_bytes(
+    Buffer.from(accountPublicKey, 'hex'),
+  );
+  const utxoPubKey = accountKey.derive(role).derive(addressIndex);
+  const mainStakeKey = accountKey.derive(2).derive(0);
   const networkId = isTestnet
     ? NetworkInfo.testnet().network_id()
     : NetworkInfo.mainnet().network_id();
   const baseAddr = BaseAddress.new(
     networkId,
     StakeCredential.from_keyhash(utxoPubKey.to_raw_key().hash()),
-    StakeCredential.from_keyhash(stakeKey.to_raw_key().hash()),
+    StakeCredential.from_keyhash(mainStakeKey.to_raw_key().hash()),
   );
+
+  if (role === 2) {
+    const addressSpecificStakeKey = accountKey.derive(2).derive(addressIndex);
+    // always return stake address
+    const rewardAddr = RewardAddress.new(
+      networkId,
+      StakeCredential.from_keyhash(addressSpecificStakeKey.to_raw_key().hash()),
+    )
+      .to_address()
+      .to_bech32();
+    return {
+      address: rewardAddr,
+      path: [role, addressIndex],
+    };
+  }
 
   return {
     address: baseAddr.to_address().to_bech32(),
-    path: `m/1852'/1815'/0'/${type}/${addressIndex}`,
+    path: [role, addressIndex],
   };
 };
 

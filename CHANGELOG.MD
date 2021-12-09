@@ -17,7 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- params in `deriveAddress`
+- params in `deriveAddress` and stake address derivation
+
+### Removed
+
+- `getAccount` method
 
 ## [3.0.2]
 
