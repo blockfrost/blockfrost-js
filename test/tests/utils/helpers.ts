@@ -13,7 +13,7 @@ describe('helpers', () => {
         fixture.publicKey,
         fixture.role,
         fixture.index,
-        false,
+        fixture.isTestnet,
       );
       expect(response).toStrictEqual(fixture.response);
     });
