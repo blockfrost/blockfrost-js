@@ -2,7 +2,7 @@ export const deriveAddressFixtures = [
   {
     publicKey:
       '6d17587575a3b4f0f86ebad3977e8f7e4981faa863eccf5c1467065c74fe3435943769446dd290d103fb3d360128e86de4b47faea73ffb0900c94c6a61ef9ea2',
-    type: 0,
+    role: 0,
     index: 0,
     response: {
       address:
@@ -13,7 +13,7 @@ export const deriveAddressFixtures = [
   {
     publicKey:
       '6d17587575a3b4f0f86ebad3977e8f7e4981faa863eccf5c1467065c74fe3435943769446dd290d103fb3d360128e86de4b47faea73ffb0900c94c6a61ef9ea2',
-    type: 0,
+    role: 0,
     index: 1,
     response: {
       address:
@@ -24,7 +24,7 @@ export const deriveAddressFixtures = [
   {
     publicKey:
       '6d17587575a3b4f0f86ebad3977e8f7e4981faa863eccf5c1467065c74fe3435943769446dd290d103fb3d360128e86de4b47faea73ffb0900c94c6a61ef9ea2',
-    type: 2,
+    role: 2,
     index: 0,
     response: {
       address: 'stake1uxzutrtmxwv2rf2j3hdpps66ch0jydmkr58vwgnetddcdwg32u4rc',
@@ -34,7 +34,7 @@ export const deriveAddressFixtures = [
   {
     publicKey:
       '6d17587575a3b4f0f86ebad3977e8f7e4981faa863eccf5c1467065c74fe3435943769446dd290d103fb3d360128e86de4b47faea73ffb0900c94c6a61ef9ea2',
-    type: 2,
+    role: 2,
     index: 1,
     response: {
       address: 'stake1uyq2806du47kxcvr2504vuvmngauy5mhv3d45d2mukek3ugj46jvz',

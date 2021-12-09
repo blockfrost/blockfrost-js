@@ -9,21 +9,21 @@ import AssetFingerprint from '@emurgo/cip14-js';
 import { ParseAssetResult } from '../types/utils';
 
 /**
- * Derives an address with derivation path m/1852'/1815'/account'/type/addressIndex
- * If type === 2 then it always returns a stake address (m/1852'/1815'/account'/2/addressIndex)
+ * Derives an address with derivation path m/1852'/1815'/account'/role/addressIndex
+ * If role === 2 then it returns a stake address (m/1852'/1815'/account'/2/addressIndex)
  *
- * @Returns {address: string, path: number[] } Bech32 address shaped as {address: string, path: [type, addressIndex]}
+ * @Returns {address: string, path: number[] } Bech32 address shaped as {address: string, path: [role, addressIndex]}
  * */
 export const deriveAddress = (
   accountPublicKey: string,
-  type: number,
+  role: number,
   addressIndex: number,
   isTestnet: boolean,
 ): { address: string; path: [number, number] } => {
   const accountKey = Bip32PublicKey.from_bytes(
     Buffer.from(accountPublicKey, 'hex'),
   );
-  const utxoPubKey = accountKey.derive(type).derive(addressIndex);
+  const utxoPubKey = accountKey.derive(role).derive(addressIndex);
   const mainStakeKey = accountKey.derive(2).derive(0);
   const networkId = isTestnet
     ? NetworkInfo.testnet().network_id()
@@ -34,7 +34,7 @@ export const deriveAddress = (
     StakeCredential.from_keyhash(mainStakeKey.to_raw_key().hash()),
   );
 
-  if (type === 2) {
+  if (role === 2) {
     const addressSpecificStakeKey = accountKey.derive(2).derive(addressIndex);
     // always return stake address
     const rewardAddr = RewardAddress.new(
@@ -45,13 +45,13 @@ export const deriveAddress = (
       .to_bech32();
     return {
       address: rewardAddr,
-      path: [type, addressIndex],
+      path: [role, addressIndex],
     };
   }
 
   return {
     address: baseAddr.to_address().to_bech32(),
-    path: [type, addressIndex],
+    path: [role, addressIndex],
   };
 };
 
