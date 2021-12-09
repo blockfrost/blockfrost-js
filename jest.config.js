@@ -2,7 +2,6 @@ module.exports = {
   rootDir: '.',
   resetMocks: true,
   testEnvironment: 'node',
-  bail: true,
   moduleFileExtensions: ['ts', 'js'],
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/'],
@@ -16,10 +15,10 @@ module.exports = {
   },
   coverageThreshold: {
     global: {
-      branches: 80,
-      functions: 80,
-      lines: 80,
-      statements: 80,
+      branches: 90,
+      functions: 90,
+      lines: 90,
+      statements: 90,
     },
   },
 };
