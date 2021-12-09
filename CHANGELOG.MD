@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### ⚠️ Breaking changes
+
+- `script` → `scriptsByHash`
+- `scriptDatum` → `scriptsDatum`
+- `scriptRedeemers` → `scriptsRedeemers`
+- `scriptJson` → `scriptsJson`
+- `scriptCbor` → `scriptsCbor`
+
 ### Added
 
 - added exports for util functions `getFingerprint` `deriveAddress`

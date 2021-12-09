@@ -4,7 +4,7 @@ import { handleError } from '../../../utils/errors';
 import { PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
 
-export async function script(
+export async function scriptsByHash(
   this: BlockFrostAPI,
   scriptHash: string,
 ): Promise<components['schemas']['script']> {
@@ -42,7 +42,7 @@ export async function scripts(
   });
 }
 
-export async function scriptJson(
+export async function scriptsJson(
   this: BlockFrostAPI,
   scriptHash: string,
 ): Promise<components['schemas']['script_json']> {
@@ -59,7 +59,7 @@ export async function scriptJson(
   });
 }
 
-export async function scriptCbor(
+export async function scriptsCbor(
   this: BlockFrostAPI,
   scriptHash: string,
 ): Promise<components['schemas']['script_cbor']> {
@@ -76,7 +76,7 @@ export async function scriptCbor(
   });
 }
 
-export async function scriptDatum(
+export async function scriptsDatum(
   this: BlockFrostAPI,
   datumHash: string,
 ): Promise<components['schemas']['script_datum']> {
@@ -93,7 +93,7 @@ export async function scriptDatum(
   });
 }
 
-export async function scriptRedeemers(
+export async function scriptsRedeemers(
   this: BlockFrostAPI,
   scriptHash: string,
 ): Promise<components['schemas']['script_redeemers']> {
