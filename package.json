@@ -9,6 +9,7 @@
   ],
   "license": "Apache-2.0",
   "author": "blockfrost.io",
+  "repository": "blockfrost/blockfrost-js",
   "main": "lib/index.js",
   "files": [
     "lib/**/*.js",
