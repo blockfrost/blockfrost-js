@@ -31,7 +31,7 @@ export const deriveAddress = (
   };
 };
 
-const hexToString = (input: string): string => {
+export const hexToString = (input: string): string => {
   const hex = input.toString();
   let str = '';
   for (let n = 0; n < hex.length; n += 2) {
