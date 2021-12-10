@@ -142,4 +142,15 @@ export default [
       }),
     ]),
   },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.poolsExtendedAll(),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        pool_id: expect.any(String),
+        hex: expect.any(String),
+        active_stake: expect.any(String),
+        live_stake: expect.any(String),
+      }),
+    ]),
+  },
 ] as const;
