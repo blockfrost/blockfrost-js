@@ -50,6 +50,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:4.0.0"],
             ["form-data", "npm:4.0.0"],
             ["got", "npm:11.8.3"],
+            ["husky", "npm:7.0.4"],
             ["jest", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:27.4.3"],
             ["jest-extended", "npm:1.2.0"],
             ["make-coverage-badge", "npm:1.2.0"],
@@ -1100,6 +1101,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:4.0.0"],
             ["form-data", "npm:4.0.0"],
             ["got", "npm:11.8.3"],
+            ["husky", "npm:7.0.4"],
             ["jest", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:27.4.3"],
             ["jest-extended", "npm:1.2.0"],
             ["make-coverage-badge", "npm:1.2.0"],
@@ -4913,6 +4915,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/human-signals-npm-2.1.0-f75815481d-b87fd89fce.zip/node_modules/human-signals/",
           "packageDependencies": [
             ["human-signals", "npm:2.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["husky", [
+        ["npm:7.0.4", {
+          "packageLocation": "./.yarn/cache/husky-npm-7.0.4-917ba035c6-c6ec4af63d.zip/node_modules/husky/",
+          "packageDependencies": [
+            ["husky", "npm:7.0.4"]
           ],
           "linkType": "HARD",
         }]
