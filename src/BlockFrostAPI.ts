@@ -82,6 +82,8 @@ import {
   poolsByIdUpdates,
   poolsRetired,
   poolsRetiring,
+  poolsExtended,
+  poolsExtendedAll,
 } from './endpoints/api/pools';
 
 import { genesis } from './endpoints/api/ledger';
@@ -848,6 +850,10 @@ class BlockFrostAPI {
    *
    */
   poolsRetiring = poolsRetiring;
+
+  poolsExtended = poolsExtended;
+
+  poolsExtendedAll = poolsExtendedAll;
 
   /**
    * root

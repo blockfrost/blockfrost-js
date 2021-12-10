@@ -302,6 +302,37 @@ export interface paths {
       };
     };
   };
+  "/blocks/{hash_or_number}/addresses": {
+    /** Return list of addresses affected in the specified block with additional information, sorted by the bech32 address, ascending. */
+    get: {
+      parameters: {
+        path: {
+          /** Hash of the requested block. */
+          hash_or_number: string;
+        };
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+        };
+      };
+      responses: {
+        /** Return affected addresses in a given block. */
+        200: {
+          content: {
+            "application/json": components["schemas"]["block_content_addresses"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
   "/genesis": {
     /** Return the information about blockchain genesis. */
     get: {
@@ -1619,6 +1650,38 @@ export interface paths {
       };
     };
   };
+  "/pools/extended": {
+    /** List of registered stake pools with additional information. */
+    get: {
+      parameters: {
+        query: {
+          /** The numbers of pools per page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * The ordering of items from the point of view of the blockchain,
+           * not the page listing itself. By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the list of pools. */
+        200: {
+          content: {
+            "application/json": components["schemas"]["pool_list_extended"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
   "/pools/retired": {
     /** List of already retired pools. */
     get: {
@@ -2310,6 +2373,35 @@ export interface paths {
       };
     };
   };
+  "/utils/addresses/xpub/{xpub}/{role}/{index}": {
+    /** Derive Shelley address from an xpub */
+    get: {
+      parameters: {
+        path: {
+          /** Hex xpub */
+          xpub: string;
+          /** Account role */
+          role: number;
+          /** Address index */
+          index: number;
+        };
+      };
+      responses: {
+        /** Return derivated Shelley address */
+        200: {
+          content: {
+            "application/json": components["schemas"]["utils_addresses_xpub"];
+          };
+        };
+        400: components["responses"]["bad_request"];
+        403: components["responses"]["unauthorized_error"];
+        404: components["responses"]["not_found"];
+        418: components["responses"]["autobanned"];
+        429: components["responses"]["overusage_limit"];
+        500: components["responses"]["internal_server_error"];
+      };
+    };
+  };
   "/ipfs/add": {
     /**
      * You need to `/ipfs/pin/add` an object to avoid it being garbage collected. This usage
@@ -2731,6 +2823,14 @@ export interface components {
       confirmations: number;
     };
     block_content_txs: string[];
+    block_content_addresses: {
+      /** Address that was affected in the specified block */
+      address: string;
+      /** List of transactions containing the address either in their inputs or outputs. Sorted by transaction index within a block, ascending. */
+      transactions: {
+        tx_hash?: string;
+      }[];
+    }[];
     genesis_content: {
       /** The proportion of slots in which blocks should be issued */
       active_slots_coefficient: number;
@@ -3265,6 +3365,16 @@ export interface components {
       metadata: string | null;
     }[];
     pool_list: string[];
+    pool_list_extended: {
+      /** Bech32 encoded pool ID */
+      pool_id: string;
+      /** Hexadecimal pool ID. */
+      hex: string;
+      /** Active delegated amount */
+      active_stake: string;
+      /** Currently delegated amount */
+      live_stake: string;
+    }[];
     pool_list_retire: {
       /** Bech32 encoded pool ID */
       pool_id: string;
@@ -3503,6 +3613,16 @@ export interface components {
             Partial<number> &
             Partial<boolean>)
         | null;
+    };
+    utils_addresses_xpub: {
+      /** Script hash */
+      xpub: string;
+      /** Account role */
+      role: number;
+      /** Address index */
+      index: number;
+      /** Derived address */
+      address: string;
     };
     metrics: {
       /** Starting time of the call count interval (ends midnight UTC) in UNIX time */
