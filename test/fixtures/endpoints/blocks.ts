@@ -409,4 +409,126 @@ export default [
       '8deb2c8c14cf86535ba187679bbfed77f56da359090b49959871875301b13c8e',
     ],
   },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.blocksAddresses('6622172'),
+    response: [
+      {
+        address:
+          'addr1q9tg629szqrs6xnwemxp2atknmh0l9tmq3y3x0a25vvmmtx0qznswekrgsre0g247u7ccje8gzkt6fkezvw3mgva2xwsn8kh27',
+        transactions: [
+          {
+            tx_hash:
+              'f9b871b44fb8055c8790efc1b6113e7fc51e1ff8da5bafdaf90074adbcf40f8b',
+          },
+        ],
+      },
+      {
+        address:
+          'addr1qxqexftperw6w43tsdpxste646uy5d2363v7s7l2rdrxqgupjvjkrjxa5atzhq6zdqhn4t4cfg64r4zeapa75x6xvq3sw7s9f2',
+        transactions: [
+          {
+            tx_hash:
+              'a33c4d2dd34f20c8d0fd0cc0949a7de961e616c6beb097d92f1589277cf7da35',
+          },
+        ],
+      },
+      {
+        address:
+          'addr1qxydjxqm2ufzh5zuguwpnvv27t8xc9t7vdh08fpcj3txyke8tdm0eljzu23jscwdjpxnzgfhzx9xumv2y9h5qe9wvfcspfntvm',
+        transactions: [
+          {
+            tx_hash:
+              'a33c4d2dd34f20c8d0fd0cc0949a7de961e616c6beb097d92f1589277cf7da35',
+          },
+        ],
+      },
+      {
+        address:
+          'addr1qye6lujadeex7hqwc25yywts85z84x29wveq44c7y9u62t5n9pphzx24zu0nj0my40uw44w8csjjcrez8pj6kl70eg4qvlwd74',
+        transactions: [
+          {
+            tx_hash:
+              'b48fe214e78bfa76161be72a9a5874a9096281a22d5c85ca0538ccd0020c4060',
+          },
+        ],
+      },
+      {
+        address:
+          'addr1qyyna892rq68qeyw4smq5p0gsqj40tjzzv5ewprs06y7kfaletrzgwckzytxdukwn6vca5zmu4njl9ugvn8c5tgauf9s9j5wjq',
+        transactions: [
+          {
+            tx_hash:
+              '720ac478a6c636316fc9d4836fda766d205a6eae2bffeb785cbe7a137763178c',
+          },
+        ],
+      },
+      {
+        address: 'addr1v802evht9zg3778t9tu8mjwdfd5l03gsux8yw90ek6j0lsc8kzzmm',
+        transactions: [
+          {
+            tx_hash:
+              'b48fe214e78bfa76161be72a9a5874a9096281a22d5c85ca0538ccd0020c4060',
+          },
+        ],
+      },
+      {
+        address: 'addr1v89w4j93c75dfh99qg5lhzvqx82984gh7r2ylh7pv8zzg4cxs67jj',
+        transactions: [
+          {
+            tx_hash:
+              'b48fe214e78bfa76161be72a9a5874a9096281a22d5c85ca0538ccd0020c4060',
+          },
+        ],
+      },
+      {
+        address: 'addr1v90xyvnmptd2why2cc90apa3tulw2lpa70s5y2t0lv7p08secjmck',
+        transactions: [
+          {
+            tx_hash:
+              '720ac478a6c636316fc9d4836fda766d205a6eae2bffeb785cbe7a137763178c',
+          },
+        ],
+      },
+      {
+        address: 'addr1v93d2zhfqur8mhntpn3ex89jy7je7z25cqj0y0khw9f99kca35hq5',
+        transactions: [
+          {
+            tx_hash:
+              '720ac478a6c636316fc9d4836fda766d205a6eae2bffeb785cbe7a137763178c',
+          },
+        ],
+      },
+      {
+        address: 'addr1vxrmu3m2cc5k6xltupj86a2uzcuq8r4nhznrhfq0pkwl4hgqj2v8w',
+        transactions: [
+          {
+            tx_hash:
+              '720ac478a6c636316fc9d4836fda766d205a6eae2bffeb785cbe7a137763178c',
+          },
+        ],
+      },
+      {
+        address: 'addr1vy740r73x2w3du2xxt76cs4hdml4zw2c5h7tddcyf3jauys9tyns4',
+        transactions: [
+          {
+            tx_hash:
+              'f9b871b44fb8055c8790efc1b6113e7fc51e1ff8da5bafdaf90074adbcf40f8b',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.blocksAddressesAll('6622172'),
+    response: expect.arrayContaining([
+      expect.objectContaining({
+        address: expect.any(String),
+        transactions: expect.arrayContaining([
+          expect.objectContaining({
+            tx_hash: expect.any(String),
+          }),
+        ]),
+      }),
+    ]),
+  },
 ] as const;

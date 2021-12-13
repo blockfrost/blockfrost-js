@@ -52,6 +52,8 @@ import {
   blocksPrevious,
   blocksTxs,
   blocksTxsAll,
+  blocksAddresses,
+  blocksAddressesAll,
 } from './endpoints/api/blocks';
 
 import {
@@ -513,6 +515,9 @@ class BlockFrostAPI {
    *
    */
   blocksTxsAll = blocksTxsAll;
+
+  blocksAddresses = blocksAddresses;
+  blocksAddressesAll = blocksAddressesAll;
 
   /**
    * epochs

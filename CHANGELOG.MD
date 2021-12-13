@@ -18,7 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - added exports for util functions `getFingerprint` `deriveAddress`
-- `poolsExtended`, `poolsExtendedAll` endpoints 
+- `poolsExtended`, `poolsExtendedAll` endpoints
+- `blockAddress`, `blockAddresses` for retrieving all addresses that were affected in a block
 
 ### Changed
 
