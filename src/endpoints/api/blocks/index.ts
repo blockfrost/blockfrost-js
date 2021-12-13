@@ -166,3 +166,41 @@ export async function blocksTxsAll(
     allMethodOptions,
   );
 }
+
+export async function blocksAddresses(
+  this: BlockFrostAPI,
+  hashOrNumber: HashOrNumber,
+  pagination?: Omit<PaginationOptions, 'order'>,
+): Promise<components['schemas']['block_content_addresses']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
+  return new Promise((resolve, reject) => {
+    this.instance<components['schemas']['block_content_addresses']>(
+      `blocks/${hashOrNumber}/addresses`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          // order: paginationOptions.order, // no ordering on /blocks/{hash}/addresses
+        },
+      },
+    )
+      .then(resp => {
+        resolve(resp.body);
+      })
+      .catch(err => {
+        reject(handleError(err));
+      });
+  });
+}
+
+export async function blocksAddressesAll(
+  this: BlockFrostAPI,
+  hashOrNumber: string | number,
+  allMethodOptions?: Omit<AllMethodOptions, 'order'>,
+): Promise<components['schemas']['block_content_addresses']> {
+  return paginateMethod(
+    pagination => this.blocksAddresses(hashOrNumber, pagination),
+    allMethodOptions,
+  );
+}
