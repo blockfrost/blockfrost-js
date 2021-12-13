@@ -35,6 +35,8 @@
     "got": "^11.8.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
     "@jest/globals": "^27.4.2",
     "@swc-node/jest": "^1.4.1",
     "@types/jest": "^27.0.3",
@@ -46,6 +48,7 @@
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-prettier": "4.0.0",
+    "husky": "^7.0.4",
     "jest": "^27.4.3",
     "jest-extended": "^1.2.0",
     "make-coverage-badge": "^1.2.0",
