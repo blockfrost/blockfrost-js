@@ -2828,7 +2828,7 @@ export interface components {
       address: string;
       /** List of transactions containing the address either in their inputs or outputs. Sorted by transaction index within a block, ascending. */
       transactions: {
-        tx_hash?: string;
+        tx_hash: string;
       }[];
     }[];
     genesis_content: {
