@@ -6,6 +6,11 @@ import { AddResponse, PinResponse, ListResponse } from '../../types/ipfs';
 import FormData from 'form-data';
 import fs from 'fs';
 
+/**
+ * add - Add a file or directory to ipfs
+ *
+ * @returns information about added ipfs object
+ */
 export async function add(
   this: BlockFrostIPFS,
   path: string,
@@ -32,6 +37,12 @@ export async function add(
   });
 }
 
+/**
+ * gateway - Relay to an ipfs gateway
+ *
+ * @returns the object content
+ *
+ */
 export async function gateway(
   this: BlockFrostIPFS,
   path: string,
@@ -50,6 +61,12 @@ export async function gateway(
   });
 }
 
+/**
+ * pin - Pin an object
+ *
+ * @returns pinned object
+ *
+ */
 export async function pin(
   this: BlockFrostIPFS,
   path: string,
@@ -66,6 +83,12 @@ export async function pin(
   });
 }
 
+/**
+ * list - List objects pinned to local storage
+ *
+ * @returns list of pinned objects
+ *
+ */
 export async function list(
   this: BlockFrostIPFS,
   pagination?: PaginationOptions,
@@ -88,6 +111,12 @@ export async function list(
   });
 }
 
+/**
+ * listByPath - List objects pinned to local storage
+ *
+ * @returns list of pinned objects
+ *
+ */
 export async function listByPath(
   this: BlockFrostIPFS,
   path: string,
@@ -103,6 +132,12 @@ export async function listByPath(
   });
 }
 
+/**
+ * pinRemove - Remove pinned objects from local storage
+ *
+ * @returns removed pinned object
+ *
+ */
 export async function pinRemove(
   this: BlockFrostIPFS,
   path: string,
