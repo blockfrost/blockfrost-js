@@ -4,6 +4,13 @@ import { components } from '../../../types/OpenApi';
 import { getPaginationOptions, paginateMethod } from '../../../utils';
 import { handleError } from '../../../utils/errors';
 
+/**
+ * accounts - Obtain information about a specific stake account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about a specific stake account.
+ *
+ */
 export async function accounts(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -19,6 +26,13 @@ export async function accounts(
   });
 }
 
+/**
+ * accountsRewards - Obtain information about the history of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the history of a specific account.
+ *
+ */
 export async function accountsRewards(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -44,6 +58,13 @@ export async function accountsRewards(
   });
 }
 
+/**
+ * accountsRewardsAll - Obtain information about whole history of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the history of a specific account.
+ *
+ */
 export async function accountsRewardsAll(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -55,6 +76,13 @@ export async function accountsRewardsAll(
   );
 }
 
+/**
+ * accountsHistory - Obtain information about the history of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the history of a specific account.
+ *
+ */
 export async function accountsHistory(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -80,6 +108,13 @@ export async function accountsHistory(
   });
 }
 
+/**
+ * accountsHistoryAll - Obtain information about whole history of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the history of a specific account.
+ *
+ */
 export async function accountsHistoryAll(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -91,6 +126,13 @@ export async function accountsHistoryAll(
   );
 }
 
+/**
+ * accountsWithdrawals - Obtain information about the withdrawals of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the withdrawals of a specific account.
+ *
+ */
 export async function accountsWithdrawals(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -116,6 +158,13 @@ export async function accountsWithdrawals(
   });
 }
 
+/**
+ * accountsWithdrawals - Obtain information about the withdrawals of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the withdrawals of a specific account.
+ *
+ */
 export async function accountsWithdrawalsAll(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -127,6 +176,13 @@ export async function accountsWithdrawalsAll(
   );
 }
 
+/**
+ * accountsMirs - Obtain information about the MIRs of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the MIRs of a specific account.
+ *
+ */
 export async function accountsMirs(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -152,6 +208,13 @@ export async function accountsMirs(
   });
 }
 
+/**
+ * accountsMirsAll - Obtain information about all MIRs of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the MIRs of a specific account.
+ *
+ */
 export async function accountsMirsAll(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -163,6 +226,13 @@ export async function accountsMirsAll(
   );
 }
 
+/**
+ * accountsDelegations - Obtain information about the delegation of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the delegation of a specific account.
+ *
+ */
 export async function accountsDelegations(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -188,6 +258,13 @@ export async function accountsDelegations(
   });
 }
 
+/**
+ * accountsDelegationsAll - Obtain information about all delegations of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the delegation of a specific account.
+ *
+ */
 export async function accountsDelegationsAll(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -199,6 +276,13 @@ export async function accountsDelegationsAll(
   );
 }
 
+/**
+ * accountsRegistrations - Obtain information about the registrations and deregistrations of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the registrations and deregistrations of a specific account.
+ *
+ */
 export async function accountsRegistrations(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -224,6 +308,13 @@ export async function accountsRegistrations(
   });
 }
 
+/**
+ * accountsRegistrationsAll - Obtain information about all registrations and deregistrations of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the registrations and deregistrations of a specific account.
+ *
+ */
 export async function accountsRegistrationsAll(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -235,6 +326,13 @@ export async function accountsRegistrationsAll(
   );
 }
 
+/**
+ * accountsAddresses - Obtain information about the addresses of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the addresses of a specific account.
+ *
+ */
 export async function accountsAddresses(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -260,6 +358,13 @@ export async function accountsAddresses(
   });
 }
 
+/**
+ * accountsAddressesAll - Obtain information about all addresses of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Information about the addresses of a specific account.
+ *
+ */
 export async function accountsAddressesAll(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -271,6 +376,13 @@ export async function accountsAddressesAll(
   );
 }
 
+/**
+ * accountsAddressesAssets - Obtain information about assets associated with addresses of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Assets associated with the account addresses
+ *
+ */
 export async function accountsAddressesAssets(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -296,6 +408,13 @@ export async function accountsAddressesAssets(
   });
 }
 
+/**
+ * accountsAddressesAssetsAll - Obtain information about assets associated with addresses of a specific account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Assets associated with the account addresses
+ *
+ */
 export async function accountsAddressesAssetsAll(
   this: BlockFrostAPI,
   stakeAddress: string,
@@ -307,6 +426,13 @@ export async function accountsAddressesAssetsAll(
   );
 }
 
+/**
+ * accountsAddressesTotal - Obtain summed details aboutof all addresses associated with a given account.
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @returns Assets associated with the account addresses
+ *
+ */
 export async function accountsAddressesTotal(
   this: BlockFrostAPI,
   stakeAddress: string,
