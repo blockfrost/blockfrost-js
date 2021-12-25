@@ -4,6 +4,12 @@ import { components } from '../../../types/OpenApi';
 import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
 
+/**
+ * assets - List of assets.
+ *
+ * @returns List of assets.
+ *
+ */
 export async function assets(
   this: BlockFrostAPI,
   pagination?: PaginationOptions,
@@ -25,6 +31,13 @@ export async function assets(
   });
 }
 
+/**
+ * assetsById - Information about a specific asset.
+ *
+ * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @returns Information about a specific asset.
+ *
+ */
 export async function assetsById(
   this: BlockFrostAPI,
   asset: string,
@@ -38,6 +51,13 @@ export async function assetsById(
   });
 }
 
+/**
+ * assetsHistory - History of a specific asset.
+ *
+ * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @returns History of a specific asset.
+ *
+ */
 export async function assetsHistory(
   this: BlockFrostAPI,
   asset: string,
@@ -63,6 +83,13 @@ export async function assetsHistory(
   });
 }
 
+/**
+ * assetsHistoryAll - Whole history of a specific asset.
+ *
+ * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @returns History of a specific asset.
+ *
+ */
 export async function assetsHistoryAll(
   this: BlockFrostAPI,
   asset: string,
@@ -74,6 +101,13 @@ export async function assetsHistoryAll(
   );
 }
 
+/**
+ * assetsTransactions - List of a specific asset transactions.
+ *
+ * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @returns List of a specific asset transactions.
+ *
+ */
 export async function assetsTransactions(
   this: BlockFrostAPI,
   asset: string,
@@ -99,6 +133,13 @@ export async function assetsTransactions(
   });
 }
 
+/**
+ * assetsAddresses - List of a addresses containing a specific asset.
+ *
+ * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @returns List of a addresses containing a specific asset.
+ *
+ */
 export async function assetsAddresses(
   this: BlockFrostAPI,
   asset: string,
@@ -124,6 +165,13 @@ export async function assetsAddresses(
   });
 }
 
+/**
+ * assetsPolicyById - List of asset minted under a specific policy.
+ *
+ * @param policyId - Specific policy_id
+ * @returns List of asset minted under a specific policy.
+ *
+ */
 export async function assetsPolicyById(
   this: BlockFrostAPI,
   policy: string,
@@ -149,6 +197,13 @@ export async function assetsPolicyById(
   });
 }
 
+/**
+ * assetsPolicyByIdAll - List of all assets minted under a specific policy.
+ *
+ * @param policyId - Specific policy_id
+ * @returns List of asset minted under a specific policy.
+ *
+ */
 export async function assetsPolicyByIdAll(
   this: BlockFrostAPI,
   policy: string,
