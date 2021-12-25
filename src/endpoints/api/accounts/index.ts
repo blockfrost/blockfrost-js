@@ -59,7 +59,7 @@ export async function accountsRewards(
 }
 
 /**
- * accountsRewardsAll - Obtain information about whole history of a specific account.
+ * accountsRewardsAll - Obtain information about whole history of a specific account
  *
  * @param stakeAddress - Bech32 stake address
  * @returns Information about the history of a specific account.

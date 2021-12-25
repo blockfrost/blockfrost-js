@@ -12,6 +12,13 @@ import {
   AllMethodOptions,
 } from '../../../types';
 
+/**
+ * addresses - Information about a specific address.
+ *
+ * @param address
+ * @returns information about a specific address.
+ *
+ */
 export async function addresses(
   this: BlockFrostAPI,
   address: string,
@@ -27,6 +34,13 @@ export async function addresses(
   });
 }
 
+/**
+ * addressesTotal - Detailed information about account associated addresses
+ *
+ * @param address
+ * @returns information about a specific address.
+ *
+ */
 export async function addressesTotal(
   this: BlockFrostAPI,
   address: string,
@@ -42,6 +56,13 @@ export async function addressesTotal(
   });
 }
 
+/**
+ * addressesExtended - Extended information of a specific address
+ *
+ * @param address
+ * @returns Extended information about a specific address.
+ *
+ */
 export async function addressesExtended(
   this: BlockFrostAPI,
   address: string,
@@ -57,6 +78,13 @@ export async function addressesExtended(
   });
 }
 
+/**
+ * addressesTransactions - Obtain information about a specific address.
+ *
+ * @param address
+ * @returns information about a specific address.
+ *
+ */
 export async function addressesTransactions(
   this: BlockFrostAPI,
   address: string,
@@ -92,6 +120,13 @@ export async function addressesTransactions(
   });
 }
 
+/**
+ * addresses - Obtain information about a specific address.
+ *
+ * @param address
+ * @returns information about a specific address.
+ *
+ */
 export async function addressesTransactionsAll(
   this: BlockFrostAPI,
   address: string,
@@ -106,6 +141,13 @@ export async function addressesTransactionsAll(
   );
 }
 
+/**
+ * addresses - Obtain information about a specific address.
+ *
+ * @param address
+ * @returns information about a specific address.
+ *
+ */
 export async function addressesUtxos(
   this: BlockFrostAPI,
   address: string,
@@ -131,6 +173,13 @@ export async function addressesUtxos(
   });
 }
 
+/**
+ * addresses - Obtain information about a specific address.
+ *
+ * @param address
+ * @returns information about a specific address.
+ *
+ */
 export async function addressesUtxosAll(
   this: BlockFrostAPI,
   address: string,
