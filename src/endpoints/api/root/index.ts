@@ -1,6 +1,12 @@
 import { handleError } from '../../../utils/errors';
 import { BlockFrostAPI } from '../../../index';
 
+/**
+ * root - Root endpoint has no other function than to point end users to documentation.
+ *
+ * @returns url and version of blockfrost API
+ *
+ */
 export async function root(
   this: BlockFrostAPI,
 ): Promise<{ url: string; version: string }> {

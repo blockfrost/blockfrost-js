@@ -2,6 +2,12 @@ import { handleError } from '../../../utils/errors';
 import { BlockFrostAPI } from '../../../index';
 import { components } from '../../../types/OpenApi';
 
+/**
+ * network - Obtain network information.
+ *
+ * @returns detailed network information.
+ *
+ */
 export async function network(
   this: BlockFrostAPI,
 ): Promise<components['schemas']['network']> {

@@ -1,50 +1,49 @@
-import { API_URLS } from './config';
 import { Got } from 'got';
 
+import { API_URLS } from './config';
 import {
   accounts,
+  accountsAddresses,
+  accountsAddressesAll,
+  accountsAddressesAssets,
+  accountsAddressesAssetsAll,
+  accountsAddressesTotal,
   accountsDelegations,
   accountsDelegationsAll,
+  accountsHistory,
+  accountsHistoryAll,
+  accountsMirs,
+  accountsMirsAll,
   accountsRegistrations,
   accountsRegistrationsAll,
   accountsRewards,
   accountsRewardsAll,
-  accountsHistory,
-  accountsHistoryAll,
   accountsWithdrawals,
   accountsWithdrawalsAll,
-  accountsMirs,
-  accountsMirsAll,
-  accountsAddresses,
-  accountsAddressesAll,
-  accountsAddressesAssets,
-  accountsAddressesTotal,
-  accountsAddressesAssetsAll,
 } from './endpoints/api/accounts';
-
 import {
   addresses,
-  addressesTotal,
   addressesExtended,
+  addressesTotal,
   addressesTransactions,
   addressesTransactionsAll,
   addressesUtxos,
   addressesUtxosAll,
 } from './endpoints/api/addresses';
-
 import {
   assets,
+  assetsAddresses,
   assetsById,
   assetsHistory,
   assetsHistoryAll,
-  assetsTransactions,
-  assetsAddresses,
   assetsPolicyById,
   assetsPolicyByIdAll,
+  assetsTransactions,
 } from './endpoints/api/assets';
-
 import {
   blocks,
+  blocksAddresses,
+  blocksAddressesAll,
   blocksLatest,
   blocksLatestTxs,
   blocksLatestTxsAll,
@@ -52,10 +51,7 @@ import {
   blocksPrevious,
   blocksTxs,
   blocksTxsAll,
-  blocksAddresses,
-  blocksAddressesAll,
 } from './endpoints/api/blocks';
-
 import {
   epochs,
   epochsBlocks,
@@ -71,70 +67,66 @@ import {
   epochsStakesByPoolId,
   epochsStakesByPoolIdAll,
 } from './endpoints/api/epochs';
-
+import { health, healthClock } from './endpoints/api/health';
+import { genesis } from './endpoints/api/ledger';
 import {
+  metadataTxsLabel,
+  metadataTxsLabelCbor,
+  metadataTxsLabels,
+} from './endpoints/api/metadata';
+import { metrics, metricsEndpoints } from './endpoints/api/metrics';
+import { network } from './endpoints/api/network';
+import {
+  nutlinkAddress,
+  nutlinkAddressTicker,
+  nutlinkAddressTickerAll,
+  nutlinkAddressTickers,
+  nutlinkAddressTickersAll,
+  nutlinkTickers,
+  nutlinkTickersAll,
+} from './endpoints/api/nutlink';
+import {
+  poolMetadata,
   pools,
   poolsAll,
-  poolMetadata,
   poolsById,
   poolsByIdBlocks,
   poolsByIdDelegators,
   poolsByIdHistory,
   poolsByIdRelays,
   poolsByIdUpdates,
-  poolsRetired,
-  poolsRetiring,
   poolsExtended,
   poolsExtendedAll,
+  poolsRetired,
+  poolsRetiring,
 } from './endpoints/api/pools';
-
-import { genesis } from './endpoints/api/ledger';
 import { root } from './endpoints/api/root';
-import {
-  metadataTxsLabel,
-  metadataTxsLabelCbor,
-  metadataTxsLabels,
-} from './endpoints/api/metadata';
-
-import { health, healthClock } from './endpoints/api/health';
-import { metrics, metricsEndpoints } from './endpoints/api/metrics';
-import {
-  txs,
-  txsDelegations,
-  txsMetadataCbor,
-  txsPoolRetires,
-  txsPoolUpdates,
-  txsStakes,
-  txsUtxos,
-  txsWithdrawals,
-  txsMirs,
-  txsMetadata,
-  txsRedeemers,
-  txSubmit,
-} from './endpoints/api/txs';
 import {
   scripts,
   scriptsByHash,
-  scriptsDatum,
-  scriptsRedeemers,
-  scriptsJson,
   scriptsCbor,
+  scriptsDatum,
+  scriptsJson,
+  scriptsRedeemers,
 } from './endpoints/api/scripts';
 import {
-  nutlinkAddress,
-  nutlinkAddressTicker,
-  nutlinkAddressTickers,
-  nutlinkAddressTickersAll,
-  nutlinkAddressTickerAll,
-  nutlinkTickers,
-  nutlinkTickersAll,
-} from './endpoints/api/nutlink';
-
-import { network } from './endpoints/api/network';
-
+  txs,
+  txsDelegations,
+  txsMetadata,
+  txsMetadataCbor,
+  txsMirs,
+  txsPoolRetires,
+  txsPoolUpdates,
+  txsRedeemers,
+  txsStakes,
+  txSubmit,
+  txsUtxos,
+  txsWithdrawals,
+} from './endpoints/api/txs';
 import { Options, ValidatedOptions } from './types';
 import { validateOptions } from './utils';
 import { getInstance } from './utils/got';
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('../package.json');
 
