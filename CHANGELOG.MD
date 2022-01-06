@@ -34,6 +34,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `getAccount` method
 
+## [3.0.3]
+
+### Fixed
+
+- incorrect user-agent header (backported from v4.0.0)
+
 ## [3.0.2]
 
 ### Added
