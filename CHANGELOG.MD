@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - params in `deriveAddress` and stake address derivation
+- incorrect user-agent header
 
 ### Removed
 
