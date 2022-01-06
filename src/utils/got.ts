@@ -27,7 +27,7 @@ export const getInstance = (
     http2: options.http2,
     headers: {
       project_id: options.projectId,
-      userAgent: userAgent,
+      'User-Agent': userAgent,
     },
     retry: options.retrySettings,
     timeout: {
