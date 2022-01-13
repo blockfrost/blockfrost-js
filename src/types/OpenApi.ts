@@ -81,7 +81,7 @@ export interface paths {
             "application/json": components["schemas"]["block_content"];
           };
         };
-        400: components["responses"]["403"];
+        400: components["responses"]["400"];
         403: components["responses"]["403"];
         404: components["responses"]["404"];
         418: components["responses"]["418"];
@@ -114,7 +114,7 @@ export interface paths {
             "application/json": components["schemas"]["block_content_txs"];
           };
         };
-        400: components["responses"]["403"];
+        400: components["responses"]["400"];
         403: components["responses"]["403"];
         404: components["responses"]["404"];
         418: components["responses"]["418"];
@@ -139,7 +139,7 @@ export interface paths {
             "application/json": components["schemas"]["block_content"];
           };
         };
-        400: components["responses"]["403"];
+        400: components["responses"]["400"];
         403: components["responses"]["403"];
         404: components["responses"]["404"];
         418: components["responses"]["418"];
@@ -170,7 +170,7 @@ export interface paths {
             "application/json": components["schemas"]["block_content_array"];
           };
         };
-        400: components["responses"]["403"];
+        400: components["responses"]["400"];
         403: components["responses"]["403"];
         404: components["responses"]["404"];
         418: components["responses"]["418"];
@@ -201,7 +201,7 @@ export interface paths {
             "application/json": components["schemas"]["block_content_array"];
           };
         };
-        400: components["responses"]["403"];
+        400: components["responses"]["400"];
         403: components["responses"]["403"];
         404: components["responses"]["404"];
         418: components["responses"]["418"];
@@ -226,7 +226,7 @@ export interface paths {
             "application/json": components["schemas"]["block_content"];
           };
         };
-        400: components["responses"]["403"];
+        400: components["responses"]["400"];
         403: components["responses"]["403"];
         404: components["responses"]["404"];
         418: components["responses"]["418"];
@@ -253,7 +253,7 @@ export interface paths {
             "application/json": components["schemas"]["block_content"];
           };
         };
-        400: components["responses"]["403"];
+        400: components["responses"]["400"];
         403: components["responses"]["403"];
         404: components["responses"]["404"];
         418: components["responses"]["418"];
@@ -290,7 +290,7 @@ export interface paths {
             "application/json": components["schemas"]["block_content_txs"];
           };
         };
-        400: components["responses"]["403"];
+        400: components["responses"]["400"];
         403: components["responses"]["403"];
         404: components["responses"]["404"];
         418: components["responses"]["418"];
@@ -321,7 +321,7 @@ export interface paths {
             "application/json": components["schemas"]["block_content_addresses"];
           };
         };
-        400: components["responses"]["403"];
+        400: components["responses"]["400"];
         403: components["responses"]["403"];
         404: components["responses"]["404"];
         418: components["responses"]["418"];
