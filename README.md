@@ -47,7 +47,7 @@ const Blockfrost = require('@blockfrost/blockfrost-js');
 // import { BlockFrostAPI } from '@blockfrost/blockfrost-js'; // using import syntax
 
 const API = new Blockfrost.BlockFrostAPI({
-  projectId: 'mainnetTx0zzQFPRzCh5bkmQ3xxE7D4lZriU9Av', // see: https://blockfrost.io
+  projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
 });
 
 async function runExample() {
