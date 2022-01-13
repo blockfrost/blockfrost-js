@@ -18,7 +18,7 @@
   "scripts": {
     "build": "yarn clean && tsc",
     "clean": "rimraf lib",
-    "generate-types": "openapi-typescript https://raw.githubusercontent.com/blockfrost/openapi/master/swagger.yaml --output ./src/types/OpenApi.ts",
+    "generate-types": "openapi-typescript https://raw.githubusercontent.com/blockfrost/openapi/master/openapi.yaml --output ./src/types/OpenApi.ts",
     "lint": "eslint ./src/**/*.ts",
     "prepublishOnly": "yarn build",
     "run-example:api": "ts-node-dev --transpile-only ./examples/api.ts",

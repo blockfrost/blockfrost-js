@@ -17,19 +17,16 @@ export interface paths {
             };
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
   "/health": {
-    /**
-     * Return backend status as a boolean. Your application
-     *     should handle situations when backend for the given chain is unavailable.
-     */
+    /** Return backend status as a boolean. Your application should handle situations when backend for the given chain is unavailable. */
     get: {
       responses: {
         /** Return the boolean indicating the health of the backend. */
@@ -40,11 +37,11 @@ export interface paths {
             };
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -63,11 +60,11 @@ export interface paths {
             };
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -78,18 +75,18 @@ export interface paths {
      */
     get: {
       responses: {
-        /** Return the contents of the latest block. */
+        /** Return the contents of the block */
         200: {
           content: {
             "application/json": components["schemas"]["block_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["403"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -111,18 +108,18 @@ export interface paths {
         };
       };
       responses: {
-        /** Return the transactions within the block. */
+        /** Return the contents of the block */
         200: {
           content: {
             "application/json": components["schemas"]["block_content_txs"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["403"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -142,64 +139,12 @@ export interface paths {
             "application/json": components["schemas"]["block_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
-      };
-    };
-  };
-  "/blocks/slot/{slot_number}": {
-    /** Return the content of a requested block for a specific slot. */
-    get: {
-      parameters: {
-        path: {
-          /** Slot position for requested block. */
-          slot_number: number;
-        };
-      };
-      responses: {
-        /** Return the contents of the block */
-        200: {
-          content: {
-            "application/json": components["schemas"]["block_content"];
-          };
-        };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
-      };
-    };
-  };
-  "/blocks/epoch/{epoch_number}/slot/{slot_number}": {
-    /** Return the content of a requested block for a specific slot in an epoch. */
-    get: {
-      parameters: {
-        path: {
-          /** Epoch for specific epoch slot. */
-          epoch_number: number;
-          /** Slot position for requested block. */
-          slot_number: number;
-        };
-      };
-      responses: {
-        /** Return the contents of the block */
-        200: {
-          content: {
-            "application/json": components["schemas"]["block_content"];
-          };
-        };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["403"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -219,18 +164,18 @@ export interface paths {
         };
       };
       responses: {
-        /** Return the contents of the block. */
+        /** Return the contents of the block */
         200: {
           content: {
             "application/json": components["schemas"]["block_content_array"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["403"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -256,12 +201,64 @@ export interface paths {
             "application/json": components["schemas"]["block_content_array"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["403"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
+      };
+    };
+  };
+  "/blocks/slot/{slot_number}": {
+    /** Return the content of a requested block for a specific slot. */
+    get: {
+      parameters: {
+        path: {
+          /** Slot position for requested block. */
+          slot_number: number;
+        };
+      };
+      responses: {
+        /** Return the contents of the block */
+        200: {
+          content: {
+            "application/json": components["schemas"]["block_content"];
+          };
+        };
+        400: components["responses"]["403"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
+      };
+    };
+  };
+  "/blocks/epoch/{epoch_number}/slot/{slot_number}": {
+    /** Return the content of a requested block for a specific slot in an epoch. */
+    get: {
+      parameters: {
+        path: {
+          /** Epoch for specific epoch slot. */
+          epoch_number: number;
+          /** Slot position for requested block. */
+          slot_number: number;
+        };
+      };
+      responses: {
+        /** Return the contents of the block */
+        200: {
+          content: {
+            "application/json": components["schemas"]["block_content"];
+          };
+        };
+        400: components["responses"]["403"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -287,18 +284,18 @@ export interface paths {
         };
       };
       responses: {
-        /** Return the transactions within the block. */
+        /** Return the contents of the block */
         200: {
           content: {
             "application/json": components["schemas"]["block_content_txs"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["403"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -318,18 +315,18 @@ export interface paths {
         };
       };
       responses: {
-        /** Return affected addresses in a given block. */
+        /** Return the contents of the block */
         200: {
           content: {
             "application/json": components["schemas"]["block_content_addresses"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["403"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -343,11 +340,11 @@ export interface paths {
             "application/json": components["schemas"]["genesis_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -361,12 +358,12 @@ export interface paths {
             "application/json": components["schemas"]["epoch_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -380,12 +377,12 @@ export interface paths {
             "application/json": components["schemas"]["epoch_param_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -405,12 +402,12 @@ export interface paths {
             "application/json": components["schemas"]["epoch_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -436,12 +433,12 @@ export interface paths {
             "application/json": components["schemas"]["epoch_content_array"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -467,12 +464,12 @@ export interface paths {
             "application/json": components["schemas"]["epoch_content_array"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -498,12 +495,12 @@ export interface paths {
             "application/json": components["schemas"]["epoch_stake_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -531,12 +528,12 @@ export interface paths {
             "application/json": components["schemas"]["epoch_stake_pool_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -567,12 +564,12 @@ export interface paths {
             "application/json": components["schemas"]["epoch_block_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -605,12 +602,12 @@ export interface paths {
             "application/json": components["schemas"]["epoch_block_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -630,12 +627,12 @@ export interface paths {
             "application/json": components["schemas"]["epoch_param_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -655,12 +652,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -680,12 +677,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_content_utxo"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -705,12 +702,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_content_stake_addr"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -730,12 +727,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_content_delegations"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -755,12 +752,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_content_withdrawals"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -780,12 +777,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_content_mirs"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -805,12 +802,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_content_pool_certs"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -830,12 +827,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_content_pool_retires"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -855,12 +852,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_content_metadata"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -880,12 +877,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_content_metadata_cbor"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -905,12 +902,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_content_redeemers"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -929,13 +926,13 @@ export interface paths {
             "application/json": string;
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        425: components["responses"]["mempool_full"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        425: components["responses"]["425"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -955,12 +952,12 @@ export interface paths {
             "application/json": components["schemas"]["account_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -991,12 +988,12 @@ export interface paths {
             "application/json": components["schemas"]["account_reward_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1027,12 +1024,12 @@ export interface paths {
             "application/json": components["schemas"]["account_history_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1063,12 +1060,12 @@ export interface paths {
             "application/json": components["schemas"]["account_delegation_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1099,12 +1096,12 @@ export interface paths {
             "application/json": components["schemas"]["account_registration_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1135,12 +1132,12 @@ export interface paths {
             "application/json": components["schemas"]["account_withdrawal_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1171,12 +1168,12 @@ export interface paths {
             "application/json": components["schemas"]["account_mir_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1207,12 +1204,12 @@ export interface paths {
             "application/json": components["schemas"]["account_addresses_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1246,12 +1243,12 @@ export interface paths {
             "application/json": components["schemas"]["account_addresses_assets"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1274,12 +1271,12 @@ export interface paths {
             "application/json": components["schemas"]["account_addresses_total"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1306,12 +1303,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_metadata_labels"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1342,12 +1339,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_metadata_label_json"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1378,12 +1375,12 @@ export interface paths {
             "application/json": components["schemas"]["tx_metadata_label_cbor"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1403,12 +1400,12 @@ export interface paths {
             "application/json": components["schemas"]["address_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1428,12 +1425,12 @@ export interface paths {
             "application/json": components["schemas"]["address_content_extended"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1453,12 +1450,12 @@ export interface paths {
             "application/json": components["schemas"]["address_content_total"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1489,12 +1486,12 @@ export interface paths {
             "application/json": components["schemas"]["address_utxo_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1527,12 +1524,12 @@ export interface paths {
             "application/json": components["schemas"]["address_utxo_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1563,12 +1560,12 @@ export interface paths {
             "application/json": components["schemas"]["address_txs_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1609,12 +1606,12 @@ export interface paths {
             "application/json": components["schemas"]["address_transactions_content"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1641,12 +1638,12 @@ export interface paths {
             "application/json": components["schemas"]["pool_list"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1673,12 +1670,12 @@ export interface paths {
             "application/json": components["schemas"]["pool_list_extended"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1705,12 +1702,12 @@ export interface paths {
             "application/json": components["schemas"]["pool_list_retire"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1737,12 +1734,12 @@ export interface paths {
             "application/json": components["schemas"]["pool_list_retire"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1762,12 +1759,12 @@ export interface paths {
             "application/json": components["schemas"]["pool"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1798,12 +1795,12 @@ export interface paths {
             "application/json": components["schemas"]["pool_history"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1826,12 +1823,12 @@ export interface paths {
               Partial<components["schemas"]["empty_object"]>;
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1851,12 +1848,12 @@ export interface paths {
             "application/json": components["schemas"]["pool_relays"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1887,12 +1884,12 @@ export interface paths {
             "application/json": components["schemas"]["pool_delegators"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1923,12 +1920,12 @@ export interface paths {
             "application/json": components["schemas"]["pool_blocks"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1959,12 +1956,12 @@ export interface paths {
             "application/json": components["schemas"]["pool_updates"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -1991,12 +1988,12 @@ export interface paths {
             "application/json": components["schemas"]["assets"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2016,12 +2013,12 @@ export interface paths {
             "application/json": components["schemas"]["asset"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2052,12 +2049,12 @@ export interface paths {
             "application/json": components["schemas"]["asset_history"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2088,12 +2085,12 @@ export interface paths {
             "application/json": components["schemas"]["asset_txs"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2124,12 +2121,12 @@ export interface paths {
             "application/json": components["schemas"]["asset_transactions"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2160,12 +2157,12 @@ export interface paths {
             "application/json": components["schemas"]["asset_addresses"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2196,12 +2193,12 @@ export interface paths {
             "application/json": components["schemas"]["asset_policy"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2228,12 +2225,12 @@ export interface paths {
             "application/json": components["schemas"]["scripts"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2253,12 +2250,12 @@ export interface paths {
             "application/json": components["schemas"]["script"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2278,12 +2275,12 @@ export interface paths {
             "application/json": components["schemas"]["script_json"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2303,12 +2300,12 @@ export interface paths {
             "application/json": components["schemas"]["script_cbor"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2339,12 +2336,12 @@ export interface paths {
             "application/json": components["schemas"]["script_redeemers"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2364,12 +2361,12 @@ export interface paths {
             "application/json": components["schemas"]["script_datum"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2393,12 +2390,12 @@ export interface paths {
             "application/json": components["schemas"]["utils_addresses_xpub"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2422,12 +2419,12 @@ export interface paths {
             };
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2442,12 +2439,12 @@ export interface paths {
       responses: {
         /** Returns the object content */
         200: unknown;
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2471,16 +2468,16 @@ export interface paths {
             };
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
-  "/ipfs/pin/list/": {
+  "/ipfs/pin/list": {
     /** List objects pinned to local storage */
     get: {
       parameters: {
@@ -2519,12 +2516,12 @@ export interface paths {
             }[];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2560,12 +2557,12 @@ export interface paths {
             };
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2589,12 +2586,12 @@ export interface paths {
             };
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2608,12 +2605,12 @@ export interface paths {
             "application/json": components["schemas"]["metrics"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2627,12 +2624,12 @@ export interface paths {
             "application/json": components["schemas"]["metrics_endpoints"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2646,12 +2643,12 @@ export interface paths {
             "application/json": components["schemas"]["network"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2670,21 +2667,22 @@ export interface paths {
             "application/json": components["schemas"]["nutlink_address"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
   "/nutlink/{address}/tickers": {
-    /** List tickers for a specific metadata oracle */
+    /** List of records of a specific ticker */
     get: {
       parameters: {
         path: {
           address: string;
+          ticker: string;
         };
         query: {
           /** The number of results displayed on one page. */
@@ -2705,12 +2703,12 @@ export interface paths {
             "application/json": components["schemas"]["nutlink_address_tickers"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2741,12 +2739,12 @@ export interface paths {
             "application/json": components["schemas"]["nutlink_address_ticker"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2776,12 +2774,12 @@ export interface paths {
             "application/json": components["schemas"]["nutlink_tickers_ticker"];
           };
         };
-        400: components["responses"]["bad_request"];
-        403: components["responses"]["unauthorized_error"];
-        404: components["responses"]["not_found"];
-        418: components["responses"]["autobanned"];
-        429: components["responses"]["overusage_limit"];
-        500: components["responses"]["internal_server_error"];
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
       };
     };
   };
@@ -2789,7 +2787,6 @@ export interface paths {
 
 export interface components {
   schemas: {
-    block_content_array: components["schemas"]["block_content"][];
     block_content: {
       /** Block creation time in UNIX time */
       time: number;
@@ -2823,6 +2820,7 @@ export interface components {
       confirmations: number;
     };
     block_content_txs: string[];
+    block_content_array: components["schemas"]["block_content"][];
     block_content_addresses: {
       /** Address that was affected in the specified block */
       address: string;
@@ -2853,7 +2851,6 @@ export interface components {
       /** Security parameter k */
       security_param: number;
     };
-    epoch_content_array: components["schemas"]["epoch_content"][];
     epoch_content: {
       /** Epoch number */
       epoch: number;
@@ -2876,21 +2873,6 @@ export interface components {
       /** Sum of all the active stakes within the epoch in Lovelaces */
       active_stake: string | null;
     };
-    epoch_stake_content: {
-      /** Stake address */
-      stake_address: string;
-      /** Bech32 prefix of the pool delegated to */
-      pool_id: string;
-      /** Amount of active delegated stake in Lovelaces */
-      amount: string;
-    }[];
-    epoch_stake_pool_content: {
-      /** Stake address */
-      stake_address: string;
-      /** Amount of active delegated stake in Lovelaces */
-      amount: string;
-    }[];
-    epoch_block_content: string[];
     epoch_param_content: {
       /** Epoch number */
       epoch: number;
@@ -2953,6 +2935,22 @@ export interface components {
       /** The cost per UTxO word */
       coins_per_utxo_word: string | null;
     };
+    epoch_content_array: components["schemas"]["epoch_content"][];
+    epoch_stake_content: {
+      /** Stake address */
+      stake_address: string;
+      /** Bech32 prefix of the pool delegated to */
+      pool_id: string;
+      /** Amount of active delegated stake in Lovelaces */
+      amount: string;
+    }[];
+    epoch_stake_pool_content: {
+      /** Stake address */
+      stake_address: string;
+      /** Amount of active delegated stake in Lovelaces */
+      amount: string;
+    }[];
+    epoch_block_content: string[];
     tx_content: {
       /** Transaction hash */
       hash: string;
@@ -3180,6 +3178,50 @@ export interface components {
       /** Bech32 pool ID that owns the account */
       pool_id: string | null;
     };
+    account_reward_content: {
+      /** Epoch of the associated reward */
+      epoch: number;
+      /** Rewards for given epoch in Lovelaces */
+      amount: string;
+      /** Bech32 pool ID being delegated to */
+      pool_id: string;
+    }[];
+    account_history_content: {
+      /** Epoch in which the stake was active */
+      active_epoch: number;
+      /** Stake amount in Lovelaces */
+      amount: string;
+      /** Bech32 ID of pool being delegated to */
+      pool_id: string;
+    }[];
+    account_delegation_content: {
+      /** Epoch in which the delegation becomes active */
+      active_epoch: number;
+      /** Hash of the transaction containing the delegation */
+      tx_hash: string;
+      /** Rewards for given epoch in Lovelaces */
+      amount: string;
+      /** Bech32 ID of pool being delegated to */
+      pool_id: string;
+    }[];
+    account_registration_content: {
+      /** Hash of the transaction containing the (de)registration certificate */
+      tx_hash: string;
+      /** Action in the certificate */
+      action: "registered" | "deregistered";
+    }[];
+    account_withdrawal_content: {
+      /** Hash of the transaction containing the withdrawal */
+      tx_hash: string;
+      /** Withdrawal amount in Lovelaces */
+      amount: string;
+    }[];
+    account_mir_content: {
+      /** Hash of the transaction containing the MIR */
+      tx_hash: string;
+      /** MIR amount in Lovelaces */
+      amount: string;
+    }[];
     account_addresses_content: {
       /** Address associated with the stake key */
       address: string;
@@ -3208,49 +3250,34 @@ export interface components {
       /** Count of all transactions for all addresses associated with the account */
       tx_count: number;
     };
-    account_reward_content: {
-      /** Epoch of the associated reward */
-      epoch: number;
-      /** Rewards for given epoch in Lovelaces */
-      amount: string;
-      /** Bech32 pool ID being delegated to */
-      pool_id: string;
+    tx_metadata_labels: {
+      /** Metadata label */
+      label: string;
+      /** CIP10 defined description */
+      cip10: string | null;
+      /** The count of metadata entries with a specific label */
+      count: string;
     }[];
-    account_delegation_content: {
-      /** Epoch in which the delegation becomes active */
-      active_epoch: number;
-      /** Hash of the transaction containing the delegation */
+    tx_metadata_label_json: {
+      /** Transaction hash that contains the specific metadata */
       tx_hash: string;
-      /** Rewards for given epoch in Lovelaces */
-      amount: string;
-      /** Bech32 ID of pool being delegated to */
-      pool_id: string;
+      /** Content of the JSON metadata */
+      json_metadata:
+        | (Partial<string> &
+            Partial<{ [key: string]: unknown }> &
+            Partial<unknown[]> &
+            Partial<number> &
+            Partial<number> &
+            Partial<boolean>)
+        | null;
     }[];
-    account_history_content: {
-      /** Epoch in which the stake was active */
-      active_epoch: number;
-      /** Stake amount in Lovelaces */
-      amount: string;
-      /** Bech32 ID of pool being delegated to */
-      pool_id: string;
-    }[];
-    account_registration_content: {
-      /** Hash of the transaction containing the (de)registration certificate */
+    tx_metadata_label_cbor: {
+      /** Transaction hash that contains the specific metadata */
       tx_hash: string;
-      /** Action in the certificate */
-      action: "registered" | "deregistered";
-    }[];
-    account_withdrawal_content: {
-      /** Hash of the transaction containing the withdrawal */
-      tx_hash: string;
-      /** Withdrawal amount in Lovelaces */
-      amount: string;
-    }[];
-    account_mir_content: {
-      /** Hash of the transaction containing the MIR */
-      tx_hash: string;
-      /** MIR amount in Lovelaces */
-      amount: string;
+      /** @deprecated Content of the CBOR metadata */
+      cbor_metadata: string | null;
+      /** Content of the CBOR metadata in hex */
+      metadata: string | null;
     }[];
     address_content: {
       /** Bech32 encoded addresses */
@@ -3335,35 +3362,6 @@ export interface components {
       /** Block creation time in UNIX time */
       block_time: number;
     }[];
-    tx_metadata_labels: {
-      /** Metadata label */
-      label: string;
-      /** CIP10 defined description */
-      cip10: string | null;
-      /** The count of metadata entries with a specific label */
-      count: string;
-    }[];
-    tx_metadata_label_json: {
-      /** Transaction hash that contains the specific metadata */
-      tx_hash: string;
-      /** Content of the JSON metadata */
-      json_metadata:
-        | (Partial<string> &
-            Partial<{ [key: string]: unknown }> &
-            Partial<unknown[]> &
-            Partial<number> &
-            Partial<number> &
-            Partial<boolean>)
-        | null;
-    }[];
-    tx_metadata_label_cbor: {
-      /** Transaction hash that contains the specific metadata */
-      tx_hash: string;
-      /** @deprecated Content of the CBOR metadata */
-      cbor_metadata: string | null;
-      /** Content of the CBOR metadata in hex */
-      metadata: string | null;
-    }[];
     pool_list: string[];
     pool_list_extended: {
       /** Bech32 encoded pool ID */
@@ -3381,22 +3379,6 @@ export interface components {
       /** Retirement epoch number */
       epoch: number;
     }[];
-    pool_history: {
-      /** Epoch number */
-      epoch: number;
-      /** Number of blocks created by pool */
-      blocks: number;
-      /** Active (Snapshot of live stake 2 epochs ago) stake in Lovelaces */
-      active_stake: string;
-      /** Pool size (percentage) of overall active stake at that epoch */
-      active_size: number;
-      /** Number of delegators for epoch */
-      delegators_count: number;
-      /** Total rewards received before distribution to delegators */
-      rewards: string;
-      /** Pool operator rewards */
-      fees: string;
-    }[];
     pool: {
       /** Bech32 pool ID */
       pool_id: string;
@@ -3406,6 +3388,8 @@ export interface components {
       vrf_key: string;
       /** Total minted blocks */
       blocks_minted: number;
+      /** Number of blocks minted in the current epoch */
+      blocks_epoch: number;
       live_stake: string;
       live_size: number;
       live_saturation: number;
@@ -3426,6 +3410,22 @@ export interface components {
       registration: string[];
       retirement: string[];
     };
+    pool_history: {
+      /** Epoch number */
+      epoch: number;
+      /** Number of blocks created by pool */
+      blocks: number;
+      /** Active (Snapshot of live stake 2 epochs ago) stake in Lovelaces */
+      active_stake: string;
+      /** Pool size (percentage) of overall active stake at that epoch */
+      active_size: number;
+      /** Number of delegators for epoch */
+      delegators_count: number;
+      /** Total rewards received before distribution to delegators */
+      rewards: string;
+      /** Pool operator rewards */
+      fees: string;
+    }[];
     pool_metadata: {
       /** Bech32 pool ID */
       pool_id: string;
@@ -3444,6 +3444,7 @@ export interface components {
       /** Home page of the stake pool */
       homepage: string | null;
     };
+    empty_object: { [key: string]: unknown };
     pool_relays: {
       /** IPv4 address of the relay */
       ipv4: string | null;
@@ -3456,11 +3457,11 @@ export interface components {
       /** Network port of the relay */
       port: number;
     }[];
-    pool_delegations: {
-      /** Transaction ID */
-      tx_hash: string;
-      /** Certificate within the transaction */
-      cert_index: number;
+    pool_delegators: {
+      /** Bech32 encoded stake addresses */
+      address: string;
+      /** Currently delegated amount */
+      live_stake: string;
     }[];
     pool_blocks: string[];
     pool_updates: {
@@ -3470,12 +3471,6 @@ export interface components {
       cert_index: number;
       /** Action in the certificate */
       action: "registered" | "deregistered";
-    }[];
-    pool_delegators: {
-      /** Bech32 encoded stake addresses */
-      address: string;
-      /** Currently delegated amount */
-      live_stake: string;
     }[];
     assets: {
       /** Asset identifier */
@@ -3567,6 +3562,28 @@ export interface components {
       /** The size of the CBOR serialised script, if a Plutus script */
       serialised_size: number | null;
     };
+    script_json: {
+      /** JSON contents of the `timelock` script, null for `plutus` scripts */
+      json:
+        | (Partial<string> &
+            Partial<{ [key: string]: unknown }> &
+            Partial<unknown[]> &
+            Partial<number> &
+            Partial<number> &
+            Partial<boolean>)
+        | null;
+    };
+    script_cbor: {
+      /** CBOR contents of the `plutus` script, null for `timelocks` */
+      cbor:
+        | (Partial<string> &
+            Partial<{ [key: string]: unknown }> &
+            Partial<unknown[]> &
+            Partial<number> &
+            Partial<number> &
+            Partial<boolean>)
+        | null;
+    };
     script_redeemers: {
       /** Hash of the transaction */
       tx_hash: string;
@@ -3592,28 +3609,6 @@ export interface components {
         Partial<number> &
         Partial<boolean>;
     };
-    script_json: {
-      /** JSON contents of the `timelock` script, null for `plutus` scripts */
-      json:
-        | (Partial<string> &
-            Partial<{ [key: string]: unknown }> &
-            Partial<unknown[]> &
-            Partial<number> &
-            Partial<number> &
-            Partial<boolean>)
-        | null;
-    };
-    script_cbor: {
-      /** CBOR contents of the `plutus` script, null for `timelocks` */
-      cbor:
-        | (Partial<string> &
-            Partial<{ [key: string]: unknown }> &
-            Partial<unknown[]> &
-            Partial<number> &
-            Partial<number> &
-            Partial<boolean>)
-        | null;
-    };
     utils_addresses_xpub: {
       /** Script hash */
       xpub: string;
@@ -3638,56 +3633,6 @@ export interface components {
       /** Endpoint parent name */
       endpoint: string;
     }[];
-    nutlink_address: {
-      /** Bech32 encoded address */
-      address: string;
-      /** URL of the specific metadata file */
-      metadata_url: string;
-      /** Hash of the metadata file */
-      metadata_hash: string;
-      /** The cached metadata of the `metadata_url` file. */
-      metadata: { [key: string]: unknown } | null;
-    };
-    nutlink_address_ticker: {
-      /** Hash of the transaction */
-      tx_hash: string;
-      /** Block height of the record */
-      block_height: number;
-      /** Transaction index within the block */
-      tx_index: number;
-      /** Content of the ticker */
-      payload: (Partial<string> &
-        Partial<{ [key: string]: unknown }> &
-        Partial<unknown[]> &
-        Partial<number> &
-        Partial<number> &
-        Partial<boolean>) & { [key: string]: unknown };
-    }[];
-    nutlink_address_tickers: {
-      /** Name of the ticker */
-      name: string;
-      /** Number of ticker records */
-      count: number;
-      /** Block height of the latest record */
-      latest_block: number;
-    }[];
-    nutlink_tickers_ticker: {
-      /** Address of a metadata oracle */
-      address: string;
-      /** Hash of the transaction */
-      tx_hash: string;
-      /** Block height of the record */
-      block_height: number;
-      /** Transaction index within the block */
-      tx_index: number;
-      /** Content of the ticker */
-      payload: (Partial<string> &
-        Partial<{ [key: string]: unknown }> &
-        Partial<unknown[]> &
-        Partial<number> &
-        Partial<number> &
-        Partial<boolean>) & { [key: string]: unknown };
-    }[];
     network: {
       supply: {
         /** Maximum supply in Lovelaces */
@@ -3710,51 +3655,60 @@ export interface components {
         active: string;
       };
     };
-    empty_object: { [key: string]: unknown };
+    nutlink_address: {
+      /** Bech32 encoded address */
+      address: string;
+      /** URL of the specific metadata file */
+      metadata_url: string;
+      /** Hash of the metadata file */
+      metadata_hash: string;
+      /** The cached metadata of the `metadata_url` file. */
+      metadata: { [key: string]: unknown } | null;
+    };
+    nutlink_address_tickers: {
+      /** Name of the ticker */
+      name: string;
+      /** Number of ticker records */
+      count: number;
+      /** Block height of the latest record */
+      latest_block: number;
+    }[];
+    nutlink_address_ticker: {
+      /** Hash of the transaction */
+      tx_hash: string;
+      /** Block height of the record */
+      block_height: number;
+      /** Transaction index within the block */
+      tx_index: number;
+      /** Content of the ticker */
+      payload: (Partial<string> &
+        Partial<{ [key: string]: unknown }> &
+        Partial<unknown[]> &
+        Partial<number> &
+        Partial<number> &
+        Partial<boolean>) & { [key: string]: unknown };
+    }[];
+    nutlink_tickers_ticker: {
+      /** Address of a metadata oracle */
+      address: string;
+      /** Hash of the transaction */
+      tx_hash: string;
+      /** Block height of the record */
+      block_height: number;
+      /** Transaction index within the block */
+      tx_index: number;
+      /** Content of the ticker */
+      payload: (Partial<string> &
+        Partial<{ [key: string]: unknown }> &
+        Partial<unknown[]> &
+        Partial<number> &
+        Partial<number> &
+        Partial<boolean>) & { [key: string]: unknown };
+    }[];
   };
   responses: {
-    /** Usage limit reached */
-    overusage_limit: {
-      content: {
-        "application/json": {
-          status_code: number;
-          error: string;
-          message: string;
-        };
-      };
-    };
-    /** Mempool is already full, not accepting new txs straight away */
-    mempool_full: {
-      content: {
-        "application/json": {
-          status_code: number;
-          error: string;
-          message: string;
-        };
-      };
-    };
-    /** IP has been auto-banned for extensive sending of requests after usage limit has been reached */
-    autobanned: {
-      content: {
-        "application/json": {
-          status_code: number;
-          error: string;
-          message: string;
-        };
-      };
-    };
-    /** Component not found */
-    not_found: {
-      content: {
-        "application/json": {
-          status_code: number;
-          error: string;
-          message: string;
-        };
-      };
-    };
-    /** Internal Server Error */
-    internal_server_error: {
+    /** Bad request */
+    400: {
       content: {
         "application/json": {
           status_code: number;
@@ -3764,7 +3718,7 @@ export interface components {
       };
     };
     /** Authentication secret is missing or invalid */
-    unauthorized_error: {
+    403: {
       content: {
         "application/json": {
           status_code: number;
@@ -3773,8 +3727,8 @@ export interface components {
         };
       };
     };
-    /** Bad request */
-    bad_request: {
+    /** Component not found */
+    404: {
       content: {
         "application/json": {
           status_code: number;
@@ -3783,6 +3737,53 @@ export interface components {
         };
       };
     };
+    /** IP has been auto-banned for extensive sending of requests after usage limit has been reached */
+    418: {
+      content: {
+        "application/json": {
+          status_code: number;
+          error: string;
+          message: string;
+        };
+      };
+    };
+    /** Mempool is already full, not accepting new txs straight away */
+    425: {
+      content: {
+        "application/json": {
+          status_code: number;
+          error: string;
+          message: string;
+        };
+      };
+    };
+    /** Usage limit reached */
+    429: {
+      content: {
+        "application/json": {
+          status_code: number;
+          error: string;
+          message: string;
+        };
+      };
+    };
+    /** Internal Server Error */
+    500: {
+      content: {
+        "application/json": {
+          status_code: number;
+          error: string;
+          message: string;
+        };
+      };
+    };
+    overusage_limit: components["responses"]["429"];
+    mempool_full: components["responses"]["425"];
+    autobanned: components["responses"]["418"];
+    not_found: components["responses"]["404"];
+    internal_server_error: components["responses"]["500"];
+    unauthorized_error: components["responses"]["403"];
+    bad_request: components["responses"]["400"];
   };
 }
 
