@@ -43,50 +43,61 @@ Using the SDK is pretty straight-forward as you can see from the following examp
 ### Cardano
 
 ```typescript
-import { BlockFrostAPI } from '@blockfrost/blockfrost-js';
+const Blockfrost = require('@blockfrost/blockfrost-js');
+// import { BlockFrostAPI } from '@blockfrost/blockfrost-js'; // using import syntax
 
-const API = new BlockFrostAPI({
+const API = new Blockfrost.BlockFrostAPI({
   projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
 });
-try {
-  const latestBlock = await API.blocksLatest();
-  const networkInfo = await API.network();
-  const latestEpoch = await API.epochsLatest();
-  const health = await API.health();
-  const address = await API.addresses(
-    'addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz',
-  );
-  const pools = await API.pools({ page: 1, count: 10, order: 'asc' });
 
-  console.log('pools', pools);
-  console.log('address', address);
-  console.log('networkInfo', networkInfo);
-  console.log('latestEpoch', latestEpoch);
-  console.log('latestBlock', latestBlock);
-  console.log('health', health);
-} catch (err) {
-  console.log('error', err);
+async function runExample() {
+  try {
+    const latestBlock = await API.blocksLatest();
+    const networkInfo = await API.network();
+    const latestEpoch = await API.epochsLatest();
+    const health = await API.health();
+    const address = await API.addresses(
+      'addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz',
+    );
+    const pools = await API.pools({ page: 1, count: 10, order: 'asc' });
+
+    console.log('pools', pools);
+    console.log('address', address);
+    console.log('networkInfo', networkInfo);
+    console.log('latestEpoch', latestEpoch);
+    console.log('latestBlock', latestBlock);
+    console.log('health', health);
+  } catch (err) {
+    console.log('error', err);
+  }
 }
+
+runExample();
 ```
 
 ### IPFS
 
 ```typescript
-import { BlockFrostIPFS } from '@blockfrost/blockfrost-js';
+const Blockfrost = require('@blockfrost/blockfrost-js');
+// import { BlockFrostIPFS } from '@blockfrost/blockfrost-js'; // using import syntax
 
-const IPFS = new BlockFrostIPFS({
+const IPFS = new Blockfrost.BlockFrostIPFS({
   projectId: 'YOUR IPFS KEY HERE', // see: https://blockfrost.io
 });
 
-try {
-  const added = await IPFS.add(`${__dirname}/img.svg`);
-  console.log('added', added);
+async function runExample() {
+  try {
+    const added = await IPFS.add(`${__dirname}/img.svg`);
+    console.log('added', added);
 
-  const pinned = await IPFS.pin(added.ipfs_hash);
-  console.log('pinned', pinned);
-} catch (err) {
-  console.log('error', err);
+    const pinned = await IPFS.pin(added.ipfs_hash);
+    console.log('pinned', pinned);
+  } catch (err) {
+    console.log('error', err);
+  }
 }
+
+runExample();
 ```
 
 For a more detailed list of possibilities, [check out the wiki](https://github.com/blockfrost/blockfrost-js/wiki).
