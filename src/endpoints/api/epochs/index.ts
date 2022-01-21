@@ -36,7 +36,7 @@ export async function epochsLatest(
 export async function epochsNext(
   this: BlockFrostAPI,
   number: number,
-  pagination?: PaginationOptions,
+  pagination?: Omit<PaginationOptions, 'order'>,
 ): Promise<components['schemas']['epoch_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -47,7 +47,6 @@ export async function epochsNext(
         searchParams: {
           page: paginationOptions.page,
           count: paginationOptions.count,
-          order: paginationOptions.order,
         },
       },
     )
@@ -63,7 +62,7 @@ export async function epochsNext(
 export async function epochsPrevious(
   this: BlockFrostAPI,
   number: number,
-  pagination?: PaginationOptions,
+  pagination?: Omit<PaginationOptions, 'order'>,
 ): Promise<components['schemas']['epoch_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
@@ -74,7 +73,6 @@ export async function epochsPrevious(
         searchParams: {
           page: paginationOptions.page,
           count: paginationOptions.count,
-          order: paginationOptions.order,
         },
       },
     )
