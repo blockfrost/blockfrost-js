@@ -15,7 +15,6 @@ import { UTXO } from './types';
 const TESTNET = true;
 
 // BIP39 mnemonic (seed) from which we will generate address to retrieve utxo from and private key used for signing the transaction
-// const MNEMONIC = 'all all all all all all all all all all all all';
 const MNEMONIC =
   'maze riot drift silver field sadness shrimp affair whip embody odor damp';
 

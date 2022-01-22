@@ -1,9 +1,8 @@
 # simple-transaction
 
-Example of building a simple transaction with Blockfrost SDK for Node.js.
+This examples shows how to build a simple transaction with Blockfrost SDK for Node.js and Cardano Serialization Lib.
 
 Blockfrost SDK is used to retrieve UTXO for an address, current slot number and finally to push a transaction to the blockchain.
-
 Constructing the transaction is done with [Cardano Serialization Lib](https://github.com/Emurgo/cardano-serialization-lib).
 You should definitely follow its documentation and examples for more information.
 
@@ -11,7 +10,8 @@ _This example is written in Typescript and it is intended to run on Node.js, not
 
 ## Disclaimer
 
-**This is really just a simple example for learning purposes.**
+This example is intended for learning purposes, not for practical use.
+
 **You should not run this code with your real seed using real coins. The funds are NOT safu. They will be lost.**
 
 ## How to use
@@ -36,9 +36,9 @@ Install dependencies
 npm install
 ```
 
-Now check the source code! You don't want to run something you know nothing about, right? RIGHT?!
+Now check the source code! You don't want to run something you know nothing about, right? RIGHT?
 
-In [./src/index.ts](https://github.com/blockfrost/blockfrost-js/blob/master/examples/simple-transaction/index.ts) you will find few constants that you can play with. Changing `MNEMONIC` is highly recommended as transactions will often fail if more people are trying to use same UTXO.
+In [./src/index.ts](https://github.com/blockfrost/blockfrost-js/blob/master/examples/simple-transaction/index.ts) you will find few constants that you can play with. Changing `MNEMONIC` is highly recommended because your transaction will likely fail if multiple people are building their transactions using the same seed, thus UTXO.
 
 ```js
 // BIP39 mnemonic (seed) from which we will generate address to retrieve utxo from and private key used for signing the transaction
@@ -53,12 +53,10 @@ const OUTPUT_ADDRESS =
 const OUTPUT_AMOUNT = '1000000'; // 1 000 000 lovelaces = 1 ADA
 ```
 
-Run script
+Set your Blockfrost api key to environment variable `BLOCKFROST_PROJECT_ID` and run the script
 
 ```
 npm start
 ```
 
 It may happen that the default (or your own) seed doesn't hold enough funds on its first address derived with derivation path `m/1852'/1815'/0'/0/0` (common derivation path used by wallets). In that case the address will be displayed in the console. You can get some tADA from [Cardano testnet faucet](https://testnets.cardano.org/en/testnets/cardano/tools/faucet/).
-
-It
