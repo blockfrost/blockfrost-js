@@ -1,0 +1,95 @@
+// This example is written in typescript.
+// In order to run it on Node.js your need to compile the code first
+// or use ts-node-dev which allows you to run your typescript code directly during development
+
+import {
+  BlockFrostAPI,
+  BlockfrostServerError,
+} from '@blockfrost/blockfrost-js';
+
+import { composeTransaction } from './helpers/composeTransaction';
+import { signTransaction } from './helpers/signTransaction';
+import { deriveAddressPrvKey, mnemonicToPrivateKey } from './helpers/key';
+import { UTXO } from './types';
+
+const TESTNET = true;
+
+// BIP39 mnemonic (seed) from which we will generate address to retrieve utxo from and private key used for signing the transaction
+// const MNEMONIC = 'all all all all all all all all all all all all';
+const MNEMONIC =
+  'maze riot drift silver field sadness shrimp affair whip embody odor damp';
+
+// Recipient address (needs to be Bech32)
+const OUTPUT_ADDRESS =
+  'addr_test1qrzpr05qz7u7572hkyxl9gqrk90lgueftufaqk3glqswurq32vrcvj0rgef6s487ruu47me8uzp7cjvuuk2xsg4mtvsq50gf90';
+
+// Amount sent to the recipient
+const OUTPUT_AMOUNT = '1000000'; // 1 000 000 lovelaces = 1 ADA
+
+if (!process.env.BLOCKFROST_PROJECT_ID) {
+  throw Error('Set env variable BLOCKFROST_PROJECT_ID');
+}
+
+const client = new BlockFrostAPI({
+  projectId: process.env.BLOCKFROST_PROJECT_ID,
+  isTestnet: TESTNET,
+});
+
+const run = async () => {
+  // Derive address (where you need to send ADA in order to have UTXO to actually min a NFT) and singing key
+  const bip32PrvKey = mnemonicToPrivateKey(MNEMONIC);
+  const { signKey, address } = deriveAddressPrvKey(bip32PrvKey, TESTNET);
+  console.log(`Using address ${address}`);
+
+  // Retrieve utxo for the address
+  let utxo: UTXO = [];
+  try {
+    utxo = await client.addressesUtxosAll(address);
+  } catch (error) {
+    if (error instanceof BlockfrostServerError && error.status_code === 404) {
+      // Address derived from the seed was not used yet
+      // In this case Blockfrost API will return 404
+      utxo = [];
+    } else {
+      throw error;
+    }
+  }
+
+  if (utxo.length === 0) {
+    console.log();
+    console.log(
+      `You should send ADA to ${address} to have enough funds to sent a transaction`,
+    );
+    console.log();
+  }
+
+  console.log(`UTXO on ${address}:`);
+  console.log(JSON.stringify(utxo, undefined, 4));
+
+  // Get current blockchain slot from latest block
+  const latestBlock = await client.blocksLatest();
+  const currentSlot = latestBlock.slot;
+  if (!currentSlot) {
+    throw Error('Failed to fetch slot number');
+  }
+
+  // Prepare transaction
+  const { txHash, txBody } = composeTransaction(
+    address,
+    OUTPUT_ADDRESS,
+    OUTPUT_AMOUNT,
+    utxo,
+    currentSlot,
+  );
+
+  // Sign transaction
+  const transaction = signTransaction(txBody, signKey);
+
+  // Push transaction to network
+  const res = await client.txSubmit(transaction.to_bytes());
+  if (res) {
+    console.log(`Transaction successfully submitted: ${txHash}`);
+  }
+};
+
+run();
