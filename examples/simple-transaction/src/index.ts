@@ -1,7 +1,6 @@
-// This example is written in typescript.
-// In order to run it on Node.js your need to compile the code first
-// or use ts-node-dev which allows you to run your typescript code directly during development
-
+// This example is written in Typescript.
+// In order to run it on Node.js your need to compile the code first.
+// Follow instructions in README
 import {
   BlockFrostAPI,
   BlockfrostServerError,
@@ -35,7 +34,7 @@ const client = new BlockFrostAPI({
 });
 
 const run = async () => {
-  // Derive address (where you need to send ADA in order to have UTXO to actually min a NFT) and singing key
+  // Derive an address (this is the address where you need to send ADA in order to have UTXO to actually make the transaction)
   const bip32PrvKey = mnemonicToPrivateKey(MNEMONIC);
   const { signKey, address } = deriveAddressPrvKey(bip32PrvKey, TESTNET);
   console.log(`Using address ${address}`);
