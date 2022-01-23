@@ -84,9 +84,21 @@ const run = async () => {
   const transaction = signTransaction(txBody, signKey);
 
   // Push transaction to network
-  const res = await client.txSubmit(transaction.to_bytes());
-  if (res) {
-    console.log(`Transaction successfully submitted: ${txHash}`);
+  try {
+    const res = await client.txSubmit(transaction.to_bytes());
+    if (res) {
+      console.log(`Transaction successfully submitted: ${txHash}`);
+    }
+  } catch (error) {
+    // submit could fail if the transactions is rejected by cardano node
+    if (error instanceof BlockfrostServerError && error.status_code === 400) {
+      console.log(`Transaction ${txHash} rejected`);
+      // Reason for the rejection is in error.message
+      console.log(error.message);
+    } else {
+      // rethrow other errors
+      throw error;
+    }
   }
 };
 
