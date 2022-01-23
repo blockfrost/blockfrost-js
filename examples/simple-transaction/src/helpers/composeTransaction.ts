@@ -40,7 +40,9 @@ export const composeTransaction = (
   const outputAddr = CardanoWasm.Address.from_bech32(outputAddress);
   const changeAddr = CardanoWasm.Address.from_bech32(address);
 
-  const ttl = currentSlot + 7200; // +2h from currentSlot
+  // Set TTL to +2h from currentSlot
+  // If the transaction is not included in a block before that slot it will be cancelled.
+  const ttl = currentSlot + 7200;
   txBuilder.set_ttl(ttl);
 
   // Add output to the tx
