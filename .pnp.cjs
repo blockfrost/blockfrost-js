@@ -37,7 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@commitlint/cli", "npm:15.0.0"],
             ["@commitlint/config-conventional", "npm:15.0.0"],
-            ["@emurgo/cardano-serialization-lib-nodejs", "npm:9.1.2"],
+            ["@emurgo/cardano-serialization-lib-nodejs", "npm:9.1.4"],
             ["@emurgo/cip14-js", "npm:3.0.1"],
             ["@jest/globals", "npm:27.4.2"],
             ["@swc-node/jest", "npm:1.4.1"],
@@ -1090,7 +1090,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@blockfrost/blockfrost-js", "workspace:."],
             ["@commitlint/cli", "npm:15.0.0"],
             ["@commitlint/config-conventional", "npm:15.0.0"],
-            ["@emurgo/cardano-serialization-lib-nodejs", "npm:9.1.2"],
+            ["@emurgo/cardano-serialization-lib-nodejs", "npm:9.1.4"],
             ["@emurgo/cip14-js", "npm:3.0.1"],
             ["@jest/globals", "npm:27.4.2"],
             ["@swc-node/jest", "npm:1.4.1"],
@@ -1337,10 +1337,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@emurgo/cardano-serialization-lib-nodejs", [
-        ["npm:9.1.2", {
-          "packageLocation": "./.yarn/cache/@emurgo-cardano-serialization-lib-nodejs-npm-9.1.2-7bcae3b90f-babd47a6f3.zip/node_modules/@emurgo/cardano-serialization-lib-nodejs/",
+        ["npm:9.1.4", {
+          "packageLocation": "./.yarn/cache/@emurgo-cardano-serialization-lib-nodejs-npm-9.1.4-407b8829e6-a87619ff6b.zip/node_modules/@emurgo/cardano-serialization-lib-nodejs/",
           "packageDependencies": [
-            ["@emurgo/cardano-serialization-lib-nodejs", "npm:9.1.2"]
+            ["@emurgo/cardano-serialization-lib-nodejs", "npm:9.1.4"]
           ],
           "linkType": "HARD",
         }]
