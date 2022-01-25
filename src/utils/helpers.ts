@@ -32,17 +32,11 @@ export const deriveAddress = (
     ? NetworkInfo.testnet().network_id()
     : NetworkInfo.mainnet().network_id();
 
-  const protocolMagic = isTestnet
-    ? NetworkInfo.testnet().protocol_magic()
-    : NetworkInfo.mainnet().protocol_magic();
-
-  const baseAddr = isByron
-    ? ByronAddress.icarus_from_key(utxoPubKey, protocolMagic)
-    : BaseAddress.new(
-        networkId,
-        StakeCredential.from_keyhash(utxoPubKey.to_raw_key().hash()),
-        StakeCredential.from_keyhash(mainStakeKey.to_raw_key().hash()),
-      );
+  const baseAddr = BaseAddress.new(
+    networkId,
+    StakeCredential.from_keyhash(utxoPubKey.to_raw_key().hash()),
+    StakeCredential.from_keyhash(mainStakeKey.to_raw_key().hash()),
+  );
 
   if (role === 2 && !isByron) {
     const addressSpecificStakeKey = accountKey.derive(2).derive(addressIndex);
@@ -60,6 +54,10 @@ export const deriveAddress = (
   }
 
   if (isByron) {
+    const protocolMagic = isTestnet
+      ? NetworkInfo.testnet().protocol_magic()
+      : NetworkInfo.mainnet().protocol_magic();
+
     const byronAddress = ByronAddress.icarus_from_key(
       utxoPubKey,
       protocolMagic,
