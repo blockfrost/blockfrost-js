@@ -44,7 +44,7 @@ export const deriveAddress = (
         StakeCredential.from_keyhash(mainStakeKey.to_raw_key().hash()),
       );
 
-  if (role === 2) {
+  if (role === 2 && !isByron) {
     const addressSpecificStakeKey = accountKey.derive(2).derive(addressIndex);
     // always return stake address
     const rewardAddr = RewardAddress.new(
@@ -55,6 +55,18 @@ export const deriveAddress = (
       .to_bech32();
     return {
       address: rewardAddr,
+      path: [role, addressIndex],
+    };
+  }
+
+  if (isByron) {
+    const byronAddress = ByronAddress.icarus_from_key(
+      utxoPubKey,
+      protocolMagic,
+    );
+
+    return {
+      address: Buffer.from(byronAddress.to_base58()).toString(),
       path: [role, addressIndex],
     };
   }

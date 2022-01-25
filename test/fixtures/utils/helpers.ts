@@ -121,8 +121,7 @@ export const deriveAddressFixtures = [
     isByron: true,
     isTestnet: false,
     response: {
-      address:
-        'addr1stvpskppsdvpe6fty4p6mmudwux2ex3qrgekphw5nrwrghm4dy9zn87z3xsqqxka4gesjmytxj7',
+      address: 'Ae2tdPwUPEZL5AWYBw6qiS9sqRyJyQQaYSxWznXvestdemMjetAU6CyFohr',
       path: [0, 1],
     },
   },
