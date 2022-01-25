@@ -125,4 +125,16 @@ export const deriveAddressFixtures = [
       path: [0, 1],
     },
   },
+  {
+    publicKey:
+      '7ec9738746cb4708df52a455b43aa3fdee8955abaf37f68ffc79bb84fbf9e1b39d77e2deb9749faf890ff8326d350ed3fd0e4aa271b35cad063692af87102152',
+    role: 2,
+    index: 1,
+    isByron: true,
+    isTestnet: false,
+    response: {
+      address: 'Ae2tdPwUPEZ14JFcncepdpDj1TwgSX8DDDXYfaoZUQTuqTBRbsnyYcYCDUT',
+      path: [2, 1],
+    },
+  },
 ] as const;
