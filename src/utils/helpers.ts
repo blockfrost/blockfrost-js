@@ -66,7 +66,7 @@ export const deriveAddress = (
     );
 
     return {
-      address: Buffer.from(byronAddress.to_base58()).toString(),
+      address: byronAddress.to_base58().toString(),
       path: [role, addressIndex],
     };
   }
