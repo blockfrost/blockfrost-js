@@ -8,12 +8,13 @@ import {
 
 describe('helpers', () => {
   deriveAddressFixtures.forEach(fixture => {
-    test(`deriveAddress - publicKey: ${fixture.publicKey} role: ${fixture.role} index: ${fixture.index}`, () => {
+    test(`deriveAddress - publicKey: ${fixture.publicKey} role: ${fixture.role} index: ${fixture.index} isByron: ${fixture.isByron}`, () => {
       const response = deriveAddress(
         fixture.publicKey,
         fixture.role,
         fixture.index,
         fixture.isTestnet,
+        fixture.isByron,
       );
       expect(response).toStrictEqual(fixture.response);
     });

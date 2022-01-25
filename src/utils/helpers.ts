@@ -4,6 +4,7 @@ import {
   NetworkInfo,
   StakeCredential,
   RewardAddress,
+  ByronAddress,
 } from '@emurgo/cardano-serialization-lib-nodejs';
 import AssetFingerprint from '@emurgo/cip14-js';
 import { ParseAssetResult } from '../types/utils';
@@ -19,22 +20,25 @@ export const deriveAddress = (
   role: number,
   addressIndex: number,
   isTestnet: boolean,
+  isByron?: boolean,
 ): { address: string; path: [number, number] } => {
   const accountKey = Bip32PublicKey.from_bytes(
     Buffer.from(accountPublicKey, 'hex'),
   );
   const utxoPubKey = accountKey.derive(role).derive(addressIndex);
   const mainStakeKey = accountKey.derive(2).derive(0);
+
   const networkId = isTestnet
     ? NetworkInfo.testnet().network_id()
     : NetworkInfo.mainnet().network_id();
+
   const baseAddr = BaseAddress.new(
     networkId,
     StakeCredential.from_keyhash(utxoPubKey.to_raw_key().hash()),
     StakeCredential.from_keyhash(mainStakeKey.to_raw_key().hash()),
   );
 
-  if (role === 2) {
+  if (role === 2 && !isByron) {
     const addressSpecificStakeKey = accountKey.derive(2).derive(addressIndex);
     // always return stake address
     const rewardAddr = RewardAddress.new(
@@ -45,6 +49,22 @@ export const deriveAddress = (
       .to_bech32();
     return {
       address: rewardAddr,
+      path: [role, addressIndex],
+    };
+  }
+
+  if (isByron) {
+    const protocolMagic = isTestnet
+      ? NetworkInfo.testnet().protocol_magic()
+      : NetworkInfo.mainnet().protocol_magic();
+
+    const byronAddress = ByronAddress.icarus_from_key(
+      utxoPubKey,
+      protocolMagic,
+    );
+
+    return {
+      address: byronAddress.to_base58(),
       path: [role, addressIndex],
     };
   }
