@@ -15,7 +15,7 @@ export async function accounts(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -40,7 +40,7 @@ export async function accountsRewards(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -76,7 +76,7 @@ export async function accountsHistory(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -112,7 +112,7 @@ export async function accountsWithdrawals(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -148,7 +148,7 @@ export async function accountsMirs(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -184,7 +184,7 @@ export async function accountsDelegations(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -220,7 +220,7 @@ export async function accountsRegistrations(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -256,7 +256,7 @@ export async function accountsAddresses(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -292,7 +292,7 @@ export async function accountsAddressesAssets(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -318,6 +318,6 @@ export async function accountsAddressesTotal(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }

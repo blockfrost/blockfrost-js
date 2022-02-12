@@ -26,8 +26,8 @@ export async function add(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -44,8 +44,8 @@ export async function gateway(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -60,8 +60,8 @@ export async function pin(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -82,8 +82,8 @@ export async function list(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -97,8 +97,8 @@ export async function listByPath(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -113,8 +113,8 @@ export async function pinRemove(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }

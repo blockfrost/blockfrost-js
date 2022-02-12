@@ -21,7 +21,7 @@ export async function assets(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -34,7 +34,7 @@ export async function assetsById(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -59,7 +59,7 @@ export async function assetsHistory(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -95,7 +95,7 @@ export async function assetsTransactions(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -120,7 +120,7 @@ export async function assetsAddresses(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -145,7 +145,7 @@ export async function assetsPolicyById(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 

@@ -13,8 +13,8 @@ export async function scriptsByHash(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -36,8 +36,8 @@ export async function scripts(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -53,8 +53,8 @@ export async function scriptsJson(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -70,8 +70,8 @@ export async function scriptsCbor(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -87,8 +87,8 @@ export async function scriptsDatum(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -104,8 +104,8 @@ export async function scriptsRedeemers(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }

@@ -10,8 +10,8 @@ export async function metrics(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -24,8 +24,8 @@ export async function metricsEndpoints(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }

@@ -25,12 +25,12 @@ export class BlockfrostClientError extends Error {
   }
 }
 
-const hasProp = <K extends PropertyKey>(
+const hasProperty = <K extends PropertyKey>(
   // eslint-disable-next-line @typescript-eslint/ban-types
   data: object,
-  prop: K,
+  property: K,
 ): data is Record<K, unknown> => {
-  return prop in data;
+  return property in data;
 };
 
 export const isBlockfrostErrorResponse = (
@@ -40,9 +40,9 @@ export const isBlockfrostErrorResponse = (
   return (
     typeof data === 'object' &&
     data !== null &&
-    hasProp(data, 'status_code') &&
-    hasProp(data, 'message') &&
-    hasProp(data, 'error')
+    hasProperty(data, 'status_code') &&
+    hasProperty(data, 'message') &&
+    hasProperty(data, 'error')
   );
 };
 
@@ -56,8 +56,8 @@ export const handleError = (
       return new BlockfrostServerError(responseBody);
     } else {
       // response.body may contain html output (eg. errors returned by nginx)
-      const { statusCode } = error.response;
-      const statusText = error.response.statusMessage ?? error.message;
+      const { statusCode, statusMessage } = error.response;
+      const statusText = statusMessage ?? error.message;
       return new BlockfrostServerError({
         status_code: statusCode,
         message: `${statusCode}: ${statusText}`,

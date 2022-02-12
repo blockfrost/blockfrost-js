@@ -11,8 +11,8 @@ export async function txs(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -26,8 +26,8 @@ export async function txsUtxos(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -43,8 +43,8 @@ export async function txsStakes(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -60,8 +60,8 @@ export async function txsDelegations(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -77,8 +77,8 @@ export async function txsWithdrawals(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -92,8 +92,8 @@ export async function txsMirs(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -109,8 +109,8 @@ export async function txsPoolUpdates(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -126,8 +126,8 @@ export async function txsPoolRetires(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -143,8 +143,8 @@ export async function txsMetadata(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -160,8 +160,8 @@ export async function txsMetadataCbor(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -177,8 +177,8 @@ export async function txsRedeemers(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -187,13 +187,10 @@ export async function txSubmit(
   this: BlockFrostAPI,
   transaction: Uint8Array | string,
 ): Promise<string> {
-  let tx: Buffer;
-
-  if (typeof transaction === 'string') {
-    tx = Buffer.from(transaction, 'hex');
-  } else {
-    tx = Buffer.from(transaction);
-  }
+  const tx: Buffer =
+    typeof transaction === 'string'
+      ? Buffer.from(transaction, 'hex')
+      : Buffer.from(transaction);
 
   return new Promise((resolve, reject) => {
     this.instance
@@ -204,8 +201,8 @@ export async function txSubmit(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }

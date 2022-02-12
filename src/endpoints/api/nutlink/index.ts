@@ -15,7 +15,7 @@ export async function nutlinkAddress(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -40,7 +40,7 @@ export async function nutlinkAddressTickers(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -77,7 +77,7 @@ export async function nutlinkAddressTicker(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -114,7 +114,7 @@ export async function nutlinkTickers(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 

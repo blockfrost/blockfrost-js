@@ -19,8 +19,8 @@ export async function blocks(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -33,8 +33,8 @@ export async function blocksLatest(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -59,8 +59,8 @@ export async function blocksLatestTxs(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        return reject(handleError(err));
+      .catch(error => {
+        return reject(handleError(error));
       });
   });
 }
@@ -95,8 +95,8 @@ export async function blocksNext(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -121,8 +121,8 @@ export async function blocksPrevious(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -148,8 +148,8 @@ export async function blocksTxs(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -186,8 +186,8 @@ export async function blocksAddresses(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }

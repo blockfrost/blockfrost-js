@@ -1,5 +1,5 @@
 import {
-  getAdditionalParams,
+  getAdditionalParameters,
   getPaginationOptions,
   paginateMethod,
 } from '../../../utils';
@@ -23,7 +23,7 @@ export async function addresses(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -38,7 +38,7 @@ export async function addressesTotal(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -53,7 +53,7 @@ export async function addressesExtended(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 
@@ -63,7 +63,7 @@ export async function addressesTransactions(
   pagination?: PaginationOptions,
   additionalOptions?: AdditionalEndpointOptions,
 ): Promise<components['schemas']['address_transactions_content']> {
-  const additionalParams = getAdditionalParams(additionalOptions);
+  const additionalParameters = getAdditionalParameters(additionalOptions);
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
@@ -74,20 +74,20 @@ export async function addressesTransactions(
           page: paginationOptions.page,
           count: paginationOptions.count,
           order: paginationOptions.order,
-          from: additionalParams.from,
-          to: additionalParams.to,
+          from: additionalParameters.from,
+          to: additionalParameters.to,
         },
       },
     )
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        if (err && err.response && err.response.statusCode === 404) {
+      .catch(error => {
+        if (error && error.response && error.response.statusCode === 404) {
           resolve([]);
         }
 
-        reject(handleError(err));
+        reject(handleError(error));
       });
   });
 }
@@ -127,7 +127,7 @@ export async function addressesUtxos(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => reject(handleError(err)));
+      .catch(error => reject(handleError(error)));
   });
 }
 

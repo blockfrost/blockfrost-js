@@ -7,8 +7,8 @@ export function health(this: BlockFrostAPI): Promise<{ is_healthy: boolean }> {
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }
@@ -21,8 +21,8 @@ export function healthClock(
       .then(resp => {
         resolve(resp.body);
       })
-      .catch(err => {
-        reject(handleError(err));
+      .catch(error => {
+        reject(handleError(error));
       });
   });
 }

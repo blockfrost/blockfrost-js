@@ -77,12 +77,12 @@ export const deriveAddress = (
 
 export const hexToString = (input: string): string => {
   const hex = input.toString();
-  let str = '';
+  let string_ = '';
   for (let n = 0; n < hex.length; n += 2) {
-    str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
+    string_ += String.fromCodePoint(Number.parseInt(hex.slice(n, 2), 16));
   }
 
-  return str;
+  return string_;
 };
 
 export const getFingerprint = (policyId: string, assetName?: string): string =>

@@ -5,3 +5,4 @@ jest.config.js
 babel.config.js
 lib
 OpenApi.ts
+test/fixtures

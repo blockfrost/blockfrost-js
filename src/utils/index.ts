@@ -17,24 +17,24 @@ import { RetryObject } from 'got';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
   if (!options || (!options.customBackend && !options.projectId)) {
-    throw Error('Missing customBackend or projectId option');
+    throw new Error('Missing customBackend or projectId option');
   }
 
   if (!options.projectId && !options.customBackend) {
-    throw Error('Missing param projectId in options');
+    throw new Error('Missing param projectId in options');
   }
 
-  if (options.version && isNaN(options.version)) {
-    throw Error('Param version is not a number');
+  if (options.version && Number.isNaN(options.version)) {
+    throw new Error('Param version is not a number');
   }
 
-  if (options.requestTimeout && isNaN(options.requestTimeout)) {
-    throw Error('Param requestTimeout is not a number');
+  if (options.requestTimeout && Number.isNaN(options.requestTimeout)) {
+    throw new Error('Param requestTimeout is not a number');
   }
 
   const debug = options.debug ?? process.env.BLOCKFROST_DEBUG === 'true';
 
-  const errorCodesToRetry = [
+  const errorCodesToRetry = new Set([
     'ETIMEDOUT',
     'ECONNRESET',
     'EADDRINUSE',
@@ -43,7 +43,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     'ENOTFOUND',
     'ENETUNREACH',
     'EAI_AGAIN',
-  ];
+  ]);
   return {
     customBackend: options.customBackend,
     projectId: options.projectId,
@@ -53,7 +53,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     version: options.version || DEFAULT_API_VERSION,
     debug,
     http2: options.http2 ?? false,
-    requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
+    requestTimeout: options.requestTimeout ?? 20_000, // 20 seconds
     // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
     retrySettings: options.retrySettings ?? {
       limit: 20, // retry count
@@ -70,11 +70,11 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
         'EAI_AGAIN',
       ],
       calculateDelay: (retryObject: RetryObject) => {
-        if (errorCodesToRetry.includes(retryObject.error.code)) {
-          // network errors are retried only 3 times
-          if (retryObject.attemptCount === 3) {
-            return 0;
-          }
+        if (
+          errorCodesToRetry.has(retryObject.error.code) && // network errors are retried only 3 times
+          retryObject.attemptCount === 3
+        ) {
+          return 0;
         }
         // check if retry should be enabled, if so set 1s retry delay
         return retryObject.computedValue !== 0 ? 1000 : 0;
@@ -90,7 +90,7 @@ const deriveTestnetOption = (
   projectId: string | undefined,
   isTestnet: boolean | undefined,
 ) => {
-  if (!projectId) return undefined;
+  if (!projectId) return;
 
   if (projectId.includes('mainnet')) {
     return false;
@@ -111,10 +111,10 @@ const deriveTestnetOption = (
     return false;
   }
 
-  return undefined;
+  return;
 };
 
-export const getAdditionalParams = (
+export const getAdditionalParameters = (
   options?: AdditionalEndpointOptions,
 ): AdditionalEndpointOptions => {
   if (!options) {
@@ -171,20 +171,22 @@ export const paginateMethod = async <
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ) => any,
 >(
-  fn: T,
+  function_: T,
   allMethodOptions: AllMethodOptions | undefined,
   additionalOptions?: AdditionalEndpointOptions,
 ): Promise<ReturnType<T>> => {
-  const res = [];
+  const response = [];
   let page = 1;
   const count = DEFAULT_PAGINATION_PAGE_ITEMS_COUNT;
   const options = getAllMethodOptions(allMethodOptions);
 
   const getSlice = () => {
-    const promises = [...Array(options.batchSize).keys()].map(i =>
-      fn(
+    /* eslint-disable-next-line unicorn/no-new-array */
+    // eslint-disable-next-line unicorn/new-for-builtins
+    const promises = [...Array(options.batchSize).keys()].map(index =>
+      function_(
         {
-          page: page + i,
+          page: page + index,
           count,
           order: options.order,
         },
@@ -202,9 +204,9 @@ export const paginateMethod = async <
   while (true) {
     const pages = await Promise.all(getSlice());
     for (const p of pages) {
-      res.push(...p);
+      response.push(...p);
       if (p.length < count) {
-        return res as ReturnType<T>; // yikes
+        return response as ReturnType<T>; // yikes
       }
     }
   }
