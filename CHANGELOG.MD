@@ -7,7 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [4.1.0]
 
+### Added
+
 - `deriveAddress` derive Byron addresses
+- `url` field in error
 
 ## [4.0.1]
 

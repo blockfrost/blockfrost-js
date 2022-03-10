@@ -65,9 +65,11 @@ export type ErrorType =
       status_code: number;
       message: string;
       error: string;
+      url: string;
     }
   | {
       message: string;
+      url?: string;
       code: string;
     };
 

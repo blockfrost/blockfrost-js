@@ -60,6 +60,7 @@ export const handleError = (
       const statusText = error.response.statusMessage ?? error.message;
       return new BlockfrostServerError({
         status_code: statusCode,
+        url: error.request.requestUrl,
         message: `${statusCode}: ${statusText}`,
         error: statusText,
       });
@@ -71,5 +72,6 @@ export const handleError = (
   return new BlockfrostClientError({
     code: error.code ?? 'ERR_GOT_REQUEST_ERROR', // ENOTFOUND, ETIMEDOUT...
     message: error.message, // getaddrinfo ENOTFOUND cardano-testnet.blockfrost.io'
+    url: error.request?.requestUrl,
   });
 };
