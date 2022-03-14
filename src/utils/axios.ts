@@ -2,12 +2,17 @@ import axios, { AxiosInstance } from 'axios';
 import * as rax from 'retry-axios';
 import { getHeaders } from '../utils';
 import { ValidatedOptions } from '../types';
+import { readyForNextRequest } from './ratelimiter';
 
 export const hackInstance = (
   options: ValidatedOptions,
   userAgent: string,
 ): AxiosInstance => {
   const axiosInstance = axios.create();
+
+  axiosInstance.interceptors.request.use(config =>
+    readyForNextRequest().then(() => config),
+  );
 
   axiosInstance.defaults.raxConfig = {
     instance: axiosInstance,
