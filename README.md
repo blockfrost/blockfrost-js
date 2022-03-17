@@ -1,4 +1,9 @@
-![master build ci](https://github.com/blockfrost/blockfrost-js/actions/workflows/build.yml/badge.svg?branch=master) [![npm version](https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js.svg)](https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js) ![downloads](https://img.shields.io/npm/dy/@blockfrost/blockfrost-js) <img src="https://github.com/blockfrost/blockfrost-js/blob/master/docs/badge-coverage.svg" /> <a href="https://fivebinaries.com/"><img src="https://img.shields.io/badge/made%20by-Five%20Binaries-darkviolet.svg?style=flat-square" /></a>
+# @blockfrost/blockfrost-js fork
+
+This is a fork of blockfrost-js 2.0.2, adding support for rate limiting. It seems to be working, but to consider it done:
+- Rebase on latest blockfrost-js
+- Add options for rate limit (currently hardcoded 10/s and 500 burst with 10/s cooldown)
+- Add some test coverage
 
 <img src="https://blockfrost.io/images/logo.svg" width="250" align="right" height="90">
 
