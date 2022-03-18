@@ -664,7 +664,7 @@ __metadata:
   dependencies:
     "@commitlint/cli": ^15.0.0
     "@commitlint/config-conventional": ^15.0.0
-    "@emurgo/cardano-serialization-lib-nodejs": ^9.1.4
+    "@emurgo/cardano-serialization-lib-nodejs": ^10.0.4
     "@emurgo/cip14-js": 3.0.1
     "@jest/globals": ^27.4.2
     "@swc-node/jest": ^1.4.1
@@ -889,10 +889,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emurgo/cardano-serialization-lib-nodejs@npm:^9.1.4":
-  version: 9.1.4
-  resolution: "@emurgo/cardano-serialization-lib-nodejs@npm:9.1.4"
-  checksum: a87619ff6bc2c90e8be7fd68f0d42b8fc67a3dafe93df61227275ddad8331ca04ce92b197ed58d0d551b12fa4c52a87a33f2516cdbe86bcdc12a3a71f02d0924
+"@emurgo/cardano-serialization-lib-nodejs@npm:^10.0.4":
+  version: 10.0.4
+  resolution: "@emurgo/cardano-serialization-lib-nodejs@npm:10.0.4"
+  checksum: e660212a1a325cc01f97d3baed86815c9f86fa32ad023b5b391eaa5c437f3ca336a533a57d8827ceb0ddc74145de5ba038216e0b4e44a5cfa1dd7b7154c99511
   languageName: node
   linkType: hard
 
