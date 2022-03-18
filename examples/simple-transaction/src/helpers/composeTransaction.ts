@@ -1,12 +1,10 @@
 import * as CardanoWasm from '@emurgo/cardano-serialization-lib-nodejs';
-import { sortUtxos } from './utxo';
 import { UTXO } from '../types';
 
 export const CARDANO_PARAMS = {
   COINS_PER_UTXO_WORD: '34482',
   MAX_TX_SIZE: 16384,
   MAX_VALUE_SIZE: 5000,
-  MIN_UTXO_VALUE: '1000000',
 } as const;
 
 export const composeTransaction = (
@@ -24,17 +22,21 @@ export const composeTransaction = (
   }
 
   const txBuilder = CardanoWasm.TransactionBuilder.new(
-    CardanoWasm.LinearFee.new(
-      CardanoWasm.BigNum.from_str('44'),
-      CardanoWasm.BigNum.from_str('155381'),
-    ),
-    CardanoWasm.BigNum.from_str(CARDANO_PARAMS.MIN_UTXO_VALUE),
-    // pool deposit
-    CardanoWasm.BigNum.from_str('500000000'),
-    // key deposit
-    CardanoWasm.BigNum.from_str('2000000'),
-    CARDANO_PARAMS.MAX_VALUE_SIZE,
-    CARDANO_PARAMS.MAX_TX_SIZE,
+    CardanoWasm.TransactionBuilderConfigBuilder.new()
+      .fee_algo(
+        CardanoWasm.LinearFee.new(
+          CardanoWasm.BigNum.from_str('44'),
+          CardanoWasm.BigNum.from_str('155381'),
+        ),
+      )
+      .pool_deposit(CardanoWasm.BigNum.from_str('500000000'))
+      .key_deposit(CardanoWasm.BigNum.from_str('2000000'))
+      .coins_per_utxo_word(
+        CardanoWasm.BigNum.from_str(CARDANO_PARAMS.COINS_PER_UTXO_WORD),
+      )
+      .max_value_size(CARDANO_PARAMS.MAX_VALUE_SIZE)
+      .max_tx_size(CARDANO_PARAMS.MAX_TX_SIZE)
+      .build(),
   );
 
   const outputAddr = CardanoWasm.Address.from_bech32(outputAddress);
@@ -58,49 +60,29 @@ export const composeTransaction = (
     u => !u.amount.find(a => a.unit !== 'lovelace'),
   );
 
-  // Sort from largest to smallest
-  const sortedUtxos = sortUtxos(lovelaceUtxos);
-  let totalUtxoAda = CardanoWasm.BigNum.from_str('0');
-
-  // Prepare TransactionUnspentOutputs (inputs)
-  const usedUtxos = [];
-  for (const utxo of sortedUtxos) {
+  // Create TransactionUnspentOutputs from utxos fetched from Blockfrost
+  const unspentOutputs = CardanoWasm.TransactionUnspentOutputs.new();
+  for (const utxo of lovelaceUtxos) {
     const amount = utxo.amount.find(a => a.unit === 'lovelace')?.quantity;
-    if (!amount) continue;
 
-    // Create Input from fetched utxo
-    const input = CardanoWasm.TransactionInput.new(
-      CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.tx_hash, 'hex')),
-      utxo.output_index,
-    );
+    if (!amount) continue;
 
     const inputValue = CardanoWasm.Value.new(
       CardanoWasm.BigNum.from_str(amount.toString()),
     );
 
-    // Add the utxo to the transaction
-    txBuilder.add_input(outputAddr, input, inputValue);
-
-    // Keep track of used utxo
-    usedUtxos.push(utxo);
-
-    // Set required fee
-    const fee = txBuilder.min_fee();
-
-    // add utxo amount to total
-    totalUtxoAda = totalUtxoAda.checked_add(
-      CardanoWasm.BigNum.from_str(amount.toString()),
+    const input = CardanoWasm.TransactionInput.new(
+      CardanoWasm.TransactionHash.from_bytes(Buffer.from(utxo.tx_hash, 'hex')),
+      utxo.output_index,
     );
-
-    if (
-      totalUtxoAda.compare(
-        CardanoWasm.BigNum.from_str(outputAmount).checked_add(fee),
-      ) >= 0
-    ) {
-      // break the loop since we have enough ADA to cover the output + fee
-      break;
-    }
+    const output = CardanoWasm.TransactionOutput.new(changeAddr, inputValue);
+    unspentOutputs.add(CardanoWasm.TransactionUnspentOutput.new(input, output));
   }
+
+  txBuilder.add_inputs_from(
+    unspentOutputs,
+    CardanoWasm.CoinSelectionStrategyCIP2.LargestFirst,
+  );
 
   // Adds a change output if there are more ADA in utxo than we need for the transaction,
   // these coins will be returned to change address

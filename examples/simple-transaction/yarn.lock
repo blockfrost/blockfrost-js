@@ -17,7 +17,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emurgo/cardano-serialization-lib-nodejs@npm:^9.1.2, @emurgo/cardano-serialization-lib-nodejs@npm:^9.1.4":
+"@emurgo/cardano-serialization-lib-nodejs@npm:^10.0.4":
+  version: 10.0.4
+  resolution: "@emurgo/cardano-serialization-lib-nodejs@npm:10.0.4"
+  checksum: e660212a1a325cc01f97d3baed86815c9f86fa32ad023b5b391eaa5c437f3ca336a533a57d8827ceb0ddc74145de5ba038216e0b4e44a5cfa1dd7b7154c99511
+  languageName: node
+  linkType: hard
+
+"@emurgo/cardano-serialization-lib-nodejs@npm:^9.1.2":
   version: 9.1.4
   resolution: "@emurgo/cardano-serialization-lib-nodejs@npm:9.1.4"
   checksum: a87619ff6bc2c90e8be7fd68f0d42b8fc67a3dafe93df61227275ddad8331ca04ce92b197ed58d0d551b12fa4c52a87a33f2516cdbe86bcdc12a3a71f02d0924
@@ -513,7 +520,7 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@blockfrost/blockfrost-js": latest
-    "@emurgo/cardano-serialization-lib-nodejs": ^9.1.4
+    "@emurgo/cardano-serialization-lib-nodejs": ^10.0.4
     "@types/bip39": ^3.0.0
     "@types/node": ^17.0.10
     bip39: ^3.0.4
