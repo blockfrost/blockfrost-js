@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import * as rax from 'retry-axios';
 import { getHeaders } from '../utils';
 import { ValidatedOptions } from '../types';
-import { readyForNextRequest } from './ratelimiter';
+import { createRateLimiter } from './ratelimiter';
 
 export const hackInstance = (
   options: ValidatedOptions,
@@ -10,6 +10,7 @@ export const hackInstance = (
 ): AxiosInstance => {
   const axiosInstance = axios.create();
 
+  const readyForNextRequest = createRateLimiter();
   axiosInstance.interceptors.request.use(config =>
     readyForNextRequest().then(() => config),
   );
