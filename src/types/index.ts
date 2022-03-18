@@ -37,6 +37,7 @@ type OptionCombination2 = {
 type AdditionalOptions = {
   isTestnet?: boolean;
   version?: number;
+  rateLimiter?: boolean;
   http2?: boolean;
   debug?: boolean;
   userAgent?: string;
@@ -51,6 +52,7 @@ export interface ValidatedOptions {
   customBackend?: string;
   version: number;
   requestTimeout: number;
+  rateLimiter?: boolean;
   http2?: boolean;
   debug: boolean;
   projectId?: string;

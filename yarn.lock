@@ -686,6 +686,7 @@ __metadata:
     nock: ^13.2.1
     openapi-typescript: ^4.4.0
     prettier: 2.5.1
+    rate-limiter-flexible: ^2.3.6
     rimraf: ^3.0.2
     serialize-error: ^9.0.0
     ts-jest: ^27.1.1
@@ -6670,6 +6671,13 @@ __metadata:
   version: 5.1.1
   resolution: "quick-lru@npm:5.1.1"
   checksum: a516faa25574be7947969883e6068dbe4aa19e8ef8e8e0fd96cddd6d36485e9106d85c0041a27153286b0770b381328f4072aa40d3b18a19f5f7d2b78b94b5ed
+  languageName: node
+  linkType: hard
+
+"rate-limiter-flexible@npm:^2.3.6":
+  version: 2.3.6
+  resolution: "rate-limiter-flexible@npm:2.3.6"
+  checksum: c008c7bcc17832645d4c06caa08a5f52e093108d4f3bcca5df15344150a38fca6b823a6718091a8cf887861989c61fd91d7179426d277d7867fb76b723fd0dbc
   languageName: node
   linkType: hard
 

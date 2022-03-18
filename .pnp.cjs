@@ -59,6 +59,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["nock", "npm:13.2.1"],
             ["openapi-typescript", "npm:4.4.0"],
             ["prettier", "npm:2.5.1"],
+            ["rate-limiter-flexible", "npm:2.3.6"],
             ["rimraf", "npm:3.0.2"],
             ["serialize-error", "npm:9.0.0"],
             ["ts-jest", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:27.1.1"],
@@ -1112,6 +1113,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["nock", "npm:13.2.1"],
             ["openapi-typescript", "npm:4.4.0"],
             ["prettier", "npm:2.5.1"],
+            ["rate-limiter-flexible", "npm:2.3.6"],
             ["rimraf", "npm:3.0.2"],
             ["serialize-error", "npm:9.0.0"],
             ["ts-jest", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:27.1.1"],
@@ -7961,6 +7963,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/quick-lru-npm-5.1.1-e38e0edce3-a516faa255.zip/node_modules/quick-lru/",
           "packageDependencies": [
             ["quick-lru", "npm:5.1.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["rate-limiter-flexible", [
+        ["npm:2.3.6", {
+          "packageLocation": "./.yarn/cache/rate-limiter-flexible-npm-2.3.6-07a4dd65e8-c008c7bcc1.zip/node_modules/rate-limiter-flexible/",
+          "packageDependencies": [
+            ["rate-limiter-flexible", "npm:2.3.6"]
           ],
           "linkType": "HARD",
         }]

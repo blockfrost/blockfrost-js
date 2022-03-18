@@ -43,7 +43,24 @@ yarn add @blockfrost/blockfrost-js
 Using the SDK is pretty straight-forward as you can see from the following examples.
 For more examples take a look in [examples](examples/) directory.
 
-### Cardano
+```ts
+const API = new Blockfrost.BlockFrostAPI({
+  projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
+  // more options
+});
+```
+
+### Options
+
+- `projectId` - string, Blockfrost project ID
+- `isTestnet` - boolean, whether the projectId is intended for testnet network (optional, default value is derived from the projectId itself if possible)
+- `rateLimiter` - boolean, whether to enable rate limiter that matches [Blockfrost API limits](https://docs.blockfrost.io/#section/Limits) (optional, default true)
+- `debug`: boolean, whether to enable debug logs (optional, default false)
+- `requestTimeout`?: number, default 20s (optional)
+- `retrySettings`?: RequiredRetryOptions, customizations for retrying failed request (optional, [for defaults click here](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/index.ts#L58))
+- `version`: - Version of the API (optional, default 0)
+
+### Cardano example
 
 ```typescript
 const Blockfrost = require('@blockfrost/blockfrost-js');
@@ -78,7 +95,7 @@ async function runExample() {
 runExample();
 ```
 
-### IPFS
+### IPFS example
 
 ```typescript
 const Blockfrost = require('@blockfrost/blockfrost-js');
