@@ -46,21 +46,82 @@ For more examples take a look in [examples](examples/) directory.
 ```ts
 const API = new Blockfrost.BlockFrostAPI({
   projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
-  // more options
+  // For a list of all options see section below
 });
 ```
 
 ### Options
 
-- `projectId` - string, Blockfrost project ID
-- `isTestnet` - boolean, whether the projectId is intended for testnet network (optional, default value is derived from the projectId itself if possible)
-- `rateLimiter` - boolean, whether to enable rate limiter that matches [Blockfrost API limits](https://docs.blockfrost.io/#section/Limits) (optional, default true)
-- `debug`: boolean, whether to enable debug logs (optional, default false)
-- `requestTimeout`?: number, default 20s (optional)
-- `retrySettings`?: RequiredRetryOptions, customizations for retrying failed request (optional, [for defaults click here](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/index.ts#L58))
-- `version`: - Version of the API (optional, default 0)
+- `projectId` - string, Blockfrost project ID (required)
+- `isTestnet` - boolean, whether the projectId is intended for testnet network (optional, default value is derived from the `projectId` itself if possible)
+- `rateLimiter` - boolean, whether to enable rate limiter that matches [Blockfrost API limits](https://docs.blockfrost.io/#section/Limits) (optional, default `true`). If you have your IP addresses white-listed you may want to disable it.
+- `requestTimeout` - number, How long to wait for a request to complete, in milliseconds (optional, default `20000`)
+- `retrySettings` - RequiredRetryOptions, customizations for retrying failed request (optional, [for defaults click here](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/index.ts#L58))
+- `debug` - boolean, whether to enable debug logs (optional, default `false`)
+- `version` - Version of the Blockfrost API (optional, default `0`)
 
-### Cardano example
+## Error handling
+
+Blockfrost Node.js SDK throws 2 types of errors, `BlockfrostServerError` and `BlockfrostClientError`. Each of these errors is extended from the built-in `Error` class, allowing you to properly catch it and handle it in your code.
+
+### `BlockfrostServerError`
+
+`BlockfrostServerError` is an error returned directly by Blockfrost API. The error's properties are matching [the same format as defined by Blockfrost API](<(https://docs.blockfrost.io/#section/Errors)>).
+
+#### Example
+
+Blockfrost API returns 404 Not Found for any resource that does not exist on chain at the moment, even when in theory, it could exist. For more detailed explanation check [Blockfrost developer portal](https://www.blockfrost.dev/docs/support/cardano#querying-address-returns-404-not-found-but-my-address-is-valid).
+
+```ts
+// Example demonstrating catching BlockfrostServerError
+try {
+  const address = await API.addresses('totallyValidAddress');
+} catch (error) {
+  if (error instanceof BlockfrostServerError && error.status_code === 404) {
+    // address was not used before, but most likely we don't want to throw an error
+    console.log("Address is totally empty! But that's ok!");
+  } else {
+    // rethrow other errors
+    throw error;
+  }
+}
+```
+
+### `BlockfrostClientError`
+
+`BlockfrostClientError` is an error that was NOT returned by a Blockfrost API server. In this case the request has never reached our backends. Most common causes are network-related.
+
+Shape of `BlockfrostClientError` object is slightly different from `BlockfrostServerError`. The error has `code` and `message` property to help you investigate the issue.
+
+Here is a small example showcasing the error format:
+
+```json
+{
+  "code": "ENOTFOUND",
+  "message": "getaddrinfo ENOTFOUND api.blockfrost.io"
+}
+```
+
+#### Example
+
+```ts
+// Example demonstrating catching a network-related client error
+try {
+  const address = await API.addresses('totallyValidAddress');
+} catch (error) {
+  if (error instanceof BlockfrostClientError) {
+    console.log('Oops, error during sending the request');
+  }
+  // Depending on your use case you may want to rethrow the error
+  throw error;
+}
+```
+
+## Examples
+
+For more examples take a look in [examples](examples/) directory.
+
+### Cardano
 
 ```typescript
 const Blockfrost = require('@blockfrost/blockfrost-js');
@@ -95,7 +156,7 @@ async function runExample() {
 runExample();
 ```
 
-### IPFS example
+### IPFS
 
 ```typescript
 const Blockfrost = require('@blockfrost/blockfrost-js');
