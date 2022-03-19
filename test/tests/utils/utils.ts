@@ -58,27 +58,13 @@ describe('utils', () => {
     // just simple test for properly passing rateLimiter option through validation
     const api = new BlockFrostAPI({
       projectId: 'xxx',
-      rateLimiter: {
-        burst: {
-          points: 1,
-          duration: 1,
-        },
-        linear: {
-          points: 1,
-          duration: 1,
-        },
-      },
+      rateLimiter: { size: 5, increaseInterval: 1000, increaseAmount: 2 },
     });
 
     expect(api.options.rateLimiter).toMatchObject({
-      burst: {
-        points: 1,
-        duration: 1,
-      },
-      linear: {
-        points: 1,
-        duration: 1,
-      },
+      size: 5,
+      increaseInterval: 1000,
+      increaseAmount: 2,
     });
     expect(api.rateLimiter).toBeTruthy();
   });

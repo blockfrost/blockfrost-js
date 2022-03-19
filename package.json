@@ -31,9 +31,9 @@
   "dependencies": {
     "@emurgo/cardano-serialization-lib-nodejs": "^10.0.4",
     "@emurgo/cip14-js": "3.0.1",
+    "bottleneck": "^2.19.5",
     "form-data": "^4.0.0",
-    "got": "^11.8.3",
-    "rate-limiter-flexible": "^2.3.6"
+    "got": "^11.8.3"
   },
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",

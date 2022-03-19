@@ -1,5 +1,5 @@
 import got, { Got } from 'got';
-import { RateLimiterQueue } from 'rate-limiter-flexible';
+import Bottleneck from 'bottleneck';
 import { ValidatedOptions } from '../types';
 import { getLimiter } from './limiter';
 
@@ -8,8 +8,7 @@ export const getInstance = (
   options: ValidatedOptions,
   userAgent: string | undefined,
 ): Got => {
-  let limiterQueue: RateLimiterQueue;
-
+  let limiterQueue: Bottleneck;
   if (options.rateLimiter) {
     limiterQueue = getLimiter(options.rateLimiter);
   }
@@ -19,7 +18,7 @@ export const getInstance = (
       beforeRequest: [
         async hookOptions => {
           if (options.rateLimiter) {
-            await limiterQueue.removeTokens(1);
+            await limiterQueue.schedule(() => Promise.resolve(true));
           }
           if (options.debug) {
             console.log(`${hookOptions.method} ${hookOptions.url}`);
