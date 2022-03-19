@@ -11,6 +11,7 @@ import {
   UnsupportedProtocolError,
   RequiredRetryOptions,
 } from 'got';
+import { RateLimiterConfig } from '../utils/limiter';
 
 export type GotError =
   | CacheError
@@ -37,7 +38,7 @@ type OptionCombination2 = {
 type AdditionalOptions = {
   isTestnet?: boolean;
   version?: number;
-  rateLimiter?: boolean;
+  rateLimiter?: boolean | RateLimiterConfig;
   http2?: boolean;
   debug?: boolean;
   userAgent?: string;
@@ -52,7 +53,7 @@ export interface ValidatedOptions {
   customBackend?: string;
   version: number;
   requestTimeout: number;
-  rateLimiter?: boolean;
+  rateLimiter?: false | RateLimiterConfig;
   http2?: boolean;
   debug: boolean;
   projectId?: string;

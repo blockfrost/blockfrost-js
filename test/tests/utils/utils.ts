@@ -6,6 +6,7 @@ import {
   PaginationOptions,
 } from '../../../src/types';
 import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../src/config';
+import { RATE_LIMITER_DEFAULT_CONFIG } from '../../../src/utils/limiter';
 
 describe('utils', () => {
   test('no options', () => {
@@ -40,6 +41,46 @@ describe('utils', () => {
     });
 
     expect(api.apiUrl).toBe('https://cardano-mainnet.blockfrost.io/api/v2');
+  });
+
+  test('rateLimiter - disabled', () => {
+    // just simple test for properly passing rateLimiter option through validation
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+      rateLimiter: false,
+    });
+
+    expect(api.options.rateLimiter).toBe(false);
+    expect(api.rateLimiter).toBe(undefined);
+  });
+
+  test('rateLimiter - custom config', () => {
+    // just simple test for properly passing rateLimiter option through validation
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+      rateLimiter: {
+        burst: {
+          points: 1,
+          duration: 1,
+        },
+        linear: {
+          points: 1,
+          duration: 1,
+        },
+      },
+    });
+
+    expect(api.options.rateLimiter).toMatchObject({
+      burst: {
+        points: 1,
+        duration: 1,
+      },
+      linear: {
+        points: 1,
+        duration: 1,
+      },
+    });
+    expect(api.rateLimiter).toBeTruthy();
   });
 
   test('customBackend', () => {
@@ -78,6 +119,7 @@ describe('utils', () => {
       isTestnet: false,
       projectId: 'xxx',
       requestTimeout: 20000,
+      rateLimiter: RATE_LIMITER_DEFAULT_CONFIG,
       retrySettings: {
         limit: 2,
         methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
@@ -110,6 +152,7 @@ describe('utils', () => {
       projectId: 'xxx',
       http2: false,
       requestTimeout: 20000,
+      rateLimiter: RATE_LIMITER_DEFAULT_CONFIG,
       retrySettings: {
         limit: 20,
         methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],

@@ -1,31 +1,20 @@
 import got, { Got } from 'got';
+import { RateLimiterQueue } from 'rate-limiter-flexible';
 import { ValidatedOptions } from '../types';
-import {
-  BurstyRateLimiter,
-  RateLimiterMemory,
-  RateLimiterQueue,
-} from 'rate-limiter-flexible';
-
-const burstyLimiter = new BurstyRateLimiter(
-  new RateLimiterMemory({
-    points: 10,
-    duration: 10,
-  }),
-  new RateLimiterMemory({
-    keyPrefix: 'burst',
-    points: 500,
-    duration: 50,
-  }),
-);
-
-const limiterQueue = new RateLimiterQueue(burstyLimiter);
+import { getLimiter } from './limiter';
 
 export const getInstance = (
   apiUrl: string,
   options: ValidatedOptions,
   userAgent: string | undefined,
-): Got =>
-  got.extend({
+): Got => {
+  let limiterQueue: RateLimiterQueue;
+
+  if (options.rateLimiter) {
+    limiterQueue = getLimiter(options.rateLimiter);
+  }
+
+  return got.extend({
     hooks: {
       beforeRequest: [
         async hookOptions => {
@@ -58,3 +47,4 @@ export const getInstance = (
       request: options.requestTimeout,
     },
   });
+};
