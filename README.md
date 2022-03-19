@@ -58,6 +58,7 @@ const API = new Blockfrost.BlockFrostAPI({
 - `requestTimeout` - `number`, How long to wait for a request to complete, in milliseconds (optional, default `20000`)
 - `retrySettings` - `RequiredRetryOptions`, customizations for retrying failed request (optional, [for defaults click here](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/index.ts#L58))
 - `debug` - `boolean`, whether to enable debug logs (optional, default `false`)
+- `customBackend` - `string`, option to set URL to a non-official backend (optional)
 - `version` - `number`, version of the Blockfrost API (optional, default `0`)
 
 ## Error handling
