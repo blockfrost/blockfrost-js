@@ -82,7 +82,7 @@ describe('utils', () => {
     const api = new BlockFrostAPI({
       projectId: 'xxx',
       retrySettings: {
-        limit: 2,
+        limit: 3,
         methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
         statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
         errorCodes: [
@@ -107,7 +107,7 @@ describe('utils', () => {
       requestTimeout: 20000,
       rateLimiter: RATE_LIMITER_DEFAULT_CONFIG,
       retrySettings: {
-        limit: 2,
+        limit: 3,
         methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
         statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
         errorCodes: [
@@ -140,7 +140,7 @@ describe('utils', () => {
       requestTimeout: 20000,
       rateLimiter: RATE_LIMITER_DEFAULT_CONFIG,
       retrySettings: {
-        limit: 20,
+        limit: 3,
         methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
         statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
         errorCodes: [

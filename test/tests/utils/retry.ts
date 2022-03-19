@@ -18,7 +18,7 @@ describe('retry', () => {
       .get(path)
       .reply(200, { message: 'dummy response' })
       .get(path)
-      .times(3)
+      .times(2)
       .reply(429, { message: 'rate limited' })
       .get(path)
       .reply(200, { message: 'it works after all' });
@@ -120,8 +120,7 @@ describe('retry', () => {
     } catch (err) {
       expect(err).toMatchObject({
         status_code: 429,
-        error: undefined,
-        message: '429: undefined',
+        error: 'Too Many Requests',
       });
     }
   });

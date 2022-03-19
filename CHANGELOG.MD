@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Updated `cardano-serialization-lib` to v10
+- Lowered number of retries for failed requests to 3
 
 ## [4.0.1]
 
