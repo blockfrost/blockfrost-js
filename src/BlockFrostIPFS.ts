@@ -1,5 +1,6 @@
 import { API_URLS } from './config';
 import { Got } from 'got';
+import Bottleneck from 'bottleneck';
 import {
   add,
   list,
@@ -11,6 +12,7 @@ import {
 import { Options, ValidatedOptions } from './types';
 import { validateOptions } from './utils';
 import { getInstance } from './utils/got';
+import { getLimiter } from './utils/limiter';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('../package.json');
 
@@ -20,6 +22,7 @@ class BlockFrostIPFS {
   userAgent?: string;
   options: ValidatedOptions;
   instance: Got;
+  rateLimiter: Bottleneck | undefined;
 
   constructor(options?: Options) {
     this.options = validateOptions(options);
@@ -31,7 +34,16 @@ class BlockFrostIPFS {
     this.userAgent =
       options?.userAgent ?? `${packageJson.name}@${packageJson.version}`;
 
-    this.instance = getInstance(this.apiUrl, this.options, this.userAgent);
+    this.rateLimiter = this.options.rateLimiter
+      ? getLimiter(this.options.rateLimiter)
+      : undefined;
+
+    this.instance = getInstance(
+      this.apiUrl,
+      this.options,
+      this.userAgent,
+      this.rateLimiter,
+    );
 
     this.projectId = this.options.projectId;
   }

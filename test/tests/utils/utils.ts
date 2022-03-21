@@ -6,6 +6,7 @@ import {
   PaginationOptions,
 } from '../../../src/types';
 import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../src/config';
+import { RATE_LIMITER_DEFAULT_CONFIG } from '../../../src/utils/limiter';
 
 describe('utils', () => {
   test('no options', () => {
@@ -42,6 +43,32 @@ describe('utils', () => {
     expect(api.apiUrl).toBe('https://cardano-mainnet.blockfrost.io/api/v2');
   });
 
+  test('rateLimiter - disabled', () => {
+    // just simple test for properly passing rateLimiter option through validation
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+      rateLimiter: false,
+    });
+
+    expect(api.options.rateLimiter).toBe(false);
+    expect(api.rateLimiter).toBe(undefined);
+  });
+
+  test('rateLimiter - custom config', () => {
+    // just simple test for properly passing rateLimiter option through validation
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+      rateLimiter: { size: 5, increaseInterval: 1000, increaseAmount: 2 },
+    });
+
+    expect(api.options.rateLimiter).toMatchObject({
+      size: 5,
+      increaseInterval: 1000,
+      increaseAmount: 2,
+    });
+    expect(api.rateLimiter).toBeTruthy();
+  });
+
   test('customBackend', () => {
     const api = new BlockFrostAPI({
       customBackend: 'http://customBackend.com',
@@ -55,7 +82,7 @@ describe('utils', () => {
     const api = new BlockFrostAPI({
       projectId: 'xxx',
       retrySettings: {
-        limit: 2,
+        limit: 3,
         methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
         statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
         errorCodes: [
@@ -78,8 +105,9 @@ describe('utils', () => {
       isTestnet: false,
       projectId: 'xxx',
       requestTimeout: 20000,
+      rateLimiter: RATE_LIMITER_DEFAULT_CONFIG,
       retrySettings: {
-        limit: 2,
+        limit: 3,
         methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
         statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
         errorCodes: [
@@ -110,8 +138,9 @@ describe('utils', () => {
       projectId: 'xxx',
       http2: false,
       requestTimeout: 20000,
+      rateLimiter: RATE_LIMITER_DEFAULT_CONFIG,
       retrySettings: {
-        limit: 20,
+        limit: 3,
         methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
         statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
         errorCodes: [

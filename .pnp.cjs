@@ -46,6 +46,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/url-join", "npm:4.0.1"],
             ["@typescript-eslint/eslint-plugin", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:5.6.0"],
             ["@typescript-eslint/parser", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:5.6.0"],
+            ["bottleneck", "npm:2.19.5"],
             ["eslint", "npm:8.4.1"],
             ["eslint-config-prettier", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:8.3.0"],
             ["eslint-plugin-import", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:2.25.3"],
@@ -1099,6 +1100,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/url-join", "npm:4.0.1"],
             ["@typescript-eslint/eslint-plugin", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:5.6.0"],
             ["@typescript-eslint/parser", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:5.6.0"],
+            ["bottleneck", "npm:2.19.5"],
             ["eslint", "npm:8.4.1"],
             ["eslint-config-prettier", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:8.3.0"],
             ["eslint-plugin-import", "virtual:515792a659fc169e388142ef1e7e822f2b81ab15d64f52c945452976a3456bf58ec6446814a37174f16c9dca8dc2cdbaf9ec01ebc727c3b8475f889604853c19#npm:2.25.3"],
@@ -3135,6 +3137,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["blake2b-wasm", "npm:1.1.7"],
             ["nanoassert", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["bottleneck", [
+        ["npm:2.19.5", {
+          "packageLocation": "./.yarn/cache/bottleneck-npm-2.19.5-2c6092aa17-c5eef1bbea.zip/node_modules/bottleneck/",
+          "packageDependencies": [
+            ["bottleneck", "npm:2.19.5"]
           ],
           "linkType": "HARD",
         }]

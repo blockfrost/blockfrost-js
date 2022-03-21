@@ -16,20 +16,24 @@ files.forEach(file => {
 
   describe('file', () => {
     fileContent.default.forEach((fixture: TestFixture) => {
-      test(fixture.command.toString(), async () => {
-        const response = await fixture.command(SDK());
-        expect(response).toMatchObject(fixture.response);
+      test(
+        fixture.command.toString(),
+        async () => {
+          const response = await fixture.command(SDK());
+          expect(response).toMatchObject(fixture.response);
 
-        if (fixture.itemsCount) {
-          expect(response.length).toBe(fixture.itemsCount);
-        }
+          if (fixture.itemsCount) {
+            expect(response.length).toBe(fixture.itemsCount);
+          }
 
-        if (fixture.itemsCountMinimum) {
-          expect(response.length).toBeGreaterThanOrEqual(
-            fixture.itemsCountMinimum,
-          );
-        }
-      });
+          if (fixture.itemsCountMinimum) {
+            expect(response.length).toBeGreaterThanOrEqual(
+              fixture.itemsCountMinimum,
+            );
+          }
+        },
+        fixture.jestTimeout,
+      );
     });
   });
 });

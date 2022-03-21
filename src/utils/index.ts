@@ -14,6 +14,7 @@ import {
   AllMethodOptions,
 } from '../types';
 import { RetryObject } from 'got';
+import { RATE_LIMITER_DEFAULT_CONFIG } from './limiter';
 
 export const validateOptions = (options?: Options): ValidatedOptions => {
   if (!options || (!options.customBackend && !options.projectId)) {
@@ -34,6 +35,20 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
 
   const debug = options.debug ?? process.env.BLOCKFROST_DEBUG === 'true';
 
+  let rateLimiter: ValidatedOptions['rateLimiter'];
+  if (options.rateLimiter === false) {
+    rateLimiter = false;
+  } else if (
+    options.rateLimiter === true ||
+    options.rateLimiter === undefined
+  ) {
+    rateLimiter = RATE_LIMITER_DEFAULT_CONFIG;
+  } else if (options.rateLimiter) {
+    // custom config
+    // eslint-disable-next-line prefer-destructuring
+    rateLimiter = options.rateLimiter;
+  }
+
   const errorCodesToRetry = [
     'ETIMEDOUT',
     'ECONNRESET',
@@ -50,13 +65,14 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     isTestnet:
       options.isTestnet ??
       deriveTestnetOption(options.projectId, options.isTestnet),
+    rateLimiter,
     version: options.version || DEFAULT_API_VERSION,
     debug,
     http2: options.http2 ?? false,
     requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
     // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
     retrySettings: options.retrySettings ?? {
-      limit: 20, // retry count
+      limit: 3, // retry count
       methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'], // no retry on POST
       statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
       errorCodes: [

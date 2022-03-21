@@ -10,10 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `deriveAddress` derive Byron addresses
+- Rate limiter to match [the limits of Blockfrost API](https://docs.blockfrost.io/#section/Limits). For additional customization, see [options documentation](https://github.com/blockfrost/blockfrost-js#options).
 
 ### Changed
 
 - Updated `cardano-serialization-lib` to v10
+- Lowered number of retries for failed requests to 3
 
 ## [4.0.1]
 
