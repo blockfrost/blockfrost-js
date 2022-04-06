@@ -21,8 +21,6 @@ import {
   accountsAddressesAssets,
   accountsAddressesTotal,
   accountsAddressesAssetsAll,
-  addressesUtxosAsset,
-  addressesUtxosAssetAll,
 } from './endpoints/api/accounts';
 
 import {
@@ -33,6 +31,8 @@ import {
   addressesTransactionsAll,
   addressesUtxos,
   addressesUtxosAll,
+  addressesUtxosAsset,
+  addressesUtxosAssetAll,
 } from './endpoints/api/addresses';
 
 import {
