@@ -141,3 +141,42 @@ export async function addressesUtxosAll(
     allMethodOptions,
   );
 }
+
+export async function addressesUtxosAsset(
+  this: BlockFrostAPI,
+  address: string,
+  asset: string,
+  pagination?: PaginationOptions,
+): Promise<components['schemas']['address_utxo_content']> {
+  // TODO: test is missing since we can't guarantee that list of address's utxos won't change in the future
+  const paginationOptions = getPaginationOptions(pagination);
+
+  return new Promise((resolve, reject) => {
+    this.instance<components['schemas']['address_utxo_content']>(
+      `addresses/${address}/utxos/${asset}`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
+      },
+    )
+      .then(resp => {
+        resolve(resp.body);
+      })
+      .catch(err => reject(handleError(err)));
+  });
+}
+
+export async function addressesUtxosAssetAll(
+  this: BlockFrostAPI,
+  address: string,
+  asset: string,
+  allMethodOptions?: AllMethodOptions,
+): Promise<components['schemas']['address_utxo_content']> {
+  return paginateMethod(
+    pagination => this.addressesUtxosAsset(address, asset, pagination),
+    allMethodOptions,
+  );
+}

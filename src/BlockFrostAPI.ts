@@ -31,6 +31,8 @@ import {
   addressesTransactionsAll,
   addressesUtxos,
   addressesUtxosAll,
+  addressesUtxosAsset,
+  addressesUtxosAssetAll,
 } from './endpoints/api/addresses';
 
 import {
@@ -472,6 +474,25 @@ class BlockFrostAPI {
    *
    */
   addressesUtxosAll = addressesUtxosAll;
+
+  /**
+   * addressesUtxosAsset - List of the address's utxos containing a given asset (paginated)
+   *
+   * @param address
+   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+   * @returns List of the address's utxos containing a given asset
+   *
+   */
+  addressesUtxosAsset = addressesUtxosAsset;
+
+  /**
+   * addressesUtxosAssetAll - List of the address's utxos containing a given asset
+   * @param address
+   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+   * @returns List of the address's utxos containing a given asset
+   *
+   */
+  addressesUtxosAssetAll = addressesUtxosAssetAll;
 
   /**
    * addressesUtxos
