@@ -148,6 +148,7 @@ export async function addressesUtxosAsset(
   asset: string,
   pagination?: PaginationOptions,
 ): Promise<components['schemas']['address_utxo_content']> {
+  // TODO: test is missing since we can't guarantee that list of address's utxos won't change in the future
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
