@@ -16,6 +16,8 @@ import {
 import { RetryObject } from 'got';
 import { RATE_LIMITER_DEFAULT_CONFIG } from './limiter';
 
+export const isDebugEnabled = () => process.env.BLOCKFROST_DEBUG === 'true';
+
 export const validateOptions = (options?: Options): ValidatedOptions => {
   if (!options || (!options.customBackend && !options.projectId)) {
     throw Error('Missing customBackend or projectId option');
@@ -33,7 +35,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     throw Error('Param requestTimeout is not a number');
   }
 
-  const debug = options.debug ?? process.env.BLOCKFROST_DEBUG === 'true';
+  const debug = options.debug ?? isDebugEnabled();
 
   let rateLimiter: ValidatedOptions['rateLimiter'];
   if (options.rateLimiter === false) {
