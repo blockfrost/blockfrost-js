@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios';
+import { AxiosError, AxiosAdapter } from 'axios';
 
 type OptionCombination1 = {
   projectId: string;
@@ -18,6 +18,7 @@ type AdditionalOptions = {
   requestTimeout?: number;
   retryCount?: number;
   retryDelay?: number;
+  adapter?: AxiosAdapter;
 };
 
 export type Options = (OptionCombination1 | OptionCombination2) &
@@ -32,6 +33,7 @@ export interface ValidatedOptions {
   requestTimeout: number;
   retryCount: number;
   retryDelay: number;
+  adapter?: AxiosAdapter;
 }
 
 export interface Headers {

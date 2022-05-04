@@ -54,6 +54,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     retryCount: options.retryCount ?? 20,
     retryDelay: options.retryDelay ?? 1000, // 1 second
     requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
+    ...(options.adapter && { adapter: options.adapter }),
   };
 };
 

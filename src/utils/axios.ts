@@ -8,7 +8,9 @@ export const hackInstance = (
   options: ValidatedOptions,
   userAgent: string,
 ): AxiosInstance => {
-  const axiosInstance = axios.create();
+  const axiosInstance = options.adapter
+    ? axios.create({ adapter: options.adapter })
+    : axios.create();
 
   const readyForNextRequest = createRateLimiter();
   axiosInstance.interceptors.request.use(config =>
