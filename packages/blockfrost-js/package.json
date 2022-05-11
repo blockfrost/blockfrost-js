@@ -1,0 +1,73 @@
+{
+  "name": "@blockfrost/blockfrost-js",
+  "version": "4.1.0",
+  "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
+  "keywords": [
+    "blockfrost",
+    "cardano",
+    "cardano api"
+  ],
+  "license": "Apache-2.0",
+  "author": "blockfrost.io",
+  "repository": "blockfrost/blockfrost-js",
+  "main": "lib/index.js",
+  "files": [
+    "lib/**/*.js",
+    "lib/**/*.ts"
+  ],
+  "scripts": {
+    "build": "yarn clean && tsc",
+    "clean": "rimraf lib",
+    "generate-types": "openapi-typescript https://raw.githubusercontent.com/blockfrost/openapi/master/openapi.yaml --output ./src/types/OpenApi.ts",
+    "lint": "eslint ./src/**/*.ts",
+    "prepublishOnly": "yarn build",
+    "run-example:api": "ts-node-dev --transpile-only ./examples/basic/api.ts",
+    "run-example:ipfs": "ts-node-dev --transpile-only ./examples/basic/ipfs.ts",
+    "test": "yarn run-s 'test:*'",
+    "test:unit": "jest -c ./jest.config.js --runInBand",
+    "test:badges": "make-coverage-badge --output-path ./docs/badge-coverage.svg",
+    "docs": "yarn typedoc ./src/index.ts --theme ./node_modules/typedoc-github-wiki-theme/dist"
+  },
+  "dependencies": {
+    "@emurgo/cardano-serialization-lib-nodejs": "^10.0.4",
+    "@emurgo/cip14-js": "3.0.1",
+    "bottleneck": "^2.19.5",
+    "form-data": "^4.0.0",
+    "got": "^11.8.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "@jest/globals": "^27.4.2",
+    "@swc-node/jest": "^1.4.1",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.12",
+    "@types/url-join": "^4.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "5.6.0",
+    "eslint": "8.4.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-prettier": "4.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.4.3",
+    "jest-extended": "^1.2.0",
+    "make-coverage-badge": "^1.2.0",
+    "nock": "^13.2.1",
+    "openapi-typescript": "^4.4.0",
+    "prettier": "2.5.1",
+    "rimraf": "^3.0.2",
+    "serialize-error": "^9.0.0",
+    "ts-jest": "^27.1.1",
+    "ts-node": "10.4.0",
+    "ts-node-dev": "^1.1.8",
+    "typedoc": "^0.22.10",
+    "typedoc-github-wiki-theme": "^0.6.0",
+    "typedoc-plugin-markdown": "^3.11.7",
+    "typescript": "4.5.2",
+    "yarn-run-all": "^3.1.1"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}

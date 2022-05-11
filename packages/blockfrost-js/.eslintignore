@@ -1,0 +1,7 @@
+dist
+node_modules
+.eslintrc.js
+jest.config.js
+babel.config.js
+lib
+OpenApi.ts
