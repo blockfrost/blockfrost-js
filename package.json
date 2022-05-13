@@ -1,23 +1,33 @@
 {
   "name": "@blockfrost/blockfrost",
   "version": "1.0.0",
-  "workspaces": [
-    "examples/*",
-    "packages/*"
-  ],
-  "scripts": {
-    "lint": "yarn workspaces foreach run lint",
-    "build": "yarn workspaces foreach run build"
-  },
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "keywords": [
     "blockfrost",
     "cardano",
     "cardano api"
   ],
+  "repository": "blockfrost/blockfrost-js",
   "license": "Apache-2.0",
   "author": "blockfrost.io",
-  "repository": "blockfrost/blockfrost-js",
+  "workspaces": [
+    "examples/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "yarn workspaces foreach run build",
+    "lint": "yarn workspaces foreach run lint"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "5.6.0",
+    "eslint": "8.4.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-prettier": "4.0.0",
+    "prettier": "2.5.1",
+    "typescript": "4.5.2"
+  },
   "engines": {
     "node": ">=14"
   }
