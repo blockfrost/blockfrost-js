@@ -19,14 +19,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     ],
     "dependencyTreeRoots": [
       {
-        "name": "root-workspace-0b6124",
+        "name": "@blockfrost/simple-transaction",
         "reference": "workspace:."
       }
     ],
     "enableTopLevelFallback": true,
     "ignorePatternData": "(^(?:\\.yarn\\/sdks(?:\\/(?!\\.{1,2}(?:\\/|$))(?:(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$)).)*?)|$))$)",
     "fallbackExclusionList": [
-      ["root-workspace-0b6124", ["workspace:."]]
+      ["@blockfrost/simple-transaction", ["workspace:."]]
     ],
     "fallbackPool": [
     ],
@@ -35,7 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {
           "packageLocation": "./",
           "packageDependencies": [
-            ["@blockfrost/blockfrost-js", "npm:4.0.1"],
+            ["@blockfrost/blockfrost-js", "npm:4.1.0"],
             ["@emurgo/cardano-serialization-lib-nodejs", "npm:10.0.4"],
             ["@types/bip39", "npm:3.0.0"],
             ["@types/node", "npm:17.0.10"],
@@ -46,16 +46,32 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@blockfrost/blockfrost-js", [
-        ["npm:4.0.1", {
-          "packageLocation": "./.yarn/cache/@blockfrost-blockfrost-js-npm-4.0.1-f3c432ab7c-8f3f894c42.zip/node_modules/@blockfrost/blockfrost-js/",
+        ["npm:4.1.0", {
+          "packageLocation": "./.yarn/cache/@blockfrost-blockfrost-js-npm-4.1.0-8b293b24a0-9976a84961.zip/node_modules/@blockfrost/blockfrost-js/",
           "packageDependencies": [
-            ["@blockfrost/blockfrost-js", "npm:4.0.1"],
-            ["@emurgo/cardano-serialization-lib-nodejs", "npm:9.1.4"],
+            ["@blockfrost/blockfrost-js", "npm:4.1.0"],
+            ["@emurgo/cardano-serialization-lib-nodejs", "npm:10.0.4"],
             ["@emurgo/cip14-js", "npm:3.0.1"],
+            ["bottleneck", "npm:2.19.5"],
             ["form-data", "npm:4.0.0"],
             ["got", "npm:11.8.3"]
           ],
           "linkType": "HARD",
+        }]
+      ]],
+      ["@blockfrost/simple-transaction", [
+        ["workspace:.", {
+          "packageLocation": "./",
+          "packageDependencies": [
+            ["@blockfrost/simple-transaction", "workspace:."],
+            ["@blockfrost/blockfrost-js", "npm:4.1.0"],
+            ["@emurgo/cardano-serialization-lib-nodejs", "npm:10.0.4"],
+            ["@types/bip39", "npm:3.0.0"],
+            ["@types/node", "npm:17.0.10"],
+            ["bip39", "npm:3.0.4"],
+            ["typescript", "patch:typescript@npm%3A4.5.5#~builtin<compat/typescript>::version=4.5.5&hash=493e53"]
+          ],
+          "linkType": "SOFT",
         }]
       ]],
       ["@emurgo/cardano-serialization-lib-nodejs", [
@@ -63,13 +79,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@emurgo-cardano-serialization-lib-nodejs-npm-10.0.4-d18bfc8a26-e660212a1a.zip/node_modules/@emurgo/cardano-serialization-lib-nodejs/",
           "packageDependencies": [
             ["@emurgo/cardano-serialization-lib-nodejs", "npm:10.0.4"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:9.1.4", {
-          "packageLocation": "./.yarn/cache/@emurgo-cardano-serialization-lib-nodejs-npm-9.1.4-407b8829e6-a87619ff6b.zip/node_modules/@emurgo/cardano-serialization-lib-nodejs/",
-          "packageDependencies": [
-            ["@emurgo/cardano-serialization-lib-nodejs", "npm:9.1.4"]
           ],
           "linkType": "HARD",
         }]
@@ -220,6 +229,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["blake2b-wasm", "npm:1.1.7"],
             ["nanoassert", "npm:1.1.0"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["bottleneck", [
+        ["npm:2.19.5", {
+          "packageLocation": "./.yarn/cache/bottleneck-npm-2.19.5-2c6092aa17-c5eef1bbea.zip/node_modules/bottleneck/",
+          "packageDependencies": [
+            ["bottleneck", "npm:2.19.5"]
           ],
           "linkType": "HARD",
         }]
@@ -626,21 +644,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["inherits", "npm:2.0.4"]
           ],
           "linkType": "HARD",
-        }]
-      ]],
-      ["root-workspace-0b6124", [
-        ["workspace:.", {
-          "packageLocation": "./",
-          "packageDependencies": [
-            ["root-workspace-0b6124", "workspace:."],
-            ["@blockfrost/blockfrost-js", "npm:4.0.1"],
-            ["@emurgo/cardano-serialization-lib-nodejs", "npm:10.0.4"],
-            ["@types/bip39", "npm:3.0.0"],
-            ["@types/node", "npm:17.0.10"],
-            ["bip39", "npm:3.0.4"],
-            ["typescript", "patch:typescript@npm%3A4.5.5#~builtin<compat/typescript>::version=4.5.5&hash=493e53"]
-          ],
-          "linkType": "SOFT",
         }]
       ]],
       ["safe-buffer", [

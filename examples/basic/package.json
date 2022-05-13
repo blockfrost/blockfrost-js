@@ -1,5 +1,5 @@
 {
-  "name": "@blockfrost/simple-transaction",
+  "name": "@blockfrost/example-basic",
   "private": true,
   "scripts": {
     "build": "rm -rf lib && tsc -b",

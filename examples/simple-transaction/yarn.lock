@@ -5,29 +5,36 @@ __metadata:
   version: 5
   cacheKey: 8
 
-"@blockfrost/blockfrost-js@latest":
-  version: 4.0.1
-  resolution: "@blockfrost/blockfrost-js@npm:4.0.1"
+"@blockfrost/blockfrost-js@npm:4.1.0":
+  version: 4.1.0
+  resolution: "@blockfrost/blockfrost-js@npm:4.1.0"
   dependencies:
-    "@emurgo/cardano-serialization-lib-nodejs": ^9.1.2
+    "@emurgo/cardano-serialization-lib-nodejs": ^10.0.4
     "@emurgo/cip14-js": 3.0.1
+    bottleneck: ^2.19.5
     form-data: ^4.0.0
     got: ^11.8.3
-  checksum: 8f3f894c4224bf473e403b31a054575c05416ac4af9b3372bdde646ad5a1e48f32f61f0e0c204a2442558323e9e5c33e652cb65fa44d31bc47c37e048d38ee7d
+  checksum: 9976a849617385edec39b5fd1ce2fdadd7412e9223bd8077b5f3b9c85175fca76f4d5ee4b046e9d328b135dc5ed4b61a9292365cde2a9512ed9243b4f0f45a3c
   languageName: node
   linkType: hard
+
+"@blockfrost/simple-transaction@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@blockfrost/simple-transaction@workspace:."
+  dependencies:
+    "@blockfrost/blockfrost-js": 4.1.0
+    "@emurgo/cardano-serialization-lib-nodejs": ^10.0.4
+    "@types/bip39": ^3.0.0
+    "@types/node": ^17.0.10
+    bip39: ^3.0.4
+    typescript: ^4.4.4
+  languageName: unknown
+  linkType: soft
 
 "@emurgo/cardano-serialization-lib-nodejs@npm:^10.0.4":
   version: 10.0.4
   resolution: "@emurgo/cardano-serialization-lib-nodejs@npm:10.0.4"
   checksum: e660212a1a325cc01f97d3baed86815c9f86fa32ad023b5b391eaa5c437f3ca336a533a57d8827ceb0ddc74145de5ba038216e0b4e44a5cfa1dd7b7154c99511
-  languageName: node
-  linkType: hard
-
-"@emurgo/cardano-serialization-lib-nodejs@npm:^9.1.2":
-  version: 9.1.4
-  resolution: "@emurgo/cardano-serialization-lib-nodejs@npm:9.1.4"
-  checksum: a87619ff6bc2c90e8be7fd68f0d42b8fc67a3dafe93df61227275ddad8331ca04ce92b197ed58d0d551b12fa4c52a87a33f2516cdbe86bcdc12a3a71f02d0924
   languageName: node
   linkType: hard
 
@@ -159,6 +166,13 @@ __metadata:
     blake2b-wasm: ^1.1.0
     nanoassert: ^1.0.0
   checksum: e652234249cbdb3345488d52b5e76e8572b8e5333f3f0d5e716772b7c5d2142f433c3fe86130e92117329532e1d1235cdaa89f40bbca27a8ae528bef428241ef
+  languageName: node
+  linkType: hard
+
+"bottleneck@npm:^2.19.5":
+  version: 2.19.5
+  resolution: "bottleneck@npm:2.19.5"
+  checksum: c5eef1bbea12cef1f1405e7306e7d24860568b0f7ac5eeab706a86762b3fc65ef6d1c641c8a166e4db90f412fc5c948fc5ce8008a8cd3d28c7212ef9c3482bda
   languageName: node
   linkType: hard
 
@@ -514,19 +528,6 @@ __metadata:
   checksum: 006accc40578ee2beae382757c4ce2908a826b27e2b079efdcd2959ee544ddf210b7b5d7d5e80467807604244e7388427330f5c6d4cd61e6edaddc5773ccc393
   languageName: node
   linkType: hard
-
-"root-workspace-0b6124@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "root-workspace-0b6124@workspace:."
-  dependencies:
-    "@blockfrost/blockfrost-js": latest
-    "@emurgo/cardano-serialization-lib-nodejs": ^10.0.4
-    "@types/bip39": ^3.0.0
-    "@types/node": ^17.0.10
-    bip39: ^3.0.4
-    typescript: ^4.4.4
-  languageName: unknown
-  linkType: soft
 
 "safe-buffer@npm:^5.0.1, safe-buffer@npm:^5.1.0, safe-buffer@npm:^5.1.2, safe-buffer@npm:^5.2.0, safe-buffer@npm:~5.2.0":
   version: 5.2.1

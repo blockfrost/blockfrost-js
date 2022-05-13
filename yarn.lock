@@ -658,20 +658,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@blockfrost/blockfrost-js@npm:latest":
-  version: 4.1.0
-  resolution: "@blockfrost/blockfrost-js@npm:4.1.0"
-  dependencies:
-    "@emurgo/cardano-serialization-lib-nodejs": ^10.0.4
-    "@emurgo/cip14-js": 3.0.1
-    bottleneck: ^2.19.5
-    form-data: ^4.0.0
-    got: ^11.8.3
-  checksum: 9976a849617385edec39b5fd1ce2fdadd7412e9223bd8077b5f3b9c85175fca76f4d5ee4b046e9d328b135dc5ed4b61a9292365cde2a9512ed9243b4f0f45a3c
-  languageName: node
-  linkType: hard
-
-"@blockfrost/blockfrost-js@workspace:packages/blockfrost-js":
+"@blockfrost/blockfrost-js@4.1.0, @blockfrost/blockfrost-js@workspace:packages/blockfrost-js":
   version: 0.0.0-use.local
   resolution: "@blockfrost/blockfrost-js@workspace:packages/blockfrost-js"
   dependencies:
@@ -684,7 +671,7 @@ __metadata:
     "@types/jest": ^27.0.3
     "@types/node": ^16.11.12
     "@types/url-join": ^4.0.1
-    "@typescript-eslint/eslint-plugin": ^5.6.0
+    "@typescript-eslint/eslint-plugin": ^5.23.0
     "@typescript-eslint/parser": 5.6.0
     bottleneck: ^2.19.5
     eslint: 8.4.1
@@ -716,6 +703,32 @@ __metadata:
 "@blockfrost/blockfrost@workspace:.":
   version: 0.0.0-use.local
   resolution: "@blockfrost/blockfrost@workspace:."
+  languageName: unknown
+  linkType: soft
+
+"@blockfrost/example-basic@workspace:examples/basic":
+  version: 0.0.0-use.local
+  resolution: "@blockfrost/example-basic@workspace:examples/basic"
+  dependencies:
+    "@blockfrost/blockfrost-js": 4.1.0
+    "@emurgo/cardano-serialization-lib-nodejs": ^10.0.4
+    "@types/bip39": ^3.0.0
+    "@types/node": ^17.0.10
+    bip39: ^3.0.4
+    typescript: ^4.4.4
+  languageName: unknown
+  linkType: soft
+
+"@blockfrost/simple-transaction@workspace:examples/simple-transaction":
+  version: 0.0.0-use.local
+  resolution: "@blockfrost/simple-transaction@workspace:examples/simple-transaction"
+  dependencies:
+    "@blockfrost/blockfrost-js": 4.1.0
+    "@emurgo/cardano-serialization-lib-nodejs": ^10.0.4
+    "@types/bip39": ^3.0.0
+    "@types/node": ^17.0.10
+    bip39: ^3.0.4
+    typescript: ^4.4.4
   languageName: unknown
   linkType: soft
 
@@ -1884,12 +1897,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/eslint-plugin@npm:^5.6.0":
-  version: 5.6.0
-  resolution: "@typescript-eslint/eslint-plugin@npm:5.6.0"
+"@typescript-eslint/eslint-plugin@npm:^5.23.0":
+  version: 5.23.0
+  resolution: "@typescript-eslint/eslint-plugin@npm:5.23.0"
   dependencies:
-    "@typescript-eslint/experimental-utils": 5.6.0
-    "@typescript-eslint/scope-manager": 5.6.0
+    "@typescript-eslint/scope-manager": 5.23.0
+    "@typescript-eslint/type-utils": 5.23.0
+    "@typescript-eslint/utils": 5.23.0
     debug: ^4.3.2
     functional-red-black-tree: ^1.0.1
     ignore: ^5.1.8
@@ -1902,23 +1916,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: aeae8c2de535cad6032c0b27fbb86baccd07788319efd5a97d828bc03a85eae5e635aff794a1d7a2b3ee2a84d6d6d7e68c42438fee62af42fead89f381df7bca
-  languageName: node
-  linkType: hard
-
-"@typescript-eslint/experimental-utils@npm:5.6.0":
-  version: 5.6.0
-  resolution: "@typescript-eslint/experimental-utils@npm:5.6.0"
-  dependencies:
-    "@types/json-schema": ^7.0.9
-    "@typescript-eslint/scope-manager": 5.6.0
-    "@typescript-eslint/types": 5.6.0
-    "@typescript-eslint/typescript-estree": 5.6.0
-    eslint-scope: ^5.1.1
-    eslint-utils: ^3.0.0
-  peerDependencies:
-    eslint: "*"
-  checksum: f708f38be41a3cb4c8c2c8573a660ce7de88f50becf53bea6679fcc8a56ba73c59f2e1a94f5a7773c8cccaf0c2e4dda679564c67764c989f8137594d6589aa4c
+  checksum: 19ee37c0be172469968f61d156d6ce36a975ab72ccbb8f702eb4573c94d1cf9247ff32352ed85eda5e7b2eaace567d5c66b32846f042f9711349213496ec37d4
   languageName: node
   linkType: hard
 
@@ -1939,6 +1937,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/scope-manager@npm:5.23.0":
+  version: 5.23.0
+  resolution: "@typescript-eslint/scope-manager@npm:5.23.0"
+  dependencies:
+    "@typescript-eslint/types": 5.23.0
+    "@typescript-eslint/visitor-keys": 5.23.0
+  checksum: cd3dda0b18d6730e34784fc63135fc9fe31673898d3e0868cd765ad78855351f285fe577297193cf179b3ce918c3d44453de85159a925f5c02d12a5626e787d8
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/scope-manager@npm:5.6.0":
   version: 5.6.0
   resolution: "@typescript-eslint/scope-manager@npm:5.6.0"
@@ -1949,10 +1957,51 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@typescript-eslint/type-utils@npm:5.23.0":
+  version: 5.23.0
+  resolution: "@typescript-eslint/type-utils@npm:5.23.0"
+  dependencies:
+    "@typescript-eslint/utils": 5.23.0
+    debug: ^4.3.2
+    tsutils: ^3.21.0
+  peerDependencies:
+    eslint: "*"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 88bf7c7a08c11f2a02a05fe331750c569bfc2b4759e0dea6ec72ffd1597624a01100965052a5fede1e3f25ea8ef503bd424e03c9805f0a1af223f28b4fd74946
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/types@npm:5.23.0":
+  version: 5.23.0
+  resolution: "@typescript-eslint/types@npm:5.23.0"
+  checksum: 96ae3e80cfae7b34f2846db692c31fb1804bf9651bce1d29f2eb8ae4c763d22f3283adc02dedeebd7cf70e4d8be54ec7f6ca593e03cdca26c791207e7556c2c1
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/types@npm:5.6.0":
   version: 5.6.0
   resolution: "@typescript-eslint/types@npm:5.6.0"
   checksum: 63abd287a265cb1bed06067117c11bf1c69c5db1a14ea59e13564dcd9d513ae2dac67969541f21381500139d40bbea67b269c32607d3204ab24ea8900c449293
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/typescript-estree@npm:5.23.0":
+  version: 5.23.0
+  resolution: "@typescript-eslint/typescript-estree@npm:5.23.0"
+  dependencies:
+    "@typescript-eslint/types": 5.23.0
+    "@typescript-eslint/visitor-keys": 5.23.0
+    debug: ^4.3.2
+    globby: ^11.0.4
+    is-glob: ^4.0.3
+    semver: ^7.3.5
+    tsutils: ^3.21.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 8d85bb1cd777e93cc7322ae8fea25f9b924def02494cdb8395c1d5d17b5fd3ac9bc969418a1d20a5dc28c2cdd85da20e13527e28b595c06ff6f84cd22a78d73f
   languageName: node
   linkType: hard
 
@@ -1971,6 +2020,32 @@ __metadata:
     typescript:
       optional: true
   checksum: eb5cc53ddad6fe7772677798bcb682e859ac82674cf0adcdd7105814ddecdbb9d58a4a27f87caa68eb9f40dcc5ce1b0ce87db3cf50deffa5f7fa6c354c8bee68
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/utils@npm:5.23.0":
+  version: 5.23.0
+  resolution: "@typescript-eslint/utils@npm:5.23.0"
+  dependencies:
+    "@types/json-schema": ^7.0.9
+    "@typescript-eslint/scope-manager": 5.23.0
+    "@typescript-eslint/types": 5.23.0
+    "@typescript-eslint/typescript-estree": 5.23.0
+    eslint-scope: ^5.1.1
+    eslint-utils: ^3.0.0
+  peerDependencies:
+    eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+  checksum: 72207399f29856b601148fe1aff07049021fad8e780ee6e896279d2291806d4608f1c28ddc5c3c5616ce94f25dcbcd26f295669e524fc1c4b4db810569c90f85
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/visitor-keys@npm:5.23.0":
+  version: 5.23.0
+  resolution: "@typescript-eslint/visitor-keys@npm:5.23.0"
+  dependencies:
+    "@typescript-eslint/types": 5.23.0
+    eslint-visitor-keys: ^3.0.0
+  checksum: 322e10d52a985e8a90d3612bb9d09a87dc64fc4cb1248484f1a9a7a98f65d3ef65a465ce868773a4939e35fa3b726ad609dac5a168efd7eaca4b06df33e965e3
   languageName: node
   linkType: hard
 
@@ -7244,19 +7319,6 @@ resolve@^1.20.0:
   checksum: f0169d3f1263d06df32ca072b0bf33b34c6f8f0341a7a1621558a2444dfbe8f5fec76b35537fcc6f0bc4944bdb5336fe0bdcf41a5422c4e45a1dba3f45475e6c
   languageName: node
   linkType: hard
-
-"simple-transaction-c32175@workspace:examples/simple-transaction":
-  version: 0.0.0-use.local
-  resolution: "simple-transaction-c32175@workspace:examples/simple-transaction"
-  dependencies:
-    "@blockfrost/blockfrost-js": latest
-    "@emurgo/cardano-serialization-lib-nodejs": ^10.0.4
-    "@types/bip39": ^3.0.0
-    "@types/node": ^17.0.10
-    bip39: ^3.0.4
-    typescript: ^4.4.4
-  languageName: unknown
-  linkType: soft
 
 "sisteransi@npm:^1.0.5":
   version: 1.0.5

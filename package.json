@@ -1,10 +1,14 @@
 {
   "name": "@blockfrost/blockfrost",
-  "version": "4.1.0",
+  "version": "1.0.0",
   "workspaces": [
     "examples/*",
     "packages/*"
   ],
+  "scripts": {
+    "lint": "yarn workspaces foreach run lint",
+    "build": "yarn workspaces foreach run build"
+  },
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "keywords": [
     "blockfrost",
@@ -14,7 +18,6 @@
   "license": "Apache-2.0",
   "author": "blockfrost.io",
   "repository": "blockfrost/blockfrost-js",
-  "main": "lib/index.js",
   "engines": {
     "node": ">=14"
   }
