@@ -1,8 +1,17 @@
 import { components } from './types/OpenApi';
 import { BlockFrostAPI } from './BlockFrostAPI';
 import { BlockFrostIPFS } from './BlockFrostIPFS';
-import { deriveAddress, getFingerprint, parseAsset } from './utils/helpers';
-import { BlockfrostClientError, BlockfrostServerError } from './utils/errors';
+import {
+  deriveAddress,
+  getFingerprint,
+  parseAsset,
+  verifyWebhookSignature,
+} from './utils/helpers';
+import {
+  BlockfrostClientError,
+  BlockfrostServerError,
+  SignatureVerificationError,
+} from './utils/errors';
 
 type Responses = components['schemas'];
 
@@ -11,9 +20,11 @@ export {
   BlockFrostIPFS,
   BlockfrostClientError,
   BlockfrostServerError,
+  SignatureVerificationError,
   parseAsset,
   getFingerprint,
   deriveAddress,
+  verifyWebhookSignature,
 };
 
 export type { Responses };

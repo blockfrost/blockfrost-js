@@ -1,3 +1,4 @@
+import { createHmac } from 'crypto';
 import {
   Bip32PublicKey,
   BaseAddress,
@@ -8,6 +9,8 @@ import {
 } from '@emurgo/cardano-serialization-lib-nodejs';
 import AssetFingerprint from '@emurgo/cip14-js';
 import { ParseAssetResult } from '../types/utils';
+import { SignatureVerificationError } from './errors';
+import { isDebugEnabled } from './index';
 
 /**
  * Derives an address with derivation path m/1852'/1815'/account'/role/addressIndex
@@ -128,4 +131,87 @@ export const parseAsset = (hex: string): ParseAssetResult => {
     assetName,
     fingerprint,
   };
+};
+
+/**
+ * Verifies webhook signature
+ *
+ * @param {string|Buffer} webhookPayload Buffer or stringified payload of the webhook request.
+ * @param {string|Buffer} signatureHeader Blockfrost-Signature header.
+ * @param {string} secret Auth token for the webhook.
+ * @param {number} [timestampToleranceSeconds=600] Time tolerance affecting signature validity. By default signatures older than 600s are considered invalid.
+ * @returns {boolean} Whether the signature is valid.
+ * */
+export const verifyWebhookSignature = (
+  webhookPayload: unknown,
+  signatureHeader: string,
+  secret: string,
+  timestampToleranceSeconds = 600,
+) => {
+  let timestamp;
+  let signature;
+
+  if (Array.isArray(signatureHeader)) {
+    throw new SignatureVerificationError(
+      'Unexpected: An array was passed as a header',
+    );
+  }
+
+  const decodedWebhookPayload = Buffer.isBuffer(webhookPayload)
+    ? webhookPayload.toString('utf8')
+    : webhookPayload;
+
+  const decodedSignatureHeader = Buffer.isBuffer(signatureHeader)
+    ? signatureHeader.toString('utf8')
+    : signatureHeader;
+
+  // Parse signature header (example: t=1648550558,v1=162381a59040c97d9b323cdfec02facdfce0968490ec1732f5d938334c1eed4e)
+  const tokens = decodedSignatureHeader.split(',');
+  for (const token of tokens) {
+    const [key, value] = token.split('=');
+    switch (key) {
+      case 't':
+        timestamp = Number(value);
+        break;
+      case 'v1':
+        signature = value;
+        break;
+      default:
+        console.warn(
+          `Cannot parse part of the signature header, key "${key}" is not supported by this version of Blockfrost SDK.`,
+        );
+    }
+  }
+
+  if (!timestamp || !signature) {
+    throw new SignatureVerificationError('Invalid signature header format', {
+      signatureHeader: decodedSignatureHeader,
+      webhookPayload: decodedWebhookPayload,
+    });
+  }
+
+  // Recreate signature by concatenating timestamp with stringified payload,
+  // then compute HMAC using sha256 and provided secret (auth token)
+  const signaturePayload = `${timestamp}.${decodedWebhookPayload}`;
+  const hmac = createHmac('sha256', secret)
+    .update(signaturePayload)
+    .digest('hex');
+
+  if (hmac !== signature) {
+    return false;
+  }
+
+  // computed hmac should match signature parsed from a signature header
+  const currentTimestamp = Math.floor(new Date().getTime() / 1000);
+  if (currentTimestamp - timestamp > timestampToleranceSeconds) {
+    if (isDebugEnabled()) {
+      console.debug(
+        `Invalid signature. Signature timestamp ${timestamp} is out of range!`,
+      );
+    }
+    return false;
+  } else {
+    // Successfully validate the signature only if it is within tolerance
+    return true;
+  }
 };
