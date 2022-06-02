@@ -140,7 +140,7 @@ import { validateOptions } from './utils';
 import { getInstance } from './utils/got';
 import { getLimiter } from './utils/limiter';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const packageJson = require('../package.json');
+import packageJson from '../package.json';
 
 class BlockFrostAPI {
   apiUrl: string;
