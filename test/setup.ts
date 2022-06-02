@@ -1,6 +1,6 @@
 // import { TextDecoder } from 'text-encoding';
 
-jest.setTimeout(30000);
+jest.setTimeout(50000);
 
 expect.extend({
   toBeTypeOrNull(received, classTypeOrNull) {
