@@ -3,7 +3,7 @@ import { BlockFrostAPI } from '../../../src';
 export default [
   {
     command: (SDK: BlockFrostAPI) => SDK.assets(),
-    jestTimeout: 40000,
+    jestTimeout: 60000,
     response: expect.arrayContaining([
       expect.objectContaining({
         asset: expect.any(String),

@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `addressesUtxosAsset`, `addressesUtxosAssetAll` methods returning list of the address's utxos containing a given asset
 
+### Fixed
+
+- `deriveAddress` memory leak by freeing WASM objects
+
 ## [4.1.0]
 
 ### Added
