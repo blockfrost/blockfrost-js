@@ -28,49 +28,74 @@ export const deriveAddress = (
   const utxoPubKey = accountKey.derive(role).derive(addressIndex);
   const mainStakeKey = accountKey.derive(2).derive(0);
 
-  const networkId = isTestnet
-    ? NetworkInfo.testnet().network_id()
-    : NetworkInfo.mainnet().network_id();
+  const testnetNetworkInfo = NetworkInfo.testnet();
+  const mainnetNetworkInfo = NetworkInfo.mainnet();
 
-  const baseAddr = BaseAddress.new(
-    networkId,
-    StakeCredential.from_keyhash(utxoPubKey.to_raw_key().hash()),
-    StakeCredential.from_keyhash(mainStakeKey.to_raw_key().hash()),
-  );
+  const networkId = isTestnet
+    ? testnetNetworkInfo.network_id()
+    : mainnetNetworkInfo.network_id();
+
+  const utxoPubKeyHash = utxoPubKey.to_raw_key().hash();
+  const mainStakeKeyHash = mainStakeKey.to_raw_key().hash();
+  const utxoStakeCred = StakeCredential.from_keyhash(utxoPubKeyHash);
+  const mainStakeCred = StakeCredential.from_keyhash(mainStakeKeyHash);
+  const baseAddr = BaseAddress.new(networkId, utxoStakeCred, mainStakeCred);
+
+  utxoStakeCred.free();
+  mainStakeCred.free();
+  mainStakeKeyHash.free();
+  utxoPubKeyHash.free();
+
+  const baseAddrBech32 = baseAddr.to_address().to_bech32();
+  baseAddr.free();
 
   if (role === 2 && !isByron) {
     const addressSpecificStakeKey = accountKey.derive(2).derive(addressIndex);
+    const stakeKeyHash = addressSpecificStakeKey.to_raw_key().hash();
+    const stakeCred = StakeCredential.from_keyhash(stakeKeyHash);
     // always return stake address
-    const rewardAddr = RewardAddress.new(
-      networkId,
-      StakeCredential.from_keyhash(addressSpecificStakeKey.to_raw_key().hash()),
-    )
-      .to_address()
-      .to_bech32();
+    const rewardAddr = RewardAddress.new(networkId, stakeCred);
+    const rewardAddrBech32 = rewardAddr.to_address().to_bech32();
+
+    rewardAddr.free();
+    addressSpecificStakeKey.free();
+    stakeKeyHash.free();
+    stakeCred.free();
+
     return {
-      address: rewardAddr,
+      address: rewardAddrBech32,
       path: [role, addressIndex],
     };
   }
 
   if (isByron) {
     const protocolMagic = isTestnet
-      ? NetworkInfo.testnet().protocol_magic()
-      : NetworkInfo.mainnet().protocol_magic();
+      ? testnetNetworkInfo.protocol_magic()
+      : mainnetNetworkInfo.protocol_magic();
 
     const byronAddress = ByronAddress.icarus_from_key(
       utxoPubKey,
       protocolMagic,
     );
 
+    const byronAddrBase58 = byronAddress.to_base58();
+    byronAddress.free();
+
     return {
-      address: byronAddress.to_base58(),
+      address: byronAddrBase58,
       path: [role, addressIndex],
     };
   }
 
+  mainStakeKey.free();
+  utxoPubKey.free();
+  accountKey.free();
+
+  testnetNetworkInfo.free();
+  mainnetNetworkInfo.free();
+
   return {
-    address: baseAddr.to_address().to_bech32(),
+    address: baseAddrBech32,
     path: [role, addressIndex],
   };
 };

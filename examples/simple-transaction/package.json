@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "@blockfrost/blockfrost-js": "latest",
-    "@emurgo/cardano-serialization-lib-nodejs": "^10.0.4",
+    "@emurgo/cardano-serialization-lib-nodejs": "^10.1.0",
     "bip39": "^3.0.4"
   },
   "devDependencies": {
