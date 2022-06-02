@@ -1,10 +1,16 @@
-import { deriveAddressFixtures } from '../../fixtures/utils/helpers';
+import {
+  deriveAddressFixtures,
+  verifyWebhookSignatureFixtures,
+  verifyWebhookSignatureErrorFixtures,
+} from '../../fixtures/utils/helpers';
 import {
   deriveAddress,
+  verifyWebhookSignature,
   getFingerprint,
   parseAsset,
   hexToString,
 } from '../../../src/utils/helpers';
+import { SignatureVerificationError } from '../../../src/utils/errors';
 
 describe('helpers', () => {
   deriveAddressFixtures.forEach(fixture => {
@@ -17,6 +23,42 @@ describe('helpers', () => {
         fixture.isByron,
       );
       expect(response).toStrictEqual(fixture.response);
+    });
+  });
+
+  verifyWebhookSignatureFixtures.forEach(fixture => {
+    test(`verifyWebhookSignature: ${fixture.description}`, () => {
+      if (fixture.mockCurrentTimestamp) {
+        jest
+          .useFakeTimers()
+          .setSystemTime(new Date(fixture.mockCurrentTimestamp * 1000));
+      }
+      const response = verifyWebhookSignature(
+        fixture.webhookPayload,
+        fixture.signatureHeader,
+        fixture.secret,
+        fixture.timestampToleranceSeconds,
+      );
+      expect(response).toStrictEqual(fixture.result);
+    });
+  });
+
+  verifyWebhookSignatureErrorFixtures.forEach(fixture => {
+    test(`verifyWebhookSignatureErrorFixtures: ${fixture.description}`, () => {
+      if (fixture.mockCurrentTimestamp) {
+        jest
+          .useFakeTimers()
+          .setSystemTime(new Date(fixture.mockCurrentTimestamp * 1000));
+      }
+      const response = () =>
+        verifyWebhookSignature(
+          fixture.webhookPayload,
+          // @ts-expect-error for test and profit
+          fixture.signatureHeader,
+          fixture.secret,
+          fixture.timestampToleranceSeconds,
+        );
+      expect(response).toThrowError(SignatureVerificationError);
     });
   });
 

@@ -1,6 +1,23 @@
 import { HTTPError } from 'got';
 import { GotError, ErrorType } from '../types';
 
+export class SignatureVerificationError extends Error {
+  detail: { webhookPayload: unknown; signatureHeader: string } | undefined;
+  constructor(
+    message: string,
+    detail?: {
+      signatureHeader: string;
+      webhookPayload: unknown;
+    },
+  ) {
+    super(message);
+    this.name = 'SignatureVerificationError';
+    this.message = message;
+    this.detail = detail;
+    Object.setPrototypeOf(this, SignatureVerificationError.prototype);
+  }
+}
+
 export class BlockfrostServerError extends Error {
   status_code: number;
   error: string;
