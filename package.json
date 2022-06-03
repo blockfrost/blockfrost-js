@@ -17,6 +17,7 @@
   ],
   "scripts": {
     "build": "yarn clean && tsc",
+    "type-check": "tsc --project tsconfig.types.json",
     "clean": "rimraf lib",
     "generate-types": "openapi-typescript https://raw.githubusercontent.com/blockfrost/openapi/master/openapi.yaml --output ./src/types/OpenApi.ts",
     "lint": "eslint ./src/**/*.ts",
@@ -63,7 +64,7 @@
     "typedoc": "^0.22.17",
     "typedoc-github-wiki-theme": "^1.0.1",
     "typedoc-plugin-markdown": "^3.12.1",
-    "typescript": "4.5.2",
+    "typescript": "4.7.2",
     "yarn-run-all": "^3.1.1"
   },
   "engines": {

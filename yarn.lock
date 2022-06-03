@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 5
+  version: 6
   cacheKey: 8
 
 "@ampproject/remapping@npm:^2.1.0":
@@ -613,7 +613,7 @@ __metadata:
     typedoc: ^0.22.17
     typedoc-github-wiki-theme: ^1.0.1
     typedoc-plugin-markdown: ^3.12.1
-    typescript: 4.5.2
+    typescript: 4.7.2
     yarn-run-all: ^3.1.1
   languageName: unknown
   linkType: soft
@@ -1238,28 +1238,28 @@ __metadata:
 "@node-rs/xxhash-linux-arm64-gnu@npm:1.2.1":
   version: 1.2.1
   resolution: "@node-rs/xxhash-linux-arm64-gnu@npm:1.2.1"
-  conditions: os=linux & cpu=arm64
+  conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
 "@node-rs/xxhash-linux-arm64-musl@npm:1.2.1":
   version: 1.2.1
   resolution: "@node-rs/xxhash-linux-arm64-musl@npm:1.2.1"
-  conditions: os=linux & cpu=arm64
+  conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
 "@node-rs/xxhash-linux-x64-gnu@npm:1.2.1":
   version: 1.2.1
   resolution: "@node-rs/xxhash-linux-x64-gnu@npm:1.2.1"
-  conditions: os=linux & cpu=x64
+  conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
 "@node-rs/xxhash-linux-x64-musl@npm:1.2.1":
   version: 1.2.1
   resolution: "@node-rs/xxhash-linux-x64-musl@npm:1.2.1"
-  conditions: os=linux & cpu=x64
+  conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
@@ -1481,28 +1481,28 @@ __metadata:
 "@swc/core-linux-arm64-gnu@npm:1.2.196":
   version: 1.2.196
   resolution: "@swc/core-linux-arm64-gnu@npm:1.2.196"
-  conditions: os=linux & cpu=arm64
+  conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
 "@swc/core-linux-arm64-musl@npm:1.2.196":
   version: 1.2.196
   resolution: "@swc/core-linux-arm64-musl@npm:1.2.196"
-  conditions: os=linux & cpu=arm64
+  conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
 "@swc/core-linux-x64-gnu@npm:1.2.196":
   version: 1.2.196
   resolution: "@swc/core-linux-x64-gnu@npm:1.2.196"
-  conditions: os=linux & cpu=x64
+  conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
 "@swc/core-linux-x64-musl@npm:1.2.196":
   version: 1.2.196
   resolution: "@swc/core-linux-x64-musl@npm:1.2.196"
-  conditions: os=linux & cpu=x64
+  conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
@@ -7505,17 +7505,7 @@ resolve@^1.20.0:
   languageName: node
   linkType: hard
 
-typescript@4.5.2:
-  version: 4.5.2
-  resolution: "typescript@npm:4.5.2"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 74f9ce65d532bdf5d0214b3f60cf37992180023388c87a11ee6f838a803067ef0b63c600fa501b0deb07f989257dce1e244c9635ed79feca40bbccf6e0aa1ebc
-  languageName: node
-  linkType: hard
-
-"typescript@npm:^4.6.4":
+"typescript@npm:4.7.2, typescript@npm:^4.6.4":
   version: 4.7.2
   resolution: "typescript@npm:4.7.2"
   bin:
@@ -7525,23 +7515,13 @@ typescript@4.5.2:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.5.2#~builtin<compat/typescript>":
-  version: 4.5.2
-  resolution: "typescript@patch:typescript@npm%3A4.5.2#~builtin<compat/typescript>::version=4.5.2&hash=493e53"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 53838d56aba6fcc947d63aa0771e5d966b1b648fddafed6e221d7f38c71219c4e036ece8cfe9e35ed80cf5a35ff4eb958934c993f99c3233773ec4f9ccd53f69
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@4.7.2#~builtin<compat/typescript>, typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
   version: 4.7.2
-  resolution: "typescript@patch:typescript@npm%3A4.7.2#~builtin<compat/typescript>::version=4.7.2&hash=493e53"
+  resolution: "typescript@patch:typescript@npm%3A4.7.2#~builtin<compat/typescript>::version=4.7.2&hash=7ad353"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 09d93fc0983d38eadd9b0427f790b49b4437f45002a87d447be3fbe53120880e87a91dd03e1d900498f99205d6e0b7c9784fe41fca11d56f4bbce371f74bb160
+  checksum: 7e2b9a9f4a70fb7616f1b0d986977f8e34a74f046202fa7f24fdee79589598277810fa216b3776c20c0683a9235872c73be34fdb93f67f98c1efaca40999422f
   languageName: node
   linkType: hard
 
