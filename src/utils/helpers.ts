@@ -144,7 +144,7 @@ export const parseAsset = (hex: string): ParseAssetResult => {
  * */
 export const verifyWebhookSignature = (
   webhookPayload: unknown,
-  signatureHeader: string,
+  signatureHeader: string | string[],
   secret: string,
   timestampToleranceSeconds = 600,
 ) => {
@@ -153,7 +153,7 @@ export const verifyWebhookSignature = (
 
   if (Array.isArray(signatureHeader)) {
     throw new SignatureVerificationError(
-      'Unexpected: An array was passed as a header',
+      'Unexpected: An array was passed as a Blockfrost-Signature header',
     );
   }
 
