@@ -149,7 +149,6 @@ export const verifyWebhookSignature = (
   timestampToleranceSeconds = 600,
 ) => {
   let timestamp;
-  let signature;
 
   if (Array.isArray(signatureHeader)) {
     throw new SignatureVerificationError(
@@ -165,7 +164,8 @@ export const verifyWebhookSignature = (
     ? signatureHeader.toString('utf8')
     : signatureHeader;
 
-  // Parse signature header (example: t=1648550558,v1=162381a59040c97d9b323cdfec02facdfce0968490ec1732f5d938334c1eed4e)
+  // Parse signature header (example: t=1648550558,v1=162381a59040c97d9b323cdfec02facdfce0968490ec1732f5d938334c1eed4e,v1=...)
+  const signatures: string[] = [];
   const tokens = decodedSignatureHeader.split(',');
   for (const token of tokens) {
     const [key, value] = token.split('=');
@@ -174,7 +174,7 @@ export const verifyWebhookSignature = (
         timestamp = Number(value);
         break;
       case 'v1':
-        signature = value;
+        signatures.push(value);
         break;
       default:
         console.warn(
@@ -183,21 +183,28 @@ export const verifyWebhookSignature = (
     }
   }
 
-  if (!timestamp || !signature) {
+  if (!timestamp || signatures.length === 0) {
     throw new SignatureVerificationError('Invalid signature header format', {
       signatureHeader: decodedSignatureHeader,
       webhookPayload: decodedWebhookPayload,
     });
   }
 
-  // Recreate signature by concatenating timestamp with stringified payload,
-  // then compute HMAC using sha256 and provided secret (auth token)
-  const signaturePayload = `${timestamp}.${decodedWebhookPayload}`;
-  const hmac = createHmac('sha256', secret)
-    .update(signaturePayload)
-    .digest('hex');
+  let hasValidSignature = false;
+  for (const signature of signatures) {
+    // Recreate signature by concatenating timestamp with stringified payload,
+    // then compute HMAC using sha256 and provided secret (auth token)
+    const signaturePayload = `${timestamp}.${decodedWebhookPayload}`;
+    const hmac = createHmac('sha256', secret)
+      .update(signaturePayload)
+      .digest('hex');
 
-  if (hmac !== signature) {
+    if (hmac === signature) {
+      hasValidSignature = true;
+    }
+  }
+
+  if (!hasValidSignature) {
     return false;
   }
 
