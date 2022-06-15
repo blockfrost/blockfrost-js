@@ -10,7 +10,6 @@ import {
 import AssetFingerprint from '@emurgo/cip14-js';
 import { ParseAssetResult } from '../types/utils';
 import { SignatureVerificationError } from './errors';
-import { isDebugEnabled } from './index';
 
 /**
  * Derives an address with derivation path m/1852'/1815'/account'/role/addressIndex
@@ -183,11 +182,22 @@ export const verifyWebhookSignature = (
     }
   }
 
-  if (!timestamp || signatures.length === 0) {
-    throw new SignatureVerificationError('Invalid signature header format', {
+  if (!timestamp || tokens.length < 2) {
+    // timestamp and at least one signature must be present
+    throw new SignatureVerificationError('Invalid signature header format.', {
       signatureHeader: decodedSignatureHeader,
       webhookPayload: decodedWebhookPayload,
     });
+  }
+
+  if (signatures.length === 0) {
+    throw new SignatureVerificationError(
+      'No signatures with supported version scheme.',
+      {
+        signatureHeader: decodedSignatureHeader,
+        webhookPayload: decodedWebhookPayload,
+      },
+    );
   }
 
   let hasValidSignature = false;
@@ -199,26 +209,34 @@ export const verifyWebhookSignature = (
       .update(signaturePayload)
       .digest('hex');
 
+    // computed hmac should match signature parsed from a signature header
     if (hmac === signature) {
       hasValidSignature = true;
     }
   }
 
   if (!hasValidSignature) {
-    return false;
+    throw new SignatureVerificationError(
+      'No signature matches the expected signature for the payload.',
+      {
+        signatureHeader: decodedSignatureHeader,
+        webhookPayload: decodedWebhookPayload,
+      },
+    );
   }
 
-  // computed hmac should match signature parsed from a signature header
   const currentTimestamp = Math.floor(new Date().getTime() / 1000);
   if (currentTimestamp - timestamp > timestampToleranceSeconds) {
-    if (isDebugEnabled()) {
-      console.debug(
-        `Invalid signature. Signature timestamp ${timestamp} is out of range!`,
-      );
-    }
-    return false;
+    // Event is older than timestamp_tolerance_seconds
+    throw new SignatureVerificationError(
+      "Signature's timestamp is outside of the time tolerance",
+      {
+        signatureHeader: decodedSignatureHeader,
+        webhookPayload: decodedWebhookPayload,
+      },
+    );
   } else {
-    // Successfully validate the signature only if it is within tolerance
+    // Successfully validate the signature only if it is within timestamp_tolerance_seconds tolerance
     return true;
   }
 };
