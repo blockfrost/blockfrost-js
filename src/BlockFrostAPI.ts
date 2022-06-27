@@ -139,8 +139,9 @@ import { Options, ValidatedOptions } from './types';
 import { validateOptions } from './utils';
 import { getInstance } from './utils/got';
 import { getLimiter } from './utils/limiter';
+// must be require, import would include package.json to the output dir together with "src" dir breaking dir hierarchy
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-import packageJson from '../package.json';
+const packageJson = require('../package.json');
 
 class BlockFrostAPI {
   apiUrl: string;
