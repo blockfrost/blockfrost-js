@@ -2,9 +2,10 @@
   "name": "@blockfrost/example-basic",
   "private": true,
   "scripts": {
-    "build": "rm -rf lib && tsc -b",
+    "build": "rm -rf dist && tsc -b",
     "lint": "eslint ./src/**/*.ts",
-    "start": "yarn build && yarn node ./dist/index.js"
+    "start-api": "yarn build && yarn node ./lib/api.js",
+    "start-ipfs": "yarn build && yarn node ./lib/ipfs.js"
   },
   "dependencies": {
     "@blockfrost/blockfrost-js": "*",
