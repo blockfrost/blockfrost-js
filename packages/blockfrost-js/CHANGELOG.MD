@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `addressesUtxosAsset`, `addressesUtxosAssetAll` methods returning list of the address's utxos containing a given asset
 - `verifyWebhookSignature` to verify signature sent as part of Blockfrost webhook request
+- `url` property in `BlockfrostServerError` and `BlockfrostClientError` objects set to an URL where the failed request was sent to
 
 ### Fixed
 

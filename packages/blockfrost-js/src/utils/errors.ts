@@ -21,23 +21,27 @@ export class SignatureVerificationError extends Error {
 export class BlockfrostServerError extends Error {
   status_code: number;
   error: string;
+  url: string;
   constructor(error: Extract<ErrorType, { status_code: number }>) {
     super(error.message);
     this.name = 'BlockfrostServerError';
     this.status_code = error.status_code;
     this.message = error.message;
     this.error = error.error;
+    this.url = error.url;
     Object.setPrototypeOf(this, BlockfrostServerError.prototype);
   }
 }
 
 export class BlockfrostClientError extends Error {
   code: string;
+  url: string | undefined;
   constructor(error: Extract<ErrorType, { code: string }>) {
     super(error.message);
     this.name = 'BlockfrostClientError';
     this.code = error.code;
     this.message = error.message;
+    this.url = error.url;
     Object.setPrototypeOf(this, BlockfrostClientError.prototype);
   }
 }
@@ -67,10 +71,11 @@ export const handleError = (
   error: GotError,
 ): BlockfrostServerError | BlockfrostClientError => {
   if (error instanceof HTTPError) {
+    const url = error.request.requestUrl;
     const responseBody = error.response.body;
 
     if (isBlockfrostErrorResponse(responseBody)) {
-      return new BlockfrostServerError(responseBody);
+      return new BlockfrostServerError({ ...responseBody, url });
     } else {
       // response.body may contain html output (eg. errors returned by nginx)
       const { statusCode } = error.response;
@@ -79,6 +84,7 @@ export const handleError = (
         status_code: statusCode,
         message: `${statusCode}: ${statusText}`,
         error: statusText,
+        url,
       });
     }
   }
@@ -88,5 +94,6 @@ export const handleError = (
   return new BlockfrostClientError({
     code: error.code ?? 'ERR_GOT_REQUEST_ERROR', // ENOTFOUND, ETIMEDOUT...
     message: error.message, // getaddrinfo ENOTFOUND cardano-testnet.blockfrost.io'
+    url: error.request?.requestUrl,
   });
 };

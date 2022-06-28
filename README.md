@@ -67,7 +67,7 @@ Blockfrost Node.js SDK throws 2 types of errors, `BlockfrostServerError` and `Bl
 
 ### `BlockfrostServerError`
 
-`BlockfrostServerError` is an error returned directly by Blockfrost API. The error's properties are matching [the same format as defined by Blockfrost API](<(https://docs.blockfrost.io/#section/Errors)>).
+`BlockfrostServerError` is an error returned directly by Blockfrost API. The error object's properties are matching [the same format as defined by Blockfrost API](<(https://docs.blockfrost.io/#section/Errors)>), with additional `url` field set to the URL the request was sent to.
 
 #### Example
 
@@ -92,14 +92,15 @@ try {
 
 `BlockfrostClientError` is an error that was NOT returned by a Blockfrost API server. In this case the request has never reached our backends. Most common causes are network-related.
 
-Shape of `BlockfrostClientError` object is slightly different from `BlockfrostServerError`. The error has `code` and `message` property to help you investigate the issue.
+Shape of `BlockfrostClientError` object is slightly different from `BlockfrostServerError`. The error has `code` and `message` and optional `url` property to help you investigate the issue.
 
 Here is a small example showcasing the error format:
 
 ```json
 {
   "code": "ENOTFOUND",
-  "message": "getaddrinfo ENOTFOUND api.blockfrost.io"
+  "message": "getaddrinfo ENOTFOUND api.blockfrost.io",
+  "url": "https://cardano-mainnet.blockfrost.io/api/v0/addresses/addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp333c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"
 }
 ```
 
