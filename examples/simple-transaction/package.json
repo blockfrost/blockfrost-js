@@ -1,7 +1,9 @@
 {
+  "name": "@blockfrost/example-simple-transaction",
   "private": true,
   "scripts": {
     "build": "rm -rf lib && tsc -b",
+    "lint": "eslint ./src/**/*.ts",
     "start": "yarn build && yarn node ./dist/index.js"
   },
   "dependencies": {

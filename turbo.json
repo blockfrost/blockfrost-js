@@ -1,7 +1,7 @@
 {
   "pipeline": {
     "build": {
-      "outputs": ["dist/**"],
+      "outputs": ["lib/**"],
       "dependsOn": ["^build"]
     },
     "test": {
@@ -11,6 +11,7 @@
     "lint": {
       "outputs": []
     },
+    "type-check": {},
     "dev": {
       "cache": false
     },
