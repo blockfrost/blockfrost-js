@@ -10,7 +10,6 @@ import {
 import AssetFingerprint from '@emurgo/cip14-js';
 import { ParseAssetResult } from '../types/utils';
 import { SignatureVerificationError } from './errors';
-import { isDebugEnabled } from './index';
 
 /**
  * Derives an address with derivation path m/1852'/1815'/account'/role/addressIndex
@@ -149,7 +148,6 @@ export const verifyWebhookSignature = (
   timestampToleranceSeconds = 600,
 ) => {
   let timestamp;
-  let signature;
 
   if (Array.isArray(signatureHeader)) {
     throw new SignatureVerificationError(
@@ -165,7 +163,8 @@ export const verifyWebhookSignature = (
     ? signatureHeader.toString('utf8')
     : signatureHeader;
 
-  // Parse signature header (example: t=1648550558,v1=162381a59040c97d9b323cdfec02facdfce0968490ec1732f5d938334c1eed4e)
+  // Parse signature header (example: t=1648550558,v1=162381a59040c97d9b323cdfec02facdfce0968490ec1732f5d938334c1eed4e,v1=...)
+  const signatures: string[] = [];
   const tokens = decodedSignatureHeader.split(',');
   for (const token of tokens) {
     const [key, value] = token.split('=');
@@ -174,7 +173,7 @@ export const verifyWebhookSignature = (
         timestamp = Number(value);
         break;
       case 'v1':
-        signature = value;
+        signatures.push(value);
         break;
       default:
         console.warn(
@@ -183,35 +182,61 @@ export const verifyWebhookSignature = (
     }
   }
 
-  if (!timestamp || !signature) {
-    throw new SignatureVerificationError('Invalid signature header format', {
+  if (!timestamp || tokens.length < 2) {
+    // timestamp and at least one signature must be present
+    throw new SignatureVerificationError('Invalid signature header format.', {
       signatureHeader: decodedSignatureHeader,
       webhookPayload: decodedWebhookPayload,
     });
   }
 
-  // Recreate signature by concatenating timestamp with stringified payload,
-  // then compute HMAC using sha256 and provided secret (auth token)
-  const signaturePayload = `${timestamp}.${decodedWebhookPayload}`;
-  const hmac = createHmac('sha256', secret)
-    .update(signaturePayload)
-    .digest('hex');
-
-  if (hmac !== signature) {
-    return false;
+  if (signatures.length === 0) {
+    throw new SignatureVerificationError(
+      'No signatures with supported version scheme.',
+      {
+        signatureHeader: decodedSignatureHeader,
+        webhookPayload: decodedWebhookPayload,
+      },
+    );
   }
 
-  // computed hmac should match signature parsed from a signature header
+  let hasValidSignature = false;
+  for (const signature of signatures) {
+    // Recreate signature by concatenating timestamp with stringified payload,
+    // then compute HMAC using sha256 and provided secret (auth token)
+    const signaturePayload = `${timestamp}.${decodedWebhookPayload}`;
+    const hmac = createHmac('sha256', secret)
+      .update(signaturePayload)
+      .digest('hex');
+
+    // computed hmac should match signature parsed from a signature header
+    if (hmac === signature) {
+      hasValidSignature = true;
+    }
+  }
+
+  if (!hasValidSignature) {
+    throw new SignatureVerificationError(
+      'No signature matches the expected signature for the payload.',
+      {
+        signatureHeader: decodedSignatureHeader,
+        webhookPayload: decodedWebhookPayload,
+      },
+    );
+  }
+
   const currentTimestamp = Math.floor(new Date().getTime() / 1000);
   if (currentTimestamp - timestamp > timestampToleranceSeconds) {
-    if (isDebugEnabled()) {
-      console.debug(
-        `Invalid signature. Signature timestamp ${timestamp} is out of range!`,
-      );
-    }
-    return false;
+    // Event is older than timestamp_tolerance_seconds
+    throw new SignatureVerificationError(
+      "Signature's timestamp is outside of the time tolerance",
+      {
+        signatureHeader: decodedSignatureHeader,
+        webhookPayload: decodedWebhookPayload,
+      },
+    );
   } else {
-    // Successfully validate the signature only if it is within tolerance
+    // Successfully validate the signature only if it is within timestamp_tolerance_seconds tolerance
     return true;
   }
 };
