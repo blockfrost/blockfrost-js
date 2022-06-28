@@ -1,7 +1,8 @@
 {
-  "name": "@blockfrost/blockfrost-js",
-  "version": "4.1.0",
-  "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
+  "name": "@blockfrost/monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A JavaScript/TypeScript monorepo",
   "keywords": [
     "blockfrost",
     "cardano",
@@ -9,39 +10,22 @@
   ],
   "license": "Apache-2.0",
   "author": "blockfrost.io",
-  "repository": "blockfrost/blockfrost-js",
-  "main": "lib/index.js",
-  "files": [
-    "lib/**/*.js",
-    "lib/**/*.ts"
+  "workspaces": [
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
-    "build": "yarn clean && tsc",
-    "type-check": "tsc --project tsconfig.types.json",
-    "clean": "rimraf lib",
-    "generate-types": "openapi-typescript https://raw.githubusercontent.com/blockfrost/openapi/master/openapi.yaml --output ./src/types/OpenApi.ts",
-    "lint": "eslint ./src/**/*.ts",
-    "prepublishOnly": "yarn build",
-    "run-example:api": "ts-node-dev --transpile-only ./examples/basic/api.ts",
-    "run-example:ipfs": "ts-node-dev --transpile-only ./examples/basic/ipfs.ts",
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
     "test": "yarn run-s 'test:*'",
-    "test:unit": "jest -c ./jest.config.js --runInBand",
     "test:badges": "make-coverage-badge --output-path ./docs/badge-coverage.svg",
-    "docs": "yarn typedoc ./src/index.ts --theme ./node_modules/typedoc-github-wiki-theme/dist"
-  },
-  "dependencies": {
-    "@emurgo/cardano-serialization-lib-nodejs": "^10.1.0",
-    "@emurgo/cip14-js": "3.0.1",
-    "bottleneck": "^2.19.5",
-    "form-data": "^4.0.0",
-    "got": "^11.8.3"
+    "test:unit": "jest -c ./jest.config.js --runInBand",
+    "type-check": "tsc --project tsconfig.types.json"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
-    "@jest/globals": "^28.1.0",
-    "@swc-node/jest": "^1.5.2",
-    "@types/jest": "^28.1.0",
     "@types/node": "^17.0.38",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "5.27.0",
@@ -50,23 +34,15 @@
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-prettier": "4.0.0",
     "husky": "^8.0.1",
-    "jest": "^28.1.0",
-    "jest-extended": "^2.0.0",
-    "make-coverage-badge": "^1.2.0",
-    "nock": "^13.2.4",
-    "openapi-typescript": "^5.4.0",
     "prettier": "2.6.2",
     "rimraf": "^3.0.2",
-    "serialize-error": "^11.0.0",
-    "ts-jest": "^28.0.3",
     "ts-node": "10.8.0",
     "ts-node-dev": "^2.0.0",
-    "typedoc": "^0.22.17",
-    "typedoc-github-wiki-theme": "^1.0.1",
-    "typedoc-plugin-markdown": "^3.12.1",
+    "turbo": "^1.3.1",
     "typescript": "4.7.2",
     "yarn-run-all": "^3.1.1"
   },
+  "packageManager": "yarn@3.2.0",
   "engines": {
     "node": ">=14"
   }

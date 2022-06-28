@@ -1,0 +1,7 @@
+{
+  "name": "@blockfrost/blockfrost-utils",
+  "version": "1.0.0",
+  "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
+  "license": "Apache-2.0",
+  "author": "blockfrost.io"
+}

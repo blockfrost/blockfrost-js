@@ -577,25 +577,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@blockfrost/blockfrost-js@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@blockfrost/blockfrost-js@workspace:."
+"@blockfrost/blockfrost-js@npm:latest":
+  version: 4.1.0
+  resolution: "@blockfrost/blockfrost-js@npm:4.1.0"
   dependencies:
-    "@commitlint/cli": ^17.0.2
-    "@commitlint/config-conventional": ^17.0.2
+    "@emurgo/cardano-serialization-lib-nodejs": ^10.0.4
+    "@emurgo/cip14-js": 3.0.1
+    bottleneck: ^2.19.5
+    form-data: ^4.0.0
+    got: ^11.8.3
+  checksum: 9976a849617385edec39b5fd1ce2fdadd7412e9223bd8077b5f3b9c85175fca76f4d5ee4b046e9d328b135dc5ed4b61a9292365cde2a9512ed9243b4f0f45a3c
+  languageName: node
+  linkType: hard
+
+"@blockfrost/blockfrost-js@workspace:packages/blockfrost-js":
+  version: 0.0.0-use.local
+  resolution: "@blockfrost/blockfrost-js@workspace:packages/blockfrost-js"
+  dependencies:
     "@emurgo/cardano-serialization-lib-nodejs": ^10.1.0
     "@emurgo/cip14-js": 3.0.1
     "@jest/globals": ^28.1.0
     "@swc-node/jest": ^1.5.2
     "@types/jest": ^28.1.0
     "@types/node": ^17.0.38
-    "@typescript-eslint/eslint-plugin": ^5.27.0
-    "@typescript-eslint/parser": 5.27.0
     bottleneck: ^2.19.5
-    eslint: 8.16.0
-    eslint-config-prettier: 8.5.0
-    eslint-plugin-import: 2.26.0
-    eslint-plugin-prettier: 4.0.0
     form-data: ^4.0.0
     got: ^11.8.3
     husky: ^8.0.1
@@ -608,11 +613,37 @@ __metadata:
     rimraf: ^3.0.2
     serialize-error: ^11.0.0
     ts-jest: ^28.0.3
-    ts-node: 10.8.0
-    ts-node-dev: ^2.0.0
     typedoc: ^0.22.17
     typedoc-github-wiki-theme: ^1.0.1
     typedoc-plugin-markdown: ^3.12.1
+  languageName: unknown
+  linkType: soft
+
+"@blockfrost/blockfrost-utils@workspace:packages/blockfrost-utils":
+  version: 0.0.0-use.local
+  resolution: "@blockfrost/blockfrost-utils@workspace:packages/blockfrost-utils"
+  languageName: unknown
+  linkType: soft
+
+"@blockfrost/monorepo@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@blockfrost/monorepo@workspace:."
+  dependencies:
+    "@commitlint/cli": ^17.0.2
+    "@commitlint/config-conventional": ^17.0.2
+    "@types/node": ^17.0.38
+    "@typescript-eslint/eslint-plugin": ^5.27.0
+    "@typescript-eslint/parser": 5.27.0
+    eslint: 8.16.0
+    eslint-config-prettier: 8.5.0
+    eslint-plugin-import: 2.26.0
+    eslint-plugin-prettier: 4.0.0
+    husky: ^8.0.1
+    prettier: 2.6.2
+    rimraf: ^3.0.2
+    ts-node: 10.8.0
+    ts-node-dev: ^2.0.0
+    turbo: ^1.3.1
     typescript: 4.7.2
     yarn-run-all: ^3.1.1
   languageName: unknown
@@ -813,6 +844,13 @@ __metadata:
   dependencies:
     "@jridgewell/trace-mapping": 0.3.9
   checksum: 5718f267085ed8edb3e7ef210137241775e607ee18b77d95aa5bd7514f47f5019aa2d82d96b3bf342ef7aa890a346fa1044532ff7cc3009e7d24fce3ce6200fa
+  languageName: node
+  linkType: hard
+
+"@emurgo/cardano-serialization-lib-nodejs@npm:^10.0.4":
+  version: 10.2.0
+  resolution: "@emurgo/cardano-serialization-lib-nodejs@npm:10.2.0"
+  checksum: 4337c4b57d6c980ffa0263e9c4d1819deb25d4b70042524f4f61b24826e6aef5e316e0a29026bc53f423a2337013b33e201b18cd4abe5bc5591f3214dbeda244
   languageName: node
   linkType: hard
 
@@ -1655,6 +1693,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/bip39@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@types/bip39@npm:3.0.0"
+  dependencies:
+    bip39: "*"
+  checksum: 6bf1c6e684cf2ecbd80066475f522be2ec2e76513d3f1973efcfbc0801b6f78d0a8d92ff09aa8b9b1b1f31d53a884f861798b00c856243c837b77096262dc2c0
+  languageName: node
+  linkType: hard
+
 "@types/cacheable-request@npm:^6.0.1":
   version: 6.0.2
   resolution: "@types/cacheable-request@npm:6.0.2"
@@ -1755,10 +1802,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:11.11.6":
+  version: 11.11.6
+  resolution: "@types/node@npm:11.11.6"
+  checksum: 075f1c011cf568e49701419acbcb55c24906b3bb5a34d9412a3b88f228a7a78401a5ad4d3e1cd6855c99aaea5ef96e37fc86ca097e50f06da92cf822befc1fff
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:>=12, @types/node@npm:^17.0.38":
   version: 17.0.38
   resolution: "@types/node@npm:17.0.38"
   checksum: 9db1c39d603850ced665ab60b8f8ebce674ff9d762dfff0f776d520e71e4d73fdcd4c7f69213b804d878cf3e726911b09cae4ee66e35ae2724538de9f4838681
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^17.0.10":
+  version: 17.0.45
+  resolution: "@types/node@npm:17.0.45"
+  checksum: aa04366b9103b7d6cfd6b2ef64182e0eaa7d4462c3f817618486ea0422984c51fc69fd0d436eae6c9e696ddfdbec9ccaa27a917f7c2e8c75c5d57827fe3d95e8
   languageName: node
   linkType: hard
 
@@ -2337,6 +2398,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bip39@npm:*, bip39@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "bip39@npm:3.0.4"
+  dependencies:
+    "@types/node": 11.11.6
+    create-hash: ^1.1.0
+    pbkdf2: ^3.0.9
+    randombytes: ^2.0.1
+  checksum: 79ce1600a03d1ba5053bdd4e6323f9463ec340764c7e52918b6c6b9dca81221940f2d9a65656447f108f9bc2c8d9ae8df319cca83bbd1dad63f53ef2768d9bae
+  languageName: node
+  linkType: hard
+
 "blake2b-wasm@npm:^1.1.0":
   version: 1.1.7
   resolution: "blake2b-wasm@npm:1.1.7"
@@ -2593,6 +2666,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cipher-base@npm:^1.0.1, cipher-base@npm:^1.0.3":
+  version: 1.0.4
+  resolution: "cipher-base@npm:1.0.4"
+  dependencies:
+    inherits: ^2.0.1
+    safe-buffer: ^5.0.1
+  checksum: 47d3568dbc17431a339bad1fe7dff83ac0891be8206911ace3d3b818fc695f376df809bea406e759cdea07fff4b454fa25f1013e648851bec790c1d75763032e
+  languageName: node
+  linkType: hard
+
 "cjs-module-lexer@npm:^1.0.0":
   version: 1.2.1
   resolution: "cjs-module-lexer@npm:1.2.1"
@@ -2790,6 +2873,33 @@ __metadata:
     path-type: ^4.0.0
     yaml: ^1.10.0
   checksum: 4be63e7117955fd88333d7460e4c466a90f556df6ef34efd59034d2463484e339666c41f02b523d574a797ec61f4a91918c5b89a316db2ea2f834e0d2d09465b
+  languageName: node
+  linkType: hard
+
+"create-hash@npm:^1.1.0, create-hash@npm:^1.1.2":
+  version: 1.2.0
+  resolution: "create-hash@npm:1.2.0"
+  dependencies:
+    cipher-base: ^1.0.1
+    inherits: ^2.0.1
+    md5.js: ^1.3.4
+    ripemd160: ^2.0.1
+    sha.js: ^2.4.0
+  checksum: 02a6ae3bb9cd4afee3fabd846c1d8426a0e6b495560a977ba46120c473cb283be6aa1cace76b5f927cf4e499c6146fb798253e48e83d522feba807d6b722eaa9
+  languageName: node
+  linkType: hard
+
+"create-hmac@npm:^1.1.4":
+  version: 1.1.7
+  resolution: "create-hmac@npm:1.1.7"
+  dependencies:
+    cipher-base: ^1.0.3
+    create-hash: ^1.1.0
+    inherits: ^2.0.1
+    ripemd160: ^2.0.0
+    safe-buffer: ^5.0.1
+    sha.js: ^2.4.8
+  checksum: ba12bb2257b585a0396108c72830e85f882ab659c3320c83584b1037f8ab72415095167ced80dc4ce8e446a8ecc4b2acf36d87befe0707d73b26cf9dc77440ed
   languageName: node
   linkType: hard
 
@@ -4058,6 +4168,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hash-base@npm:^3.0.0":
+  version: 3.1.0
+  resolution: "hash-base@npm:3.1.0"
+  dependencies:
+    inherits: ^2.0.4
+    readable-stream: ^3.6.0
+    safe-buffer: ^5.2.0
+  checksum: 26b7e97ac3de13cb23fc3145e7e3450b0530274a9562144fc2bf5c1e2983afd0e09ed7cc3b20974ba66039fad316db463da80eb452e7373e780cbee9a0d2f2dc
+  languageName: node
+  linkType: hard
+
 "hosted-git-info@npm:^2.1.4":
   version: 2.8.8
   resolution: "hosted-git-info@npm:2.8.8"
@@ -4178,7 +4299,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"inherits@npm:2, inherits@npm:^2.0.3, inherits@npm:~2.0.3":
+"inherits@npm:2, inherits@npm:^2.0.1, inherits@npm:^2.0.3, inherits@npm:^2.0.4, inherits@npm:~2.0.3":
   version: 2.0.4
   resolution: "inherits@npm:2.0.4"
   checksum: 4a48a733847879d6cf6691860a6b1e3f0f4754176e4d71494c41f3475553768b10f84b5ce1d40fbd0e34e6bfbb864ee35858ad4dd2cf31e02fc4a154b724d7f1
@@ -5410,6 +5531,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"md5.js@npm:^1.3.4":
+  version: 1.3.5
+  resolution: "md5.js@npm:1.3.5"
+  dependencies:
+    hash-base: ^3.0.0
+    inherits: ^2.0.1
+    safe-buffer: ^5.1.2
+  checksum: 098494d885684bcc4f92294b18ba61b7bd353c23147fbc4688c75b45cb8590f5a95fd4584d742415dcc52487f7a1ef6ea611cfa1543b0dc4492fe026357f3f0c
+  languageName: node
+  linkType: hard
+
 "meow@npm:^8.0.0":
   version: 8.1.2
   resolution: "meow@npm:8.1.2"
@@ -6047,6 +6179,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pbkdf2@npm:^3.0.9":
+  version: 3.1.2
+  resolution: "pbkdf2@npm:3.1.2"
+  dependencies:
+    create-hash: ^1.1.2
+    create-hmac: ^1.1.4
+    ripemd160: ^2.0.1
+    safe-buffer: ^5.0.1
+    sha.js: ^2.4.8
+  checksum: 2c950a100b1da72123449208e231afc188d980177d021d7121e96a2de7f2abbc96ead2b87d03d8fe5c318face097f203270d7e27908af9f471c165a4e8e69c92
+  languageName: node
+  linkType: hard
+
 "performance-now@npm:^2.1.0":
   version: 2.1.0
   resolution: "performance-now@npm:2.1.0"
@@ -6268,6 +6413,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"randombytes@npm:^2.0.1":
+  version: 2.1.0
+  resolution: "randombytes@npm:2.1.0"
+  dependencies:
+    safe-buffer: ^5.1.0
+  checksum: d779499376bd4cbb435ef3ab9a957006c8682f343f14089ed5f27764e4645114196e75b7f6abf1cbd84fd247c0cb0651698444df8c9bf30e62120fbbc52269d6
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^17.0.1":
   version: 17.0.1
   resolution: "react-is@npm:17.0.1"
@@ -6326,7 +6480,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"readable-stream@npm:3, readable-stream@npm:^3.0.0":
+"readable-stream@npm:3, readable-stream@npm:^3.0.0, readable-stream@npm:^3.6.0":
   version: 3.6.0
   resolution: "readable-stream@npm:3.6.0"
   dependencies:
@@ -6563,6 +6717,16 @@ resolve@^1.20.0:
   languageName: node
   linkType: hard
 
+"ripemd160@npm:^2.0.0, ripemd160@npm:^2.0.1":
+  version: 2.0.2
+  resolution: "ripemd160@npm:2.0.2"
+  dependencies:
+    hash-base: ^3.0.0
+    inherits: ^2.0.1
+  checksum: 006accc40578ee2beae382757c4ce2908a826b27e2b079efdcd2959ee544ddf210b7b5d7d5e80467807604244e7388427330f5c6d4cd61e6edaddc5773ccc393
+  languageName: node
+  linkType: hard
+
 "run-parallel@npm:^1.1.9":
   version: 1.1.10
   resolution: "run-parallel@npm:1.1.10"
@@ -6570,7 +6734,7 @@ resolve@^1.20.0:
   languageName: node
   linkType: hard
 
-"safe-buffer@npm:^5.0.1, safe-buffer@npm:^5.1.2, safe-buffer@npm:~5.2.0":
+"safe-buffer@npm:^5.0.1, safe-buffer@npm:^5.1.0, safe-buffer@npm:^5.1.2, safe-buffer@npm:^5.2.0, safe-buffer@npm:~5.2.0":
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
   checksum: b99c4b41fdd67a6aaf280fcd05e9ffb0813654894223afb78a31f14a19ad220bba8aba1cb14eddce1fcfb037155fe6de4e861784eb434f7d11ed58d1e70dd491
@@ -6658,6 +6822,18 @@ resolve@^1.20.0:
   languageName: node
   linkType: hard
 
+"sha.js@npm:^2.4.0, sha.js@npm:^2.4.8":
+  version: 2.4.11
+  resolution: "sha.js@npm:2.4.11"
+  dependencies:
+    inherits: ^2.0.1
+    safe-buffer: ^5.0.1
+  bin:
+    sha.js: ./bin.js
+  checksum: ebd3f59d4b799000699097dadb831c8e3da3eb579144fd7eb7a19484cbcbb7aca3c68ba2bb362242eb09e33217de3b4ea56e4678184c334323eca24a58e3ad07
+  languageName: node
+  linkType: hard
+
 "shebang-command@npm:^2.0.0":
   version: 2.0.0
   resolution: "shebang-command@npm:2.0.0"
@@ -6716,6 +6892,19 @@ resolve@^1.20.0:
   checksum: a2f098f247adc367dffc27845853e9959b9e88b01cb301658cfe4194352d8d2bb32e18467c786a7fe15f1d44b233ea35633d076d5e737870b7139949d1ab6318
   languageName: node
   linkType: hard
+
+"simple-transaction-c32175@workspace:examples/simple-transaction":
+  version: 0.0.0-use.local
+  resolution: "simple-transaction-c32175@workspace:examples/simple-transaction"
+  dependencies:
+    "@blockfrost/blockfrost-js": latest
+    "@emurgo/cardano-serialization-lib-nodejs": ^10.1.0
+    "@types/bip39": ^3.0.0
+    "@types/node": ^17.0.10
+    bip39: ^3.0.4
+    typescript: ^4.7.2
+  languageName: unknown
+  linkType: soft
 
 "sisteransi@npm:^1.0.5":
   version: 1.0.5
@@ -7402,6 +7591,157 @@ resolve@^1.20.0:
   languageName: node
   linkType: hard
 
+"turbo-android-arm64@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-android-arm64@npm:1.3.1"
+  conditions: os=android & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"turbo-darwin-64@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-darwin-64@npm:1.3.1"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"turbo-darwin-arm64@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-darwin-arm64@npm:1.3.1"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"turbo-freebsd-64@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-freebsd-64@npm:1.3.1"
+  conditions: os=freebsd & cpu=x64
+  languageName: node
+  linkType: hard
+
+"turbo-freebsd-arm64@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-freebsd-arm64@npm:1.3.1"
+  conditions: os=freebsd & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"turbo-linux-32@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-linux-32@npm:1.3.1"
+  conditions: os=linux & cpu=ia32
+  languageName: node
+  linkType: hard
+
+"turbo-linux-64@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-linux-64@npm:1.3.1"
+  conditions: os=linux & cpu=x64
+  languageName: node
+  linkType: hard
+
+"turbo-linux-arm64@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-linux-arm64@npm:1.3.1"
+  conditions: os=linux & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"turbo-linux-arm@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-linux-arm@npm:1.3.1"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"turbo-linux-mips64le@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-linux-mips64le@npm:1.3.1"
+  conditions: os=linux & cpu=mips64el
+  languageName: node
+  linkType: hard
+
+"turbo-linux-ppc64le@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-linux-ppc64le@npm:1.3.1"
+  conditions: os=linux & cpu=ppc64
+  languageName: node
+  linkType: hard
+
+"turbo-windows-32@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-windows-32@npm:1.3.1"
+  conditions: os=win32 & cpu=ia32
+  languageName: node
+  linkType: hard
+
+"turbo-windows-64@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-windows-64@npm:1.3.1"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"turbo-windows-arm64@npm:1.3.1":
+  version: 1.3.1
+  resolution: "turbo-windows-arm64@npm:1.3.1"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"turbo@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "turbo@npm:1.3.1"
+  dependencies:
+    turbo-android-arm64: 1.3.1
+    turbo-darwin-64: 1.3.1
+    turbo-darwin-arm64: 1.3.1
+    turbo-freebsd-64: 1.3.1
+    turbo-freebsd-arm64: 1.3.1
+    turbo-linux-32: 1.3.1
+    turbo-linux-64: 1.3.1
+    turbo-linux-arm: 1.3.1
+    turbo-linux-arm64: 1.3.1
+    turbo-linux-mips64le: 1.3.1
+    turbo-linux-ppc64le: 1.3.1
+    turbo-windows-32: 1.3.1
+    turbo-windows-64: 1.3.1
+    turbo-windows-arm64: 1.3.1
+  dependenciesMeta:
+    turbo-android-arm64:
+      optional: true
+    turbo-darwin-64:
+      optional: true
+    turbo-darwin-arm64:
+      optional: true
+    turbo-freebsd-64:
+      optional: true
+    turbo-freebsd-arm64:
+      optional: true
+    turbo-linux-32:
+      optional: true
+    turbo-linux-64:
+      optional: true
+    turbo-linux-arm:
+      optional: true
+    turbo-linux-arm64:
+      optional: true
+    turbo-linux-mips64le:
+      optional: true
+    turbo-linux-ppc64le:
+      optional: true
+    turbo-windows-32:
+      optional: true
+    turbo-windows-64:
+      optional: true
+    turbo-windows-arm64:
+      optional: true
+  bin:
+    turbo: bin/turbo
+  checksum: fced49081f2c64aaf93a2499edb057bb05d30bd2074b9652610f939c9037869501fcc50e7ad05a48cec4a8b9d344cc1c4ea505edd45fe2f9639fb138fa55182b
+  languageName: node
+  linkType: hard
+
 "tweetnacl@npm:^0.14.3, tweetnacl@npm:~0.14.0":
   version: 0.14.5
   resolution: "tweetnacl@npm:0.14.5"
@@ -7515,6 +7855,16 @@ resolve@^1.20.0:
   languageName: node
   linkType: hard
 
+"typescript@npm:^4.7.2":
+  version: 4.7.4
+  resolution: "typescript@npm:4.7.4"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 5750181b1cd7e6482c4195825547e70f944114fb47e58e4aa7553e62f11b3f3173766aef9c281783edfd881f7b8299cf35e3ca8caebe73d8464528c907a164df
+  languageName: node
+  linkType: hard
+
 "typescript@patch:typescript@4.7.2#~builtin<compat/typescript>, typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
   version: 4.7.2
   resolution: "typescript@patch:typescript@npm%3A4.7.2#~builtin<compat/typescript>::version=4.7.2&hash=7ad353"
@@ -7522,6 +7872,16 @@ resolve@^1.20.0:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 7e2b9a9f4a70fb7616f1b0d986977f8e34a74f046202fa7f24fdee79589598277810fa216b3776c20c0683a9235872c73be34fdb93f67f98c1efaca40999422f
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.7.2#~builtin<compat/typescript>":
+  version: 4.7.4
+  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 9096d8f6c16cb80ef3bf96fcbbd055bf1c4a43bd14f3b7be45a9fbe7ada46ec977f604d5feed3263b4f2aa7d4c7477ce5f9cd87de0d6feedec69a983f3a4f93e
   languageName: node
   linkType: hard
 
