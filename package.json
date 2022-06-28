@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "A JavaScript/TypeScript monorepo",
+  "repository": "blockfrost/blockfrost-js",
   "keywords": [
     "blockfrost",
     "cardano",

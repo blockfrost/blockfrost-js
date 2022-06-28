@@ -2,10 +2,6 @@
   "name": "@blockfrost/blockfrost-js",
   "version": "4.1.0",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
-  "workspaces": [
-    "packages/*",
-    "examples/*"
-  ],
   "keywords": [
     "blockfrost",
     "cardano",
@@ -13,7 +9,6 @@
   ],
   "license": "Apache-2.0",
   "author": "blockfrost.io",
-  "repository": "blockfrost/blockfrost-js",
   "main": "lib/index.js",
   "files": [
     "lib/**/*.js",
@@ -57,8 +52,7 @@
     "ts-jest": "^28.0.3",
     "typedoc": "^0.22.17",
     "typedoc-github-wiki-theme": "^1.0.1",
-    "typedoc-plugin-markdown": "^3.12.1",
-    "yarn-run-all": "^3.1.1"
+    "typedoc-plugin-markdown": "^3.12.1"
   },
   "engines": {
     "node": ">=14"
