@@ -24,16 +24,17 @@ Clone the main Blockfrost SDK repository
 git clone https://github.com/blockfrost/blockfrost-js.git
 ```
 
-Change directory to `simple-transaction`
+Change directory to cloned repository `simple-transaction`
 
 ```
-cd ./blockfrost-js/examples/simple-transaction
+cd blockfrost-js
 ```
 
-Install dependencies
+Install dependencies and run the script
 
 ```
-npm install
+yarn
+yarn workspace @blockfrost/example-simple-transaction start
 ```
 
 Now check the source code! You don't want to run something you know nothing about, right? RIGHT?
