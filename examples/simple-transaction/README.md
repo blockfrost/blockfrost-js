@@ -30,11 +30,10 @@ Change directory to cloned repository `simple-transaction`
 cd blockfrost-js
 ```
 
-Install dependencies and run the script
+Install dependencies
 
 ```
 yarn
-yarn workspace @blockfrost/example-simple-transaction start
 ```
 
 Now check the source code! You don't want to run something you know nothing about, right? RIGHT?
@@ -57,7 +56,7 @@ const OUTPUT_AMOUNT = '1000000'; // 1 000 000 lovelaces = 1 ADA
 Set your Blockfrost api key to environment variable `BLOCKFROST_PROJECT_ID` and run the script
 
 ```
-npm start
+yarn workspace @blockfrost/example-simple-transaction start
 ```
 
 It may happen that the default (or your own) seed doesn't hold enough funds on its first address derived with derivation path `m/1852'/1815'/0'/0/0` (common derivation path used by wallets). In that case the address will be displayed in the console. You can get some tADA from [Cardano testnet faucet](https://testnets.cardano.org/en/testnets/cardano/tools/faucet/).
