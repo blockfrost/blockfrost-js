@@ -64,14 +64,18 @@ export interface ValidatedOptions {
 export type HashOrNumber = string | number;
 
 export type ErrorType =
-  | {
+  | // Server error
+  {
       status_code: number;
       message: string;
       error: string;
+      url: string;
     }
+  // Client Error
   | {
       message: string;
       code: string;
+      url: string | undefined;
     };
 
 export type PaginationOptions = {

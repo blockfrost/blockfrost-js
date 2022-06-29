@@ -13,6 +13,7 @@ export const handleError = [
     result: {
       code: 'ETIMEDOUT',
       message: "Timeout awaiting 'response' for 1ms",
+      url: 'http://localhost/test',
     },
   },
   {
@@ -37,6 +38,7 @@ export const handleError = [
       status_code: 403,
       error: 'Forbidden',
       message: 'Invalid project token.',
+      url: 'http://localhost/test',
     },
   },
   {
@@ -67,6 +69,7 @@ export const handleError = [
       status_code: 504,
       message: '504: Gateway Timeout',
       error: 'Gateway Timeout',
+      url: 'http://localhost/test',
     },
   },
   {
@@ -97,6 +100,7 @@ export const handleError = [
       status_code: 0,
       message: '0: Response code 0 (undefined)',
       error: 'Response code 0 (undefined)',
+      url: 'http://localhost/test',
     },
   },
 ];
