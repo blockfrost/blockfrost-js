@@ -57,13 +57,15 @@ export const composeTransaction = (
 
   // Filter out multi asset utxo to keep this simple
   const lovelaceUtxos = utxos.filter(
-    u => !u.amount.find(a => a.unit !== 'lovelace'),
+    (u: any) => !u.amount.find((a: any) => a.unit !== 'lovelace'),
   );
 
   // Create TransactionUnspentOutputs from utxos fetched from Blockfrost
   const unspentOutputs = CardanoWasm.TransactionUnspentOutputs.new();
   for (const utxo of lovelaceUtxos) {
-    const amount = utxo.amount.find(a => a.unit === 'lovelace')?.quantity;
+    const amount = utxo.amount.find(
+      (a: any) => a.unit === 'lovelace',
+    )?.quantity;
 
     if (!amount) continue;
 
