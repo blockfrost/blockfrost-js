@@ -1,0 +1,119 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": "./",
+    "paths": {
+      "actions": [
+        "src/actions"
+      ],
+      "components/*": [
+        "src/components/*"
+      ],
+      "components": [
+        "src/components"
+      ],
+      "const/*": [
+        "src/const/*"
+      ],
+      "const": [
+        "src/const"
+      ],
+      "hooks/*": [
+        "src/hooks/*"
+      ],
+      "hooks": [
+        "src/hooks"
+      ],
+      "utils/*": [
+        "src/utils/*"
+      ],
+      "utils": [
+        "src/utils"
+      ],
+      "types/*": [
+        "src/types/*"
+      ],
+      "types": [
+        "src/types"
+      ],
+      "definitions/*": [
+        "src/definitions/*"
+      ],
+      "definitions": [
+        "src/definitions"
+      ],
+      "interfaces": [
+        "src/interfaces"
+      ],
+      "interfaces/*": [
+        "src/interfaces/*"
+      ],
+      "pages/*": [
+        "src/pages/*"
+      ],
+      "reducers": [
+        "src/redux/reducers"
+      ],
+      "reducers/*": [
+        "src/redux/reducers/*"
+      ],
+      "redux": [
+        "src/redux"
+      ],
+      "redux/*": [
+        "src/redux/*"
+      ],
+      "services": [
+        "src/services"
+      ],
+      "services/*": [
+        "src/services/*"
+      ],
+      "libs": [
+        "src/libs"
+      ],
+      "libs/*": [
+        "src/libs/*"
+      ],
+      "public/*": [
+        "public/*"
+      ],
+      "test/*": [
+        "test/*"
+      ]
+    },
+    "incremental": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".next",
+    "out",
+    "next.config.js",
+    ".babelrc",
+    "bundles",
+    "coverage",
+    "test/*"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}

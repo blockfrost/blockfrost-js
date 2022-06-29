@@ -1,0 +1,103 @@
+body,
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+#__next {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.content {
+    flex: 1;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 650px) {
+    .navbar-right {
+        display: none !important;
+    }
+
+    .min-height-faq {
+        min-height: auto;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    h1 {
+        font-size: 30pt;
+        min-height: auto;
+    }
+
+    .min-height-faq {
+        min-height: 180px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 37pt;
+    }
+
+    .min-height-faq {
+        min-height: 180px;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    h1 {
+        font-size: 37pt;
+    }
+
+    .min-height-faq {
+        min-height: 180px;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    h1 {
+        font-size: 37pt;
+    }
+
+    .min-height-faq {
+        min-height: 180px;
+    }
+}
+
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave {
+
+    0%,
+    100% {
+        transform: rotate(0)
+    }
+
+    20%,
+    60% {
+        transform: rotate(-25deg)
+    }
+
+    40%,
+    80% {
+        transform: rotate(10deg)
+    }
+}
+
+@media (max-width:500px) {
+    .github-corner:hover .octo-arm {
+        animation: none
+    }
+
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out
+    }
+}
