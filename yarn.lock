@@ -419,52 +419,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@blockfrost/asset-explorer@workspace:examples/asset-explorer":
-  version: 0.0.0-use.local
-  resolution: "@blockfrost/asset-explorer@workspace:examples/asset-explorer"
-  dependencies:
-    "@babel/core": ^7.12.10
-    "@blockfrost/blockfrost-js": "*"
-    "@testing-library/jest-dom": 5.11.9
-    "@testing-library/react": ^13.3.0
-    "@types/jest": ^26.0.19
-    "@types/node": ^14.14.31
-    "@types/react": ^18.0.14
-    "@types/react-select": ^5.0.1
-    "@typescript-eslint/eslint-plugin": ^5.30.0
-    "@typescript-eslint/parser": ^5.30.0
-    axios: ^0.21.1
-    babel-jest: ^28.1.2
-    bootstrap: ^4.5.3
-    buffer: ^6.0.3
-    date-fns: ^2.19.0
-    dotenv: ^8.2.0
-    eslint: ^8.18.0
-    eslint-config-airbnb-typescript: 12.0.0
-    eslint-config-prettier: ^7.2.0
-    eslint-plugin-import: ^2.22.1
-    eslint-plugin-jest-dom: ^3.6.5
-    eslint-plugin-jsx-a11y: ^6.4.1
-    eslint-plugin-prettier: ^3.3.1
-    eslint-plugin-react: ^7.22.0
-    eslint-plugin-react-hooks: ^4.2.0
-    jquery: ^3.5.1
-    next: 12.2.0
-    popper.js: ^1.16.1
-    prettier: ^2.2.1
-    react: 18.2.0
-    react-bootstrap: ^1.4.3
-    react-dom: 18.2.0
-    react-feather: ^2.0.9
-    react-icons: ^4.1.0
-    react-loading-skeleton: 3.1.0
-    rimraf: ^3.0.2
-    styled-jsx: ^5.0.2
-    swr: ^0.4.1
-    typescript: ^4.7.4
-  languageName: unknown
-  linkType: soft
-
 "@blockfrost/blockfrost-js@*, @blockfrost/blockfrost-js@workspace:packages/blockfrost-js":
   version: 0.0.0-use.local
   resolution: "@blockfrost/blockfrost-js@workspace:packages/blockfrost-js"
@@ -505,6 +459,52 @@ __metadata:
 "@blockfrost/blockfrost-utils@workspace:packages/blockfrost-utils":
   version: 0.0.0-use.local
   resolution: "@blockfrost/blockfrost-utils@workspace:packages/blockfrost-utils"
+  languageName: unknown
+  linkType: soft
+
+"@blockfrost/example-asset-explorer@workspace:examples/asset-explorer":
+  version: 0.0.0-use.local
+  resolution: "@blockfrost/example-asset-explorer@workspace:examples/asset-explorer"
+  dependencies:
+    "@babel/core": ^7.12.10
+    "@blockfrost/blockfrost-js": "*"
+    "@testing-library/jest-dom": 5.11.9
+    "@testing-library/react": ^13.3.0
+    "@types/jest": ^26.0.19
+    "@types/node": ^14.14.31
+    "@types/react": ^18.0.14
+    "@types/react-select": ^5.0.1
+    "@typescript-eslint/eslint-plugin": ^5.30.0
+    "@typescript-eslint/parser": ^5.30.0
+    axios: ^0.21.1
+    babel-jest: ^28.1.2
+    bootstrap: ^4.5.3
+    buffer: ^6.0.3
+    date-fns: ^2.19.0
+    dotenv: ^8.2.0
+    eslint: ^8.18.0
+    eslint-config-airbnb-typescript: 12.0.0
+    eslint-config-prettier: ^7.2.0
+    eslint-plugin-import: ^2.22.1
+    eslint-plugin-jest-dom: ^3.6.5
+    eslint-plugin-jsx-a11y: ^6.4.1
+    eslint-plugin-prettier: ^3.3.1
+    eslint-plugin-react: ^7.22.0
+    eslint-plugin-react-hooks: ^4.2.0
+    jquery: ^3.5.1
+    next: 12.2.0
+    popper.js: ^1.16.1
+    prettier: ^2.2.1
+    react: 18.2.0
+    react-bootstrap: ^1.4.3
+    react-dom: 18.2.0
+    react-feather: ^2.0.9
+    react-icons: ^4.1.0
+    react-loading-skeleton: 3.1.0
+    rimraf: ^3.0.2
+    styled-jsx: ^5.0.2
+    swr: ^0.4.1
+    typescript: ^4.7.4
   languageName: unknown
   linkType: soft
 
