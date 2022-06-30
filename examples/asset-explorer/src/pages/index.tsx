@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Container } from 'react-bootstrap';
-import { Layout, Assets } from 'components';
+import { Layout, Assets } from '../components';
 
 function Index(): ReactElement {
   return (
