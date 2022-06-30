@@ -1,5 +1,6 @@
 {
-  "name": "@blockfrost/asset-explorer",
+  "name": "@blockfrost/example-asset-explorer",
+  "private": true,
   "version": "1.0.0",
   "scripts": {
     "analyze": "cross-env BUNDLE_ANALYZE=both npm run build",
