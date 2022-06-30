@@ -22,7 +22,7 @@ Once you have it, rename `.env.example` → `.env` and insert your API key.
 
 ```bash
 $ yarn
-$ yarn dev
+$ yarn workspace @blockfrost/example-asset-explorer dev
 ```
 
 Go to http://localhost:3000/.
