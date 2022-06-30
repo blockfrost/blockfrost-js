@@ -879,7 +879,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@blockfrost/asset-explorer", "workspace:examples/asset-explorer"],\
             ["@babel/core", "npm:7.18.6"],\
             ["@blockfrost/blockfrost-js", "workspace:packages/blockfrost-js"],\
-            ["@emurgo/cip14-js", "npm:2.0.0"],\
             ["@testing-library/jest-dom", "npm:5.11.9"],\
             ["@testing-library/react", "virtual:a0c6ac295665bc6bd08103ca9636b2cb7b13d030b29b105a44e980c82f1449a2222e4968bbe7d71476f9af9abaab0a7f4095c6efa51a6dfa3922d75892b51fb2#npm:13.3.0"],\
             ["@types/jest", "npm:26.0.24"],\
@@ -1447,15 +1446,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@emurgo/cip14-js", [\
-        ["npm:2.0.0", {\
-          "packageLocation": "./.yarn/cache/@emurgo-cip14-js-npm-2.0.0-3500cc6e4a-1b07171cd2.zip/node_modules/@emurgo/cip14-js/",\
-          "packageDependencies": [\
-            ["@emurgo/cip14-js", "npm:2.0.0"],\
-            ["bech32", "npm:2.0.0"],\
-            ["blake2b", "npm:2.1.3"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:3.0.1", {\
           "packageLocation": "./.yarn/cache/@emurgo-cip14-js-npm-3.0.1-6011030ea2-9eaf312410.zip/node_modules/@emurgo/cip14-js/",\
           "packageDependencies": [\

@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import { Header } from './Header';
 import { Body } from './Body';
 import { Buttons } from './Buttons';
-import { hexToString, getFingerprint } from 'utils';
+import { hexToString } from 'utils';
+import { getFingerprint } from '@blockfrost/blockfrost-js';
 import { Order } from 'types';
 import { useAssets } from 'hooks/useAssets';
 import {
