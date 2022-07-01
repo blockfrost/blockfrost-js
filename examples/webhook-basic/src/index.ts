@@ -33,14 +33,13 @@ app.post(
       );
     } catch (error) {
       // In case of invalid signature verifyWebhookSignature will throw SignatureVerificationError
-      // for easier debugging you can access passed signatureHeader and webhookPayload values (error.signatureHeader, error.webhookPayload)
+      // for easier debugging you can access passed signatureHeader and webhookPayload values (error.detail.signatureHeader, error.detail.webhookPayload)
       console.error(error);
       return response.status(400).send('Signature is not valid!');
     }
 
     // Signature is valid
-    const { type } = request.body;
-    const { payload } = request.body;
+    const { type, payload } = request.body;
 
     // Process the incoming event
     switch (type) {
