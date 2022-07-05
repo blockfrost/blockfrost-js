@@ -33,14 +33,13 @@ app.post(
       );
     } catch (error) {
       // In case of invalid signature verifyWebhookSignature will throw SignatureVerificationError
-      // for easier debugging you can access passed signatureHeader and webhookPayload values (error.signatureHeader, error.webhookPayload)
+      // for easier debugging you can access passed signatureHeader and webhookPayload values (error.detail.signatureHeader, error.detail.webhookPayload)
       console.error(error);
       return response.status(400).send('Signature is not valid!');
     }
 
     // Signature is valid
-    const { type } = request.body;
-    const { payload } = request.body;
+    const { type, payload } = request.body;
 
     // Process the incoming event
     switch (type) {
@@ -61,9 +60,13 @@ app.post(
       case 'delegation':
         // process Delegation event
         console.log(`Received ${payload.length} delegations`);
-        // loop through the payload (payload is an array of Delegation events)
-        for (const delegation of payload) {
-          console.log(`Delegation from address ${delegation.address}`);
+        // loop through the payload, payload is an array of objects with fields: "tx" (an object) and "delegations" (an array)
+        for (const transaction of payload) {
+          for (const delegation of transaction.delegations) {
+            console.log(
+              `Delegation from address ${delegation.address} to stake pool ${delegation.pool_id} included in tx ${transaction.tx.hash}`,
+            );
+          }
         }
         break;
 
