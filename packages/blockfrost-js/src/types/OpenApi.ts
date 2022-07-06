@@ -12,7 +12,9 @@ export interface paths {
         200: {
           content: {
             "application/json": {
+              /** @example https://blockfrost.io/ */
               url: string;
+              /** @example 0.1.0 */
               version: string;
             };
           };
@@ -33,6 +35,7 @@ export interface paths {
         200: {
           content: {
             "application/json": {
+              /** @example true */
               is_healthy: boolean;
             };
           };
@@ -56,6 +59,10 @@ export interface paths {
         200: {
           content: {
             "application/json": {
+              /**
+               * Format: int64
+               * @example 1603400958947
+               */
               server_time: number;
             };
           };
@@ -1261,7 +1268,7 @@ export interface paths {
       parameters: {
         path: {
           /** Bech32 address. */
-          address: string;
+          stake_address: string;
         };
       };
       responses: {
@@ -1578,7 +1585,7 @@ export interface paths {
           address: string;
         };
         query: {
-          /** The numbers of pools per page. */
+          /** The number of addresses per page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -1620,7 +1627,7 @@ export interface paths {
     get: {
       parameters: {
         query: {
-          /** The numbers of pools per page. */
+          /** The number of pools per page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -1652,7 +1659,7 @@ export interface paths {
     get: {
       parameters: {
         query: {
-          /** The numbers of pools per page. */
+          /** The number of pools per page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -1684,7 +1691,7 @@ export interface paths {
     get: {
       parameters: {
         query: {
-          /** The numbers of pools per page. */
+          /** The number of pools per page. */
           count?: number;
           /** The page number for listing the results. */
           page?: number;
@@ -2370,6 +2377,31 @@ export interface paths {
       };
     };
   };
+  "/scripts/datum/{datum_hash}/cbor": {
+    /** Query CBOR serialised datum by its hash */
+    get: {
+      parameters: {
+        path: {
+          /** Hash of the datum */
+          datum_hash: string;
+        };
+      };
+      responses: {
+        /** Return the CBOR serialised datum value */
+        200: {
+          content: {
+            "application/json": components["schemas"]["script_datum_cbor"];
+          };
+        };
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
+      };
+    };
+  };
   "/utils/addresses/xpub/{xpub}/{role}/{index}": {
     /** Derive Shelley address from an xpub */
     get: {
@@ -2399,6 +2431,31 @@ export interface paths {
       };
     };
   };
+  "/utils/txs/evaluate": {
+    /** Submit an already serialized transaction to evaluate how much execution units it requires. */
+    post: {
+      parameters: {
+        header: {
+          "Content-Type": "application/cbor";
+        };
+      };
+      responses: {
+        /** Returns result of EvaluateTx function from Ogmios see <a href="https://ogmios.dev/mini-protocols/local-tx-submission/#evaluatetx">EvaluateTx</a> and <a href="https://ogmios.dev/api/modules/_cardano_ogmios_client.TxSubmission.evaluationErrors.html">related errors</a>. */
+        200: {
+          content: {
+            "application/json": { [key: string]: unknown };
+          };
+        };
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        425: components["responses"]["425"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
+      };
+    };
+  };
   "/ipfs/add": {
     /**
      * You need to `/ipfs/pin/add` an object to avoid it being garbage collected. This usage
@@ -2410,11 +2467,20 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              /** Name of the file */
+              /**
+               * @description Name of the file
+               * @example README.md
+               */
               name: string;
-              /** IPFS hash of the file */
+              /**
+               * @description IPFS hash of the file
+               * @example QmZbHqiCxKEVX7QfijzJTkZiSi3WEVTcvANgNAWzDYgZDr
+               */
               ipfs_hash: string;
-              /** IPFS node size in Bytes */
+              /**
+               * @description IPFS node size in Bytes
+               * @example 125297
+               */
               size: string;
             };
           };
@@ -2429,7 +2495,7 @@ export interface paths {
     };
   };
   "/ipfs/gateway/{IPFS_path}": {
-    /** Retrieve an object from the IFPS gateway (useful if you do not want to rely on a public gateway, such as `ipfs.blockfrost.dev`). */
+    /** Retrieve an object from the IPFS gateway (useful if you do not want to rely on a public gateway, such as `ipfs.blockfrost.dev`). */
     get: {
       parameters: {
         path: {
@@ -2461,9 +2527,16 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              /** IPFS hash of the pinned object */
+              /**
+               * @description IPFS hash of the pinned object
+               * @example QmPojRfAXYAXV92Dof7gtSgaVuxEk64xx9CKvprqu9VwA8
+               */
               ipfs_hash: string;
-              /** State of the pin action */
+              /**
+               * @description State of the pin action
+               * @example queued
+               * @enum {string}
+               */
               state: "queued|pinned|unpinned|failed|gc";
             };
           };
@@ -2498,19 +2571,34 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              /** Creation time of the IPFS object on our backends */
+              /**
+               * @description Creation time of the IPFS object on our backends
+               * @example 1615551024
+               */
               time_created: number;
-              /** Pin time of the IPFS object on our backends */
+              /**
+               * @description Pin time of the IPFS object on our backends
+               * @example 1615551024
+               */
               time_pinned: number;
-              /** IPFS hash of the pinned object */
+              /**
+               * @description IPFS hash of the pinned object
+               * @example QmdVMnULrY95mth2XkwjxDtMHvzuzmvUPTotKE1tgqKbCx
+               */
               ipfs_hash: string;
-              /** Size of the object in Bytes */
+              /**
+               * @description Size of the object in Bytes
+               * @example 1615551024
+               */
               size: string;
               /**
-               * State of the pinned object, which is `queued` when we are retriving object. If this
+               * @description State of the pinned object, which is `queued` when we are retriving object. If this
                * is successful the state is changed to `pinned` or `failed` if not. The state `gc` means the
                * pinned item has been garbage collected due to account being over storage quota or after it has
                * been moved to `unpinned` state by removing the object pin.
+               *
+               * @example pinned
+               * @enum {string}
                */
               state: "queued|pinned|unpinned|failed|gc";
             }[];
@@ -2538,20 +2626,35 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              /** Time of the creation of the IPFS object on our backends */
+              /**
+               * @description Time of the creation of the IPFS object on our backends
+               * @example 1615551024
+               */
               time_created: number;
-              /** Time of the pin of the IPFS object on our backends */
+              /**
+               * @description Time of the pin of the IPFS object on our backends
+               * @example 1615551024
+               */
               time_pinned: number;
-              /** IPFS hash of the pinned object */
+              /**
+               * @description IPFS hash of the pinned object
+               * @example QmdVMnULrY95mth2XkwjxDtMHvzuzmvUPTotKE1tgqKbCx
+               */
               ipfs_hash: string;
-              /** Size of the object in Bytes */
+              /**
+               * @description Size of the object in Bytes
+               * @example 1615551024
+               */
               size: string;
               /**
-               * State of the pinned object. We define 5 states: `queued`, `pinned`, `unpinned`, `failed`, `gc`.
+               * @description State of the pinned object. We define 5 states: `queued`, `pinned`, `unpinned`, `failed`, `gc`.
                * When the object is pending retrieval (i.e. after `/ipfs/pin/add/{IPFS_path}`), the state is `queued`.
                * If the object is already successfully retrieved, state is changed to `pinned` or `failed` otherwise.
                * When object is unpinned (i.e. after `/ipfs/pin/remove/{IPFS_path}`) it is marked for garbage collection.
                * State `gc` means that a previously `unpinned` item has been garbage collected due to account being over storage quota.
+               *
+               * @example pinned
+               * @enum {string}
                */
               state: "queued|pinned|unpinned|failed|gc";
             };
@@ -2579,9 +2682,16 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              /** IPFS hash of the pinned object */
+              /**
+               * @description IPFS hash of the pinned object
+               * @example QmPojRfAXYAXV92Dof7gtSgaVuxEk64xx9CKvprqu9VwA8
+               */
               ipfs_hash: string;
-              /** State of the pin action */
+              /**
+               * @description State of the pin action
+               * @example unpinned
+               * @enum {string}
+               */
               state: "queued|pinned|unpinned|failed|gc";
             };
           };
@@ -2682,7 +2792,6 @@ export interface paths {
       parameters: {
         path: {
           address: string;
-          ticker: string;
         };
         query: {
           /** The number of results displayed on one page. */
@@ -2788,480 +2897,1334 @@ export interface paths {
 export interface components {
   schemas: {
     block_content: {
-      /** Block creation time in UNIX time */
+      /**
+       * @description Block creation time in UNIX time
+       * @example 1641338934
+       */
       time: number;
-      /** Block number */
+      /**
+       * @description Block number
+       * @example 15243593
+       */
       height: number | null;
-      /** Hash of the block */
+      /**
+       * @description Hash of the block
+       * @example 4ea1ba291e8eef538635a53e59fddba7810d1679631cc3aed7c8e6c4091a516a
+       */
       hash: string;
-      /** Slot number */
+      /**
+       * @description Slot number
+       * @example 412162133
+       */
       slot: number | null;
-      /** Epoch number */
+      /**
+       * @description Epoch number
+       * @example 425
+       */
       epoch: number | null;
-      /** Slot within the epoch */
+      /**
+       * @description Slot within the epoch
+       * @example 12
+       */
       epoch_slot: number | null;
-      /** Bech32 ID of the slot leader or specific block description in case there is no slot leader */
+      /**
+       * @description Bech32 ID of the slot leader or specific block description in case there is no slot leader
+       * @example pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2qnikdy
+       */
       slot_leader: string;
-      /** Block size in Bytes */
+      /**
+       * @description Block size in Bytes
+       * @example 3
+       */
       size: number;
-      /** Number of transactions in the block */
+      /**
+       * @description Number of transactions in the block
+       * @example 1
+       */
       tx_count: number;
-      /** Total output within the block in Lovelaces */
+      /**
+       * @description Total output within the block in Lovelaces
+       * @example 128314491794
+       */
       output: string | null;
-      /** Total fees within the block in Lovelaces */
+      /**
+       * @description Total fees within the block in Lovelaces
+       * @example 592661
+       */
       fees: string | null;
-      /** VRF key of the block */
+      /**
+       * @description VRF key of the block
+       * @example vrf_vk1wf2k6lhujezqcfe00l6zetxpnmh9n6mwhpmhm0dvfh3fxgmdnrfqkms8ty
+       */
       block_vrf: string | null;
-      /** Hash of the previous block */
+      /**
+       * @description Hash of the previous block
+       * @example 43ebccb3ac72c7cebd0d9b755a4b08412c9f5dcb81b8a0ad1e3c197d29d47b05
+       */
       previous_block: string | null;
-      /** Hash of the next block */
+      /**
+       * @description Hash of the next block
+       * @example 8367f026cf4b03e116ff8ee5daf149b55ba5a6ec6dec04803b8dc317721d15fa
+       */
       next_block: string | null;
-      /** Number of block confirmations */
+      /**
+       * @description Number of block confirmations
+       * @example 4698
+       */
       confirmations: number;
     };
+    /**
+     * @example [
+     *   "8788591983aa73981fc92d6cddbbe643959f5a784e84b8bee0db15823f575a5b",
+     *   "4eef6bb7755d8afbeac526b799f3e32a624691d166657e9d862aaeb66682c036",
+     *   "52e748c4dec58b687b90b0b40d383b9fe1f24c1a833b7395cdf07dd67859f46f",
+     *   "e8073fd5318ff43eca18a852527166aa8008bee9ee9e891f585612b7e4ba700b"
+     * ]
+     */
     block_content_txs: string[];
     block_content_array: components["schemas"]["block_content"][];
+    /**
+     * @example [
+     *   {
+     *     "address": "addr1q9ld26v2lv8wvrxxmvg90pn8n8n5k6tdst06q2s856rwmvnueldzuuqmnsye359fqrk8hwvenjnqultn7djtrlft7jnq7dy7wv",
+     *     "transactions": [
+     *       {
+     *         "tx_hash": "1a0570af966fb355a7160e4f82d5a80b8681b7955f5d44bec0dce628516157f0"
+     *       }
+     *     ]
+     *   },
+     *   {
+     *     "address": "addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz",
+     *     "transactions": [
+     *       {
+     *         "tx_hash": "1a0570af966fb355a7160e4f82d5a80b8681b7955f5d44bec0dce628516157d0"
+     *       }
+     *     ]
+     *   }
+     * ]
+     */
     block_content_addresses: {
-      /** Address that was affected in the specified block */
+      /** @description Address that was affected in the specified block */
       address: string;
-      /** List of transactions containing the address either in their inputs or outputs. Sorted by transaction index within a block, ascending. */
+      /** @description List of transactions containing the address either in their inputs or outputs. Sorted by transaction index within a block, ascending. */
       transactions: {
         tx_hash: string;
       }[];
     }[];
     genesis_content: {
-      /** The proportion of slots in which blocks should be issued */
+      /**
+       * @description The proportion of slots in which blocks should be issued
+       * @example 0.05
+       */
       active_slots_coefficient: number;
-      /** Determines the quorum needed for votes on the protocol parameter updates */
+      /**
+       * @description Determines the quorum needed for votes on the protocol parameter updates
+       * @example 5
+       */
       update_quorum: number;
-      /** The total number of lovelace in the system */
+      /**
+       * @description The total number of lovelace in the system
+       * @example 45000000000000000
+       */
       max_lovelace_supply: string;
-      /** Network identifier */
+      /**
+       * @description Network identifier
+       * @example 764824073
+       */
       network_magic: number;
-      /** Number of slots in an epoch */
+      /**
+       * @description Number of slots in an epoch
+       * @example 432000
+       */
       epoch_length: number;
-      /** Time of slot 0 in UNIX time */
+      /**
+       * @description Time of slot 0 in UNIX time
+       * @example 1506203091
+       */
       system_start: number;
-      /** Number of slots in an KES period */
+      /**
+       * @description Number of slots in an KES period
+       * @example 129600
+       */
       slots_per_kes_period: number;
-      /** Duration of one slot in seconds */
+      /**
+       * @description Duration of one slot in seconds
+       * @example 1
+       */
       slot_length: number;
-      /** The maximum number of time a KES key can be evolved before a pool operator must create a new operational certificate */
+      /**
+       * @description The maximum number of time a KES key can be evolved before a pool operator must create a new operational certificate
+       * @example 62
+       */
       max_kes_evolutions: number;
-      /** Security parameter k */
+      /**
+       * @description Security parameter k
+       * @example 2160
+       */
       security_param: number;
     };
     epoch_content: {
-      /** Epoch number */
+      /**
+       * @description Epoch number
+       * @example 225
+       */
       epoch: number;
-      /** Unix time of the start of the epoch */
+      /**
+       * @description Unix time of the start of the epoch
+       * @example 1603403091
+       */
       start_time: number;
-      /** Unix time of the end of the epoch */
+      /**
+       * @description Unix time of the end of the epoch
+       * @example 1603835086
+       */
       end_time: number;
-      /** Unix time of the first block of the epoch */
+      /**
+       * @description Unix time of the first block of the epoch
+       * @example 1603403092
+       */
       first_block_time: number;
-      /** Unix time of the last block of the epoch */
+      /**
+       * @description Unix time of the last block of the epoch
+       * @example 1603835084
+       */
       last_block_time: number;
-      /** Number of blocks within the epoch */
+      /**
+       * @description Number of blocks within the epoch
+       * @example 21298
+       */
       block_count: number;
-      /** Number of transactions within the epoch */
+      /**
+       * @description Number of transactions within the epoch
+       * @example 17856
+       */
       tx_count: number;
-      /** Sum of all the transactions within the epoch in Lovelaces */
+      /**
+       * @description Sum of all the transactions within the epoch in Lovelaces
+       * @example 7849943934049314
+       */
       output: string;
-      /** Sum of all the fees within the epoch in Lovelaces */
+      /**
+       * @description Sum of all the fees within the epoch in Lovelaces
+       * @example 4203312194
+       */
       fees: string;
-      /** Sum of all the active stakes within the epoch in Lovelaces */
+      /**
+       * @description Sum of all the active stakes within the epoch in Lovelaces
+       * @example 784953934049314
+       */
       active_stake: string | null;
     };
     epoch_param_content: {
-      /** Epoch number */
+      /**
+       * @description Epoch number
+       * @example 225
+       */
       epoch: number;
-      /** The linear factor for the minimum fee calculation for given epoch */
+      /**
+       * @description The linear factor for the minimum fee calculation for given epoch
+       * @example 44
+       */
       min_fee_a: number;
-      /** The constant factor for the minimum fee calculation */
+      /**
+       * @description The constant factor for the minimum fee calculation
+       * @example 155381
+       */
       min_fee_b: number;
-      /** Maximum block body size in Bytes */
+      /**
+       * @description Maximum block body size in Bytes
+       * @example 65536
+       */
       max_block_size: number;
-      /** Maximum transaction size */
+      /**
+       * @description Maximum transaction size
+       * @example 16384
+       */
       max_tx_size: number;
-      /** Maximum block header size */
+      /**
+       * @description Maximum block header size
+       * @example 1100
+       */
       max_block_header_size: number;
-      /** The amount of a key registration deposit in Lovelaces */
+      /**
+       * @description The amount of a key registration deposit in Lovelaces
+       * @example 2000000
+       */
       key_deposit: string;
-      /** The amount of a pool registration deposit in Lovelaces */
+      /**
+       * @description The amount of a pool registration deposit in Lovelaces
+       * @example 500000000
+       */
       pool_deposit: string;
-      /** Epoch bound on pool retirement */
+      /**
+       * @description Epoch bound on pool retirement
+       * @example 18
+       */
       e_max: number;
-      /** Desired number of pools */
+      /**
+       * @description Desired number of pools
+       * @example 150
+       */
       n_opt: number;
-      /** Pool pledge influence */
+      /**
+       * @description Pool pledge influence
+       * @example 0.3
+       */
       a0: number;
-      /** Monetary expansion */
+      /**
+       * @description Monetary expansion
+       * @example 0.003
+       */
       rho: number;
-      /** Treasury expansion */
+      /**
+       * @description Treasury expansion
+       * @example 0.2
+       */
       tau: number;
-      /** Percentage of blocks produced by federated nodes */
+      /**
+       * @description Percentage of blocks produced by federated nodes
+       * @example 0.5
+       */
       decentralisation_param: number;
-      /** Seed for extra entropy */
+      /**
+       * @description Seed for extra entropy
+       * @example null
+       */
       extra_entropy: { [key: string]: unknown } | null;
-      /** Accepted protocol major version */
+      /**
+       * @description Accepted protocol major version
+       * @example 2
+       */
       protocol_major_ver: number;
-      /** Accepted protocol minor version */
+      /**
+       * @description Accepted protocol minor version
+       * @example 0
+       */
       protocol_minor_ver: number;
-      /** Minimum UTXO value */
+      /**
+       * @description Minimum UTXO value
+       * @example 1000000
+       */
       min_utxo: string;
-      /** Minimum stake cost forced on the pool */
+      /**
+       * @description Minimum stake cost forced on the pool
+       * @example 340000000
+       */
       min_pool_cost: string;
-      /** Epoch number only used once */
+      /**
+       * @description Epoch number only used once
+       * @example 1a3be38bcbb7911969283716ad7aa550250226b76a61fc51cc9a9a35d9276d81
+       */
       nonce: string;
-      /** The per word cost of script memory usage */
+      /**
+       * @description The per word cost of script memory usage
+       * @example 0.0577
+       */
       price_mem: number | null;
-      /** The cost of script execution step usage */
+      /**
+       * @description The cost of script execution step usage
+       * @example 0.0000721
+       */
       price_step: number | null;
-      /** The maximum number of execution memory allowed to be used in a single transaction */
+      /**
+       * @description The maximum number of execution memory allowed to be used in a single transaction
+       * @example 10000000
+       */
       max_tx_ex_mem: string | null;
-      /** The maximum number of execution steps allowed to be used in a single transaction */
+      /**
+       * @description The maximum number of execution steps allowed to be used in a single transaction
+       * @example 10000000000
+       */
       max_tx_ex_steps: string | null;
-      /** The maximum number of execution memory allowed to be used in a single block */
+      /**
+       * @description The maximum number of execution memory allowed to be used in a single block
+       * @example 50000000
+       */
       max_block_ex_mem: string | null;
-      /** The maximum number of execution steps allowed to be used in a single block */
+      /**
+       * @description The maximum number of execution steps allowed to be used in a single block
+       * @example 40000000000
+       */
       max_block_ex_steps: string | null;
-      /** The maximum Val size */
+      /**
+       * @description The maximum Val size
+       * @example 5000
+       */
       max_val_size: string | null;
-      /** The percentage of the transactions fee which must be provided as collateral when including non-native scripts */
+      /**
+       * @description The percentage of the transactions fee which must be provided as collateral when including non-native scripts
+       * @example 150
+       */
       collateral_percent: number | null;
-      /** The maximum number of collateral inputs allowed in a transaction */
+      /**
+       * @description The maximum number of collateral inputs allowed in a transaction
+       * @example 3
+       */
       max_collateral_inputs: number | null;
-      /** The cost per UTxO word */
+      /**
+       * @description Cost per UTxO word for Alonzo. Cost per UTxO byte for Babbage and later.
+       * @example 34482
+       */
+      coins_per_utxo_size: string | null;
+      /**
+       * @deprecated
+       * @description Cost per UTxO word for Alonzo. Cost per UTxO byte for Babbage and later.
+       * @example 34482
+       */
       coins_per_utxo_word: string | null;
     };
     epoch_content_array: components["schemas"]["epoch_content"][];
     epoch_stake_content: {
-      /** Stake address */
+      /**
+       * @description Stake address
+       * @example stake1u9l5q5jwgelgagzyt6nuaasefgmn8pd25c8e9qpeprq0tdcp0e3uk
+       */
       stake_address: string;
-      /** Bech32 prefix of the pool delegated to */
+      /**
+       * @description Bech32 prefix of the pool delegated to
+       * @example pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy
+       */
       pool_id: string;
-      /** Amount of active delegated stake in Lovelaces */
+      /**
+       * @description Amount of active delegated stake in Lovelaces
+       * @example 4440295078
+       */
       amount: string;
     }[];
     epoch_stake_pool_content: {
-      /** Stake address */
+      /**
+       * @description Stake address
+       * @example stake1u9l5q5jwgelgagzyt6nuaasefgmn8pd25c8e9qpeprq0tdcp0e3uk
+       */
       stake_address: string;
-      /** Amount of active delegated stake in Lovelaces */
+      /**
+       * @description Amount of active delegated stake in Lovelaces
+       * @example 4440295078
+       */
       amount: string;
     }[];
+    /**
+     * @example [
+     *   "d0fa315687e99ccdc96b14cc2ea74a767405d64427b648c470731a9b69e4606e",
+     *   "38bc6efb92a830a0ed22a64f979d120d26483fd3c811f6622a8c62175f530878",
+     *   "f3258fcd8b975c061b4fcdcfcbb438807134d6961ec278c200151274893b6b7d"
+     * ]
+     */
     epoch_block_content: string[];
     tx_content: {
-      /** Transaction hash */
+      /**
+       * @description Transaction hash
+       * @example 1e043f100dce12d107f679685acd2fc0610e10f72a92d412794c9773d11d8477
+       */
       hash: string;
-      /** Block hash */
+      /**
+       * @description Block hash
+       * @example 356b7d7dbb696ccd12775c016941057a9dc70898d87a63fc752271bb46856940
+       */
       block: string;
-      /** Block number */
+      /**
+       * @description Block number
+       * @example 123456
+       */
       block_height: number;
-      /** Block creation time in UNIX time */
+      /**
+       * @description Block creation time in UNIX time
+       * @example 1635505891
+       */
       block_time: number;
-      /** Slot number */
+      /**
+       * @description Slot number
+       * @example 42000000
+       */
       slot: number;
-      /** Transaction index within the block */
+      /**
+       * @description Transaction index within the block
+       * @example 1
+       */
       index: number;
+      /**
+       * @example [
+       *   {
+       *     "unit": "lovelace",
+       *     "quantity": "42000000"
+       *   },
+       *   {
+       *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+       *     "quantity": "12"
+       *   }
+       * ]
+       */
       output_amount: {
-        /** The unit of the value */
+        /**
+         * Format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+         * @description The unit of the value
+         */
         unit: string;
-        /** The quantity of the unit */
+        /** @description The quantity of the unit */
         quantity: string;
       }[];
-      /** Fees of the transaction in Lovelaces */
+      /**
+       * @description Fees of the transaction in Lovelaces
+       * @example 182485
+       */
       fees: string;
-      /** Deposit within the transaction in Lovelaces */
+      /**
+       * @description Deposit within the transaction in Lovelaces
+       * @example 0
+       */
       deposit: string;
-      /** Size of the transaction in Bytes */
+      /**
+       * @description Size of the transaction in Bytes
+       * @example 433
+       */
       size: number;
-      /** Left (included) endpoint of the timelock validity intervals */
+      /**
+       * @description Left (included) endpoint of the timelock validity intervals
+       * @example null
+       */
       invalid_before: string | null;
-      /** Right (excluded) endpoint of the timelock validity intervals */
+      /**
+       * @description Right (excluded) endpoint of the timelock validity intervals
+       * @example 13885913
+       */
       invalid_hereafter: string | null;
-      /** Count of UTXOs within the transaction */
+      /**
+       * @description Count of UTXOs within the transaction
+       * @example 4
+       */
       utxo_count: number;
-      /** Count of the withdrawals within the transaction */
+      /**
+       * @description Count of the withdrawals within the transaction
+       * @example 0
+       */
       withdrawal_count: number;
-      /** Count of the MIR certificates within the transaction */
+      /**
+       * @description Count of the MIR certificates within the transaction
+       * @example 0
+       */
       mir_cert_count: number;
-      /** Count of the delegations within the transaction */
+      /**
+       * @description Count of the delegations within the transaction
+       * @example 0
+       */
       delegation_count: number;
-      /** Count of the stake keys (de)registration within the transaction */
+      /**
+       * @description Count of the stake keys (de)registration within the transaction
+       * @example 0
+       */
       stake_cert_count: number;
-      /** Count of the stake pool registration and update certificates within the transaction */
+      /**
+       * @description Count of the stake pool registration and update certificates within the transaction
+       * @example 0
+       */
       pool_update_count: number;
-      /** Count of the stake pool retirement certificates within the transaction */
+      /**
+       * @description Count of the stake pool retirement certificates within the transaction
+       * @example 0
+       */
       pool_retire_count: number;
-      /** Count of asset mints and burns within the transaction */
+      /**
+       * @description Count of asset mints and burns within the transaction
+       * @example 0
+       */
       asset_mint_or_burn_count: number;
-      /** Count of redeemers within the transaction */
+      /**
+       * @description Count of redeemers within the transaction
+       * @example 0
+       */
       redeemer_count: number;
-      /** True if contract script passed validation */
+      /**
+       * @description True if contract script passed validation
+       * @example true
+       */
       valid_contract: boolean;
     };
     tx_content_utxo: {
-      /** Transaction hash */
+      /**
+       * @description Transaction hash
+       * @example 1e043f100dce12d107f679685acd2fc0610e10f72a92d412794c9773d11d8477
+       */
       hash: string;
       inputs: {
-        /** Input address */
+        /**
+         * @description Input address
+         * @example addr1q9ld26v2lv8wvrxxmvg90pn8n8n5k6tdst06q2s856rwmvnueldzuuqmnsye359fqrk8hwvenjnqultn7djtrlft7jnq7dy7wv
+         */
         address: string;
+        /**
+         * @example [
+         *   {
+         *     "unit": "lovelace",
+         *     "quantity": "42000000"
+         *   },
+         *   {
+         *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+         *     "quantity": "12"
+         *   }
+         * ]
+         */
         amount: {
-          /** The unit of the value */
+          /**
+           * Format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+           * @description The unit of the value
+           */
           unit: string;
-          /** The quantity of the unit */
+          /** @description The quantity of the unit */
           quantity: string;
         }[];
-        /** Hash of the UTXO transaction */
+        /**
+         * @description Hash of the UTXO transaction
+         * @example 1a0570af966fb355a7160e4f82d5a80b8681b7955f5d44bec0dce628516157f0
+         */
         tx_hash: string;
-        /** UTXO index in the transaction */
+        /**
+         * @description UTXO index in the transaction
+         * @example 0
+         */
         output_index: number;
-        /** The hash of the transaction output datum */
+        /**
+         * @description The hash of the transaction output datum
+         * @example 9e478573ab81ea7a8e31891ce0648b81229f408d596a3483e6f4f9b92d3cf710
+         */
         data_hash: string | null;
-        /** Whether the input is a collateral consumed on script validation failure */
+        /**
+         * @description CBOR encoded inline datum
+         * @example 19a6aa
+         */
+        inline_datum: string | null;
+        /**
+         * @description The hash of the reference script of the input
+         * @example 13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1
+         */
+        reference_script_hash: string | null;
+        /**
+         * @description Whether the input is a collateral consumed on script validation failure
+         * @example false
+         */
         collateral: boolean;
+        /**
+         * @description Whether the input is a reference transaction input
+         * @example false
+         */
+        reference?: boolean;
       }[];
       outputs: {
-        /** Output address */
+        /**
+         * @description Output address
+         * @example addr1q9ld26v2lv8wvrxxmvg90pn8n8n5k6tdst06q2s856rwmvnueldzuuqmnsye359fqrk8hwvenjnqultn7djtrlft7jnq7dy7wv
+         */
         address: string;
+        /**
+         * @example [
+         *   {
+         *     "unit": "lovelace",
+         *     "quantity": "42000000"
+         *   },
+         *   {
+         *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+         *     "quantity": "12"
+         *   }
+         * ]
+         */
         amount: {
-          /** The unit of the value */
+          /**
+           * Format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+           * @description The unit of the value
+           */
           unit: string;
-          /** The quantity of the unit */
+          /** @description The quantity of the unit */
           quantity: string;
         }[];
-        /** UTXO index in the transaction */
+        /**
+         * @description UTXO index in the transaction
+         * @example 0
+         */
         output_index: number;
-        /** The hash of the transaction output datum */
+        /**
+         * @description The hash of the transaction output datum
+         * @example 9e478573ab81ea7a8e31891ce0648b81229f408d596a3483e6f4f9b92d3cf710
+         */
         data_hash: string | null;
+        /**
+         * @description CBOR encoded inline datum
+         * @example 19a6aa
+         */
+        inline_datum: string | null;
+        /**
+         * @description The hash of the reference script of the output
+         * @example 13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1
+         */
+        reference_script_hash: string | null;
       }[];
     };
     tx_content_stake_addr: {
-      /** Index of the certificate within the transaction */
+      /**
+       * @description Index of the certificate within the transaction
+       * @example 0
+       */
       cert_index: number;
-      /** Delegation stake address */
+      /**
+       * @description Delegation stake address
+       * @example stake1u9t3a0tcwune5xrnfjg4q7cpvjlgx9lcv0cuqf5mhfjwrvcwrulda
+       */
       address: string;
-      /** Registration boolean, false if deregistration */
+      /**
+       * @description Registration boolean, false if deregistration
+       * @example true
+       */
       registration: boolean;
     }[];
     tx_content_delegations: {
-      /** @deprecated Index of the certificate within the transaction */
+      /**
+       * @deprecated
+       * @description Index of the certificate within the transaction
+       * @example 0
+       */
       index: number;
-      /** Index of the certificate within the transaction */
+      /**
+       * @description Index of the certificate within the transaction
+       * @example 0
+       */
       cert_index: number;
-      /** Bech32 delegation stake address */
+      /**
+       * @description Bech32 delegation stake address
+       * @example stake1u9r76ypf5fskppa0cmttas05cgcswrttn6jrq4yd7jpdnvc7gt0yc
+       */
       address: string;
-      /** Bech32 ID of delegated stake pool */
+      /**
+       * @description Bech32 ID of delegated stake pool
+       * @example pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy
+       */
       pool_id: string;
-      /** Epoch in which the delegation becomes active */
+      /**
+       * @description Epoch in which the delegation becomes active
+       * @example 210
+       */
       active_epoch: number;
     }[];
     tx_content_withdrawals: {
-      /** Bech32 withdrawal address */
+      /**
+       * @description Bech32 withdrawal address
+       * @example stake1u9r76ypf5fskppa0cmttas05cgcswrttn6jrq4yd7jpdnvc7gt0yc
+       */
       address: string;
-      /** Withdrawal amount in Lovelaces */
+      /**
+       * @description Withdrawal amount in Lovelaces
+       * @example 431833601
+       */
       amount: string;
     }[];
     tx_content_mirs: {
-      /** Source of MIR funds */
+      /**
+       * @description Source of MIR funds
+       * @example reserve
+       * @enum {string}
+       */
       pot: "reserve" | "treasury";
-      /** Index of the certificate within the transaction */
+      /**
+       * @description Index of the certificate within the transaction
+       * @example 0
+       */
       cert_index: number;
-      /** Bech32 stake address */
+      /**
+       * @description Bech32 stake address
+       * @example stake1u9r76ypf5fskppa0cmttas05cgcswrttn6jrq4yd7jpdnvc7gt0yc
+       */
       address: string;
-      /** MIR amount in Lovelaces */
+      /**
+       * @description MIR amount in Lovelaces
+       * @example 431833601
+       */
       amount: string;
     }[];
     tx_content_pool_certs: {
-      /** Index of the certificate within the transaction */
+      /**
+       * @description Index of the certificate within the transaction
+       * @example 0
+       */
       cert_index: number;
-      /** Bech32 encoded pool ID */
+      /**
+       * @description Bech32 encoded pool ID
+       * @example pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy
+       */
       pool_id: string;
-      /** VRF key hash */
+      /**
+       * @description VRF key hash
+       * @example 0b5245f9934ec2151116fb8ec00f35fd00e0aa3b075c4ed12cce440f999d8233
+       */
       vrf_key: string;
-      /** Stake pool certificate pledge in Lovelaces */
+      /**
+       * @description Stake pool certificate pledge in Lovelaces
+       * @example 5000000000
+       */
       pledge: string;
-      /** Margin tax cost of the stake pool */
+      /**
+       * @description Margin tax cost of the stake pool
+       * @example 0.05
+       */
       margin_cost: number;
-      /** Fixed tax cost of the stake pool in Lovelaces */
+      /**
+       * @description Fixed tax cost of the stake pool in Lovelaces
+       * @example 340000000
+       */
       fixed_cost: string;
-      /** Bech32 reward account of the stake pool */
+      /**
+       * @description Bech32 reward account of the stake pool
+       * @example stake1uxkptsa4lkr55jleztw43t37vgdn88l6ghclfwuxld2eykgpgvg3f
+       */
       reward_account: string;
+      /**
+       * @example [
+       *   "stake1u98nnlkvkk23vtvf9273uq7cph5ww6u2yq2389psuqet90sv4xv9v"
+       * ]
+       */
       owners: string[];
       metadata: {
-        /** URL to the stake pool metadata */
+        /**
+         * @description URL to the stake pool metadata
+         * @example https://stakenuts.com/mainnet.json
+         */
         url: string | null;
-        /** Hash of the metadata file */
+        /**
+         * @description Hash of the metadata file
+         * @example 47c0c68cb57f4a5b4a87bad896fc274678e7aea98e200fa14a1cb40c0cab1d8c
+         */
         hash: string | null;
-        /** Ticker of the stake pool */
+        /**
+         * @description Ticker of the stake pool
+         * @example NUTS
+         */
         ticker: string | null;
-        /** Name of the stake pool */
+        /**
+         * @description Name of the stake pool
+         * @example Stake Nuts
+         */
         name: string | null;
-        /** Description of the stake pool */
+        /**
+         * @description Description of the stake pool
+         * @example The best pool ever
+         */
         description: string | null;
-        /** Home page of the stake pool */
+        /**
+         * @description Home page of the stake pool
+         * @example https://stakentus.com/
+         */
         homepage: string | null;
       } | null;
       relays: {
-        /** IPv4 address of the relay */
+        /**
+         * @description IPv4 address of the relay
+         * @example 4.4.4.4
+         */
         ipv4: string | null;
-        /** IPv6 address of the relay */
+        /**
+         * @description IPv6 address of the relay
+         * @example https://stakenuts.com/mainnet.json
+         */
         ipv6: string | null;
-        /** DNS name of the relay */
+        /**
+         * @description DNS name of the relay
+         * @example relay1.stakenuts.com
+         */
         dns: string | null;
-        /** DNS SRV entry of the relay */
+        /**
+         * @description DNS SRV entry of the relay
+         * @example _relays._tcp.relays.stakenuts.com
+         */
         dns_srv: string | null;
-        /** Network port of the relay */
+        /**
+         * @description Network port of the relay
+         * @example 3001
+         */
         port: number;
       }[];
-      /** Epoch in which the update becomes active */
+      /**
+       * @description Epoch in which the update becomes active
+       * @example 210
+       */
       active_epoch: number;
     }[];
     tx_content_pool_retires: {
-      /** Index of the certificate within the transaction */
+      /**
+       * @description Index of the certificate within the transaction
+       * @example 0
+       */
       cert_index: number;
-      /** Bech32 stake pool ID */
+      /**
+       * @description Bech32 stake pool ID
+       * @example pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy
+       */
       pool_id: string;
-      /** Epoch in which the pool becomes retired */
+      /**
+       * @description Epoch in which the pool becomes retired
+       * @example 216
+       */
       retiring_epoch: number;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "label": "1967",
+     *     "json_metadata": {
+     *       "metadata": "https://nut.link/metadata.json",
+     *       "hash": "6bf124f217d0e5a0a8adb1dbd8540e1334280d49ab861127868339f43b3948af"
+     *     }
+     *   },
+     *   {
+     *     "label": "1968",
+     *     "json_metadata": {
+     *       "ADAUSD": [
+     *         {
+     *           "value": "0.10409800535729975",
+     *           "source": "ergoOracles"
+     *         }
+     *       ]
+     *     }
+     *   }
+     * ]
+     */
     tx_content_metadata: {
-      /** Metadata label */
+      /** @description Metadata label */
       label: string;
-      /** Content of the metadata */
+      /** @description Content of the metadata */
       json_metadata: string | { [key: string]: unknown };
     }[];
+    /**
+     * @example [
+     *   {
+     *     "label": "1968",
+     *     "cbor_metadata": "\\xa100a16b436f6d62696e6174696f6e8601010101010c",
+     *     "metadata": "a100a16b436f6d62696e6174696f6e8601010101010c"
+     *   }
+     * ]
+     */
     tx_content_metadata_cbor: {
-      /** Metadata label */
+      /** @description Metadata label */
       label: string;
-      /** @deprecated Content of the CBOR metadata */
+      /**
+       * @deprecated
+       * @description Content of the CBOR metadata
+       */
       cbor_metadata: string | null;
-      /** Content of the CBOR metadata in hex */
+      /** @description Content of the CBOR metadata in hex */
       metadata: string | null;
     }[];
     tx_content_redeemers: {
-      /** Index of the redeemer within the transaction */
+      /**
+       * @description Index of the redeemer within the transaction
+       * @example 0
+       */
       tx_index: number;
-      /** Validation purpose */
+      /**
+       * @description Validation purpose
+       * @example spend
+       * @enum {string}
+       */
       purpose: "spend" | "mint" | "cert" | "reward";
-      /** Script hash */
+      /**
+       * @description Script hash
+       * @example ec26b89af41bef0f7585353831cb5da42b5b37185e0c8a526143b824
+       */
       script_hash: string;
-      /** Datum hash */
+      /**
+       * @description Redeemer data hash
+       * @example 923918e403bf43c34b4ef6b48eb2ee04babed17320d8d1b9ff9ad086e86f44ec
+       */
+      redeemer_data_hash: string;
+      /**
+       * @deprecated
+       * @description Datum hash
+       * @example 923918e403bf43c34b4ef6b48eb2ee04babed17320d8d1b9ff9ad086e86f44ec
+       */
       datum_hash: string;
-      /** The budget in Memory to run a script */
+      /**
+       * @description The budget in Memory to run a script
+       * @example 1700
+       */
       unit_mem: string;
-      /** The budget in CPU steps to run a script */
+      /**
+       * @description The budget in CPU steps to run a script
+       * @example 476468
+       */
       unit_steps: string;
-      /** The fee consumed to run the script */
+      /**
+       * @description The fee consumed to run the script
+       * @example 172033
+       */
       fee: string;
     }[];
     account_content: {
-      /** Bech32 stake address */
+      /**
+       * @description Bech32 stake address
+       * @example stake1ux3g2c9dx2nhhehyrezyxpkstartcqmu9hk63qgfkccw5rqttygt7
+       */
       stake_address: string;
-      /** Registration state of an account */
+      /**
+       * @description Registration state of an account
+       * @example true
+       */
       active: boolean;
-      /** Epoch of the most recent action - registration or deregistration */
-      active_epoch: number;
-      /** Balance of the account in Lovelaces */
+      /**
+       * @description Epoch of the most recent action - registration or deregistration
+       * @example 412
+       */
+      active_epoch: number | null;
+      /**
+       * @description Balance of the account in Lovelaces
+       * @example 619154618165
+       */
       controlled_amount: string;
-      /** Sum of all rewards for the account in the Lovelaces */
+      /**
+       * @description Sum of all rewards for the account in the Lovelaces
+       * @example 319154618165
+       */
       rewards_sum: string;
-      /** Sum of all the withdrawals for the account in Lovelaces */
+      /**
+       * @description Sum of all the withdrawals for the account in Lovelaces
+       * @example 12125369253
+       */
       withdrawals_sum: string;
-      /** Sum of all  funds from reserves for the account in the Lovelaces */
+      /**
+       * @description Sum of all  funds from reserves for the account in the Lovelaces
+       * @example 319154618165
+       */
       reserves_sum: string;
-      /** Sum of all funds from treasury for the account in the Lovelaces */
+      /**
+       * @description Sum of all funds from treasury for the account in the Lovelaces
+       * @example 12000000
+       */
       treasury_sum: string;
-      /** Sum of available rewards that haven't been withdrawn yet for the account in the Lovelaces */
+      /**
+       * @description Sum of available rewards that haven't been withdrawn yet for the account in the Lovelaces
+       * @example 319154618165
+       */
       withdrawable_amount: string;
-      /** Bech32 pool ID that owns the account */
+      /**
+       * @description Bech32 pool ID that owns the account
+       * @example pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy
+       */
       pool_id: string | null;
     };
+    /**
+     * @example [
+     *   {
+     *     "epoch": 215,
+     *     "amount": "12695385",
+     *     "pool_id": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy",
+     *     "type": "member"
+     *   },
+     *   {
+     *     "epoch": 216,
+     *     "amount": "3586329",
+     *     "pool_id": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy",
+     *     "type": "member"
+     *   },
+     *   {
+     *     "epoch": 217,
+     *     "amount": "1",
+     *     "pool_id": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy",
+     *     "type": "member"
+     *   },
+     *   {
+     *     "epoch": 217,
+     *     "amount": "1337",
+     *     "pool_id": "pool1cytwr0n7eas6du2h2xshl8ypa1yqr18f0erlhhjcuczysiunjcs",
+     *     "type": "leader"
+     *   },
+     *   {
+     *     "epoch": 218,
+     *     "amount": "1395265",
+     *     "pool_id": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy",
+     *     "type": "member"
+     *   },
+     *   {
+     *     "epoch": 218,
+     *     "amount": "500000000",
+     *     "pool_id": "pool1cytwr0n7eas6du2h2xshl8ypa1yqr18f0erlhhjcuczysiunjcs",
+     *     "type": "pool_deposit_refund"
+     *   }
+     * ]
+     */
     account_reward_content: {
-      /** Epoch of the associated reward */
+      /** @description Epoch of the associated reward */
       epoch: number;
-      /** Rewards for given epoch in Lovelaces */
+      /** @description Rewards for given epoch in Lovelaces */
       amount: string;
-      /** Bech32 pool ID being delegated to */
+      /** @description Bech32 pool ID being delegated to */
       pool_id: string;
+      /**
+       * @description Type of the reward
+       * @enum {string}
+       */
+      type: "leader" | "member" | "pool_deposit_refund";
     }[];
+    /**
+     * @example [
+     *   {
+     *     "active_epoch": 210,
+     *     "amount": "12695385",
+     *     "pool_id": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy"
+     *   },
+     *   {
+     *     "active_epoch": 211,
+     *     "amount": "22695385",
+     *     "pool_id": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy"
+     *   }
+     * ]
+     */
     account_history_content: {
-      /** Epoch in which the stake was active */
+      /**
+       * @description Epoch in which the stake was active
+       * @example 210
+       */
       active_epoch: number;
-      /** Stake amount in Lovelaces */
+      /** @description Stake amount in Lovelaces */
       amount: string;
-      /** Bech32 ID of pool being delegated to */
+      /** @description Bech32 ID of pool being delegated to */
       pool_id: string;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "active_epoch": 210,
+     *     "tx_hash": "2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531",
+     *     "amount": "12695385",
+     *     "pool_id": "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy"
+     *   },
+     *   {
+     *     "active_epoch": 242,
+     *     "tx_hash": "1a0570af966fb355a7160e4f82d5a80b8681b7955f5d44bec0dde628516157f0",
+     *     "amount": "12691385",
+     *     "pool_id": "pool1kchver88u3kygsak8wgll7htr8uxn5v35lfrsyy842nkscrzyvj"
+     *   }
+     * ]
+     */
     account_delegation_content: {
-      /** Epoch in which the delegation becomes active */
+      /**
+       * @description Epoch in which the delegation becomes active
+       * @example 210
+       */
       active_epoch: number;
-      /** Hash of the transaction containing the delegation */
+      /** @description Hash of the transaction containing the delegation */
       tx_hash: string;
-      /** Rewards for given epoch in Lovelaces */
+      /** @description Rewards for given epoch in Lovelaces */
       amount: string;
-      /** Bech32 ID of pool being delegated to */
+      /** @description Bech32 ID of pool being delegated to */
       pool_id: string;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "tx_hash": "2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531",
+     *     "action": "registered"
+     *   },
+     *   {
+     *     "tx_hash": "1a0570af966fb355a7160e4f82d5a80b8681b7955f5d44bec0dde628516157f0",
+     *     "action": "deregistered"
+     *   }
+     * ]
+     */
     account_registration_content: {
-      /** Hash of the transaction containing the (de)registration certificate */
+      /** @description Hash of the transaction containing the (de)registration certificate */
       tx_hash: string;
-      /** Action in the certificate */
+      /**
+       * @description Action in the certificate
+       * @enum {string}
+       */
       action: "registered" | "deregistered";
     }[];
+    /**
+     * @example [
+     *   {
+     *     "tx_hash": "48a9625c841eea0dd2bb6cf551eabe6523b7290c9ce34be74eedef2dd8f7ecc5",
+     *     "amount": "454541212442"
+     *   },
+     *   {
+     *     "tx_hash": "4230b0cbccf6f449f0847d8ad1d634a7a49df60d8c142bb8cc2dbc8ca03d9e34",
+     *     "amount": "97846969"
+     *   }
+     * ]
+     */
     account_withdrawal_content: {
-      /** Hash of the transaction containing the withdrawal */
+      /** @description Hash of the transaction containing the withdrawal */
       tx_hash: string;
-      /** Withdrawal amount in Lovelaces */
+      /** @description Withdrawal amount in Lovelaces */
       amount: string;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "tx_hash": "69705bba1d687a816ff5a04ec0c358a1f1ef075ab7f9c6cc2763e792581cec6d",
+     *     "amount": "2193707473"
+     *   },
+     *   {
+     *     "tx_hash": "baaa77b63d4d7d2bb3ab02c9b85978c2092c336dede7f59e31ad65452d510c13",
+     *     "amount": "14520198574"
+     *   }
+     * ]
+     */
     account_mir_content: {
-      /** Hash of the transaction containing the MIR */
+      /** @description Hash of the transaction containing the MIR */
       tx_hash: string;
-      /** MIR amount in Lovelaces */
+      /** @description MIR amount in Lovelaces */
       amount: string;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "address": "addr1qx2kd28nq8ac5prwg32hhvudlwggpgfp8utlyqxu6wqgz62f79qsdmm5dsknt9ecr5w468r9ey0fxwkdrwh08ly3tu9sy0f4qd"
+     *   },
+     *   {
+     *     "address": "addr1qys3czp8s9thc6u2fqed9yq3h24nyw28uk0m6mkgn9dkckjf79qsdmm5dsknt9ecr5w468r9ey0fxwkdrwh08ly3tu9suth4w4"
+     *   },
+     *   {
+     *     "address": "addr1q8j55h253zcvl326sk5qdt2n8z7eghzspe0ekxgncr796s2f79qsdmm5dsknt9ecr5w468r9ey0fxwkdrwh08ly3tu9sjmd35m"
+     *   },
+     *   {
+     *     "address": "addr1q8f7gxrprank3drhx8k5grlux7ene0nlwun8y9thu8mc3yjf79qsdmm5dsknt9ecr5w468r9ey0fxwkdrwh08ly3tu9sls6vnt"
+     *   }
+     * ]
+     */
     account_addresses_content: {
-      /** Address associated with the stake key */
+      /** @description Address associated with the stake key */
       address: string;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "unit": "d5e6bf0500378d4f0da4e8dde6becec7621cd8cbf5cbb9b87013d4cc537061636542756433343132",
+     *     "quantity": "1"
+     *   },
+     *   {
+     *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+     *     "quantity": "125"
+     *   }
+     * ]
+     */
     account_addresses_assets: {
-      /** The unit of the value */
+      /**
+       * Format: Concatenation of asset policy_id and hex-encoded asset_name
+       * @description The unit of the value
+       */
       unit: string;
-      /** The quantity of the unit */
+      /** @description The quantity of the unit */
       quantity: string;
     }[];
     account_addresses_total: {
-      /** Bech32 encoded stake address */
+      /**
+       * @description Bech32 encoded stake address
+       * @example stake1u9l5q5jwgelgagzyt6nuaasefgmn8pd25c8e9qpeprq0tdcp0e3uk
+       */
       stake_address: string;
+      /**
+       * @example [
+       *   {
+       *     "unit": "lovelace",
+       *     "quantity": "42000000"
+       *   },
+       *   {
+       *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+       *     "quantity": "12"
+       *   }
+       * ]
+       */
       received_sum: {
-        /** The unit of the value */
+        /**
+         * Format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+         * @description The unit of the value
+         */
         unit: string;
-        /** The quantity of the unit */
+        /** @description The quantity of the unit */
         quantity: string;
       }[];
+      /**
+       * @example [
+       *   {
+       *     "unit": "lovelace",
+       *     "quantity": "42000000"
+       *   },
+       *   {
+       *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+       *     "quantity": "12"
+       *   }
+       * ]
+       */
       sent_sum: {
-        /** The unit of the value */
+        /**
+         * Format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+         * @description The unit of the value
+         */
         unit: string;
-        /** The quantity of the unit */
+        /** @description The quantity of the unit */
         quantity: string;
       }[];
-      /** Count of all transactions for all addresses associated with the account */
+      /**
+       * @description Count of all transactions for all addresses associated with the account
+       * @example 12
+       */
       tx_count: number;
     };
+    /**
+     * @example [
+     *   {
+     *     "label": "1990",
+     *     "cip10": null,
+     *     "count": "1"
+     *   },
+     *   {
+     *     "label": "1967",
+     *     "cip10": "nut.link metadata oracles registry",
+     *     "count": "3"
+     *   },
+     *   {
+     *     "label": "1968",
+     *     "cip10": "nut.link metadata oracles data points",
+     *     "count": "16321"
+     *   }
+     * ]
+     */
     tx_metadata_labels: {
-      /** Metadata label */
+      /** @description Metadata label */
       label: string;
-      /** CIP10 defined description */
+      /** @description CIP10 defined description */
       cip10: string | null;
-      /** The count of metadata entries with a specific label */
+      /** @description The count of metadata entries with a specific label */
       count: string;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "tx_hash": "257d75c8ddb0434e9b63e29ebb6241add2b835a307aa33aedba2effe09ed4ec8",
+     *     "json_metadata": {
+     *       "ADAUSD": [
+     *         {
+     *           "value": "0.10409800535729975",
+     *           "source": "ergoOracles"
+     *         }
+     *       ]
+     *     }
+     *   },
+     *   {
+     *     "tx_hash": "e865f2cc01ca7381cf98dcdc4de07a5e8674b8ea16e6a18e3ed60c186fde2b9c",
+     *     "json_metadata": {
+     *       "ADAUSD": [
+     *         {
+     *           "value": "0.15409850555139935",
+     *           "source": "ergoOracles"
+     *         }
+     *       ]
+     *     }
+     *   },
+     *   {
+     *     "tx_hash": "4237501da3cfdd53ade91e8911e764bd0699d88fd43b12f44a1f459b89bc91be",
+     *     "json_metadata": null
+     *   }
+     * ]
+     */
     tx_metadata_label_json: {
-      /** Transaction hash that contains the specific metadata */
+      /** @description Transaction hash that contains the specific metadata */
       tx_hash: string;
-      /** Content of the JSON metadata */
+      /** @description Content of the JSON metadata */
       json_metadata:
         | (Partial<string> &
             Partial<{ [key: string]: unknown }> &
@@ -3271,299 +4234,909 @@ export interface components {
             Partial<boolean>)
         | null;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "tx_hash": "257d75c8ddb0434e9b63e29ebb6241add2b835a307aa33aedba2effe09ed4ec8",
+     *     "cbor_metadata": null,
+     *     "metadata": null
+     *   },
+     *   {
+     *     "tx_hash": "e865f2cc01ca7381cf98dcdc4de07a5e8674b8ea16e6a18e3ed60c186fde2b9c",
+     *     "cbor_metadata": null,
+     *     "metadata": null
+     *   },
+     *   {
+     *     "tx_hash": "4237501da3cfdd53ade91e8911e764bd0699d88fd43b12f44a1f459b89bc91be",
+     *     "cbor_metadata": "\\xa100a16b436f6d62696e6174696f6e8601010101010c",
+     *     "metadata": "a100a16b436f6d62696e6174696f6e8601010101010c"
+     *   }
+     * ]
+     */
     tx_metadata_label_cbor: {
-      /** Transaction hash that contains the specific metadata */
+      /** @description Transaction hash that contains the specific metadata */
       tx_hash: string;
-      /** @deprecated Content of the CBOR metadata */
+      /**
+       * @deprecated
+       * @description Content of the CBOR metadata
+       */
       cbor_metadata: string | null;
-      /** Content of the CBOR metadata in hex */
+      /** @description Content of the CBOR metadata in hex */
       metadata: string | null;
     }[];
     address_content: {
-      /** Bech32 encoded addresses */
+      /**
+       * @description Bech32 encoded addresses
+       * @example addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz
+       */
       address: string;
+      /**
+       * @example [
+       *   {
+       *     "unit": "lovelace",
+       *     "quantity": "42000000"
+       *   },
+       *   {
+       *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+       *     "quantity": "12"
+       *   }
+       * ]
+       */
       amount: {
-        /** The unit of the value */
+        /**
+         * Format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+         * @description The unit of the value
+         */
         unit: string;
-        /** The quantity of the unit */
+        /** @description The quantity of the unit */
         quantity: string;
       }[];
-      /** Stake address that controls the key */
+      /**
+       * @description Stake address that controls the key
+       * @example stake1ux3g2c9dx2nhhehyrezyxpkstartcqmu9hk63qgfkccw5rqttygt7
+       */
       stake_address: string | null;
-      /** Address era */
+      /**
+       * @description Address era
+       * @example shelley
+       * @enum {string}
+       */
       type: "byron" | "shelley";
-      /** True if this is a script address */
+      /**
+       * @description True if this is a script address
+       * @example false
+       */
       script: boolean;
     };
     address_content_extended: {
-      /** Bech32 encoded addresses */
+      /**
+       * @description Bech32 encoded addresses
+       * @example addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz
+       */
       address: string;
+      /**
+       * @example [
+       *   {
+       *     "unit": "lovelace",
+       *     "quantity": "42000000",
+       *     "decimals": 6,
+       *     "has_nft_onchain_metadata": false
+       *   },
+       *   {
+       *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+       *     "quantity": "12",
+       *     "decimals": null,
+       *     "has_nft_onchain_metadata": true
+       *   }
+       * ]
+       */
       amount: {
-        /** The unit of the value */
+        /**
+         * Format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+         * @description The unit of the value
+         */
         unit: string;
-        /** The quantity of the unit */
+        /** @description The quantity of the unit */
         quantity: string;
-        /** Number of decimal places of the asset unit */
+        /** @description Number of decimal places of the asset unit */
         decimals: number | null;
-        /** The latest minting transaction includes the NFT metadata according to CIP25 */
+        /** @description The latest minting transaction includes the NFT metadata according to CIP25 */
         has_nft_onchain_metadata: boolean;
       }[];
-      /** Stake address that controls the key */
+      /**
+       * @description Stake address that controls the key
+       * @example stake1ux3g2c9dx2nhhehyrezyxpkstartcqmu9hk63qgfkccw5rqttygt7
+       */
       stake_address: string | null;
-      /** Address era */
+      /**
+       * @description Address era
+       * @example shelley
+       * @enum {string}
+       */
       type: "byron" | "shelley";
-      /** True if this is a script address */
+      /**
+       * @description True if this is a script address
+       * @example false
+       */
       script: boolean;
     };
     address_content_total: {
-      /** Bech32 encoded address */
+      /**
+       * @description Bech32 encoded address
+       * @example addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz
+       */
       address: string;
+      /**
+       * @example [
+       *   {
+       *     "unit": "lovelace",
+       *     "quantity": "42000000"
+       *   },
+       *   {
+       *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+       *     "quantity": "12"
+       *   }
+       * ]
+       */
       received_sum: {
-        /** The unit of the value */
+        /**
+         * Format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+         * @description The unit of the value
+         */
         unit: string;
-        /** The quantity of the unit */
+        /** @description The quantity of the unit */
         quantity: string;
       }[];
+      /**
+       * @example [
+       *   {
+       *     "unit": "lovelace",
+       *     "quantity": "42000000"
+       *   },
+       *   {
+       *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+       *     "quantity": "12"
+       *   }
+       * ]
+       */
       sent_sum: {
-        /** The unit of the value */
+        /**
+         * Format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+         * @description The unit of the value
+         */
         unit: string;
-        /** The quantity of the unit */
+        /** @description The quantity of the unit */
         quantity: string;
       }[];
-      /** Count of all transactions on the address */
+      /**
+       * @description Count of all transactions on the address
+       * @example 12
+       */
       tx_count: number;
     };
+    /**
+     * @example [
+     *   {
+     *     "tx_hash": "39a7a284c2a0948189dc45dec670211cd4d72f7b66c5726c08d9b3df11e44d58",
+     *     "output_index": 0,
+     *     "amount": [
+     *       {
+     *         "unit": "lovelace",
+     *         "quantity": "42000000"
+     *       }
+     *     ],
+     *     "block": "7eb8e27d18686c7db9a18f8bbcfe34e3fed6e047afaa2d969904d15e934847e6",
+     *     "data_hash": "9e478573ab81ea7a8e31891ce0648b81229f408d596a3483e6f4f9b92d3cf710"
+     *   },
+     *   {
+     *     "tx_hash": "4c4e67bafa15e742c13c592b65c8f74c769cd7d9af04c848099672d1ba391b49",
+     *     "output_index": 0,
+     *     "amount": [
+     *       {
+     *         "unit": "lovelace",
+     *         "quantity": "729235000"
+     *       }
+     *     ],
+     *     "block": "953f1b80eb7c11a7ffcd67cbd4fde66e824a451aca5a4065725e5174b81685b7",
+     *     "data_hash": null
+     *   },
+     *   {
+     *     "tx_hash": "768c63e27a1c816a83dc7b07e78af673b2400de8849ea7e7b734ae1333d100d2",
+     *     "output_index": 1,
+     *     "amount": [
+     *       {
+     *         "unit": "lovelace",
+     *         "quantity": "42000000"
+     *       },
+     *       {
+     *         "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+     *         "quantity": "12"
+     *       }
+     *     ],
+     *     "block": "5c571f83fe6c784d3fbc223792627ccf0eea96773100f9aedecf8b1eda4544d7",
+     *     "data_hash": null
+     *   }
+     * ]
+     */
     address_utxo_content: {
-      /** Transaction hash of the UTXO */
+      /** @description Transaction hash of the UTXO */
       tx_hash: string;
-      /** @deprecated UTXO index in the transaction */
+      /**
+       * @deprecated
+       * @description UTXO index in the transaction
+       */
       tx_index: number;
-      /** UTXO index in the transaction */
+      /** @description UTXO index in the transaction */
       output_index: number;
       amount: {
-        /** The unit of the value */
+        /**
+         * Format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+         * @description The unit of the value
+         */
         unit: string;
-        /** The quantity of the unit */
+        /** @description The quantity of the unit */
         quantity: string;
       }[];
-      /** Block hash of the UTXO */
+      /** @description Block hash of the UTXO */
       block: string;
-      /** The hash of the transaction output datum */
+      /** @description The hash of the transaction output datum */
       data_hash: string | null;
+      /**
+       * @description CBOR encoded inline datum
+       * @example 19a6aa
+       */
+      inline_datum: string | null;
+      /**
+       * @description The hash of the reference script of the output
+       * @example 13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1
+       */
+      reference_script_hash: string | null;
     }[];
+    /**
+     * @example [
+     *   "2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531",
+     *   "1a0570af966fb355a7160e4f82d5a80b8681b7955f5d44bec0dde628516157f0"
+     * ]
+     */
     address_txs_content: string[];
+    /**
+     * @example [
+     *   {
+     *     "tx_hash": "8788591983aa73981fc92d6cddbbe643959f5a784e84b8bee0db15823f575a5b",
+     *     "tx_index": 6,
+     *     "block_height": 69,
+     *     "block_time": 1635505891
+     *   },
+     *   {
+     *     "tx_hash": "52e748c4dec58b687b90b0b40d383b9fe1f24c1a833b7395cdf07dd67859f46f",
+     *     "tx_index": 9,
+     *     "block_height": 4547,
+     *     "block_time": 1635505987
+     *   },
+     *   {
+     *     "tx_hash": "e8073fd5318ff43eca18a852527166aa8008bee9ee9e891f585612b7e4ba700b",
+     *     "tx_index": 0,
+     *     "block_height": 564654,
+     *     "block_time": 1834505492
+     *   }
+     * ]
+     */
     address_transactions_content: {
-      /** Hash of the transaction */
+      /** @description Hash of the transaction */
       tx_hash: string;
-      /** Transaction index within the block */
+      /** @description Transaction index within the block */
       tx_index: number;
-      /** Block height */
+      /** @description Block height */
       block_height: number;
-      /** Block creation time in UNIX time */
+      /** @description Block creation time in UNIX time */
       block_time: number;
     }[];
+    /**
+     * @example [
+     *   "pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy",
+     *   "pool1hn7hlwrschqykupwwrtdfkvt2u4uaxvsgxyh6z63703p2knj288",
+     *   "pool1ztjyjfsh432eqetadf82uwuxklh28xc85zcphpwq6mmezavzad2"
+     * ]
+     */
     pool_list: string[];
+    /**
+     * @example [
+     *   {
+     *     "pool_id": "pool19u64770wqp6s95gkajc8udheske5e6ljmpq33awxk326zjaza0q",
+     *     "active_stake": "1541200000",
+     *     "live_stake": "1541400000"
+     *   },
+     *   {
+     *     "pool_id": "pool1dvla4zq98hpvacv20snndupjrqhuc79zl6gjap565nku6et5zdx",
+     *     "active_stake": "22200000",
+     *     "live_stake": "48955550"
+     *   },
+     *   {
+     *     "pool_id": "pool1wvccajt4eugjtf3k0ja3exjqdj7t8egsujwhcw4tzj4rzsxzw5w",
+     *     "active_stake": "9989541215",
+     *     "live_stake": "168445464878"
+     *   }
+     * ]
+     */
     pool_list_extended: {
-      /** Bech32 encoded pool ID */
+      /**
+       * @description Bech32 encoded pool ID
+       * @example pool1z5uqdk7dzdxaae5633fqfcu2eqzy3a3rgtuvy087fdld7yws0xt
+       */
       pool_id: string;
-      /** Hexadecimal pool ID. */
+      /**
+       * @description Hexadecimal pool ID.
+       * @example 0f292fcaa02b8b2f9b3c8f9fd8e0bb21abedb692a6d5058df3ef2735
+       */
       hex: string;
-      /** Active delegated amount */
+      /**
+       * @description Active delegated amount
+       * @example 4200000000
+       */
       active_stake: string;
-      /** Currently delegated amount */
+      /**
+       * @description Currently delegated amount
+       * @example 6900000000
+       */
       live_stake: string;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "pool_id": "pool19u64770wqp6s95gkajc8udheske5e6ljmpq33awxk326zjaza0q",
+     *     "epoch": 225
+     *   },
+     *   {
+     *     "pool_id": "pool1dvla4zq98hpvacv20snndupjrqhuc79zl6gjap565nku6et5zdx",
+     *     "epoch": 215
+     *   },
+     *   {
+     *     "pool_id": "pool1wvccajt4eugjtf3k0ja3exjqdj7t8egsujwhcw4tzj4rzsxzw5w",
+     *     "epoch": 231
+     *   }
+     * ]
+     */
     pool_list_retire: {
-      /** Bech32 encoded pool ID */
+      /**
+       * @description Bech32 encoded pool ID
+       * @example pool1z5uqdk7dzdxaae5633fqfcu2eqzy3a3rgtuvy087fdld7yws0xt
+       */
       pool_id: string;
-      /** Retirement epoch number */
+      /**
+       * @description Retirement epoch number
+       * @example 242
+       */
       epoch: number;
     }[];
     pool: {
-      /** Bech32 pool ID */
+      /**
+       * @description Bech32 pool ID
+       * @example pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy
+       */
       pool_id: string;
-      /** Hexadecimal pool ID. */
+      /**
+       * @description Hexadecimal pool ID.
+       * @example 0f292fcaa02b8b2f9b3c8f9fd8e0bb21abedb692a6d5058df3ef2735
+       */
       hex: string;
-      /** VRF key hash */
+      /**
+       * @description VRF key hash
+       * @example 0b5245f9934ec2151116fb8ec00f35fd00e0aa3b075c4ed12cce440f999d8233
+       */
       vrf_key: string;
-      /** Total minted blocks */
+      /**
+       * @description Total minted blocks
+       * @example 69
+       */
       blocks_minted: number;
-      /** Number of blocks minted in the current epoch */
+      /**
+       * @description Number of blocks minted in the current epoch
+       * @example 4
+       */
       blocks_epoch: number;
+      /** @example 6900000000 */
       live_stake: string;
+      /** @example 0.42 */
       live_size: number;
+      /** @example 0.93 */
       live_saturation: number;
+      /** @example 127 */
       live_delegators: number;
+      /** @example 4200000000 */
       active_stake: string;
+      /** @example 0.43 */
       active_size: number;
-      /** Stake pool certificate pledge */
+      /**
+       * @description Stake pool certificate pledge
+       * @example 5000000000
+       */
       declared_pledge: string;
-      /** Stake pool current pledge */
+      /**
+       * @description Stake pool current pledge
+       * @example 5000000001
+       */
       live_pledge: string;
-      /** Margin tax cost of the stake pool */
+      /**
+       * @description Margin tax cost of the stake pool
+       * @example 0.05
+       */
       margin_cost: number;
-      /** Fixed tax cost of the stake pool */
+      /**
+       * @description Fixed tax cost of the stake pool
+       * @example 340000000
+       */
       fixed_cost: string;
-      /** Bech32 reward account of the stake pool */
+      /**
+       * @description Bech32 reward account of the stake pool
+       * @example stake1uxkptsa4lkr55jleztw43t37vgdn88l6ghclfwuxld2eykgpgvg3f
+       */
       reward_account: string;
+      /**
+       * @example [
+       *   "stake1u98nnlkvkk23vtvf9273uq7cph5ww6u2yq2389psuqet90sv4xv9v"
+       * ]
+       */
       owners: string[];
+      /**
+       * @example [
+       *   "9f83e5484f543e05b52e99988272a31da373f3aab4c064c76db96643a355d9dc",
+       *   "7ce3b8c433bf401a190d58c8c483d8e3564dfd29ae8633c8b1b3e6c814403e95",
+       *   "3e6e1200ce92977c3fe5996bd4d7d7e192bcb7e231bc762f9f240c76766535b9"
+       * ]
+       */
       registration: string[];
       retirement: string[];
     };
     pool_history: {
-      /** Epoch number */
+      /**
+       * @description Epoch number
+       * @example 233
+       */
       epoch: number;
-      /** Number of blocks created by pool */
+      /**
+       * @description Number of blocks created by pool
+       * @example 22
+       */
       blocks: number;
-      /** Active (Snapshot of live stake 2 epochs ago) stake in Lovelaces */
+      /**
+       * @description Active (Snapshot of live stake 2 epochs ago) stake in Lovelaces
+       * @example 20485965693569
+       */
       active_stake: string;
-      /** Pool size (percentage) of overall active stake at that epoch */
+      /**
+       * @description Pool size (percentage) of overall active stake at that epoch
+       * @example 1.2345
+       */
       active_size: number;
-      /** Number of delegators for epoch */
+      /**
+       * @description Number of delegators for epoch
+       * @example 115
+       */
       delegators_count: number;
-      /** Total rewards received before distribution to delegators */
+      /**
+       * @description Total rewards received before distribution to delegators
+       * @example 206936253674159
+       */
       rewards: string;
-      /** Pool operator rewards */
+      /**
+       * @description Pool operator rewards
+       * @example 1290968354
+       */
       fees: string;
     }[];
     pool_metadata: {
-      /** Bech32 pool ID */
+      /**
+       * @description Bech32 pool ID
+       * @example pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy
+       */
       pool_id: string;
-      /** Hexadecimal pool ID */
+      /**
+       * @description Hexadecimal pool ID
+       * @example 0f292fcaa02b8b2f9b3c8f9fd8e0bb21abedb692a6d5058df3ef2735
+       */
       hex: string;
-      /** URL to the stake pool metadata */
+      /**
+       * @description URL to the stake pool metadata
+       * @example https://stakenuts.com/mainnet.json
+       */
       url: string | null;
-      /** Hash of the metadata file */
+      /**
+       * @description Hash of the metadata file
+       * @example 47c0c68cb57f4a5b4a87bad896fc274678e7aea98e200fa14a1cb40c0cab1d8c
+       */
       hash: string | null;
-      /** Ticker of the stake pool */
+      /**
+       * @description Ticker of the stake pool
+       * @example NUTS
+       */
       ticker: string | null;
-      /** Name of the stake pool */
+      /**
+       * @description Name of the stake pool
+       * @example Stake Nuts
+       */
       name: string | null;
-      /** Description of the stake pool */
+      /**
+       * @description Description of the stake pool
+       * @example The best pool ever
+       */
       description: string | null;
-      /** Home page of the stake pool */
+      /**
+       * @description Home page of the stake pool
+       * @example https://stakentus.com/
+       */
       homepage: string | null;
     };
     empty_object: { [key: string]: unknown };
     pool_relays: {
-      /** IPv4 address of the relay */
+      /**
+       * @description IPv4 address of the relay
+       * @example 4.4.4.4
+       */
       ipv4: string | null;
-      /** IPv6 address of the relay */
+      /**
+       * @description IPv6 address of the relay
+       * @example https://stakenuts.com/mainnet.json
+       */
       ipv6: string | null;
-      /** DNS name of the relay */
+      /**
+       * @description DNS name of the relay
+       * @example relay1.stakenuts.com
+       */
       dns: string | null;
-      /** DNS SRV entry of the relay */
+      /**
+       * @description DNS SRV entry of the relay
+       * @example _relays._tcp.relays.stakenuts.com
+       */
       dns_srv: string | null;
-      /** Network port of the relay */
+      /**
+       * @description Network port of the relay
+       * @example 3001
+       */
       port: number;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "address": "stake1ux4vspfvwuus9uwyp5p3f0ky7a30jq5j80jxse0fr7pa56sgn8kha",
+     *     "live_stake": "1137959159981411"
+     *   },
+     *   {
+     *     "address": "stake1uylayej7esmarzd4mk4aru37zh9yz0luj3g9fsvgpfaxulq564r5u",
+     *     "live_stake": "16958865648"
+     *   },
+     *   {
+     *     "address": "stake1u8lr2pnrgf8f7vrs9lt79hc3sxm8s2w4rwvgpncks3axx6q93d4ck",
+     *     "live_stake": "18605647"
+     *   }
+     * ]
+     */
     pool_delegators: {
-      /** Bech32 encoded stake addresses */
+      /** @description Bech32 encoded stake addresses */
       address: string;
-      /** Currently delegated amount */
+      /** @description Currently delegated amount */
       live_stake: string;
     }[];
+    /**
+     * @example [
+     *   "d8982ca42cfe76b747cc681d35d671050a9e41e9cfe26573eb214e94fe6ff21d",
+     *   "026436c539e2ce84c7f77ffe669f4e4bbbb3b9c53512e5857dcba8bb0b4e9a8c",
+     *   "bcc8487f419b8c668a18ea2120822a05df6dfe1de1f0fac3feba88cf760f303c",
+     *   "86bf7b4a274e0f8ec9816171667c1b4a0cfc661dc21563f271acea9482b62df7"
+     * ]
+     */
     pool_blocks: string[];
+    /**
+     * @example [
+     *   {
+     *     "tx_hash": "6804edf9712d2b619edb6ac86861fe93a730693183a262b165fcc1ba1bc99cad",
+     *     "cert_index": 0,
+     *     "action": "registered"
+     *   },
+     *   {
+     *     "tx_hash": "9c190bc1ac88b2ab0c05a82d7de8b71b67a9316377e865748a89d4426c0d3005",
+     *     "cert_index": 0,
+     *     "action": "deregistered"
+     *   },
+     *   {
+     *     "tx_hash": "e14a75b0eb2625de7055f1f580d70426311b78e0d36dd695a6bdc96c7b3d80e0",
+     *     "cert_index": 1,
+     *     "action": "registered"
+     *   }
+     * ]
+     */
     pool_updates: {
-      /** Transaction ID */
+      /** @description Transaction ID */
       tx_hash: string;
-      /** Certificate within the transaction */
+      /** @description Certificate within the transaction */
       cert_index: number;
-      /** Action in the certificate */
+      /**
+       * @description Action in the certificate
+       * @enum {string}
+       */
       action: "registered" | "deregistered";
     }[];
+    /**
+     * @example [
+     *   {
+     *     "asset": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+     *     "quantity": "1"
+     *   },
+     *   {
+     *     "asset": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e75d",
+     *     "quantity": "100000"
+     *   },
+     *   {
+     *     "asset": "6804edf9712d2b619edb6ac86861fe93a730693183a262b165fcc1ba1bc99cad",
+     *     "quantity": "18605647"
+     *   }
+     * ]
+     */
     assets: {
-      /** Asset identifier */
+      /**
+       * Format: Concatenation of the policy_id and hex-encoded asset_name
+       * @description Asset identifier
+       */
       asset: string;
-      /** Current asset quantity */
+      /** @description Current asset quantity */
       quantity: string;
     }[];
     asset: {
-      /** Hex-encoded asset full name */
+      /**
+       * @description Hex-encoded asset full name
+       * @example b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e
+       */
       asset: string;
-      /** Policy ID of the asset */
+      /**
+       * @description Policy ID of the asset
+       * @example b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a7
+       */
       policy_id: string;
-      /** Hex-encoded asset name of the asset */
+      /**
+       * @description Hex-encoded asset name of the asset
+       * @example 6e7574636f696e
+       */
       asset_name: string | null;
-      /** CIP14 based user-facing fingerprint */
+      /**
+       * @description CIP14 based user-facing fingerprint
+       * @example asset1pkpwyknlvul7az0xx8czhl60pyel45rpje4z8w
+       */
       fingerprint: string;
-      /** Current asset quantity */
+      /**
+       * @description Current asset quantity
+       * @example 12000
+       */
       quantity: string;
-      /** ID of the initial minting transaction */
+      /**
+       * @description ID of the initial minting transaction
+       * @example 6804edf9712d2b619edb6ac86861fe93a730693183a262b165fcc1ba1bc99cad
+       */
       initial_mint_tx_hash: string;
-      /** Count of mint and burn transactions */
+      /**
+       * @description Count of mint and burn transactions
+       * @example 1
+       */
       mint_or_burn_count: number;
       /**
-       * On-chain metadata stored in the minting transaction under label 721,
+       * @description On-chain metadata stored in the minting transaction under label 721,
        * community discussion around the standard ongoing at https://github.com/cardano-foundation/CIPs/pull/85
        */
       onchain_metadata:
         | ({
-            /** Name of the asset */
+            /**
+             * @description Name of the asset
+             * @example My NFT token
+             */
             name?: string;
-            /** URI(s) of the associated asset */
-            image?: string | unknown[];
+            /**
+             * @description URI(s) of the associated asset
+             * @example ipfs://ipfs/QmfKyJ4tuvHowwKQCbCHj4L5T3fSj8cjs7Aau8V7BWv226
+             */
+            image?: string | string[];
           } & { [key: string]: unknown })
         | null;
       metadata: {
-        /** Asset name */
+        /**
+         * @description Asset name
+         * @example nutcoin
+         */
         name: string;
-        /** Asset description */
+        /**
+         * @description Asset description
+         * @example The Nut Coin
+         */
         description: string;
+        /** @example nutc */
         ticker: string | null;
-        /** Asset website */
+        /**
+         * @description Asset website
+         * @example https://www.stakenuts.com/
+         */
         url: string | null;
-        /** Base64 encoded logo of the asset */
+        /**
+         * @description Base64 encoded logo of the asset
+         * @example iVBORw0KGgoAAAANSUhEUgAAADAAAAAoCAYAAAC4h3lxAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH5QITCDUPjqwFHwAAB9xJREFUWMPVWXtsU9cZ/8499/r6dZ3E9rUdO7ZDEgglFWO8KaOsJW0pCLRKrN1AqqYVkqoqrYo0ja7bpElru1WairStFKY9WzaE1E1tx+jokKqwtqFNyhKahEJJyJNgJ37E9r1+3HvO/sFR4vhx7SBtfH/F3/l93/f7ne/4PBxEKYU72dj/ZfH772v1TU+HtqbTaX8wOO01GPQpRVH7JEm+vGHDuq6z7/8jUSoHKtaBKkEUFUXdajDy1hUrmrs6zn/wWS7m7pZVjMUirKGUTnzc+e9xLcTrPPVfZzDz06Sc2lyQGEIyAPzT7Xa+dvE/3e+XLaCxoflHsVj8MAAYs74aa/WHoenwvpkZKeFy2Z5NJlOPUkqXZccFwSSrKjlyffjLH+TL6XTUGTGL/6hklD3ldIrj2M5MRmkLBMcvaRLQ1Nj88sxM/HCBfMP+eu/OYGDqe6l0WmpoqJ/88upgrU7HrQNA/cFg6MlkKiLlBtVUO40cx54BgHvLIT/HJLvdeqh/4NKxogKWN7fsCoUi7xTLxLJ4vLq6ak//wKVOrdXtttrTDMPsqJA8AAAwDErdu3VL3alTf5ma9eWCpoKhn5dKpCiqJxicPucQPVu0FHaInn35yHMcKwPAa4SQ3QCwFgDWUko3qSr5vqqSgTypuEg4Mo/zvA74/Y0rZSnZU8akSHV17k2fXfy0txjI5224kEym1s/1EUI7LBbztweHrkzkizn49LP6U6feepFSeggAQK/n04SQZ8bGrxdeQjZrbRvGzLH5hcibRqOhPplMfS1fIY5jz4xPDBdcGggho2h3z9sOLRazdG3wqp9SMgUlzGZ17SSEPsRx7J8CwfGu3PF57WhqqjfN/VxVJUxKUrIdITAXKpDJKFscosdfaFy0u+/K9aXTmXe0kAcAmA5Nng5Hbj6Tj/wCAYFAcN7uEY3GXGazMSHLqVVFapgBoMPna9yqhRAAgCTJMa3YUjZPgNFkSlWYx5eUkx+0tKx83V3rF+cVYJjruWCe133DIXqMmrNrFSDabRcWkywYmG5XFOW6aHcfb9324CoAgMmbo9MIoXkneCajiAihV/c/8eSiBSw4BxyiZxQA6m7H7FBKT2CMn2MY5jFFUX6ZO+5w2j8aHZ7YH40FByrJD5DnHGAY5uTtIA8AgBDaR4F2Yxb3WizCgmtA4ObUPSazodduqz3Suu0hf0U1cjvgdNSJ1dWWveFwdDUAtAiC2Uopdcdi8c9Zlh3GmDGl05mtAKAvo47EcdwThJCjqqpWFxALlNITomg73tff21GRAJez7iVK4WGGYfoJIQduBsbm7UrLm1ueCoUiv65kpiilw1ZbzcFoZOYoIcRTAn6eYZgXJm+Oni+Vd3YJbdyweSch9HlK6SpVVfcyDDq7Yf3m2XPBIXraKyV/a4b9UkLawbLsZgB4rwR8CyGkw13r+5fX27BckwBAEJ47oKpk8+DgUIdod7fV1vqOAMDrlZLPmqKoB+rrvXIgOP6w0WjYy3Ls5RL4bUk52bVm9fqnCk7M3CXU2ND8+MxM7BcIIftiyRYyntcdHh0bmr0wfmXl6p2SJB2KRmP3l4j7zejYUFtRAQAAgslm1Bv4nyGEDpYiIwjmjw0G/RjP866JiclNqqqWfKLq9fyZkdHBBXcnl9O71GDgD8bj0ncRQqZ8sRgzL9yYHH2pqICsOUTPLgA4CXNeZFmzWIS/YhYfjUZmvqPjuceSckrz25pS2h2cmlhbaBwhzr6kfsnL8Xhif55YYFl23Y3Jkdl7EVMoUSA4/q6qqNsBIPd11e52u45FwtG3CSH7yiEPAGC1Vt9dXGBmanDoygFLlbAjtzZCCMyC6VeaOpA1l9N7l1kwtauKaozHE28YTQaQpeR7+TqjxXheR0fHhhgt2CX1S3clEtKC16HL5djYe+niBU0CcmYA2W21/Qih5ZqDcoxlMZ24MaJJAABA87IVJ8Lh6N65Pr1B/+LIyLUfAhRZQvnM6ah7ZDHkAQB0vK6/HHxNTc2ruT5Zkldn/y5LACFk+2LIAwAwCGl6yGSt88KHXbmrBCHkqEgAz+vWLFZALJb4qNwYhFDhCSknkSwnQ4sVgDFeWg7+gQe2r1tAmkGTFQlACHWVg89nhJA9ot3dphV/eeCLp/Pw6K5IQP0S39uLFXCLwDG7zf1cKZxD9LSlUunHc/12u/2t2Vzl/rzu8zb8PZlM7bwdQgDgPK/nX2nddt+53//ht3LW2dS0fF0iLj2vquojuQFmwXRucPBKa8UCmpe1iOFwpAsAfLdJBFBKwVIlXJ2JxqKCxbwyHkvoCkAlv9/71U+7Oq+UJWDZ0hViJBL1cRynbNq0sSeeiPl6ei4NqIqq6TSmlB7X6bjuTEY5pgWfzwxGPZhMpt39/b3vzvWXFGCzulZjjM/DrauDwcAr8bjcgzGjZUuVBMH8k2uDX7wCAFDr8n2LEPI7SqmhTP6SzVbz6MDlz0/nDpT8EmOM22HOvUeWU2wp8iyLgRL6hk7Hrc2SBwC4MTlykmXZRozxn00mbVcphNA5jJmV+chr6oDd5l6jN/A/TqfSuwEAGITGMIsvGo3GTwTB3Dc2NjGSxdZYq4VIOOoNBANnKE0XPXE3brjHOTQ08k2MmVZOxzVJCbkFIQSCYEphzPaFQuGzTpfjb319PZ8UFXin/5OvrHPg/9HueAH/BSUqOuNZm4fyAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIxLTAyLTE5VDA4OjUyOjI1KzAwOjAwCmFGlgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMS0wMi0xOVQwODo1MjoyMyswMDowMBjsyxAAAAAASUVORK5CYII=
+         */
         logo: string | null;
-        /** Number of decimal places of the asset unit */
+        /**
+         * @description Number of decimal places of the asset unit
+         * @example 6
+         */
         decimals: number | null;
       } | null;
     };
+    /**
+     * @example [
+     *   {
+     *     "tx_hash": "2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531",
+     *     "amount": "10",
+     *     "action": "minted"
+     *   },
+     *   {
+     *     "tx_hash": "9c190bc1ac88b2ab0c05a82d7de8b71b67a9316377e865748a89d4426c0d3005",
+     *     "amount": "5",
+     *     "action": "burned"
+     *   },
+     *   {
+     *     "tx_hash": "1a0570af966fb355a7160e4f82d5a80b8681b7955f5d44bec0dde628516157f0",
+     *     "amount": "5",
+     *     "action": "burned"
+     *   }
+     * ]
+     */
     asset_history: {
-      /** Hash of the transaction containing the asset action */
+      /** @description Hash of the transaction containing the asset action */
       tx_hash: string;
-      /** Action executed upon the asset policy */
+      /**
+       * @description Action executed upon the asset policy
+       * @enum {string}
+       */
       action: "minted" | "burned";
-      /** Asset amount of the specific action */
+      /** @description Asset amount of the specific action */
       amount: string;
     }[];
+    /**
+     * @example [
+     *   "8788591983aa73981fc92d6cddbbe643959f5a784e84b8bee0db15823f575a5b",
+     *   "52e748c4dec58b687b90b0b40d383b9fe1f24c1a833b7395cdf07dd67859f46f",
+     *   "e8073fd5318ff43eca18a852527166aa8008bee9ee9e891f585612b7e4ba700b"
+     * ]
+     */
     asset_txs: string[];
+    /**
+     * @example [
+     *   {
+     *     "tx_hash": "8788591983aa73981fc92d6cddbbe643959f5a784e84b8bee0db15823f575a5b",
+     *     "tx_index": 6,
+     *     "block_height": 69,
+     *     "block_time": 1635505891
+     *   },
+     *   {
+     *     "tx_hash": "52e748c4dec58b687b90b0b40d383b9fe1f24c1a833b7395cdf07dd67859f46f",
+     *     "tx_index": 9,
+     *     "block_height": 4547,
+     *     "block_time": 1635505987
+     *   },
+     *   {
+     *     "tx_hash": "e8073fd5318ff43eca18a852527166aa8008bee9ee9e891f585612b7e4ba700b",
+     *     "tx_index": 0,
+     *     "block_height": 564654,
+     *     "block_time": 1834505492
+     *   }
+     * ]
+     */
     asset_transactions: ({
-      /** Hash of the transaction */
+      /** @description Hash of the transaction */
       tx_hash: string;
-      /** Transaction index within the block */
+      /** @description Transaction index within the block */
       tx_index: number;
-      /** Block height */
+      /** @description Block height */
       block_height: number;
     } & {
       block_time: unknown;
     })[];
+    /**
+     * @example [
+     *   {
+     *     "address": "addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz",
+     *     "quantity": "1"
+     *   },
+     *   {
+     *     "address": "addr1qyhr4exrgavdcn3qhfcc9f939fzsch2re5ry9cwvcdyh4x4re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qdpvhza",
+     *     "quantity": "100000"
+     *   },
+     *   {
+     *     "address": "addr1q8zup8m9ue3p98kxlxl9q8rnyan8hw3ul282tsl9s326dfj088lvedv4zckcj24arcpasr0gua4c5gq4zw2rpcpjk2lq8cmd9l",
+     *     "quantity": "18605647"
+     *   }
+     * ]
+     */
     asset_addresses: {
-      /** Address containing the specific asset */
+      /** @description Address containing the specific asset */
       address: string;
-      /** Asset quantity on the specific address */
+      /** @description Asset quantity on the specific address */
       quantity: string;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "asset": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+     *     "quantity": "1"
+     *   },
+     *   {
+     *     "asset": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a766e",
+     *     "quantity": "100000"
+     *   },
+     *   {
+     *     "asset": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb574636f696e",
+     *     "quantity": "18605647"
+     *   }
+     * ]
+     */
     asset_policy: {
-      /** Concatenation of the policy_id and hex-encoded asset_name */
+      /** @description Concatenation of the policy_id and hex-encoded asset_name */
       asset: string;
-      /** Current asset quantity */
+      /** @description Current asset quantity */
       quantity: string;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "script_hash": "13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1"
+     *   },
+     *   {
+     *     "script_hash": "e1457a0c47dfb7a2f6b8fbb059bdceab163c05d34f195b87b9f2b30e"
+     *   },
+     *   {
+     *     "script_hash": "a6e63c0ff05c96943d1cc30bf53112ffff0f34b45986021ca058ec54"
+     *   }
+     * ]
+     */
     scripts: {
-      /** Script hash */
+      /** @description Script hash */
       script_hash: string;
     }[];
     script: {
-      /** Script hash */
+      /**
+       * @description Script hash
+       * @example 13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1
+       */
       script_hash: string;
-      /** Type of the script language */
-      type: "timelock" | "plutus";
-      /** The size of the CBOR serialised script, if a Plutus script */
+      /**
+       * @description Type of the script language
+       * @example plutusV1
+       * @enum {string}
+       */
+      type: "timelock" | "plutusV1" | "plutusV2";
+      /**
+       * @description The size of the CBOR serialised script, if a Plutus script
+       * @example 3119
+       */
       serialised_size: number | null;
     };
+    /**
+     * @example {
+     *   "json": {
+     *     "type": "atLeast",
+     *     "scripts": [
+     *       {
+     *         "type": "sig",
+     *         "keyHash": "654891a4db2ea44b5263f4079a33efa0358ba90769e3d8f86a4a0f81"
+     *       },
+     *       {
+     *         "type": "sig",
+     *         "keyHash": "8685ad48f9bebb8fdb6447abbe140645e0bf743ff98da62e63e2147f"
+     *       },
+     *       {
+     *         "type": "sig",
+     *         "keyHash": "cb0f3b3f91693374ff7ce1d473cf6e721c7bab52b0737f04164e5a2d"
+     *       }
+     *     ],
+     *     "required": 2
+     *   }
+     * }
+     */
     script_json: {
-      /** JSON contents of the `timelock` script, null for `plutus` scripts */
+      /** @description JSON contents of the `timelock` script, null for `plutus` scripts */
       json:
         | (Partial<string> &
             Partial<{ [key: string]: unknown }> &
@@ -3573,35 +5146,68 @@ export interface components {
             Partial<boolean>)
         | null;
     };
+    /**
+     * @example {
+     *   "cbor": "4e4d01000033222220051200120011"
+     * }
+     */
     script_cbor: {
-      /** CBOR contents of the `plutus` script, null for `timelocks` */
-      cbor:
-        | (Partial<string> &
-            Partial<{ [key: string]: unknown }> &
-            Partial<unknown[]> &
-            Partial<number> &
-            Partial<number> &
-            Partial<boolean>)
-        | null;
+      /** @description CBOR contents of the `plutus` script, null for `timelocks` */
+      cbor: string | null;
     };
     script_redeemers: {
-      /** Hash of the transaction */
+      /**
+       * @description Hash of the transaction
+       * @example 1a0570af966fb355a7160e4f82d5a80b8681b7955f5d44bec0dce628516157f0
+       */
       tx_hash: string;
-      /** The index of the redeemer pointer in the transaction */
+      /**
+       * @description The index of the redeemer pointer in the transaction
+       * @example 0
+       */
       tx_index: number;
-      /** Validation purpose */
+      /**
+       * @description Validation purpose
+       * @example spend
+       * @enum {string}
+       */
       purpose: "spend" | "mint" | "cert" | "reward";
-      /** Datum hash */
+      /**
+       * @description Datum hash of the redeemer
+       * @example 923918e403bf43c34b4ef6b48eb2ee04babed17320d8d1b9ff9ad086e86f44ec
+       */
+      redeemer_data_hash: string;
+      /**
+       * @deprecated
+       * @description Datum hash
+       * @example 923918e403bf43c34b4ef6b48eb2ee04babed17320d8d1b9ff9ad086e86f44ec
+       */
       datum_hash: string;
-      /** The budget in Memory to run a script */
+      /**
+       * @description The budget in Memory to run a script
+       * @example 1700
+       */
       unit_mem: string;
-      /** The budget in CPU steps to run a script */
+      /**
+       * @description The budget in CPU steps to run a script
+       * @example 476468
+       */
       unit_steps: string;
-      /** The fee consumed to run the script */
+      /**
+       * @description The fee consumed to run the script
+       * @example 172033
+       */
       fee: string;
     }[];
+    /**
+     * @example {
+     *   "json_value": {
+     *     "int": 42
+     *   }
+     * }
+     */
     script_datum: {
-      /** JSON content of the datum */
+      /** @description JSON content of the datum */
       json_value: Partial<string> &
         Partial<{ [key: string]: unknown }> &
         Partial<unknown[]> &
@@ -3609,78 +5215,209 @@ export interface components {
         Partial<number> &
         Partial<boolean>;
     };
+    /**
+     * @example {
+     *   "cbor": "19a6aa"
+     * }
+     */
+    script_datum_cbor: {
+      /** @description CBOR serialized datum */
+      cbor: string;
+    };
+    /**
+     * @example [
+     *   {
+     *     "xpub": "d507c8f866691bd96e131334c355188b1a1d0b2fa0ab11545075aab332d77d9eb19657ad13ee581b56b0f8d744d66ca356b93d42fe176b3de007d53e9c4c4e7a",
+     *     "role": 0,
+     *     "index": 0,
+     *     "address": "addr1q90sqnljxky88s0jsnps48jd872p7znzwym0jpzqnax6qs5nfrlkaatu28n0qzmqh7f2cpksxhpc9jefx3wrl0a2wu8q5amen7"
+     *   }
+     * ]
+     */
     utils_addresses_xpub: {
-      /** Script hash */
+      /** @description Script hash */
       xpub: string;
-      /** Account role */
+      /** @description Account role */
       role: number;
-      /** Address index */
+      /** @description Address index */
       index: number;
-      /** Derived address */
+      /** @description Derived address */
       address: string;
     };
+    /**
+     * @example [
+     *   {
+     *     "time": 1612543884,
+     *     "calls": 42
+     *   },
+     *   {
+     *     "time": 1614523884,
+     *     "calls": 6942
+     *   }
+     * ]
+     */
     metrics: {
-      /** Starting time of the call count interval (ends midnight UTC) in UNIX time */
+      /** @description Starting time of the call count interval (ends midnight UTC) in UNIX time */
       time: number;
-      /** Sum of all calls for a particular day */
+      /** @description Sum of all calls for a particular day */
       calls: number;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "time": 1612543814,
+     *     "calls": 182,
+     *     "endpoint": "block"
+     *   },
+     *   {
+     *     "time": 1612543814,
+     *     "calls": 42,
+     *     "endpoint": "epoch"
+     *   },
+     *   {
+     *     "time": 1612543812,
+     *     "calls": 775,
+     *     "endpoint": "block"
+     *   },
+     *   {
+     *     "time": 1612523884,
+     *     "calls": 4,
+     *     "endpoint": "epoch"
+     *   },
+     *   {
+     *     "time": 1612553884,
+     *     "calls": 89794,
+     *     "endpoint": "block"
+     *   }
+     * ]
+     */
     metrics_endpoints: {
-      /** Starting time of the call count interval (ends midnight UTC) in UNIX time */
+      /** @description Starting time of the call count interval (ends midnight UTC) in UNIX time */
       time: number;
-      /** Sum of all calls for a particular day and endpoint */
+      /** @description Sum of all calls for a particular day and endpoint */
       calls: number;
-      /** Endpoint parent name */
+      /** @description Endpoint parent name */
       endpoint: string;
     }[];
     network: {
       supply: {
-        /** Maximum supply in Lovelaces */
+        /**
+         * @description Maximum supply in Lovelaces
+         * @example 45000000000000000
+         */
         max: string;
-        /** Current total (max supply - reserves) supply in Lovelaces */
+        /**
+         * @description Current total (max supply - reserves) supply in Lovelaces
+         * @example 32890715183299160
+         */
         total: string;
-        /** Current circulating (UTXOs + withdrawables) supply in Lovelaces */
+        /**
+         * @description Current circulating (UTXOs + withdrawables) supply in Lovelaces
+         * @example 32412601976210393
+         */
         circulating: string;
-        /** Current supply locked by scripts in Lovelaces */
+        /**
+         * @description Current supply locked by scripts in Lovelaces
+         * @example 125006953355
+         */
         locked: string;
-        /** Current supply locked in treasury */
+        /**
+         * @description Current supply locked in treasury
+         * @example 98635632000000
+         */
         treasury: string;
-        /** Current supply locked in reserves */
+        /**
+         * @description Current supply locked in reserves
+         * @example 46635632000000
+         */
         reserves: string;
       };
       stake: {
-        /** Current live stake in Lovelaces */
+        /**
+         * @description Current live stake in Lovelaces
+         * @example 23204950463991654
+         */
         live: string;
-        /** Current active stake in Lovelaces */
+        /**
+         * @description Current active stake in Lovelaces
+         * @example 22210233523456321
+         */
         active: string;
       };
     };
     nutlink_address: {
-      /** Bech32 encoded address */
+      /**
+       * @description Bech32 encoded address
+       * @example addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz
+       */
       address: string;
-      /** URL of the specific metadata file */
+      /**
+       * @description URL of the specific metadata file
+       * @example https://nut.link/metadata.json
+       */
       metadata_url: string;
-      /** Hash of the metadata file */
+      /**
+       * @description Hash of the metadata file
+       * @example 6bf124f217d0e5a0a8adb1dbd8540e1334280d49ab861127868339f43b3948af
+       */
       metadata_hash: string;
-      /** The cached metadata of the `metadata_url` file. */
+      /** @description The cached metadata of the `metadata_url` file. */
       metadata: { [key: string]: unknown } | null;
     };
+    /**
+     * @example [
+     *   {
+     *     "name": "ADAUSD",
+     *     "count": 1980038,
+     *     "latest_block": 2657092
+     *   },
+     *   {
+     *     "name": "ADAEUR",
+     *     "count": 1980038,
+     *     "latest_block": 2657092
+     *   },
+     *   {
+     *     "name": "ADABTC",
+     *     "count": 1980038,
+     *     "latest_block": 2657092
+     *   }
+     * ]
+     */
     nutlink_address_tickers: {
-      /** Name of the ticker */
+      /** @description Name of the ticker */
       name: string;
-      /** Number of ticker records */
+      /** @description Number of ticker records */
       count: number;
-      /** Block height of the latest record */
+      /** @description Block height of the latest record */
       latest_block: number;
     }[];
+    /**
+     * @example [
+     *   {
+     *     "tx_hash": "e8073fd5318ff43eca18a852527166aa8008bee9ee9e891f585612b7e4ba700b",
+     *     "block_height": 2657092,
+     *     "tx_index": 8,
+     *     "payload": [
+     *       {
+     *         "source": "coinGecko",
+     *         "value": "1.29"
+     *       },
+     *       {
+     *         "source": "cryptoCompare",
+     *         "value": "1.283"
+     *       }
+     *     ]
+     *   }
+     * ]
+     */
     nutlink_address_ticker: {
-      /** Hash of the transaction */
+      /** @description Hash of the transaction */
       tx_hash: string;
-      /** Block height of the record */
+      /** @description Block height of the record */
       block_height: number;
-      /** Transaction index within the block */
+      /** @description Transaction index within the block */
       tx_index: number;
-      /** Content of the ticker */
+      /** @description Content of the ticker */
       payload: (Partial<string> &
         Partial<{ [key: string]: unknown }> &
         Partial<unknown[]> &
@@ -3688,16 +5425,36 @@ export interface components {
         Partial<number> &
         Partial<boolean>) & { [key: string]: unknown };
     }[];
+    /**
+     * @example [
+     *   {
+     *     "address": "addr_test1qpmtp5t0t5y6cqkaz7rfsyrx7mld77kpvksgkwm0p7en7qum7a589n30e80tclzrrnj8qr4qvzj6al0vpgtnmrkkksnqd8upj0",
+     *     "tx_hash": "e8073fd5318ff43eca18a852527166aa8008bee9ee9e891f585612b7e4ba700b",
+     *     "block_height": 2657092,
+     *     "tx_index": 8,
+     *     "payload": [
+     *       {
+     *         "source": "coinGecko",
+     *         "value": "1.29"
+     *       },
+     *       {
+     *         "source": "cryptoCompare",
+     *         "value": "1.283"
+     *       }
+     *     ]
+     *   }
+     * ]
+     */
     nutlink_tickers_ticker: {
-      /** Address of a metadata oracle */
+      /** @description Address of a metadata oracle */
       address: string;
-      /** Hash of the transaction */
+      /** @description Hash of the transaction */
       tx_hash: string;
-      /** Block height of the record */
+      /** @description Block height of the record */
       block_height: number;
-      /** Transaction index within the block */
+      /** @description Transaction index within the block */
       tx_index: number;
-      /** Content of the ticker */
+      /** @description Content of the ticker */
       payload: (Partial<string> &
         Partial<{ [key: string]: unknown }> &
         Partial<unknown[]> &
@@ -3711,8 +5468,11 @@ export interface components {
     400: {
       content: {
         "application/json": {
+          /** @example 400 */
           status_code: number;
+          /** @example Bad Request */
           error: string;
+          /** @example Backend did not understand your request. */
           message: string;
         };
       };
@@ -3721,8 +5481,11 @@ export interface components {
     403: {
       content: {
         "application/json": {
+          /** @example 403 */
           status_code: number;
+          /** @example Forbidden */
           error: string;
+          /** @example Invalid project token. */
           message: string;
         };
       };
@@ -3731,8 +5494,11 @@ export interface components {
     404: {
       content: {
         "application/json": {
+          /** @example 404 */
           status_code: number;
+          /** @example Not Found */
           error: string;
+          /** @example The requested component has not been found. */
           message: string;
         };
       };
@@ -3741,8 +5507,11 @@ export interface components {
     418: {
       content: {
         "application/json": {
+          /** @example 418 */
           status_code: number;
+          /** @example Requested Banned */
           error: string;
+          /** @example IP has been auto-banned for flooding. */
           message: string;
         };
       };
@@ -3751,8 +5520,11 @@ export interface components {
     425: {
       content: {
         "application/json": {
+          /** @example 425 */
           status_code: number;
+          /** @example Mempool Full */
           error: string;
+          /** @example Mempool is full, please try resubmitting again later. */
           message: string;
         };
       };
@@ -3761,8 +5533,11 @@ export interface components {
     429: {
       content: {
         "application/json": {
+          /** @example 429 */
           status_code: number;
+          /** @example Project Over Limit */
           error: string;
+          /** @example Usage is over limit. */
           message: string;
         };
       };
@@ -3771,8 +5546,11 @@ export interface components {
     500: {
       content: {
         "application/json": {
+          /** @example 500 */
           status_code: number;
+          /** @example Internal Server Error */
           error: string;
+          /** @example An unexpected response was received from the backend. */
           message: string;
         };
       };
