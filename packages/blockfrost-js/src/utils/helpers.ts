@@ -15,7 +15,7 @@ import { SignatureVerificationError } from './errors';
  * Derives an address with derivation path m/1852'/1815'/account'/role/addressIndex
  * If role === 2 then it returns a stake address (m/1852'/1815'/account'/2/addressIndex)
  *
- * @Returns {address: string, path: number[] } Bech32 address shaped as {address: string, path: [role, addressIndex]}
+ * @Returns {address: string, path: number[] } An object with bech32 address and corresponding partial derivation path {address: string, path: [role, addressIndex]}
  * */
 export const deriveAddress = (
   accountPublicKey: string,

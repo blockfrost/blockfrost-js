@@ -183,4 +183,79 @@ async function runExample() {
 runExample();
 ```
 
+## Utility functions
+
+Blockfrost SDK exports several utility functions to improve developer experience.
+
+### `verifyWebhookSignature(webhookPayload: unknown, signatureHeader: string, secret: string, timestampToleranceSeconds?: number)`
+
+Webhooks enable Blockfrost to push real-time notifications to your application. In order to prevent malicious actor from pretending to be Blockfrost every webhook request is signed. The signature is included in a request's `Blockfrost-Signature` header. This allows you to verify that the events were sent by Blockfrost, not by a third party.
+To learn more about Secure Webhooks, see [Secure Webhooks Docs](https://blockfrost.dev/docs/start-building/webhooks/).
+
+For full example, see [webhook-basic](examples/webhook-basic) example.
+
+The function accepts 4 parameters:
+
+- `webhookPayload` - Buffer or stringified payload of the webhook request.
+- `signatureHeader` - Blockfrost-Signature header.
+- `secret` - Authentication token for the webhook.
+- `timestampToleranceSeconds` - Time tolerance affecting signature validity (optional). By default signatures older than 600s are considered invalid.
+
+If the signature is valid then the function returns `true`. Otherwise It throws `SignatureVerificationError` with various error messages.
+
+For easier debugging the `SignatureVerificationError` has additional `detail` object with 2 properties, `header` and `request_body`.
+
+### `parseAsset(hex: string)`
+
+Parses asset hex and returns object containing `policyId`, `assetName` and `fingerprint`.
+
+```ts
+const Blockfrost = require('@blockfrost/blockfrost-js');
+const res = Blockfrost.parseAsset(
+  '00000002df633853f6a47465c9496721d2d5b1291b8398016c0e87ae6e7574636f696e',
+);
+console.log(res);
+// {
+//   "assetName": 'nutcoin',
+//   "fingerprint": 'asset12h3p5l3nd5y26lr22am7y7ga3vxghkhf57zkhd',
+//   "policyId": '00000002df633853f6a47465c9496721d2d5b1291b8398016c0e87ae',
+// }
+```
+
+### `getFingerprint(policyId: string, assetName?: string)`
+
+Returns asset fingerprint for given `policyId` and `assetName`.
+
+```ts
+const Blockfrost = require('@blockfrost/blockfrost-js');
+const res = Blockfrost.getFingerprint(
+  '00000002df633853f6a47465c9496721d2d5b1291b8398016c0e87ae',
+  '6e7574636f696e',
+);
+console.log(res);
+// 'asset12h3p5l3nd5y26lr22am7y7ga3vxghkhf57zkhd'
+```
+
+### `deriveAddress(accountPublicKey: string, role: number, addressIndex: number, isTestnet: boolean, isByron?: boolean)`
+
+Derives an address with derivation path `m/1852'/1815'/account'/role/addressIndex`
+If role is set to `2` then it returns a stake address (`m/1852'/1815'/account'/2/addressIndex`)
+
+The function returns an object with bech32 address and corresponding partial derivation path `{address: string, path: [role, addressIndex]}`.
+
+```ts
+const Blockfrost = require('@blockfrost/blockfrost-js');
+const res = Blockfrost.deriveAddress(
+  '7ec9738746cb4708df52a455b43aa3fdee8955abaf37f68ffc79bb84fbf9e1b39d77e2deb9749faf890ff8326d350ed3fd0e4aa271b35cad063692af87102152', // account public key
+  0, // role
+  1, // index
+  false, // isTestnet
+);
+console.log(res);
+// {
+//   address: 'addr1qy535472n2ctu3x55v03zmm9jnz54grqu3sueap9pnk4xys49ucjdfty5p5qlw5qe28v9k988stffc2g0hx2xx86a2dq5u58qk',
+//   path: [0, 1],
+// }
+```
+
 For a more detailed list of possibilities, [check out the wiki](https://github.com/blockfrost/blockfrost-js/wiki).
