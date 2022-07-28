@@ -135,9 +135,9 @@ export async function txsPoolRetires(
 export async function txsMetadata(
   this: BlockFrostAPI,
   hash: string,
-): Promise<components['schemas']['tx_metadata_label_json']> {
+): Promise<components['schemas']['tx_content_metadata']> {
   return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['tx_metadata_label_json']>(
+    this.instance<components['schemas']['tx_content_metadata']>(
       `txs/${hash}/metadata`,
     )
       .then(resp => {
