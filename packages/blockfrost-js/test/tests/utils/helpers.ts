@@ -76,6 +76,7 @@ describe('helpers', () => {
       ),
     ).toMatchObject({
       assetName: 'nutcoin',
+      assetNameHex: '6e7574636f696e',
       fingerprint: 'asset12h3p5l3nd5y26lr22am7y7ga3vxghkhf57zkhd',
       policyId: '00000002df633853f6a47465c9496721d2d5b1291b8398016c0e87ae',
     });
