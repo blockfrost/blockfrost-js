@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { expect, describe, test } from '@jest/globals';
 import { SDK } from '../../utils';
 import { TestFixture } from '../../types';
 
@@ -20,7 +21,11 @@ files.forEach(file => {
         fixture.command.toString(),
         async () => {
           const response = await fixture.command(SDK());
-          expect(response).toMatchObject(fixture.response);
+          if (fixture.allowEmptyArray && response.length === 0) {
+            expect(response).toEqual([]);
+          } else {
+            expect(response).toMatchObject(fixture.response);
+          }
 
           if (fixture.itemsCount) {
             expect(response.length).toBe(fixture.itemsCount);

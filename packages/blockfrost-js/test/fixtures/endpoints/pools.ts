@@ -1,8 +1,10 @@
 import { BlockFrostAPI } from '../../../src';
+import { expect } from '@jest/globals';
 
 export default [
   {
     command: (SDK: BlockFrostAPI) => SDK.poolsRetiring(),
+    allowEmptyArray: true,
     response: expect.arrayContaining([
       expect.objectContaining({
         pool_id: expect.any(String),
