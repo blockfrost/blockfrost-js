@@ -1,6 +1,6 @@
 import { BlockFrostAPI } from '../../../src/index';
 import * as utils from '../../../src/utils';
-import { expect } from '@jest/globals';
+import { expect, describe, test } from '@jest/globals';
 import {
   AdditionalEndpointOptions,
   PaginationOptions,

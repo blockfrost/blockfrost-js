@@ -6,5 +6,6 @@ export interface TestFixture {
   jestTimeout?: number;
   response: any;
   itemsCountMinimum?: number;
+  allowEmptyArray?: boolean;
   itemsCount?: number;
 }

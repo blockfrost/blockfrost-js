@@ -121,13 +121,14 @@ export const getFingerprint = (policyId: string, assetName?: string): string =>
 export const parseAsset = (hex: string): ParseAssetResult => {
   const policyIdSize = 56;
   const policyId = hex.slice(0, policyIdSize);
-  const assetNameInHex = hex.slice(policyIdSize);
-  const assetName = hexToString(assetNameInHex);
-  const fingerprint = getFingerprint(policyId, assetNameInHex);
+  const assetNameHex = hex.slice(policyIdSize);
+  const assetName = hexToString(assetNameHex);
+  const fingerprint = getFingerprint(policyId, assetNameHex);
 
   return {
     policyId,
     assetName,
+    assetNameHex,
     fingerprint,
   };
 };

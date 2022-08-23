@@ -1,8 +1,8 @@
 import nock from 'nock';
 import got from 'got';
+import { expect, describe, test } from '@jest/globals';
 import { serializeError } from 'serialize-error';
 import * as fixtures from '../../fixtures/utils/errors';
-import { expect } from '@jest/globals';
 import { handleError } from '../../../src/utils/errors';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 
@@ -17,7 +17,7 @@ describe('errors', () => {
       } else {
         scope
           .get('/test')
-          .reply(f.payload.response.statusCode, f.payload.response.body);
+          .reply(f.payload.response?.statusCode, f.payload.response?.body);
       }
       await got('http://localhost/test', {
         retry: 0,
