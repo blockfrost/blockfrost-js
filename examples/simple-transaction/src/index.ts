@@ -11,8 +11,6 @@ import { signTransaction } from './helpers/signTransaction';
 import { deriveAddressPrvKey, mnemonicToPrivateKey } from './helpers/key';
 import { UTXO } from './types';
 
-const TESTNET = true;
-
 // BIP39 mnemonic (seed) from which we will generate address to retrieve utxo from and private key used for signing the transaction
 const MNEMONIC =
   'maze riot drift silver field sadness shrimp affair whip embody odor damp';
@@ -30,13 +28,14 @@ if (!process.env.BLOCKFROST_PROJECT_ID) {
 
 const client = new BlockFrostAPI({
   projectId: process.env.BLOCKFROST_PROJECT_ID,
-  isTestnet: TESTNET,
+  network: 'testnet',
 });
 
 const run = async () => {
   // Derive an address (this is the address where you need to send ADA in order to have UTXO to actually make the transaction)
   const bip32PrvKey = mnemonicToPrivateKey(MNEMONIC);
-  const { signKey, address } = deriveAddressPrvKey(bip32PrvKey, TESTNET);
+  const testnet = true;
+  const { signKey, address } = deriveAddressPrvKey(bip32PrvKey, testnet);
   console.log(`Using address ${address}`);
 
   // Retrieve utxo for the address
