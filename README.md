@@ -53,7 +53,7 @@ const API = new Blockfrost.BlockFrostAPI({
 ### Options
 
 - `projectId` - `string`, Blockfrost project ID (required)
-- `isTestnet` - `boolean`, whether the projectId is intended for testnet network (optional, default value is derived from the `projectId` itself if possible)
+- `network` - `string`, Cardano network for given project ID. (optional, default value is derived from the `projectId` itself if possible). Possible values: `mainnet`, `testnet`, `preview`, `preprod`.
 - `rateLimiter` - `boolean` or [`RateLimiterConfig`](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/limiter.ts#L18=), whether to enable rate limiter that matches [Blockfrost API limits](https://docs.blockfrost.io/#section/Limits) (optional, default `true`). If you have your IP addresses white-listed you may want to disable it. You may also customize rate limiter by passing your own [config object](ttps://github.com/blockfrost/blockfrost-js/blob/master/src/utils/limiter.ts#11).
 - `requestTimeout` - `number`, How long to wait for a request to complete, in milliseconds (optional, default `20000`)
 - `retrySettings` - `RequiredRetryOptions`, customizations for retrying failed request (optional, [for defaults click here](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/index.ts#L58))

@@ -156,8 +156,14 @@ class BlockFrostAPI {
 
     let apiBase = API_URLS.mainnet;
 
-    if (this.options.isTestnet) {
-      apiBase = API_URLS.testnet;
+    if (this.options.network) {
+      if (this.options.network in API_URLS) {
+        apiBase = API_URLS[this.options.network];
+      } else {
+        throw Error(
+          'Invalid network option. Valid options: mainnet, testnet, preview, preprod.',
+        );
+      }
     }
 
     this.apiUrl =

@@ -12,6 +12,7 @@ import {
   PaginationOptions,
   AdditionalEndpointOptions,
   AllMethodOptions,
+  BlockfrostNetwork,
 } from '../types';
 import { RetryObject } from 'got';
 import { RATE_LIMITER_DEFAULT_CONFIG } from './limiter';
@@ -64,9 +65,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
   return {
     customBackend: options.customBackend,
     projectId: options.projectId,
-    isTestnet:
-      options.isTestnet ??
-      deriveTestnetOption(options.projectId, options.isTestnet),
+    network: options.network ?? deriveNetworkOption(options.projectId),
     rateLimiter,
     version: options.version || DEFAULT_API_VERSION,
     debug,
@@ -104,32 +103,27 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
   };
 };
 
-const deriveTestnetOption = (
+const deriveNetworkOption = (
   projectId: string | undefined,
-  isTestnet: boolean | undefined,
-) => {
+): BlockfrostNetwork | undefined => {
   if (!projectId) return undefined;
 
-  if (projectId.includes('mainnet')) {
-    return false;
-  }
-
-  if (projectId.includes('testnet')) {
-    return true;
-  }
-
-  if (projectId.includes('ipfs')) {
-    return false;
-  }
-
-  if (!isTestnet) {
-    console.log(
-      'WARNING: Old token was used without isTestnet parameter switching to mainnet network',
+  if (projectId.startsWith('mainnet')) {
+    return 'mainnet';
+  } else if (projectId.startsWith('testnet')) {
+    return 'testnet';
+  } else if (projectId.startsWith('preview')) {
+    return 'preview';
+  } else if (projectId.startsWith('preprod')) {
+    return 'preprod';
+  } else if (projectId.startsWith('ipfs')) {
+    return 'ipfs';
+  } else {
+    console.warn(
+      'WARNING: Old token was used without network parameter. Switching to mainnet network',
     );
-    return false;
+    return 'mainnet';
   }
-
-  return undefined;
 };
 
 export const getAdditionalParams = (
