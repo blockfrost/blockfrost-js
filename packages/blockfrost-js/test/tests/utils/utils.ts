@@ -18,20 +18,33 @@ describe('utils', () => {
     expect(api.projectId).toBe('xxx');
   });
 
-  test('isTestnet', () => {
+  test('init BlockFrostAPI with different networks', () => {
     const api = new BlockFrostAPI({
       projectId: 'xxx',
-      isTestnet: true,
+      network: 'testnet',
     });
 
     expect(api.apiUrl).toBe('https://cardano-testnet.blockfrost.io/api/v0');
 
     const api2 = new BlockFrostAPI({
       projectId: 'xxx',
-      isTestnet: false,
+      network: 'mainnet',
     });
 
     expect(api2.apiUrl).toBe('https://cardano-mainnet.blockfrost.io/api/v0');
+
+    const api3 = new BlockFrostAPI({
+      projectId: 'xxx',
+      network: 'preprod',
+    });
+
+    expect(api3.apiUrl).toBe('https://cardano-preprod.blockfrost.io/api/v0');
+    const api4 = new BlockFrostAPI({
+      projectId: 'xxx',
+      network: 'preview',
+    });
+
+    expect(api4.apiUrl).toBe('https://cardano-preview.blockfrost.io/api/v0');
   });
 
   test('version', () => {
@@ -72,7 +85,7 @@ describe('utils', () => {
   test('customBackend', () => {
     const api = new BlockFrostAPI({
       customBackend: 'http://customBackend.com',
-      isTestnet: false,
+      network: 'mainnet',
     });
 
     expect(api.apiUrl).toBe('http://customBackend.com');
@@ -102,7 +115,7 @@ describe('utils', () => {
 
     expect(api.options).toMatchObject({
       customBackend: undefined,
-      isTestnet: false,
+      network: 'mainnet',
       projectId: 'xxx',
       requestTimeout: 20000,
       rateLimiter: RATE_LIMITER_DEFAULT_CONFIG,
@@ -134,7 +147,7 @@ describe('utils', () => {
 
     expect(api.options).toMatchObject({
       customBackend: undefined,
-      isTestnet: false,
+      network: 'mainnet',
       projectId: 'xxx',
       http2: false,
       requestTimeout: 20000,
@@ -209,7 +222,7 @@ describe('utils', () => {
 
     expect(api.options).toMatchObject({
       customBackend: undefined,
-      isTestnet: false,
+      network: 'mainnet',
       http2: false,
       projectId: 'mainnetxxx',
       requestTimeout: 1,

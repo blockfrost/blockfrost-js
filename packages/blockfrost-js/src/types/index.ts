@@ -36,7 +36,7 @@ type OptionCombination2 = {
 };
 
 type AdditionalOptions = {
-  isTestnet?: boolean;
+  network?: CardanoNetwork;
   version?: number;
   rateLimiter?: boolean | RateLimiterConfig;
   http2?: boolean;
@@ -49,6 +49,8 @@ type AdditionalOptions = {
 export type Options = (OptionCombination1 | OptionCombination2) &
   AdditionalOptions;
 
+export type CardanoNetwork = 'mainnet' | 'testnet' | 'preview' | 'preprod';
+export type BlockfrostNetwork = CardanoNetwork | 'ipfs';
 export interface ValidatedOptions {
   customBackend?: string;
   version: number;
@@ -57,7 +59,7 @@ export interface ValidatedOptions {
   http2?: boolean;
   debug: boolean;
   projectId?: string;
-  isTestnet?: boolean;
+  network?: BlockfrostNetwork;
   retrySettings?: RequiredRetryOptions;
 }
 
