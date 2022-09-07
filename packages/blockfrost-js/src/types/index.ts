@@ -72,6 +72,7 @@ export type ErrorType =
       message: string;
       error: string;
       url: string;
+      body?: unknown;
     }
   // Client Error
   | {

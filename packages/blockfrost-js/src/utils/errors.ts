@@ -22,6 +22,7 @@ export class BlockfrostServerError extends Error {
   status_code: number;
   error: string;
   url: string;
+  body: unknown;
   constructor(error: Extract<ErrorType, { status_code: number }>) {
     super(error.message);
     this.name = 'BlockfrostServerError';
@@ -29,6 +30,7 @@ export class BlockfrostServerError extends Error {
     this.message = error.message;
     this.error = error.error;
     this.url = error.url;
+    this.body = error.body;
     Object.setPrototypeOf(this, BlockfrostServerError.prototype);
   }
 }
@@ -85,6 +87,9 @@ export const handleError = (
         message: `${statusCode}: ${statusText}`,
         error: statusText,
         url,
+        // Sometimes original body can be helpful so let's forward it
+        // Eg. communicating directly with Cardano Submit API which returns 400 with the error from cardano-node in the body of the request)
+        ...(error.response.body ? { body: error.response.body } : {}),
       });
     }
   }

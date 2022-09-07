@@ -67,7 +67,7 @@ Blockfrost Node.js SDK throws 2 types of errors, `BlockfrostServerError` and `Bl
 
 ### `BlockfrostServerError`
 
-`BlockfrostServerError` is an error returned directly by Blockfrost API. The error object's properties are matching [the same format as defined by Blockfrost API](<(https://docs.blockfrost.io/#section/Errors)>), with additional `url` field set to the URL the request was sent to.
+`BlockfrostServerError` is an error returned directly by Blockfrost API. The error object's properties are matching [the same format as defined by Blockfrost API](<(https://docs.blockfrost.io/#section/Errors)>), with additional `url` field set to the URL the request was sent to and optional `body` field set to the original body of the error response in cases where the error was not returned by Blockfrost Backend (eg. nginx).
 
 #### Example
 
