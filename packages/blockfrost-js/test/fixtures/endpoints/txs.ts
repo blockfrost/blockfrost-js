@@ -102,10 +102,10 @@ export default [
         metadata: {
           url: 'https://stakhanovite.io/cardano/stkh-1.json',
           hash: '0f519c0478527c6fd05556ecb31fafe9e5a6b9861fac96f5935381b3e328ee5d',
-          ticker: expect.any(String),
-          name: expect.any(String),
-          description: expect.any(String),
-          homepage: expect.any(String),
+          ticker: null,
+          name: null,
+          description: null,
+          homepage: null,
         },
         relays: [
           {
