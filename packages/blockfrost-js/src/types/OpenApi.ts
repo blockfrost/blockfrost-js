@@ -853,7 +853,7 @@ export interface paths {
         };
       };
       responses: {
-        /** Obtain information about stake pool retirements within a specific transaction. */
+        /** Obtain metadata information associated with a specific transaction. */
         200: {
           content: {
             "application/json": components["schemas"]["tx_content_metadata"];
@@ -878,7 +878,7 @@ export interface paths {
         };
       };
       responses: {
-        /** Obtain information about stake pool retirements within a specific transaction. */
+        /** Obtain metadata information associated with a specific transaction. */
         200: {
           content: {
             "application/json": components["schemas"]["tx_content_metadata_cbor"];
@@ -1287,6 +1287,63 @@ export interface paths {
       };
     };
   };
+  "/mempool": {
+    /** Return transactions that are currently stored in Blockfrost mempool, waiting to be included in a newly minted block. Shows only transactions submitted via Blockfrost.io. */
+    get: {
+      parameters: {
+        query: {
+          /** The number of results displayed on one page. */
+          count?: number;
+          /** The page number for listing the results. */
+          page?: number;
+          /**
+           * Ordered by the time of transaction submission.
+           * By default, we return oldest first, newest last.
+           */
+          order?: "asc" | "desc";
+        };
+      };
+      responses: {
+        /** Return the contents of the mempool */
+        200: {
+          content: {
+            "application/json": components["schemas"]["mempool_content"];
+          };
+        };
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
+      };
+    };
+  };
+  "/mempool/{hash}": {
+    /** Return content of the requested transaction. */
+    get: {
+      parameters: {
+        path: {
+          /** Hash of the requested transaction */
+          hash: string;
+        };
+      };
+      responses: {
+        /** Return the contents of the transaction. */
+        200: {
+          content: {
+            "application/json": components["schemas"]["mempool_tx_content"];
+          };
+        };
+        400: components["responses"]["400"];
+        403: components["responses"]["403"];
+        404: components["responses"]["404"];
+        418: components["responses"]["418"];
+        429: components["responses"]["429"];
+        500: components["responses"]["500"];
+      };
+    };
+  };
   "/metadata/txs/labels": {
     /** List of all used transaction metadata labels. */
     get: {
@@ -1304,7 +1361,7 @@ export interface paths {
         };
       };
       responses: {
-        /** Return the account delegations content */
+        /** Return the account metadata content in CBOR */
         200: {
           content: {
             "application/json": components["schemas"]["tx_metadata_labels"];
@@ -1340,7 +1397,7 @@ export interface paths {
         };
       };
       responses: {
-        /** Return the account delegations content */
+        /** Return the account metadata content */
         200: {
           content: {
             "application/json": components["schemas"]["tx_metadata_label_json"];
@@ -1376,7 +1433,7 @@ export interface paths {
         };
       };
       responses: {
-        /** Return the account delegations content in CBOR */
+        /** Return the account metadata content in CBOR */
         200: {
           content: {
             "application/json": components["schemas"]["tx_metadata_label_cbor"];
@@ -1973,7 +2030,10 @@ export interface paths {
     };
   };
   "/assets": {
-    /** List of assets. */
+    /**
+     * List of assets. If an asset is completely burned,
+     * it will stay on the list with quantity 0 (order of assets is immutable).
+     */
     get: {
       parameters: {
         query: {
@@ -1984,6 +2044,7 @@ export interface paths {
           /**
            * The ordering of items from the point of view of the blockchain,
            * not the page listing itself. By default, we return oldest first, newest last.
+           * Ordering in this case is based on the time of the first mint transaction.
            */
           order?: "asc" | "desc";
         };
@@ -2545,6 +2606,7 @@ export interface paths {
         403: components["responses"]["403"];
         404: components["responses"]["404"];
         418: components["responses"]["418"];
+        425: components["responses"]["425-2"];
         429: components["responses"]["429"];
         500: components["responses"]["500"];
       };
@@ -2705,7 +2767,7 @@ export interface paths {
       };
     };
   };
-  "/metrics/": {
+  "/metrics": {
     /** History of your Blockfrost usage metrics in the past 30 days. */
     get: {
       responses: {
@@ -2958,6 +3020,16 @@ export interface components {
        */
       block_vrf: string | null;
       /**
+       * @description The hash of the operational certificate of the block producer
+       * @example da905277534faf75dae41732650568af545134ee08a3c0392dbefc8096ae177c
+       */
+      op_cert: string | null;
+      /**
+       * @description The value of the counter used to produce the operational certificate
+       * @example 18
+       */
+      op_cert_counter: string | null;
+      /**
        * @description Hash of the previous block
        * @example 43ebccb3ac72c7cebd0d9b755a4b08412c9f5dcb81b8a0ad1e3c197d29d47b05
        */
@@ -3190,7 +3262,7 @@ export interface components {
        * @description Seed for extra entropy
        * @example null
        */
-      extra_entropy: { [key: string]: unknown } | null;
+      extra_entropy: string | null;
       /**
        * @description Accepted protocol major version
        * @example 2
@@ -3216,6 +3288,20 @@ export interface components {
        * @example 1a3be38bcbb7911969283716ad7aa550250226b76a61fc51cc9a9a35d9276d81
        */
       nonce: string;
+      /**
+       * @description Cost models parameters for Plutus Core scripts
+       * @example {
+       *   "PlutusV1": {
+       *     "addInteger-cpu-arguments-intercept": 197209,
+       *     "addInteger-cpu-arguments-slope": 0
+       *   },
+       *   "PlutusV2": {
+       *     "addInteger-cpu-arguments-intercept": 197209,
+       *     "addInteger-cpu-arguments-slope": 0
+       *   }
+       * }
+       */
+      cost_models: { [key: string]: unknown } | null;
       /**
        * @description The per word cost of script memory usage
        * @example 0.0577
@@ -3551,6 +3637,11 @@ export interface components {
          */
         inline_datum: string | null;
         /**
+         * @description Whether the output is a collateral output
+         * @example false
+         */
+        collateral: boolean;
+        /**
          * @description The hash of the reference script of the output
          * @example 13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1
          */
@@ -3787,7 +3878,9 @@ export interface components {
       /** @description Metadata label */
       label: string;
       /** @description Content of the metadata */
-      json_metadata: string | { [key: string]: unknown };
+      json_metadata: (string | { [key: string]: unknown }) & {
+        [key: string]: unknown;
+      };
     }[];
     /**
      * @example [
@@ -4167,6 +4260,220 @@ export interface components {
     /**
      * @example [
      *   {
+     *     "tx_hash": "1a0570af966fb355a7160e4f82d5a80b8681b7955f5d44bec0dce628516157f0"
+     *   }
+     * ]
+     */
+    mempool_content: {
+      /** @description Hash of the transaction */
+      tx_hash: string;
+    }[];
+    mempool_tx_content: {
+      tx: {
+        /**
+         * @description Transaction hash
+         * @example 1e043f100dce12d107f679685acd2fc0610e10f72a92d412794c9773d11d8477
+         */
+        hash: string;
+        /**
+         * @example [
+         *   {
+         *     "unit": "lovelace",
+         *     "quantity": "42000000"
+         *   },
+         *   {
+         *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+         *     "quantity": "12"
+         *   }
+         * ]
+         */
+        output_amount: {
+          /**
+           * Format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+           * @description The unit of the value
+           */
+          unit: string;
+          /** @description The quantity of the unit */
+          quantity: string;
+        }[];
+        /**
+         * @description Fees of the transaction in Lovelaces
+         * @example 182485
+         */
+        fees: string;
+        /**
+         * @description Deposit within the transaction in Lovelaces
+         * @example 0
+         */
+        deposit: string;
+        /**
+         * @description Size of the transaction in Bytes
+         * @example 433
+         */
+        size: number;
+        /**
+         * @description Left (included) endpoint of the timelock validity intervals
+         * @example null
+         */
+        invalid_before: string | null;
+        /**
+         * @description Right (excluded) endpoint of the timelock validity intervals
+         * @example 13885913
+         */
+        invalid_hereafter: string | null;
+        /**
+         * @description Count of UTXOs within the transaction
+         * @example 4
+         */
+        utxo_count: number;
+        /**
+         * @description Count of the withdrawals within the transaction
+         * @example 0
+         */
+        withdrawal_count: number;
+        /**
+         * @description Count of the MIR certificates within the transaction
+         * @example 0
+         */
+        mir_cert_count: number;
+        /**
+         * @description Count of the delegations within the transaction
+         * @example 0
+         */
+        delegation_count: number;
+        /**
+         * @description Count of the stake keys (de)registration within the transaction
+         * @example 0
+         */
+        stake_cert_count: number;
+        /**
+         * @description Count of the stake pool registration and update certificates within the transaction
+         * @example 0
+         */
+        pool_update_count: number;
+        /**
+         * @description Count of the stake pool retirement certificates within the transaction
+         * @example 0
+         */
+        pool_retire_count: number;
+        /**
+         * @description Count of asset mints and burns within the transaction
+         * @example 0
+         */
+        asset_mint_or_burn_count: number;
+        /**
+         * @description Count of redeemers within the transaction
+         * @example 0
+         */
+        redeemer_count: number;
+        /**
+         * @description True if contract script passed validation
+         * @example true
+         */
+        valid_contract: boolean;
+      };
+      inputs: {
+        /**
+         * @description Hash of the UTXO transaction
+         * @example 1a0570af966fb355a7160e4f82d5a80b8681b7955f5d44bec0dce628516157f0
+         */
+        tx_hash: string;
+        /**
+         * @description UTXO index in the transaction
+         * @example 0
+         */
+        output_index: number;
+        /**
+         * @description Whether the input is a collateral consumed on script validation failure
+         * @example false
+         */
+        collateral: boolean;
+        /**
+         * @description Whether the input is a reference transaction input
+         * @example false
+         */
+        reference?: boolean;
+      }[];
+      outputs: {
+        /**
+         * @description Output address
+         * @example addr1q9ld26v2lv8wvrxxmvg90pn8n8n5k6tdst06q2s856rwmvnueldzuuqmnsye359fqrk8hwvenjnqultn7djtrlft7jnq7dy7wv
+         */
+        address: string;
+        /**
+         * @example [
+         *   {
+         *     "unit": "lovelace",
+         *     "quantity": "42000000"
+         *   },
+         *   {
+         *     "unit": "b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e",
+         *     "quantity": "12"
+         *   }
+         * ]
+         */
+        amount: {
+          /**
+           * Format: Lovelace or concatenation of asset policy_id and hex-encoded asset_name
+           * @description The unit of the value
+           */
+          unit: string;
+          /** @description The quantity of the unit */
+          quantity: string;
+        }[];
+        /**
+         * @description UTXO index in the transaction
+         * @example 0
+         */
+        output_index: number;
+        /**
+         * @description The hash of the transaction output datum
+         * @example 9e478573ab81ea7a8e31891ce0648b81229f408d596a3483e6f4f9b92d3cf710
+         */
+        data_hash: string | null;
+        /**
+         * @description CBOR encoded inline datum
+         * @example 19a6aa
+         */
+        inline_datum: string | null;
+        /**
+         * @description Whether the output is a collateral output
+         * @example false
+         */
+        collateral: boolean;
+        /**
+         * @description The hash of the reference script of the output
+         * @example 13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1
+         */
+        reference_script_hash: string | null;
+      }[];
+      redeemers?: {
+        /**
+         * @description Index of the redeemer within the transaction
+         * @example 0
+         */
+        tx_index: number;
+        /**
+         * @description Validation purpose
+         * @example spend
+         * @enum {string}
+         */
+        purpose: "spend" | "mint" | "cert" | "reward";
+        /**
+         * @description The budget in Memory to run a script
+         * @example 1700
+         */
+        unit_mem: string;
+        /**
+         * @description The budget in CPU steps to run a script
+         * @example 476468
+         */
+        unit_steps: string;
+      }[];
+    };
+    /**
+     * @example [
+     *   {
      *     "label": "1990",
      *     "cip10": null,
      *     "count": "1"
@@ -4226,12 +4533,12 @@ export interface components {
       tx_hash: string;
       /** @description Content of the JSON metadata */
       json_metadata:
-        | (Partial<string> &
+        | ((Partial<string> &
             Partial<{ [key: string]: unknown }> &
             Partial<unknown[]> &
             Partial<number> &
             Partial<number> &
-            Partial<boolean>)
+            Partial<boolean>) & { [key: string]: unknown })
         | null;
     }[];
     /**
@@ -4426,7 +4733,9 @@ export interface components {
      *       }
      *     ],
      *     "block": "7eb8e27d18686c7db9a18f8bbcfe34e3fed6e047afaa2d969904d15e934847e6",
-     *     "data_hash": "9e478573ab81ea7a8e31891ce0648b81229f408d596a3483e6f4f9b92d3cf710"
+     *     "data_hash": "9e478573ab81ea7a8e31891ce0648b81229f408d596a3483e6f4f9b92d3cf710",
+     *     "inline_datum": null,
+     *     "reference_script_hash": null
      *   },
      *   {
      *     "tx_hash": "4c4e67bafa15e742c13c592b65c8f74c769cd7d9af04c848099672d1ba391b49",
@@ -4438,7 +4747,9 @@ export interface components {
      *       }
      *     ],
      *     "block": "953f1b80eb7c11a7ffcd67cbd4fde66e824a451aca5a4065725e5174b81685b7",
-     *     "data_hash": null
+     *     "data_hash": null,
+     *     "inline_datum": null,
+     *     "reference_script_hash": null
      *   },
      *   {
      *     "tx_hash": "768c63e27a1c816a83dc7b07e78af673b2400de8849ea7e7b734ae1333d100d2",
@@ -4454,7 +4765,9 @@ export interface components {
      *       }
      *     ],
      *     "block": "5c571f83fe6c784d3fbc223792627ccf0eea96773100f9aedecf8b1eda4544d7",
-     *     "data_hash": null
+     *     "data_hash": null,
+     *     "inline_datum": null,
+     *     "reference_script_hash": null
      *   }
      * ]
      */
@@ -4934,6 +5247,11 @@ export interface components {
             image?: string | string[];
           } & { [key: string]: unknown })
         | null;
+      /**
+       * @description Off-chain metadata fetched from GitHub based on network.
+       * Mainnet: https://github.com/cardano-foundation/cardano-token-registry/
+       * Testnet: https://github.com/input-output-hk/metadata-registry-testnet/
+       */
       metadata: {
         /**
          * @description Asset name
@@ -5024,16 +5342,19 @@ export interface components {
      *   }
      * ]
      */
-    asset_transactions: ({
+    asset_transactions: {
       /** @description Hash of the transaction */
       tx_hash: string;
       /** @description Transaction index within the block */
       tx_index: number;
       /** @description Block height */
       block_height: number;
-    } & {
-      block_time: unknown;
-    })[];
+      /**
+       * @description Block creation time in UNIX time
+       * @example 1635505891
+       */
+      block_time: number;
+    }[];
     /**
      * @example [
      *   {
@@ -5138,12 +5459,12 @@ export interface components {
     script_json: {
       /** @description JSON contents of the `timelock` script, null for `plutus` scripts */
       json:
-        | (Partial<string> &
+        | ((Partial<string> &
             Partial<{ [key: string]: unknown }> &
             Partial<unknown[]> &
             Partial<number> &
             Partial<number> &
-            Partial<boolean>)
+            Partial<boolean>) & { [key: string]: unknown })
         | null;
     };
     /**
@@ -5208,12 +5529,7 @@ export interface components {
      */
     script_datum: {
       /** @description JSON content of the datum */
-      json_value: Partial<string> &
-        Partial<{ [key: string]: unknown }> &
-        Partial<unknown[]> &
-        Partial<number> &
-        Partial<number> &
-        Partial<boolean>;
+      json_value: unknown;
     };
     /**
      * @example {
@@ -5557,11 +5873,25 @@ export interface components {
     };
     overusage_limit: components["responses"]["429"];
     mempool_full: components["responses"]["425"];
+    pin_queue_full: components["responses"]["425-2"];
     autobanned: components["responses"]["418"];
     not_found: components["responses"]["404"];
     internal_server_error: components["responses"]["500"];
     unauthorized_error: components["responses"]["403"];
     bad_request: components["responses"]["400"];
+    /** Pin queue is currently full, not accepting new txs straight away */
+    "425-2": {
+      content: {
+        "application/json": {
+          /** @example 425 */
+          status_code: number;
+          /** @example Pin Queue Full */
+          error: string;
+          /** @example Your pin queue is currently full, please try pinning again later. */
+          message: string;
+        };
+      };
+    };
   };
 }
 

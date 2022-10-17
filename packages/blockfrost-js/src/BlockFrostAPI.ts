@@ -99,6 +99,8 @@ import {
   metadataTxsLabels,
 } from './endpoints/api/metadata';
 
+import { mempool, mempoolAll, mempoolTx } from './endpoints/api/mempool';
+
 import { health, healthClock } from './endpoints/api/health';
 import { metrics, metricsEndpoints } from './endpoints/api/metrics';
 import {
@@ -703,6 +705,9 @@ class BlockFrostAPI {
    */
   genesis = genesis;
 
+  mempool = mempool;
+  mempoolAll = mempoolAll;
+  mempoolTx = mempoolTx;
   /**
    * metadataTxsLabel
    *
