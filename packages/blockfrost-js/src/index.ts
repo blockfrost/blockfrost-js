@@ -1,4 +1,4 @@
-import { components } from './types/OpenApi';
+import { components } from '@blockfrost/openapi';
 import { BlockFrostAPI } from './BlockFrostAPI';
 import { BlockFrostIPFS } from './BlockFrostIPFS';
 import {

@@ -1,6 +1,6 @@
 import { getPaginationOptions, paginateMethod } from '../../../utils';
 import { AllMethodOptions, PaginationOptions } from '../../../types';
-import { components } from '../../../types/OpenApi';
+import { components } from '@blockfrost/openapi';
 import { BlockFrostAPI } from '../../../index';
 import { handleError } from '../../../utils/errors';
 

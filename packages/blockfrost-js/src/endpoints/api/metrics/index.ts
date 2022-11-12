@@ -1,5 +1,5 @@
 import { handleError } from '../../../utils/errors';
-import { components } from '../../../types/OpenApi';
+import { components } from '@blockfrost/openapi';
 import { BlockFrostAPI } from '../../../index';
 
 export async function metrics(
