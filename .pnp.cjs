@@ -39,17 +39,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       {\
         "name": "@blockfrost/blockfrost-js",\
         "reference": "workspace:packages/blockfrost-js"\
-      },\
-      {\
-        "name": "@blockfrost/blockfrost-utils",\
-        "reference": "workspace:packages/blockfrost-utils"\
       }\
     ],\
     "enableTopLevelFallback": true,\
     "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
     "fallbackExclusionList": [\
       ["@blockfrost/blockfrost-js", ["workspace:packages/blockfrost-js"]],\
-      ["@blockfrost/blockfrost-utils", ["workspace:packages/blockfrost-utils"]],\
       ["@blockfrost/example-basic", ["workspace:examples/basic"]],\
       ["@blockfrost/example-simple-transaction", ["workspace:examples/simple-transaction"]],\
       ["@blockfrost/example-webhook-basic", ["workspace:examples/webhook-basic"]],\
@@ -858,15 +853,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["typedoc-plugin-markdown", "virtual:1aea4bb58cf4dcb42f313d0f751718bb5ab8fae61e4c32d9e5ddeee902555b1946324cb0cef0d66d078827ee6d656254456ae55e3f3eaa53b64cf3f4b45832ea#npm:3.13.4"],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"],\
             ["yarn-run-all", "npm:3.1.1"]\
-          ],\
-          "linkType": "SOFT"\
-        }]\
-      ]],\
-      ["@blockfrost/blockfrost-utils", [\
-        ["workspace:packages/blockfrost-utils", {\
-          "packageLocation": "./packages/blockfrost-utils/",\
-          "packageDependencies": [\
-            ["@blockfrost/blockfrost-utils", "workspace:packages/blockfrost-utils"]\
           ],\
           "linkType": "SOFT"\
         }]\

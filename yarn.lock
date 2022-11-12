@@ -419,12 +419,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@blockfrost/blockfrost-utils@workspace:packages/blockfrost-utils":
-  version: 0.0.0-use.local
-  resolution: "@blockfrost/blockfrost-utils@workspace:packages/blockfrost-utils"
-  languageName: unknown
-  linkType: soft
-
 "@blockfrost/example-basic@workspace:examples/basic":
   version: 0.0.0-use.local
   resolution: "@blockfrost/example-basic@workspace:examples/basic"
