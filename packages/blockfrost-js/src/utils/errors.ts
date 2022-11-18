@@ -73,25 +73,33 @@ export const handleError = (
   error: GotError,
 ): BlockfrostServerError | BlockfrostClientError => {
   if (error instanceof HTTPError) {
+    let errorInstance: BlockfrostServerError;
     const url = error.request.requestUrl;
     const responseBody = error.response.body;
 
     if (isBlockfrostErrorResponse(responseBody)) {
-      return new BlockfrostServerError({ ...responseBody, url });
+      errorInstance = new BlockfrostServerError({ ...responseBody, url });
     } else {
       // response.body may contain html output (eg. errors returned by nginx)
       const { statusCode } = error.response;
       const statusText = error.response.statusMessage ?? error.message;
-      return new BlockfrostServerError({
+      errorInstance = new BlockfrostServerError({
         status_code: statusCode,
         message: `${statusCode}: ${statusText}`,
         error: statusText,
         url,
         // Sometimes original body can be helpful so let's forward it
         // Eg. communicating directly with Cardano Submit API which returns 400 with the error from cardano-node in the body of the request)
-        ...(error.response.body ? { body: error.response.body } : {}),
+        body: error.response.body ? error.response.body : undefined,
       });
     }
+
+    // remove undefined body prop so it doesn't pollute string representation of the error
+    if (errorInstance.body === undefined) {
+      delete errorInstance.body;
+    }
+
+    return errorInstance;
   }
 
   // system errors such as -3008 ENOTFOUND and various got errors like ReadError, CacheError, MaxRedirectsError, TimeoutError,...
