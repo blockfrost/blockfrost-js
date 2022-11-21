@@ -1,6 +1,6 @@
 import { handleError } from '../../../utils/errors';
 import { BlockFrostAPI } from '../../../index';
-import { components } from '../../../types/OpenApi';
+import { components } from '@blockfrost/openapi';
 
 export async function network(
   this: BlockFrostAPI,

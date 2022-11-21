@@ -5,7 +5,7 @@ import {
   HashOrNumber,
   PaginationOptions,
 } from '../../../types';
-import { components } from '../../../types/OpenApi';
+import { components } from '@blockfrost/openapi';
 import { BlockFrostAPI } from '../../../index';
 
 export async function blocks(

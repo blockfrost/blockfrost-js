@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `BlockfrostServerError` now includes `body` property in cases where the error was not formatted by Blockfrost Backend (eg. various nginx errors)
+- `mempool`, `mempoolAll`, `mempoolTx` methods for [Blockfrost Mempool](https://docs.blockfrost.io/#tag/Cardano-Mempool)
+- use `@blockfrost/openapi` for type definitions
 
 ## [5.0.0]
 
