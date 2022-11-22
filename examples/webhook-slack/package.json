@@ -6,7 +6,7 @@
     "start": "yarn run build && yarn node ./dist/index.js"
   },
   "dependencies": {
-    "@blockfrost/blockfrost-js": "*",
+    "@blockfrost/blockfrost-js": "5.0.0",
     "@slack/web-api": "^6.7.2",
     "express": "^4.18.1"
   },

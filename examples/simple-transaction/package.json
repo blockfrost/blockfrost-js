@@ -7,7 +7,7 @@
     "start": "yarn build && yarn node ./dist/index.js"
   },
   "dependencies": {
-    "@blockfrost/blockfrost-js": "*",
+    "@blockfrost/blockfrost-js": "5.0.0",
     "@emurgo/cardano-serialization-lib-nodejs": "^10.1.0",
     "bip39": "^3.0.4"
   },
