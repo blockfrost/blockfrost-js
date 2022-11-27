@@ -7,6 +7,11 @@ const SDK = (options?: Partial<Options>): BlockFrostAPI =>
     ...options,
   });
 
+export const SDK_MOCKED: BlockFrostAPI = new BlockFrostAPI({
+  projectId: `${process.env.PROJECT_ID}`,
+  customBackend: 'http://localhost:3000',
+});
+
 const SDK_ERROR = new BlockFrostAPI({
   projectId: 'INVALID_TOKEN',
 });

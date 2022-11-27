@@ -1,33 +1,19 @@
-import fs from 'fs';
-import path from 'path';
 import { expect, describe, test } from 'vitest';
 import { SDK_ERROR } from '../../utils';
-import { TestFixture } from '../../types';
+import fixtures from '../../fixtures/endpoints';
 
-const fixturesFolder = path.resolve(__dirname, '../../fixtures/endpoints');
-const files = fs.readdirSync(fixturesFolder);
-
-files.forEach(file => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const fileContent = require(path.resolve(
-    __dirname,
-    '../../fixtures/endpoints',
-    file,
-  ));
-
-  describe(file, () => {
-    fileContent.default.forEach((fixture: TestFixture) => {
-      test(`${fixture.command.toString()} error`, async () => {
-        try {
-          await fixture.command(SDK_ERROR);
-        } catch (err) {
-          expect(err).toMatchObject({
-            error: 'Forbidden',
-            message: 'Invalid project token.',
-            status_code: 403,
-          });
-        }
-      });
+describe('endpoints - invalid api token error', () => {
+  fixtures.forEach(fixture => {
+    test(`${fixture.command.toString()} error`, async () => {
+      try {
+        await fixture.command(SDK_ERROR);
+      } catch (err) {
+        expect(err).toStrictEqual({
+          error: 'Forbidden',
+          message: 'Invalid project token.',
+          status_code: 403,
+        });
+      }
     });
   });
 });

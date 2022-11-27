@@ -11,11 +11,11 @@
   "author": "blockfrost.io",
   "main": "lib/index.js",
   "files": [
-    "lib/**/*.js",
-    "lib/**/*.ts"
+    "./**/*.js",
+    "./**/*.ts"
   ],
   "scripts": {
-    "build": "yarn clean && tsc",
+    "build": "yarn clean && tsc && cp package.json ./lib",
     "clean": "rimraf lib",
     "docs": "yarn typedoc ./src/index.ts --theme ./node_modules/typedoc-github-wiki-theme/dist",
     "lint": "eslint ./src/**/*.ts",
@@ -28,18 +28,23 @@
     "@blockfrost/openapi": "^0.1.45",
     "@emurgo/cardano-serialization-lib-nodejs": "^10.2.0",
     "@emurgo/cip14-js": "3.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
     "bottleneck": "^2.19.5",
     "form-data": "^4.0.0",
     "got": "^11.8.5"
   },
   "devDependencies": {
+    "@blockfrost/blockfrost-utils": "^1.1.0",
     "@swc-node/jest": "^1.5.2",
     "@types/node": "^14.6.0",
+    "@typescript-eslint/parser": "^5.44.0",
     "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "express": "^4.18.2",
     "make-coverage-badge": "^1.2.0",
     "nock": "^13.2.9",
-    "prettier": "2.7.1",
+    "prettier": "^2.8.0",
     "rimraf": "^3.0.2",
     "serialize-error": "^11.0.0",
     "typedoc": "^0.23.10",
