@@ -2,11 +2,11 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    testTimeout: 10_000,
+    testTimeout: 5000,
+    mockReset: true,
     coverage: {
       include: ['src'],
     },
-    globalSetup: ['./test/blockfrost-api-server.ts'],
     include: ['./test/tests/**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
   },
 });

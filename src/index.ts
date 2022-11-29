@@ -1,4 +1,4 @@
-import { components } from '@blockfrost/openapi';
+import { Schemas } from './types/open-api';
 import { BlockFrostAPI } from './BlockFrostAPI';
 import { BlockFrostIPFS } from './BlockFrostIPFS';
 import {
@@ -13,7 +13,7 @@ import {
   SignatureVerificationError,
 } from './utils/errors';
 
-type Responses = components['schemas'];
+type Responses = Schemas;
 
 export {
   BlockFrostAPI,
