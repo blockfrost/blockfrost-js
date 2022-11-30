@@ -14,7 +14,7 @@ import { validateOptions } from './utils';
 import { getInstance } from './utils/got';
 import { getLimiter } from './utils/limiter';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const packageJson = require('../package.json');
+const packageJson = require('./package.json');
 
 class BlockFrostIPFS {
   apiUrl: string;

@@ -54,8 +54,6 @@ describe('IPFS', () => {
   afterEach(() => server.resetHandlers());
 
   test('IPFS flow', async () => {
-    console.log('bbbbbbb');
-    console.log('aaa', `${__dirname}/../../fixtures/ipfs/img.svg`);
     const addedObject = await IPFS.add(
       `${__dirname}/../../fixtures/ipfs/img.svg`,
     );

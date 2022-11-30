@@ -21,9 +21,10 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "rootDir": "src",
   },
   "lib": ["es2015"],
-  "include": ["./src/**/*", "./test/index.d.ts"],
+  "include": ["./src/**/*", "./test/index.d.ts", "../package.json"],
   "exclude": ["./src/types/OpenApi.ts", "node_modules"]
 }
