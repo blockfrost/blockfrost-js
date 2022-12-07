@@ -93,6 +93,23 @@ export async function scriptsDatum(
   });
 }
 
+export async function scriptsDatumCbor(
+  this: BlockFrostAPI,
+  datumHash: string,
+): Promise<components['schemas']['script_datum_cbor']> {
+  return new Promise((resolve, reject) => {
+    this.instance<components['schemas']['script_datum_cbor']>(
+      `scripts/datum/${datumHash}/cbor`,
+    )
+      .then(resp => {
+        resolve(resp.body);
+      })
+      .catch(err => {
+        reject(handleError(err));
+      });
+  });
+}
+
 export async function scriptsRedeemers(
   this: BlockFrostAPI,
   scriptHash: string,

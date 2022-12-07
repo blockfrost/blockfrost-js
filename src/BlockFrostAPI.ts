@@ -121,6 +121,7 @@ import {
   scripts,
   scriptsByHash,
   scriptsDatum,
+  scriptsDatumCbor,
   scriptsRedeemers,
   scriptsJson,
   scriptsCbor,
@@ -942,6 +943,11 @@ class BlockFrostAPI {
    *
    */
   scriptsDatum = scriptsDatum;
+
+  /**
+   *
+   */
+  scriptsDatumCbor = scriptsDatumCbor;
 
   /**
    * List of redeemers of a specific script
