@@ -845,4 +845,15 @@ export default [
     endpointMock: [],
     response: [],
   },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.scriptsDatumCbor(
+        '5a595ce795815e81d22a1a522cf3987d546dc5bb016de61b002edd63a5413ec4',
+      ),
+    path: mainentUrl(
+      `scripts/datum/5a595ce795815e81d22a1a522cf3987d546dc5bb016de61b002edd63a5413ec4/cbor`,
+    ),
+    endpointMock: [],
+    response: [],
+  },
 ] as const;
