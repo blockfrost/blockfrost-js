@@ -1,4 +1,4 @@
-name: blockfrost-js-CIcko
+name: CI
 
 on: [push]
 
