@@ -615,6 +615,12 @@ export default [
     response: [],
   },
   {
+    command: (SDK: BlockFrostAPI) => SDK.epochsLatestParameters(),
+    path: mainentUrl('/epochs/latest/parameters'),
+    endpointMock: [],
+    response: [],
+  },
+  {
     command: (SDK: BlockFrostAPI) => SDK.epochsNext(250),
     path: mainentUrl('/epochs/250/next'),
     endpointMock: [],

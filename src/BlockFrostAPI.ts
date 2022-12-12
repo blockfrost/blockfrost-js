@@ -68,6 +68,7 @@ import {
   epochsLatest,
   epochsNext,
   epochsParameters,
+  epochsLatestParameters,
   epochsPrevious,
   epochsStakes,
   epochsStakesAll,
@@ -633,6 +634,15 @@ class BlockFrostAPI {
    *
    */
   epochsParameters = epochsParameters;
+
+  /**
+   * epochsLatestParameters
+   *
+   * @param number
+   * @returns xxx
+   *
+   */
+  epochsLatestParameters = epochsLatestParameters;
 
   /**
    * epochsPrevious

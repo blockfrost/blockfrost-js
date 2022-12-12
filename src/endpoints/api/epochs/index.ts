@@ -257,3 +257,19 @@ export async function epochsParameters(
       });
   });
 }
+
+export async function epochsLatestParameters(
+  this: BlockFrostAPI,
+): Promise<components['schemas']['epoch_param_content']> {
+  return new Promise((resolve, reject) => {
+    this.instance<components['schemas']['epoch_param_content']>(
+      `epochs/latest/parameters`,
+    )
+      .then(resp => {
+        resolve(resp.body);
+      })
+      .catch(err => {
+        reject(handleError(err));
+      });
+  });
+}
