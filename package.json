@@ -1,9 +1,7 @@
 {
-  "name": "@blockfrost/monorepo",
-  "version": "1.0.0",
-  "private": true,
-  "description": "A JavaScript/TypeScript monorepo",
-  "repository": "blockfrost/blockfrost-js",
+  "name": "@blockfrost/blockfrost-js",
+  "version": "5.1.1",
+  "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "keywords": [
     "blockfrost",
     "cardano",
@@ -11,36 +9,55 @@
   ],
   "license": "Apache-2.0",
   "author": "blockfrost.io",
-  "workspaces": [
-    "packages/*",
-    "examples/*"
+  "main": "lib/index.js",
+  "files": [
+    "lib/**/*.js",
+    "lib/**/*.ts"
   ],
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint --parallel",
-    "test": "turbo run test --parallel",
-    "type-check": "turbo run type-check --parallel"
+    "build": "yarn clean && tsc",
+    "clean": "rimraf lib",
+    "docs": "yarn typedoc ./src/index.ts --theme ./node_modules/typedoc-github-wiki-theme/dist",
+    "lint": "eslint ./src/**/*.ts",
+    "prepublishOnly": "yarn build",
+    "test": "vitest --silent",
+    "type-check": "tsc --project ./tsconfig.types.json",
+    "make-badge": "make-coverage-badge --output-path='./coverage-badge.svg'",
+    "coverage": "vitest run --coverage --silent && make-badge",
+    "coverage-ci": "vitest run --coverage --silent"
+  },
+  "dependencies": {
+    "@blockfrost/blockfrost-utils": "2.0.0",
+    "@blockfrost/openapi": "0.1.49",
+    "@emurgo/cardano-serialization-lib-nodejs": "^10.2.0",
+    "@emurgo/cip14-js": "3.0.1",
+    "bottleneck": "^2.19.5",
+    "form-data": "^4.0.0",
+    "got": "^11.8.5"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.2",
-    "@commitlint/config-conventional": "^17.0.3",
     "@types/node": "^14.6.0",
-    "@typescript-eslint/eslint-plugin": "^5.33.1",
-    "@typescript-eslint/parser": "5.33.1",
-    "eslint": "8.22.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-prettier": "4.2.1",
-    "husky": "^8.0.1",
-    "prettier": "2.7.1",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.44.0",
+    "@vitest/coverage-c8": "^0.25.3",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "make-coverage-badge": "^1.2.0",
+    "msw": "^0.49.1",
+    "nock": "^13.2.9",
+    "prettier": "^2.8.0",
     "rimraf": "^3.0.2",
-    "ts-node": "10.9.1",
-    "turbo": "^1.4.3",
-    "typescript": "4.7.4"
+    "serialize-error": "^11.0.0",
+    "typedoc": "^0.23.21",
+    "typedoc-github-wiki-theme": "^1.0.1",
+    "typedoc-plugin-markdown": "^3.13.6",
+    "typescript": "^4.9.3",
+    "vite": "^3.2.4",
+    "vitest": "^0.25.2"
   },
+  "packageManager": "yarn@3.3.0",
   "engines": {
-    "node": ">=14"
-  },
-  "packageManager": "yarn@3.2.2"
+    "node": ">=16"
+  }
 }

@@ -1,4 +1,4 @@
-name: blockfrost-js
+name: CI
 
 on: [push]
 
@@ -17,7 +17,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
-      - run: yarn run lint
-      - run: yarn run type-check
-      - run: PROJECT_ID=${{ secrets.PROJECT_ID }} PROJECT_ID_IPFS=${{ secrets.PROJECT_ID_IPFS }} yarn run test
-      - run: yarn run build
+      - run: yarn lint
+      - run: yarn type-check
+      - run: yarn test
+      - run: yarn build
+      - run: yarn coverage-ci

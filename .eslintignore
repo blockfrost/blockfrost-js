@@ -4,4 +4,4 @@ node_modules
 jest.config.js
 babel.config.js
 lib
-packages/blockfrost-js/src/types/OpenApi.ts
+OpenApi.ts

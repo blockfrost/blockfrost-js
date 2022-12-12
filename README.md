@@ -1,4 +1,4 @@
-![master build ci](https://github.com/blockfrost/blockfrost-js/actions/workflows/build.yml/badge.svg?branch=master) [![npm version](https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js.svg)](https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js) ![downloads](https://img.shields.io/npm/dy/@blockfrost/blockfrost-js) <img src="https://github.com/blockfrost/blockfrost-js/blob/master/packages/blockfrost-js/docs/badge-coverage.svg" /> <a href="https://fivebinaries.com/"><img src="https://img.shields.io/badge/made%20by-Five%20Binaries-darkviolet.svg?style=flat-square" /></a>
+![master build ci](https://github.com/blockfrost/blockfrost-js/actions/workflows/build.yml/badge.svg?branch=master) [![npm version](https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js.svg)](https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js) ![downloads](https://img.shields.io/npm/dy/@blockfrost/blockfrost-js) <img src="https://github.com/blockfrost/blockfrost-js/blob/master/packages/blockfrost-js/coverage-badge.svg" /> <a href="https://fivebinaries.com/"><img src="https://img.shields.io/badge/made%20by-Five%20Binaries-darkviolet.svg?style=flat-square" /></a>
 
 <img src="https://blockfrost.io/images/logo.svg" width="250" align="right" height="90">
 
@@ -10,7 +10,8 @@
 <p align="center">
   <a href="#getting-started">Getting started</a> •
   <a href="#installation">Installation</a> •
-  <a href="#usage">Usage</a>
+  <a href="#usage">Usage</a> •
+  <a href="https://github.com/blockfrost/blockfrost-examples" target="_blank">Examples</a>
 </p>
 <br>
 
