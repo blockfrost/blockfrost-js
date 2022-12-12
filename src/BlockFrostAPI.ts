@@ -638,7 +638,6 @@ class BlockFrostAPI {
   /**
    * epochsLatestParameters
    *
-   * @param number
    * @returns xxx
    *
    */
