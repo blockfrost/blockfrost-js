@@ -42,7 +42,7 @@ yarn add @blockfrost/blockfrost-js
 ## Usage
 
 Using the SDK is pretty straight-forward as you can see from the following examples.
-For more examples take a look in [examples](https://github.com/blockfrost/blockfrost-js-examples) directory.
+For more examples take a look in [blockfrost-js-examples](https://github.com/blockfrost/blockfrost-js-examples) repository.
 
 ```ts
 const API = new Blockfrost.BlockFrostAPI({
