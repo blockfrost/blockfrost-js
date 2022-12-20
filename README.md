@@ -11,7 +11,7 @@
   <a href="#getting-started">Getting started</a> •
   <a href="#installation">Installation</a> •
   <a href="#usage">Usage</a> •
-  <a href="https://github.com/blockfrost/blockfrost-examples" target="_blank">Examples</a>
+  <a href="https://github.com/blockfrost/blockfrost-js-examples" target="_blank">Examples</a>
 </p>
 <br>
 
@@ -122,7 +122,7 @@ try {
 
 ## Examples
 
-For more examples take a look in [examples](examples/) directory.
+For more examples take a look in [examples](https://github.com/blockfrost/blockfrost-js-examples) directory.
 
 ### Cardano
 
