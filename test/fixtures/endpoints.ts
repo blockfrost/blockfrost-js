@@ -681,6 +681,23 @@ export default [
     response: [],
   },
   {
+    command: (SDK: BlockFrostAPI) => SDK.mempool(),
+    path: mainentUrl('/mempool'),
+    endpointMock: [{ tx_hash: 'abc' }],
+    response: [{ tx_hash: 'abc' }],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.mempoolByAddress(
+        'addr1qxlem7879m2ly03ljqldhz9jxtlkurc465hqysxr33z2a4ee3t4rc98rhcg4n0a3g60nd9f865gpy4unflgak3we53psrrk85u',
+      ),
+    path: mainentUrl(
+      '/mempool/addresses/addr1qxlem7879m2ly03ljqldhz9jxtlkurc465hqysxr33z2a4ee3t4rc98rhcg4n0a3g60nd9f865gpy4unflgak3we53psrrk85u',
+    ),
+    endpointMock: [{ tx_hash: 'abc' }],
+    response: [{ tx_hash: 'abc' }],
+  },
+  {
     command: (SDK: BlockFrostAPI) => SDK.poolsRetiring(),
     path: mainentUrl('/pools/retiring'),
     endpointMock: [],

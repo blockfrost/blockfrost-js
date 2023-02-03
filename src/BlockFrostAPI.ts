@@ -101,7 +101,13 @@ import {
   metadataTxsLabels,
 } from './endpoints/api/metadata';
 
-import { mempool, mempoolAll, mempoolTx } from './endpoints/api/mempool';
+import {
+  mempool,
+  mempoolAll,
+  mempoolTx,
+  mempoolByAddress,
+  mempoolByAddressAll,
+} from './endpoints/api/mempool';
 
 import { health, healthClock } from './endpoints/api/health';
 import { metrics, metricsEndpoints } from './endpoints/api/metrics';
@@ -271,10 +277,11 @@ class BlockFrostAPI {
   mempool = mempool;
   mempoolAll = mempoolAll;
   mempoolTx = mempoolTx;
-
   metadataTxsLabel = metadataTxsLabel;
   metadataTxsLabelCbor = metadataTxsLabelCbor;
   metadataTxsLabels = metadataTxsLabels;
+  mempoolByAddress = mempoolByAddress;
+  mempoolByAddressAll = mempoolByAddressAll;
 
   metrics = metrics;
   metricsEndpoints = metricsEndpoints;
