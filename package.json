@@ -20,11 +20,11 @@
     "docs": "yarn typedoc ./src/index.ts --theme github-wiki",
     "lint": "eslint ./src/**/*.ts",
     "prepublishOnly": "yarn build",
-    "test": "vitest --silent",
+    "test": "vitest",
     "type-check": "tsc --project ./tsconfig.types.json",
     "make-badge": "make-coverage-badge --output-path='./coverage-badge.svg'",
     "coverage": "vitest run --coverage --silent && make-badge",
-    "coverage-ci": "vitest run --coverage --silent"
+    "coverage-ci": "vitest run --coverage"
   },
   "dependencies": {
     "@blockfrost/openapi": "0.1.49",
