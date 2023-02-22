@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - TSDoc docs for every method
 - `utilsTxsEvaluate` method for `/utils/txs/evaluate` Blockfrost endpoint
+- `utilsTxsEvaluateUtxos` method for `/utils/txs/evaluate/utxos` Blockfrost endpoint
 
 ### Removed
 

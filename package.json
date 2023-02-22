@@ -27,14 +27,16 @@
     "coverage-ci": "vitest run --coverage"
   },
   "dependencies": {
-    "@blockfrost/openapi": "0.1.49",
+    "@blockfrost/openapi": "0.1.55-beta.3",
     "@emurgo/cardano-serialization-lib-nodejs": "^10.2.0",
     "@emurgo/cip14-js": "3.0.1",
     "bottleneck": "^2.19.5",
     "form-data": "^4.0.0",
-    "got": "^11.8.5"
+    "got": "^11.8.5",
+    "json-bigint": "^1.0.0"
   },
   "devDependencies": {
+    "@types/json-bigint": "^1.0.1",
     "@types/node": "^14.6.0",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
