@@ -4,6 +4,16 @@ import { BlockFrostAPI } from '../../../index';
 import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { handleError } from '../../../utils/errors';
 
+/**
+ * Obtains transactions that are currently stored in Blockfrost mempool, waiting to be included in a newly minted block.
+ * @remarks
+ * Returns only transactions submitted via Blockfrost.io.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Mempool/paths/~1mempool/get | API docs for Mempool}
+ *
+ * @param [pagination] - Pagination options
+ * @returns List of transactions in Blockfrost Mempool
+ *
+ */
 export async function mempool(
   this: BlockFrostAPI,
   pagination?: PaginationOptions,
@@ -27,6 +37,18 @@ export async function mempool(
   });
 }
 
+/**
+ * Obtains all transactions that are currently stored in Blockfrost mempool, waiting to be included in a newly minted block.
+ * @remarks
+ * Returns only transactions submitted via Blockfrost.io.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Mempool/paths/~1mempool/get | API docs for Mempool}
+ * @remarks
+ * Variant of `mempool` method for fetching all pages with built-in requests batching
+ *
+ * @param [allMethodOptions] - Options for request batching
+ * @returns List of transactions in Blockfrost Mempool
+ *
+ */
 export async function mempoolAll(
   this: BlockFrostAPI,
   allMethodOptions?: AllMethodOptions,
@@ -37,6 +59,14 @@ export async function mempoolAll(
   );
 }
 
+/**
+ * Obtains mempool transaction
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Mempool/paths/~1mempool~1%7Bhash%7D/get | API docs for Mempool transaction}
+ *
+ * @param hash - Hash of the requested transaction
+ * @returns Specific mempool transaction
+ *
+ */
 export async function mempoolTx(
   this: BlockFrostAPI,
   hash: string,

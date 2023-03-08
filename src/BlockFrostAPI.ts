@@ -261,6 +261,7 @@ class BlockFrostAPI {
   mempool = mempool;
   mempoolAll = mempoolAll;
   mempoolTx = mempoolTx;
+
   /**
    * metadataTxsLabel
    *
