@@ -228,61 +228,14 @@ class BlockFrostAPI {
   addressesUtxosAsset = addressesUtxosAsset;
   addressesUtxosAssetAll = addressesUtxosAssetAll;
 
-  /**
-   * addressesUtxos
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
   blocks = blocks;
-
-  /**
-   * blocksLatest
-   *
-   * @returns xxx
-   *
-   */
   blocksLatest = blocksLatest;
   blocksLatestTxs = blocksLatestTxs;
   blocksLatestTxsAll = blocksLatestTxsAll;
-
-  /**
-   * blocksNext
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
   blocksNext = blocksNext;
-
-  /**
-   * blockPrevious
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
   blocksPrevious = blocksPrevious;
-
-  /**
-   * addressesUtxos
-   *
-   * @param blocksTxs
-   * @returns xxx
-   *
-   */
   blocksTxs = blocksTxs;
-
-  /**
-   * blocksTxsAll
-   *
-   * @param blocksTxsAll
-   * @returns xxx
-   *
-   */
   blocksTxsAll = blocksTxsAll;
-
   blocksAddresses = blocksAddresses;
   blocksAddressesAll = blocksAddressesAll;
 

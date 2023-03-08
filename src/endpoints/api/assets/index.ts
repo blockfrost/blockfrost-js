@@ -185,21 +185,21 @@ export async function assetsAddresses(
  * Obtains list of assets minted under a specific policy.
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Assets/paths/~1assets~1policy~1%7Bpolicy_id%7D/get| API docs for Assets of a specific policy}
  *
- * @param policyId - Specific policy_id
+ * @param policyId - Specific policy ID
  * @param [pagination] - Pagination options
  * @returns List of assets minted under a specific policy.
  *
  */
 export async function assetsPolicyById(
   this: BlockFrostAPI,
-  policy: string,
+  policyId: string,
   pagination?: PaginationOptions,
 ): Promise<components['schemas']['asset_policy']> {
   const paginationOptions = getPaginationOptions(pagination);
 
   return new Promise((resolve, reject) => {
     this.instance<components['schemas']['asset_policy']>(
-      `assets/policy/${policy}`,
+      `assets/policy/${policyId}`,
       {
         searchParams: {
           page: paginationOptions.page,
@@ -221,7 +221,7 @@ export async function assetsPolicyById(
  * @remarks
  * Variant of `assetsPolicyById` method for fetching all pages with built-in requests batching
  *
- * @param policyId - Specific policy_id
+ * @param policyId - Specific policy ID
  * @param [pagination] - Pagination options
  * @param [allMethodOptions] - Options for request batching
  * @returns List of asset minted under a specific policy.
@@ -229,11 +229,11 @@ export async function assetsPolicyById(
  */
 export async function assetsPolicyByIdAll(
   this: BlockFrostAPI,
-  policy: string,
+  policyId: string,
   allMethodOptions?: AllMethodOptions,
 ): Promise<components['schemas']['asset_policy']> {
   return paginateMethod(
-    pagination => this.assetsPolicyById(policy, pagination),
+    pagination => this.assetsPolicyById(policyId, pagination),
     allMethodOptions,
   );
 }
