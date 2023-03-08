@@ -218,86 +218,14 @@ class BlockFrostAPI {
   assetsPolicyById = assetsPolicyById;
   assetsPolicyByIdAll = assetsPolicyByIdAll;
 
-  /**
-   * addresses
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
   addresses = addresses;
-
-  /**
-   * addressesTotal
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
   addressesTotal = addressesTotal;
-
-  /**
-   * addressesExtended
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
   addressesExtended = addressesExtended;
-
-  /**
-   * addressesTransactions
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
   addressesTransactions = addressesTransactions;
-
-  /**
-   * addressesTransactionsAll
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
   addressesTransactionsAll = addressesTransactionsAll;
-
-  /**
-   * addressesUtxos
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
   addressesUtxos = addressesUtxos;
-
-  /**
-   * addressesUtxosAll
-   *
-   * @param address
-   * @returns xxx
-   *
-   */
   addressesUtxosAll = addressesUtxosAll;
-
-  /**
-   * addressesUtxosAsset - List of the address's utxos containing a given asset (paginated)
-   *
-   * @param address
-   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
-   * @returns List of the address's utxos containing a given asset
-   *
-   */
   addressesUtxosAsset = addressesUtxosAsset;
-
-  /**
-   * addressesUtxosAssetAll - List of the address's utxos containing a given asset
-   * @param address
-   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
-   * @returns List of the address's utxos containing a given asset
-   *
-   */
   addressesUtxosAssetAll = addressesUtxosAssetAll;
 
   /**
