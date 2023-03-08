@@ -261,3 +261,14 @@ console.log(res);
 ```
 
 For a more detailed list of possibilities, [check out the wiki](https://github.com/blockfrost/blockfrost-js/wiki).
+
+## Development
+
+### Adding new method
+
+1. Add a code to a corresponding file. e.g. new account method belong to `src/endpoints/api/account/` directory.
+   - add `<method>All` method for endpoints with pagination
+   - update [TSDoc](https://tsdoc.org/) for added method
+2. Add class method to `BlockfrostAPI` object in [src/BlockFrostAPI.ts](src/BlockFrostAPI.ts).
+3. Add unit-test fixture for the added method to [test/fixtures/endpoints.ts](test/fixtures/endpoints.ts)
+4. SHIP IT

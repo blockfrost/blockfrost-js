@@ -146,6 +146,7 @@ import { getLimiter } from './utils/limiter';
 // must be require, import would include package.json to the output dir together with "src" dir breaking dir hierarchy
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('../package.json');
+
 class BlockFrostAPI {
   apiUrl: string;
   projectId?: string;
@@ -189,166 +190,23 @@ class BlockFrostAPI {
     );
   }
 
-  /**
-   * accounts - Obtain information about a specific stake account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about a specific stake account.
-   *
-   */
   accounts = accounts;
-
-  /**
-   * accountsDelegations - Obtain information about the delegation of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the delegation of a specific account.
-   *
-   */
   accountsDelegations = accountsDelegations;
-
-  /**
-   * accountsDelegationsAll - Obtain information about all delegations of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the delegation of a specific account.
-   *
-   */
   accountsDelegationsAll = accountsDelegationsAll;
-
-  /**
-   * accountsRegistrations - Obtain information about the registrations and deregistrations of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the registrations and deregistrations of a specific account.
-   *
-   */
   accountsRegistrations = accountsRegistrations;
-
-  /**
-   * accountsRegistrationsAll - Obtain information about all registrations and deregistrations of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the registrations and deregistrations of a specific account.
-   *
-   */
   accountsRegistrationsAll = accountsRegistrationsAll;
-
-  /**
-   * accountsRewards - Obtain information about the history of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the history of a specific account.
-   *
-   */
   accountsRewards = accountsRewards;
-
-  /**
-   * accountsRewardsAll - Obtain information about whole history of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the history of a specific account.
-   *
-   */
   accountsRewardsAll = accountsRewardsAll;
-
-  /**
-   * accountsHistory - Obtain information about the history of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the history of a specific account.
-   *
-   */
   accountsHistory = accountsHistory;
-
-  /**
-   * accountsHistoryAll - Obtain information about whole history of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the history of a specific account.
-   *
-   */
   accountsHistoryAll = accountsHistoryAll;
-
-  /**
-   * accountsWithdrawals - Obtain information about the withdrawals of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the withdrawals of a specific account.
-   *
-   */
   accountsWithdrawals = accountsWithdrawals;
-
-  /**
-   * accountsWithdrawalsAll - Obtain information about all withdrawals of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the withdrawals of a specific account.
-   *
-   */
   accountsWithdrawalsAll = accountsWithdrawalsAll;
-
-  /**
-   * accountsMirs - Obtain information about the MIRs of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the MIRs of a specific account.
-   *
-   */
   accountsMirs = accountsMirs;
-
-  /**
-   * accountsMirsAll - Obtain information about all MIRs of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the MIRs of a specific account.
-   *
-   */
   accountsMirsAll = accountsMirsAll;
-
-  /**
-   * accountsAddresses - Obtain information about the addresses of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the addresses of a specific account.
-   *
-   */
   accountsAddresses = accountsAddresses;
-
-  /**
-   * accountsAddressesAll - Obtain information about all addresses of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Information about the addresses of a specific account.
-   *
-   */
   accountsAddressesAll = accountsAddressesAll;
-
-  /**
-   * accountsAddressesAssets - Obtain information about assets associated with addresses of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Assets associated with the account addresses
-   *
-   */
   accountsAddressesAssets = accountsAddressesAssets;
-
-  /**
-   * accountsAddressesAssets - Obtain information about assets associated with addresses of a specific account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Assets associated with the account addresses
-   *
-   */
   accountsAddressesAssetsAll = accountsAddressesAssetsAll;
-
-  /**
-   * accountsAddressesTotal - Obtain summed details aboutof all addresses associated with a given account.
-   *
-   * @param stakeAddress - Bech32 stake address
-   * @returns Assets associated with the account addresses
-   *
-   */
   accountsAddressesTotal = accountsAddressesTotal;
 
   /**
