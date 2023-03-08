@@ -4,6 +4,17 @@ import { components } from '@blockfrost/openapi';
 import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
 
+/**
+ * Obtains list of assets.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Assets/paths/~1assets/get| API docs for Assets}
+ * @remarks
+ * If an asset is completely burned, it will stay on the list with quantity 0 (order of assets is immutable).
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @param [pagination] - Pagination options
+ * @returns List of assets
+ *
+ */
 export async function assets(
   this: BlockFrostAPI,
   pagination?: PaginationOptions,
@@ -25,6 +36,14 @@ export async function assets(
   });
 }
 
+/**
+ * Obtains information about a specific asset.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Assets/paths/~1assets~1%7Basset%7D/get| API docs for Asset}
+ *
+ * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @returns Information about a specific asset.
+ *
+ */
 export async function assetsById(
   this: BlockFrostAPI,
   asset: string,
@@ -38,6 +57,15 @@ export async function assetsById(
   });
 }
 
+/**
+ * Obtains history of a specific asset.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Assets/paths/~1assets~1%7Basset%7D~1history/get| API docs for Asset history}
+ *
+ * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @param [pagination] - Pagination options
+ * @returns History of a specific asset.
+ *
+ */
 export async function assetsHistory(
   this: BlockFrostAPI,
   asset: string,
@@ -63,6 +91,17 @@ export async function assetsHistory(
   });
 }
 
+/**
+ * Obtains whole history of a specific asset.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Assets/paths/~1assets~1%7Basset%7D~1history/get| API docs for Asset history}
+ * @remarks
+ * Variant of `assetsHistory` method for fetching all pages with built-in requests batching
+ *
+ * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @param [allMethodOptions] - Options for request batching
+ * @returns Whole history of a specific asset.
+ *
+ */
 export async function assetsHistoryAll(
   this: BlockFrostAPI,
   asset: string,
@@ -74,6 +113,15 @@ export async function assetsHistoryAll(
   );
 }
 
+/**
+ * Lists of transactions of a specific asset.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Assets/paths/~1assets~1%7Basset%7D~1transactions/get| API docs for Asset transactions}
+ *
+ * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @param [pagination] - Pagination options
+ * @returns List of a specific asset transactions.
+ *
+ */
 export async function assetsTransactions(
   this: BlockFrostAPI,
   asset: string,
@@ -99,6 +147,15 @@ export async function assetsTransactions(
   });
 }
 
+/**
+ * Obtains list of a addresses containing a specific asset.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Assets/paths/~1assets~1%7Basset%7D~1addresses/get| API docs for Asset addresses}
+ *
+ * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @param [pagination] - Pagination options
+ * @returns List of a addresses containing a specific asset.
+ *
+ */
 export async function assetsAddresses(
   this: BlockFrostAPI,
   asset: string,
@@ -124,6 +181,15 @@ export async function assetsAddresses(
   });
 }
 
+/**
+ * Obtains list of assets minted under a specific policy.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Assets/paths/~1assets~1policy~1%7Bpolicy_id%7D/get| API docs for Assets of a specific policy}
+ *
+ * @param policyId - Specific policy_id
+ * @param [pagination] - Pagination options
+ * @returns List of assets minted under a specific policy.
+ *
+ */
 export async function assetsPolicyById(
   this: BlockFrostAPI,
   policy: string,
@@ -149,6 +215,18 @@ export async function assetsPolicyById(
   });
 }
 
+/**
+ * Obtains list of all assets minted under a specific policy.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Assets/paths/~1assets~1policy~1%7Bpolicy_id%7D/get| API docs for Assets of a specific policy}
+ * @remarks
+ * Variant of `assetsPolicyById` method for fetching all pages with built-in requests batching
+ *
+ * @param policyId - Specific policy_id
+ * @param [pagination] - Pagination options
+ * @param [allMethodOptions] - Options for request batching
+ * @returns List of asset minted under a specific policy.
+ *
+ */
 export async function assetsPolicyByIdAll(
   this: BlockFrostAPI,
   policy: string,

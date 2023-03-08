@@ -209,75 +209,13 @@ class BlockFrostAPI {
   accountsAddressesAssetsAll = accountsAddressesAssetsAll;
   accountsAddressesTotal = accountsAddressesTotal;
 
-  /**
-   * assets - List of assets.
-   *
-   * @returns List of assets.
-   *
-   */
   assets = assets;
-
-  /**
-   * assetsById - Information about a specific asset.
-   *
-   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
-   * @returns Information about a specific asset.
-   *
-   */
   assetsById = assetsById;
-
-  /**
-   * assetsHistory - History of a specific asset.
-   *
-   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
-   * @returns History of a specific asset.
-   *
-   */
   assetsHistory = assetsHistory;
-
-  /**
-   * assetsHistoryAll - Whole history of a specific asset.
-   *
-   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
-   * @returns History of a specific asset.
-   *
-   */
   assetsHistoryAll = assetsHistoryAll;
-
-  /**
-   * assetsTransactions - List of a specific asset transactions.
-   *
-   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
-   * @returns List of a specific asset transactions.
-   *
-   */
   assetsTransactions = assetsTransactions;
-
-  /**
-   * assetsAddresses - List of a addresses containing a specific asset.
-   *
-   * @param asset - Concatenation of the policy_id and hex-encoded asset_name
-   * @returns List of a addresses containing a specific asset.
-   *
-   */
   assetsAddresses = assetsAddresses;
-
-  /**
-   * assetsPolicyById - List of asset minted under a specific policy.
-   *
-   * @param policyId - Specific policy_id
-   * @returns List of asset minted under a specific policy.
-   *
-   */
   assetsPolicyById = assetsPolicyById;
-
-  /**
-   * assetsPolicyByIdAll - List of all assets minted under a specific policy.
-   *
-   * @param policyId - Specific policy_id
-   * @returns List of asset minted under a specific policy.
-   *
-   */
   assetsPolicyByIdAll = assetsPolicyByIdAll;
 
   /**
