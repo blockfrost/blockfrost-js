@@ -239,132 +239,19 @@ class BlockFrostAPI {
   blocksAddresses = blocksAddresses;
   blocksAddressesAll = blocksAddressesAll;
 
-  /**
-   * epochs
-   *
-   * @param number
-   * @returns xxx
-   *
-   */
   epochs = epochs;
-
-  /**
-   * epochsBlocks
-   *
-   * @param number
-   * @returns xxx
-   *
-   */
   epochsBlocks = epochsBlocks;
-
-  /**
-   * epochsBlocksAll
-   *
-   * @param number
-   * @returns xxx
-   *
-   */
   epochsBlocksAll = epochsBlocksAll;
-
-  /**
-   * epochsBlocksByPoolId
-   *
-   * @param number
-   * @param poolId
-   * @returns xxx
-   *
-   */
   epochsBlocksByPoolId = epochsBlocksByPoolId;
-
-  /**
-   * epochsBlocksByPoolIdAll
-   *
-   * @param number
-   * @param poolId
-   * @returns xxx
-   *
-   */
   epochsBlocksByPoolIdAll = epochsBlocksByPoolIdAll;
-
-  /**
-   * epochsLatest
-   *
-   * @returns xxx
-   *
-   */
   epochsLatest = epochsLatest;
-
-  /**
-   * epochsNext
-   *
-   * @param number
-   * @returns xxx
-   *
-   */
   epochsNext = epochsNext;
-
-  /**
-   * epochsParameters
-   *
-   * @param number
-   * @returns xxx
-   *
-   */
   epochsParameters = epochsParameters;
-
-  /**
-   * epochsLatestParameters
-   *
-   * @returns xxx
-   *
-   */
   epochsLatestParameters = epochsLatestParameters;
-
-  /**
-   * epochsPrevious
-   *
-   * @param number
-   * @returns xxx
-   *
-   */
   epochsPrevious = epochsPrevious;
-
-  /**
-   * epochsStakes
-   *
-   * @param number
-   * @returns xxx
-   *
-   */
   epochsStakes = epochsStakes;
-
-  /**
-   * epochsStakesAll
-   *
-   * @param number
-   * @returns xxx
-   *
-   */
   epochsStakesAll = epochsStakesAll;
-
-  /**
-   * epochsStakesByPoolId
-   *
-   * @param number
-   * @param poolId
-   * @returns xxx
-   *
-   */
   epochsStakesByPoolId = epochsStakesByPoolId;
-
-  /**
-   * epochsStakesByPoolIdAll
-   *
-   * @param number
-   * @param poolId
-   * @returns xxx
-   *
-   */
   epochsStakesByPoolIdAll = epochsStakesByPoolIdAll;
 
   /**

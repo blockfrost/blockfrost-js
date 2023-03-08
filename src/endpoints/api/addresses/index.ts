@@ -38,7 +38,7 @@ export async function addresses(
 /**
  * Obtains aggregated details about transactions for a specific address
  * (received assets, sent assets, number of transactions).
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1total/get| API docs for Address details}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1total/get | API docs for Address details}
  *
  * @param address - Bech32 address
  * @returns Aggregated details about an address (received assets, sent assets, number of transactions)
@@ -61,7 +61,7 @@ export async function addressesTotal(
 
 /**
  * Obtains extended information about a specific address.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~extended/get| API docs for Extended information of a specific address}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~extended/get | API docs for Extended information of a specific address}
  * @remarks Similar to `addresses` with the addition of `has_nft_onchain_metadata` and `decimals` fields in asset amounts.
  *
  * @param address - Bech32 address
@@ -85,7 +85,7 @@ export async function addressesExtended(
 
 /**
  * Obtains transactions on the address.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1transactions/get| API docs for Address transactions}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1transactions/get | API docs for Address transactions}
  *
  * @param address - Bech32 address
  * @param [pagination] - Pagination options
@@ -130,7 +130,7 @@ export async function addressesTransactions(
 
 /**
  * Obtains all transactions on the address.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1transactions/get| API docs for Address transactions}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1transactions/get | API docs for Address transactions}
  * @remarks
  * Variant of `addressesTransactions` method for fetching all pages with built-in requests batching
  *
@@ -156,7 +156,7 @@ export async function addressesTransactionsAll(
 
 /**
  * Obtains UTXOs of the address
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1utxos/get| API docs for Address UTXOs}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1utxos/get | API docs for Address UTXOs}
  *
  * @param address - Bech32 address
  * @param [pagination] - Pagination options
@@ -190,7 +190,7 @@ export async function addressesUtxos(
 
 /**
  * Obtains all UTXOs of the address
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1utxos/get| API docs for Address UTXOs}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1utxos/get | API docs for Address UTXOs}
  * @remarks
  * Variant of `addressesUtxos` method for fetching all pages with built-in requests batching
  *
@@ -212,7 +212,7 @@ export async function addressesUtxosAll(
 
 /**
  * Obtains address's UTXOs containing a given asset (paginated)
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1utxos~1%7Basset%7D/get| API docs for Address UTXOs of a given asset}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1utxos~1%7Basset%7D/get | API docs for Address UTXOs of a given asset}
  *
  * @param address - Bech32 address
  * @param asset - Concatenation of the policy_id and hex-encoded asset_name
@@ -249,7 +249,7 @@ export async function addressesUtxosAsset(
 
 /**
  * Obtains all address's UTXOs containing a given asset
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1utxos~1%7Basset%7D/get| API docs for Address UTXOs of a given asset}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1utxos~1%7Basset%7D/get | API docs for Address UTXOs of a given asset}
  * @remarks
  * Variant of `addressesUtxosAsset` method for fetching all pages with built-in requests batching
  *

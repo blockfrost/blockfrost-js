@@ -10,7 +10,7 @@ import { BlockFrostAPI } from '../../../index';
 
 /**
  * Obtains a specific block.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1latest/get| API docs for Latest block}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1latest/get | API docs for Latest block}
  *
  * @param hashOrNumber - Hash or number of the requested block
  * @returns Specific block
@@ -35,7 +35,7 @@ export async function blocks(
 
 /**
  * Obtains the specific block available to the backends, also known as the tip of the blockchain.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1latest/get| API docs for Latest block}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1latest/get | API docs for Latest block}
  *
  * @returns latest block
  *
@@ -56,7 +56,7 @@ export async function blocksLatest(
 
 /**
  * Obtains transactions within the latest block.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1latest~1txs/get| API docs for Latest block transactions}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1latest~1txs/get | API docs for Latest block transactions}
  *
  * @param [pagination] - Pagination options
  * @returns transactions within the latest block
@@ -90,7 +90,7 @@ export async function blocksLatestTxs(
 
 /**
  * Obtains all transactions within the latest block.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1latest~1txs/get| API docs for Latest block transactions}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1latest~1txs/get | API docs for Latest block transactions}
  * @remarks
  * Variant of `blocksLatestTxs` method for fetching all pages with built-in requests batching
  *
@@ -110,7 +110,7 @@ export async function blocksLatestTxsAll(
 
 /**
  * Obtains list of blocks following a specific block.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1next/get| API docs for Listing of next blocks}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1next/get | API docs for Listing of next blocks}
  *
  * @param hashOrNumber - Hash or number of the requested block
  * @param [pagination] - Pagination options
@@ -145,7 +145,7 @@ export async function blocksNext(
 
 /**
  * Obtains list of blocks preceding a specific block.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~previous/get| API docs for Listing of previous blocks}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~previous/get | API docs for Listing of previous blocks}
  *
  * @param hashOrNumber - Hash or number of the requested block
  * @param [pagination] - Pagination options
@@ -180,7 +180,7 @@ export async function blocksPrevious(
 
 /**
  * Obtains transactions within the specific block.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1txs/get| API docs for Block transactions}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1txs/get | API docs for Block transactions}
  *
  * @param hashOrNumber - Hash or number of the requested block
  * @param [pagination] - Pagination options
@@ -216,7 +216,7 @@ export async function blocksTxs(
 
 /**
  * Obtains all transactions within the specific block.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1txs/get| API docs for Block transactions}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1txs/get | API docs for Block transactions}
  * @remarks
  * Variant of `blocksTxs` method for fetching all pages with built-in requests batching
  *
@@ -240,7 +240,7 @@ export async function blocksTxsAll(
  * Obtains list of addresses affected in the specified block with additional information.
  * @remarks
  * Sorted by the bech32 address, in ascending order.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1addresses/get| API docs for Addresses affected in a specific block}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1addresses/get | API docs for Addresses affected in a specific block}
  *
  * @param hashOrNumber - Hash or number of the requested block
  * @param [pagination] - Pagination options
@@ -276,7 +276,7 @@ export async function blocksAddresses(
 
 /**
  * Obtains list of addresses affected in the specified block with additional information.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1addresses/get| API docs for Addresses affected in a specific block}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1addresses/get | API docs for Addresses affected in a specific block}
  * @remarks
  * Sorted by the bech32 address, in ascending order.
  * @remarks
