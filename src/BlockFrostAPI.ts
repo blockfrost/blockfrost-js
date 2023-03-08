@@ -262,253 +262,43 @@ class BlockFrostAPI {
   mempoolAll = mempoolAll;
   mempoolTx = mempoolTx;
 
-  /**
-   * metadataTxsLabel
-   *
-   * @param label
-   * @returns xxx
-   *
-   */
   metadataTxsLabel = metadataTxsLabel;
-
-  /**
-   * metadataTxsLabelCbor
-   *
-   * @param label
-   * @returns xxx
-   *
-   */
   metadataTxsLabelCbor = metadataTxsLabelCbor;
-
-  /**
-   * metadataTxsLabels
-   *
-   * @returns xxx
-   *
-   */
   metadataTxsLabels = metadataTxsLabels;
 
-  /**
-   * metrics
-   *
-   * @returns xxx
-   *
-   */
   metrics = metrics;
-
-  /**
-   * metricsEndpoints
-   *
-   * @returns xxx
-   *
-   */
   metricsEndpoints = metricsEndpoints;
 
-  /**
-   * nutlinkAddress
-   *
-   * @returns xxx
-   *
-   */
   nutlinkAddress = nutlinkAddress;
-  /**
-
-  * nutlinkAddressTicker
-   *
-   * @returns xxx
-   *
-   */
   nutlinkAddressTicker = nutlinkAddressTicker;
-
-  /**
-   * nutlinkAddressTickers
-   *
-   * @returns xxx
-   *
-   */
   nutlinkAddressTickers = nutlinkAddressTickers;
-
-  /**
-   * nutlinkAddressTickersAll
-   *
-   * @returns xxx
-   *
-   */
   nutlinkAddressTickersAll = nutlinkAddressTickersAll;
-
-  /**
-   * nutlinkAddressTickerAll
-   *
-   * @returns xxx
-   *
-   */
   nutlinkAddressTickerAll = nutlinkAddressTickerAll;
-
-  /**
-   * nutlinkTickers
-   *
-   * @returns xxx
-   *
-   */
   nutlinkTickers = nutlinkTickers;
-
-  /**
-   * nutlinkTickersAll
-   *
-   * @returns xxx
-   *
-   */
   nutlinkTickersAll = nutlinkTickersAll;
 
-  /**
-   * pools
-   *
-   * @returns xxx
-   *
-   */
   pools = pools;
-
-  /**
-   * poolsAll
-   *
-   * @returns xxx
-   *
-   */
   poolsAll = poolsAll;
-
-  /**
-   * poolMetadata
-   *
-   * @param poolId
-   * @returns xxx
-   *
-   */
   poolMetadata = poolMetadata;
-
-  /**
-   * poolsById
-   *
-   * @param poolId
-   * @returns xxx
-   *
-   */
   poolsById = poolsById;
-
-  /**
-   * poolsByIdBlocks
-   *
-   * @param poolId
-   * @returns xxx
-   *
-   */
   poolsByIdBlocks = poolsByIdBlocks;
-
-  /**
-   * poolsByIdDelegators
-   *
-   * @param poolId
-   * @returns xxx
-   *
-   */
   poolsByIdDelegators = poolsByIdDelegators;
-
-  /**
-   * poolsByIdHistory
-   *
-   * @param poolId
-   * @returns xxx
-   *
-   */
   poolsByIdHistory = poolsByIdHistory;
-
-  /**
-   * poolsByIdRelays
-   *
-   * @param poolId
-   * @returns xxx
-   *
-   */
   poolsByIdRelays = poolsByIdRelays;
-
-  /**
-   * poolsByIdUpdates
-   *
-   * @param poolId
-   * @returns xxx
-   *
-   */
   poolsByIdUpdates = poolsByIdUpdates;
-
-  /**
-   * poolsRetired
-   *
-   * @returns xxx
-   *
-   */
   poolsRetired = poolsRetired;
-
-  /**
-   * poolsRetiring
-   *
-   * @returns xxx
-   *
-   */
   poolsRetiring = poolsRetiring;
-
   poolsExtended = poolsExtended;
-
   poolsExtendedAll = poolsExtendedAll;
 
-  /**
-   * root
-   *
-   * @returns xxx
-   *
-   */
   root = root;
 
-  /**
-   * List scripts
-   *
-   * @returns List of script hashes
-   *
-   */
   scripts = scripts;
-
-  /**
-   * Information about a specific script
-   *
-   * @returns Information about a specific script
-   *
-   */
   scriptsByHash = scriptsByHash;
-
-  /**
-   *
-   */
   scriptsJson = scriptsJson;
-
-  /**
-   *
-   */
   scriptsCbor = scriptsCbor;
-
-  /**
-   *
-   */
   scriptsDatum = scriptsDatum;
-
-  /**
-   *
-   */
   scriptsDatumCbor = scriptsDatumCbor;
-
-  /**
-   * List of redeemers of a specific script
-   *
-   * @returns List the information about redeemers of a specific script
-   *
-   */
   scriptsRedeemers = scriptsRedeemers;
 
   /**

@@ -28,6 +28,7 @@
     "preprod",
     "serialization",
     "ticker",
+    "timelock",
     "type",
     "typedoc",
     "utxos",

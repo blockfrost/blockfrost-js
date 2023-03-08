@@ -4,6 +4,14 @@ import { handleError } from '../../../utils/errors';
 import { PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
 
+/**
+ * Obtains list of all used transaction metadata labels.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Metadata/paths/~1metadata~1txs~1labels/get | API docs for Transaction metadata labels}
+ *
+ * @param [pagination] - Pagination options
+ * @returns List of all used transaction metadata labels
+ *
+ */
 export async function metadataTxsLabels(
   this: BlockFrostAPI,
   pagination?: PaginationOptions,
@@ -30,9 +38,18 @@ export async function metadataTxsLabels(
   });
 }
 
+/**
+ * Obtains transaction metadata for a specific label in JSON format.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Metadata/paths/~1metadata~1txs~1labels~1%7Blabel%7D/get | API docs for Transaction metadata content in JSON}
+ *
+ * @param label - Metadata label
+ * @param [pagination] - Pagination options
+ * @returns List of transaction metadata for the specific label
+ *
+ */
 export async function metadataTxsLabel(
   this: BlockFrostAPI,
-  label: string,
+  label: string | number,
   pagination?: PaginationOptions,
 ): Promise<components['schemas']['tx_metadata_label_json']> {
   const paginationOptions = getPaginationOptions(pagination);
@@ -57,6 +74,15 @@ export async function metadataTxsLabel(
   });
 }
 
+/**
+ * Obtains transaction metadata for a specific label in CBOR format.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Metadata/paths/~1metadata~1txs~1labels~1%7Blabel%7D~1cbor/get | API docs for Transaction metadata content in CBOR}
+ *
+ * @param label - Metadata label
+ * @param [pagination] - Pagination options
+ * @returns List of transaction metadata for the specific label
+ *
+ */
 export async function metadataTxsLabelCbor(
   this: BlockFrostAPI,
   label: string,

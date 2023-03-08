@@ -4,6 +4,14 @@ import { BlockFrostAPI } from '../../../index';
 import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { handleError } from '../../../utils/errors';
 
+/**
+ * Obtains list of registered stake pools (paginated).
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools/get | API docs for List of stake pools}
+ *
+ * @param [pagination] - Pagination options
+ * @returns List of registered stake pools.
+ *
+ */
 export async function pools(
   this: BlockFrostAPI,
   pagination?: PaginationOptions,
@@ -27,6 +35,16 @@ export async function pools(
   });
 }
 
+/**
+ * Obtains list of all registered stake pools.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools/get | API docs for List of stake pools}
+ * @remarks
+ * Variant of `pools` method for fetching all pages with built-in requests batching
+ *
+ * @param [allMethodOptions] - Options for request batching
+ * @returns List of registered stake pools.
+ *
+ */
 export async function poolsAll(
   this: BlockFrostAPI,
   allMethodOptions?: AllMethodOptions,
@@ -57,6 +75,14 @@ export async function poolsRetired(
   });
 }
 
+/**
+ * Obtains list of stake pools retiring in the upcoming epochs (paginated).
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1retiring/get | API docs for List of retiring stake pools}
+ *
+ * @param [pagination] - Pagination options
+ * @returns List of stake pools retiring in the upcoming epochs
+ *
+ */
 export async function poolsRetiring(
   this: BlockFrostAPI,
   pagination?: PaginationOptions,
@@ -80,6 +106,14 @@ export async function poolsRetiring(
   });
 }
 
+/**
+ * Obtains information of a specific stake pool.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1%7Bpool_id%7D/get | API docs for Stake Pool}
+ *
+ * @param poolId - Pool ID
+ * @returns Information of a specific stake pool.
+ *
+ */
 export async function poolsById(
   this: BlockFrostAPI,
   poolId: string,
@@ -95,6 +129,15 @@ export async function poolsById(
   });
 }
 
+/**
+ * Obtains history of stake pool parameters over epochs (paginated).
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1%7Bpool_id%7D~1history/get | API docs for Stake pool history}
+ *
+ * @param poolId - Pool ID
+ * @param [pagination] - Pagination options
+ * @returns List of stake pool parameters per epoch
+ *
+ */
 export async function poolsByIdHistory(
   this: BlockFrostAPI,
   poolId: string,
@@ -122,6 +165,14 @@ export async function poolsByIdHistory(
   });
 }
 
+/**
+ * Obtains stake pool registration metadata.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1%7Bpool_id%7D~1metadata/get | API docs for Stake pool metadata}
+ *
+ * @param poolId - Pool ID
+ * @returns Stake pool registration metadata
+ *
+ */
 export async function poolMetadata(
   this: BlockFrostAPI,
   poolId: string,
@@ -139,6 +190,14 @@ export async function poolMetadata(
   });
 }
 
+/**
+ * Obtains stake pool relays.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1%7Bpool_id%7D~1relays/get | API docs for Stake pool relays}
+ *
+ * @param poolId - Pool ID
+ * @returns Stake pool relays
+ *
+ */
 export async function poolsByIdRelays(
   this: BlockFrostAPI,
   poolId: string,
@@ -156,6 +215,14 @@ export async function poolsByIdRelays(
   });
 }
 
+/**
+ * Obtains current stake pool delegators.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1%7Bpool_id%7D~delegators/get | API docs for Stake pool delegators}
+ *
+ * @param poolId - Pool ID
+ * @returns Current stake pool delegators
+ *
+ */
 export async function poolsByIdDelegators(
   this: BlockFrostAPI,
   poolId: string,
@@ -183,6 +250,15 @@ export async function poolsByIdDelegators(
   });
 }
 
+/**
+ * Obtains list of stake pool blocks.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1%7Bpool_id%7D~1blocks/get | API docs for Stake pool blocks}
+ *
+ * @param poolId - Pool ID
+ * @param [pagination] - Pagination options
+ * @returns List of stake pool blocks
+ *
+ */
 export async function poolsByIdBlocks(
   this: BlockFrostAPI,
   poolId: string,
@@ -210,6 +286,15 @@ export async function poolsByIdBlocks(
   });
 }
 
+/**
+ * Obtains list of certificate updates to the stake pool.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1%7Bpool_id%7D~1updates/get | API docs for Stake pool updates}
+ *
+ * @param poolId - Pool ID
+ * @param [pagination] - Pagination options
+ * @returns List of certificate updates to the stake pool
+ *
+ */
 export async function poolsByIdUpdates(
   this: BlockFrostAPI,
   poolId: string,
@@ -237,6 +322,13 @@ export async function poolsByIdUpdates(
   });
 }
 
+/**
+ * Obtains list of registered stake pools with additional information.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1extended/get | API docs for List of stake pools with additional information}
+ *
+ * @returns List of registered stake pools with additional information
+ *
+ */
 export async function poolsExtended(
   this: BlockFrostAPI,
   pagination?: PaginationOptions,
@@ -263,6 +355,16 @@ export async function poolsExtended(
   });
 }
 
+/**
+ * Obtains list of registered stake pools with additional information.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1extended/get | API docs for List of stake pools with additional information}
+ * @remarks
+ * Variant of `poolsExtended` method for fetching all pages with built-in requests batching
+ *
+ * @param [allMethodOptions] - Options for request batching
+ * @returns List of registered stake pools with additional information
+ *
+ */
 export async function poolsExtendedAll(
   this: BlockFrostAPI,
   allMethodOptions?: AllMethodOptions,

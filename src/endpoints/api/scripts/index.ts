@@ -4,6 +4,14 @@ import { handleError } from '../../../utils/errors';
 import { PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
 
+/**
+ * Obtains information about a specific script.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Scripts/paths/~1scripts~1%7Bscript_hash%7D/get | API docs for Script}
+ *
+ * @param scriptHash - Hash of the script
+ * @returns Information about a specific script
+ *
+ */
 export async function scriptsByHash(
   this: BlockFrostAPI,
   scriptHash: string,
@@ -19,6 +27,14 @@ export async function scriptsByHash(
   });
 }
 
+/**
+ * Obtains list of scripts (paginated).
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Scripts/paths/~1scripts/get | API docs for Scripts}
+ *
+ * @param [pagination] - Pagination options
+ * @returns List of scripts
+ *
+ */
 export async function scripts(
   this: BlockFrostAPI,
   pagination?: PaginationOptions,
@@ -42,6 +58,14 @@ export async function scripts(
   });
 }
 
+/**
+ * Obtains JSON representation of a timelock script.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Scripts/paths/~1scripts~1%7Bscript_hash%7D~1json/get | API docs for Script JSON}
+ *
+ * @param scriptHash - Hash of the script
+ * @returns JSON representation of a timelock script
+ *
+ */
 export async function scriptsJson(
   this: BlockFrostAPI,
   scriptHash: string,
@@ -59,6 +83,14 @@ export async function scriptsJson(
   });
 }
 
+/**
+ * Obtains CBOR representation of a plutus script.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Scripts/paths/~1scripts~1%7Bscript_hash%7D~1cbor/get | API docs for Script CBOR}
+ *
+ * @param scriptHash - Hash of the script
+ * @returns CBOR representation of a plutus script
+ *
+ */
 export async function scriptsCbor(
   this: BlockFrostAPI,
   scriptHash: string,
@@ -76,6 +108,14 @@ export async function scriptsCbor(
   });
 }
 
+/**
+ * Obtains JSON value of a datum by its hash.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Scripts/paths/~1scripts~1datum~1%7Bdatum_hash%7D/get | API docs for Datum value}
+ *
+ * @param datumHash - Hash of the datum
+ * @returns JSON value of a datum specified by its hash
+ *
+ */
 export async function scriptsDatum(
   this: BlockFrostAPI,
   datumHash: string,
@@ -93,6 +133,14 @@ export async function scriptsDatum(
   });
 }
 
+/**
+ * Obtains CBOR serialized datum by its hash.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Scripts/paths/~1scripts~1datum~1%7Bdatum_hash%7D~1cbor/get | API docs for Datum CBOR value}
+ *
+ * @param datumHash - Hash of the datum
+ * @returns JSON value of a datum specified by its hash
+ *
+ */
 export async function scriptsDatumCbor(
   this: BlockFrostAPI,
   datumHash: string,
@@ -110,6 +158,14 @@ export async function scriptsDatumCbor(
   });
 }
 
+/**
+ * Obtains list of redeemers of a specific script
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Scripts/paths/~1scripts~1%7Bscript_hash%7D~1redeemers/get | API docs for Redeemers of a specific script}
+ *
+ * @param scriptHash - Hash of the script
+ * @returns List of redeemers of a specific script
+ *
+ */
 export async function scriptsRedeemers(
   this: BlockFrostAPI,
   scriptHash: string,
