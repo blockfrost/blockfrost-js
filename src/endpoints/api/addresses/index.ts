@@ -215,7 +215,7 @@ export async function addressesUtxosAll(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1utxos~1%7Basset%7D/get | API docs for Address UTXOs of a given asset}
  *
  * @param address - Bech32 address
- * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @param asset - Concatenation of the policy ID and hex-encoded asset name
  * @param [pagination] - Pagination options
  * @returns List of the address's utxos containing a given asset
  *
@@ -254,7 +254,7 @@ export async function addressesUtxosAsset(
  * Variant of `addressesUtxosAsset` method for fetching all pages with built-in requests batching
  *
  * @param address - Bech32 address
- * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @param asset - Concatenation of the policy ID and hex-encoded asset name
  * @param [allMethodOptions] - Options for request batching
  * @returns List of the address's utxos containing a given asset
  *

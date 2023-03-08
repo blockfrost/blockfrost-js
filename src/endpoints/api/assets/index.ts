@@ -40,7 +40,7 @@ export async function assets(
  * Obtains information about a specific asset.
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Assets/paths/~1assets~1%7Basset%7D/get | API docs for Asset}
  *
- * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @param asset - Concatenation of the policy ID and hex-encoded asset name
  * @returns Information about a specific asset.
  *
  */
@@ -61,7 +61,7 @@ export async function assetsById(
  * Obtains history of a specific asset.
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Assets/paths/~1assets~1%7Basset%7D~1history/get | API docs for Asset history}
  *
- * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @param asset - Concatenation of the policy ID and hex-encoded asset name
  * @param [pagination] - Pagination options
  * @returns History of a specific asset.
  *
@@ -97,7 +97,7 @@ export async function assetsHistory(
  * @remarks
  * Variant of `assetsHistory` method for fetching all pages with built-in requests batching
  *
- * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @param asset - Concatenation of the policy ID and hex-encoded asset name
  * @param [allMethodOptions] - Options for request batching
  * @returns Whole history of a specific asset.
  *
@@ -117,7 +117,7 @@ export async function assetsHistoryAll(
  * Lists of transactions of a specific asset.
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Assets/paths/~1assets~1%7Basset%7D~1transactions/get | API docs for Asset transactions}
  *
- * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @param asset - Concatenation of the policy ID and hex-encoded asset name
  * @param [pagination] - Pagination options
  * @returns List of a specific asset transactions.
  *
@@ -151,7 +151,7 @@ export async function assetsTransactions(
  * Obtains list of a addresses containing a specific asset.
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Assets/paths/~1assets~1%7Basset%7D~1addresses/get | API docs for Asset addresses}
  *
- * @param asset - Concatenation of the policy_id and hex-encoded asset_name
+ * @param asset - Concatenation of the policy ID and hex-encoded asset name
  * @param [pagination] - Pagination options
  * @returns List of a addresses containing a specific asset.
  *
