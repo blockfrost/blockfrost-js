@@ -254,28 +254,8 @@ class BlockFrostAPI {
   epochsStakesByPoolId = epochsStakesByPoolId;
   epochsStakesByPoolIdAll = epochsStakesByPoolIdAll;
 
-  /**
-   * health
-   *
-   * @returns xxx
-   *
-   */
   health = health;
-
-  /**
-   * healthClock
-   *
-   * @returns xxx
-   *
-   */
   healthClock = healthClock;
-
-  /**
-   * ledger
-   *
-   * @returns xxx
-   *
-   */
   genesis = genesis;
 
   mempool = mempool;
