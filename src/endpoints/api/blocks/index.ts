@@ -58,7 +58,7 @@ export async function blocksLatest(
  * Obtains transactions within the latest block.
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1latest~1txs/get | API docs for Latest block transactions}
  *
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns transactions within the latest block
  *
  */
@@ -94,7 +94,7 @@ export async function blocksLatestTxs(
  * @remarks
  * Variant of `blocksLatestTxs` method for fetching all pages with built-in requests batching
  *
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns transactions within the latest block
  *
  */
@@ -113,7 +113,7 @@ export async function blocksLatestTxsAll(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1next/get | API docs for Listing of next blocks}
  *
  * @param hashOrNumber - Hash or number of the requested block
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns List of blocks following a specific block
  *
  */
@@ -148,7 +148,7 @@ export async function blocksNext(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~previous/get | API docs for Listing of previous blocks}
  *
  * @param hashOrNumber - Hash or number of the requested block
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns List of blocks preceding a specific block
  *
  */
@@ -183,7 +183,7 @@ export async function blocksPrevious(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1txs/get | API docs for Block transactions}
  *
  * @param hashOrNumber - Hash or number of the requested block
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns Transactions within the specific block
  *
  */
@@ -221,7 +221,7 @@ export async function blocksTxs(
  * Variant of `blocksTxs` method for fetching all pages with built-in requests batching
  *
  * @param hashOrNumber - Hash or number of the requested block
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns All transactions within the specific block
  *
  */
@@ -243,7 +243,7 @@ export async function blocksTxsAll(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1addresses/get | API docs for Addresses affected in a specific block}
  *
  * @param hashOrNumber - Hash or number of the requested block
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns List of addresses affected in the specified block
  *
  */
@@ -283,7 +283,7 @@ export async function blocksAddresses(
  * Variant of `blocksAddresses` method for fetching all pages with built-in requests batching
  *
  * @param hashOrNumber - Hash or number of the requested block
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns List of addresses affected in the specified block
  *
  */

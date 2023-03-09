@@ -88,8 +88,8 @@ export async function addressesExtended(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1transactions/get | API docs for Address transactions}
  *
  * @param address - Bech32 address
- * @param [pagination] - Pagination options
- * @param [additionalOptions] - Additional options such as cursor pagination
+ * @param pagination - Optional, Pagination options
+ * @param additionalOptions - Optional, Additional options such as cursor pagination
  * @returns Extended information about a specific address
  *
  */
@@ -135,8 +135,8 @@ export async function addressesTransactions(
  * Variant of `addressesTransactions` method for fetching all pages with built-in requests batching
  *
  * @param address - Bech32 address
- * @param [allMethodOptions] - Options for request batching
- * @param [additionalOptions] - Additional options such as cursor pagination
+ * @param allMethodOptions - Optional, Options for request batching
+ * @param additionalOptions - Optional, Additional options such as cursor pagination
  * @returns Extended information about a specific address
  *
  */
@@ -159,7 +159,7 @@ export async function addressesTransactionsAll(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1utxos/get | API docs for Address UTXOs}
  *
  * @param address - Bech32 address
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns UTXOs of the address
  *
  */
@@ -195,7 +195,7 @@ export async function addressesUtxos(
  * Variant of `addressesUtxos` method for fetching all pages with built-in requests batching
  *
  * @param address - Bech32 address
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns UTXOs of the address
  *
  */
@@ -216,7 +216,7 @@ export async function addressesUtxosAll(
  *
  * @param address - Bech32 address
  * @param asset - Concatenation of the policy ID and hex-encoded asset name
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns List of the address's utxos containing a given asset
  *
  */
@@ -255,7 +255,7 @@ export async function addressesUtxosAsset(
  *
  * @param address - Bech32 address
  * @param asset - Concatenation of the policy ID and hex-encoded asset name
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns List of the address's utxos containing a given asset
  *
  */

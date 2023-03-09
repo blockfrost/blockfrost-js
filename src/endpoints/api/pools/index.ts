@@ -8,7 +8,7 @@ import { handleError } from '../../../utils/errors';
  * Obtains list of registered stake pools (paginated).
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools/get | API docs for List of stake pools}
  *
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns List of registered stake pools.
  *
  */
@@ -41,7 +41,7 @@ export async function pools(
  * @remarks
  * Variant of `pools` method for fetching all pages with built-in requests batching
  *
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns List of registered stake pools.
  *
  */
@@ -79,7 +79,7 @@ export async function poolsRetired(
  * Obtains list of stake pools retiring in the upcoming epochs (paginated).
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1retiring/get | API docs for List of retiring stake pools}
  *
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns List of stake pools retiring in the upcoming epochs
  *
  */
@@ -134,7 +134,7 @@ export async function poolsById(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1%7Bpool_id%7D~1history/get | API docs for Stake pool history}
  *
  * @param poolId - Pool ID
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns List of stake pool parameters per epoch
  *
  */
@@ -255,7 +255,7 @@ export async function poolsByIdDelegators(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1%7Bpool_id%7D~1blocks/get | API docs for Stake pool blocks}
  *
  * @param poolId - Pool ID
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns List of stake pool blocks
  *
  */
@@ -291,7 +291,7 @@ export async function poolsByIdBlocks(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Pools/paths/~1pools~1%7Bpool_id%7D~1updates/get | API docs for Stake pool updates}
  *
  * @param poolId - Pool ID
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns List of certificate updates to the stake pool
  *
  */
@@ -361,7 +361,7 @@ export async function poolsExtended(
  * @remarks
  * Variant of `poolsExtended` method for fetching all pages with built-in requests batching
  *
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns List of registered stake pools with additional information
  *
  */

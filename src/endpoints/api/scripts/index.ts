@@ -31,7 +31,7 @@ export async function scriptsByHash(
  * Obtains list of scripts (paginated).
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Scripts/paths/~1scripts/get | API docs for Scripts}
  *
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns List of scripts
  *
  */

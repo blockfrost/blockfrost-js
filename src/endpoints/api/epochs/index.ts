@@ -53,7 +53,7 @@ export async function epochsLatest(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Epochs/paths/~1epochs~1%7Bnumber%7D~1next/get | API docs for Listing of next epochs}
  *
  * @param number - Number of the epoch
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns List of epochs following a specific epoch.
  *
  */
@@ -88,7 +88,7 @@ export async function epochsNext(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Epochs/paths/~1epochs~1%7Bnumber%7D~1previous/get | API docs for Listing of next epochs}
  *
  * @param number - Number of the epoch
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns List of epochs preceding a specific epoch.
  *
  */
@@ -123,7 +123,7 @@ export async function epochsPrevious(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Epochs/paths/~1epochs~1%7Bnumber%7D~1stakes/get | API docs for Stake distribution}
  *
  * @param number - Number of the epoch
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns Active stake distribution for the specified epoch
  *
  */
@@ -161,7 +161,7 @@ export async function epochsStakes(
  * Variant of `epochsStakes` method for fetching all pages with built-in requests batching
  *
  * @param number - Number of the epoch
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns Active stake distribution for the specified epoch
  *
  */
@@ -182,7 +182,7 @@ export async function epochsStakesAll(
  *
  * @param number - Number of the epoch
  * @param poolId - Stake pool ID to filter
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns Active stake distribution for the epoch specified by stake pool
  *
  */
@@ -222,7 +222,7 @@ export async function epochsStakesByPoolId(
  *
  * @param number - Number of the epoch
  * @param poolId - Stake pool ID to filter
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns Active stake distribution for the epoch specified by stake pool
  *
  */
@@ -243,7 +243,7 @@ export async function epochsStakesByPoolIdAll(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Epochs/paths/~1epochs~1%7Bnumber%7D~1blocks/get | API docs for Block distribution}
  *
  * @param number - Number of the epoch
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns Blocks minted for the epoch specified
  *
  */
@@ -281,7 +281,7 @@ export async function epochsBlocks(
  * Variant of `epochsBlocks` method for fetching all pages with built-in requests batching
  *
  * @param number - Number of the epoch
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns Blocks minted for the epoch specified
  *
  */
@@ -302,7 +302,7 @@ export async function epochsBlocksAll(
  *
  * @param number - Number of the epoch
  * @param poolId - Stake pool ID to filter
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns Blocks minted for the epoch specified by stake pool
  *
  */
@@ -342,7 +342,7 @@ export async function epochsBlocksByPoolId(
  *
  * @param number - Number of the epoch
  * @param poolId - Stake pool ID to filter
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns Blocks minted for the epoch specified by stake pool
  *
  */

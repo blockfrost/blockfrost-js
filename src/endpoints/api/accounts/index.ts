@@ -32,7 +32,7 @@ export async function accounts(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1%7Bstake_address%7D~1rewards/get | API docs for Account reward history}
  *
  * @param stakeAddress - Bech32 stake address
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns Information about the history of a specific account.
  *
  */
@@ -68,7 +68,7 @@ export async function accountsRewards(
  * Variant of `accountsRewards` method for fetching all pages with built-in requests batching
  *
  * @param stakeAddress - Bech32 stake address
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns Information about the reward history of a specific account.
  *
  */
@@ -88,7 +88,7 @@ export async function accountsRewardsAll(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1%7Bstake_address%7D~1history/get | API docs for Account history}
  *
  * @param stakeAddress - Bech32 stake address
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns Information about the history of a specific account.
  *
  */
@@ -124,7 +124,7 @@ export async function accountsHistory(
  * Variant of `accountsHistory` method for fetching all pages with built-in requests batching
  *
  * @param stakeAddress - Bech32 stake address
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns Information about the history of a specific account.
  *
  */
@@ -144,7 +144,7 @@ export async function accountsHistoryAll(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1%7Bstake_address%7D~1withdrawals/get | API docs for Account withdrawal history}
  *
  * @param stakeAddress - Bech32 stake address
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns Information about the withdrawals of a specific account.
  *
  */
@@ -180,7 +180,7 @@ export async function accountsWithdrawals(
  * Variant of `accountsWithdrawals` method for fetching all pages with built-in requests batching
  *
  * @param stakeAddress - Bech32 stake address
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns Information about all withdrawals of a specific account.
  *
  */
@@ -200,7 +200,7 @@ export async function accountsWithdrawalsAll(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1%7Bstake_address%7D~1mirs/get | API docs for Account MIR history}
  *
  * @param stakeAddress - Bech32 stake address
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns Information about the MIRs of a specific account.
  *
  */
@@ -236,7 +236,7 @@ export async function accountsMirs(
  * Variant of `accountsMirs` method for fetching all pages with built-in requests batching
  *
  * @param stakeAddress - Bech32 stake address
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns Information about the MIRs of a specific account.
  *
  */
@@ -256,7 +256,7 @@ export async function accountsMirsAll(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1%7Bstake_address%7D~1delegations/get | API docs for Account delegation history}
  *
  * @param stakeAddress - Bech32 stake address
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns Information about the delegation of a specific account.
  *
  */
@@ -292,7 +292,7 @@ export async function accountsDelegations(
  * Variant of `accountsDelegations` method for fetching all pages with built-in requests batching
  *
  * @param stakeAddress - Bech32 stake address
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns Information about the delegation of a specific account.
  *
  */
@@ -312,7 +312,7 @@ export async function accountsDelegationsAll(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1%7Bstake_address%7D~1registrations/get | API docs for Account registration history}
  *
  * @param stakeAddress - Bech32 stake address
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns Information about the registrations and deregistrations of a specific account.
  *
  */
@@ -348,7 +348,7 @@ export async function accountsRegistrations(
  * Variant of `accountsRegistrations` method for fetching all pages with built-in requests batching
  *
  * @param stakeAddress - Bech32 stake address
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns Information about the registrations and deregistrations of a specific account.
  *
  */
@@ -371,7 +371,7 @@ export async function accountsRegistrationsAll(
  * the addresses are owned by user as the account.
  *
  * @param stakeAddress - Bech32 stake address
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns Information about the addresses of a specific account.
  *
  */
@@ -410,7 +410,7 @@ export async function accountsAddresses(
  * Variant of `accountsAddresses` method for fetching all pages with built-in requests batching
  *
  * @param stakeAddress - Bech32 stake address
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns Information about the addresses of a specific account.
  *
  */
@@ -430,7 +430,7 @@ export async function accountsAddressesAll(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Accounts/paths/~1accounts~1%7Bstake_address%7D~1addresses~1assets/get | API docs for Assets associated with the account addresses}
  *
  * @param stakeAddress - Bech32 stake address
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns Assets associated with the account addresses
  *
  */
@@ -466,7 +466,7 @@ export async function accountsAddressesAssets(
  * Variant of `accountsAddressesAssets` method for fetching all pages with built-in requests batching
  *
  * @param stakeAddress - Bech32 stake address
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns Assets associated with the account addresses
  *
  */

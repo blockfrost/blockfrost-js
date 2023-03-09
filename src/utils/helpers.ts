@@ -15,7 +15,7 @@ import { SignatureVerificationError } from './errors';
  * Derives an address with derivation path m/1852'/1815'/account'/role/addressIndex
  * If role === 2 then it returns a stake address (m/1852'/1815'/account'/2/addressIndex)
  *
- * @Returns {address: string, path: number[] } An object with bech32 address and corresponding partial derivation path {address: string, path: [role, addressIndex]}
+ * @Returns Object with bech32 address and corresponding partial derivation path `{address: string, path: [role, addressIndex]}`
  * */
 export const deriveAddress = (
   accountPublicKey: string,
@@ -136,11 +136,11 @@ export const parseAsset = (hex: string): ParseAssetResult => {
 /**
  * Verifies webhook signature
  *
- * @param {string|Buffer} webhookPayload Buffer or stringified payload of the webhook request.
- * @param {string|Buffer} signatureHeader Blockfrost-Signature header.
- * @param {string} secret Auth token for the webhook.
- * @param {number} [timestampToleranceSeconds=600] Time tolerance affecting signature validity. By default signatures older than 600s are considered invalid.
- * @returns {boolean} Whether the signature is valid.
+ * @param webhookPayload - Buffer or stringified payload of the webhook request ().
+ * @param signatureHeader - Buffer or stringified Blockfrost-Signature header.
+ * @param secret - Auth token for the webhook.
+ * @param timestampToleranceSeconds - Time tolerance affecting signature validity. Optional, by default signatures older than 600s are considered invalid.
+ * @returns Boolean indicating whether the signature is valid.
  * */
 export const verifyWebhookSignature = (
   webhookPayload: unknown,

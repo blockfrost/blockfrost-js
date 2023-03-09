@@ -10,7 +10,7 @@ import { handleError } from '../../../utils/errors';
  * Returns only transactions submitted via Blockfrost.io.
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Mempool/paths/~1mempool/get | API docs for Mempool}
  *
- * @param [pagination] - Pagination options
+ * @param pagination - Optional, Pagination options
  * @returns List of transactions in Blockfrost Mempool
  *
  */
@@ -45,7 +45,7 @@ export async function mempool(
  * @remarks
  * Variant of `mempool` method for fetching all pages with built-in requests batching
  *
- * @param [allMethodOptions] - Options for request batching
+ * @param allMethodOptions - Optional, Options for request batching
  * @returns List of transactions in Blockfrost Mempool
  *
  */
