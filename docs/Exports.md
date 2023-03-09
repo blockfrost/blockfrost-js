@@ -29,7 +29,7 @@
 
 #### Defined in
 
-[src/index.ts:16](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/index.ts#L16)
+[src/index.ts:16](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/index.ts#L16)
 
 ## Functions
 
@@ -80,7 +80,7 @@ Object with bech32 address and corresponding partial derivation path `{address: 
 
 #### Defined in
 
-[src/utils/helpers.ts:41](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/utils/helpers.ts#L41)
+[src/utils/helpers.ts:41](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/utils/helpers.ts#L41)
 
 ___
 
@@ -117,7 +117,7 @@ Asset fingerprint for the given policy ID and asset name.
 
 #### Defined in
 
-[src/utils/helpers.ts:154](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/utils/helpers.ts#L154)
+[src/utils/helpers.ts:154](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/utils/helpers.ts#L154)
 
 ___
 
@@ -155,7 +155,7 @@ Object containing `policyId`, `assetName`, `assetNameHex` and `fingerprint`.
 
 #### Defined in
 
-[src/utils/helpers.ts:179](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/utils/helpers.ts#L179)
+[src/utils/helpers.ts:179](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/utils/helpers.ts#L179)
 
 ___
 
@@ -194,4 +194,4 @@ Thrown if the signature is not valid. For easier debugging the SignatureVerifica
 
 #### Defined in
 
-[src/utils/helpers.ts:211](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/utils/helpers.ts#L211)
+[src/utils/helpers.ts:211](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/utils/helpers.ts#L211)

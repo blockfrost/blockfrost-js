@@ -35,7 +35,7 @@
 
 #### Defined in
 
-[src/BlockFrostIPFS.ts:27](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostIPFS.ts#L27)
+[src/BlockFrostIPFS.ts:27](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostIPFS.ts#L27)
 
 ## Properties
 
@@ -47,14 +47,22 @@
 
 ▸ (`this`, `path`): `Promise`<`AddResponse`\>
 
-add - Add a file or directory to ipfs
+Adds a file to IPFS
+
+**`See`**
+
+[API docs for Add a file to IPFS](https://docs.blockfrost.io/#tag/IPFS-Add)
+
+**`Remarks`**
+
+You need to `pin` an object to avoid it being garbage collected. This usage is being counted in your user account quota.
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `this` | [`BlockFrostIPFS`](../wiki/BlockFrostIPFS) |
-| `path` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `this` | [`BlockFrostIPFS`](../wiki/BlockFrostIPFS) | - |
+| `path` | `string` | path to the file |
 
 ##### Returns
 
@@ -64,7 +72,7 @@ information about added ipfs object
 
 #### Defined in
 
-[src/BlockFrostIPFS.ts:56](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostIPFS.ts#L56)
+[src/BlockFrostIPFS.ts:51](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostIPFS.ts#L51)
 
 ___
 
@@ -74,7 +82,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostIPFS.ts:20](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostIPFS.ts#L20)
+[src/BlockFrostIPFS.ts:20](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostIPFS.ts#L20)
 
 ___
 
@@ -86,14 +94,22 @@ ___
 
 ▸ (`this`, `path`): `Promise`<`unknown`\>
 
-gateway - Relay to an ipfs gateway
+Retrieve an object from the IPFS gateway
+
+**`See`**
+
+[API docs for Relay to an IPFS gateway](https://docs.blockfrost.io/#tag/IPFS-Gateway/paths/~1ipfs~1gateway~1%7BIPFS_path%7D/get)
+
+**`Remarks`**
+
+Useful if you do not want to rely on a public gateway, such as ipfs.blockfrost.dev.
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `this` | [`BlockFrostIPFS`](../wiki/BlockFrostIPFS) |
-| `path` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `this` | [`BlockFrostIPFS`](../wiki/BlockFrostIPFS) | - |
+| `path` | `string` | path to the file |
 
 ##### Returns
 
@@ -103,7 +119,7 @@ the object content
 
 #### Defined in
 
-[src/BlockFrostIPFS.ts:64](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostIPFS.ts#L64)
+[src/BlockFrostIPFS.ts:52](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostIPFS.ts#L52)
 
 ___
 
@@ -113,7 +129,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostIPFS.ts:24](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostIPFS.ts#L24)
+[src/BlockFrostIPFS.ts:24](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostIPFS.ts#L24)
 
 ___
 
@@ -125,24 +141,28 @@ ___
 
 ▸ (`this`, `pagination?`): `Promise`<`ListResponse`\>
 
-list - List objects pinned to local storage
+List pinned IPFS resources.
+
+**`See`**
+
+[API docs for List pinned objects](https://docs.blockfrost.io/#tag/IPFS-Pins/paths/~1ipfs~1pin~1list/get)
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `this` | [`BlockFrostIPFS`](../wiki/BlockFrostIPFS) |
-| `pagination?` | `PaginationOptions` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `this` | [`BlockFrostIPFS`](../wiki/BlockFrostIPFS) | - |
+| `pagination?` | `PaginationOptions` | Optional, Pagination options |
 
 ##### Returns
 
 `Promise`<`ListResponse`\>
 
-list of pinned objects
+List of pinned IPFS objects
 
 #### Defined in
 
-[src/BlockFrostIPFS.ts:88](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostIPFS.ts#L88)
+[src/BlockFrostIPFS.ts:55](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostIPFS.ts#L55)
 
 ___
 
@@ -154,24 +174,28 @@ ___
 
 ▸ (`this`, `path`): `Promise`<`ListResponse`\>
 
-listByPath - List objects pinned to local storage
+Obtains information about locally pinned IPFS object
+
+**`See`**
+
+[API docs for Details about pinned object](https://docs.blockfrost.io/#tag/IPFS-Pins/paths/~1ipfs~1pin~1list~1%7BIPFS_path%7D/get)
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `this` | [`BlockFrostIPFS`](../wiki/BlockFrostIPFS) |
-| `path` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `this` | [`BlockFrostIPFS`](../wiki/BlockFrostIPFS) | - |
+| `path` | `string` | The path to the IPFS object (IPFS hash) |
 
 ##### Returns
 
 `Promise`<`ListResponse`\>
 
-list of pinned objects
+List of pinned IPFS objects
 
 #### Defined in
 
-[src/BlockFrostIPFS.ts:80](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostIPFS.ts#L80)
+[src/BlockFrostIPFS.ts:54](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostIPFS.ts#L54)
 
 ___
 
@@ -181,7 +205,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostIPFS.ts:23](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostIPFS.ts#L23)
+[src/BlockFrostIPFS.ts:23](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostIPFS.ts#L23)
 
 ___
 
@@ -193,24 +217,32 @@ ___
 
 ▸ (`this`, `path`): `Promise`<`PinResponse`\>
 
-pin - Pin an object
+Pins the IPFS resource.
+
+**`See`**
+
+[API docs for Pin an object](https://docs.blockfrost.io/#tag/IPFS-Pins/paths/~1ipfs~1pin~1add~1%7BIPFS_path%7D/post)
+
+**`Remarks`**
+
+IPFS pinning refers to the process of specifying data to be retained and persist on one or more IPFS nodes.
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `this` | [`BlockFrostIPFS`](../wiki/BlockFrostIPFS) |
-| `path` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `this` | [`BlockFrostIPFS`](../wiki/BlockFrostIPFS) | - |
+| `path` | `string` | path to the file |
 
 ##### Returns
 
 `Promise`<`PinResponse`\>
 
-pinned object
+Pinned object
 
 #### Defined in
 
-[src/BlockFrostIPFS.ts:72](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostIPFS.ts#L72)
+[src/BlockFrostIPFS.ts:53](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostIPFS.ts#L53)
 
 ___
 
@@ -222,24 +254,28 @@ ___
 
 ▸ (`this`, `path`): `Promise`<`string`\>
 
-pinRemove - Remove pinned objects from local storage
+Removes pinned object from local storage
+
+**`See`**
+
+[API docs for Remove a IPFS pin](https://docs.blockfrost.io/#tag/IPFS-Pins/paths/~1ipfs~1pin~1remove~1%7BIPFS_path%7D/post)
 
 ##### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `this` | [`BlockFrostIPFS`](../wiki/BlockFrostIPFS) |
-| `path` | `string` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `this` | [`BlockFrostIPFS`](../wiki/BlockFrostIPFS) | - |
+| `path` | `string` | The path to the IPFS object (IPFS hash) |
 
 ##### Returns
 
 `Promise`<`string`\>
 
-removed pinned object
+List of pinned IPFS objects
 
 #### Defined in
 
-[src/BlockFrostIPFS.ts:96](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostIPFS.ts#L96)
+[src/BlockFrostIPFS.ts:56](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostIPFS.ts#L56)
 
 ___
 
@@ -249,7 +285,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostIPFS.ts:21](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostIPFS.ts#L21)
+[src/BlockFrostIPFS.ts:21](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostIPFS.ts#L21)
 
 ___
 
@@ -259,7 +295,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostIPFS.ts:25](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostIPFS.ts#L25)
+[src/BlockFrostIPFS.ts:25](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostIPFS.ts#L25)
 
 ___
 
@@ -269,4 +305,4 @@ ___
 
 #### Defined in
 
-[src/BlockFrostIPFS.ts:22](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostIPFS.ts#L22)
+[src/BlockFrostIPFS.ts:22](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostIPFS.ts#L22)

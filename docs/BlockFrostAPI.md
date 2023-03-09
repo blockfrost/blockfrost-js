@@ -140,7 +140,7 @@
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:158](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L158)
+[src/BlockFrostAPI.ts:158](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L158)
 
 ## Properties
 
@@ -173,7 +173,7 @@ Information about a specific stake account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:193](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L193)
+[src/BlockFrostAPI.ts:193](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L193)
 
 ___
 
@@ -212,7 +212,7 @@ Information about the addresses of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:206](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L206)
+[src/BlockFrostAPI.ts:206](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L206)
 
 ___
 
@@ -251,7 +251,7 @@ Information about the addresses of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:207](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L207)
+[src/BlockFrostAPI.ts:207](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L207)
 
 ___
 
@@ -285,7 +285,7 @@ Assets associated with the account addresses
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:208](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L208)
+[src/BlockFrostAPI.ts:208](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L208)
 
 ___
 
@@ -323,7 +323,7 @@ Assets associated with the account addresses
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:209](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L209)
+[src/BlockFrostAPI.ts:209](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L209)
 
 ___
 
@@ -356,7 +356,7 @@ Summed details of the addresses associated with a given account
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:210](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L210)
+[src/BlockFrostAPI.ts:210](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L210)
 
 ___
 
@@ -390,7 +390,7 @@ Information about the delegation of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:194](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L194)
+[src/BlockFrostAPI.ts:194](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L194)
 
 ___
 
@@ -428,7 +428,7 @@ Information about the delegation of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:195](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L195)
+[src/BlockFrostAPI.ts:195](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L195)
 
 ___
 
@@ -462,7 +462,7 @@ Information about the history of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:200](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L200)
+[src/BlockFrostAPI.ts:200](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L200)
 
 ___
 
@@ -500,7 +500,7 @@ Information about the history of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:201](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L201)
+[src/BlockFrostAPI.ts:201](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L201)
 
 ___
 
@@ -534,7 +534,7 @@ Information about the MIRs of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:204](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L204)
+[src/BlockFrostAPI.ts:204](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L204)
 
 ___
 
@@ -572,7 +572,7 @@ Information about the MIRs of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:205](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L205)
+[src/BlockFrostAPI.ts:205](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L205)
 
 ___
 
@@ -606,7 +606,7 @@ Information about the registrations and deregistrations of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:196](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L196)
+[src/BlockFrostAPI.ts:196](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L196)
 
 ___
 
@@ -644,7 +644,7 @@ Information about the registrations and deregistrations of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:197](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L197)
+[src/BlockFrostAPI.ts:197](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L197)
 
 ___
 
@@ -678,7 +678,7 @@ Information about the history of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:198](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L198)
+[src/BlockFrostAPI.ts:198](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L198)
 
 ___
 
@@ -716,7 +716,7 @@ Information about the reward history of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:199](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L199)
+[src/BlockFrostAPI.ts:199](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L199)
 
 ___
 
@@ -750,7 +750,7 @@ Information about the withdrawals of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:202](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L202)
+[src/BlockFrostAPI.ts:202](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L202)
 
 ___
 
@@ -788,7 +788,7 @@ Information about all withdrawals of a specific account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:203](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L203)
+[src/BlockFrostAPI.ts:203](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L203)
 
 ___
 
@@ -821,7 +821,7 @@ Information about a specific stake account.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:221](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L221)
+[src/BlockFrostAPI.ts:221](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L221)
 
 ___
 
@@ -858,7 +858,7 @@ Extended information about a specific address
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:223](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L223)
+[src/BlockFrostAPI.ts:223](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L223)
 
 ___
 
@@ -892,7 +892,7 @@ Aggregated details about an address (received assets, sent assets, number of tra
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:222](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L222)
+[src/BlockFrostAPI.ts:222](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L222)
 
 ___
 
@@ -927,7 +927,7 @@ Extended information about a specific address
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:224](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L224)
+[src/BlockFrostAPI.ts:224](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L224)
 
 ___
 
@@ -966,7 +966,7 @@ Extended information about a specific address
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:225](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L225)
+[src/BlockFrostAPI.ts:225](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L225)
 
 ___
 
@@ -1000,7 +1000,7 @@ UTXOs of the address
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:226](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L226)
+[src/BlockFrostAPI.ts:226](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L226)
 
 ___
 
@@ -1038,7 +1038,7 @@ UTXOs of the address
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:227](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L227)
+[src/BlockFrostAPI.ts:227](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L227)
 
 ___
 
@@ -1073,7 +1073,7 @@ List of the address's utxos containing a given asset
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:228](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L228)
+[src/BlockFrostAPI.ts:228](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L228)
 
 ___
 
@@ -1112,7 +1112,7 @@ List of the address's utxos containing a given asset
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:229](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L229)
+[src/BlockFrostAPI.ts:229](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L229)
 
 ___
 
@@ -1122,7 +1122,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:151](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L151)
+[src/BlockFrostAPI.ts:151](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L151)
 
 ___
 
@@ -1159,7 +1159,7 @@ List of assets
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:212](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L212)
+[src/BlockFrostAPI.ts:212](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L212)
 
 ___
 
@@ -1193,7 +1193,7 @@ List of a addresses containing a specific asset.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:217](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L217)
+[src/BlockFrostAPI.ts:217](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L217)
 
 ___
 
@@ -1226,7 +1226,7 @@ Information about a specific asset.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:213](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L213)
+[src/BlockFrostAPI.ts:213](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L213)
 
 ___
 
@@ -1260,7 +1260,7 @@ History of a specific asset.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:214](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L214)
+[src/BlockFrostAPI.ts:214](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L214)
 
 ___
 
@@ -1298,7 +1298,7 @@ Whole history of a specific asset.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:215](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L215)
+[src/BlockFrostAPI.ts:215](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L215)
 
 ___
 
@@ -1332,7 +1332,7 @@ List of assets minted under a specific policy.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:218](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L218)
+[src/BlockFrostAPI.ts:218](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L218)
 
 ___
 
@@ -1370,7 +1370,7 @@ List of asset minted under a specific policy.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:219](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L219)
+[src/BlockFrostAPI.ts:219](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L219)
 
 ___
 
@@ -1404,7 +1404,7 @@ List of a specific asset transactions.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:216](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L216)
+[src/BlockFrostAPI.ts:216](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L216)
 
 ___
 
@@ -1437,7 +1437,7 @@ Specific block
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:231](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L231)
+[src/BlockFrostAPI.ts:231](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L231)
 
 ___
 
@@ -1475,7 +1475,7 @@ List of addresses affected in the specified block
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:239](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L239)
+[src/BlockFrostAPI.ts:239](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L239)
 
 ___
 
@@ -1513,7 +1513,7 @@ List of addresses affected in the specified block
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:240](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L240)
+[src/BlockFrostAPI.ts:240](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L240)
 
 ___
 
@@ -1545,7 +1545,7 @@ latest block
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:232](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L232)
+[src/BlockFrostAPI.ts:232](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L232)
 
 ___
 
@@ -1578,7 +1578,7 @@ transactions within the latest block
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:233](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L233)
+[src/BlockFrostAPI.ts:233](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L233)
 
 ___
 
@@ -1615,7 +1615,7 @@ transactions within the latest block
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:234](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L234)
+[src/BlockFrostAPI.ts:234](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L234)
 
 ___
 
@@ -1649,7 +1649,7 @@ List of blocks following a specific block
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:235](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L235)
+[src/BlockFrostAPI.ts:235](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L235)
 
 ___
 
@@ -1683,7 +1683,7 @@ List of blocks preceding a specific block
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:236](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L236)
+[src/BlockFrostAPI.ts:236](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L236)
 
 ___
 
@@ -1717,7 +1717,7 @@ Transactions within the specific block
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:237](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L237)
+[src/BlockFrostAPI.ts:237](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L237)
 
 ___
 
@@ -1755,7 +1755,7 @@ All transactions within the specific block
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:238](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L238)
+[src/BlockFrostAPI.ts:238](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L238)
 
 ___
 
@@ -1788,7 +1788,7 @@ Information about a specific epoch.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:242](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L242)
+[src/BlockFrostAPI.ts:242](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L242)
 
 ___
 
@@ -1822,7 +1822,7 @@ Blocks minted for the epoch specified
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:243](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L243)
+[src/BlockFrostAPI.ts:243](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L243)
 
 ___
 
@@ -1860,7 +1860,7 @@ Blocks minted for the epoch specified
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:244](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L244)
+[src/BlockFrostAPI.ts:244](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L244)
 
 ___
 
@@ -1895,7 +1895,7 @@ Blocks minted for the epoch specified by stake pool
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:245](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L245)
+[src/BlockFrostAPI.ts:245](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L245)
 
 ___
 
@@ -1934,7 +1934,7 @@ Blocks minted for the epoch specified by stake pool
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:246](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L246)
+[src/BlockFrostAPI.ts:246](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L246)
 
 ___
 
@@ -1966,7 +1966,7 @@ Information about the current epoch.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:247](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L247)
+[src/BlockFrostAPI.ts:247](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L247)
 
 ___
 
@@ -1998,7 +1998,7 @@ Protocol parameters for the latest epoch
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:250](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L250)
+[src/BlockFrostAPI.ts:250](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L250)
 
 ___
 
@@ -2032,7 +2032,7 @@ List of epochs following a specific epoch.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:248](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L248)
+[src/BlockFrostAPI.ts:248](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L248)
 
 ___
 
@@ -2065,7 +2065,7 @@ Protocol parameters for the epoch specified
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:249](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L249)
+[src/BlockFrostAPI.ts:249](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L249)
 
 ___
 
@@ -2099,7 +2099,7 @@ List of epochs preceding a specific epoch.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:251](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L251)
+[src/BlockFrostAPI.ts:251](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L251)
 
 ___
 
@@ -2133,7 +2133,7 @@ Active stake distribution for the specified epoch
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:252](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L252)
+[src/BlockFrostAPI.ts:252](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L252)
 
 ___
 
@@ -2171,7 +2171,7 @@ Active stake distribution for the specified epoch
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:253](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L253)
+[src/BlockFrostAPI.ts:253](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L253)
 
 ___
 
@@ -2206,7 +2206,7 @@ Active stake distribution for the epoch specified by stake pool
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:254](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L254)
+[src/BlockFrostAPI.ts:254](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L254)
 
 ___
 
@@ -2245,7 +2245,7 @@ Active stake distribution for the epoch specified by stake pool
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:255](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L255)
+[src/BlockFrostAPI.ts:255](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L255)
 
 ___
 
@@ -2277,7 +2277,7 @@ Genesis parameters
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:259](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L259)
+[src/BlockFrostAPI.ts:259](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L259)
 
 ___
 
@@ -2313,7 +2313,7 @@ Backend status in the format `{is_healthy: boolean}`
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:257](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L257)
+[src/BlockFrostAPI.ts:257](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L257)
 
 ___
 
@@ -2345,7 +2345,7 @@ Unix time in the format `{server_time: number}`
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:258](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L258)
+[src/BlockFrostAPI.ts:258](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L258)
 
 ___
 
@@ -2355,7 +2355,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:155](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L155)
+[src/BlockFrostAPI.ts:155](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L155)
 
 ___
 
@@ -2392,7 +2392,7 @@ List of transactions in Blockfrost Mempool
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:261](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L261)
+[src/BlockFrostAPI.ts:261](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L261)
 
 ___
 
@@ -2429,7 +2429,7 @@ List of transactions in Blockfrost Mempool
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:262](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L262)
+[src/BlockFrostAPI.ts:262](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L262)
 
 ___
 
@@ -2462,7 +2462,7 @@ Specific mempool transaction
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:263](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L263)
+[src/BlockFrostAPI.ts:263](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L263)
 
 ___
 
@@ -2496,7 +2496,7 @@ List of transaction metadata for the specific label
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:265](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L265)
+[src/BlockFrostAPI.ts:265](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L265)
 
 ___
 
@@ -2530,7 +2530,7 @@ List of transaction metadata for the specific label
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:266](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L266)
+[src/BlockFrostAPI.ts:266](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L266)
 
 ___
 
@@ -2563,7 +2563,7 @@ List of all used transaction metadata labels
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:267](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L267)
+[src/BlockFrostAPI.ts:267](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L267)
 
 ___
 
@@ -2595,7 +2595,7 @@ Usage metrics for the last 30 days
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:269](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L269)
+[src/BlockFrostAPI.ts:269](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L269)
 
 ___
 
@@ -2627,7 +2627,7 @@ Usage metrics for the last 30 days
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:270](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L270)
+[src/BlockFrostAPI.ts:270](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L270)
 
 ___
 
@@ -2659,7 +2659,7 @@ Detailed network information.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:317](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L317)
+[src/BlockFrostAPI.ts:317](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L317)
 
 ___
 
@@ -2684,7 +2684,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:272](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L272)
+[src/BlockFrostAPI.ts:272](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L272)
 
 ___
 
@@ -2711,7 +2711,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:273](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L273)
+[src/BlockFrostAPI.ts:273](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L273)
 
 ___
 
@@ -2738,7 +2738,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:276](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L276)
+[src/BlockFrostAPI.ts:276](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L276)
 
 ___
 
@@ -2764,7 +2764,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:274](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L274)
+[src/BlockFrostAPI.ts:274](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L274)
 
 ___
 
@@ -2790,7 +2790,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:275](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L275)
+[src/BlockFrostAPI.ts:275](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L275)
 
 ___
 
@@ -2816,7 +2816,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:277](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L277)
+[src/BlockFrostAPI.ts:277](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L277)
 
 ___
 
@@ -2842,7 +2842,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:278](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L278)
+[src/BlockFrostAPI.ts:278](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L278)
 
 ___
 
@@ -2852,7 +2852,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:154](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L154)
+[src/BlockFrostAPI.ts:154](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L154)
 
 ___
 
@@ -2885,7 +2885,7 @@ Stake pool registration metadata
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:282](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L282)
+[src/BlockFrostAPI.ts:282](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L282)
 
 ___
 
@@ -2918,7 +2918,7 @@ List of registered stake pools.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:280](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L280)
+[src/BlockFrostAPI.ts:280](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L280)
 
 ___
 
@@ -2955,7 +2955,7 @@ List of registered stake pools.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:281](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L281)
+[src/BlockFrostAPI.ts:281](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L281)
 
 ___
 
@@ -2988,7 +2988,7 @@ Information of a specific stake pool.
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:283](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L283)
+[src/BlockFrostAPI.ts:283](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L283)
 
 ___
 
@@ -3022,7 +3022,7 @@ List of stake pool blocks
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:284](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L284)
+[src/BlockFrostAPI.ts:284](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L284)
 
 ___
 
@@ -3056,7 +3056,7 @@ Current stake pool delegators
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:285](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L285)
+[src/BlockFrostAPI.ts:285](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L285)
 
 ___
 
@@ -3090,7 +3090,7 @@ List of stake pool parameters per epoch
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:286](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L286)
+[src/BlockFrostAPI.ts:286](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L286)
 
 ___
 
@@ -3123,7 +3123,7 @@ Stake pool relays
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:287](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L287)
+[src/BlockFrostAPI.ts:287](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L287)
 
 ___
 
@@ -3157,7 +3157,7 @@ List of certificate updates to the stake pool
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:288](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L288)
+[src/BlockFrostAPI.ts:288](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L288)
 
 ___
 
@@ -3190,7 +3190,7 @@ List of registered stake pools with additional information
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:291](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L291)
+[src/BlockFrostAPI.ts:291](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L291)
 
 ___
 
@@ -3227,7 +3227,7 @@ List of registered stake pools with additional information
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:292](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L292)
+[src/BlockFrostAPI.ts:292](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L292)
 
 ___
 
@@ -3252,7 +3252,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:289](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L289)
+[src/BlockFrostAPI.ts:289](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L289)
 
 ___
 
@@ -3285,7 +3285,7 @@ List of stake pools retiring in the upcoming epochs
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:290](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L290)
+[src/BlockFrostAPI.ts:290](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L290)
 
 ___
 
@@ -3295,7 +3295,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:152](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L152)
+[src/BlockFrostAPI.ts:152](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L152)
 
 ___
 
@@ -3305,7 +3305,7 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:156](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L156)
+[src/BlockFrostAPI.ts:156](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L156)
 
 ___
 
@@ -3333,7 +3333,7 @@ Backend version in a format `{ url: string; version: string }`
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:294](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L294)
+[src/BlockFrostAPI.ts:294](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L294)
 
 ___
 
@@ -3366,7 +3366,7 @@ List of scripts
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:296](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L296)
+[src/BlockFrostAPI.ts:296](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L296)
 
 ___
 
@@ -3399,7 +3399,7 @@ Information about a specific script
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:297](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L297)
+[src/BlockFrostAPI.ts:297](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L297)
 
 ___
 
@@ -3432,7 +3432,7 @@ CBOR representation of a plutus script
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:299](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L299)
+[src/BlockFrostAPI.ts:299](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L299)
 
 ___
 
@@ -3465,7 +3465,7 @@ JSON value of a datum specified by its hash
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:300](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L300)
+[src/BlockFrostAPI.ts:300](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L300)
 
 ___
 
@@ -3498,7 +3498,7 @@ JSON value of a datum specified by its hash
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:301](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L301)
+[src/BlockFrostAPI.ts:301](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L301)
 
 ___
 
@@ -3531,7 +3531,7 @@ JSON representation of a timelock script
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:298](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L298)
+[src/BlockFrostAPI.ts:298](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L298)
 
 ___
 
@@ -3564,7 +3564,7 @@ List of redeemers of a specific script
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:302](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L302)
+[src/BlockFrostAPI.ts:302](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L302)
 
 ___
 
@@ -3597,7 +3597,7 @@ ID of the submitted transaction
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:315](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L315)
+[src/BlockFrostAPI.ts:315](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L315)
 
 ___
 
@@ -3630,7 +3630,7 @@ Transaction
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:304](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L304)
+[src/BlockFrostAPI.ts:304](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L304)
 
 ___
 
@@ -3663,7 +3663,7 @@ List of delegation certificates within the transaction
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:306](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L306)
+[src/BlockFrostAPI.ts:306](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L306)
 
 ___
 
@@ -3696,7 +3696,7 @@ Transaction metadata in JSON
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:313](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L313)
+[src/BlockFrostAPI.ts:313](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L313)
 
 ___
 
@@ -3729,7 +3729,7 @@ Transaction metadata in CBOR
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:305](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L305)
+[src/BlockFrostAPI.ts:305](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L305)
 
 ___
 
@@ -3762,7 +3762,7 @@ List of Move Instantaneous Rewards (MIRs) within the transaction
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:312](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L312)
+[src/BlockFrostAPI.ts:312](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L312)
 
 ___
 
@@ -3795,7 +3795,7 @@ List of stake pool retirement certificates
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:307](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L307)
+[src/BlockFrostAPI.ts:307](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L307)
 
 ___
 
@@ -3828,7 +3828,7 @@ List of stake pool registration and update certificates within a specific transa
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:308](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L308)
+[src/BlockFrostAPI.ts:308](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L308)
 
 ___
 
@@ -3861,7 +3861,7 @@ Transaction redeemers
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:314](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L314)
+[src/BlockFrostAPI.ts:314](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L314)
 
 ___
 
@@ -3894,7 +3894,7 @@ List of (de)registration certificates within the transaction
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:309](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L309)
+[src/BlockFrostAPI.ts:309](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L309)
 
 ___
 
@@ -3927,7 +3927,7 @@ Transaction inputs and outputs
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:310](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L310)
+[src/BlockFrostAPI.ts:310](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L310)
 
 ___
 
@@ -3960,7 +3960,7 @@ List of withdrawals within the transaction
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:311](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L311)
+[src/BlockFrostAPI.ts:311](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L311)
 
 ___
 
@@ -3970,4 +3970,4 @@ ___
 
 #### Defined in
 
-[src/BlockFrostAPI.ts:153](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/BlockFrostAPI.ts#L153)
+[src/BlockFrostAPI.ts:153](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/BlockFrostAPI.ts#L153)

@@ -46,7 +46,7 @@ Error.constructor
 
 #### Defined in
 
-[src/utils/errors.ts:6](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/utils/errors.ts#L6)
+[src/utils/errors.ts:6](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/utils/errors.ts#L6)
 
 ## Properties
 
@@ -56,7 +56,7 @@ Error.constructor
 
 #### Defined in
 
-[src/utils/errors.ts:5](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/utils/errors.ts#L5)
+[src/utils/errors.ts:5](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/utils/errors.ts#L5)
 
 ___
 

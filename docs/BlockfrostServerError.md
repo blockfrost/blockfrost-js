@@ -51,7 +51,7 @@ Error.constructor
 
 #### Defined in
 
-[src/utils/errors.ts:26](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/utils/errors.ts#L26)
+[src/utils/errors.ts:26](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/utils/errors.ts#L26)
 
 ## Properties
 
@@ -61,7 +61,7 @@ Error.constructor
 
 #### Defined in
 
-[src/utils/errors.ts:25](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/utils/errors.ts#L25)
+[src/utils/errors.ts:25](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/utils/errors.ts#L25)
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 #### Defined in
 
-[src/utils/errors.ts:23](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/utils/errors.ts#L23)
+[src/utils/errors.ts:23](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/utils/errors.ts#L23)
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 #### Defined in
 
-[src/utils/errors.ts:22](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/utils/errors.ts#L22)
+[src/utils/errors.ts:22](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/utils/errors.ts#L22)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 #### Defined in
 
-[src/utils/errors.ts:24](https://github.com/blockfrost/blockfrost-js/blob/78b46ea/src/utils/errors.ts#L24)
+[src/utils/errors.ts:24](https://github.com/blockfrost/blockfrost-js/blob/2cc5738/src/utils/errors.ts#L24)
 
 ___
 

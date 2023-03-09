@@ -207,5 +207,5 @@ Blockfrost SDK exports several utility functions to improve developer experience
 2. Add class method to `BlockfrostAPI` object in [src/BlockFrostAPI.ts](src/BlockFrostAPI.ts).
 3. Add unit-test fixture for the added method to [test/fixtures/endpoints.ts](test/fixtures/endpoints.ts)
 4. Regenerate wiki docs
-   - `yarn typedoc --theme github-wiki src/index.ts`
+   - `yarn docs`
    - push files to Wiki repository `https://github.com/blockfrost/blockfrost-js.wiki.git`

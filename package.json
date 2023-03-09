@@ -17,7 +17,7 @@
   "scripts": {
     "build": "yarn clean && tsc",
     "clean": "rimraf lib",
-    "docs": "yarn typedoc ./src/index.ts --theme ./node_modules/typedoc-github-wiki-theme/dist",
+    "docs": "yarn typedoc ./src/index.ts --theme github-wiki",
     "lint": "eslint ./src/**/*.ts",
     "prepublishOnly": "yarn build",
     "test": "vitest --silent",
