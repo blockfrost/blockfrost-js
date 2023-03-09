@@ -21,7 +21,7 @@
     "lint": "eslint ./src/**/*.ts",
     "prepublishOnly": "yarn build",
     "test": "vitest --silent",
-    "type-check": "tsc --project ./tsconfig.types.json",
+    "type-check": "tsc --project ./tsconfig.types.json --theme github-wiki",
     "make-badge": "make-coverage-badge --output-path='./coverage-badge.svg'",
     "coverage": "vitest run --coverage --silent && make-badge",
     "coverage-ci": "vitest run --coverage --silent"
@@ -50,6 +50,8 @@
     "rimraf": "^3.0.2",
     "serialize-error": "^11.0.0",
     "typedoc": "^0.23.26",
+    "typedoc-github-wiki-theme": "^1.0.1",
+    "typedoc-plugin-markdown": "^3.14.0",
     "typescript": "^4.9.3",
     "vite": "^3.2.4",
     "vitest": "^0.25.2"

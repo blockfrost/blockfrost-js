@@ -37,6 +37,8 @@ __metadata:
     rimraf: ^3.0.2
     serialize-error: ^11.0.0
     typedoc: ^0.23.26
+    typedoc-github-wiki-theme: ^1.0.1
+    typedoc-plugin-markdown: ^3.14.0
     typescript: ^4.9.3
     vite: ^3.2.4
     vitest: ^0.25.2
@@ -2162,7 +2164,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"handlebars@npm:^4.7.6":
+"handlebars@npm:^4.7.6, handlebars@npm:^4.7.7":
   version: 4.7.7
   resolution: "handlebars@npm:4.7.7"
   dependencies:
@@ -4003,6 +4005,27 @@ __metadata:
   version: 2.19.0
   resolution: "type-fest@npm:2.19.0"
   checksum: a4ef07ece297c9fba78fc1bd6d85dff4472fe043ede98bd4710d2615d15776902b595abf62bd78339ed6278f021235fb28a96361f8be86ed754f778973a0d278
+  languageName: node
+  linkType: hard
+
+"typedoc-github-wiki-theme@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "typedoc-github-wiki-theme@npm:1.0.1"
+  peerDependencies:
+    typedoc: ">=0.22.9"
+    typedoc-plugin-markdown: ">=3.11.10"
+  checksum: 41d4309149d59562183706d3c36caded12731de15174b7f30a60da923842978de69eb5966e2278c62fe122c4cb5136623e64264a6fae7d798f4d95afe9b7bf9c
+  languageName: node
+  linkType: hard
+
+"typedoc-plugin-markdown@npm:^3.14.0":
+  version: 3.14.0
+  resolution: "typedoc-plugin-markdown@npm:3.14.0"
+  dependencies:
+    handlebars: ^4.7.7
+  peerDependencies:
+    typedoc: ">=0.23.0"
+  checksum: 6205600052185b4b193ab8a253d9df5ccbc95002c948a07f9024bcd26f0f23fbcc089fda4d6b4c8f4172f4eaca2bf9c32129989f6baaace7261cf4a0e41c976b
   languageName: node
   linkType: hard
 
