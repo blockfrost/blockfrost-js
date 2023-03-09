@@ -1,0 +1,196 @@
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@blockfrost/blockfrost-js</title><meta name="description" content="Documentation for @blockfrost/blockfrost-js"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container">
+<div class="table-cell" id="tsd-search" data-base=".">
+<div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
+<div class="field">
+<div id="tsd-toolbar-links"></div></div>
+<ul class="results">
+<li class="state loading">Preparing search index...</li>
+<li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@blockfrost/blockfrost-js</a></div>
+<div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
+<div class="container container-main">
+<div class="col-8 col-content">
+<div class="tsd-page-title">
+<h2>@blockfrost/blockfrost-js</h2></div>
+<div class="tsd-panel tsd-typography"><p><img src="https://github.com/blockfrost/blockfrost-js/actions/workflows/build.yml/badge.svg?branch=master" alt="master build ci"> <a href="https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js"><img src="https://badge.fury.io/js/%40blockfrost%2Fblockfrost-js.svg" alt="npm version"></a> <img src="https://img.shields.io/npm/dy/@blockfrost/blockfrost-js" alt="downloads"> <img src="https://github.com/blockfrost/blockfrost-js/blob/master/coverage-badge.svg" /> <a href="https://fivebinaries.com/"><img src="https://img.shields.io/badge/made%20by-Five%20Binaries-darkviolet.svg?style=flat-square" /></a></p>
+<img src="https://blockfrost.io/images/logo.svg" width="250" align="right" height="90">
+
+
+<a href="#blockfrost-js" id="blockfrost-js" style="color: inherit; text-decoration: none;">
+  <h1>blockfrost-js</h1>
+</a>
+<br/>
+
+<p align="center"><a href="https://blockfrost.io">Blockfrost.io</a> SDK for JavaScript for Node.js.</p>
+<p align="center">
+  <a href="#getting-started">Getting started</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#usage">Usage</a> •
+  <a href="https://github.com/blockfrost/blockfrost-js-examples" target="_blank">Examples</a>
+</p>
+<br>
+
+
+<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+  <h2>Getting started</h2>
+</a>
+<p>To use this SDK, you first need to log in to <a href="https://blockfrost.io">blockfrost.io</a>, create your project and retrieve the API token.</p>
+<img src="https://i.imgur.com/smY12ro.png">
+
+<br/>
+
+
+<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+  <h2>Installation</h2>
+</a>
+<p>To run the SDK you need Node.js version 14 and higher. While you may find a way to run it directly in a browser, we don&#39;t actively support or provide troubleshooting assistance with this scenario. We recommend setting up your own Node.js backend. Exposing your API keys in a frontend application is almost always a bad idea.</p>
+<p>The SDK is hosted on <a href="https://www.npmjs.com/package/@blockfrost/blockfrost-js">npmjs.com</a>, so you can directly import it using your favorite package manager.</p>
+<pre><code class="language-console"><span class="hl-0">npm </span><span class="hl-1">i</span><span class="hl-0"> </span><span class="hl-1">@blockfrost/blockfrost-js</span>
+</code></pre>
+<pre><code class="language-console"><span class="hl-0">yarn </span><span class="hl-1">add</span><span class="hl-0"> </span><span class="hl-1">@blockfrost/blockfrost-js</span>
+</code></pre>
+<br/>
+
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+<p>Using the SDK is pretty straight-forward as you can see from the following examples.
+For more examples take a look in <a href="https://github.com/blockfrost/blockfrost-js-examples">blockfrost-js-examples</a> repository.</p>
+<p>For a list of all SDK methods <a href="https://github.com/blockfrost/blockfrost-js/wiki/BlockFrostAPI">check out our wiki</a>.</p>
+<pre><code class="language-ts"><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">API</span><span class="hl-0"> = </span><span class="hl-2">new</span><span class="hl-0"> </span><span class="hl-4">Blockfrost</span><span class="hl-0">.</span><span class="hl-5">BlockFrostAPI</span><span class="hl-0">({</span><br/><span class="hl-0">  </span><span class="hl-4">projectId:</span><span class="hl-0"> </span><span class="hl-1">&#39;YOUR API KEY HERE&#39;</span><span class="hl-0">, </span><span class="hl-6">// see: https://blockfrost.io</span><br/><span class="hl-0">  </span><span class="hl-6">// For a list of all options see section below</span><br/><span class="hl-0">});</span>
+</code></pre>
+
+<a href="#options" id="options" style="color: inherit; text-decoration: none;">
+  <h3>Options</h3>
+</a>
+<ul>
+<li><code>projectId</code> - <code>string</code>, Blockfrost project ID (required)</li>
+<li><code>network</code> - <code>string</code>, Cardano network for given project ID. (optional, default value is derived from the <code>projectId</code> itself if possible). Possible values: <code>mainnet</code>, <code>testnet</code>, <code>preview</code>, <code>preprod</code>.</li>
+<li><code>rateLimiter</code> - <code>boolean</code> or <a href="https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/limiter.ts#L18="><code>RateLimiterConfig</code></a>, whether to enable rate limiter that matches <a href="https://docs.blockfrost.io/#section/Limits">Blockfrost API limits</a> (optional, default <code>true</code>). If you have your IP addresses white-listed you may want to disable it. You may also customize rate limiter by passing your own <a href="ttps://github.com/blockfrost/blockfrost-js/blob/master/src/utils/limiter.ts#11">config object</a>.</li>
+<li><code>requestTimeout</code> - <code>number</code>, How long to wait for a request to complete, in milliseconds (optional, default <code>20000</code>)</li>
+<li><code>retrySettings</code> - <code>RequiredRetryOptions</code>, customizations for retrying failed request (optional, <a href="https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/index.ts#L58">for defaults click here</a>)</li>
+<li><code>debug</code> - <code>boolean</code>, whether to enable debug logging. It is also possible to enable it by setting environment variable <code>DEBUG</code> to <code>true</code> (optional, default <code>false</code>).</li>
+<li><code>customBackend</code> - <code>string</code>, option to set URL to a non-official backend (optional)</li>
+<li><code>version</code> - <code>number</code>, version of the Blockfrost API (optional, default <code>0</code>)</li>
+</ul>
+
+<a href="#error-handling" id="error-handling" style="color: inherit; text-decoration: none;">
+  <h2>Error handling</h2>
+</a>
+<p>Blockfrost Node.js SDK throws 2 types of errors, <code>BlockfrostServerError</code> and <code>BlockfrostClientError</code>. Each of these errors is extended from the built-in <code>Error</code> class, allowing you to properly catch it and handle it in your code.</p>
+
+<a href="#blockfrostservererror" id="blockfrostservererror" style="color: inherit; text-decoration: none;">
+  <h3><code>BlockfrostServerError</code></h3>
+</a>
+<p><code>BlockfrostServerError</code> is an error returned directly by Blockfrost API. The error object&#39;s properties are matching <a href="(https://docs.blockfrost.io/#section/Errors)">the same format as defined by Blockfrost API</a>, with additional <code>url</code> field set to the URL the request was sent to and optional <code>body</code> field set to the original body of the error response in cases where the error was not returned by Blockfrost Backend (eg. nginx).</p>
+
+<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+  <h4>Example</h4>
+</a>
+<p>Blockfrost API returns 404 Not Found for any resource that does not exist on chain at the moment, even when in theory, it could exist. For more detailed explanation check <a href="https://www.blockfrost.dev/docs/support/cardano#querying-address-returns-404-not-found-but-my-address-is-valid">Blockfrost developer portal</a>.</p>
+<pre><code class="language-ts"><span class="hl-6">// Example demonstrating catching BlockfrostServerError</span><br/><span class="hl-7">try</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">address</span><span class="hl-0"> = </span><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-3">API</span><span class="hl-0">.</span><span class="hl-5">addresses</span><span class="hl-0">(</span><span class="hl-1">&#39;totallyValidAddress&#39;</span><span class="hl-0">);</span><br/><span class="hl-0">} </span><span class="hl-7">catch</span><span class="hl-0"> (</span><span class="hl-4">error</span><span class="hl-0">) {</span><br/><span class="hl-0">  </span><span class="hl-7">if</span><span class="hl-0"> (</span><span class="hl-4">error</span><span class="hl-0"> </span><span class="hl-2">instanceof</span><span class="hl-0"> </span><span class="hl-8">BlockfrostServerError</span><span class="hl-0"> &amp;&amp; </span><span class="hl-4">error</span><span class="hl-0">.</span><span class="hl-4">status_code</span><span class="hl-0"> === </span><span class="hl-9">404</span><span class="hl-0">) {</span><br/><span class="hl-0">    </span><span class="hl-6">// address was not used before, but most likely we don&#39;t want to throw an error</span><br/><span class="hl-0">    </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-5">log</span><span class="hl-0">(</span><span class="hl-1">&quot;Address is totally empty! But that&#39;s ok!&quot;</span><span class="hl-0">);</span><br/><span class="hl-0">  } </span><span class="hl-7">else</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-6">// rethrow other errors</span><br/><span class="hl-0">    </span><span class="hl-7">throw</span><span class="hl-0"> </span><span class="hl-4">error</span><span class="hl-0">;</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">}</span>
+</code></pre>
+
+<a href="#blockfrostclienterror" id="blockfrostclienterror" style="color: inherit; text-decoration: none;">
+  <h3><code>BlockfrostClientError</code></h3>
+</a>
+<p><code>BlockfrostClientError</code> is an error that was NOT returned by a Blockfrost API server. In this case the request has never reached our backends. Most common causes are network-related.</p>
+<p>Shape of <code>BlockfrostClientError</code> object is slightly different from <code>BlockfrostServerError</code>. The error has <code>code</code> and <code>message</code> and optional <code>url</code> property to help you investigate the issue.</p>
+<p>Here is a small example showcasing the error format:</p>
+<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">  </span><span class="hl-10">&quot;code&quot;</span><span class="hl-0">: </span><span class="hl-1">&quot;ENOTFOUND&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">&quot;message&quot;</span><span class="hl-0">: </span><span class="hl-1">&quot;getaddrinfo ENOTFOUND api.blockfrost.io&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">&quot;url&quot;</span><span class="hl-0">: </span><span class="hl-1">&quot;https://cardano-mainnet.blockfrost.io/api/v0/addresses/addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp333c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz&quot;</span><br/><span class="hl-0">}</span>
+</code></pre>
+
+<a href="#example-1" id="example-1" style="color: inherit; text-decoration: none;">
+  <h4>Example</h4>
+</a>
+<pre><code class="language-ts"><span class="hl-6">// Example demonstrating catching a network-related client error</span><br/><span class="hl-7">try</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">address</span><span class="hl-0"> = </span><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-3">API</span><span class="hl-0">.</span><span class="hl-5">addresses</span><span class="hl-0">(</span><span class="hl-1">&#39;totallyValidAddress&#39;</span><span class="hl-0">);</span><br/><span class="hl-0">} </span><span class="hl-7">catch</span><span class="hl-0"> (</span><span class="hl-4">error</span><span class="hl-0">) {</span><br/><span class="hl-0">  </span><span class="hl-7">if</span><span class="hl-0"> (</span><span class="hl-4">error</span><span class="hl-0"> </span><span class="hl-2">instanceof</span><span class="hl-0"> </span><span class="hl-8">BlockfrostClientError</span><span class="hl-0">) {</span><br/><span class="hl-0">    </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-5">log</span><span class="hl-0">(</span><span class="hl-1">&#39;Oops, error during sending the request&#39;</span><span class="hl-0">);</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">  </span><span class="hl-6">// Depending on your use case you may want to rethrow the error</span><br/><span class="hl-0">  </span><span class="hl-7">throw</span><span class="hl-0"> </span><span class="hl-4">error</span><span class="hl-0">;</span><br/><span class="hl-0">}</span>
+</code></pre>
+
+<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+  <h2>Examples</h2>
+</a>
+<p>For more examples take a look in <a href="https://github.com/blockfrost/blockfrost-js-examples">blockfrost-js-examples</a> repository.</p>
+<p>For a list of all SDK methods <a href="https://github.com/blockfrost/blockfrost-js/wiki/BlockFrostAPI">check out our wiki</a>.</p>
+
+<a href="#cardano" id="cardano" style="color: inherit; text-decoration: none;">
+  <h3>Cardano</h3>
+</a>
+<pre><code class="language-typescript"><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">Blockfrost</span><span class="hl-0"> = </span><span class="hl-5">require</span><span class="hl-0">(</span><span class="hl-1">&#39;@blockfrost/blockfrost-js&#39;</span><span class="hl-0">);</span><br/><span class="hl-6">// import { BlockFrostAPI } from &#39;@blockfrost/blockfrost-js&#39;; // using import syntax</span><br/><br/><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">API</span><span class="hl-0"> = </span><span class="hl-2">new</span><span class="hl-0"> </span><span class="hl-4">Blockfrost</span><span class="hl-0">.</span><span class="hl-5">BlockFrostAPI</span><span class="hl-0">({</span><br/><span class="hl-0">  </span><span class="hl-4">projectId:</span><span class="hl-0"> </span><span class="hl-1">&#39;YOUR API KEY HERE&#39;</span><span class="hl-0">, </span><span class="hl-6">// see: https://blockfrost.io</span><br/><span class="hl-0">});</span><br/><br/><span class="hl-2">async</span><span class="hl-0"> </span><span class="hl-2">function</span><span class="hl-0"> </span><span class="hl-5">runExample</span><span class="hl-0">() {</span><br/><span class="hl-0">  </span><span class="hl-7">try</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">latestBlock</span><span class="hl-0"> = </span><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-3">API</span><span class="hl-0">.</span><span class="hl-5">blocksLatest</span><span class="hl-0">();</span><br/><span class="hl-0">    </span><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">networkInfo</span><span class="hl-0"> = </span><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-3">API</span><span class="hl-0">.</span><span class="hl-5">network</span><span class="hl-0">();</span><br/><span class="hl-0">    </span><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">latestEpoch</span><span class="hl-0"> = </span><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-3">API</span><span class="hl-0">.</span><span class="hl-5">epochsLatest</span><span class="hl-0">();</span><br/><span class="hl-0">    </span><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">health</span><span class="hl-0"> = </span><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-3">API</span><span class="hl-0">.</span><span class="hl-5">health</span><span class="hl-0">();</span><br/><span class="hl-0">    </span><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">address</span><span class="hl-0"> = </span><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-3">API</span><span class="hl-0">.</span><span class="hl-5">addresses</span><span class="hl-0">(</span><br/><span class="hl-0">      </span><span class="hl-1">&#39;addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">    );</span><br/><span class="hl-0">    </span><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">pools</span><span class="hl-0"> = </span><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-3">API</span><span class="hl-0">.</span><span class="hl-5">pools</span><span class="hl-0">({ </span><span class="hl-4">page:</span><span class="hl-0"> </span><span class="hl-9">1</span><span class="hl-0">, </span><span class="hl-4">count:</span><span class="hl-0"> </span><span class="hl-9">10</span><span class="hl-0">, </span><span class="hl-4">order:</span><span class="hl-0"> </span><span class="hl-1">&#39;asc&#39;</span><span class="hl-0"> });</span><br/><br/><span class="hl-0">    </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-5">log</span><span class="hl-0">(</span><span class="hl-1">&#39;pools&#39;</span><span class="hl-0">, </span><span class="hl-4">pools</span><span class="hl-0">);</span><br/><span class="hl-0">    </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-5">log</span><span class="hl-0">(</span><span class="hl-1">&#39;address&#39;</span><span class="hl-0">, </span><span class="hl-4">address</span><span class="hl-0">);</span><br/><span class="hl-0">    </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-5">log</span><span class="hl-0">(</span><span class="hl-1">&#39;networkInfo&#39;</span><span class="hl-0">, </span><span class="hl-4">networkInfo</span><span class="hl-0">);</span><br/><span class="hl-0">    </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-5">log</span><span class="hl-0">(</span><span class="hl-1">&#39;latestEpoch&#39;</span><span class="hl-0">, </span><span class="hl-4">latestEpoch</span><span class="hl-0">);</span><br/><span class="hl-0">    </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-5">log</span><span class="hl-0">(</span><span class="hl-1">&#39;latestBlock&#39;</span><span class="hl-0">, </span><span class="hl-4">latestBlock</span><span class="hl-0">);</span><br/><span class="hl-0">    </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-5">log</span><span class="hl-0">(</span><span class="hl-1">&#39;health&#39;</span><span class="hl-0">, </span><span class="hl-4">health</span><span class="hl-0">);</span><br/><span class="hl-0">  } </span><span class="hl-7">catch</span><span class="hl-0"> (</span><span class="hl-4">err</span><span class="hl-0">) {</span><br/><span class="hl-0">    </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-5">log</span><span class="hl-0">(</span><span class="hl-1">&#39;error&#39;</span><span class="hl-0">, </span><span class="hl-4">err</span><span class="hl-0">);</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-5">runExample</span><span class="hl-0">();</span>
+</code></pre>
+
+<a href="#ipfs" id="ipfs" style="color: inherit; text-decoration: none;">
+  <h3>IPFS</h3>
+</a>
+<pre><code class="language-typescript"><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">Blockfrost</span><span class="hl-0"> = </span><span class="hl-5">require</span><span class="hl-0">(</span><span class="hl-1">&#39;@blockfrost/blockfrost-js&#39;</span><span class="hl-0">);</span><br/><span class="hl-6">// import { BlockFrostIPFS } from &#39;@blockfrost/blockfrost-js&#39;; // using import syntax</span><br/><br/><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">IPFS</span><span class="hl-0"> = </span><span class="hl-2">new</span><span class="hl-0"> </span><span class="hl-4">Blockfrost</span><span class="hl-0">.</span><span class="hl-5">BlockFrostIPFS</span><span class="hl-0">({</span><br/><span class="hl-0">  </span><span class="hl-4">projectId:</span><span class="hl-0"> </span><span class="hl-1">&#39;YOUR IPFS KEY HERE&#39;</span><span class="hl-0">, </span><span class="hl-6">// see: https://blockfrost.io</span><br/><span class="hl-0">});</span><br/><br/><span class="hl-2">async</span><span class="hl-0"> </span><span class="hl-2">function</span><span class="hl-0"> </span><span class="hl-5">runExample</span><span class="hl-0">() {</span><br/><span class="hl-0">  </span><span class="hl-7">try</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">added</span><span class="hl-0"> = </span><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-3">IPFS</span><span class="hl-0">.</span><span class="hl-5">add</span><span class="hl-0">(</span><span class="hl-1">`</span><span class="hl-2">${</span><span class="hl-4">__dirname</span><span class="hl-2">}</span><span class="hl-1">/img.svg`</span><span class="hl-0">);</span><br/><span class="hl-0">    </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-5">log</span><span class="hl-0">(</span><span class="hl-1">&#39;added&#39;</span><span class="hl-0">, </span><span class="hl-4">added</span><span class="hl-0">);</span><br/><br/><span class="hl-0">    </span><span class="hl-2">const</span><span class="hl-0"> </span><span class="hl-3">pinned</span><span class="hl-0"> = </span><span class="hl-7">await</span><span class="hl-0"> </span><span class="hl-3">IPFS</span><span class="hl-0">.</span><span class="hl-5">pin</span><span class="hl-0">(</span><span class="hl-4">added</span><span class="hl-0">.</span><span class="hl-4">ipfs_hash</span><span class="hl-0">);</span><br/><span class="hl-0">    </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-5">log</span><span class="hl-0">(</span><span class="hl-1">&#39;pinned&#39;</span><span class="hl-0">, </span><span class="hl-4">pinned</span><span class="hl-0">);</span><br/><span class="hl-0">  } </span><span class="hl-7">catch</span><span class="hl-0"> (</span><span class="hl-4">err</span><span class="hl-0">) {</span><br/><span class="hl-0">    </span><span class="hl-4">console</span><span class="hl-0">.</span><span class="hl-5">log</span><span class="hl-0">(</span><span class="hl-1">&#39;error&#39;</span><span class="hl-0">, </span><span class="hl-4">err</span><span class="hl-0">);</span><br/><span class="hl-0">  }</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-5">runExample</span><span class="hl-0">();</span>
+</code></pre>
+
+<a href="#utility-functions" id="utility-functions" style="color: inherit; text-decoration: none;">
+  <h2>Utility functions</h2>
+</a>
+<p>Blockfrost SDK exports several utility functions to improve developer experience.</p>
+<ul>
+<li><a href="https://github.com/blockfrost/blockfrost-js/wiki/Exports#deriveaddress">deriveAddress</a></li>
+<li><a href="https://github.com/blockfrost/blockfrost-js/wiki/Exports#getfingerprint">getFingerprint</a></li>
+<li><a href="https://github.com/blockfrost/blockfrost-js/wiki/Exports#parseasset">parseAsset</a></li>
+<li><a href="https://github.com/blockfrost/blockfrost-js/wiki/Exports#verifywebhooksignature">verifyWebhookSignature</a></li>
+</ul>
+
+<a href="#development" id="development" style="color: inherit; text-decoration: none;">
+  <h2>Development</h2>
+</a>
+
+<a href="#adding-new-method" id="adding-new-method" style="color: inherit; text-decoration: none;">
+  <h3>Adding new method</h3>
+</a>
+<ol>
+<li>Add a code to a corresponding file. e.g. new account method belong to <code>src/endpoints/api/account/</code> directory.<ul>
+<li>add <code>&lt;method&gt;All</code> method for endpoints with pagination</li>
+<li>update <a href="https://tsdoc.org/">TSDoc</a> for added method</li>
+</ul>
+</li>
+<li>Add class method to <code>BlockfrostAPI</code> object in <a href="src/BlockFrostAPI.ts">src/BlockFrostAPI.ts</a>.</li>
+<li>Add unit-test fixture for the added method to <a href="test/fixtures/endpoints.ts">test/fixtures/endpoints.ts</a></li>
+<li>Regenerate wiki docs<ul>
+<li><code>yarn docs</code></li>
+<li>push files to Wiki repository <code>https://github.com/blockfrost/blockfrost-js.wiki.git</code></li>
+</ul>
+</li>
+</ol>
+</div></div>
+<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+<div class="tsd-navigation settings">
+<details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility">
+<h4 class="uppercase">Member Visibility</h4><form>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-private" name="private"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Private</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div>
+<div class="tsd-theme-toggle">
+<h4 class="uppercase">Theme</h4><select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<nav class="tsd-navigation primary">
+<details class="tsd-index-accordion" open><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Modules</h3></summary>
+<div class="tsd-accordion-details">
+<ul>
+<li class="current selected"><a href="modules.html">@blockfrost/blockfrost-<wbr/>js</a>
+<ul></ul></li></ul></div></details></nav>
+<nav class="tsd-navigation secondary menu-sticky">
+<ul>
+<li class="tsd-kind-class"><a href="classes/BlockFrostAPI.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-128-path"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)" id="icon-128-text"></path></svg>Block<wbr/>FrostAPI</a></li>
+<li class="tsd-kind-class"><a href="classes/BlockFrostIPFS.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Block<wbr/>FrostIPFS</a></li>
+<li class="tsd-kind-class"><a href="classes/BlockfrostClientError.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Blockfrost<wbr/>Client<wbr/>Error</a></li>
+<li class="tsd-kind-class"><a href="classes/BlockfrostServerError.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Blockfrost<wbr/>Server<wbr/>Error</a></li>
+<li class="tsd-kind-class"><a href="classes/SignatureVerificationError.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Signature<wbr/>Verification<wbr/>Error</a></li>
+<li class="tsd-kind-type-alias"><a href="types/Responses.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4194304-path"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)" id="icon-4194304-text"></path></svg>Responses</a></li>
+<li class="tsd-kind-function"><a href="functions/deriveAddress.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-64-path"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)" id="icon-64-text"></path></svg>derive<wbr/>Address</a></li>
+<li class="tsd-kind-function"><a href="functions/getFingerprint.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>get<wbr/>Fingerprint</a></li>
+<li class="tsd-kind-function"><a href="functions/parseAsset.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>parse<wbr/>Asset</a></li>
+<li class="tsd-kind-function"><a href="functions/verifyWebhookSignature.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>verify<wbr/>Webhook<wbr/>Signature</a></li></ul></nav></div></div>
+<div class="container tsd-generator">
+<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
+<div class="overlay"></div><script src="assets/main.js"></script></body></html>

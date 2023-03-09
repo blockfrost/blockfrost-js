@@ -19,7 +19,7 @@
 
 To use this SDK, you first need to log in to [blockfrost.io](https://blockfrost.io), create your project and retrieve the API token.
 
-<img src="https://i.imgur.com/smY12ro.png">
+<img src="https://i.imgur.com/smY12ro.png" width="600">
 
 <br/>
 
