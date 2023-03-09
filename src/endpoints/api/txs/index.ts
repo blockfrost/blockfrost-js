@@ -2,6 +2,14 @@ import { handleError } from '../../../utils/errors';
 import { components } from '@blockfrost/openapi';
 import { BlockFrostAPI } from '../../../index';
 
+/**
+ * Obtains a specific transaction
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1%7Bhash%7D/get | API docs for Transaction}
+ *
+ * @param hash - Transaction hash
+ * @returns Transaction
+ *
+ */
 export async function txs(
   this: BlockFrostAPI,
   hash: string,
@@ -17,6 +25,14 @@ export async function txs(
   });
 }
 
+/**
+ * Obtains the inputs and outputs of the specific transaction.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1%7Bhash%7D~1utxos/get | API docs for Transaction UTXOs}
+ *
+ * @param hash - Transaction hash
+ * @returns Transaction inputs and outputs
+ *
+ */
 export async function txsUtxos(
   this: BlockFrostAPI,
   hash: string,
@@ -32,6 +48,14 @@ export async function txsUtxos(
   });
 }
 
+/**
+ * Obtains information about (de)registration of stake addresses within a transaction.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1%7Bhash%7D~1stakes/get | API docs for Transaction stake addresses certificates}
+ *
+ * @param hash - Transaction hash
+ * @returns List of (de)registration certificates within the transaction
+ *
+ */
 export async function txsStakes(
   this: BlockFrostAPI,
   hash: string,
@@ -49,6 +73,14 @@ export async function txsStakes(
   });
 }
 
+/**
+ * Obtains information about delegation certificates of a specific transaction.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1%7Bhash%7D~1delegations/get | API docs for Transaction stake addresses certificates}
+ *
+ * @param hash - Transaction hash
+ * @returns List of delegation certificates within the transaction
+ *
+ */
 export async function txsDelegations(
   this: BlockFrostAPI,
   hash: string,
@@ -66,6 +98,14 @@ export async function txsDelegations(
   });
 }
 
+/**
+ * Obtains information about withdrawals within a specific transaction.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1%7Bhash%7D~1withdrawals/get | API docs for Transaction withdrawal}
+ *
+ * @param hash - Transaction hash
+ * @returns List of withdrawals within the transaction
+ *
+ */
 export async function txsWithdrawals(
   this: BlockFrostAPI,
   hash: string,
@@ -83,6 +123,14 @@ export async function txsWithdrawals(
   });
 }
 
+/**
+ * Obtains information about Move Instantaneous Rewards (MIRs) of a specific transaction.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1%7Bhash%7D~1mirs/get | API docs for Transaction MIRs}
+ *
+ * @param hash - Transaction hash
+ * @returns List of Move Instantaneous Rewards (MIRs) within the transaction
+ *
+ */
 export async function txsMirs(
   this: BlockFrostAPI,
   hash: string,
@@ -98,6 +146,14 @@ export async function txsMirs(
   });
 }
 
+/**
+ * Obtains information about stake pool registration and update certificates of a specific transaction.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1%7Bhash%7D~1pool_updates/get | API docs for Transaction stake pool registration and update certificates}
+ *
+ * @param hash - Transaction hash
+ * @returns List of stake pool registration and update certificates within a specific transaction
+ *
+ */
 export async function txsPoolUpdates(
   this: BlockFrostAPI,
   hash: string,
@@ -115,6 +171,14 @@ export async function txsPoolUpdates(
   });
 }
 
+/**
+ * Obtains information about stake pool retirements within a specific transaction.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1%7Bhash%7D~1pool_retires/get | API docs for Transaction stake pool retirement certificates}
+ *
+ * @param hash - Transaction hash
+ * @returns List of stake pool retirement certificates
+ *
+ */
 export async function txsPoolRetires(
   this: BlockFrostAPI,
   hash: string,
@@ -132,6 +196,14 @@ export async function txsPoolRetires(
   });
 }
 
+/**
+ * Obtains transaction metadata in JSON format.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1%7Bhash%7D~1metadata/get | API docs for Transaction metadata}
+ *
+ * @param hash - Transaction hash
+ * @returns Transaction metadata in JSON
+ *
+ */
 export async function txsMetadata(
   this: BlockFrostAPI,
   hash: string,
@@ -149,6 +221,14 @@ export async function txsMetadata(
   });
 }
 
+/**
+ * Obtains transaction metadata in CBOR format.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1%7Bhash%7D~1metadata~1cbor/get | API docs for Transaction metadata in CBOR}
+ *
+ * @param hash - Transaction hash
+ * @returns Transaction metadata in CBOR
+ *
+ */
 export async function txsMetadataCbor(
   this: BlockFrostAPI,
   hash: string,
@@ -166,6 +246,14 @@ export async function txsMetadataCbor(
   });
 }
 
+/**
+ * Obtains transaction redeemers.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1%7Bhash%7D~1redeemers/get | API docs for Transaction redeemers}
+ *
+ * @param hash - Transaction hash
+ * @returns Transaction redeemers
+ *
+ */
 export async function txsRedeemers(
   this: BlockFrostAPI,
   hash: string,
@@ -183,6 +271,14 @@ export async function txsRedeemers(
   });
 }
 
+/**
+ * Submits a transaction to the network.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1tx~1submit/post | API docs for Transaction submit}
+ *
+ * @param transaction - Transaction bytes as Uint8Array or hex-encoded string
+ * @returns ID of the submitted transaction
+ *
+ */
 export async function txSubmit(
   this: BlockFrostAPI,
   transaction: Uint8Array | string,

@@ -11,7 +11,8 @@
   <a href="#getting-started">Getting started</a> •
   <a href="#installation">Installation</a> •
   <a href="#usage">Usage</a> •
-  <a href="https://github.com/blockfrost/blockfrost-js-examples" target="_blank">Examples</a>
+  <a href="https://github.com/blockfrost/blockfrost-js-examples" target="_blank">Examples</a> •
+  <a href="https://blockfrost.github.io/blockfrost-js/">SDK API Reference</a>
 </p>
 <br>
 
@@ -19,7 +20,7 @@
 
 To use this SDK, you first need to log in to [blockfrost.io](https://blockfrost.io), create your project and retrieve the API token.
 
-<img src="https://i.imgur.com/smY12ro.png">
+<img src="https://i.imgur.com/WoEIYhk.png" width="750" height="400">
 
 <br/>
 
@@ -43,6 +44,8 @@ yarn add @blockfrost/blockfrost-js
 
 Using the SDK is pretty straight-forward as you can see from the following examples.
 For more examples take a look in [blockfrost-js-examples](https://github.com/blockfrost/blockfrost-js-examples) repository.
+
+For a list of all SDK methods [check out our wiki](https://github.com/blockfrost/blockfrost-js/wiki/Exports).
 
 ```ts
 const API = new Blockfrost.BlockFrostAPI({
@@ -101,7 +104,7 @@ Here is a small example showcasing the error format:
 {
   "code": "ENOTFOUND",
   "message": "getaddrinfo ENOTFOUND api.blockfrost.io",
-  "url": "https://cardano-mainnet.blockfrost.io/api/v0/addresses/addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp333c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"
+  "url": "https://cardano-mainnet.blockfrost.io/api/v0/addresses/addr1qxqs59lph(truncated)"
 }
 ```
 
@@ -122,7 +125,9 @@ try {
 
 ## Examples
 
-For more examples take a look in [examples](https://github.com/blockfrost/blockfrost-js-examples) directory.
+For more examples take a look in [blockfrost-js-examples](https://github.com/blockfrost/blockfrost-js-examples) repository.
+
+For a list of all SDK methods [check out our wiki](https://github.com/blockfrost/blockfrost-js/wiki/Exports).
 
 ### Cardano
 
@@ -188,76 +193,20 @@ runExample();
 
 Blockfrost SDK exports several utility functions to improve developer experience.
 
-### `verifyWebhookSignature(webhookPayload: unknown, signatureHeader: string, secret: string, timestampToleranceSeconds?: number)`
+- [deriveAddress](https://github.com/blockfrost/blockfrost-js/wiki/Exports#deriveaddress)
+- [getFingerprint](https://github.com/blockfrost/blockfrost-js/wiki/Exports#getfingerprint)
+- [parseAsset](https://github.com/blockfrost/blockfrost-js/wiki/Exports#parseasset)
+- [verifyWebhookSignature](https://github.com/blockfrost/blockfrost-js/wiki/Exports#verifywebhooksignature)
 
-Webhooks enable Blockfrost to push real-time notifications to your application. In order to prevent malicious actor from pretending to be Blockfrost every webhook request is signed. The signature is included in a request's `Blockfrost-Signature` header. This allows you to verify that the events were sent by Blockfrost, not by a third party.
-To learn more about Secure Webhooks, see [Secure Webhooks Docs](https://blockfrost.dev/docs/start-building/webhooks/).
+## Development
 
-For full example, see [webhook-basic](examples/webhook-basic) example.
+### Adding new method
 
-The function accepts 4 parameters:
-
-- `webhookPayload` - Buffer or stringified payload of the webhook request.
-- `signatureHeader` - Blockfrost-Signature header.
-- `secret` - Authentication token for the webhook.
-- `timestampToleranceSeconds` - Time tolerance affecting signature validity (optional). By default signatures older than 600s are considered invalid.
-
-If the signature is valid then the function returns `true`. Otherwise It throws `SignatureVerificationError` with various error messages.
-
-For easier debugging the `SignatureVerificationError` has additional `detail` object with 2 properties, `header` and `request_body`.
-
-### `parseAsset(hex: string)`
-
-Parses asset hex and returns object containing `policyId`, `assetName` and `fingerprint`.
-
-```ts
-const Blockfrost = require('@blockfrost/blockfrost-js');
-const res = Blockfrost.parseAsset(
-  '00000002df633853f6a47465c9496721d2d5b1291b8398016c0e87ae6e7574636f696e',
-);
-console.log(res);
-// {
-//   "assetName": 'nutcoin',
-//   "assetNameHex": '6e7574636f696e',
-//   "fingerprint": 'asset12h3p5l3nd5y26lr22am7y7ga3vxghkhf57zkhd',
-//   "policyId": '00000002df633853f6a47465c9496721d2d5b1291b8398016c0e87ae',
-// }
-```
-
-### `getFingerprint(policyId: string, assetName?: string)`
-
-Returns asset fingerprint for given `policyId` and `assetName`.
-
-```ts
-const Blockfrost = require('@blockfrost/blockfrost-js');
-const res = Blockfrost.getFingerprint(
-  '00000002df633853f6a47465c9496721d2d5b1291b8398016c0e87ae',
-  '6e7574636f696e',
-);
-console.log(res);
-// 'asset12h3p5l3nd5y26lr22am7y7ga3vxghkhf57zkhd'
-```
-
-### `deriveAddress(accountPublicKey: string, role: number, addressIndex: number, isTestnet: boolean, isByron?: boolean)`
-
-Derives an address with derivation path `m/1852'/1815'/account'/role/addressIndex`
-If role is set to `2` then it returns a stake address (`m/1852'/1815'/account'/2/addressIndex`)
-
-The function returns an object with bech32 address and corresponding partial derivation path `{address: string, path: [role, addressIndex]}`.
-
-```ts
-const Blockfrost = require('@blockfrost/blockfrost-js');
-const res = Blockfrost.deriveAddress(
-  '7ec9738746cb4708df52a455b43aa3fdee8955abaf37f68ffc79bb84fbf9e1b39d77e2deb9749faf890ff8326d350ed3fd0e4aa271b35cad063692af87102152', // account public key
-  0, // role
-  1, // index
-  false, // isTestnet
-);
-console.log(res);
-// {
-//   address: 'addr1qy535472n2ctu3x55v03zmm9jnz54grqu3sueap9pnk4xys49ucjdfty5p5qlw5qe28v9k988stffc2g0hx2xx86a2dq5u58qk',
-//   path: [0, 1],
-// }
-```
-
-For a more detailed list of possibilities, [check out the wiki](https://github.com/blockfrost/blockfrost-js/wiki).
+1. Add a code to a corresponding file. e.g. new account method belong to `src/endpoints/api/account/` directory.
+   - add `<method>All` method for endpoints with pagination
+   - update [TSDoc](https://tsdoc.org/) for added method
+2. Add class method to `BlockfrostAPI` object in [src/BlockFrostAPI.ts](src/BlockFrostAPI.ts).
+3. Add unit-test fixture for the added method to [test/fixtures/endpoints.ts](test/fixtures/endpoints.ts)
+4. Regenerate wiki docs
+   - `yarn docs`
+   - push files to Wiki repository `https://github.com/blockfrost/blockfrost-js.wiki.git`

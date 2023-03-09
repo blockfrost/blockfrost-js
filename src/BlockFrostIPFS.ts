@@ -1,3 +1,4 @@
+/* eslint-disable tsdoc/syntax */
 import { API_URLS } from './config';
 import { Got } from 'got';
 import Bottleneck from 'bottleneck';
@@ -17,11 +18,17 @@ import { getLimiter } from './utils/limiter';
 const packageJson = require('../package.json');
 
 class BlockFrostIPFS {
+  /** @ignore */
   apiUrl: string;
+  /** @ignore */
   projectId?: string;
+  /** @ignore */
   userAgent?: string;
+  /** @ignore */
   options: ValidatedOptions;
+  /** @ignore */
   instance: Got;
+  /** @ignore */
   rateLimiter: Bottleneck | undefined;
 
   constructor(options?: Options) {
@@ -48,51 +55,11 @@ class BlockFrostIPFS {
     this.projectId = this.options.projectId;
   }
 
-  /**
-   * add - Add a file or directory to ipfs
-   *
-   * @returns information about added ipfs object
-   */
   add = add;
-
-  /**
-   * gateway - Relay to an ipfs gateway
-   *
-   * @returns the object content
-   *
-   */
   gateway = gateway;
-
-  /**
-   * pin - Pin an object
-   *
-   * @returns pinned object
-   *
-   */
   pin = pin;
-
-  /**
-   * listByPath - List objects pinned to local storage
-   *
-   * @returns list of pinned objects
-   *
-   */
   listByPath = listByPath;
-
-  /**
-   * list - List objects pinned to local storage
-   *
-   * @returns list of pinned objects
-   *
-   */
   list = list;
-
-  /**
-   * pinRemove - Remove pinned objects from local storage
-   *
-   * @returns removed pinned object
-   *
-   */
   pinRemove = pinRemove;
 }
 
