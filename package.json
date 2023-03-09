@@ -17,11 +17,11 @@
   "scripts": {
     "build": "yarn clean && tsc",
     "clean": "rimraf lib",
-    "docs": "yarn typedoc ./src/index.ts",
+    "docs": "yarn typedoc ./src/index.ts --theme github-wiki",
     "lint": "eslint ./src/**/*.ts",
     "prepublishOnly": "yarn build",
     "test": "vitest --silent",
-    "type-check": "tsc --project ./tsconfig.types.json --theme github-wiki",
+    "type-check": "tsc --project ./tsconfig.types.json",
     "make-badge": "make-coverage-badge --output-path='./coverage-badge.svg'",
     "coverage": "vitest run --coverage --silent && make-badge",
     "coverage-ci": "vitest run --coverage --silent"

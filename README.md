@@ -45,7 +45,7 @@ yarn add @blockfrost/blockfrost-js
 Using the SDK is pretty straight-forward as you can see from the following examples.
 For more examples take a look in [blockfrost-js-examples](https://github.com/blockfrost/blockfrost-js-examples) repository.
 
-For a list of all SDK methods [check out our wiki](https://github.com/blockfrost/blockfrost-js/wiki/BlockFrostAPI).
+For a list of all SDK methods [check out our wiki](https://github.com/blockfrost/blockfrost-js/wiki/Exports).
 
 ```ts
 const API = new Blockfrost.BlockFrostAPI({
@@ -127,7 +127,7 @@ try {
 
 For more examples take a look in [blockfrost-js-examples](https://github.com/blockfrost/blockfrost-js-examples) repository.
 
-For a list of all SDK methods [check out our wiki](https://github.com/blockfrost/blockfrost-js/wiki/BlockFrostAPI).
+For a list of all SDK methods [check out our wiki](https://github.com/blockfrost/blockfrost-js/wiki/Exports).
 
 ### Cardano
 
