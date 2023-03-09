@@ -1,3 +1,4 @@
+/* eslint-disable tsdoc/syntax */
 import { API_URLS } from './config';
 import { Got } from 'got';
 import Bottleneck from 'bottleneck';
@@ -17,11 +18,17 @@ import { getLimiter } from './utils/limiter';
 const packageJson = require('../package.json');
 
 class BlockFrostIPFS {
+  /** @ignore */
   apiUrl: string;
+  /** @ignore */
   projectId?: string;
+  /** @ignore */
   userAgent?: string;
+  /** @ignore */
   options: ValidatedOptions;
+  /** @ignore */
   instance: Got;
+  /** @ignore */
   rateLimiter: Bottleneck | undefined;
 
   constructor(options?: Options) {

@@ -1,3 +1,4 @@
+/* eslint-disable tsdoc/syntax */
 import { API_URLS } from './config';
 import { Got } from 'got';
 import Bottleneck from 'bottleneck';
@@ -149,10 +150,15 @@ const packageJson = require('../package.json');
 
 class BlockFrostAPI {
   apiUrl: string;
+  /** @ignore */
   projectId?: string;
+  /** @ignore */
   userAgent?: string;
+  /** @ignore */
   options: ValidatedOptions;
+  /** @ignore */
   instance: Got;
+  /** @ignore */
   rateLimiter: Bottleneck | undefined;
 
   constructor(options?: Options) {
