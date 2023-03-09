@@ -14,7 +14,7 @@ import {
 
 /**
  * Obtains information about a specific address.
- * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses| API docs for Specific address}
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D/get | API docs for Specific address}
  *
  * @param address - Bech32 address
  * @returns Information about a specific stake account.
