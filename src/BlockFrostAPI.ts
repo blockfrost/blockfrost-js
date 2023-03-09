@@ -301,114 +301,19 @@ class BlockFrostAPI {
   scriptsDatumCbor = scriptsDatumCbor;
   scriptsRedeemers = scriptsRedeemers;
 
-  /**
-   * txs
-   *
-   * @param hash
-   * @returns xxx
-   *
-   */
   txs = txs;
-
-  /**
-   * txsMetadataCbor
-   *
-   * @param hash
-   * @returns xxx
-   *
-   */
   txsMetadataCbor = txsMetadataCbor;
-
-  /**
-   * txsDelegations
-   *
-   * @param hash
-   * @returns xxx
-   *
-   */
   txsDelegations = txsDelegations;
-
-  /**
-   * txsPoolRetires
-   *
-   * @param hash
-   * @returns xxx
-   *
-   */
   txsPoolRetires = txsPoolRetires;
-
-  /**
-   * txsPoolUpdates
-   *
-   * @param hash
-   * @returns xxx
-   *
-   */
   txsPoolUpdates = txsPoolUpdates;
-
-  /**
-   * txsStakes
-   *
-   * @param hash
-   * @returns xxx
-   *
-   */
   txsStakes = txsStakes;
-
-  /**
-   * txsUtxos
-   *
-   * @param hash
-   * @returns xxx
-   *
-   */
   txsUtxos = txsUtxos;
-
-  /**
-   * txsWithdrawals
-   *
-   * @param hash
-   * @returns xxx
-   *
-   */
   txsWithdrawals = txsWithdrawals;
-
-  /**
-   * txsMirs
-   *
-   * @param hash
-   * @returns xxx
-   *
-   */
   txsMirs = txsMirs;
-
-  /**
-   * txsMetadata
-   *
-   * @param hash
-   * @returns xxx
-   *
-   */
   txsMetadata = txsMetadata;
-
-  // XXX:
   txsRedeemers = txsRedeemers;
-
-  /**
-   * txSubmit
-   *
-   * @param hash
-   * @returns xxx
-   *
-   */
   txSubmit = txSubmit;
 
-  /**
-   * network
-   *
-   * @returns Detailed network information.
-   *
-   */
   network = network;
 }
 
