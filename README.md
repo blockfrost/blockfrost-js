@@ -11,7 +11,8 @@
   <a href="#getting-started">Getting started</a> •
   <a href="#installation">Installation</a> •
   <a href="#usage">Usage</a> •
-  <a href="https://github.com/blockfrost/blockfrost-js-examples" target="_blank">Examples</a>
+  <a href="https://github.com/blockfrost/blockfrost-js-examples" target="_blank">Examples</a> •
+  <a href="https://blockfrost.github.io/blockfrost-js/">SDK API Reference</a> •
 </p>
 <br>
 
@@ -19,7 +20,7 @@
 
 To use this SDK, you first need to log in to [blockfrost.io](https://blockfrost.io), create your project and retrieve the API token.
 
-<img src="https://i.imgur.com/smY12ro.png" width="600">
+<img src="https://i.imgur.com/WoEIYhk.png" width="750" height="400">
 
 <br/>
 
@@ -103,7 +104,7 @@ Here is a small example showcasing the error format:
 {
   "code": "ENOTFOUND",
   "message": "getaddrinfo ENOTFOUND api.blockfrost.io",
-  "url": "https://cardano-mainnet.blockfrost.io/api/v0/addresses/addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp333c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz"
+  "url": "https://cardano-mainnet.blockfrost.io/api/v0/addresses/addr1qxqs59lph(truncated)"
 }
 ```
 

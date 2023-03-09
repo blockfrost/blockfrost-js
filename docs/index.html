@@ -26,7 +26,8 @@
   <a href="#getting-started">Getting started</a> •
   <a href="#installation">Installation</a> •
   <a href="#usage">Usage</a> •
-  <a href="https://github.com/blockfrost/blockfrost-js-examples" target="_blank">Examples</a>
+  <a href="https://github.com/blockfrost/blockfrost-js-examples" target="_blank">Examples</a> •
+  <a href="https://blockfrost.github.io/blockfrost-js/">SDK API Reference</a> •
 </p>
 <br>
 
@@ -35,7 +36,7 @@
   <h2>Getting started</h2>
 </a>
 <p>To use this SDK, you first need to log in to <a href="https://blockfrost.io">blockfrost.io</a>, create your project and retrieve the API token.</p>
-<img src="https://i.imgur.com/smY12ro.png">
+<img src="https://i.imgur.com/WoEIYhk.png" width="750" height="400">
 
 <br/>
 
@@ -98,7 +99,7 @@ For more examples take a look in <a href="https://github.com/blockfrost/blockfro
 <p><code>BlockfrostClientError</code> is an error that was NOT returned by a Blockfrost API server. In this case the request has never reached our backends. Most common causes are network-related.</p>
 <p>Shape of <code>BlockfrostClientError</code> object is slightly different from <code>BlockfrostServerError</code>. The error has <code>code</code> and <code>message</code> and optional <code>url</code> property to help you investigate the issue.</p>
 <p>Here is a small example showcasing the error format:</p>
-<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">  </span><span class="hl-10">&quot;code&quot;</span><span class="hl-0">: </span><span class="hl-1">&quot;ENOTFOUND&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">&quot;message&quot;</span><span class="hl-0">: </span><span class="hl-1">&quot;getaddrinfo ENOTFOUND api.blockfrost.io&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">&quot;url&quot;</span><span class="hl-0">: </span><span class="hl-1">&quot;https://cardano-mainnet.blockfrost.io/api/v0/addresses/addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp333c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz&quot;</span><br/><span class="hl-0">}</span>
+<pre><code class="language-json"><span class="hl-0">{</span><br/><span class="hl-0">  </span><span class="hl-10">&quot;code&quot;</span><span class="hl-0">: </span><span class="hl-1">&quot;ENOTFOUND&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">&quot;message&quot;</span><span class="hl-0">: </span><span class="hl-1">&quot;getaddrinfo ENOTFOUND api.blockfrost.io&quot;</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-10">&quot;url&quot;</span><span class="hl-0">: </span><span class="hl-1">&quot;https://cardano-mainnet.blockfrost.io/api/v0/addresses/addr1qxqs59lph(truncated)&quot;</span><br/><span class="hl-0">}</span>
 </code></pre>
 
 <a href="#example-1" id="example-1" style="color: inherit; text-decoration: none;">
