@@ -12,7 +12,7 @@
   <a href="#installation">Installation</a> •
   <a href="#usage">Usage</a> •
   <a href="https://github.com/blockfrost/blockfrost-js-examples" target="_blank">Examples</a> •
-  <a href="https://blockfrost.github.io/blockfrost-js/">SDK API Reference</a>
+  <a href="https://github.com/blockfrost/blockfrost-js/wiki/Exports">SDK API Reference</a>
 </p>
 <br>
 
