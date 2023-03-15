@@ -83,3 +83,63 @@ export async function mempoolTx(
       });
   });
 }
+
+/**
+ * Obtains list of mempool transactions where at least one of the transaction inputs or outputs belongs to the address (paginated).
+ * @remarks Shows only transactions submitted via Blockfrost.io.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Mempool/paths/~1mempool~1addresses~1%7Baddress%7D/get | API docs for Mempool by address}
+ *
+ * @param address - bech32 address
+ * @param pagination - Optional, Pagination options
+ * @returns List of mempool transactions affecting the address
+ *
+ */
+export async function mempoolByAddress(
+  this: BlockFrostAPI,
+  address: string,
+  pagination?: PaginationOptions,
+): Promise<components['schemas']['mempool_addresses_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
+  return new Promise((resolve, reject) => {
+    this.instance<components['schemas']['mempool_content']>(
+      `mempool/addresses/${address}`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
+      },
+    )
+      .then(resp => {
+        resolve(resp.body);
+      })
+      .catch(err => {
+        reject(handleError(err));
+      });
+  });
+}
+
+/**
+ * Obtains list of all mempool transactions where at least one of the transaction inputs or outputs belongs to the address.
+ * @remarks Shows only transactions submitted via Blockfrost.io.
+ * @remarks
+ * Variant of `mempoolByAddress` method for fetching all pages with built-in requests batching
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Mempool/paths/~1mempool~1addresses~1%7Baddress%7D/get | API docs for Mempool by address}
+ *
+ * @param address - bech32 address
+ * @param allMethodOptions - Optional, Options for request batching
+ * @returns List of mempool transactions affecting the address
+ *
+ */
+export async function mempoolByAddressAll(
+  this: BlockFrostAPI,
+  address: string,
+  allMethodOptions?: AllMethodOptions,
+): Promise<components['schemas']['mempool_addresses_content']> {
+  return paginateMethod(
+    pagination => this.mempoolByAddress(address, pagination),
+    allMethodOptions,
+  );
+}
