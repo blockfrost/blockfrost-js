@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `utilsTxsEvaluateUtxos` method for `/utils/txs/evaluate/utxos` Blockfrost endpoint
 - `mempoolByAddress`, `mempoolByAddressAll` methods for filtering Blockfrost Mempool by an address
 
+### Changed
+
+- bump `@blockfrost/openapi` to `0.1.56`
+
 ### Removed
 
 - unused dependency
