@@ -9,9 +9,12 @@ describe('endpoints - success', () => {
   const restHandlers: RestHandler<MockedRequest<DefaultBodyType>>[] = [];
 
   fixtures.forEach(fixture => {
-    const handler = rest.get(fixture.path, (_req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(fixture.endpointMock));
-    });
+    const handler = rest[fixture.endpointMockMethod ?? 'get'](
+      fixture.path,
+      (_req, res, ctx) => {
+        return res(ctx.status(200), ctx.json(fixture.endpointMock));
+      },
+    );
 
     restHandlers.push(handler);
   });

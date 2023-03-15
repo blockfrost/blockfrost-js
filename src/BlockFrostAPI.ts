@@ -139,6 +139,10 @@ import {
 } from './endpoints/api/nutlink';
 
 import { network } from './endpoints/api/network';
+import {
+  utilsTxsEvaluate,
+  utilsTxsEvaluateUtxos,
+} from './endpoints/api/utils/txs';
 
 import { Options, ValidatedOptions } from './types';
 import { validateOptions } from './utils';
@@ -321,6 +325,9 @@ class BlockFrostAPI {
   txSubmit = txSubmit;
 
   network = network;
+
+  utilsTxsEvaluate = utilsTxsEvaluate;
+  utilsTxsEvaluateUtxos = utilsTxsEvaluateUtxos;
 }
 
 export { BlockFrostAPI };

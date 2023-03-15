@@ -9,16 +9,19 @@ describe('endpoints - errors', () => {
   const restHandlers: RestHandler<MockedRequest<DefaultBodyType>>[] = [];
 
   fixtures.forEach(fixture => {
-    const handler = rest.get(fixture.path, (_req, res, ctx) => {
-      return res(
-        ctx.status(403),
-        ctx.json({
-          error: 'Forbidden',
-          message: 'Invalid project token.',
-          status_code: 403,
-        }),
-      );
-    });
+    const handler = rest[fixture.endpointMockMethod ?? 'get'](
+      fixture.path,
+      (_req, res, ctx) => {
+        return res(
+          ctx.status(403),
+          ctx.json({
+            error: 'Forbidden',
+            message: 'Invalid project token.',
+            status_code: 403,
+          }),
+        );
+      },
+    );
 
     restHandlers.push(handler);
   });
