@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- bump `@blockfrost/openapi` to `0.1.56`
+- bump `@blockfrost/openapi` to `0.1.57`
 
 ### Removed
 
