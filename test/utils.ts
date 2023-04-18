@@ -16,7 +16,7 @@ export const IPFS = new BlockFrostIPFS({
   projectId: `${process.env.PROJECT_ID_IPFS}`,
 });
 
-export const mainentUrl = (path: string) => {
+export const mainnetUrl = (path: string) => {
   return new URL(
     join('/api/v0/', path),
     'https://cardano-mainnet.blockfrost.io',
