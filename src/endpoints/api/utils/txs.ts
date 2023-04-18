@@ -18,12 +18,12 @@ export async function utilsTxsEvaluate(
   this: BlockFrostAPI,
   transaction: Uint8Array | string,
 ): Promise<paths['/utils/txs/evaluate']['post']['responses']['200']> {
-  let tx: Buffer;
+  let tx: string;
 
   if (typeof transaction === 'string') {
-    tx = Buffer.from(transaction, 'hex');
+    tx = transaction;
   } else {
-    tx = Buffer.from(transaction);
+    tx = Buffer.from(transaction).toString('hex');
   }
 
   return new Promise((resolve, reject) => {
@@ -69,7 +69,7 @@ export async function utilsTxsEvaluateUtxos(
             cbor: transaction,
             additionalUtxoSet,
           }),
-          headers: { 'Content-type': 'application/cbor' },
+          headers: { 'Content-type': 'application/json' },
         },
       )
       .then(resp => {
