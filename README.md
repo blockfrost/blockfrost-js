@@ -48,6 +48,9 @@ For more examples take a look in [blockfrost-js-examples](https://github.com/blo
 For a list of all SDK methods [check out our wiki](https://github.com/blockfrost/blockfrost-js/wiki/Exports).
 
 ```ts
+const Blockfrost = require('@blockfrost/blockfrost-js');
+// import { BlockFrostAPI } from '@blockfrost/blockfrost-js'; // using import syntax
+
 const API = new Blockfrost.BlockFrostAPI({
   projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
   // For a list of all options see section below
@@ -82,7 +85,10 @@ Blockfrost API returns 404 Not Found for any resource that does not exist on cha
 try {
   const address = await API.addresses('totallyValidAddress');
 } catch (error) {
-  if (error instanceof BlockfrostServerError && error.status_code === 404) {
+  if (
+    error instanceof Blockfrost.BlockfrostServerError &&
+    error.status_code === 404
+  ) {
     // address was not used before, but most likely we don't want to throw an error
     console.log("Address is totally empty! But that's ok!");
   } else {
@@ -115,7 +121,7 @@ Here is a small example showcasing the error format:
 try {
   const address = await API.addresses('totallyValidAddress');
 } catch (error) {
-  if (error instanceof BlockfrostClientError) {
+  if (error instanceof Blockfrost.BlockfrostClientError) {
     console.log('Oops, error during sending the request');
   }
   // Depending on your use case you may want to rethrow the error
