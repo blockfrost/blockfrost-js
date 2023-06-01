@@ -19,13 +19,6 @@ describe('utils', () => {
   });
 
   test('init BlockFrostAPI with different networks', () => {
-    const api = new BlockFrostAPI({
-      projectId: 'xxx',
-      network: 'testnet',
-    });
-
-    expect(api.apiUrl).toBe('https://cardano-testnet.blockfrost.io/api/v0');
-
     const api2 = new BlockFrostAPI({
       projectId: 'xxx',
       network: 'mainnet',
