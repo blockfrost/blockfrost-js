@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - bump `@emurgo/cardano-serialization-lib-nodejs` and dev deps
 
+### Fixed
+
+- remove `testnet` as possible network value
+
 ## [5.3.1] - 2023-04-18
 
 ### Fixed
