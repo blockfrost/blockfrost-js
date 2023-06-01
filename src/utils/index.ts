@@ -110,8 +110,6 @@ const deriveNetworkOption = (
 
   if (projectId.startsWith('mainnet')) {
     return 'mainnet';
-  } else if (projectId.startsWith('testnet')) {
-    return 'testnet';
   } else if (projectId.startsWith('preview')) {
     return 'preview';
   } else if (projectId.startsWith('preprod')) {
