@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - remove `testnet` as possible network value
+- memory leak in `deriveAddress`
 
 ## [5.3.1] - 2023-04-18
 
