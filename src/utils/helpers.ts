@@ -58,8 +58,10 @@ export const deriveAddress = (
     ? testnetNetworkInfo.network_id()
     : mainnetNetworkInfo.network_id();
 
-  const utxoPubKeyHash = utxoPubKey.to_raw_key().hash();
-  const mainStakeKeyHash = mainStakeKey.to_raw_key().hash();
+  const utxoPubRawKey = utxoPubKey.to_raw_key();
+  const utxoPubKeyHash = utxoPubRawKey.hash();
+  const mainStakeRawKey = mainStakeKey.to_raw_key();
+  const mainStakeKeyHash = mainStakeRawKey.hash();
   const utxoStakeCred = StakeCredential.from_keyhash(utxoPubKeyHash);
   const mainStakeCred = StakeCredential.from_keyhash(mainStakeKeyHash);
   const baseAddr = BaseAddress.new(networkId, utxoStakeCred, mainStakeCred);
@@ -67,22 +69,28 @@ export const deriveAddress = (
   utxoStakeCred.free();
   mainStakeCred.free();
   mainStakeKeyHash.free();
+  mainStakeRawKey.free();
   utxoPubKeyHash.free();
+  utxoPubRawKey.free();
 
   const baseAddrBech32 = baseAddr.to_address().to_bech32();
   baseAddr.free();
 
   if (role === 2 && !isByron) {
     const addressSpecificStakeKey = accountKey.derive(2).derive(addressIndex);
-    const stakeKeyHash = addressSpecificStakeKey.to_raw_key().hash();
+    const stakeRawKey = addressSpecificStakeKey.to_raw_key();
+    const stakeKeyHash = stakeRawKey.hash();
     const stakeCred = StakeCredential.from_keyhash(stakeKeyHash);
     // always return stake address
     const rewardAddr = RewardAddress.new(networkId, stakeCred);
-    const rewardAddrBech32 = rewardAddr.to_address().to_bech32();
+    const address = rewardAddr.to_address();
+    const rewardAddrBech32 = address.to_bech32();
 
+    address.free();
     rewardAddr.free();
     addressSpecificStakeKey.free();
     stakeKeyHash.free();
+    stakeRawKey.free();
     stakeCred.free();
 
     return {
