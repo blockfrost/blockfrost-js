@@ -52,16 +52,6 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     rateLimiter = options.rateLimiter;
   }
 
-  const errorCodesToRetry = [
-    'ETIMEDOUT',
-    'ECONNRESET',
-    'EADDRINUSE',
-    'ECONNREFUSED',
-    'EPIPE',
-    'ENOTFOUND',
-    'ENETUNREACH',
-    'EAI_AGAIN',
-  ];
   return {
     customBackend: options.customBackend,
     projectId: options.projectId,
@@ -85,15 +75,9 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
         'ENOTFOUND',
         'ENETUNREACH',
         'EAI_AGAIN',
+        'EPROTO',
       ],
       calculateDelay: (retryObject: RetryObject) => {
-        if (errorCodesToRetry.includes(retryObject.error.code)) {
-          // network errors are retried only 3 times
-          if (retryObject.attemptCount === 3) {
-            return 0;
-          }
-        }
-        // check if retry should be enabled, if so set 1s retry delay
         return retryObject.computedValue !== 0 ? 1000 : 0;
       },
       // maxRetryAfter: undefined,

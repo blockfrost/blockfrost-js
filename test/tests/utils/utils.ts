@@ -100,6 +100,7 @@ describe('utils', () => {
           'ENOTFOUND',
           'ENETUNREACH',
           'EAI_AGAIN',
+          'EPROTO',
         ],
         maxRetryAfter: undefined,
         calculateDelay: ({ computedValue }) => computedValue,
@@ -125,6 +126,7 @@ describe('utils', () => {
           'ENOTFOUND',
           'ENETUNREACH',
           'EAI_AGAIN',
+          'EPROTO',
         ],
         maxRetryAfter: undefined,
         // calculateDelay: ({ computedValue }) => computedValue, // function would need to be serialized
@@ -158,6 +160,7 @@ describe('utils', () => {
           'ENOTFOUND',
           'ENETUNREACH',
           'EAI_AGAIN',
+          'EPROTO',
         ],
         // calculateDelay: () => 1000, // func would need to be serialized
       },
