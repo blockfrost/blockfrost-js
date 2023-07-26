@@ -7,11 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- enabled retry logic for requests failing on `EPROTO` error and `520` status code
+
 ### Changed
 
 - drop Node.js 14 support from build and readme
 - bump `@emurgo/cardano-serialization-lib-nodejs` and dev deps
-- enabled retry logic for requests failing on `EPROTO` error
 - bump `@blockfrost/openapi` dep
 
 ### Fixed

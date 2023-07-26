@@ -150,7 +150,7 @@ describe('utils', () => {
       retrySettings: {
         limit: 3,
         methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'],
-        statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
+        statusCodes: [408, 413, 429, 500, 502, 503, 504, 520, 521, 522, 524],
         errorCodes: [
           'ETIMEDOUT',
           'ECONNRESET',

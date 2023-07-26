@@ -65,7 +65,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     retrySettings: options.retrySettings ?? {
       limit: 3, // retry count
       methods: ['GET', 'PUT', 'HEAD', 'DELETE', 'OPTIONS', 'TRACE'], // no retry on POST
-      statusCodes: [408, 413, 429, 500, 502, 503, 504, 521, 522, 524],
+      statusCodes: [408, 413, 429, 500, 502, 503, 504, 520, 521, 522, 524],
       errorCodes: [
         'ETIMEDOUT',
         'ECONNRESET',
