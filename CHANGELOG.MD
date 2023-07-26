@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.4.0] - 2023-07-26
+
 ### Added
 
 - enabled retry logic for requests failing on `EPROTO` error and `520` status code
