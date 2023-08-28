@@ -98,6 +98,8 @@ const deriveNetworkOption = (
     return 'preview';
   } else if (projectId.startsWith('preprod')) {
     return 'preprod';
+  } else if (projectId.startsWith('sanchonet')) {
+    return 'sanchonet';
   } else if (projectId.startsWith('ipfs')) {
     return 'ipfs';
   } else {

@@ -2,6 +2,7 @@ export const API_URLS = {
   mainnet: 'https://cardano-mainnet.blockfrost.io/api',
   preview: 'https://cardano-preview.blockfrost.io/api',
   preprod: 'https://cardano-preprod.blockfrost.io/api',
+  sanchonet: 'https://cardano-sanchonet.blockfrost.io/api',
   ipfs: 'https://ipfs.blockfrost.io/api',
 };
 

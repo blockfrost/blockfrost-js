@@ -181,7 +181,7 @@ class BlockFrostAPI {
         apiBase = API_URLS[this.options.network];
       } else {
         throw Error(
-          'Invalid network option. Valid options: mainnet, testnet, preview, preprod.',
+          'Invalid network option. Valid options: mainnet, testnet, preview, preprod, sanchonet.',
         );
       }
     }
