@@ -10,6 +10,7 @@ import {
 import AssetFingerprint from '@emurgo/cip14-js';
 import { ParseAssetResult } from '../types/utils';
 import { SignatureVerificationError } from './errors';
+import { WebhookEvent } from '../types/webhook';
 
 /**
  * Derives an address with derivation path `m/1852'/1815'/account'/role/addressIndex`
@@ -199,6 +200,16 @@ export const parseAsset = (hex: string): ParseAssetResult => {
   };
 };
 
+const parseWebhookPayload = (payload: unknown) => {
+  if (Buffer.isBuffer(payload)) {
+    return JSON.parse(payload.toString('utf8'));
+  } else if (typeof payload === 'string') {
+    return JSON.parse(payload);
+  } else {
+    return payload;
+  }
+};
+
 /**
  * Verifies webhook signature
  * @remarks
@@ -230,9 +241,8 @@ export const verifyWebhookSignature = (
     );
   }
 
-  const decodedWebhookPayload = Buffer.isBuffer(webhookPayload)
-    ? webhookPayload.toString('utf8')
-    : webhookPayload;
+  const parsedWebhookPayload = parseWebhookPayload(webhookPayload);
+  const stringifiedWebhookPayload = JSON.stringify(parsedWebhookPayload);
 
   const decodedSignatureHeader = Buffer.isBuffer(signatureHeader)
     ? signatureHeader.toString('utf8')
@@ -261,7 +271,7 @@ export const verifyWebhookSignature = (
     // timestamp and at least one signature must be present
     throw new SignatureVerificationError('Invalid signature header format.', {
       signatureHeader: decodedSignatureHeader,
-      webhookPayload: decodedWebhookPayload,
+      webhookPayload: stringifiedWebhookPayload,
     });
   }
 
@@ -270,7 +280,7 @@ export const verifyWebhookSignature = (
       'No signatures with supported version scheme.',
       {
         signatureHeader: decodedSignatureHeader,
-        webhookPayload: decodedWebhookPayload,
+        webhookPayload: stringifiedWebhookPayload,
       },
     );
   }
@@ -279,7 +289,7 @@ export const verifyWebhookSignature = (
   for (const signature of signatures) {
     // Recreate signature by concatenating timestamp with stringified payload,
     // then compute HMAC using sha256 and provided secret (auth token)
-    const signaturePayload = `${timestamp}.${decodedWebhookPayload}`;
+    const signaturePayload = `${timestamp}.${stringifiedWebhookPayload}`;
     const hmac = createHmac('sha256', secret)
       .update(signaturePayload)
       .digest('hex');
@@ -295,7 +305,7 @@ export const verifyWebhookSignature = (
       'No signature matches the expected signature for the payload.',
       {
         signatureHeader: decodedSignatureHeader,
-        webhookPayload: decodedWebhookPayload,
+        webhookPayload: stringifiedWebhookPayload,
       },
     );
   }
@@ -307,11 +317,12 @@ export const verifyWebhookSignature = (
       "Signature's timestamp is outside of the time tolerance",
       {
         signatureHeader: decodedSignatureHeader,
-        webhookPayload: decodedWebhookPayload,
+        webhookPayload: stringifiedWebhookPayload,
       },
     );
   } else {
     // Successfully validate the signature only if it is within timestamp_tolerance_seconds tolerance
-    return true;
+    const webhookEvent = parsedWebhookPayload as WebhookEvent;
+    return webhookEvent;
   }
 };
