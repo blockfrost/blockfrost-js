@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated Blockfrost OpenAPI to 0.1.60
+- Deps bump
+
 ## [5.4.0] - 2023-07-26
 
 ### Added
