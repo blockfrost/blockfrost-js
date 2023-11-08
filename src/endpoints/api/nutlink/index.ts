@@ -8,15 +8,14 @@ export async function nutlinkAddress(
   this: BlockFrostAPI,
   address: string,
 ): Promise<components['schemas']['nutlink_address']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['nutlink_address']>(
+  try {
+    const res = await this.instance<components['schemas']['nutlink_address']>(
       `nutlink/${address}`,
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 export async function nutlinkAddressTickers(
@@ -26,22 +25,20 @@ export async function nutlinkAddressTickers(
 ): Promise<components['schemas']['nutlink_address_tickers']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['nutlink_address_tickers']>(
-      `nutlink/${address}/tickers`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['nutlink_address_tickers']
+    >(`nutlink/${address}/tickers`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 export async function nutlinkAddressTickersAll(
@@ -63,22 +60,20 @@ export async function nutlinkAddressTicker(
 ): Promise<components['schemas']['nutlink_address_ticker']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['nutlink_address_ticker']>(
-      `nutlink/${address}/tickers/${ticker}`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['nutlink_address_ticker']
+    >(`nutlink/${address}/tickers/${ticker}`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 export async function nutlinkAddressTickerAll(
@@ -100,22 +95,20 @@ export async function nutlinkTickers(
 ): Promise<components['schemas']['nutlink_tickers_ticker']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['nutlink_tickers_ticker']>(
-      `nutlink/tickers/${ticker}`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['nutlink_tickers_ticker']
+    >(`nutlink/tickers/${ticker}`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 export async function nutlinkTickersAll(

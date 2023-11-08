@@ -21,19 +21,18 @@ export async function assets(
 ): Promise<components['schemas']['assets']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['assets']>(`assets`, {
+  try {
+    const res = await this.instance<components['schemas']['assets']>(`assets`, {
       searchParams: {
         page: paginationOptions.page,
         count: paginationOptions.count,
         order: paginationOptions.order,
       },
-    })
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -48,13 +47,14 @@ export async function assetsById(
   this: BlockFrostAPI,
   asset: string,
 ): Promise<components['schemas']['asset']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['asset']>(`assets/${asset}`)
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+  try {
+    const res = await this.instance<components['schemas']['asset']>(
+      `assets/${asset}`,
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -73,8 +73,8 @@ export async function assetsHistory(
 ): Promise<components['schemas']['asset_history']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['asset_history']>(
+  try {
+    const res = await this.instance<components['schemas']['asset_history']>(
       `assets/${asset}/history`,
       {
         searchParams: {
@@ -83,12 +83,11 @@ export async function assetsHistory(
           order: paginationOptions.order,
         },
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -129,22 +128,20 @@ export async function assetsTransactions(
 ): Promise<components['schemas']['asset_transactions']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['asset_transactions']>(
-      `assets/${asset}/transactions`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['asset_transactions']
+    >(`assets/${asset}/transactions`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -163,8 +160,8 @@ export async function assetsAddresses(
 ): Promise<components['schemas']['asset_addresses']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['asset_addresses']>(
+  try {
+    const res = await this.instance<components['schemas']['asset_addresses']>(
       `assets/${asset}/addresses`,
       {
         searchParams: {
@@ -173,12 +170,11 @@ export async function assetsAddresses(
           order: paginationOptions.order,
         },
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -197,8 +193,8 @@ export async function assetsPolicyById(
 ): Promise<components['schemas']['asset_policy']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['asset_policy']>(
+  try {
+    const res = await this.instance<components['schemas']['asset_policy']>(
       `assets/policy/${policyId}`,
       {
         searchParams: {
@@ -207,12 +203,11 @@ export async function assetsPolicyById(
           order: paginationOptions.order,
         },
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**

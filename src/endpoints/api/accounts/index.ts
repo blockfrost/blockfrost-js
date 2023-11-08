@@ -16,15 +16,14 @@ export async function accounts(
   this: BlockFrostAPI,
   stakeAddress: string,
 ): Promise<components['schemas']['account_content']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['account_content']>(
+  try {
+    const res = await this.instance<components['schemas']['account_content']>(
       `accounts/${stakeAddress}`,
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -43,22 +42,20 @@ export async function accountsRewards(
 ): Promise<components['schemas']['account_reward_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['account_reward_content']>(
-      `accounts/${stakeAddress}/rewards`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['account_reward_content']
+    >(`accounts/${stakeAddress}/rewards`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -99,22 +96,20 @@ export async function accountsHistory(
 ): Promise<components['schemas']['account_history_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['account_history_content']>(
-      `accounts/${stakeAddress}/history`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['account_history_content']
+    >(`accounts/${stakeAddress}/history`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -155,22 +150,20 @@ export async function accountsWithdrawals(
 ): Promise<components['schemas']['account_withdrawal_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['account_withdrawal_content']>(
-      `accounts/${stakeAddress}/withdrawals`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['account_withdrawal_content']
+    >(`accounts/${stakeAddress}/withdrawals`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -211,22 +204,20 @@ export async function accountsMirs(
 ): Promise<components['schemas']['account_mir_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['account_mir_content']>(
-      `accounts/${stakeAddress}/mirs`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['account_mir_content']
+    >(`accounts/${stakeAddress}/mirs`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -267,22 +258,20 @@ export async function accountsDelegations(
 ): Promise<components['schemas']['account_delegation_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['account_delegation_content']>(
-      `accounts/${stakeAddress}/delegations`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['account_delegation_content']
+    >(`accounts/${stakeAddress}/delegations`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -323,22 +312,20 @@ export async function accountsRegistrations(
 ): Promise<components['schemas']['account_registration_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['account_registration_content']>(
-      `accounts/${stakeAddress}/registrations`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['account_registration_content']
+    >(`accounts/${stakeAddress}/registrations`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -382,22 +369,20 @@ export async function accountsAddresses(
 ): Promise<components['schemas']['account_addresses_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['account_addresses_content']>(
-      `accounts/${stakeAddress}/addresses`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['account_addresses_content']
+    >(`accounts/${stakeAddress}/addresses`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -441,22 +426,20 @@ export async function accountsAddressesAssets(
 ): Promise<components['schemas']['account_addresses_assets']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['account_addresses_assets']>(
-      `accounts/${stakeAddress}/addresses/assets`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['account_addresses_assets']
+    >(`accounts/${stakeAddress}/addresses/assets`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -493,13 +476,12 @@ export async function accountsAddressesTotal(
   this: BlockFrostAPI,
   stakeAddress: string,
 ): Promise<components['schemas']['account_addresses_total']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['account_addresses_total']>(
-      `accounts/${stakeAddress}/addresses/total`,
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+  try {
+    const res = await this.instance<
+      components['schemas']['account_addresses_total']
+    >(`accounts/${stakeAddress}/addresses/total`);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }

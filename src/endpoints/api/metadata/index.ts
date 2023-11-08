@@ -18,24 +18,20 @@ export async function metadataTxsLabels(
 ): Promise<components['schemas']['tx_metadata_labels']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['tx_metadata_labels']>(
-      `metadata/txs/labels`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['tx_metadata_labels']
+    >(`metadata/txs/labels`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -54,24 +50,20 @@ export async function metadataTxsLabel(
 ): Promise<components['schemas']['tx_metadata_label_json']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['tx_metadata_label_json']>(
-      `metadata/txs/labels/${label}`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['tx_metadata_label_json']
+    >(`metadata/txs/labels/${label}`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -90,22 +82,18 @@ export async function metadataTxsLabelCbor(
 ): Promise<components['schemas']['tx_metadata_label_cbor']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['tx_metadata_label_cbor']>(
-      `metadata/txs/labels/${label}/cbor`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['tx_metadata_label_cbor']
+    >(`metadata/txs/labels/${label}/cbor`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }

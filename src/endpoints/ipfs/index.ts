@@ -24,21 +24,17 @@ export async function add(
 
   data.append('file', stream);
 
-  return new Promise((resolve, reject) => {
-    this.instance
-      .post<AddResponse>(`ipfs/add`, {
-        body: data,
-        headers: {
-          'Content-Type': `multipart/form-data; boundary=${data.getBoundary()}`,
-        },
-      })
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance.post<AddResponse>(`ipfs/add`, {
+      body: data,
+      headers: {
+        'Content-Type': `multipart/form-data; boundary=${data.getBoundary()}`,
+      },
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -55,18 +51,14 @@ export async function gateway(
   this: BlockFrostIPFS,
   path: string,
 ): Promise<unknown> {
-  return new Promise((resolve, reject) => {
-    this.instance
-      .get(`ipfs/gateway`, {
-        searchParams: { path },
-      })
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance.get(`ipfs/gateway`, {
+      searchParams: { path },
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -82,16 +74,12 @@ export async function pin(
   this: BlockFrostIPFS,
   path: string,
 ): Promise<PinResponse> {
-  return new Promise((resolve, reject) => {
-    this.instance
-      .post<PinResponse>(`ipfs/pin/add/${path}`)
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance.post<PinResponse>(`ipfs/pin/add/${path}`);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -107,21 +95,18 @@ export async function list(
   pagination?: PaginationOptions,
 ): Promise<ListResponse> {
   const paginationOptions = getPaginationOptions(pagination);
-  return new Promise((resolve, reject) => {
-    this.instance<ListResponse>(`ipfs/pin/list`, {
+  try {
+    const res = await this.instance<ListResponse>(`ipfs/pin/list`, {
       searchParams: {
         page: paginationOptions.page,
         count: paginationOptions.count,
         order: paginationOptions.order,
       },
-    })
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -136,15 +121,12 @@ export async function listByPath(
   this: BlockFrostIPFS,
   path: string,
 ): Promise<ListResponse> {
-  return new Promise((resolve, reject) => {
-    this.instance<ListResponse>(`ipfs/pin/list/${path}`)
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance<ListResponse>(`ipfs/pin/list/${path}`);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -159,14 +141,10 @@ export async function pinRemove(
   this: BlockFrostIPFS,
   path: string,
 ): Promise<string> {
-  return new Promise((resolve, reject) => {
-    this.instance
-      .post<string>(`ipfs/pin/remove/${path}`)
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance.post<string>(`ipfs/pin/remove/${path}`);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
