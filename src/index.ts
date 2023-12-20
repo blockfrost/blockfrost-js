@@ -12,6 +12,13 @@ import {
   BlockfrostServerError,
   SignatureVerificationError,
 } from './utils/errors';
+import {
+  WebhookEvent,
+  WebhookEventBlock,
+  WebhookEventDelegation,
+  WebhookEventEpoch,
+  WebhookEventTransaction,
+} from './types/webhook';
 
 type Responses = Schemas;
 
@@ -27,4 +34,11 @@ export {
   verifyWebhookSignature,
 };
 
-export type { Responses };
+export type {
+  Responses,
+  WebhookEvent,
+  WebhookEventBlock,
+  WebhookEventTransaction,
+  WebhookEventEpoch,
+  WebhookEventDelegation,
+};

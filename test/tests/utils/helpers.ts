@@ -41,10 +41,10 @@ describe('helpers', () => {
           fixture.timestampToleranceSeconds,
         );
 
-      if (fixture.result === true) {
-        expect(response()).toStrictEqual(fixture.result);
-      } else {
+      if (fixture.result === SignatureVerificationError) {
         expect(response).toThrowError(SignatureVerificationError);
+      } else {
+        expect(response()).toStrictEqual(fixture.result);
       }
 
       vi.useRealTimers();

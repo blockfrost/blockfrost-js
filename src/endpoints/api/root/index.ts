@@ -10,13 +10,10 @@ import { BlockFrostAPI } from '../../../index';
 export async function root(
   this: BlockFrostAPI,
 ): Promise<{ url: string; version: string }> {
-  return new Promise((resolve, reject) => {
-    this.instance<{ url: string; version: string }>(``)
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance<{ url: string; version: string }>(``);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }

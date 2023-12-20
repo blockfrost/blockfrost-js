@@ -10,16 +10,15 @@ import { BlockFrostAPI } from '../../../index';
  * @returns Backend status in the format `{is_healthy: boolean}`
  *
  */
-export function health(this: BlockFrostAPI): Promise<{ is_healthy: boolean }> {
-  return new Promise((resolve, reject) => {
-    this.instance<{ is_healthy: boolean }>(`health`)
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+export async function health(
+  this: BlockFrostAPI,
+): Promise<{ is_healthy: boolean }> {
+  try {
+    const res = await this.instance<{ is_healthy: boolean }>(`health`);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -29,16 +28,13 @@ export function health(this: BlockFrostAPI): Promise<{ is_healthy: boolean }> {
  * @returns Unix time in the format `{server_time: number}`
  *
  */
-export function healthClock(
+export async function healthClock(
   this: BlockFrostAPI,
 ): Promise<{ server_time: number }> {
-  return new Promise((resolve, reject) => {
-    this.instance<{ server_time: number }>(`health/clock`)
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance<{ server_time: number }>(`health/clock`);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
