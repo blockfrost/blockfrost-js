@@ -9,16 +9,14 @@ import { BlockFrostAPI } from '../../../index';
  * @returns Genesis parameters
  *
  */
-export function genesis(
+export async function genesis(
   this: BlockFrostAPI,
 ): Promise<components['schemas']['genesis_content']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['genesis_content']>(`genesis`)
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res =
+      await this.instance<components['schemas']['genesis_content']>(`genesis`);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }

@@ -26,22 +26,17 @@ export async function utilsTxsEvaluate(
     tx = Buffer.from(transaction).toString('hex');
   }
 
-  return new Promise((resolve, reject) => {
-    this.instance
-      .post<paths['/utils/txs/evaluate']['post']['responses']['200']>(
-        `utils/txs/evaluate`,
-        {
-          body: tx,
-          headers: { 'Content-type': 'application/cbor' },
-        },
-      )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance.post<
+      paths['/utils/txs/evaluate']['post']['responses']['200']
+    >(`utils/txs/evaluate`, {
+      body: tx,
+      headers: { 'Content-type': 'application/cbor' },
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -60,23 +55,18 @@ export async function utilsTxsEvaluateUtxos(
   // additionalUtxoSet: paths['/utils/txs/evaluate/utxos']['post']['requestBody']['content']['application/json'],
   additionalUtxoSet: [TxIn, TxOut][],
 ): Promise<paths['/utils/txs/evaluate']['post']['responses']['200']> {
-  return new Promise((resolve, reject) => {
-    this.instance
-      .post<paths['/utils/txs/evaluate/utxos']['post']['responses']['200']>(
-        `utils/txs/evaluate/utxos`,
-        {
-          body: betterJSON.stringify({
-            cbor: transaction,
-            additionalUtxoSet,
-          }),
-          headers: { 'Content-type': 'application/json' },
-        },
-      )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance.post<
+      paths['/utils/txs/evaluate/utxos']['post']['responses']['200']
+    >(`utils/txs/evaluate/utxos`, {
+      body: betterJSON.stringify({
+        cbor: transaction,
+        additionalUtxoSet,
+      }),
+      headers: { 'Content-type': 'application/json' },
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }

@@ -16,15 +16,14 @@ export async function epochs(
   this: BlockFrostAPI,
   number: number,
 ): Promise<components['schemas']['epoch_content']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['epoch_content']>(`epochs/${number}`)
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance<components['schemas']['epoch_content']>(
+      `epochs/${number}`,
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -37,15 +36,15 @@ export async function epochs(
 export async function epochsLatest(
   this: BlockFrostAPI,
 ): Promise<components['schemas']['epoch_content']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['epoch_content']>(`epochs/latest`)
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res =
+      await this.instance<components['schemas']['epoch_content']>(
+        `epochs/latest`,
+      );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -64,23 +63,19 @@ export async function epochsNext(
 ): Promise<components['schemas']['epoch_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['epoch_content_array']>(
-      `epochs/${number}/next`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['epoch_content_array']
+    >(`epochs/${number}/next`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -99,23 +94,19 @@ export async function epochsPrevious(
 ): Promise<components['schemas']['epoch_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['epoch_content_array']>(
-      `epochs/${number}/previous`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['epoch_content_array']
+    >(`epochs/${number}/previous`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -134,24 +125,20 @@ export async function epochsStakes(
 ): Promise<components['schemas']['epoch_stake_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['epoch_stake_content']>(
-      `epochs/${number}/stakes`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['epoch_stake_content']
+    >(`epochs/${number}/stakes`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -194,24 +181,20 @@ export async function epochsStakesByPoolId(
 ): Promise<components['schemas']['epoch_stake_pool_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['epoch_stake_pool_content']>(
-      `epochs/${number}/stakes/${poolId}`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['epoch_stake_pool_content']
+    >(`epochs/${number}/stakes/${poolId}`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -254,24 +237,20 @@ export async function epochsBlocks(
 ): Promise<components['schemas']['epoch_block_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['epoch_block_content']>(
-      `epochs/${number}/blocks`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['epoch_block_content']
+    >(`epochs/${number}/blocks`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -314,24 +293,20 @@ export async function epochsBlocksByPoolId(
 ): Promise<components['schemas']['epoch_block_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['epoch_block_content']>(
-      `epochs/${number}/blocks/${poolId}`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['epoch_block_content']
+    >(`epochs/${number}/blocks/${poolId}`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -370,17 +345,14 @@ export async function epochsParameters(
   this: BlockFrostAPI,
   number: number,
 ): Promise<components['schemas']['epoch_param_content']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['epoch_param_content']>(
-      `epochs/${number}/parameters`,
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance<
+      components['schemas']['epoch_param_content']
+    >(`epochs/${number}/parameters`);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -393,15 +365,12 @@ export async function epochsParameters(
 export async function epochsLatestParameters(
   this: BlockFrostAPI,
 ): Promise<components['schemas']['epoch_param_content']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['epoch_param_content']>(
-      `epochs/latest/parameters`,
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance<
+      components['schemas']['epoch_param_content']
+    >(`epochs/latest/parameters`);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }

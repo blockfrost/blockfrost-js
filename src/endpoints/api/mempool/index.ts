@@ -20,21 +20,21 @@ export async function mempool(
 ): Promise<components['schemas']['mempool_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['mempool_content']>(`mempool`, {
-      searchParams: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+  try {
+    const res = await this.instance<components['schemas']['mempool_content']>(
+      `mempool`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -71,17 +71,14 @@ export async function mempoolTx(
   this: BlockFrostAPI,
   hash: string,
 ): Promise<components['schemas']['mempool_tx_content']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['mempool_tx_content']>(
-      `mempool/${hash}`,
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance<
+      components['schemas']['mempool_tx_content']
+    >(`mempool/${hash}`);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -101,8 +98,8 @@ export async function mempoolByAddress(
 ): Promise<components['schemas']['mempool_addresses_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['mempool_content']>(
+  try {
+    const res = await this.instance<components['schemas']['mempool_content']>(
       `mempool/addresses/${address}`,
       {
         searchParams: {
@@ -111,14 +108,11 @@ export async function mempoolByAddress(
           order: paginationOptions.order,
         },
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**

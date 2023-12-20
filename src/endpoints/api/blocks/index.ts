@@ -20,17 +20,14 @@ export async function blocks(
   this: BlockFrostAPI,
   hashOrNumber: HashOrNumber,
 ): Promise<components['schemas']['block_content']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['block_content']>(
+  try {
+    const res = await this.instance<components['schemas']['block_content']>(
       `blocks/${hashOrNumber}`,
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -43,15 +40,15 @@ export async function blocks(
 export async function blocksLatest(
   this: BlockFrostAPI,
 ): Promise<components['schemas']['block_content']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['block_content']>(`blocks/latest`)
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res =
+      await this.instance<components['schemas']['block_content']>(
+        `blocks/latest`,
+      );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -68,8 +65,8 @@ export async function blocksLatestTxs(
 ): Promise<components['schemas']['block_content_txs']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['block_content_txs']>(
+  try {
+    const res = await this.instance<components['schemas']['block_content_txs']>(
       `blocks/latest/txs`,
       {
         searchParams: {
@@ -78,14 +75,11 @@ export async function blocksLatestTxs(
           order: paginationOptions.order,
         },
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        return reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -124,23 +118,20 @@ export async function blocksNext(
 ): Promise<components['schemas']['block_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['block_content_array']>(
-      `blocks/${hashOrNumber}/next`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['block_content_array']
+    >(`blocks/${hashOrNumber}/next`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -159,23 +150,19 @@ export async function blocksPrevious(
 ): Promise<components['schemas']['block_content_array']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['block_content_array']>(
-      `blocks/${hashOrNumber}/previous`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['block_content_array']
+    >(`blocks/${hashOrNumber}/previous`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -194,8 +181,8 @@ export async function blocksTxs(
 ): Promise<components['schemas']['block_content_txs']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['block_content_txs']>(
+  try {
+    const res = await this.instance<components['schemas']['block_content_txs']>(
       `blocks/${hashOrNumber}/txs`,
       {
         searchParams: {
@@ -204,14 +191,11 @@ export async function blocksTxs(
           order: paginationOptions.order,
         },
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -254,24 +238,20 @@ export async function blocksAddresses(
 ): Promise<components['schemas']['block_content_addresses']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['block_content_addresses']>(
-      `blocks/${hashOrNumber}/addresses`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          // order: paginationOptions.order, // no ordering on /blocks/{hash}/addresses
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['block_content_addresses']
+    >(`blocks/${hashOrNumber}/addresses`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        // order: paginationOptions.order, // no ordering on /blocks/{hash}/addresses
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**

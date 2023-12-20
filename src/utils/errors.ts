@@ -70,7 +70,7 @@ export const isBlockfrostErrorResponse = (
 };
 
 export const handleError = (
-  error: GotError,
+  error: unknown,
 ): BlockfrostServerError | BlockfrostClientError => {
   if (error instanceof HTTPError) {
     let errorInstance: BlockfrostServerError;
@@ -104,9 +104,10 @@ export const handleError = (
 
   // system errors such as -3008 ENOTFOUND and various got errors like ReadError, CacheError, MaxRedirectsError, TimeoutError,...
   // https://github.com/sindresorhus/got/blob/main/documentation/8-errors.md
+
   return new BlockfrostClientError({
-    code: error.code ?? 'ERR_GOT_REQUEST_ERROR', // ENOTFOUND, ETIMEDOUT...
-    message: error.message, // getaddrinfo ENOTFOUND cardano-testnet.blockfrost.io'
-    url: error.request?.requestUrl,
+    code: (error as GotError).code ?? 'ERR_GOT_REQUEST_ERROR', // ENOTFOUND, ETIMEDOUT...
+    message: (error as GotError).message, // getaddrinfo ENOTFOUND cardano-testnet.blockfrost.io'
+    url: (error as GotError).request?.requestUrl,
   });
 };

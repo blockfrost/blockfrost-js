@@ -11,6 +11,7 @@ import {
   AdditionalEndpointOptions,
   AllMethodOptions,
 } from '../../../types';
+import { HTTPError } from 'got';
 
 /**
  * Obtains information about a specific address.
@@ -24,15 +25,14 @@ export async function addresses(
   this: BlockFrostAPI,
   address: string,
 ): Promise<components['schemas']['address_content']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['address_content']>(
+  try {
+    const res = await this.instance<components['schemas']['address_content']>(
       `addresses/${address}`,
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -48,15 +48,14 @@ export async function addressesTotal(
   this: BlockFrostAPI,
   address: string,
 ): Promise<components['schemas']['address_content_total']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['address_content_total']>(
-      `addresses/${address}/total`,
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+  try {
+    const res = await this.instance<
+      components['schemas']['address_content_total']
+    >(`addresses/${address}/total`);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -72,15 +71,14 @@ export async function addressesExtended(
   this: BlockFrostAPI,
   address: string,
 ): Promise<components['schemas']['address_content_extended']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['address_content_extended']>(
-      `addresses/${address}/extended`,
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+  try {
+    const res = await this.instance<
+      components['schemas']['address_content_extended']
+    >(`addresses/${address}/extended`);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -102,30 +100,25 @@ export async function addressesTransactions(
   const additionalParams = getAdditionalParams(additionalOptions);
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['address_transactions_content']>(
-      `addresses/${address}/transactions`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-          from: additionalParams.from,
-          to: additionalParams.to,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['address_transactions_content']
+    >(`addresses/${address}/transactions`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+        from: additionalParams.from,
+        to: additionalParams.to,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        if (err && err.response && err.response.statusCode === 404) {
-          resolve([]);
-        }
-
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    if (error instanceof HTTPError && error.response.statusCode === 404) {
+      return [];
+    }
+    throw handleError(error);
+  }
 }
 
 /**
@@ -170,22 +163,20 @@ export async function addressesUtxos(
 ): Promise<components['schemas']['address_utxo_content']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['address_utxo_content']>(
-      `addresses/${address}/utxos`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['address_utxo_content']
+    >(`addresses/${address}/utxos`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -229,22 +220,20 @@ export async function addressesUtxosAsset(
   // TODO: test is missing since we can't guarantee that list of address's utxos won't change in the future
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['address_utxo_content']>(
-      `addresses/${address}/utxos/${asset}`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['address_utxo_content']
+    >(`addresses/${address}/utxos/${asset}`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => reject(handleError(err)));
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**

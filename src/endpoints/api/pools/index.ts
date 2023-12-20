@@ -18,21 +18,21 @@ export async function pools(
 ): Promise<components['schemas']['pool_list']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['pool_list']>(`pools`, {
-      searchParams: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+  try {
+    const res = await this.instance<components['schemas']['pool_list']>(
+      `pools`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -58,21 +58,21 @@ export async function poolsRetired(
 ): Promise<components['schemas']['pool_list_retire']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['pool_list_retire']>(`pools/retired`, {
-      searchParams: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+  try {
+    const res = await this.instance<components['schemas']['pool_list_retire']>(
+      `pools/retired`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -89,21 +89,21 @@ export async function poolsRetiring(
 ): Promise<components['schemas']['pool_list_retire']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['pool_list_retire']>(`pools/retiring`, {
-      searchParams: {
-        page: paginationOptions.page,
-        count: paginationOptions.count,
-        order: paginationOptions.order,
+  try {
+    const res = await this.instance<components['schemas']['pool_list_retire']>(
+      `pools/retiring`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
       },
-    })
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -118,15 +118,14 @@ export async function poolsById(
   this: BlockFrostAPI,
   poolId: string,
 ): Promise<components['schemas']['pool']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['pool']>(`pools/${poolId}`)
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+  try {
+    const res = await this.instance<components['schemas']['pool']>(
+      `pools/${poolId}`,
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -145,8 +144,8 @@ export async function poolsByIdHistory(
 ): Promise<components['schemas']['pool_history']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['pool_history']>(
+  try {
+    const res = await this.instance<components['schemas']['pool_history']>(
       `pools/${poolId}/history`,
       {
         searchParams: {
@@ -155,14 +154,11 @@ export async function poolsByIdHistory(
           order: paginationOptions.order,
         },
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -177,17 +173,14 @@ export async function poolMetadata(
   this: BlockFrostAPI,
   poolId: string,
 ): Promise<components['schemas']['pool_metadata']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['pool_metadata']>(
+  try {
+    const res = await this.instance<components['schemas']['pool_metadata']>(
       `pools/${poolId}/metadata`,
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -202,17 +195,14 @@ export async function poolsByIdRelays(
   this: BlockFrostAPI,
   poolId: string,
 ): Promise<components['schemas']['pool_relays']> {
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['pool_relays']>(
+  try {
+    const res = await this.instance<components['schemas']['pool_relays']>(
       `pools/${poolId}/relays`,
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -230,8 +220,8 @@ export async function poolsByIdDelegators(
 ): Promise<components['schemas']['pool_delegators']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['pool_delegators']>(
+  try {
+    const res = await this.instance<components['schemas']['pool_delegators']>(
       `pools/${poolId}/delegators`,
       {
         searchParams: {
@@ -240,14 +230,11 @@ export async function poolsByIdDelegators(
           order: paginationOptions.order,
         },
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -266,8 +253,8 @@ export async function poolsByIdBlocks(
 ): Promise<components['schemas']['pool_blocks']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['pool_blocks']>(
+  try {
+    const res = await this.instance<components['schemas']['pool_blocks']>(
       `pools/${poolId}/blocks`,
       {
         searchParams: {
@@ -276,14 +263,11 @@ export async function poolsByIdBlocks(
           order: paginationOptions.order,
         },
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -302,8 +286,8 @@ export async function poolsByIdUpdates(
 ): Promise<components['schemas']['pool_updates']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['pool_updates']>(
+  try {
+    const res = await this.instance<components['schemas']['pool_updates']>(
       `pools/${poolId}/updates`,
       {
         searchParams: {
@@ -312,14 +296,11 @@ export async function poolsByIdUpdates(
           order: paginationOptions.order,
         },
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
@@ -335,24 +316,20 @@ export async function poolsExtended(
 ): Promise<components['schemas']['pool_list_extended']> {
   const paginationOptions = getPaginationOptions(pagination);
 
-  return new Promise((resolve, reject) => {
-    this.instance<components['schemas']['pool_list_extended']>(
-      `pools/extended`,
-      {
-        searchParams: {
-          page: paginationOptions.page,
-          count: paginationOptions.count,
-          order: paginationOptions.order,
-        },
+  try {
+    const res = await this.instance<
+      components['schemas']['pool_list_extended']
+    >(`pools/extended`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
       },
-    )
-      .then(resp => {
-        resolve(resp.body);
-      })
-      .catch(err => {
-        reject(handleError(err));
-      });
-  });
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
