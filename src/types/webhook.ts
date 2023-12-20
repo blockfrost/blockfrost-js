@@ -13,9 +13,9 @@ export type TransactionPayload = {
 export type StakeDelegationPayload = {
   tx: Responses['tx_content'];
   // delegations with pool data
-  delegations: Responses['tx_content_delegations'][number] & {
+  delegations: (Responses['tx_content_delegations'][number] & {
     pool: Responses['pool'];
-  };
+  })[];
 };
 
 export type EpochPayload = {
