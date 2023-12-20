@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Cardano SanchoNet support
+
 ### Changed
 
 - Updated Blockfrost OpenAPI to 0.1.60

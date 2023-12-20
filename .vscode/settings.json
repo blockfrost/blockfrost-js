@@ -27,6 +27,7 @@
     "pnpify",
     "pools",
     "preprod",
+    "sanchonet",
     "serialization",
     "ticker",
     "timelock",

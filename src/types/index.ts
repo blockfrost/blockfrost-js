@@ -49,7 +49,7 @@ type AdditionalOptions = {
 export type Options = (OptionCombination1 | OptionCombination2) &
   AdditionalOptions;
 
-export type CardanoNetwork = 'mainnet' | 'preview' | 'preprod';
+export type CardanoNetwork = 'mainnet' | 'preview' | 'preprod' | 'sanchonet';
 export type BlockfrostNetwork = CardanoNetwork | 'ipfs';
 export interface ValidatedOptions {
   customBackend?: string;
