@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [5.5.0] - 2023-12-20
+
 ### Added
 
 - Cardano SanchoNet support
@@ -15,7 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updated Blockfrost OpenAPI to 0.1.60
 - Deps bump
-- `verifyWebhookSignature` now returns strongly typed webhook event payload. Additionally, `webhookPayload` parameter now accepts both string and object types, eliminating the need to manually convert the payload to a string.
+- `verifyWebhookSignature` now returns strongly typed webhook event. Additionally, `webhookPayload` parameter now accepts both string and object types, eliminating the need to manually convert the payload to a string.
+- removed unnecessary promise wrap from most methods
 
 ## [5.4.0] - 2023-07-26
 
