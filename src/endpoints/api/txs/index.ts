@@ -245,6 +245,28 @@ export async function txsRedeemers(
 }
 
 /**
+ * Obtains extra transaction witnesses.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1%7Bhash%7D~required_signers/get | API docs for Transaction redeemers}
+ *
+ * @param hash - Transaction hash
+ * @returns Extra transaction witnesses
+ *
+ */
+export async function txsRequiredSigners(
+  this: BlockFrostAPI,
+  hash: string,
+): Promise<components['schemas']['tx_content_required_signers']> {
+  try {
+    const res = await this.instance<
+      components['schemas']['tx_content_required_signers']
+    >(`txs/${hash}/required_signers`);
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
+}
+
+/**
  * Submits a transaction to the network.
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1tx~1submit/post | API docs for Transaction submit}
  *
