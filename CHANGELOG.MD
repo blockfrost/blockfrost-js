@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `txsRequiredSigners` for retrieving required signers (extra transaction witnesses)
 
 ## [5.5.0] - 2023-12-20
 
