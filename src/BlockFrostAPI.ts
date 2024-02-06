@@ -123,6 +123,7 @@ import {
   txsMirs,
   txsMetadata,
   txsRedeemers,
+  txsRequiredSigners,
   txSubmit,
 } from './endpoints/api/txs';
 import {
@@ -329,6 +330,7 @@ class BlockFrostAPI {
   txsMirs = txsMirs;
   txsMetadata = txsMetadata;
   txsRedeemers = txsRedeemers;
+  txsRequiredSigners = txsRequiredSigners;
   txSubmit = txSubmit;
 
   network = network;

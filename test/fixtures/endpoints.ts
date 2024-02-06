@@ -519,6 +519,27 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
+      SDK.txsRequiredSigners(
+        'b024ad35c6309a71a8e613d8bfea2a8185d81eda379ca9128877adefcde1c515',
+      ),
+    path: mainnetUrl(
+      '/txs/b024ad35c6309a71a8e613d8bfea2a8185d81eda379ca9128877adefcde1c515/required_signers',
+    ),
+    endpointMock: [
+      {
+        witness_hash:
+          'db7685e2d763133630e1a4afdefc5752d4b1c9be6c102e71242fb06f',
+      },
+    ],
+    response: [
+      {
+        witness_hash:
+          'db7685e2d763133630e1a4afdefc5752d4b1c9be6c102e71242fb06f',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
       SDK.txsMetadata(
         'e641005803337a553a03cf3c11a1819491a629bd7d0a3c39e4866a01b5dac36d',
       ),

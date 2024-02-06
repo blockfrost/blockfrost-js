@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - added the `gotOptions` property to the `BlockFrostAPI` class. This property can be passed during the initialization of the `BlockFrostAPI` object. For more details, refer to the [Got Options documentation](https://github.com/sindresorhus/got/blob/main/documentation/2-options.md).
-
+- `txsRequiredSigners` for retrieving required signers (extra transaction witnesses)
 
 ## [5.5.0] - 2023-12-20
 
