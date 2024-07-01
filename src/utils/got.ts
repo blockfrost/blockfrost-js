@@ -41,5 +41,8 @@ export const getInstance = (
     timeout: {
       request: options.requestTimeout,
     },
+    agent: {
+      https: options.proxy
+    },
   });
 };

@@ -60,6 +60,7 @@ export const validateOptions = (options?: Options): ValidatedOptions => {
     version: options.version || DEFAULT_API_VERSION,
     debug,
     http2: options.http2 ?? false,
+    proxy: options.proxy || undefined,
     requestTimeout: options.requestTimeout ?? 20000, // 20 seconds
     // see: https://github.com/sindresorhus/got/blob/main/documentation/7-retry.md#retry
     retrySettings: options.retrySettings ?? {

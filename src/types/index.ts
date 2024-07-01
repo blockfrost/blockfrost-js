@@ -44,6 +44,7 @@ type AdditionalOptions = {
   userAgent?: string;
   requestTimeout?: number;
   retrySettings?: RequiredRetryOptions;
+  proxy?: any;
 };
 
 export type Options = (OptionCombination1 | OptionCombination2) &
@@ -61,6 +62,7 @@ export interface ValidatedOptions {
   projectId?: string;
   network?: BlockfrostNetwork;
   retrySettings?: RequiredRetryOptions;
+  proxy?: any;
 }
 
 export type HashOrNumber = string | number;
@@ -68,18 +70,18 @@ export type HashOrNumber = string | number;
 export type ErrorType =
   | // Server error
   {
-      status_code: number;
-      message: string;
-      error: string;
-      url: string;
-      body?: unknown;
-    }
+    status_code: number;
+    message: string;
+    error: string;
+    url: string;
+    body?: unknown;
+  }
   // Client Error
   | {
-      message: string;
-      code: string;
-      url: string | undefined;
-    };
+    message: string;
+    code: string;
+    url: string | undefined;
+  };
 
 export type PaginationOptions = {
   count?: number;
