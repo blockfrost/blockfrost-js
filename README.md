@@ -67,6 +67,8 @@ const API = new Blockfrost.BlockFrostAPI({
 - `debug` - `boolean`, whether to enable debug logging. It is also possible to enable it by setting environment variable `DEBUG` to `true` (optional, default `false`).
 - `customBackend` - `string`, option to set URL to a non-official backend (optional)
 - `version` - `number`, version of the Blockfrost API (optional, default `0`)
+- `gotOptions` - Additional options to be passed to Got instance. For more details, refer to the [Got Options documentation](https://github.com/sindresorhus/got/blob/main/documentation/2-options.md).
+
 
 ## Error handling
 

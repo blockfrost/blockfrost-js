@@ -41,5 +41,7 @@ export const getInstance = (
     timeout: {
       request: options.requestTimeout,
     },
+    // https://github.com/sindresorhus/got/blob/main/documentation/2-options.md
+    ...options.gotOptions,
   });
 };

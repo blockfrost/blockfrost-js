@@ -10,6 +10,7 @@ import {
   MaxRedirectsError,
   UnsupportedProtocolError,
   RequiredRetryOptions,
+  Options as GotOptions,
 } from 'got';
 import { RateLimiterConfig } from '../utils/limiter';
 
@@ -44,6 +45,7 @@ type AdditionalOptions = {
   userAgent?: string;
   requestTimeout?: number;
   retrySettings?: RequiredRetryOptions;
+  gotOptions?: GotOptions; // https://github.com/sindresorhus/got/blob/main/documentation/2-options.md
 };
 
 export type Options = (OptionCombination1 | OptionCombination2) &
@@ -61,6 +63,7 @@ export interface ValidatedOptions {
   projectId?: string;
   network?: BlockfrostNetwork;
   retrySettings?: RequiredRetryOptions;
+  gotOptions?: GotOptions;
 }
 
 export type HashOrNumber = string | number;

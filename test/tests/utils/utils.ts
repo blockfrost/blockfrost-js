@@ -5,8 +5,13 @@ import {
   AdditionalEndpointOptions,
   PaginationOptions,
 } from '../../../src/types';
-import { DEFAULT_PAGINATION_PAGE_ITEMS_COUNT } from '../../../src/config';
+import {
+  API_URLS,
+  DEFAULT_PAGINATION_PAGE_ITEMS_COUNT,
+} from '../../../src/config';
 import { RATE_LIMITER_DEFAULT_CONFIG } from '../../../src/utils/limiter';
+import nock from 'nock';
+import { SDK } from '../../utils';
 
 describe('utils', () => {
   test('no options', () => {
@@ -289,5 +294,27 @@ describe('utils', () => {
           item.pagination.order === 'desc' && item.pagination.count === 100,
       ).length,
     ).toBe(201); // check if order option really propagated to a method passed as param
+  });
+
+  test('gotOptions passed and override default options', async () => {
+    const api = new BlockFrostAPI({
+      projectId: 'xxx',
+      gotOptions: {
+        headers: {
+          'User-Agent': 'from gotOptions',
+        },
+      },
+    });
+
+    const BASE_URL = `${API_URLS.mainnet}/v0`;
+    const path = /.*/;
+
+    nock(BASE_URL)
+      .get(path)
+      .reply(200, { message: 'response' })
+      .matchHeader('User-Agent', 'from gotOptions');
+
+    const response = await api.blocksLatest();
+    expect(response).toMatchObject({ message: 'response' });
   });
 });
