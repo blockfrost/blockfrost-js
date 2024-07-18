@@ -33,7 +33,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@blockfrost/blockfrost-js@workspace:."
   dependencies:
-    "@blockfrost/openapi": "npm:0.1.60"
+    "@blockfrost/openapi": "npm:0.1.64"
     "@emurgo/cardano-serialization-lib-nodejs": "npm:^11.5.0"
     "@emurgo/cip14-js": "npm:3.0.1"
     "@types/json-bigint": "npm:^1.0.2"
@@ -63,14 +63,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@blockfrost/openapi@npm:0.1.60":
-  version: 0.1.60
-  resolution: "@blockfrost/openapi@npm:0.1.60"
+"@blockfrost/openapi@npm:0.1.64":
+  version: 0.1.64
+  resolution: "@blockfrost/openapi@npm:0.1.64"
   dependencies:
-    ajv: "npm:^8.11.2"
-    cbor: "npm:^8.1.0"
-    yaml: "npm:^2.2.1"
-  checksum: 1f857bda8dc4759d0f11317cd99bf3037e44e3f7cc87518a2af956616155e1c09ca1c85a4e3c9c9258fb0229007337cff29803ab61aca9988bac9408c082e8b2
+    ajv: "npm:^8.12.0"
+    cbor: "npm:^9.0.1"
+    yaml: "npm:^2.3.4"
+  checksum: 85708d9cd529e740572f439c6b92a6c44326f8d78af774dae3c4305faebe0ba9676fbea64e919b383ac6882e54128f02a977b9dff41c40c0dc6078f131392d63
   languageName: node
   linkType: hard
 
@@ -982,7 +982,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.11.2":
+"ajv@npm:^8.12.0":
   version: 8.12.0
   resolution: "ajv@npm:8.12.0"
   dependencies:
@@ -1316,12 +1316,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cbor@npm:^8.1.0":
-  version: 8.1.0
-  resolution: "cbor@npm:8.1.0"
+"cbor@npm:^9.0.1":
+  version: 9.0.2
+  resolution: "cbor@npm:9.0.2"
   dependencies:
     nofilter: "npm:^3.1.0"
-  checksum: fc6c6d4f8d14def3a0f2ef111f4fc14b3b0bc91d22ed8fd0eb005095c4699c723a45721e515d713571148d0d965ceeb771f4ad422953cb4e9658b379991b52c9
+  checksum: a64f7d4dafed933adeafe7745e2ce9f39a2e669eba73db96de6bd1b39c2dbde4bdd51d0240beed179cc429a7dc8653c8d7c991c5addb9f4e0cee8cd167d87116
   languageName: node
   linkType: hard
 
@@ -4995,10 +4995,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "yaml@npm:2.2.1"
-  checksum: 2e443fed323db4d5ae0c7134c6dbd30cb920e0c8f79a6ce78677731409af83ee2d74a09563fce01503a07f9a02274d42784d816f87294a53b47b955bc83dc655
+"yaml@npm:^2.3.4":
+  version: 2.3.4
+  resolution: "yaml@npm:2.3.4"
+  checksum: f8207ce43065a22268a2806ea6a0fa3974c6fde92b4b2fa0082357e487bc333e85dc518910007e7ac001b532c7c84bd3eccb6c7757e94182b564028b0008f44b
   languageName: node
   linkType: hard
 
