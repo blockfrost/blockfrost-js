@@ -33,7 +33,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@blockfrost/blockfrost-js@workspace:."
   dependencies:
-    "@blockfrost/openapi": "npm:0.1.61-beta.24"
+    "@blockfrost/openapi": "npm:0.1.64"
     "@emurgo/cardano-serialization-lib-nodejs": "npm:^11.5.0"
     "@emurgo/cip14-js": "npm:3.0.1"
     "@types/json-bigint": "npm:^1.0.2"
@@ -63,14 +63,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@blockfrost/openapi@npm:0.1.61-beta.24":
-  version: 0.1.61-beta.24
-  resolution: "@blockfrost/openapi@npm:0.1.61-beta.24"
+"@blockfrost/openapi@npm:0.1.64":
+  version: 0.1.64
+  resolution: "@blockfrost/openapi@npm:0.1.64"
   dependencies:
     ajv: "npm:^8.12.0"
     cbor: "npm:^9.0.1"
     yaml: "npm:^2.3.4"
-  checksum: e6cb4b4c2363c667c00cf97c92c756778634ef877064068fbd44d2dc3c4adce02c5d098c894897aca38d094ed07f6c1b30fa09dd20b8a6f837b2be5ec1b347ea
+  checksum: 85708d9cd529e740572f439c6b92a6c44326f8d78af774dae3c4305faebe0ba9676fbea64e919b383ac6882e54128f02a977b9dff41c40c0dc6078f131392d63
   languageName: node
   linkType: hard
 
