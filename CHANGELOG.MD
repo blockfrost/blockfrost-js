@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - added the `gotOptions` property to the `BlockFrostAPI` class. This property can be passed during the initialization of the `BlockFrostAPI` object. For more details, refer to the [Got Options documentation](https://github.com/sindresorhus/got/blob/main/documentation/2-options.md).
 - `txsRequiredSigners` for retrieving required signers (extra transaction witnesses)
+- `txsRequiredSigners` for retrieving required signers (extra transaction witnesses)
+- support for filecoin pinning with `BlockFrostIPFS.pin(cid: string, options: {filecoin: boolean})` method
+
+### Fixed
+- Return type for `BlockFrostIPFS.list` `BlockFrostIPFS.listByPath` methods
 
 ## [5.5.0] - 2023-12-20
 

@@ -73,9 +73,14 @@ export async function gateway(
 export async function pin(
   this: BlockFrostIPFS,
   path: string,
+  options?: { filecoin?: boolean },
 ): Promise<PinResponse> {
   try {
-    const res = await this.instance.post<PinResponse>(`ipfs/pin/add/${path}`);
+    const res = await this.instance.post<PinResponse>(`ipfs/pin/add/${path}`, {
+      searchParams: {
+        ...(options?.filecoin !== undefined && { filecoin: options.filecoin }),
+      },
+    });
     return res.body;
   } catch (error) {
     throw handleError(error);
