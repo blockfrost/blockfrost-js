@@ -145,7 +145,7 @@ import {
   nutlinkTickersAll,
 } from './endpoints/api/nutlink';
 
-import { network } from './endpoints/api/network';
+import { network, networkEras } from './endpoints/api/network';
 import {
   utilsTxsEvaluate,
   utilsTxsEvaluateUtxos,
@@ -334,6 +334,7 @@ class BlockFrostAPI {
   txSubmit = txSubmit;
 
   network = network;
+  networkEras = networkEras;
 
   utilsTxsEvaluate = utilsTxsEvaluate;
   utilsTxsEvaluateUtxos = utilsTxsEvaluateUtxos;

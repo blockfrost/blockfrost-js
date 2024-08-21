@@ -20,3 +20,24 @@ export async function network(
     throw handleError(error);
   }
 }
+
+/**
+ * Returns start and end of each era along with parameters that can vary between hard forks.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Network/paths/~1network~1eras/get | API docs for Network information}
+ *
+ * @returns List of blockchain eras.
+ *
+ */
+export async function networkEras(
+  this: BlockFrostAPI,
+): Promise<components['schemas']['network-eras']> {
+  try {
+    const res =
+      await this.instance<components['schemas']['network-eras']>(
+        `network/eras`,
+      );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
+}

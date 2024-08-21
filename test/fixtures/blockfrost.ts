@@ -23,6 +23,42 @@ export default {
       active: '25197315592272395',
     },
   },
+  networkEras: [
+    {
+      start: {
+        time: 0,
+        slot: 0,
+        epoch: 0,
+      },
+      end: {
+        time: 0,
+        slot: 0,
+        epoch: 0,
+      },
+      parameters: {
+        epoch_length: 4320,
+        slot_length: 20,
+        safe_zone: 864,
+      },
+    },
+    {
+      start: {
+        time: 0,
+        slot: 0,
+        epoch: 0,
+      },
+      end: {
+        time: 0,
+        slot: 0,
+        epoch: 0,
+      },
+      parameters: {
+        epoch_length: 86400,
+        slot_length: 1,
+        safe_zone: 25920,
+      },
+    },
+  ],
   metrics: [{ a: 'a' }],
   metricsEndpoints: [{ a: 'a' }],
   ledger: {

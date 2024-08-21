@@ -28,6 +28,12 @@ export default [
     response: mocks.network,
   },
   {
+    command: (SDK: BlockFrostAPI) => SDK.networkEras(),
+    path: mainnetUrl('/network/eras'),
+    endpointMock: mocks.networkEras,
+    response: mocks.networkEras,
+  },
+  {
     command: (SDK: BlockFrostAPI) => SDK.metrics(),
     path: mainnetUrl('/metrics'),
     endpointMock: mocks.metrics,
