@@ -267,6 +267,28 @@ export async function txsRequiredSigners(
 }
 
 /**
+ * Obtains Obtain the CBOR serialized transaction.
+ * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1txs~1%7Bhash%7D~cbor/get | API docs for Transaction CBOR}
+ *
+ * @param hash - Transaction hash
+ * @returns Transaction CBOR
+ *
+ */
+export async function txsCbor(
+  this: BlockFrostAPI,
+  hash: string,
+): Promise<components['schemas']['tx_content_cbor']> {
+  try {
+    const res = await this.instance<components['schemas']['tx_content_cbor']>(
+      `txs/${hash}/cbor`,
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
+}
+
+/**
  * Submits a transaction to the network.
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Transactions/paths/~1tx~1submit/post | API docs for Transaction submit}
  *
