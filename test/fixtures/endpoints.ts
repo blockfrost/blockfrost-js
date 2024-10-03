@@ -556,6 +556,17 @@ export default [
     response: [],
   },
   {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.txsCbor(
+        'e641005803337a553a03cf3c11a1819491a629bd7d0a3c39e4866a01b5dac36d',
+      ),
+    path: mainnetUrl(
+      '/txs/e641005803337a553a03cf3c11a1819491a629bd7d0a3c39e4866a01b5dac36d/cbor',
+    ),
+    endpointMock: { cbor: 'deadbeef' },
+    response: { cbor: 'deadbeef' },
+  },
+  {
     command: (SDK: BlockFrostAPI) => SDK.scripts(),
     path: mainnetUrl('/scripts'),
     endpointMock: [],
