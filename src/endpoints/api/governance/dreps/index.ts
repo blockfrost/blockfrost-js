@@ -6,7 +6,7 @@ import { handleError } from '../../../../utils/errors';
 
 /**
  * Obtains list of Delegate Representatives (DReps).
- * @see {@link https://docs.blockfrost.io/#tag/cardano--governance/GET/governance/dreps | API docs for of Delegate Representatives (DReps)}
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--governance/GET/governance/dreps | API docs for Delegate Representatives (DReps)}
  *
  * @param pagination - Optional, Pagination options
  * @returns List of registered stake pools.

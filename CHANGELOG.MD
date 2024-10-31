@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- methods for querying governance DReps endpoints - `dreps`, `drepsById`, `drepsByIdDelegators`, `drepsByIdDelegatorsAll`, `drepsByIdMetadata`, `drepsByIdUpdates`, `drepsByIdUpdatesAll`, `drepsByIdVotes`, `drepsByIdVotesAll`
+- methods for querying [governance](https://docs.blockfrost.io/#tag/cardano--governance) DReps endpoints - `dreps`, `drepsById`, `drepsByIdDelegators`, `drepsByIdDelegatorsAll`, `drepsByIdMetadata`, `drepsByIdUpdates`, `drepsByIdUpdatesAll`, `drepsByIdVotes`, `drepsByIdVotesAll`
+- methods for querying [governance](https://docs.blockfrost.io/#tag/cardano--governance) proposals endpoints - `proposals`, `proposal`, `proposalMetadata`, `proposalParameters`, `proposalVotes`, `proposalVotesAll`, `proposalWithdrawals`, `proposalWithdrawalsAll`,
 
 ## [5.6.0] - 2024-10-03
 

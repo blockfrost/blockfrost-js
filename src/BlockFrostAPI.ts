@@ -71,6 +71,18 @@ import {
   drepsByIdVotes,
   drepsByIdVotesAll,
 } from './endpoints/api/governance/dreps';
+
+import {
+  proposals,
+  proposal,
+  proposalMetadata,
+  proposalParameters,
+  proposalVotes,
+  proposalVotesAll,
+  proposalWithdrawals,
+  proposalWithdrawalsAll,
+} from './endpoints/api/governance/proposals';
+
 import {
   epochs,
   epochsBlocks,
@@ -330,6 +342,15 @@ class BlockFrostAPI {
   poolsRetiring = poolsRetiring;
   poolsExtended = poolsExtended;
   poolsExtendedAll = poolsExtendedAll;
+
+  proposals = proposals;
+  proposal = proposal;
+  proposalMetadata = proposalMetadata;
+  proposalParameters = proposalParameters;
+  proposalVotes = proposalVotes;
+  proposalVotesAll = proposalVotesAll;
+  proposalWithdrawals = proposalWithdrawals;
+  proposalWithdrawalsAll = proposalWithdrawalsAll;
 
   root = root;
 
