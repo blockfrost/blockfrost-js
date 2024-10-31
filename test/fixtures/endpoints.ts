@@ -983,4 +983,513 @@ export default [
       },
     },
   },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.governance.dreps(),
+    path: mainnetUrl(`governance/dreps`),
+    endpointMock: [
+      {
+        drep_id: 'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+        hex: 'db1bc3c3f99ce68977ceaf27ab4dd917123ef9e73f85c304236eab23',
+      },
+      {
+        drep_id: 'drep1cxayn4fgy27yaucvhamsvqj3v6835mh3tjjx6x8hdnr4',
+        hex: 'c1ba49d52822bc4ef30cbf77060251668f1a6ef15ca46d18f76cc758',
+      },
+    ],
+    response: [
+      {
+        drep_id: 'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+        hex: 'db1bc3c3f99ce68977ceaf27ab4dd917123ef9e73f85c304236eab23',
+      },
+      {
+        drep_id: 'drep1cxayn4fgy27yaucvhamsvqj3v6835mh3tjjx6x8hdnr4',
+        hex: 'c1ba49d52822bc4ef30cbf77060251668f1a6ef15ca46d18f76cc758',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.drepsById(
+        'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+      ),
+    path: mainnetUrl(
+      `governance/dreps/drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn`,
+    ),
+    endpointMock: {
+      drep_id: 'drep15cfxz9exyn5rx0807zvxfrvslrjqfchrd4d47kv9e0f46uedqtc',
+      hex: 'a61261172624e8333ceff098648d90f8e404e2e36d5b5f5985cbd35d',
+      amount: '2000000',
+      active: true,
+      active_epoch: 420,
+      has_script: true,
+    },
+    response: {
+      drep_id: 'drep15cfxz9exyn5rx0807zvxfrvslrjqfchrd4d47kv9e0f46uedqtc',
+      hex: 'a61261172624e8333ceff098648d90f8e404e2e36d5b5f5985cbd35d',
+      amount: '2000000',
+      active: true,
+      active_epoch: 420,
+      has_script: true,
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.drepsByIdMetadata(
+        'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+      ),
+    path: mainnetUrl(
+      `governance/dreps/drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn/metadata`,
+    ),
+    endpointMock: {
+      drep_id: 'drep15cfxz9exyn5rx0807zvxfrvslrjqfchrd4d47kv9e0f46uedqtc',
+      hex: 'a61261172624e8333ceff098648d90f8e404e2e36d5b5f5985cbd35d',
+      url: 'https://aaa.xyz/drep.json',
+      hash: 'a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de',
+      json_metadata: {
+        '@context': {
+          CIP100:
+            'https://github.com/cardano-foundation/CIPs/blob/master/CIP-0100/README.md#',
+          CIP119:
+            'https://github.com/cardano-foundation/CIPs/blob/master/CIP-0119/README.md#',
+          hashAlgorithm: 'CIP100:hashAlgorithm',
+          body: {
+            '@id': 'CIP119:body',
+            '@context': {
+              references: {
+                '@id': 'CIP119:references',
+                '@container': '@set',
+                '@context': {
+                  GovernanceMetadata: 'CIP100:GovernanceMetadataReference',
+                  Other: 'CIP100:OtherReference',
+                  label: 'CIP100:reference-label',
+                  uri: 'CIP100:reference-uri',
+                },
+              },
+              paymentAddress: 'CIP119:paymentAddress',
+              givenName: 'CIP119:givenName',
+              image: {
+                '@id': 'CIP119:image',
+                '@context': {
+                  ImageObject: 'https://schema.org/ImageObject',
+                },
+              },
+              objectives: 'CIP119:objectives',
+              motivations: 'CIP119:motivations',
+              qualifications: 'CIP119:qualifications',
+            },
+          },
+        },
+        hashAlgorithm: 'blake2b-256',
+        body: {
+          paymentAddress:
+            'addr1q86dnpkva4mm859c8ur7tjxn57zgsu6vg8pdetkdve3fsacnq7twy06u2ev5759vutpjgzfryx0ud8hzedhzerava35qwh3x34',
+          givenName: 'Ryan Williams',
+          image: {
+            '@type': 'ImageObject',
+            contentUrl: 'https://avatars.githubusercontent.com/u/44342099?v=4',
+            sha256:
+              '2a21e4f7b20c8c72f573707b068fb8fc6d8c64d5035c4e18ecae287947fe2b2e',
+          },
+          objectives: 'Buy myself an island.',
+          motivations: 'I really would like to own an island.',
+          qualifications:
+            'I have my 100m swimming badge, so I would be qualified to be able to swim around island.',
+          references: [
+            {
+              '@type': 'Other',
+              label: 'A cool island for Ryan',
+              uri: "https://www.google.com/maps/place/World's+only+5th+order+recursive+island/@62.6511465,-97.7946829,15.75z/data=!4m14!1m7!3m6!1s0x5216a167810cee39:0x11431abdfe4c7421!2sWorld's+only+5th+order+recursive+island!8m2!3d62.651114!4d-97.7872244!16s%2Fg%2F11spwk2b6n!3m5!1s0x5216a167810cee39:0x11431abdfe4c7421!8m2!3d62.651114!4d-97.7872244!16s%2Fg%2F11spwk2b6n?authuser=0&entry=ttu",
+            },
+            {
+              '@type': 'Link',
+              label: "Ryan's Twitter",
+              uri: 'https://twitter.com/Ryun1_',
+            },
+          ],
+        },
+      },
+      bytes:
+        '\\x7b0a20202240636f6e74657874223a207b0a2020202022406c616e6775616765223a2022656e2d7573222c0a2020202022434950313030223a202268747470733a2f2f6769746875622e636f6d2f63617264616e6f2d666f756e646174696f6e2f434950732f626c6f622f6d61737465722f4349502d303130302f524541444d452e6',
+    },
+    response: {
+      drep_id: 'drep15cfxz9exyn5rx0807zvxfrvslrjqfchrd4d47kv9e0f46uedqtc',
+      hex: 'a61261172624e8333ceff098648d90f8e404e2e36d5b5f5985cbd35d',
+      url: 'https://aaa.xyz/drep.json',
+      hash: 'a14a5ad4f36bddc00f92ddb39fd9ac633c0fd43f8bfa57758f9163d10ef916de',
+      json_metadata: {
+        '@context': {
+          CIP100:
+            'https://github.com/cardano-foundation/CIPs/blob/master/CIP-0100/README.md#',
+          CIP119:
+            'https://github.com/cardano-foundation/CIPs/blob/master/CIP-0119/README.md#',
+          hashAlgorithm: 'CIP100:hashAlgorithm',
+          body: {
+            '@id': 'CIP119:body',
+            '@context': {
+              references: {
+                '@id': 'CIP119:references',
+                '@container': '@set',
+                '@context': {
+                  GovernanceMetadata: 'CIP100:GovernanceMetadataReference',
+                  Other: 'CIP100:OtherReference',
+                  label: 'CIP100:reference-label',
+                  uri: 'CIP100:reference-uri',
+                },
+              },
+              paymentAddress: 'CIP119:paymentAddress',
+              givenName: 'CIP119:givenName',
+              image: {
+                '@id': 'CIP119:image',
+                '@context': {
+                  ImageObject: 'https://schema.org/ImageObject',
+                },
+              },
+              objectives: 'CIP119:objectives',
+              motivations: 'CIP119:motivations',
+              qualifications: 'CIP119:qualifications',
+            },
+          },
+        },
+        hashAlgorithm: 'blake2b-256',
+        body: {
+          paymentAddress:
+            'addr1q86dnpkva4mm859c8ur7tjxn57zgsu6vg8pdetkdve3fsacnq7twy06u2ev5759vutpjgzfryx0ud8hzedhzerava35qwh3x34',
+          givenName: 'Ryan Williams',
+          image: {
+            '@type': 'ImageObject',
+            contentUrl: 'https://avatars.githubusercontent.com/u/44342099?v=4',
+            sha256:
+              '2a21e4f7b20c8c72f573707b068fb8fc6d8c64d5035c4e18ecae287947fe2b2e',
+          },
+          objectives: 'Buy myself an island.',
+          motivations: 'I really would like to own an island.',
+          qualifications:
+            'I have my 100m swimming badge, so I would be qualified to be able to swim around island.',
+          references: [
+            {
+              '@type': 'Other',
+              label: 'A cool island for Ryan',
+              uri: "https://www.google.com/maps/place/World's+only+5th+order+recursive+island/@62.6511465,-97.7946829,15.75z/data=!4m14!1m7!3m6!1s0x5216a167810cee39:0x11431abdfe4c7421!2sWorld's+only+5th+order+recursive+island!8m2!3d62.651114!4d-97.7872244!16s%2Fg%2F11spwk2b6n!3m5!1s0x5216a167810cee39:0x11431abdfe4c7421!8m2!3d62.651114!4d-97.7872244!16s%2Fg%2F11spwk2b6n?authuser=0&entry=ttu",
+            },
+            {
+              '@type': 'Link',
+              label: "Ryan's Twitter",
+              uri: 'https://twitter.com/Ryun1_',
+            },
+          ],
+        },
+      },
+      bytes:
+        '\\x7b0a20202240636f6e74657874223a207b0a2020202022406c616e6775616765223a2022656e2d7573222c0a2020202022434950313030223a202268747470733a2f2f6769746875622e636f6d2f63617264616e6f2d666f756e646174696f6e2f434950732f626c6f622f6d61737465722f4349502d303130302f524541444d452e6',
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.drepsByIdDelegators(
+        'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+      ),
+    path: mainnetUrl(
+      `governance/dreps/drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn/delegators`,
+    ),
+    endpointMock: [
+      {
+        address: 'stake1ux4vspfvwuus9uwyp5p3f0ky7a30jq5j80jxse0fr7pa56sgn8kha',
+        amount: '1137959159981411',
+      },
+      {
+        address: 'stake1uylayej7esmarzd4mk4aru37zh9yz0luj3g9fsvgpfaxulq564r5u',
+        amount: '16958865648',
+      },
+    ],
+    response: [
+      {
+        address: 'stake1ux4vspfvwuus9uwyp5p3f0ky7a30jq5j80jxse0fr7pa56sgn8kha',
+        amount: '1137959159981411',
+      },
+      {
+        address: 'stake1uylayej7esmarzd4mk4aru37zh9yz0luj3g9fsvgpfaxulq564r5u',
+        amount: '16958865648',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.drepsByIdUpdates(
+        'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+      ),
+    path: mainnetUrl(
+      `governance/dreps/drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn/updates`,
+    ),
+    endpointMock: [
+      {
+        tx_hash:
+          'f4097fbdb87ab7c7ab44b30d4e2b81713a058488975d1ab8b05c381dd946a393',
+        cert_index: 0,
+        action: 'registered',
+      },
+      {
+        tx_hash:
+          'dd3243af975be4b5bedce4e5f5b483b2386d5ad207d05e0289c1df0eb261447e',
+        cert_index: 0,
+        action: 'deregistered',
+      },
+    ],
+    response: [
+      {
+        tx_hash:
+          'f4097fbdb87ab7c7ab44b30d4e2b81713a058488975d1ab8b05c381dd946a393',
+        cert_index: 0,
+        action: 'registered',
+      },
+      {
+        tx_hash:
+          'dd3243af975be4b5bedce4e5f5b483b2386d5ad207d05e0289c1df0eb261447e',
+        cert_index: 0,
+        action: 'deregistered',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.drepsByIdVotes(
+        'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+      ),
+    path: mainnetUrl(
+      `governance/dreps/drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn/votes`,
+    ),
+    endpointMock: [
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 2,
+        vote: 'yes',
+      },
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 3,
+        vote: 'abstain',
+      },
+    ],
+    response: [
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 2,
+        vote: 'yes',
+      },
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 3,
+        vote: 'abstain',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.governance.proposals(),
+    path: mainnetUrl(`governance/proposals`),
+    endpointMock: [
+      {
+        tx_hash:
+          '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        cert_index: 1,
+        governance_type: 'treasury_withdrawals',
+      },
+      {
+        tx_hash: '71317e951b20aa46e9fbf45a46a6e950d5723a481225519655bf6c60',
+        cert_index: 4,
+        governance_type: 'no_confidence',
+      },
+    ],
+    response: [
+      {
+        tx_hash:
+          '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        cert_index: 1,
+        governance_type: 'treasury_withdrawals',
+      },
+      {
+        tx_hash: '71317e951b20aa46e9fbf45a46a6e950d5723a481225519655bf6c60',
+        cert_index: 4,
+        governance_type: 'no_confidence',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposal(
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        1,
+      ),
+    path: mainnetUrl(
+      `governance/proposals/2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531/1`,
+    ),
+    endpointMock: {
+      tx_hash:
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+      cert_index: 1,
+      governance_type: 'treasury_withdrawals',
+      deposit: 12000,
+      return_address:
+        'stake_test1urd3hs7rlxwwdzthe6hj026dmyt3y0heuulctscyydh2kgck6nkmz',
+      governance_description:
+        'TreasuryWithdrawals (fromList [(RewardAcnt {getRwdNetwork = Testnet, getRwdCred = KeyHashObj (KeyHash "71317e951b20aa46e9fbf45a46a6e950d5723a481225519655bf6c60")},Coin 20000000)])',
+      ratified_epoch: null,
+      enacted_epoch: 123,
+      dropped_epoch: null,
+      expired_epoch: null,
+      expiration: 120,
+    },
+    response: {
+      tx_hash:
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+      cert_index: 1,
+      governance_type: 'treasury_withdrawals',
+      deposit: 12000,
+      return_address:
+        'stake_test1urd3hs7rlxwwdzthe6hj026dmyt3y0heuulctscyydh2kgck6nkmz',
+      governance_description:
+        'TreasuryWithdrawals (fromList [(RewardAcnt {getRwdNetwork = Testnet, getRwdCred = KeyHashObj (KeyHash "71317e951b20aa46e9fbf45a46a6e950d5723a481225519655bf6c60")},Coin 20000000)])',
+      ratified_epoch: null,
+      enacted_epoch: 123,
+      dropped_epoch: null,
+      expired_epoch: null,
+      expiration: 120,
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposalParameters(
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        1,
+      ),
+    path: mainnetUrl(
+      `governance/proposals/2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531/1/parameters`,
+    ),
+    endpointMock: {
+      tx_hash: '…',
+      cert_index: 1,
+      parameters: {
+        epoch: 225,
+        min_fee_a: 44,
+        min_fee_b: 155381,
+      },
+    },
+    response: {
+      tx_hash: '…',
+      cert_index: 1,
+      parameters: {
+        epoch: 225,
+        min_fee_a: 44,
+        min_fee_b: 155381,
+      },
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposalWithdrawals(
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        1,
+      ),
+    path: mainnetUrl(
+      `governance/proposals/2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531/1/withdrawals`,
+    ),
+    endpointMock: [
+      {
+        stake_address:
+          'stake1ux3g2c9dx2nhhehyrezyxpkstartcqmu9hk63qgfkccw5rqttygt7',
+        amount: '454541212442',
+      },
+      {
+        stake_address:
+          'stake1xx2g2c9dx2nhhehyrezyxpkstoppcqmu9hk63qgfkccw5rqttygt2',
+        amount: '97846969',
+      },
+    ],
+    response: [
+      {
+        stake_address:
+          'stake1ux3g2c9dx2nhhehyrezyxpkstartcqmu9hk63qgfkccw5rqttygt7',
+        amount: '454541212442',
+      },
+      {
+        stake_address:
+          'stake1xx2g2c9dx2nhhehyrezyxpkstoppcqmu9hk63qgfkccw5rqttygt2',
+        amount: '97846969',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposalVotes(
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        1,
+      ),
+    path: mainnetUrl(
+      `governance/proposals/2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531/1/votes`,
+    ),
+    endpointMock: [
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 2,
+        voter_role: 'drep',
+        voter: 'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+        vote: 'yes',
+      },
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 3,
+        voter_role: 'constitutional_committee',
+        voter: '53a42debdc7ffd90085ab7fd9800b63e6d1c9ac481ba6eb7b6a844e4',
+        vote: 'abstain',
+      },
+    ],
+    response: [
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 2,
+        voter_role: 'drep',
+        voter: 'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+        vote: 'yes',
+      },
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 3,
+        voter_role: 'constitutional_committee',
+        voter: '53a42debdc7ffd90085ab7fd9800b63e6d1c9ac481ba6eb7b6a844e4',
+        vote: 'abstain',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposalMetadata(
+        '257d75c8ddb0434e9b63e29ebb6241add2b835a307aa33aedba2effe09ed4ec8',
+        2,
+      ),
+    path: mainnetUrl(
+      `governance/proposals/257d75c8ddb0434e9b63e29ebb6241add2b835a307aa33aedba2effe09ed4ec8/2/metadata`,
+    ),
+    endpointMock: {
+      tx_hash:
+        '257d75c8ddb0434e9b63e29ebb6241add2b835a307aa33aedba2effe09ed4ec8',
+      cert_index: 2,
+      url: 'https://raw.githubusercontent.com/carloslodelar/proposals/main/pv10.json',
+      hash: 'ffa226f3863aca006172d559cf46bb8b883a47233962ae2fc94c158d7de6fa81',
+      json_metadata: {
+        body: {
+          title: 'Hardfork to Protocol version 10',
+        },
+      },
+    },
+    response: {
+      tx_hash:
+        '257d75c8ddb0434e9b63e29ebb6241add2b835a307aa33aedba2effe09ed4ec8',
+      cert_index: 2,
+      url: 'https://raw.githubusercontent.com/carloslodelar/proposals/main/pv10.json',
+      hash: 'ffa226f3863aca006172d559cf46bb8b883a47233962ae2fc94c158d7de6fa81',
+      json_metadata: {
+        body: {
+          title: 'Hardfork to Protocol version 10',
+        },
+      },
+    },
+  },
 ] as const;

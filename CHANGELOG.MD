@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Methods for querying [governance DReps endpoints](https://docs.blockfrost.io/#tag/cardano--governance.) - `governance.dreps`, `governance.drepsById`, `governance.drepsByIdDelegators`, `governance.drepsByIdMetadata`, `governance.drepsByIdUpdates`, `governance.drepsByIdVotes`
+- Methods for querying [governance proposals endpoints](https://docs.blockfrost.io/#tag/cardano--governance.) - `governance.proposals`, `governance.proposal`, `governance.proposalMetadata`, `governance.proposalParameters`, `governance.proposalVotes`, `governance.proposalWithdrawals`
+
 ## [5.6.0] - 2024-10-03
 
 ### Added

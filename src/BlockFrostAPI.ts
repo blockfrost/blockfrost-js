@@ -60,6 +60,8 @@ import {
   blocksAddressesAll,
 } from './endpoints/api/blocks';
 
+import { GovernanceAPI } from './endpoints/api/governance';
+
 import {
   epochs,
   epochsBlocks,
@@ -172,6 +174,7 @@ class BlockFrostAPI {
   instance: Got;
   /** @ignore */
   rateLimiter: Bottleneck | undefined;
+  governance: GovernanceAPI;
 
   constructor(options?: Options) {
     this.options = validateOptions(options);
@@ -206,6 +209,8 @@ class BlockFrostAPI {
       this.userAgent,
       this.rateLimiter,
     );
+
+    this.governance = new GovernanceAPI(this);
   }
 
   accounts = accounts;
