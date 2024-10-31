@@ -984,7 +984,7 @@ export default [
     },
   },
   {
-    command: (SDK: BlockFrostAPI) => SDK.dreps(),
+    command: (SDK: BlockFrostAPI) => SDK.governance.dreps(),
     path: mainnetUrl(`governance/dreps`),
     endpointMock: [
       {
@@ -1009,7 +1009,9 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
-      SDK.drepsById('drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn'),
+      SDK.governance.drepsById(
+        'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+      ),
     path: mainnetUrl(
       `governance/dreps/drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn`,
     ),
@@ -1032,7 +1034,7 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
-      SDK.drepsByIdMetadata(
+      SDK.governance.drepsByIdMetadata(
         'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
       ),
     path: mainnetUrl(
@@ -1183,7 +1185,7 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
-      SDK.drepsByIdDelegators(
+      SDK.governance.drepsByIdDelegators(
         'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
       ),
     path: mainnetUrl(
@@ -1212,7 +1214,7 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
-      SDK.drepsByIdUpdates(
+      SDK.governance.drepsByIdUpdates(
         'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
       ),
     path: mainnetUrl(
@@ -1249,7 +1251,7 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
-      SDK.drepsByIdVotes(
+      SDK.governance.drepsByIdVotes(
         'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
       ),
     path: mainnetUrl(
@@ -1279,5 +1281,215 @@ export default [
         vote: 'abstain',
       },
     ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.governance.proposals(),
+    path: mainnetUrl(`governance/proposals`),
+    endpointMock: [
+      {
+        tx_hash:
+          '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        cert_index: 1,
+        governance_type: 'treasury_withdrawals',
+      },
+      {
+        tx_hash: '71317e951b20aa46e9fbf45a46a6e950d5723a481225519655bf6c60',
+        cert_index: 4,
+        governance_type: 'no_confidence',
+      },
+    ],
+    response: [
+      {
+        tx_hash:
+          '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        cert_index: 1,
+        governance_type: 'treasury_withdrawals',
+      },
+      {
+        tx_hash: '71317e951b20aa46e9fbf45a46a6e950d5723a481225519655bf6c60',
+        cert_index: 4,
+        governance_type: 'no_confidence',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposal(
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        1,
+      ),
+    path: mainnetUrl(
+      `governance/proposals/2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531/1`,
+    ),
+    endpointMock: {
+      tx_hash:
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+      cert_index: 1,
+      governance_type: 'treasury_withdrawals',
+      deposit: 12000,
+      return_address:
+        'stake_test1urd3hs7rlxwwdzthe6hj026dmyt3y0heuulctscyydh2kgck6nkmz',
+      governance_description:
+        'TreasuryWithdrawals (fromList [(RewardAcnt {getRwdNetwork = Testnet, getRwdCred = KeyHashObj (KeyHash "71317e951b20aa46e9fbf45a46a6e950d5723a481225519655bf6c60")},Coin 20000000)])',
+      ratified_epoch: null,
+      enacted_epoch: 123,
+      dropped_epoch: null,
+      expired_epoch: null,
+      expiration: 120,
+    },
+    response: {
+      tx_hash:
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+      cert_index: 1,
+      governance_type: 'treasury_withdrawals',
+      deposit: 12000,
+      return_address:
+        'stake_test1urd3hs7rlxwwdzthe6hj026dmyt3y0heuulctscyydh2kgck6nkmz',
+      governance_description:
+        'TreasuryWithdrawals (fromList [(RewardAcnt {getRwdNetwork = Testnet, getRwdCred = KeyHashObj (KeyHash "71317e951b20aa46e9fbf45a46a6e950d5723a481225519655bf6c60")},Coin 20000000)])',
+      ratified_epoch: null,
+      enacted_epoch: 123,
+      dropped_epoch: null,
+      expired_epoch: null,
+      expiration: 120,
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposalParameters(
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        1,
+      ),
+    path: mainnetUrl(
+      `governance/proposals/2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531/1/parameters`,
+    ),
+    endpointMock: {
+      tx_hash: '…',
+      cert_index: 1,
+      parameters: {
+        epoch: 225,
+        min_fee_a: 44,
+        min_fee_b: 155381,
+      },
+    },
+    response: {
+      tx_hash: '…',
+      cert_index: 1,
+      parameters: {
+        epoch: 225,
+        min_fee_a: 44,
+        min_fee_b: 155381,
+      },
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposalWithdrawals(
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        1,
+      ),
+    path: mainnetUrl(
+      `governance/proposals/2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531/1/withdrawals`,
+    ),
+    endpointMock: [
+      {
+        stake_address:
+          'stake1ux3g2c9dx2nhhehyrezyxpkstartcqmu9hk63qgfkccw5rqttygt7',
+        amount: '454541212442',
+      },
+      {
+        stake_address:
+          'stake1xx2g2c9dx2nhhehyrezyxpkstoppcqmu9hk63qgfkccw5rqttygt2',
+        amount: '97846969',
+      },
+    ],
+    response: [
+      {
+        stake_address:
+          'stake1ux3g2c9dx2nhhehyrezyxpkstartcqmu9hk63qgfkccw5rqttygt7',
+        amount: '454541212442',
+      },
+      {
+        stake_address:
+          'stake1xx2g2c9dx2nhhehyrezyxpkstoppcqmu9hk63qgfkccw5rqttygt2',
+        amount: '97846969',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposalVotes(
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        1,
+      ),
+    path: mainnetUrl(
+      `governance/proposals/2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531/1/votes`,
+    ),
+    endpointMock: [
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 2,
+        voter_role: 'drep',
+        voter: 'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+        vote: 'yes',
+      },
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 3,
+        voter_role: 'constitutional_committee',
+        voter: '53a42debdc7ffd90085ab7fd9800b63e6d1c9ac481ba6eb7b6a844e4',
+        vote: 'abstain',
+      },
+    ],
+    response: [
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 2,
+        voter_role: 'drep',
+        voter: 'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+        vote: 'yes',
+      },
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 3,
+        voter_role: 'constitutional_committee',
+        voter: '53a42debdc7ffd90085ab7fd9800b63e6d1c9ac481ba6eb7b6a844e4',
+        vote: 'abstain',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposalMetadata(
+        '257d75c8ddb0434e9b63e29ebb6241add2b835a307aa33aedba2effe09ed4ec8',
+        2,
+      ),
+    path: mainnetUrl(
+      `governance/proposals/257d75c8ddb0434e9b63e29ebb6241add2b835a307aa33aedba2effe09ed4ec8/2/metadata`,
+    ),
+    endpointMock: {
+      tx_hash:
+        '257d75c8ddb0434e9b63e29ebb6241add2b835a307aa33aedba2effe09ed4ec8',
+      cert_index: 2,
+      url: 'https://raw.githubusercontent.com/carloslodelar/proposals/main/pv10.json',
+      hash: 'ffa226f3863aca006172d559cf46bb8b883a47233962ae2fc94c158d7de6fa81',
+      json_metadata: {
+        body: {
+          title: 'Hardfork to Protocol version 10',
+        },
+      },
+    },
+    response: {
+      tx_hash:
+        '257d75c8ddb0434e9b63e29ebb6241add2b835a307aa33aedba2effe09ed4ec8',
+      cert_index: 2,
+      url: 'https://raw.githubusercontent.com/carloslodelar/proposals/main/pv10.json',
+      hash: 'ffa226f3863aca006172d559cf46bb8b883a47233962ae2fc94c158d7de6fa81',
+      json_metadata: {
+        body: {
+          title: 'Hardfork to Protocol version 10',
+        },
+      },
+    },
   },
 ] as const;

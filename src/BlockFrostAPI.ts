@@ -60,28 +60,7 @@ import {
   blocksAddressesAll,
 } from './endpoints/api/blocks';
 
-import {
-  dreps,
-  drepsById,
-  drepsByIdDelegators,
-  drepsByIdDelegatorsAll,
-  drepsByIdMetadata,
-  drepsByIdUpdates,
-  drepsByIdUpdatesAll,
-  drepsByIdVotes,
-  drepsByIdVotesAll,
-} from './endpoints/api/governance/dreps';
-
-import {
-  proposals,
-  proposal,
-  proposalMetadata,
-  proposalParameters,
-  proposalVotes,
-  proposalVotesAll,
-  proposalWithdrawals,
-  proposalWithdrawalsAll,
-} from './endpoints/api/governance/proposals';
+import { GovernanceAPI } from './endpoints/api/governance';
 
 import {
   epochs,
@@ -195,6 +174,7 @@ class BlockFrostAPI {
   instance: Got;
   /** @ignore */
   rateLimiter: Bottleneck | undefined;
+  governance: GovernanceAPI;
 
   constructor(options?: Options) {
     this.options = validateOptions(options);
@@ -229,6 +209,8 @@ class BlockFrostAPI {
       this.userAgent,
       this.rateLimiter,
     );
+
+    this.governance = new GovernanceAPI(this);
   }
 
   accounts = accounts;
@@ -279,16 +261,6 @@ class BlockFrostAPI {
   blocksTxsAll = blocksTxsAll;
   blocksAddresses = blocksAddresses;
   blocksAddressesAll = blocksAddressesAll;
-
-  dreps = dreps;
-  drepsById = drepsById;
-  drepsByIdDelegators = drepsByIdDelegators;
-  drepsByIdDelegatorsAll = drepsByIdDelegatorsAll;
-  drepsByIdMetadata = drepsByIdMetadata;
-  drepsByIdUpdates = drepsByIdUpdates;
-  drepsByIdUpdatesAll = drepsByIdUpdatesAll;
-  drepsByIdVotes = drepsByIdVotes;
-  drepsByIdVotesAll = drepsByIdVotesAll;
 
   epochs = epochs;
   epochsBlocks = epochsBlocks;
@@ -342,15 +314,6 @@ class BlockFrostAPI {
   poolsRetiring = poolsRetiring;
   poolsExtended = poolsExtended;
   poolsExtendedAll = poolsExtendedAll;
-
-  proposals = proposals;
-  proposal = proposal;
-  proposalMetadata = proposalMetadata;
-  proposalParameters = proposalParameters;
-  proposalVotes = proposalVotes;
-  proposalVotesAll = proposalVotesAll;
-  proposalWithdrawals = proposalWithdrawals;
-  proposalWithdrawalsAll = proposalWithdrawalsAll;
 
   root = root;
 
