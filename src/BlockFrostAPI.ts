@@ -61,6 +61,17 @@ import {
 } from './endpoints/api/blocks';
 
 import {
+  dreps,
+  drepsById,
+  drepsByIdDelegators,
+  drepsByIdDelegatorsAll,
+  drepsByIdMetadata,
+  drepsByIdUpdates,
+  drepsByIdUpdatesAll,
+  drepsByIdVotes,
+  drepsByIdVotesAll,
+} from './endpoints/api/governance/dreps';
+import {
   epochs,
   epochsBlocks,
   epochsBlocksAll,
@@ -256,6 +267,16 @@ class BlockFrostAPI {
   blocksTxsAll = blocksTxsAll;
   blocksAddresses = blocksAddresses;
   blocksAddressesAll = blocksAddressesAll;
+
+  dreps = dreps;
+  drepsById = drepsById;
+  drepsByIdDelegators = drepsByIdDelegators;
+  drepsByIdDelegatorsAll = drepsByIdDelegatorsAll;
+  drepsByIdMetadata = drepsByIdMetadata;
+  drepsByIdUpdates = drepsByIdUpdates;
+  drepsByIdUpdatesAll = drepsByIdUpdatesAll;
+  drepsByIdVotes = drepsByIdVotes;
+  drepsByIdVotesAll = drepsByIdVotesAll;
 
   epochs = epochs;
   epochsBlocks = epochsBlocks;
