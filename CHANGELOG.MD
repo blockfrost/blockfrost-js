@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Use IPFS types from `@blockfrost/openapi` package
+
 ### Added
 
 - Methods for querying [governance DReps endpoints](https://docs.blockfrost.io/#tag/cardano--governance.) - `governance.dreps`, `governance.drepsById`, `governance.drepsByIdDelegators`, `governance.drepsByIdMetadata`, `governance.drepsByIdUpdates`, `governance.drepsByIdVotes`

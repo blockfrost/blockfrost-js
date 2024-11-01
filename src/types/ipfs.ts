@@ -1,20 +1,10 @@
-type State = 'queued' | 'pinned' | 'unpinned' | 'failed' | 'gc';
+import { paths } from '@blockfrost/openapi';
 
-export type AddResponse = {
-  name: string;
-  ipfs_hash: string;
-  size: number;
-};
+export type PinResponse =
+  paths['/ipfs/pin/add/{IPFS_path}']['post']['responses']['200']['content']['application/json'];
 
-export type PinResponse = {
-  ipfs_hash: string;
-  state: State;
-};
+export type AddResponse =
+  paths['/ipfs/add']['post']['responses']['200']['content']['application/json'];
 
-export type ListResponse = {
-  time_created: number;
-  time_pinned: number;
-  ipfs_hash: string;
-  size: string;
-  state: State;
-};
+export type ListResponse =
+  paths['/ipfs/pin/list']['get']['responses']['200']['content']['application/json'];
