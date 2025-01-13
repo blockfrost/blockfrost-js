@@ -38,6 +38,9 @@ class BlockFrostIPFS {
 
     this.apiUrl = `${apiBase}/v${this.options.version}`;
 
+    this.apiUrl =
+      this.options?.customBackend || `${apiBase}/v${this.options.version}`;
+
     this.userAgent =
       options?.userAgent ?? `${packageJson.name}@${packageJson.version}`;
 

@@ -7,12 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- support for filecoin pinning with `BlockFrostIPFS.pin(cid: string, options: {filecoin: boolean})` method
+
 ### Changed
 
 - Dropped Byron support from `deriveAddress` util
   - `isTestnet` parameter changed to `network` (mainnet/preprod/preview)
 - Updated Cardano-Serialization-Lib to v13
 - Updated Blockfrost OpenAPI to 0.1.71
+
+### Fixed
+
+- Return type for `BlockFrostIPFS.list` `BlockFrostIPFS.listByPath` methods
 
 ## [5.7.0] - 2024-11-05
 
