@@ -3,9 +3,8 @@ import {
   Bip32PublicKey,
   BaseAddress,
   NetworkInfo,
-  StakeCredential,
+  Credential,
   RewardAddress,
-  ByronAddress,
 } from '@emurgo/cardano-serialization-lib-nodejs';
 import AssetFingerprint from '@emurgo/cip14-js';
 import { ParseAssetResult } from '../types/utils';
@@ -43,8 +42,7 @@ export const deriveAddress = (
   accountPublicKey: string,
   role: number,
   addressIndex: number,
-  isTestnet: boolean,
-  isByron?: boolean,
+  network: 'mainnet' | 'preview' | 'preprod',
 ): { address: string; path: [number, number] } => {
   const accountKey = Bip32PublicKey.from_bytes(
     Buffer.from(accountPublicKey, 'hex'),
@@ -52,19 +50,20 @@ export const deriveAddress = (
   const utxoPubKey = accountKey.derive(role).derive(addressIndex);
   const mainStakeKey = accountKey.derive(2).derive(0);
 
-  const testnetNetworkInfo = NetworkInfo.testnet();
-  const mainnetNetworkInfo = NetworkInfo.mainnet();
+  const networkInfo: Record<typeof network, NetworkInfo> = {
+    mainnet: NetworkInfo.mainnet(),
+    preprod: NetworkInfo.testnet_preprod(),
+    preview: NetworkInfo.testnet_preview(),
+  };
 
-  const networkId = isTestnet
-    ? testnetNetworkInfo.network_id()
-    : mainnetNetworkInfo.network_id();
+  const networkId = networkInfo[network].network_id();
 
   const utxoPubRawKey = utxoPubKey.to_raw_key();
   const utxoPubKeyHash = utxoPubRawKey.hash();
   const mainStakeRawKey = mainStakeKey.to_raw_key();
   const mainStakeKeyHash = mainStakeRawKey.hash();
-  const utxoStakeCred = StakeCredential.from_keyhash(utxoPubKeyHash);
-  const mainStakeCred = StakeCredential.from_keyhash(mainStakeKeyHash);
+  const utxoStakeCred = Credential.from_keyhash(utxoPubKeyHash);
+  const mainStakeCred = Credential.from_keyhash(mainStakeKeyHash);
   const baseAddr = BaseAddress.new(networkId, utxoStakeCred, mainStakeCred);
 
   utxoStakeCred.free();
@@ -77,11 +76,11 @@ export const deriveAddress = (
   const baseAddrBech32 = baseAddr.to_address().to_bech32();
   baseAddr.free();
 
-  if (role === 2 && !isByron) {
+  if (role === 2) {
     const addressSpecificStakeKey = accountKey.derive(2).derive(addressIndex);
     const stakeRawKey = addressSpecificStakeKey.to_raw_key();
     const stakeKeyHash = stakeRawKey.hash();
-    const stakeCred = StakeCredential.from_keyhash(stakeKeyHash);
+    const stakeCred = Credential.from_keyhash(stakeKeyHash);
     // always return stake address
     const rewardAddr = RewardAddress.new(networkId, stakeCred);
     const address = rewardAddr.to_address();
@@ -100,31 +99,13 @@ export const deriveAddress = (
     };
   }
 
-  if (isByron) {
-    const protocolMagic = isTestnet
-      ? testnetNetworkInfo.protocol_magic()
-      : mainnetNetworkInfo.protocol_magic();
-
-    const byronAddress = ByronAddress.icarus_from_key(
-      utxoPubKey,
-      protocolMagic,
-    );
-
-    const byronAddrBase58 = byronAddress.to_base58();
-    byronAddress.free();
-
-    return {
-      address: byronAddrBase58,
-      path: [role, addressIndex],
-    };
-  }
-
   mainStakeKey.free();
   utxoPubKey.free();
   accountKey.free();
 
-  testnetNetworkInfo.free();
-  mainnetNetworkInfo.free();
+  networkInfo['mainnet'].free();
+  networkInfo['preprod'].free();
+  networkInfo['preview'].free();
 
   return {
     address: baseAddrBech32,

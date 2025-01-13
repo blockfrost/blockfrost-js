@@ -14,13 +14,12 @@ import { SignatureVerificationError } from '../../../src/utils/errors';
 
 describe('helpers', () => {
   deriveAddressFixtures.forEach(fixture => {
-    test(`deriveAddress - publicKey: ${fixture.publicKey} role: ${fixture.role} index: ${fixture.index} isByron: ${fixture.isByron}`, () => {
+    test(`deriveAddress - publicKey: ${fixture.publicKey} role: ${fixture.role} index: ${fixture.index} network: ${fixture.network}`, () => {
       const response = deriveAddress(
         fixture.publicKey,
         fixture.role,
         fixture.index,
-        fixture.isTestnet,
-        fixture.isByron,
+        fixture.network,
       );
       expect(response).toStrictEqual(fixture.response);
     });

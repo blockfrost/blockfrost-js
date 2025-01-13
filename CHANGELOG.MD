@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Dropped Byron support from `deriveAddress` util
+  - `isTestnet` parameter changed to `network` (mainnet/preprod/preview)
+- Updated Cardano-Serialization-Lib to v13
+- Updated Blockfrost OpenAPI to 0.1.71
+
 ## [5.7.0] - 2024-11-05
 
 ### Added
