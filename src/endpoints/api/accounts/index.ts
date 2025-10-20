@@ -1,7 +1,15 @@
 import { components } from '@blockfrost/openapi';
 import { BlockFrostAPI } from '../../../index';
-import { AllMethodOptions, PaginationOptions } from '../../../types';
-import { getPaginationOptions, paginateMethod } from '../../../utils';
+import {
+  AllMethodOptions,
+  CursorPaginationOptions,
+  PaginationOptions,
+} from '../../../types';
+import {
+  getCursorPaginationParams,
+  getPaginationOptions,
+  paginateMethod,
+} from '../../../utils';
 import { handleError } from '../../../utils/errors';
 
 /**
@@ -484,4 +492,67 @@ export async function accountsAddressesTotal(
   } catch (error) {
     throw handleError(error);
   }
+}
+
+/**
+ * Obtains transactions associated with a specific stake account.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--accounts/paths/~1accounts~1%7Bstake_address%7D~1transactions/get | API docs for Assets associated with the account addresses}
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @param pagination - Optional, Pagination options
+ * @param cursorPagination - Optional, Additional options such as cursor pagination
+ * @returns Assets associated with the account addresses
+ *
+ */
+export async function accountsTransactions(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  pagination?: PaginationOptions,
+  cursorPagination?: CursorPaginationOptions,
+): Promise<components['schemas']['account_transactions_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+  const cursorPaginationParams = getCursorPaginationParams(cursorPagination);
+
+  try {
+    const res = await this.instance<
+      components['schemas']['account_transactions_content']
+    >(`accounts/${stakeAddress}/transactions`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+        from: cursorPaginationParams.from,
+        to: cursorPaginationParams.to,
+      },
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
+}
+
+/**
+ * Obtains all transactions associated with a specific stake account
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--accounts/paths/~1accounts~1%7Bstake_address%7D~1transactions/get | API docs for Address transactions}
+ * @remarks
+ * Variant of `accountsTransactions` method for fetching all pages with built-in requests batching
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @param allMethodOptions - Optional, Options for request batching
+ * @param cursorPagination - Optional, Additional options such as cursor pagination
+ * @returns Extended information about a specific address
+ *
+ */
+export async function accountsTransactionsAll(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  allMethodOptions?: AllMethodOptions,
+  cursorPagination?: CursorPaginationOptions,
+): Promise<components['schemas']['account_transactions_content']> {
+  return paginateMethod(
+    (pagination, cursorPagination) =>
+      this.accountsTransactions(stakeAddress, pagination, cursorPagination),
+    allMethodOptions,
+    cursorPagination,
+  );
 }

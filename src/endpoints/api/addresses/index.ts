@@ -1,5 +1,5 @@
 import {
-  getAdditionalParams,
+  getCursorPaginationParams,
   getPaginationOptions,
   paginateMethod,
 } from '../../../utils';
@@ -8,7 +8,7 @@ import { BlockFrostAPI } from '../../../index';
 import { handleError } from '../../../utils/errors';
 import {
   PaginationOptions,
-  AdditionalEndpointOptions,
+  CursorPaginationOptions,
   AllMethodOptions,
 } from '../../../types';
 import { HTTPError } from 'got';
@@ -82,12 +82,12 @@ export async function addressesExtended(
 }
 
 /**
- * Obtains transactions on the address.
+ * Obtains transactions linked to a spec
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Addresses/paths/~1addresses~1%7Baddress%7D~1transactions/get | API docs for Address transactions}
  *
  * @param address - Bech32 address
  * @param pagination - Optional, Pagination options
- * @param additionalOptions - Optional, Additional options such as cursor pagination
+ * @param cursorPagination - Optional, Additional options such as cursor pagination
  * @returns Extended information about a specific address
  *
  */
@@ -95,9 +95,9 @@ export async function addressesTransactions(
   this: BlockFrostAPI,
   address: string,
   pagination?: PaginationOptions,
-  additionalOptions?: AdditionalEndpointOptions,
+  cursorPagination?: CursorPaginationOptions,
 ): Promise<components['schemas']['address_transactions_content']> {
-  const additionalParams = getAdditionalParams(additionalOptions);
+  const cursorPaginationParams = getCursorPaginationParams(cursorPagination);
   const paginationOptions = getPaginationOptions(pagination);
 
   try {
@@ -108,8 +108,8 @@ export async function addressesTransactions(
         page: paginationOptions.page,
         count: paginationOptions.count,
         order: paginationOptions.order,
-        from: additionalParams.from,
-        to: additionalParams.to,
+        from: cursorPaginationParams.from,
+        to: cursorPaginationParams.to,
       },
     });
     return res.body;
@@ -129,7 +129,7 @@ export async function addressesTransactions(
  *
  * @param address - Bech32 address
  * @param allMethodOptions - Optional, Options for request batching
- * @param additionalOptions - Optional, Additional options such as cursor pagination
+ * @param cursorPagination - Optional, Additional options such as cursor pagination
  * @returns Extended information about a specific address
  *
  */
@@ -137,13 +137,13 @@ export async function addressesTransactionsAll(
   this: BlockFrostAPI,
   address: string,
   allMethodOptions?: AllMethodOptions,
-  additionalOptions?: AdditionalEndpointOptions,
+  cursorPagination?: CursorPaginationOptions,
 ): Promise<components['schemas']['address_transactions_content']> {
   return paginateMethod(
-    (pagination, additionalOptions) =>
-      this.addressesTransactions(address, pagination, additionalOptions),
+    (pagination, cursorPagination) =>
+      this.addressesTransactions(address, pagination, cursorPagination),
     allMethodOptions,
-    additionalOptions,
+    cursorPagination,
   );
 }
 

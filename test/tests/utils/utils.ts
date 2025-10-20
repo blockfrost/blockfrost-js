@@ -231,12 +231,12 @@ describe('utils', () => {
     });
   });
 
-  test('getAdditionalParams', () => {
-    expect(utils.getAdditionalParams(undefined)).toEqual({
+  test('getCursorPaginationParams', () => {
+    expect(utils.getCursorPaginationParams(undefined)).toEqual({
       from: undefined,
       to: undefined,
     });
-    expect(utils.getAdditionalParams({ from: 'a', to: 'b' })).toEqual({
+    expect(utils.getCursorPaginationParams({ from: 'a', to: 'b' })).toEqual({
       from: 'a',
       to: 'b',
     });
@@ -249,16 +249,16 @@ describe('utils', () => {
       .mockImplementation(
         (
           pagination: PaginationOptions,
-          additionalOptions?: AdditionalEndpointOptions,
+          cursorPagination?: AdditionalEndpointOptions,
         ) => {
           return new Promise(resolve => {
             if (pagination.page !== 3) {
-              // return full page of {pagination, additionalOptions} items
+              // return full page of {pagination, cursorPagination} items
               resolve(
                 [...Array(DEFAULT_PAGINATION_PAGE_ITEMS_COUNT).keys()].map(
                   () => ({
                     pagination: { ...pagination },
-                    additionalOptions: { ...additionalOptions },
+                    cursorPagination: { ...cursorPagination },
                   }),
                 ),
               );
@@ -267,7 +267,7 @@ describe('utils', () => {
               resolve([
                 {
                   pagination: { ...pagination },
-                  additionalOptions: { ...additionalOptions },
+                  cursorPagination: { ...cursorPagination },
                 },
               ]);
             }

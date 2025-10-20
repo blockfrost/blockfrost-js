@@ -22,6 +22,8 @@ import {
   accountsAddressesAssets,
   accountsAddressesTotal,
   accountsAddressesAssetsAll,
+  accountsTransactions,
+  accountsTransactionsAll,
 } from './endpoints/api/accounts';
 
 import {
@@ -231,6 +233,8 @@ class BlockFrostAPI {
   accountsAddressesAssets = accountsAddressesAssets;
   accountsAddressesAssetsAll = accountsAddressesAssetsAll;
   accountsAddressesTotal = accountsAddressesTotal;
+  accountsTransactions = accountsTransactions;
+  accountsTransactionsAll = accountsTransactionsAll;
 
   assets = assets;
   assetsById = assetsById;
