@@ -27,7 +27,7 @@
     "coverage-ci": "vitest run --coverage"
   },
   "dependencies": {
-    "@blockfrost/openapi": "0.1.82",
+    "@blockfrost/openapi": "0.1.84",
     "@emurgo/cardano-serialization-lib-nodejs": "^13.2.1",
     "@emurgo/cip14-js": "3.0.1",
     "bottleneck": "^2.19.5",
