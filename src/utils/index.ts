@@ -10,7 +10,7 @@ import {
   Options,
   ValidatedOptions,
   PaginationOptions,
-  AdditionalEndpointOptions,
+  CursorPaginationOptions,
   AllMethodOptions,
   BlockfrostNetwork,
 } from '../types';
@@ -111,9 +111,9 @@ const deriveNetworkOption = (
   }
 };
 
-export const getAdditionalParams = (
-  options?: AdditionalEndpointOptions,
-): AdditionalEndpointOptions => {
+export const getCursorPaginationParams = (
+  options?: CursorPaginationOptions,
+): CursorPaginationOptions => {
   if (!options) {
     return {
       from: undefined,
@@ -164,13 +164,13 @@ export const getAllMethodOptions = (
 export const paginateMethod = async <
   T extends (
     pagination: PaginationOptions,
-    additionalOptions?: AdditionalEndpointOptions,
+    cursorPagination?: CursorPaginationOptions,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ) => any,
 >(
   fn: T,
   allMethodOptions: AllMethodOptions | undefined,
-  additionalOptions?: AdditionalEndpointOptions,
+  cursorPagination?: CursorPaginationOptions,
 ): Promise<ReturnType<T>> => {
   const res = [];
   let page = 1;
@@ -186,8 +186,8 @@ export const paginateMethod = async <
           order: options.order,
         },
         {
-          from: additionalOptions?.from,
-          to: additionalOptions?.to,
+          from: cursorPagination?.from,
+          to: cursorPagination?.to,
         },
       ),
     );

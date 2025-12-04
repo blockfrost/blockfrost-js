@@ -36,7 +36,7 @@ type OptionCombination2 = {
   customBackend: string;
 };
 
-type AdditionalOptions = {
+type cursorPagination = {
   network?: CardanoNetwork;
   version?: number;
   rateLimiter?: boolean | RateLimiterConfig;
@@ -49,7 +49,7 @@ type AdditionalOptions = {
 };
 
 export type Options = (OptionCombination1 | OptionCombination2) &
-  AdditionalOptions;
+  cursorPagination;
 
 export type CardanoNetwork = 'mainnet' | 'preview' | 'preprod' | 'sanchonet';
 export type BlockfrostNetwork = CardanoNetwork | 'ipfs';
@@ -90,7 +90,7 @@ export type PaginationOptions = {
   order?: 'asc' | 'desc';
 };
 
-export type AdditionalEndpointOptions = {
+export type CursorPaginationOptions = {
   from?: string | undefined;
   to?: string | undefined;
 };
