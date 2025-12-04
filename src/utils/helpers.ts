@@ -44,9 +44,7 @@ export const deriveAddress = (
   addressIndex: number,
   network: 'mainnet' | 'preview' | 'preprod',
 ): { address: string; path: [number, number] } => {
-  const accountKey = Bip32PublicKey.from_bytes(
-    Buffer.from(accountPublicKey, 'hex'),
-  );
+  const accountKey = Bip32PublicKey.from_hex(accountPublicKey);
   const utxoPubKey = accountKey.derive(role).derive(addressIndex);
   const mainStakeKey = accountKey.derive(2).derive(0);
 
