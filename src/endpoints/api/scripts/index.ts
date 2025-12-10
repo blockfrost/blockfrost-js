@@ -156,10 +156,19 @@ export async function scriptsDatumCbor(
 export async function scriptsRedeemers(
   this: BlockFrostAPI,
   scriptHash: string,
+  pagination?: PaginationOptions,
 ): Promise<components['schemas']['script_redeemers']> {
+  const paginationOptions = getPaginationOptions(pagination);
   try {
     const res = await this.instance<components['schemas']['script_redeemers']>(
       `scripts/${scriptHash}/redeemers`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
+      },
     );
     return res.body;
   } catch (error) {
