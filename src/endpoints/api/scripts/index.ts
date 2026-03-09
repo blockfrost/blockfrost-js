@@ -150,6 +150,7 @@ export async function scriptsDatumCbor(
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Scripts/paths/~1scripts~1%7Bscript_hash%7D~1redeemers/get | API docs for Redeemers of a specific script}
  *
  * @param scriptHash - Hash of the script
+ * @param pagination - Optional, Pagination options
  * @returns List of redeemers of a specific script
  *
  */
