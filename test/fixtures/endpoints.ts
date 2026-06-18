@@ -1514,4 +1514,147 @@ export default [
       },
     },
   },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.governance.committee(),
+    path: mainnetUrl(`governance/committee`),
+    endpointMock: {
+      gov_action_id:
+        'gov_action1k2jertppnnndejjcglszfqq4yzw8evzrd2nt66rr6rqlz54xp0zsq05ecsn',
+      proposal_tx_hash:
+        'b2a591ac219ce6dcca5847e0248015209c7cb0436aa6bd6863d0c1f152a60bc5',
+      proposal_index: 0,
+      is_dissolved: false,
+      quorum: {
+        numerator: 2,
+        denominator: 3,
+      },
+      members: [
+        {
+          cc_cold_id:
+            'cc_cold1zgqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq',
+          cc_cold_hex: '53a42debdc7ffd90085ab7fd9800b63e6d1c9ac481ba6eb7b6a844e4',
+          cc_cold_has_script: false,
+          cc_hot_id: 'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+          cc_hot_hex: '4d4c05dff1f692d1dc714494fb13361117c1abe14fb77c2356e6a4c0',
+          cc_hot_has_script: false,
+          status: 'authorized',
+          expiration_epoch: 580,
+        },
+      ],
+    },
+    response: {
+      gov_action_id:
+        'gov_action1k2jertppnnndejjcglszfqq4yzw8evzrd2nt66rr6rqlz54xp0zsq05ecsn',
+      proposal_tx_hash:
+        'b2a591ac219ce6dcca5847e0248015209c7cb0436aa6bd6863d0c1f152a60bc5',
+      proposal_index: 0,
+      is_dissolved: false,
+      quorum: {
+        numerator: 2,
+        denominator: 3,
+      },
+      members: [
+        {
+          cc_cold_id:
+            'cc_cold1zgqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq',
+          cc_cold_hex: '53a42debdc7ffd90085ab7fd9800b63e6d1c9ac481ba6eb7b6a844e4',
+          cc_cold_has_script: false,
+          cc_hot_id: 'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+          cc_hot_hex: '4d4c05dff1f692d1dc714494fb13361117c1abe14fb77c2356e6a4c0',
+          cc_hot_has_script: false,
+          status: 'authorized',
+          expiration_epoch: 580,
+        },
+      ],
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.governance.committeeVotes(),
+    path: mainnetUrl(`governance/committee/votes`),
+    endpointMock: [
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        voter_hot_id:
+          'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+        proposal_id:
+          'gov_action1k2jertppnnndejjcglszfqq4yzw8evzrd2nt66rr6rqlz54xp0zsq05ecsn',
+        proposal_tx_hash:
+          'b2a591ac219ce6dcca5847e0248015209c7cb0436aa6bd6863d0c1f152a60bc5',
+        proposal_index: 0,
+        governance_type: 'parameter_change',
+        vote: 'yes',
+        metadata_url: 'https://my.cc-member/rationale.jsonld',
+        metadata_hash:
+          'a4b7d5d34f5d8c5b71a0a5c34b7e7f8a3d2e1c0b9a8f7e6d5c4b3a2918f7e6d5',
+        block_height: 11045358,
+        block_time: 1746037200,
+      },
+    ],
+    response: [
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        voter_hot_id:
+          'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+        proposal_id:
+          'gov_action1k2jertppnnndejjcglszfqq4yzw8evzrd2nt66rr6rqlz54xp0zsq05ecsn',
+        proposal_tx_hash:
+          'b2a591ac219ce6dcca5847e0248015209c7cb0436aa6bd6863d0c1f152a60bc5',
+        proposal_index: 0,
+        governance_type: 'parameter_change',
+        vote: 'yes',
+        metadata_url: 'https://my.cc-member/rationale.jsonld',
+        metadata_hash:
+          'a4b7d5d34f5d8c5b71a0a5c34b7e7f8a3d2e1c0b9a8f7e6d5c4b3a2918f7e6d5',
+        block_height: 11045358,
+        block_time: 1746037200,
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.committeeVotesById(
+        'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+      ),
+    path: mainnetUrl(
+      `governance/committee/cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0/votes`,
+    ),
+    endpointMock: [
+      {
+        tx_hash:
+          '8a91b32ec2a7bdfde2ab7a1bc5e4d3a2f1b0c9d8e7f6a5b4c3d2e1f0a9b8c7d6',
+        voter_hot_id:
+          'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+        proposal_id:
+          'gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn',
+        proposal_tx_hash:
+          '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        proposal_index: 1,
+        governance_type: 'new_constitution',
+        vote: 'abstain',
+        metadata_url: null,
+        metadata_hash: null,
+        block_height: 11045890,
+        block_time: 1746070800,
+      },
+    ],
+    response: [
+      {
+        tx_hash:
+          '8a91b32ec2a7bdfde2ab7a1bc5e4d3a2f1b0c9d8e7f6a5b4c3d2e1f0a9b8c7d6',
+        voter_hot_id:
+          'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+        proposal_id:
+          'gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn',
+        proposal_tx_hash:
+          '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        proposal_index: 1,
+        governance_type: 'new_constitution',
+        vote: 'abstain',
+        metadata_url: null,
+        metadata_hash: null,
+        block_height: 11045890,
+        block_time: 1746070800,
+      },
+    ],
+  },
 ] as const;

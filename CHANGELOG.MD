@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.2.0] - 2026-06-18
+
+### Added
+
+- `governance.committee` for retrieving the currently active constitutional committee
+- `governance.committeeVotes`, `governance.committeeVotesAll` for retrieving constitutional committee votes
+- `governance.committeeVotesById`, `governance.committeeVotesByIdAll` for retrieving votes cast under a given committee credential
+- Optional sorting/filtering options (`order_by`, `retired`, `expired`) for `governance.dreps`
+
+### Changed
+
+- Updated Blockfrost OpenAPI to 0.1.89
+
 ## [6.1.1] - 2026-03-09
 
 ### Changed

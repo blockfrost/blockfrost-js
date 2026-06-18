@@ -1,7 +1,11 @@
 import { getPaginationOptions, paginateMethod } from '../../../utils';
 import { components } from '@blockfrost/openapi';
 import { BlockFrostAPI } from '../../../index';
-import { AllMethodOptions, PaginationOptions } from '../../../types';
+import {
+  AllMethodOptions,
+  DRepsQueryOptions,
+  PaginationOptions,
+} from '../../../types';
 import { handleError } from '../../../utils/errors';
 
 export class GovernanceAPI {
@@ -12,15 +16,136 @@ export class GovernanceAPI {
   }
 
   /**
+   * Obtains information about the currently active constitutional committee.
+   * @see {@link https://docs.blockfrost.io/#tag/cardano--governance/GET/governance/committee | API docs for Constitutional committee}
+   *
+   * @returns Information about the currently active constitutional committee
+   *
+   */
+  async committee(): Promise<components['schemas']['committee']> {
+    try {
+      const res =
+        await this.blockfrostAPI.instance<components['schemas']['committee']>(
+          `governance/committee`,
+        );
+      return res.body;
+    } catch (error) {
+      throw handleError(error);
+    }
+  }
+
+  /**
+   * Obtains history of all votes cast by constitutional committee members across all committees (current and past).
+   * @see {@link https://docs.blockfrost.io/#tag/cardano--governance/GET/governance/committee/votes | API docs for Constitutional committee votes}
+   *
+   * @param pagination - Optional, Pagination options
+   * @returns History of constitutional committee votes
+   *
+   */
+  async committeeVotes(
+    pagination?: PaginationOptions,
+  ): Promise<components['schemas']['committee_votes']> {
+    const paginationOptions = getPaginationOptions(pagination);
+
+    try {
+      const res = await this.blockfrostAPI.instance<
+        components['schemas']['committee_votes']
+      >(`governance/committee/votes`, {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
+      });
+      return res.body;
+    } catch (error) {
+      throw handleError(error);
+    }
+  }
+
+  /**
+   * Obtains history of all votes cast by constitutional committee members across all committees (current and past).
+   * @see {@link https://docs.blockfrost.io/#tag/cardano--governance/GET/governance/committee/votes | API docs for Constitutional committee votes}
+   * @remarks
+   * Variant of `committeeVotes` method for fetching all pages with built-in requests batching
+   *
+   * @param allMethodOptions - Optional, Options for request batching
+   * @returns History of constitutional committee votes
+   *
+   */
+  async committeeVotesAll(
+    allMethodOptions?: AllMethodOptions,
+  ): Promise<components['schemas']['committee_votes']> {
+    return paginateMethod(
+      pagination => this.committeeVotes(pagination),
+      allMethodOptions,
+    );
+  }
+
+  /**
+   * Obtains votes cast under a given constitutional committee credential.
+   * @see {@link https://docs.blockfrost.io/#tag/cardano--governance/GET/governance/committee/%7Bcc_id%7D/votes | API docs for Constitutional committee member votes}
+   *
+   * @param ccId - CIP-129 bech32 committee credential (`cc_hot1...` or `cc_cold1...`)
+   * @param pagination - Optional, Pagination options
+   * @returns Votes for the given committee credential
+   *
+   */
+  async committeeVotesById(
+    ccId: string,
+    pagination?: PaginationOptions,
+  ): Promise<components['schemas']['committee_votes']> {
+    const paginationOptions = getPaginationOptions(pagination);
+
+    try {
+      const res = await this.blockfrostAPI.instance<
+        components['schemas']['committee_votes']
+      >(`governance/committee/${ccId}/votes`, {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
+      });
+      return res.body;
+    } catch (error) {
+      throw handleError(error);
+    }
+  }
+
+  /**
+   * Obtains votes cast under a given constitutional committee credential.
+   * @see {@link https://docs.blockfrost.io/#tag/cardano--governance/GET/governance/committee/%7Bcc_id%7D/votes | API docs for Constitutional committee member votes}
+   * @remarks
+   * Variant of `committeeVotesById` method for fetching all pages with built-in requests batching
+   *
+   * @param ccId - CIP-129 bech32 committee credential (`cc_hot1...` or `cc_cold1...`)
+   * @param allMethodOptions - Optional, Options for request batching
+   * @returns Votes for the given committee credential
+   *
+   */
+  async committeeVotesByIdAll(
+    ccId: string,
+    allMethodOptions?: AllMethodOptions,
+  ): Promise<components['schemas']['committee_votes']> {
+    return paginateMethod(
+      pagination => this.committeeVotesById(ccId, pagination),
+      allMethodOptions,
+    );
+  }
+
+  /**
    * Obtains list of Delegate Representatives (DReps).
    * @see {@link https://docs.blockfrost.io/#tag/cardano--governance/GET/governance/dreps | API docs for Delegate Representatives (DReps)}
    *
    * @param pagination - Optional, Pagination options
+   * @param options - Optional, Sorting (`order_by`) and filtering (`retired`, `expired`) options
    * @returns List of registered stake pools.
    *
    */
   async dreps(
     pagination?: PaginationOptions,
+    options?: DRepsQueryOptions,
   ): Promise<components['schemas']['dreps']> {
     const paginationOptions = getPaginationOptions(pagination);
 
@@ -32,6 +157,9 @@ export class GovernanceAPI {
           page: paginationOptions.page,
           count: paginationOptions.count,
           order: paginationOptions.order,
+          order_by: options?.order_by,
+          retired: options?.retired,
+          expired: options?.expired,
         },
       });
       return res.body;
