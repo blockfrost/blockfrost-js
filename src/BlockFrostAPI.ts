@@ -24,6 +24,8 @@ import {
   accountsAddressesAssetsAll,
   accountsTransactions,
   accountsTransactionsAll,
+  accountsUtxos,
+  accountsUtxosAll,
 } from './endpoints/api/accounts';
 
 import {
@@ -47,6 +49,8 @@ import {
   assetsAddresses,
   assetsPolicyById,
   assetsPolicyByIdAll,
+  assetsUtxos,
+  assetsUtxosAll,
 } from './endpoints/api/assets';
 
 import {
@@ -54,10 +58,15 @@ import {
   blocksLatest,
   blocksLatestTxs,
   blocksLatestTxsAll,
+  blocksLatestTxsCbor,
   blocksNext,
   blocksPrevious,
   blocksTxs,
   blocksTxsAll,
+  blocksTxsCbor,
+  blocksTxsCborAll,
+  blocksBySlot,
+  blocksByEpochAndSlot,
   blocksAddresses,
   blocksAddressesAll,
 } from './endpoints/api/blocks';
@@ -91,6 +100,8 @@ import {
   poolsByIdHistory,
   poolsByIdRelays,
   poolsByIdUpdates,
+  poolsByIdVotes,
+  poolsByIdVotesAll,
   poolsRetired,
   poolsRetiring,
   poolsExtended,
@@ -139,6 +150,8 @@ import {
   scriptsRedeemers,
   scriptsJson,
   scriptsCbor,
+  scriptsUtxos,
+  scriptsUtxosAll,
 } from './endpoints/api/scripts';
 import {
   nutlinkAddress,
@@ -235,6 +248,8 @@ class BlockFrostAPI {
   accountsAddressesTotal = accountsAddressesTotal;
   accountsTransactions = accountsTransactions;
   accountsTransactionsAll = accountsTransactionsAll;
+  accountsUtxos = accountsUtxos;
+  accountsUtxosAll = accountsUtxosAll;
 
   assets = assets;
   assetsById = assetsById;
@@ -244,6 +259,8 @@ class BlockFrostAPI {
   assetsAddresses = assetsAddresses;
   assetsPolicyById = assetsPolicyById;
   assetsPolicyByIdAll = assetsPolicyByIdAll;
+  assetsUtxos = assetsUtxos;
+  assetsUtxosAll = assetsUtxosAll;
 
   addresses = addresses;
   addressesTotal = addressesTotal;
@@ -259,10 +276,15 @@ class BlockFrostAPI {
   blocksLatest = blocksLatest;
   blocksLatestTxs = blocksLatestTxs;
   blocksLatestTxsAll = blocksLatestTxsAll;
+  blocksLatestTxsCbor = blocksLatestTxsCbor;
   blocksNext = blocksNext;
   blocksPrevious = blocksPrevious;
   blocksTxs = blocksTxs;
   blocksTxsAll = blocksTxsAll;
+  blocksTxsCbor = blocksTxsCbor;
+  blocksTxsCborAll = blocksTxsCborAll;
+  blocksBySlot = blocksBySlot;
+  blocksByEpochAndSlot = blocksByEpochAndSlot;
   blocksAddresses = blocksAddresses;
   blocksAddressesAll = blocksAddressesAll;
 
@@ -314,6 +336,8 @@ class BlockFrostAPI {
   poolsByIdHistory = poolsByIdHistory;
   poolsByIdRelays = poolsByIdRelays;
   poolsByIdUpdates = poolsByIdUpdates;
+  poolsByIdVotes = poolsByIdVotes;
+  poolsByIdVotesAll = poolsByIdVotesAll;
   poolsRetired = poolsRetired;
   poolsRetiring = poolsRetiring;
   poolsExtended = poolsExtended;
@@ -328,6 +352,8 @@ class BlockFrostAPI {
   scriptsDatum = scriptsDatum;
   scriptsDatumCbor = scriptsDatumCbor;
   scriptsRedeemers = scriptsRedeemers;
+  scriptsUtxos = scriptsUtxos;
+  scriptsUtxosAll = scriptsUtxosAll;
 
   txs = txs;
   txsMetadataCbor = txsMetadataCbor;

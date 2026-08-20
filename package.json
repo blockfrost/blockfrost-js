@@ -1,6 +1,6 @@
 {
   "name": "@blockfrost/blockfrost-js",
-  "version": "6.1.1",
+  "version": "6.2.0",
   "description": "A JavaScript/TypeScript SDK for interacting with the https://blockfrost.io API",
   "keywords": [
     "blockfrost",
@@ -27,7 +27,7 @@
     "coverage-ci": "vitest run --coverage"
   },
   "dependencies": {
-    "@blockfrost/openapi": "0.1.86",
+    "@blockfrost/openapi": "0.1.92",
     "@emurgo/cardano-serialization-lib-nodejs": "^15.0.3",
     "@emurgo/cip14-js": "3.0.1",
     "bottleneck": "^2.19.5",
@@ -59,6 +59,6 @@
   },
   "packageManager": "yarn@4.0.0",
   "engines": {
-    "node": ">=16"
+    "node": ">=20"
   }
 }

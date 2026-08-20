@@ -1,7 +1,7 @@
-import { getPaginationOptions } from '../../../utils';
+import { getPaginationOptions, paginateMethod } from '../../../utils';
 import { components } from '@blockfrost/openapi';
 import { handleError } from '../../../utils/errors';
-import { PaginationOptions } from '../../../types';
+import { AllMethodOptions, PaginationOptions } from '../../../types';
 import { BlockFrostAPI } from '../../../index';
 
 /**
@@ -175,4 +175,58 @@ export async function scriptsRedeemers(
   } catch (error) {
     throw handleError(error);
   }
+}
+
+/**
+ * Obtains list of UTXOs holding the script as a reference script.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--scripts/GET/scripts/%7Bscript_hash%7D/utxos | API docs for UTXOs holding the script as a reference script}
+ *
+ * @param scriptHash - Hash of the script
+ * @param pagination - Optional, Pagination options
+ * @returns List of UTXOs holding the script as a reference script
+ *
+ */
+export async function scriptsUtxos(
+  this: BlockFrostAPI,
+  scriptHash: string,
+  pagination?: PaginationOptions,
+): Promise<components['schemas']['script_utxos']> {
+  const paginationOptions = getPaginationOptions(pagination);
+  try {
+    const res = await this.instance<components['schemas']['script_utxos']>(
+      `scripts/${scriptHash}/utxos`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
+      },
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
+}
+
+/**
+ * Obtains list of UTXOs holding the script as a reference script.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--scripts/GET/scripts/%7Bscript_hash%7D/utxos | API docs for UTXOs holding the script as a reference script}
+ * @remarks
+ * Variant of `scriptsUtxos` method for fetching all pages with built-in requests batching
+ *
+ * @param scriptHash - Hash of the script
+ * @param allMethodOptions - Optional, Options for request batching
+ * @returns List of UTXOs holding the script as a reference script
+ *
+ */
+export async function scriptsUtxosAll(
+  this: BlockFrostAPI,
+  scriptHash: string,
+  allMethodOptions?: AllMethodOptions,
+): Promise<components['schemas']['script_utxos']> {
+  return paginateMethod(
+    pagination => this.scriptsUtxos(scriptHash, pagination),
+    allMethodOptions,
+  );
 }

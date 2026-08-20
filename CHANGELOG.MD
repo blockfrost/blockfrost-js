@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.2.0] - 2026-08-20
+
+### Added
+
+- `governance.committee`, `governance.committeeVotes`, `governance.committeeVotesAll`, `governance.committeeMemberVotes`, `governance.committeeMemberVotesAll` for retrieving the constitutional committee and its voting history
+- `governance.proposalByGovActionId`, `governance.proposalParametersByGovActionId`, `governance.proposalWithdrawalsByGovActionId`, `governance.proposalWithdrawalsByGovActionIdAll`, `governance.proposalVotesByGovActionId`, `governance.proposalVotesByGovActionIdAll`, `governance.proposalMetadataByGovActionId` for retrieving proposals by their CIP-129 Governance Action Identifier
+- `accountsUtxos`, `accountsUtxosAll` for retrieving UTXOs associated with a stake address
+- `assetsUtxos`, `assetsUtxosAll` for retrieving unspent UTxOs containing a specific native asset
+- `scriptsUtxos`, `scriptsUtxosAll` for retrieving UTXOs holding a script as a reference script
+- `poolsByIdVotes`, `poolsByIdVotesAll` for retrieving votes cast by a stake pool
+- `blocksTxsCbor`, `blocksTxsCborAll`, `blocksLatestTxsCbor` for retrieving block transactions with their CBOR data
+- `blocksBySlot`, `blocksByEpochAndSlot` for retrieving a specific block by its slot (and epoch)
+
+### Changed
+
+- Updated Blockfrost OpenAPI to 0.1.92
+- Minimum supported Node.js version is now 20 (matching `@blockfrost/openapi`)
+
 ## [6.1.1] - 2026-03-09
 
 ### Changed

@@ -103,6 +103,36 @@ export async function blocksLatestTxsAll(
 }
 
 /**
+ * Obtains transactions within the latest block with their CBOR data.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--blocks/GET/blocks/latest/txs/cbor | API docs for Latest block transactions with CBOR data}
+ *
+ * @param pagination - Optional, Pagination options
+ * @returns Transactions within the latest block with their CBOR data
+ *
+ */
+export async function blocksLatestTxsCbor(
+  this: BlockFrostAPI,
+  pagination?: PaginationOptions,
+): Promise<components['schemas']['block_content_txs_cbor']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
+  try {
+    const res = await this.instance<
+      components['schemas']['block_content_txs_cbor']
+    >(`blocks/latest/txs/cbor`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
+}
+
+/**
  * Obtains list of blocks following a specific block.
  * @see {@link https://docs.blockfrost.io/#tag/Cardano-Blocks/paths/~1blocks~1%7Bhash_or_number%7D~1next/get | API docs for Listing of next blocks}
  *
@@ -218,6 +248,106 @@ export async function blocksTxsAll(
     pagination => this.blocksTxs(hashOrNumber, pagination),
     allMethodOptions,
   );
+}
+
+/**
+ * Obtains transactions within the specific block with their CBOR data.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--blocks/GET/blocks/%7Bhash_or_number%7D/txs/cbor | API docs for Block transactions with CBOR data}
+ *
+ * @param hashOrNumber - Hash or number of the requested block
+ * @param pagination - Optional, Pagination options
+ * @returns Transactions within the specific block with their CBOR data
+ *
+ */
+export async function blocksTxsCbor(
+  this: BlockFrostAPI,
+  hashOrNumber: HashOrNumber,
+  pagination?: PaginationOptions,
+): Promise<components['schemas']['block_content_txs_cbor']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
+  try {
+    const res = await this.instance<
+      components['schemas']['block_content_txs_cbor']
+    >(`blocks/${hashOrNumber}/txs/cbor`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
+}
+
+/**
+ * Obtains all transactions within the specific block with their CBOR data.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--blocks/GET/blocks/%7Bhash_or_number%7D/txs/cbor | API docs for Block transactions with CBOR data}
+ * @remarks
+ * Variant of `blocksTxsCbor` method for fetching all pages with built-in requests batching
+ *
+ * @param hashOrNumber - Hash or number of the requested block
+ * @param allMethodOptions - Optional, Options for request batching
+ * @returns All transactions within the specific block with their CBOR data
+ *
+ */
+export async function blocksTxsCborAll(
+  this: BlockFrostAPI,
+  hashOrNumber: HashOrNumber,
+  allMethodOptions?: AllMethodOptions,
+): Promise<components['schemas']['block_content_txs_cbor']> {
+  return paginateMethod(
+    pagination => this.blocksTxsCbor(hashOrNumber, pagination),
+    allMethodOptions,
+  );
+}
+
+/**
+ * Obtains a specific block available to the backends by its slot number.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--blocks/GET/blocks/slot/%7Bslot_number%7D | API docs for Specific block in a slot}
+ *
+ * @param slotNumber - Slot position for requested block
+ * @returns Specific block in a slot
+ *
+ */
+export async function blocksBySlot(
+  this: BlockFrostAPI,
+  slotNumber: number,
+): Promise<components['schemas']['block_content']> {
+  try {
+    const res = await this.instance<components['schemas']['block_content']>(
+      `blocks/slot/${slotNumber}`,
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
+}
+
+/**
+ * Obtains a specific block available to the backends by its epoch and slot number.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--blocks/GET/blocks/epoch/%7Bepoch_number%7D/slot/%7Bslot_number%7D | API docs for Specific block in a slot in an epoch}
+ *
+ * @param epochNumber - Epoch for specific epoch slot
+ * @param slotNumber - Slot position for requested block
+ * @returns Specific block in a slot in an epoch
+ *
+ */
+export async function blocksByEpochAndSlot(
+  this: BlockFrostAPI,
+  epochNumber: number,
+  slotNumber: number,
+): Promise<components['schemas']['block_content']> {
+  try {
+    const res = await this.instance<components['schemas']['block_content']>(
+      `blocks/epoch/${epochNumber}/slot/${slotNumber}`,
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
 }
 
 /**
