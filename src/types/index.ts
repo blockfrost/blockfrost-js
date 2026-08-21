@@ -95,6 +95,15 @@ export type CursorPaginationOptions = {
   to?: string | undefined;
 };
 
+export type DRepsQueryOptions = {
+  /** Sort key. Set to `amount` to sort by voting power. When omitted, DReps are ordered by their internal registration order. */
+  order_by?: 'amount' | undefined;
+  /** Filter. When `true`, only returns deregistered DReps; when `false`, only currently registered ones. When omitted, both are returned. */
+  retired?: boolean | undefined;
+  /** Filter. When `true`, only returns DReps inactive longer than the `drep_activity` parameter; when `false`, only non-expired ones. When omitted, both are returned. */
+  expired?: boolean | undefined;
+};
+
 export type AllMethodOptions = {
   batchSize?: number | undefined;
   order?: 'asc' | 'desc';
