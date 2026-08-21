@@ -11,8 +11,7 @@
   <a href="#getting-started">Getting started</a> •
   <a href="#installation">Installation</a> •
   <a href="#usage">Usage</a> •
-  <a href="https://github.com/blockfrost/blockfrost-js-examples" target="_blank">Examples</a> •
-  <a href="https://github.com/blockfrost/blockfrost-js/wiki/Exports">SDK API Reference</a>
+  <a href="https://github.com/blockfrost/blockfrost-js-examples" target="_blank">Examples</a>
 </p>
 <br>
 
@@ -44,8 +43,6 @@ yarn add @blockfrost/blockfrost-js
 
 Using the SDK is pretty straight-forward as you can see from the following examples.
 For more examples take a look in [blockfrost-js-examples](https://github.com/blockfrost/blockfrost-js-examples) repository.
-
-For a list of all SDK methods [check out our wiki](https://github.com/blockfrost/blockfrost-js/wiki/Exports).
 
 ```ts
 const Blockfrost = require('@blockfrost/blockfrost-js');
@@ -135,8 +132,6 @@ try {
 
 For more examples take a look in [blockfrost-js-examples](https://github.com/blockfrost/blockfrost-js-examples) repository.
 
-For a list of all SDK methods [check out our wiki](https://github.com/blockfrost/blockfrost-js/wiki/Exports).
-
 ### Cardano
 
 ```typescript
@@ -201,10 +196,10 @@ runExample();
 
 Blockfrost SDK exports several utility functions to improve developer experience.
 
-- [deriveAddress](https://github.com/blockfrost/blockfrost-js/wiki/Exports#deriveaddress)
-- [getFingerprint](https://github.com/blockfrost/blockfrost-js/wiki/Exports#getfingerprint)
-- [parseAsset](https://github.com/blockfrost/blockfrost-js/wiki/Exports#parseasset)
-- [verifyWebhookSignature](https://github.com/blockfrost/blockfrost-js/wiki/Exports#verifywebhooksignature)
+- [deriveAddress](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/helpers.ts)
+- [getFingerprint](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/helpers.ts)
+- [parseAsset](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/helpers.ts)
+- [verifyWebhookSignature](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/helpers.ts)
 
 ## Development
 
@@ -215,6 +210,3 @@ Blockfrost SDK exports several utility functions to improve developer experience
    - update [TSDoc](https://tsdoc.org/) for added method
 2. Add class method to `BlockfrostAPI` object in [src/BlockFrostAPI.ts](src/BlockFrostAPI.ts).
 3. Add unit-test fixture for the added method to [test/fixtures/endpoints.ts](test/fixtures/endpoints.ts)
-4. Regenerate wiki docs
-   - `yarn docs`
-   - push files to Wiki repository `https://github.com/blockfrost/blockfrost-js.wiki.git`
