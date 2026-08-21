@@ -364,6 +364,19 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) =>
+      SDK.assetsTransactions(
+        '00000002df633853f6a47465c9496721d2d5b1291b8398016c0e87ae6e7574636f696e',
+        { count: 10 },
+        { from: '8929261', to: '9999269:10' },
+      ),
+    endpointMock: [],
+    path: mainnetUrl(
+      '/assets/00000002df633853f6a47465c9496721d2d5b1291b8398016c0e87ae6e7574636f696e/transactions',
+    ),
+    response: [],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
       SDK.assetsAddresses(
         '00000002df633853f6a47465c9496721d2d5b1291b8398016c0e87ae6e7574636f696e',
       ),
@@ -1007,6 +1020,34 @@ export default [
   },
   {
     command: (SDK: BlockFrostAPI) => SDK.governance.dreps(),
+    path: mainnetUrl(`governance/dreps`),
+    endpointMock: [
+      {
+        drep_id: 'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+        hex: 'db1bc3c3f99ce68977ceaf27ab4dd917123ef9e73f85c304236eab23',
+      },
+      {
+        drep_id: 'drep1cxayn4fgy27yaucvhamsvqj3v6835mh3tjjx6x8hdnr4',
+        hex: 'c1ba49d52822bc4ef30cbf77060251668f1a6ef15ca46d18f76cc758',
+      },
+    ],
+    response: [
+      {
+        drep_id: 'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+        hex: 'db1bc3c3f99ce68977ceaf27ab4dd917123ef9e73f85c304236eab23',
+      },
+      {
+        drep_id: 'drep1cxayn4fgy27yaucvhamsvqj3v6835mh3tjjx6x8hdnr4',
+        hex: 'c1ba49d52822bc4ef30cbf77060251668f1a6ef15ca46d18f76cc758',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.dreps(
+        { page: 1, order: 'desc' },
+        { order_by: 'amount', retired: false, expired: false },
+      ),
     path: mainnetUrl(`governance/dreps`),
     endpointMock: [
       {

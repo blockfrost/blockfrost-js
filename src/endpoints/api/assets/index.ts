@@ -126,6 +126,7 @@ export async function assetsHistoryAll(
  *
  * @param asset - Concatenation of the policy ID and hex-encoded asset name
  * @param pagination - Optional, Pagination options
+ * @param cursorPagination - Optional, Additional options such as cursor pagination
  * @returns List of a specific asset transactions.
  *
  */
@@ -133,8 +134,10 @@ export async function assetsTransactions(
   this: BlockFrostAPI,
   asset: string,
   pagination?: PaginationOptions,
+  cursorPagination?: CursorPaginationOptions,
 ): Promise<components['schemas']['asset_transactions']> {
   const paginationOptions = getPaginationOptions(pagination);
+  const cursorPaginationParams = getCursorPaginationParams(cursorPagination);
 
   try {
     const res = await this.instance<
@@ -144,6 +147,8 @@ export async function assetsTransactions(
         page: paginationOptions.page,
         count: paginationOptions.count,
         order: paginationOptions.order,
+        from: cursorPaginationParams.from,
+        to: cursorPaginationParams.to,
       },
     });
     return res.body;

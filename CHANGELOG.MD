@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `poolsByIdVotes`, `poolsByIdVotesAll` for retrieving votes cast by a stake pool
 - `blocksTxsCbor`, `blocksTxsCborAll`, `blocksLatestTxsCbor` for retrieving block transactions with their CBOR data
 - `blocksBySlot`, `blocksByEpochAndSlot` for retrieving a specific block by its slot (and epoch)
+- Optional sorting/filtering options (`order_by`, `retired`, `expired`) for `governance.dreps`
+- Optional `from`/`to` block-range filtering for `assetsTransactions`
 
 ### Changed
 

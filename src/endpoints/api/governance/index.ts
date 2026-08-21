@@ -1,7 +1,11 @@
 import { getPaginationOptions, paginateMethod } from '../../../utils';
 import { components } from '@blockfrost/openapi';
 import { BlockFrostAPI } from '../../../index';
-import { AllMethodOptions, PaginationOptions } from '../../../types';
+import {
+  AllMethodOptions,
+  DRepsQueryOptions,
+  PaginationOptions,
+} from '../../../types';
 import { handleError } from '../../../utils/errors';
 
 export class GovernanceAPI {
@@ -135,11 +139,13 @@ export class GovernanceAPI {
    * @see {@link https://docs.blockfrost.io/#tag/cardano--governance/GET/governance/dreps | API docs for Delegate Representatives (DReps)}
    *
    * @param pagination - Optional, Pagination options
+   * @param options - Optional, Sorting (`order_by`) and filtering (`retired`, `expired`) options
    * @returns List of registered stake pools.
    *
    */
   async dreps(
     pagination?: PaginationOptions,
+    options?: DRepsQueryOptions,
   ): Promise<components['schemas']['dreps']> {
     const paginationOptions = getPaginationOptions(pagination);
 
@@ -151,6 +157,9 @@ export class GovernanceAPI {
           page: paginationOptions.page,
           count: paginationOptions.count,
           order: paginationOptions.order,
+          order_by: options?.order_by,
+          retired: options?.retired,
+          expired: options?.expired,
         },
       });
       return res.body;
