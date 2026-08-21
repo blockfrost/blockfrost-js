@@ -11,8 +11,7 @@
   <a href="#getting-started">Getting started</a> •
   <a href="#installation">Installation</a> •
   <a href="#usage">Usage</a> •
-  <a href="https://github.com/blockfrost/blockfrost-js-examples" target="_blank">Examples</a> •
-  <a href="https://github.com/blockfrost/blockfrost-js/wiki/Exports">SDK API Reference</a>
+  <a href="https://github.com/blockfrost/blockfrost-js-examples" target="_blank">Examples</a>
 </p>
 <br>
 
@@ -45,8 +44,6 @@ yarn add @blockfrost/blockfrost-js
 Using the SDK is pretty straight-forward as you can see from the following examples.
 For more examples take a look in [blockfrost-js-examples](https://github.com/blockfrost/blockfrost-js-examples) repository.
 
-For a list of all SDK methods [check out our wiki](https://github.com/blockfrost/blockfrost-js/wiki/Exports).
-
 ```ts
 const Blockfrost = require('@blockfrost/blockfrost-js');
 // import { BlockFrostAPI } from '@blockfrost/blockfrost-js'; // using import syntax
@@ -69,6 +66,35 @@ const API = new Blockfrost.BlockFrostAPI({
 - `version` - `number`, version of the Blockfrost API (optional, default `0`)
 - `gotOptions` - Additional options to be passed to Got instance. For more details, refer to the [Got Options documentation](https://github.com/sindresorhus/got/blob/main/documentation/2-options.md).
 
+### Rate limiter
+
+The built-in rate limiter is powered by [Bottleneck](https://www.npmjs.com/package/bottleneck). The underlying Bottleneck instance is exposed as `rateLimiter` property on the API client (it is `undefined` if the rate limiter was disabled via options), allowing you to inspect the current queue or hook into its events.
+
+```ts
+const Blockfrost = require('@blockfrost/blockfrost-js');
+
+const API = new Blockfrost.BlockFrostAPI({
+  projectId: 'YOUR API KEY HERE', // see: https://blockfrost.io
+});
+
+// inspect the current queue
+// returns counts of jobs in each state, e.g. { RECEIVED: 0, QUEUED: 0, RUNNING: 0, EXECUTING: 0 }
+console.log(API.rateLimiter?.counts());
+
+// number of requests waiting in the queue
+console.log(API.rateLimiter?.queued());
+
+// remaining request capacity before the limiter starts queuing new requests
+const reservoir = await API.rateLimiter?.currentReservoir();
+console.log(reservoir);
+
+// get notified when the request capacity is depleted and requests start queuing up
+API.rateLimiter?.on('depleted', () => {
+  console.log('Rate limit reached, new requests will be queued.');
+});
+```
+
+For a full list of available methods and events check out the [Bottleneck documentation](https://www.npmjs.com/package/bottleneck).
 
 ## Error handling
 
@@ -135,8 +161,6 @@ try {
 
 For more examples take a look in [blockfrost-js-examples](https://github.com/blockfrost/blockfrost-js-examples) repository.
 
-For a list of all SDK methods [check out our wiki](https://github.com/blockfrost/blockfrost-js/wiki/Exports).
-
 ### Cardano
 
 ```typescript
@@ -201,10 +225,10 @@ runExample();
 
 Blockfrost SDK exports several utility functions to improve developer experience.
 
-- [deriveAddress](https://github.com/blockfrost/blockfrost-js/wiki/Exports#deriveaddress)
-- [getFingerprint](https://github.com/blockfrost/blockfrost-js/wiki/Exports#getfingerprint)
-- [parseAsset](https://github.com/blockfrost/blockfrost-js/wiki/Exports#parseasset)
-- [verifyWebhookSignature](https://github.com/blockfrost/blockfrost-js/wiki/Exports#verifywebhooksignature)
+- [deriveAddress](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/helpers.ts)
+- [getFingerprint](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/helpers.ts)
+- [parseAsset](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/helpers.ts)
+- [verifyWebhookSignature](https://github.com/blockfrost/blockfrost-js/blob/master/src/utils/helpers.ts)
 
 ## Development
 
@@ -215,6 +239,3 @@ Blockfrost SDK exports several utility functions to improve developer experience
    - update [TSDoc](https://tsdoc.org/) for added method
 2. Add class method to `BlockfrostAPI` object in [src/BlockFrostAPI.ts](src/BlockFrostAPI.ts).
 3. Add unit-test fixture for the added method to [test/fixtures/endpoints.ts](test/fixtures/endpoints.ts)
-4. Regenerate wiki docs
-   - `yarn docs`
-   - push files to Wiki repository `https://github.com/blockfrost/blockfrost-js.wiki.git`

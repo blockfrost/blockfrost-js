@@ -17,7 +17,6 @@
   "scripts": {
     "build": "yarn clean && tsc",
     "clean": "rimraf lib",
-    "docs": "yarn typedoc ./src/index.ts --theme github-wiki",
     "lint": "eslint ./src/**/*.ts",
     "prepublishOnly": "yarn build",
     "test": "vitest",
@@ -51,9 +50,6 @@
     "prettier": "^3.0.3",
     "rimraf": "^5.0.5",
     "serialize-error": "^11.0.2",
-    "typedoc": "^0.25.2",
-    "typedoc-github-wiki-theme": "^1.1.0",
-    "typedoc-plugin-markdown": "^3.16.0",
     "typescript": "^5.2.2",
     "vitest": "^0.34.6"
   },
