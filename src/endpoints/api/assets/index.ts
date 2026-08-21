@@ -1,7 +1,15 @@
-import { getPaginationOptions, paginateMethod } from '../../../utils';
+import {
+  getCursorPaginationParams,
+  getPaginationOptions,
+  paginateMethod,
+} from '../../../utils';
 import { handleError } from '../../../utils/errors';
 import { components } from '@blockfrost/openapi';
-import { AllMethodOptions, PaginationOptions } from '../../../types';
+import {
+  AllMethodOptions,
+  CursorPaginationOptions,
+  PaginationOptions,
+} from '../../../types';
 import { BlockFrostAPI } from '../../../index';
 
 /**
@@ -230,5 +238,68 @@ export async function assetsPolicyByIdAll(
   return paginateMethod(
     pagination => this.assetsPolicyById(policyId, pagination),
     allMethodOptions,
+  );
+}
+
+/**
+ * Obtains list of unspent UTxOs containing a specific native asset.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--assets/GET/assets/%7Basset%7D/utxos | API docs for Asset UTXOs}
+ *
+ * @param asset - Concatenation of the policy ID and hex-encoded asset name
+ * @param pagination - Optional, Pagination options
+ * @param cursorPagination - Optional, Additional options such as cursor pagination
+ * @returns List of unspent UTxOs containing a specific native asset.
+ *
+ */
+export async function assetsUtxos(
+  this: BlockFrostAPI,
+  asset: string,
+  pagination?: PaginationOptions,
+  cursorPagination?: CursorPaginationOptions,
+): Promise<components['schemas']['asset_utxo_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+  const cursorPaginationParams = getCursorPaginationParams(cursorPagination);
+
+  try {
+    const res = await this.instance<
+      components['schemas']['asset_utxo_content']
+    >(`assets/${asset}/utxos`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+        from: cursorPaginationParams.from,
+        to: cursorPaginationParams.to,
+      },
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
+}
+
+/**
+ * Obtains list of unspent UTxOs containing a specific native asset.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--assets/GET/assets/%7Basset%7D/utxos | API docs for Asset UTXOs}
+ * @remarks
+ * Variant of `assetsUtxos` method for fetching all pages with built-in requests batching
+ *
+ * @param asset - Concatenation of the policy ID and hex-encoded asset name
+ * @param allMethodOptions - Optional, Options for request batching
+ * @param cursorPagination - Optional, Additional options such as cursor pagination
+ * @returns List of unspent UTxOs containing a specific native asset.
+ *
+ */
+export async function assetsUtxosAll(
+  this: BlockFrostAPI,
+  asset: string,
+  allMethodOptions?: AllMethodOptions,
+  cursorPagination?: CursorPaginationOptions,
+): Promise<components['schemas']['asset_utxo_content']> {
+  return paginateMethod(
+    (pagination, cursorPagination) =>
+      this.assetsUtxos(asset, pagination, cursorPagination),
+    allMethodOptions,
+    cursorPagination,
   );
 }

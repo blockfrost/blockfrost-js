@@ -1514,4 +1514,606 @@ export default [
       },
     },
   },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposalByGovActionId(
+        'gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn',
+      ),
+    path: mainnetUrl(
+      `governance/proposals/gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn`,
+    ),
+    endpointMock: {
+      tx_hash:
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+      cert_index: 1,
+      governance_type: 'treasury_withdrawals',
+      governance_description: {
+        tag: 'TreasuryWithdrawals',
+      },
+      deposit: '12000',
+      return_address:
+        'stake_test1urd3hs7rlxwwdzthe6hj026dmyt3y0heuulctscyydh2kgck6nkmz',
+      ratified_epoch: null,
+      enacted_epoch: 123,
+      dropped_epoch: null,
+      expired_epoch: null,
+      expiration: 120,
+    },
+    response: {
+      tx_hash:
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+      cert_index: 1,
+      governance_type: 'treasury_withdrawals',
+      governance_description: {
+        tag: 'TreasuryWithdrawals',
+      },
+      deposit: '12000',
+      return_address:
+        'stake_test1urd3hs7rlxwwdzthe6hj026dmyt3y0heuulctscyydh2kgck6nkmz',
+      ratified_epoch: null,
+      enacted_epoch: 123,
+      dropped_epoch: null,
+      expired_epoch: null,
+      expiration: 120,
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposalParametersByGovActionId(
+        'gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn',
+      ),
+    path: mainnetUrl(
+      `governance/proposals/gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn/parameters`,
+    ),
+    endpointMock: {
+      tx_hash:
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+      cert_index: 1,
+      parameters: {
+        min_fee_a: 44,
+        min_fee_b: 155381,
+      },
+    },
+    response: {
+      tx_hash:
+        '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+      cert_index: 1,
+      parameters: {
+        min_fee_a: 44,
+        min_fee_b: 155381,
+      },
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposalWithdrawalsByGovActionId(
+        'gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn',
+      ),
+    path: mainnetUrl(
+      `governance/proposals/gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn/withdrawals`,
+    ),
+    endpointMock: [
+      {
+        stake_address:
+          'stake1u9fzg77vrgfqlplkjqe9hntdcvsurpvxd60yp2fhn73002qsv9pdk',
+        amount: '454541212442',
+      },
+    ],
+    response: [
+      {
+        stake_address:
+          'stake1u9fzg77vrgfqlplkjqe9hntdcvsurpvxd60yp2fhn73002qsv9pdk',
+        amount: '454541212442',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposalVotesByGovActionId(
+        'gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn',
+      ),
+    path: mainnetUrl(
+      `governance/proposals/gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn/votes`,
+    ),
+    endpointMock: [
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 2,
+        voter_role: 'drep',
+        voter: 'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+        vote: 'yes',
+      },
+    ],
+    response: [
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        cert_index: 2,
+        voter_role: 'drep',
+        voter: 'drep1mvdu8slennngja7w4un6knwezufra70887zuxpprd64jxfveahn',
+        vote: 'yes',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.proposalMetadataByGovActionId(
+        'gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn',
+      ),
+    path: mainnetUrl(
+      `governance/proposals/gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn/metadata`,
+    ),
+    endpointMock: {
+      id: 'gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn',
+      tx_hash:
+        '257d75c8ddb0434e9b63e29ebb6241add2b835a307aa33aedba2effe09ed4ec8',
+      cert_index: 2,
+      url: 'https://raw.githubusercontent.com/carloslodelar/proposals/main/pv10.json',
+      hash: 'ffa226f3863aca006172d559cf46bb8b883a47233962ae2fc94c158d7de6fa81',
+      json_metadata: {
+        body: {
+          title: 'Hardfork to Protocol version 10',
+        },
+      },
+      bytes: '\\x7b0a20202240636f6e74657874223a',
+    },
+    response: {
+      id: 'gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn',
+      tx_hash:
+        '257d75c8ddb0434e9b63e29ebb6241add2b835a307aa33aedba2effe09ed4ec8',
+      cert_index: 2,
+      url: 'https://raw.githubusercontent.com/carloslodelar/proposals/main/pv10.json',
+      hash: 'ffa226f3863aca006172d559cf46bb8b883a47233962ae2fc94c158d7de6fa81',
+      json_metadata: {
+        body: {
+          title: 'Hardfork to Protocol version 10',
+        },
+      },
+      bytes: '\\x7b0a20202240636f6e74657874223a',
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.governance.committee(),
+    path: mainnetUrl(`governance/committee`),
+    endpointMock: {
+      gov_action_id: null,
+      proposal_tx_hash: null,
+      proposal_index: null,
+      is_dissolved: false,
+      quorum: {
+        numerator: 2,
+        denominator: 3,
+      },
+      members: [
+        {
+          cc_cold_id:
+            'cc_cold1zgkfeeu07qq9smfqfn0nrf2cqgr5x6jpu8x6lxgxay85t6cmt54xz',
+          cc_cold_hex: '12c9ce78ff8005436901336f8d2ac0411a1b520f0e6d7e6066907a2f',
+          cc_cold_has_script: false,
+          cc_hot_id:
+            'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+          cc_hot_hex: '0269808bbf8fb495a3b8e290a5f626362236c1abf853eddf08d79a930',
+          cc_hot_has_script: false,
+          status: 'authorized',
+          expiration_epoch: 580,
+        },
+      ],
+    },
+    response: {
+      gov_action_id: null,
+      proposal_tx_hash: null,
+      proposal_index: null,
+      is_dissolved: false,
+      quorum: {
+        numerator: 2,
+        denominator: 3,
+      },
+      members: [
+        {
+          cc_cold_id:
+            'cc_cold1zgkfeeu07qq9smfqfn0nrf2cqgr5x6jpu8x6lxgxay85t6cmt54xz',
+          cc_cold_hex: '12c9ce78ff8005436901336f8d2ac0411a1b520f0e6d7e6066907a2f',
+          cc_cold_has_script: false,
+          cc_hot_id:
+            'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+          cc_hot_hex: '0269808bbf8fb495a3b8e290a5f626362236c1abf853eddf08d79a930',
+          cc_hot_has_script: false,
+          status: 'authorized',
+          expiration_epoch: 580,
+        },
+      ],
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.governance.committeeVotes(),
+    path: mainnetUrl(`governance/committee/votes`),
+    endpointMock: [
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        voter_hot_id:
+          'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+        proposal_id:
+          'gov_action1k2jertppnnndejjcglszfqq4yzw8evzrd2nt66rr6rqlz54xp0zsq05ecsn',
+        proposal_tx_hash:
+          'b2a591ac219ce6dcca5847e0248015209c7cb0436aa6bd6863d0c1f152a60bc5',
+        proposal_index: 0,
+        governance_type: 'parameter_change',
+        vote: 'yes',
+        metadata_url: 'https://my.cc-member/rationale.jsonld',
+        metadata_hash:
+          'a4b7d5d34f5d8c5b71a0a5c34b7e7f8a3d2e1c0b9a8f7e6d5c4b3a2918f7e6d5',
+        block_height: 11045358,
+        block_time: 1746037200,
+      },
+    ],
+    response: [
+      {
+        tx_hash: 'b302de601defdf11a5261ed31a263804dac4a582a888c998ce24dec5',
+        voter_hot_id:
+          'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+        proposal_id:
+          'gov_action1k2jertppnnndejjcglszfqq4yzw8evzrd2nt66rr6rqlz54xp0zsq05ecsn',
+        proposal_tx_hash:
+          'b2a591ac219ce6dcca5847e0248015209c7cb0436aa6bd6863d0c1f152a60bc5',
+        proposal_index: 0,
+        governance_type: 'parameter_change',
+        vote: 'yes',
+        metadata_url: 'https://my.cc-member/rationale.jsonld',
+        metadata_hash:
+          'a4b7d5d34f5d8c5b71a0a5c34b7e7f8a3d2e1c0b9a8f7e6d5c4b3a2918f7e6d5',
+        block_height: 11045358,
+        block_time: 1746037200,
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.governance.committeeMemberVotes(
+        'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+      ),
+    path: mainnetUrl(
+      `governance/committee/cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0/votes`,
+    ),
+    endpointMock: [
+      {
+        tx_hash: '8a91b32ec2a7bdfde2ab7a1bc5e4d3a2f1b0c9d8e7f6a5b4c3d2e1f0a9b8c7d6',
+        voter_hot_id:
+          'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+        proposal_id:
+          'gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn',
+        proposal_tx_hash:
+          '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        proposal_index: 1,
+        governance_type: 'new_constitution',
+        vote: 'abstain',
+        metadata_url: null,
+        metadata_hash: null,
+        block_height: 11045890,
+        block_time: 1746070800,
+      },
+    ],
+    response: [
+      {
+        tx_hash: '8a91b32ec2a7bdfde2ab7a1bc5e4d3a2f1b0c9d8e7f6a5b4c3d2e1f0a9b8c7d6',
+        voter_hot_id:
+          'cc_hot1qf4xq9mlra5j68w8zjz2lvf3kc3rtsdtu98ka7zx4u6jvqyy39ww0',
+        proposal_id:
+          'gov_action1zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zyg3zygsq6dmejn',
+        proposal_tx_hash:
+          '2dd15e0ef6e6a17841cb9541c27724072ce4d4b79b91e58432fbaa32d9572531',
+        proposal_index: 1,
+        governance_type: 'new_constitution',
+        vote: 'abstain',
+        metadata_url: null,
+        metadata_hash: null,
+        block_height: 11045890,
+        block_time: 1746070800,
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.accountsUtxos(
+        'stake1u9fzg77vrgfqlplkjqe9hntdcvsurpvxd60yp2fhn73002qsv9pdk',
+      ),
+    path: mainnetUrl(
+      '/accounts/stake1u9fzg77vrgfqlplkjqe9hntdcvsurpvxd60yp2fhn73002qsv9pdk/utxos',
+    ),
+    endpointMock: [
+      {
+        address:
+          'addr1qxfdlum57a0083mnth9y583jvdcv5a9nwj5lzv9v34t9tl7wmz90ahznykuhr4ykwvfrge8yc63c6lpf7345yd5h59nq885d05',
+        tx_hash:
+          '39a7a284c2a0948189dc45dec670211cd4d72f7b66c5726c08d9b3df11e44d58',
+        output_index: 0,
+        amount: [
+          {
+            unit: 'lovelace',
+            quantity: '42000000',
+          },
+        ],
+        block: '7eb8e27d18686c7db9a18f8bbcfe34e3fed6e047afaa2d969904d15e934847e6',
+        block_height: 5804427,
+        block_time: 1622754311,
+        data_hash:
+          '9e478573ab81ea7a8e31891ce0648b81229f408d596a3483e6f4f9b92d3cf710',
+        inline_datum: null,
+        reference_script_hash: null,
+      },
+    ],
+    response: [
+      {
+        address:
+          'addr1qxfdlum57a0083mnth9y583jvdcv5a9nwj5lzv9v34t9tl7wmz90ahznykuhr4ykwvfrge8yc63c6lpf7345yd5h59nq885d05',
+        tx_hash:
+          '39a7a284c2a0948189dc45dec670211cd4d72f7b66c5726c08d9b3df11e44d58',
+        output_index: 0,
+        amount: [
+          {
+            unit: 'lovelace',
+            quantity: '42000000',
+          },
+        ],
+        block: '7eb8e27d18686c7db9a18f8bbcfe34e3fed6e047afaa2d969904d15e934847e6',
+        block_height: 5804427,
+        block_time: 1622754311,
+        data_hash:
+          '9e478573ab81ea7a8e31891ce0648b81229f408d596a3483e6f4f9b92d3cf710',
+        inline_datum: null,
+        reference_script_hash: null,
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.assetsUtxos(
+        'b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e',
+      ),
+    path: mainnetUrl(
+      '/assets/b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e/utxos',
+    ),
+    endpointMock: [
+      {
+        address:
+          'addr1qxfdlum57a0083mnth9y583jvdcv5a9nwj5lzv9v34t9tl7wmz90ahznykuhr4ykwvfrge8yc63c6lpf7345yd5h59nq885d05',
+        tx_hash:
+          '39a7a284c2a0948189dc45dec670211cd4d72f7b66c5726c08d9b3df11e44d58',
+        output_index: 0,
+        amount: [
+          {
+            unit: 'b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e',
+            quantity: '1',
+          },
+        ],
+        block: '7eb8e27d18686c7db9a18f8bbcfe34e3fed6e047afaa2d969904d15e934847e6',
+        block_height: 5804427,
+        block_time: 1622754311,
+        data_hash: null,
+        inline_datum: null,
+        inline_datum_json: null,
+        reference_script_hash: null,
+      },
+    ],
+    response: [
+      {
+        address:
+          'addr1qxfdlum57a0083mnth9y583jvdcv5a9nwj5lzv9v34t9tl7wmz90ahznykuhr4ykwvfrge8yc63c6lpf7345yd5h59nq885d05',
+        tx_hash:
+          '39a7a284c2a0948189dc45dec670211cd4d72f7b66c5726c08d9b3df11e44d58',
+        output_index: 0,
+        amount: [
+          {
+            unit: 'b0d07d45fe9514f80213f4020e5a61241458be626841cde717cb38a76e7574636f696e',
+            quantity: '1',
+          },
+        ],
+        block: '7eb8e27d18686c7db9a18f8bbcfe34e3fed6e047afaa2d969904d15e934847e6',
+        block_height: 5804427,
+        block_time: 1622754311,
+        data_hash: null,
+        inline_datum: null,
+        inline_datum_json: null,
+        reference_script_hash: null,
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.scriptsUtxos('13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1'),
+    path: mainnetUrl(
+      '/scripts/13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1/utxos',
+    ),
+    endpointMock: [
+      {
+        address:
+          'addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz',
+        tx_hash:
+          '39a7a284c2a0948189dc45dec670211cd4d72f7b66c5726c08d9b3df11e44d58',
+        output_index: 0,
+        amount: [
+          {
+            unit: 'lovelace',
+            quantity: '42000000',
+          },
+        ],
+        block: '7eb8e27d18686c7db9a18f8bbcfe34e3fed6e047afaa2d969904d15e934847e6',
+        data_hash: null,
+        inline_datum: null,
+        reference_script_hash:
+          '13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1',
+      },
+    ],
+    response: [
+      {
+        address:
+          'addr1qxqs59lphg8g6qndelq8xwqn60ag3aeyfcp33c2kdp46a09re5df3pzwwmyq946axfcejy5n4x0y99wqpgtp2gd0k09qsgy6pz',
+        tx_hash:
+          '39a7a284c2a0948189dc45dec670211cd4d72f7b66c5726c08d9b3df11e44d58',
+        output_index: 0,
+        amount: [
+          {
+            unit: 'lovelace',
+            quantity: '42000000',
+          },
+        ],
+        block: '7eb8e27d18686c7db9a18f8bbcfe34e3fed6e047afaa2d969904d15e934847e6',
+        data_hash: null,
+        inline_datum: null,
+        reference_script_hash:
+          '13a3efd825703a352a8f71f4e2758d08c28c564e8dfcce9f77776ad1',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) =>
+      SDK.poolsByIdVotes(
+        'pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy',
+      ),
+    path: mainnetUrl(
+      '/pools/pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy/votes',
+    ),
+    endpointMock: [
+      {
+        tx_hash:
+          'b2a591ac219ce6dcca5847e0248015209c7cb0436aa6bd6863d0c1f152a60bc5',
+        cert_index: 0,
+        vote: 'yes',
+      },
+    ],
+    response: [
+      {
+        tx_hash:
+          'b2a591ac219ce6dcca5847e0248015209c7cb0436aa6bd6863d0c1f152a60bc5',
+        cert_index: 0,
+        vote: 'yes',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.blocksLatestTxsCbor(),
+    path: mainnetUrl('/blocks/latest/txs/cbor'),
+    endpointMock: [
+      {
+        tx_hash:
+          '8788591983aa73981fc92d6cddbbe643959f5a784e84b8bee87aa7fb3d5a83a3',
+        cbor: '84a300d90102818258205353...',
+      },
+    ],
+    response: [
+      {
+        tx_hash:
+          '8788591983aa73981fc92d6cddbbe643959f5a784e84b8bee87aa7fb3d5a83a3',
+        cbor: '84a300d90102818258205353...',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.blocksTxsCbor(5321845),
+    path: mainnetUrl('/blocks/5321845/txs/cbor'),
+    endpointMock: [
+      {
+        tx_hash:
+          '8788591983aa73981fc92d6cddbbe643959f5a784e84b8bee87aa7fb3d5a83a3',
+        cbor: '84a300d90102818258205353...',
+      },
+    ],
+    response: [
+      {
+        tx_hash:
+          '8788591983aa73981fc92d6cddbbe643959f5a784e84b8bee87aa7fb3d5a83a3',
+        cbor: '84a300d90102818258205353...',
+      },
+    ],
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.blocksBySlot(30895909),
+    path: mainnetUrl('/blocks/slot/30895909'),
+    endpointMock: {
+      time: 1641338934,
+      height: 15243593,
+      hash: '4ea1ba291e8eef538635a53e59fddba7810d1679631cc3aed7c8e6c4091a516a',
+      slot: 30895909,
+      epoch: 425,
+      epoch_slot: 12,
+      slot_leader: 'pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy',
+      size: 3,
+      tx_count: 1,
+      output: '128314491794',
+      fees: '592661',
+      block_vrf: 'vrf_vk1wf2k6lhujezqcfe00l6zetxpnmh9n6mwhpmhm0dvfh3fxgmdnrfqkms8ty',
+      op_cert: 'da905277534faf75dae41732650568af545134ee08a3c0392dbefc8096ae177c',
+      op_cert_counter: '18',
+      previous_block:
+        '43ebccb3ac72c7cebd0d9b755a4b08412c9f5dcb81b8a0ad1e3c197d29d47b05',
+      next_block:
+        '8367f026cf4b03e116ff8ee5daf149b55ba5a6ec6dec04803b8dc317721d15fa',
+      confirmations: 4698,
+    },
+    response: {
+      time: 1641338934,
+      height: 15243593,
+      hash: '4ea1ba291e8eef538635a53e59fddba7810d1679631cc3aed7c8e6c4091a516a',
+      slot: 30895909,
+      epoch: 425,
+      epoch_slot: 12,
+      slot_leader: 'pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy',
+      size: 3,
+      tx_count: 1,
+      output: '128314491794',
+      fees: '592661',
+      block_vrf: 'vrf_vk1wf2k6lhujezqcfe00l6zetxpnmh9n6mwhpmhm0dvfh3fxgmdnrfqkms8ty',
+      op_cert: 'da905277534faf75dae41732650568af545134ee08a3c0392dbefc8096ae177c',
+      op_cert_counter: '18',
+      previous_block:
+        '43ebccb3ac72c7cebd0d9b755a4b08412c9f5dcb81b8a0ad1e3c197d29d47b05',
+      next_block:
+        '8367f026cf4b03e116ff8ee5daf149b55ba5a6ec6dec04803b8dc317721d15fa',
+      confirmations: 4698,
+    },
+  },
+  {
+    command: (SDK: BlockFrostAPI) => SDK.blocksByEpochAndSlot(425, 12),
+    path: mainnetUrl('/blocks/epoch/425/slot/12'),
+    endpointMock: {
+      time: 1641338934,
+      height: 15243593,
+      hash: '4ea1ba291e8eef538635a53e59fddba7810d1679631cc3aed7c8e6c4091a516a',
+      slot: 30895909,
+      epoch: 425,
+      epoch_slot: 12,
+      slot_leader: 'pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy',
+      size: 3,
+      tx_count: 1,
+      output: '128314491794',
+      fees: '592661',
+      block_vrf: 'vrf_vk1wf2k6lhujezqcfe00l6zetxpnmh9n6mwhpmhm0dvfh3fxgmdnrfqkms8ty',
+      op_cert: 'da905277534faf75dae41732650568af545134ee08a3c0392dbefc8096ae177c',
+      op_cert_counter: '18',
+      previous_block:
+        '43ebccb3ac72c7cebd0d9b755a4b08412c9f5dcb81b8a0ad1e3c197d29d47b05',
+      next_block:
+        '8367f026cf4b03e116ff8ee5daf149b55ba5a6ec6dec04803b8dc317721d15fa',
+      confirmations: 4698,
+    },
+    response: {
+      time: 1641338934,
+      height: 15243593,
+      hash: '4ea1ba291e8eef538635a53e59fddba7810d1679631cc3aed7c8e6c4091a516a',
+      slot: 30895909,
+      epoch: 425,
+      epoch_slot: 12,
+      slot_leader: 'pool1pu5jlj4q9w9jlxeu370a3c9myx47md5j5m2str0naunn2q3lkdy',
+      size: 3,
+      tx_count: 1,
+      output: '128314491794',
+      fees: '592661',
+      block_vrf: 'vrf_vk1wf2k6lhujezqcfe00l6zetxpnmh9n6mwhpmhm0dvfh3fxgmdnrfqkms8ty',
+      op_cert: 'da905277534faf75dae41732650568af545134ee08a3c0392dbefc8096ae177c',
+      op_cert_counter: '18',
+      previous_block:
+        '43ebccb3ac72c7cebd0d9b755a4b08412c9f5dcb81b8a0ad1e3c197d29d47b05',
+      next_block:
+        '8367f026cf4b03e116ff8ee5daf149b55ba5a6ec6dec04803b8dc317721d15fa',
+      confirmations: 4698,
+    },
+  },
 ] as const;

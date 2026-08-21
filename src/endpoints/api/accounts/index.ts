@@ -556,3 +556,57 @@ export async function accountsTransactionsAll(
     cursorPagination,
   );
 }
+
+/**
+ * Obtains UTXOs associated with the account addresses.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--accounts/GET/accounts/%7Bstake_address%7D/utxos | API docs for Account UTXOs}
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @param pagination - Optional, Pagination options
+ * @returns UTXOs associated with the account addresses
+ *
+ */
+export async function accountsUtxos(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  pagination?: PaginationOptions,
+): Promise<components['schemas']['account_utxo_content']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
+  try {
+    const res = await this.instance<
+      components['schemas']['account_utxo_content']
+    >(`accounts/${stakeAddress}/utxos`, {
+      searchParams: {
+        page: paginationOptions.page,
+        count: paginationOptions.count,
+        order: paginationOptions.order,
+      },
+    });
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
+}
+
+/**
+ * Obtains all UTXOs associated with the account addresses.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--accounts/GET/accounts/%7Bstake_address%7D/utxos | API docs for Account UTXOs}
+ * @remarks
+ * Variant of `accountsUtxos` method for fetching all pages with built-in requests batching
+ *
+ * @param stakeAddress - Bech32 stake address
+ * @param allMethodOptions - Optional, Options for request batching
+ * @returns UTXOs associated with the account addresses
+ *
+ */
+export async function accountsUtxosAll(
+  this: BlockFrostAPI,
+  stakeAddress: string,
+  allMethodOptions?: AllMethodOptions,
+): Promise<components['schemas']['account_utxo_content']> {
+  return paginateMethod(
+    pagination => this.accountsUtxos(stakeAddress, pagination),
+    allMethodOptions,
+  );
+}

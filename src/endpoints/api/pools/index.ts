@@ -351,3 +351,58 @@ export async function poolsExtendedAll(
     allMethodOptions,
   );
 }
+
+/**
+ * Obtains list of votes cast by the stake pool.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--pools/GET/pools/%7Bpool_id%7D/votes | API docs for Stake pool votes}
+ *
+ * @param poolId - Pool ID
+ * @param pagination - Optional, Pagination options
+ * @returns List of votes cast by the stake pool
+ *
+ */
+export async function poolsByIdVotes(
+  this: BlockFrostAPI,
+  poolId: string,
+  pagination?: PaginationOptions,
+): Promise<components['schemas']['pool_votes']> {
+  const paginationOptions = getPaginationOptions(pagination);
+
+  try {
+    const res = await this.instance<components['schemas']['pool_votes']>(
+      `pools/${poolId}/votes`,
+      {
+        searchParams: {
+          page: paginationOptions.page,
+          count: paginationOptions.count,
+          order: paginationOptions.order,
+        },
+      },
+    );
+    return res.body;
+  } catch (error) {
+    throw handleError(error);
+  }
+}
+
+/**
+ * Obtains list of votes cast by the stake pool.
+ * @see {@link https://docs.blockfrost.io/#tag/cardano--pools/GET/pools/%7Bpool_id%7D/votes | API docs for Stake pool votes}
+ * @remarks
+ * Variant of `poolsByIdVotes` method for fetching all pages with built-in requests batching
+ *
+ * @param poolId - Pool ID
+ * @param allMethodOptions - Optional, Options for request batching
+ * @returns List of votes cast by the stake pool
+ *
+ */
+export async function poolsByIdVotesAll(
+  this: BlockFrostAPI,
+  poolId: string,
+  allMethodOptions?: AllMethodOptions,
+): Promise<components['schemas']['pool_votes']> {
+  return paginateMethod(
+    pagination => this.poolsByIdVotes(poolId, pagination),
+    allMethodOptions,
+  );
+}
